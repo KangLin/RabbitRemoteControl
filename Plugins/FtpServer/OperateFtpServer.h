@@ -23,7 +23,7 @@ public:
     virtual int Start() override;
     virtual int Stop() override;
 
-    QSharedPointer<CParameterFtpServer> GetParameter() const;
+    CParameterFtpServer* GetParameter();
 
 protected:
     Q_INVOKABLE virtual CBackend* InstanceBackend();
@@ -41,7 +41,7 @@ private:
 
 private:
     CBackendThread* m_pThread;
-    QSharedPointer<CParameterFtpServer> m_Para;
+    CParameterFtpServer m_Para;
     CFrmMain* m_pView;
     QAction* m_pStart;
     friend class CFrmMain;

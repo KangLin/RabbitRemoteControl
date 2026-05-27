@@ -9,8 +9,9 @@ class PLUGIN_EXPORT CParameterServer : public CParameterOperate
     Q_OBJECT
     
 public:
-    explicit CParameterServer(QObject *parent = nullptr,
-                              const QString& szPrefix = QString());
+    explicit CParameterServer(
+        QObject *parent = nullptr,
+        const QString& szPrefix = QString());
 
     CParameterNet m_Net;
 
@@ -29,6 +30,34 @@ public:
     void SetRoot(const QString &newRoot);
 private:
     QString m_szRoot;
+public:
+    /*!
+     * \brief Connect count.
+     * \return Connect count.
+     *        -1: enable all connect
+     */
+    int GetConnectCount() const;
+    void SetConnectCount(int newConnectCount);
+private:
+    int m_ConnectCount;
+public:
+    bool GetListenAll() const;
+    void SetListenAll(bool newListenAll);
+private:
+    bool m_bListenAll;
+public:
+    QStringList GetListen() const;
+    void SetListen(const QStringList &newListen);
+private:
+    QStringList m_Listen;
+public:
+    QStringList GetWhitelist() const;
+    void SetWhitelist(const QStringList &newWhitelist);
+    QStringList GetBlacklist() const;
+    void SetBlacklist(const QStringList &newBlacklist);
+private:
+    QStringList m_Whitelist;
+    QStringList m_Blacklist;
 public:
     QString GetHostKeyFile() const;
     void SetHostKeyFile(const QString& key);
@@ -60,34 +89,6 @@ public:
     void SetAuthenticateAttempts(int attempts);
 private:
     int m_AuthAttempts;
-public:
-    /*!
-     * \brief Connect count.
-     * \return Connect count.
-     *        -1: enable all connect
-     */
-    int GetConnectCount() const;
-    void SetConnectCount(int newConnectCount);
-private:
-    int m_ConnectCount;
-public:
-    bool GetListenAll() const;
-    void SetListenAll(bool newListenAll);
-private:
-    bool m_bListenAll;
-public:
-    QStringList GetListen() const;
-    void SetListen(const QStringList &newListen);
-private:
-    QStringList m_Listen;
-public:
-    QStringList GetWhitelist() const;
-    void SetWhitelist(const QStringList &newWhitelist);
-    QStringList GetBlacklist() const;
-    void SetBlacklist(const QStringList &newBlacklist);
-private:
-    QStringList m_Whitelist;
-    QStringList m_Blacklist;
 
     // CParameter interface
 protected:

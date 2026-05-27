@@ -15,7 +15,7 @@ CBackendFtpServer::CBackendFtpServer(COperateFtpServer *pOperate)
     , m_nDisconnect(0)
 {
     qDebug(log) << Q_FUNC_INFO;
-    m_Para = m_pOperate->GetParameter();
+    m_pPara = m_pOperate->GetParameter();
 }
 
 CBackendFtpServer::~CBackendFtpServer()
@@ -39,8 +39,8 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
     CSecurityLevel::Levels securityLevel;
     QString szUser;
     QString szPassword;
-    auto &net = m_Para->m_Net;
-    if(!m_Para->GetAnonymousLogin()) {
+    auto &net = m_pPara->m_Net;
+    if(!m_pPara->GetAnonymousLogin()) {
         auto &user = net.m_User;
         szUser = user.GetUser();
         szPassword = user.GetPassword();
@@ -48,9 +48,9 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
             securityLevel |= CSecurityLevel::Level::Authentication;
     }
 
-    m_pServer = new CFtpServer(this, m_Para->GetRoot(), net.GetPort(),
+    m_pServer = new CFtpServer(this, m_pPara->GetRoot(), net.GetPort(),
                               szUser, szPassword,
-                              m_Para->GetReadOnly());
+                              m_pPara->GetReadOnly());
     if(!m_pServer) {
         qCritical(log) << "Failed to new CFtpServer";
         return OnInitReturnValue::Fail;
@@ -58,7 +58,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
 
     m_pServer->SetFilter(this);
     bool bListen = false;
-    if(m_Para->GetListenAll()) {
+    if(m_pPara->GetListenAll()) {
         bListen = m_pServer->Listening();
         if(bListen) {
             QString szMsg = tr("Ftp server listen on all address port %1. the lan ip is %2")
@@ -74,13 +74,13 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         }
     } else {
         QString szErr;
-        if(m_Para->GetListen().isEmpty()) {
+        if(m_pPara->GetListen().isEmpty()) {
             szErr = tr("Failed: Ftp server is not set to listen on any address");
             qCritical(log) << szErr;
             emit sigError(-1, szErr);
             return OnInitReturnValue::Fail;
         }
-        foreach (auto a, m_Para->GetListen()) {
+        foreach (auto a, m_pPara->GetListen()) {
             QHostAddress addr(a);
             bListen = m_pServer->Listening(addr);
             if(!bListen) {
@@ -119,8 +119,8 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
     if(!socket) return true;
     QString szIP = socket->peerAddress().toString();
     
-    QStringList white = m_Para->GetWhitelist();
-    QStringList black = m_Para->GetBlacklist();
+    QStringList white = m_pPara->GetWhitelist();
+    QStringList black = m_pPara->GetBlacklist();
     bool bInWhite = false;
     if(!white.isEmpty()) {
         foreach(auto i, white) {
@@ -146,8 +146,8 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
 
     if(bFilte) return true;
 
-    if(m_Para->GetConnectCount() >= 0 && m_Para->GetConnectCount() <= m_Sockets.size()) {
-        qDebug(log) << "Exceeded the allowed number of connections:" << m_Para->GetConnectCount();
+    if(m_pPara->GetConnectCount() >= 0 && m_pPara->GetConnectCount() <= m_Sockets.size()) {
+        qDebug(log) << "Exceeded the allowed number of connections:" << m_pPara->GetConnectCount();
         return true;
     }
 

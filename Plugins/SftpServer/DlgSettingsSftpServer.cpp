@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QHBoxLayout>
-#include "ParameterServerUI.h"
 #include "ParameterSftpServer.h"
 #include "DlgSettingsSftpServer.h"
 #include "ui_DlgSettingsSftpServer.h"

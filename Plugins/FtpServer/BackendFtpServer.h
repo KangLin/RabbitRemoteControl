@@ -35,7 +35,7 @@ private Q_SLOTS:
 private:
     COperateFtpServer* m_pOperate;
     CFtpServer* m_pServer;
-    QSharedPointer<CParameterFtpServer> m_Para;
+    CParameterFtpServer* m_pPara;
     QList<QSslSocket*> m_Sockets;
     int m_nTotal;
     int m_nDisconnect;

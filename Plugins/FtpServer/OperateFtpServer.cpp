@@ -102,22 +102,18 @@ int COperateFtpServer::SetPluginParameters(CParameterPlugin *pPara)
 
 QDialog *COperateFtpServer::OnOpenDialogSettings(QWidget *parent)
 {
-    auto pDlg = new CDlgSettings(m_Para, parent);
+    auto pDlg = new CDlgSettings(&m_Para, parent);
     return pDlg;
 }
 
 int COperateFtpServer::Load(QSettings &set)
 {
-    if(m_Para)
-        return m_Para->Load(set);
-    return 0;
+    return m_Para.Load(set);
 }
 
 int COperateFtpServer::Save(QSettings &set)
 {
-    if(m_Para)
-        return m_Para->Save(set);
-    return 0;
+    return m_Para.Save(set);
 }
 
 int COperateFtpServer::Initial()
@@ -126,11 +122,7 @@ int COperateFtpServer::Initial()
     int nRet = 0;
     bool check = false;
 
-    m_Para = QSharedPointer<CParameterFtpServer>(new CParameterFtpServer());
-    if(!m_Para)
-        return -1;
-
-    check = connect(m_Para.get(), &CParameter::sigChanged,
+    check = connect(&m_Para, &CParameter::sigChanged,
                     this, [&](){
                         emit this->sigUpdateParameters(this);
                     });
@@ -162,9 +154,9 @@ int COperateFtpServer::Clean()
     return 0;
 }
 
-QSharedPointer<CParameterFtpServer> COperateFtpServer::GetParameter() const
+CParameterFtpServer *COperateFtpServer::GetParameter()
 {
-    return m_Para;
+    return &m_Para;
 }
 
 void COperateFtpServer::slotStart(bool checked)
