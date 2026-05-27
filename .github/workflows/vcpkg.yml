@@ -8,7 +8,7 @@ on:
 
 jobs:
   vcpkg:
-    if: false
+    #if: false
     strategy:
       matrix:
         include:
@@ -32,7 +32,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOLS_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKG_MANIFEST_FEATURES: "qt;freerdp;vnc;terminal;filetransfer"
+      VCPKG_MANIFEST_FEATURES: "qt"
 
     runs-on: ${{matrix.os}}
     steps:
@@ -72,23 +72,24 @@ jobs:
       - name: RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
-      
+
       - name: Build RabbitRemoteControl
         working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+        timeout-minutes: 720
         run: |
           # 或者使用替代方法：应用组策略（不需要重启）
           # 但对于一次性运行环境，下面用环境变量方式更合适
           # 2. 设置环境变量
           #[Environment]::SetEnvironmentVariable("EnableLongPathBehavior", "1", "Process")
           #[Environment]::SetEnvironmentVariable("COMPLUS_ForceENC", "1", "Process")
-                  
+
           # 启用 git 的长路径支持
           git config --global core.longpaths true
           # Windows 上的 git 还需要设置
           git config --global core.protectNTFS false
-          
+
           cmake ${{github.workspace}} `
             -A ${{env.CMAKE_GENERATOR_PLATFORM}} `
             -T ${{env.VCPKG_PLATFORM_TOOLSET}} `
@@ -120,3 +121,10 @@ jobs:
             -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap `
             -DINSTALL_QTKEYCHAIN=ON
           cmake --build . --config Release
+
+      - name: Update artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: qt
+          path: |
+            ${{github.workspace}}/vcpkg_installed

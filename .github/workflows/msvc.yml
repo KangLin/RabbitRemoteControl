@@ -16,7 +16,7 @@ jobs:
       matrix:
         include:
           - CMAKE_GENERATOR_PLATFORM: x64
-            VCPKG_TARGET_TRIPLET: x64-windows
+            VCPKG_TARGET_TRIPLET: x64-windows-release
             VCPKG_PLATFORM_TOOLSET: v143
             BUILD_TYPE: Release
             qt_version: 6.10.3
