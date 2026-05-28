@@ -273,13 +273,13 @@
     <string>Stop</string>
    </property>
    <property name="toolTip">
-    <string>Stop</string>
+    <string>Stop Operate</string>
    </property>
    <property name="statusTip">
-    <string>Stop</string>
+    <string>Stop Operate</string>
    </property>
    <property name="whatsThis">
-    <string>Stop</string>
+    <string>Stop Operate</string>
    </property>
   </action>
   <action name="actionOpenRRCFile">
@@ -552,7 +552,13 @@
     <string>Stop All</string>
    </property>
    <property name="toolTip">
-    <string>Stop All</string>
+    <string>Stop All Operate</string>
+   </property>
+   <property name="statusTip">
+    <string>Stop All Operate</string>
+   </property>
+   <property name="whatsThis">
+    <string>Stop All Operate</string>
    </property>
   </action>
   <action name="actionStop_other">
@@ -563,7 +569,13 @@
     <string>Stop other</string>
    </property>
    <property name="toolTip">
-    <string>Stop other</string>
+    <string>Stop other Operate</string>
+   </property>
+   <property name="statusTip">
+    <string>Stop other Operate</string>
+   </property>
+   <property name="whatsThis">
+    <string>Stop other Operate</string>
    </property>
   </action>
  </widget>

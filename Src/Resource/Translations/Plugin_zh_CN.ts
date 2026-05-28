@@ -778,7 +778,7 @@ Some features are limited.
     <message>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="34"/>
         <source>Sharing &quot;Operation Parameters&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>共享 &quot;操作参数&quot;</translation>
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
@@ -840,6 +840,77 @@ Some features are limited.
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="226"/>
         <source>Test is failed!</source>
         <translation>测试失败！</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterFilterUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.ui" line="42"/>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="68"/>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="79"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.ui" line="49"/>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="70"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="15"/>
+        <source>The IP address and the netmask must be separated by a slash (/).</source>
+        <translation>IP 及掩码必须由 (/) 分隔。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="16"/>
+        <source>ag:</source>
+        <translation>例如：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="17"/>
+        <source>where n is any value between 0 and 32</source>
+        <translation>n 是在 0 到 32 之间的值</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="19"/>
+        <source>where n is any value between 0 and 128</source>
+        <translation>n 是在 0 到 128 之间的值</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="20"/>
+        <source>For IP version 4, accepts as well missing trailing components</source>
+        <translation>对于 IP 版本 4，也接受缺少尾部组件的情况</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="21"/>
+        <source>(i.e., less than 4 octets, like &quot;192.168.1&quot;), followed or not by a dot. </source>
+        <translation>（即少于 4 个八位字节，如“192.168.1”），后面跟着一个点，也可以不跟着一个点。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="22"/>
+        <source>If the netmask is also missing in that case,</source>
+        <translation>如果这种情况下网络掩码也缺失，</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="23"/>
+        <source>it is set to the number of octets actually passed</source>
+        <translation>它被设置为实际传递的八位字节数。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="24"/>
+        <source>(in the example above, it would be 24, for 3 octets).</source>
+        <translation>（在上面的例子中，3 个八位字节数的值为 24）。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="25"/>
+        <source>Add IP address and the netmask:</source>
+        <translation>增加 IP 及掩码：</translation>
     </message>
 </context>
 <context>
@@ -1346,6 +1417,78 @@ Some features are limited.
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="51"/>
         <source>Packet capture (*.pcap *.cap)</source>
         <translation>包捕获文件(*.pcap *.cap)</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterServerUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="14"/>
+        <source>General</source>
+        <translation>通用</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="25"/>
+        <source>Max connect count:</source>
+        <translation>最大连接数：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="52"/>
+        <source>Root directory:</source>
+        <translation>根目录：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="62"/>
+        <source>Browser</source>
+        <translation>浏览</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="73"/>
+        <source>Anonymous Login</source>
+        <translation>匿名登录</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="80"/>
+        <source>Read only</source>
+        <translation>只读</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="89"/>
+        <source>Authenticate</source>
+        <translation>验证</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="97"/>
+        <source>Attempts:</source>
+        <translation>尝试次数：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="111"/>
+        <source>Time out:</source>
+        <translation>超时：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="118"/>
+        <source>HH:mm:ss</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="130"/>
+        <source>Enable listen at all network interface</source>
+        <translation>允许在所有网络接口上监听</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="31"/>
+        <source>Use the following &quot;Enable listen at all network interface&quot;</source>
+        <translation>使用下面&quot;允许在所有网络接口上监听&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="37"/>
+        <source>-1: Enable all
+ 0: Disable all
+&gt;0: Connect count</source>
+        <translation>-1: 允许所有连接
+0: 禁止所有连接
+&gt;0: 允许的连接数</translation>
     </message>
 </context>
 <context>

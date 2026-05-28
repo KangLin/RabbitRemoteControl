@@ -4,27 +4,27 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="64"/>
+        <location filename="../../BackendFtpServer.cpp" line="66"/>
         <source>Ftp server listen on all address port %1. the lan ip is %2</source>
         <translation>Ftp 服务在所有地址的端口 %1 上监听。局域网地址是 %2</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="69"/>
+        <location filename="../../BackendFtpServer.cpp" line="71"/>
         <source>Failed to Ftp server is listening on %1</source>
         <translation>Ftp 服务在 %1 上监听失败</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="78"/>
+        <location filename="../../BackendFtpServer.cpp" line="80"/>
         <source>Failed: Ftp server is not set to listen on any address</source>
         <translation>失败：Ftp 服务没有设置监听地址</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="87"/>
+        <location filename="../../BackendFtpServer.cpp" line="89"/>
         <source>Failed to Ftp server is listening on %1:%2</source>
         <translation>Ftp 服务在 %1:%2 上监听失败</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="98"/>
+        <location filename="../../BackendFtpServer.cpp" line="100"/>
         <source>Ftp server is listening on </source>
         <translation>Ftp 服务监听在 </translation>
     </message>
@@ -37,139 +37,14 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="37"/>
-        <source>General</source>
-        <translation>普通</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="48"/>
-        <source>Max connect count:</source>
-        <translation>最大连接数：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="75"/>
-        <source>Root directory:</source>
-        <translation>根目录：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="85"/>
-        <source>Browser</source>
-        <translation>浏览</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="94"/>
-        <source>Aollow anonymous login</source>
-        <translation>允许匿名登录</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="101"/>
-        <source>Read-only</source>
-        <translation>只读</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="108"/>
-        <source>Enable listen at all network interface</source>
-        <translation>允许在所有网络接口上监听</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="123"/>
+        <location filename="../../DlgSettings.cpp" line="25"/>
         <source>Whitelist</source>
         <translation>白名单</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="151"/>
-        <location filename="../../DlgSettings.ui" line="190"/>
-        <location filename="../../DlgSettings.cpp" line="149"/>
-        <location filename="../../DlgSettings.cpp" line="163"/>
-        <source>Add</source>
-        <translation>增加</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="158"/>
-        <location filename="../../DlgSettings.ui" line="183"/>
-        <location filename="../../DlgSettings.cpp" line="151"/>
-        <location filename="../../DlgSettings.cpp" line="165"/>
-        <source>Delete</source>
-        <translation>删除</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="168"/>
+        <location filename="../../DlgSettings.cpp" line="30"/>
         <source>Blacklist</source>
         <translation>黑名单</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="23"/>
-        <source>Use the following &quot;Enable listen at all network interface&quot;</source>
-        <translation>使用下面&quot;允许在所有网络接口上监听&quot;</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="30"/>
-        <source>-1: Enable all
- 0: Disable all
-&gt;0: Connect count</source>
-        <translation>-1: 允许所有连接
-0: 禁止所有连接
-&gt;0: 允许的连接数</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="60"/>
-        <source>The IP address and the netmask must be separated by a slash (/).</source>
-        <translation>IP 及掩码必须由 (/) 分隔。</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="61"/>
-        <source>ag:</source>
-        <translation>例如：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="62"/>
-        <source>where n is any value between 0 and 32</source>
-        <translation>n 是在 0 到 32 之间的值</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="64"/>
-        <source>where n is any value between 0 and 128</source>
-        <translation>n 是在 0 到 128 之间的值</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="65"/>
-        <source>For IP version 4, accepts as well missing trailing components</source>
-        <translation>对于 IP 版本 4，也接受缺少尾部组件的情况</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="66"/>
-        <source>(i.e., less than 4 octets, like &quot;192.168.1&quot;), followed or not by a dot. </source>
-        <translation>（即少于 4 个八位字节，如“192.168.1”），后面跟着一个点，也可以不跟着一个点。</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="67"/>
-        <source>If the netmask is also missing in that case,</source>
-        <translation>如果这种情况下网络掩码也缺失，</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="68"/>
-        <source>it is set to the number of octets actually passed</source>
-        <translation>它被设置为实际传递的八位字节数。</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="69"/>
-        <source>(in the example above, it would be 24, for 3 octets).</source>
-        <translation>（在上面的例子中，3 个八位字节数的值为 24）。</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="70"/>
-        <source>Add IP address and the netmask:</source>
-        <translation>增加 IP 及掩码：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="174"/>
-        <source>Add whilte list</source>
-        <translation>增加白名单</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.cpp" line="190"/>
-        <source>Add black list</source>
-        <translation>增加黑名单</translation>
     </message>
 </context>
 <context>
@@ -195,27 +70,27 @@
         <translation>连接数：</translation>
     </message>
     <message>
-        <location filename="../../FrmMain.cpp" line="22"/>
+        <location filename="../../FrmMain.cpp" line="23"/>
         <source>IP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmMain.cpp" line="23"/>
+        <location filename="../../FrmMain.cpp" line="24"/>
         <source>Port</source>
         <translation>端口</translation>
     </message>
     <message>
-        <location filename="../../FrmMain.cpp" line="24"/>
+        <location filename="../../FrmMain.cpp" line="25"/>
         <source>Time</source>
         <translation>时间</translation>
     </message>
     <message>
-        <location filename="../../FrmMain.cpp" line="68"/>
+        <location filename="../../FrmMain.cpp" line="74"/>
         <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
         <translation>连接数：当前 %1; 已断开：%2; 总数：%3</translation>
     </message>
     <message>
-        <location filename="../../FrmMain.cpp" line="106"/>
+        <location filename="../../FrmMain.cpp" line="112"/>
         <source>Disconnect</source>
         <translation>断开连接：</translation>
     </message>
@@ -223,38 +98,38 @@
 <context>
     <name>COperateFtpServer</name>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="143"/>
-        <location filename="../../OperateFtpServer.cpp" line="175"/>
+        <location filename="../../OperateFtpServer.cpp" line="136"/>
+        <location filename="../../OperateFtpServer.cpp" line="168"/>
         <source>Start server</source>
         <translation>开始服务器</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="188"/>
+        <location filename="../../OperateFtpServer.cpp" line="181"/>
         <source>Stop server</source>
         <translation>停止服务器</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="232"/>
+        <location filename="../../OperateFtpServer.cpp" line="225"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="235"/>
+        <location filename="../../OperateFtpServer.cpp" line="228"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="238"/>
+        <location filename="../../OperateFtpServer.cpp" line="231"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="248"/>
+        <location filename="../../OperateFtpServer.cpp" line="241"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="255"/>
+        <location filename="../../OperateFtpServer.cpp" line="248"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
