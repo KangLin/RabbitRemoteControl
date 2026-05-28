@@ -53,6 +53,7 @@
 - Add run the program directly without installation for windows install package
 - [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
 - Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91
+- Add plugin template
 
 ### v0.0.36
 - Client:

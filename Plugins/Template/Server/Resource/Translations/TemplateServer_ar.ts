@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ar_EG">
+<context>
+    <name>CDlgSettingsTemplateServer</name>
+    <message>
+        <location filename="../../DlgSettingsTemplateServer.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTemplateServer.cpp" line="21"/>
+        <source>Whitelist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTemplateServer.cpp" line="26"/>
+        <source>Blacklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CFrmViewerTemplateServer</name>
+    <message>
+        <location filename="../../FrmViewerTemplateServer.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+</TS>
