@@ -1422,9 +1422,8 @@ Some features are limited.
 <context>
     <name>CParameterServerUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="14"/>
         <source>General</source>
-        <translation>通用</translation>
+        <translation type="vanished">通用</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterServerUI.ui" line="25"/>
@@ -1432,57 +1431,69 @@ Some features are limited.
         <translation>最大連接數：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="52"/>
         <source>Root directory:</source>
-        <translation>根目錄：</translation>
+        <translation type="vanished">根目錄：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="62"/>
         <source>Browser</source>
-        <translation>瀏覽</translation>
+        <translation type="vanished">瀏覽</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="73"/>
         <source>Anonymous Login</source>
-        <translation>匿名登錄</translation>
+        <translation type="vanished">匿名登錄</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="80"/>
         <source>Read only</source>
-        <translation>只讀</translation>
+        <translation type="vanished">只讀</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="89"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="19"/>
+        <source>Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="50"/>
         <source>Authenticate</source>
         <translation>驗證</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="97"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="58"/>
         <source>Attempts:</source>
         <translation>嘗試次數：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="111"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="72"/>
         <source>Time out:</source>
         <translation>超時：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="118"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="79"/>
         <source>HH:mm:ss</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="130"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.ui" line="104"/>
         <source>Enable listen at all network interface</source>
         <translation>允許在所有網絡接口上監聽</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="31"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="22"/>
+        <source>Whitelist</source>
+        <translation type="unfinished">白名單</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="26"/>
+        <source>Blacklist</source>
+        <translation type="unfinished">黑名單</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="40"/>
         <source>Use the following &quot;Enable listen at all network interface&quot;</source>
         <translation>使用下面&quot;允許在所有網絡接口上監聽&quot;</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="37"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="43"/>
         <source>-1: Enable all
  0: Disable all
 &gt;0: Connect count</source>

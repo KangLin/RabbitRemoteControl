@@ -4,27 +4,27 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="66"/>
+        <location filename="../../BackendFtpServer.cpp" line="65"/>
         <source>Ftp server listen on all address port %1. the lan ip is %2</source>
         <translation>Ftp 服务在所有地址的端口 %1 上监听。局域网地址是 %2</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="71"/>
+        <location filename="../../BackendFtpServer.cpp" line="70"/>
         <source>Failed to Ftp server is listening on %1</source>
         <translation>Ftp 服务在 %1 上监听失败</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="80"/>
+        <location filename="../../BackendFtpServer.cpp" line="79"/>
         <source>Failed: Ftp server is not set to listen on any address</source>
         <translation>失败：Ftp 服务没有设置监听地址</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="89"/>
+        <location filename="../../BackendFtpServer.cpp" line="88"/>
         <source>Failed to Ftp server is listening on %1:%2</source>
         <translation>Ftp 服务在 %1:%2 上监听失败</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="100"/>
+        <location filename="../../BackendFtpServer.cpp" line="99"/>
         <source>Ftp server is listening on </source>
         <translation>Ftp 服务监听在 </translation>
     </message>
@@ -37,14 +37,29 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="25"/>
-        <source>Whitelist</source>
-        <translation>白名单</translation>
+        <location filename="../../DlgSettings.ui" line="21"/>
+        <source>General</source>
+        <translation>通用</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="30"/>
-        <source>Blacklist</source>
-        <translation>黑名单</translation>
+        <location filename="../../DlgSettings.ui" line="29"/>
+        <source>Anonymous Login</source>
+        <translation>匿名登录</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="36"/>
+        <source>Read only</source>
+        <translation>只读</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="47"/>
+        <source>Root directory:</source>
+        <translation>根目录：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="57"/>
+        <source>Browser</source>
+        <translation>浏览</translation>
     </message>
 </context>
 <context>

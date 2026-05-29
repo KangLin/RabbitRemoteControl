@@ -8,16 +8,6 @@
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../DlgSettingsTemplateServer.cpp" line="21"/>
-        <source>Whitelist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsTemplateServer.cpp" line="26"/>
-        <source>Blacklist</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CFrmViewerTemplateServer</name>
