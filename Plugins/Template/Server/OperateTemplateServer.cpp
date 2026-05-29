@@ -2,6 +2,7 @@
 
 #include <QLoggingCategory>
 
+#include "FrmViewServer.h"
 #include "BackendTemplateServer.h"
 #include "ParameterTemplateServer.h"
 #include "DlgSettingsTemplateServer.h"
@@ -33,7 +34,24 @@ const qint16 COperateTemplateServer::Version() const
 
 CBackend* COperateTemplateServer::InstanceBackend()
 {
-    return new CBackendTemplateServer(this);
+    CFrmViewServer* pView = qobject_cast<CFrmViewServer*>(GetViewer());
+    auto *p = new CBackendTemplateServer(this);
+    if(!pView || !p)
+        return nullptr;
+    bool check = connect(p, SIGNAL(sigConnectCount(int,int,int)),
+                         pView, SLOT(slotConnectCount(int,int,int)));
+    Q_ASSERT(check);
+
+    check = connect(p, SIGNAL(sigConnected(QString,quint16)),
+                    pView, SLOT(slotConnected(QString,quint16)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigDisconnected(QString,quint16)),
+                    pView, SLOT(slotDisconnected(QString,quint16)));
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigDisconnect(QString,quint16)),
+                    p, SLOT(slotDisconnect(QString,quint16)));
+    Q_ASSERT(check);
+    return p;
 }
 
 int COperateTemplateServer::SetPluginParameters(CParameterPlugin *pPara)

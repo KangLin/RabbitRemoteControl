@@ -10,6 +10,10 @@
 #include <QAction>
 #include "plugin_export.h"
 
+/*!
+ * \brief The CFrmViewServer class
+ * \see COperateServer
+ */
 class PLUGIN_EXPORT CFrmViewServer : public QWidget
 {
     Q_OBJECT

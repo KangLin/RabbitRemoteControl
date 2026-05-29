@@ -8,6 +8,11 @@
 class CBackend;
 class CBackendThread;
 class CFrmViewServer;
+
+/*!
+ * \brief The COperateServer class
+ * \see CFrmViewServer
+ */
 class PLUGIN_EXPORT COperateServer : public COperate
 {
     Q_OBJECT

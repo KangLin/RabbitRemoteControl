@@ -32,14 +32,14 @@ int COperateServer::Start()
     int nRet = 0;
     emit sigRunning();
     return 0;
-    m_pThread = new CBackendThread(this);
-    if(!m_pThread) {
-        qCritical(log) << "new CBackendThread fail";
-        return -1;
-    }
+    // m_pThread = new CBackendThread(this);
+    // if(!m_pThread) {
+    //     qCritical(log) << "new CBackendThread fail";
+    //     return -1;
+    // }
 
-    m_pThread->start();
-    return nRet;
+    // m_pThread->start();
+    // return nRet;
 }
 
 int COperateServer::Stop()
@@ -50,13 +50,13 @@ int COperateServer::Stop()
         m_pActionStart->setChecked(false);
     emit sigFinished();
     return nRet;
-    if(m_pThread)
-    {
-        m_pThread->quit();
-        // NOTE: Don't delete m_pThread, See CBackendThread
-        m_pThread = nullptr;
-    }
-    return nRet;
+    // if(m_pThread)
+    // {
+    //     m_pThread->quit();
+    //     // NOTE: Don't delete m_pThread, See CBackendThread
+    //     m_pThread = nullptr;
+    // }
+    // return nRet;
 }
 
 int COperateServer::Initial()

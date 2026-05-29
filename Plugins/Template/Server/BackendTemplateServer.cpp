@@ -28,3 +28,8 @@ int CBackendTemplateServer::OnClean()
 
     return nRet;
 }
+
+void CBackendTemplateServer::slotDisconnect(const QString &szIp, const quint16 port)
+{
+    // TODO: Disconnect
+}
