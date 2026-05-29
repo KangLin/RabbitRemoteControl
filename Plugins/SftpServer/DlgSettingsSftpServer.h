@@ -23,6 +23,7 @@ public:
     // QDialog interface
 public slots:
     virtual void accept() override;
+    void on_pbRoot_clicked();
 
 private:
     Ui::CDlgSettingsSftpServer *ui;

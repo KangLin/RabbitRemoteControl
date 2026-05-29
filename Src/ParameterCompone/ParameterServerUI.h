@@ -4,6 +4,7 @@
 
 #include <QStandardItemModel>
 #include "ParameterUI.h"
+#include "ParameterFilterUI.h"
 #include "ParameterServer.h"
 
 namespace Ui {
@@ -23,11 +24,12 @@ public:
     virtual int Accept() override;
 
 private slots:
-    void on_pbRoot_clicked();
     void on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1);
 
 private:
     Ui::CParameterServerUI *ui;
     CParameterServer* m_pPara;
     QStandardItemModel m_ModelNetWorkInterface;
+    CParameterFilterUI* m_pWhitelist;
+    CParameterFilterUI* m_pBlacklist;
 };

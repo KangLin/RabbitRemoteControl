@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QFileDialog>
 #include <QHBoxLayout>
 #include "ParameterSftpServer.h"
 #include "DlgSettingsSftpServer.h"
@@ -12,21 +13,16 @@ CDlgSettingsSftpServer::CDlgSettingsSftpServer(CParameterSftpServer *pPara, QWid
     , m_pServerUI(nullptr)
 {
     ui->setupUi(this);
-    m_pServerUI = new CParameterServerUI(ui->tabWidget);
+    m_pServerUI = new CParameterServerUI(ui->wContain);
     if(m_pServerUI) {
         m_pServerUI->SetParameter(pPara);
-        ui->tabWidget->addTab(m_pServerUI, m_pServerUI->windowTitle());
+        ui->wContain->insertTab(0, m_pServerUI, m_pServerUI->windowIcon(), m_pServerUI->windowTitle());
     }
-    m_pWhitelist = new CParameterFilterUI(ui->tabWidget);
-    if(m_pWhitelist) {
-        m_pWhitelist->SetParameter(&m_pPara->m_WhiteFilter);
-        ui->tabWidget->addTab(m_pWhitelist, tr("Whitelist"));
-    }
-    m_pBlacklist = new CParameterFilterUI(ui->tabWidget);
-    if(m_pBlacklist) {
-        m_pBlacklist->SetParameter(&m_pPara->m_BlackFilter);
-        ui->tabWidget->addTab(m_pBlacklist, tr("Blacklist"));
-    }
+    ui->wContain->setCurrentIndex(0);
+
+    ui->cbAnonymousLogin->setChecked(m_pPara->GetAnonymousLogin());
+    ui->cbReadOnly->setChecked(m_pPara->GetReadOnly());
+    ui->leRoot->setText(m_pPara->GetRoot());
 }
 
 CDlgSettingsSftpServer::~CDlgSettingsSftpServer()
@@ -41,9 +37,18 @@ void CDlgSettingsSftpServer::accept()
     if(!nRet) return;
     if(m_pServerUI)
         m_pServerUI->Accept();
-    if(m_pWhitelist)
-        m_pWhitelist->Accept();
-    if(m_pBlacklist)
-        m_pBlacklist->Accept();
+
+    m_pPara->SetAnonymousLogin(ui->cbAnonymousLogin->isChecked());
+    m_pPara->SetReadOnly(ui->cbReadOnly->isChecked());
+    m_pPara->SetRoot(ui->leRoot->text());
+
     QDialog::accept();
+}
+
+void CDlgSettingsSftpServer::on_pbRoot_clicked()
+{
+    QString szDir = QFileDialog::getExistingDirectory(this, QString(), ui->leRoot->text());
+    if(szDir.isEmpty())
+        return;
+    ui->leRoot->setText(szDir);
 }

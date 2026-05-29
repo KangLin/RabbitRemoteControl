@@ -834,6 +834,8 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
             }
             ui->actionStop_other->setText(
                 tr("Stop other except the current \"%1\"").arg(o->Name()));
+            ui->actionStop_other->setStatusTip(ui->actionStop_other->text());
+            ui->actionStop_other->setToolTip(ui->actionStop_other->text());
         }
     }
 

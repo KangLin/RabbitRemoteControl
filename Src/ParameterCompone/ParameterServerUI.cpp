@@ -2,7 +2,6 @@
 
 #include <QInputDialog>
 #include <QMenu>
-#include <QFileDialog>
 #include <QStandardItem>
 #include <QNetworkInterface>
 #include <QLoggingCategory>
@@ -16,6 +15,16 @@ CParameterServerUI::CParameterServerUI(QWidget *parent)
     , m_pPara(nullptr)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon::fromTheme("network-wired"));
+    setWindowTitle(tr("Connect"));
+    m_pBlacklist = new CParameterFilterUI(ui->tbFilter);
+    if(m_pBlacklist) {
+        ui->tbFilter->addTab(m_pBlacklist, tr("Blacklist"));
+    }
+    m_pWhitelist = new CParameterFilterUI(ui->tbFilter);
+    if(m_pWhitelist) {
+        ui->tbFilter->addTab(m_pWhitelist, tr("Whitelist"));
+    }
 }
 
 CParameterServerUI::~CParameterServerUI()
@@ -30,9 +39,6 @@ int CParameterServerUI::SetParameter(CParameter *pParameter)
 
     m_pPara->m_Net.SetHost(tr("Use the following \"Enable listen at all network interface\""));
     ui->wNet->SetParameter(&m_pPara->m_Net);
-    ui->cbAnonymousLogin->setChecked(m_pPara->GetAnonymousLogin());
-    ui->cbReadOnly->setChecked(m_pPara->GetReadOnly());
-    ui->leRoot->setText(m_pPara->GetRoot());
     ui->sbConnectCount->setValue(m_pPara->GetConnectCount());
     ui->sbConnectCount->setToolTip(tr("-1: Enable all\n 0: Disable all\n>0: Connect count"));
     ui->spAuthenticateAttempts->setValue(m_pPara->GetAuthenticateAttempts());
@@ -66,6 +72,11 @@ int CParameterServerUI::SetParameter(CParameter *pParameter)
         }
     }
 
+    if(m_pWhitelist)
+        m_pWhitelist->SetParameter(&m_pPara->m_WhiteFilter);
+    if(m_pBlacklist)
+        m_pBlacklist->SetParameter(&m_pPara->m_BlackFilter);
+
     return 0;
 }
 
@@ -75,9 +86,6 @@ int CParameterServerUI::Accept()
     nRet = ui->wNet->Accept();
     if(nRet) return nRet;
 
-    m_pPara->SetAnonymousLogin(ui->cbAnonymousLogin->isChecked());
-    m_pPara->SetReadOnly(ui->cbReadOnly->isChecked());
-    m_pPara->SetRoot(ui->leRoot->text());
     m_pPara->SetConnectCount(ui->sbConnectCount->value());
     m_pPara->SetAuthenticateAttempts(ui->spAuthenticateAttempts->value());
     m_pPara->SetAuthenticateTime(QTime(0,0).msecsTo(ui->tmAuthenticateTimeOut->time()));
@@ -91,6 +99,11 @@ int CParameterServerUI::Accept()
     }
     m_pPara->SetListen(lstInterface);
 
+    if(m_pWhitelist)
+        m_pWhitelist->Accept();
+    if(m_pBlacklist)
+        m_pBlacklist->Accept();
+
     return nRet;
 }
 
@@ -100,14 +113,6 @@ bool CParameterServerUI::CheckValidity(bool validity)
     bRet = ui->wNet->CheckValidity(validity);
     if(!bRet) return bRet;
     return bRet;
-}
-
-void CParameterServerUI::on_pbRoot_clicked()
-{
-    QString szDir = QFileDialog::getExistingDirectory(this, QString(), ui->leRoot->text());
-    if(szDir.isEmpty())
-        return;
-    ui->leRoot->setText(szDir);
 }
 
 void CParameterServerUI::on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1)

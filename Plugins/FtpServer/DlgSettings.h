@@ -7,7 +7,6 @@
 #include <QStandardItemModel>
 #include "ParameterFtpServer.h"
 #include "ParameterServerUI.h"
-#include "ParameterFilterUI.h"
 
 namespace Ui {
 class CDlgSettings;
@@ -23,12 +22,10 @@ public:
 
 public slots:
     virtual void accept() override;
-
+    void on_pbRoot_clicked();
 
 private:
     Ui::CDlgSettings *ui;
-    CParameterFtpServer* m_Para;
+    CParameterFtpServer* m_pPara;
     CParameterServerUI* m_pServerUI;
-    CParameterFilterUI* m_pWhitelist;
-    CParameterFilterUI* m_pBlackList;
 };
