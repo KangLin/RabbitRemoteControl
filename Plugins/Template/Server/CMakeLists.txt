@@ -20,7 +20,7 @@ SET(TemplateServer_SOURCE_FILES
     BackendTemplateServer.cpp
     ParameterTemplateServer.cpp
     DlgSettingsTemplateServer.cpp
-    FrmViewerTemplateServer.cpp
+
     )
 
 SET(TemplateServer_HEADER_FILES
@@ -29,12 +29,12 @@ SET(TemplateServer_HEADER_FILES
     BackendTemplateServer.h
     ParameterTemplateServer.h
     DlgSettingsTemplateServer.h
-    FrmViewerTemplateServer.h
+
     )
 
 SET(TemplateServer_UI_FILES
     DlgSettingsTemplateServer.ui
-    FrmViewerTemplateServer.ui
+
     )
 
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}

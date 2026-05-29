@@ -6,7 +6,7 @@
 
 class CBackend;
 class CBackendThread;
-class CFrmViewerSftpServer;
+class CFrmViewServer;
 class CParameterSftpServer;
 class COperateSftpServer : public COperate
 {
@@ -40,7 +40,7 @@ private:
 
 private:
     CParameterSftpServer* m_pPara;
-    CFrmViewerSftpServer* m_pViewer;
+    CFrmViewServer* m_pViewer;
     CBackendThread* m_pThread;
 
 };

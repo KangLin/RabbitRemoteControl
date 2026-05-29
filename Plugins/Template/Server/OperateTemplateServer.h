@@ -2,17 +2,14 @@
 
 #pragma once
 
-#include "Operate.h"
-
+#include "OperateServer.h"
 class CBackend;
-class CBackendThread;
-class CFrmViewerTemplateServer;
 class CParameterTemplateServer;
-class COperateTemplateServer : public COperate
+class COperateTemplateServer : public COperateServer
 {
     Q_OBJECT
 public:
-    COperateTemplateServer(CPlugin *plugin);
+    explicit COperateTemplateServer(CPlugin *plugin);
     virtual ~COperateTemplateServer();
 
     /*!
@@ -23,9 +20,6 @@ public:
     // COperate interface
 public:
     virtual const qint16 Version() const override;
-    virtual QWidget *GetViewer() override;
-    virtual int Start() override;
-    virtual int Stop() override;
 
 protected:
     virtual int SetPluginParameters(CParameterPlugin *pPara) override;
@@ -40,6 +34,4 @@ private:
 
 private:
     CParameterTemplateServer* m_pPara;
-    CFrmViewerTemplateServer* m_pViewer;
-    CBackendThread* m_pThread;
 };

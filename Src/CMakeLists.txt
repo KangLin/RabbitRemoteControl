@@ -30,6 +30,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     Plugin.h
     Operate.h
     OperateDesktop.h
+    OperateServer.h
     Backend.h
     BackendThread.h
     BackendDesktop.h
@@ -70,6 +71,7 @@ list(APPEND PLUGIN_HEADER_FILES
     ${PLUGIN_INSTALL_HEADER_FILES}
     FrmManagePlugins.h
     FrmViewer.h
+    FrmViewServer.h
     FrmScroll.h
     DlgInputPassword.h
     Hook.h
@@ -88,6 +90,8 @@ list(APPEND PLUGIN_SOURCE_FILES
     BackendThread.cpp
     BackendDesktop.cpp
     FrmScroll.cpp
+    OperateServer.cpp
+    FrmViewServer.cpp
     Channel/Channel.cpp
     Event.cpp
     Parameter.cpp

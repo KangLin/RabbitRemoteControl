@@ -125,7 +125,6 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
     } else
         return ret;
 
-    emit sigRunning();
     return OnInitReturnValue::UseOnProcess;
 }
 
@@ -148,7 +147,6 @@ int CBackendSftpServer::OnClean()
     }
     m_lstClients.clear();
 
-    emit sigFinished();
     return nRet;
 }
 

@@ -5,7 +5,7 @@
 #include "BackendThread.h"
 #include "BackendSftpServer.h"
 #include "ParameterSftpServer.h"
-#include "FrmViewerSftpServer.h"
+#include "FrmViewServer.h"
 #include "DlgSettingsSftpServer.h"
 #include "OperateSftpServer.h"
 
@@ -106,7 +106,7 @@ int COperateSftpServer::Initial()
     if(nRet) return nRet;
 
     m_pPara = new CParameterSftpServer();
-    m_pViewer = new CFrmViewerSftpServer();
+    m_pViewer = new CFrmViewServer();
 
     m_Menu.addAction(m_pActionSettings);
     return nRet;

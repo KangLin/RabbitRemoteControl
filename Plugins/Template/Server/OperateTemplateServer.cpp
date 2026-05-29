@@ -2,18 +2,15 @@
 
 #include <QLoggingCategory>
 
-#include "BackendThread.h"
 #include "BackendTemplateServer.h"
 #include "ParameterTemplateServer.h"
-#include "FrmViewerTemplateServer.h"
 #include "DlgSettingsTemplateServer.h"
 #include "OperateTemplateServer.h"
 
 static Q_LOGGING_CATEGORY(log, "Operate.TemplateServer")
 COperateTemplateServer::COperateTemplateServer(CPlugin *plugin)
-    : COperate(plugin)
+    : COperateServer(plugin)
     , m_pPara(nullptr)
-    , m_pViewer(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -32,38 +29,6 @@ const qint16 COperateTemplateServer::Version() const
 {
     // TODO: Add version
     return 0;
-}
-
-QWidget *COperateTemplateServer::GetViewer()
-{
-    return m_pViewer;
-}
-
-int COperateTemplateServer::Start()
-{
-    int nRet = 0;
-    // TODO: If backend threads are not needed, modifications are required.
-    m_pThread = new CBackendThread(this);
-    if(!m_pThread) {
-        qCritical(log) << "new CBackendThread fail";
-        return -1;
-    }
-
-    m_pThread->start();
-    return nRet;
-}
-
-int COperateTemplateServer::Stop()
-{
-    int nRet = 0;
-    // TODO: If backend threads are not needed, modifications are required.
-    if(m_pThread)
-    {
-        m_pThread->quit();
-        //Don't delete m_pThread, See CBackendThread
-        m_pThread = nullptr;
-    }
-    return nRet;
 }
 
 CBackend* COperateTemplateServer::InstanceBackend()
@@ -109,13 +74,12 @@ int COperateTemplateServer::Save(QSettings &set)
 int COperateTemplateServer::Initial()
 {
     int nRet = 0;
-    nRet = COperate::Initial();
+    nRet = COperateServer::Initial();
+    if(nRet) return nRet;
     m_pPara = new CParameterTemplateServer();
-    m_pViewer = new CFrmViewerTemplateServer();
 
     // TODO: add initial
 
-    m_Menu.addAction(m_pActionSettings);
     return nRet;
 }
 
@@ -128,10 +92,6 @@ int COperateTemplateServer::Clean()
         delete m_pPara;
         m_pPara = nullptr;
     }
-    if(m_pViewer) {
-        delete m_pViewer;
-        m_pViewer = nullptr;
-    }
-    nRet = COperate::Clean();
+    nRet = COperateServer::Clean();
     return nRet;
 }

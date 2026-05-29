@@ -60,7 +60,7 @@ int COperateTemplateBase::Stop()
     if(m_pThread)
     {
         m_pThread->quit();
-        //Don't delete m_pThread, See CBackendThread
+        // NOTE: Don't delete m_pThread, See CBackendThread
         m_pThread = nullptr;
     }
     return nRet;

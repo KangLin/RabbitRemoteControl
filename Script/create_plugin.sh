@@ -160,9 +160,7 @@ init_global() {
         TEMPLATE_NAME="Base"
     fi
     case $TEMPLATE_NAME in
-        Base)
-            ;;
-        Desktop)
+        Base|Desktop|Server)
             ;;
         *)
             echo_error "The template name is not know"

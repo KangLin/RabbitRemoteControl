@@ -18,7 +18,6 @@ CBackend::OnInitReturnValue CBackendTemplateServer::OnInit()
     OnInitReturnValue ret = OnInitReturnValue::NotUseOnProcess;
     // TODO: Modify Initialization
 
-    emit sigRunning();
     return ret;
 }
 
@@ -26,6 +25,6 @@ int CBackendTemplateServer::OnClean()
 {
     int nRet = 0;
     // TODO: Modify clean
-    emit sigFinished();
+
     return nRet;
 }
