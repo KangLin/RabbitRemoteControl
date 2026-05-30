@@ -10,7 +10,19 @@ class CBackendThread;
 class CFrmViewServer;
 
 /*!
- * \brief The COperateServer class
+ * \~chinese 服务操作接口
+ * \note 此接口仅由插件实现。 \n
+ *      此接口实例运行在主线程(UI线程)中。 \n
+ *      具体的插件需要实现下面接口：
+ *         1. 实现 InstanceBackend() ，生成连接对象。连接对象运行在后台线程中。
+ *
+ * \~english Server operate interface
+ * \note The interface only is implemented by plug-in \n
+ *     The specific plug-in needs to implement the following interface.
+ *         1. Implement InstanceConnect() . Generate a connection object.
+ *            The connection object runs in a background thread.
+ *
+ * \~
  * \see CFrmViewServer
  */
 class PLUGIN_EXPORT COperateServer : public COperate

@@ -14,6 +14,7 @@ COperateTemplateBase::COperateTemplateBase(CPlugin *plugin)
     : COperate(plugin)
     , m_pPara(nullptr)
     , m_pViewer(nullptr)
+    , m_pThread(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -21,6 +22,14 @@ COperateTemplateBase::COperateTemplateBase(CPlugin *plugin)
 COperateTemplateBase::~COperateTemplateBase()
 {
     qDebug(log) << Q_FUNC_INFO;
+    QString szClass = this->metaObject()->className();
+    QString szWhat;
+    szWhat += "Please call ";
+    szWhat += szClass;
+    szWhat += "::Stop() first";
+    Q_ASSERT_X(!m_pThread && !m_pPara && !m_pViewer,
+               szClass.toStdString().c_str(), szWhat.toStdString().c_str());
+
 }
 
 CParameterTemplateBase* COperateTemplateBase::GetParameter() const
@@ -113,7 +122,8 @@ int COperateTemplateBase::Initial()
 
     // TODO: add initial
 
-    m_Menu.addAction(m_pActionSettings);
+    if(m_pActionSettings)
+        m_Menu.addAction(m_pActionSettings);
     return nRet;
 }
 

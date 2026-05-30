@@ -20,7 +20,7 @@ public:
      * \brief CBackendThread
      * \param pOperate
      * \param bFinishedSignal
-     *          - true: When an error occurs, emit a `COperate::sigFinished()` signal
+     *          - true: When the thread is quit, emit a `COperate::sigFinished()` signal
      *          - false: not emit signal
      */
     explicit CBackendThread(COperate *pOperate = nullptr, bool bFinishedSignal = true);
@@ -36,6 +36,6 @@ protected:
     COperate* m_pOperate;
     CBackend* m_pBackend;
     
-    //! When an error occurs, emit a `COperate::sigFinished()` signal
+    //! When the thread is quit, emit a `COperate::sigFinished()` signal
     bool m_bFinishedSignal;
 };

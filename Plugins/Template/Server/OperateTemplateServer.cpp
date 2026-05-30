@@ -2,7 +2,6 @@
 
 #include <QLoggingCategory>
 
-#include "FrmViewServer.h"
 #include "BackendTemplateServer.h"
 #include "ParameterTemplateServer.h"
 #include "DlgSettingsTemplateServer.h"
@@ -19,6 +18,12 @@ COperateTemplateServer::COperateTemplateServer(CPlugin *plugin)
 COperateTemplateServer::~COperateTemplateServer()
 {
     qDebug(log) << Q_FUNC_INFO;
+    QString szClass = this->metaObject()->className();
+    QString szWhat;
+    szWhat += "Please call ";
+    szWhat += szClass;
+    szWhat += "::Stop() first";
+    Q_ASSERT_X(!m_pPara, szClass.toStdString().c_str(), szWhat.toStdString().c_str());
 }
 
 CParameterTemplateServer* COperateTemplateServer::GetParameter() const
@@ -28,7 +33,7 @@ CParameterTemplateServer* COperateTemplateServer::GetParameter() const
 
 const qint16 COperateTemplateServer::Version() const
 {
-    // TODO: Add version
+    // TODO: Modify version
     return 0;
 }
 

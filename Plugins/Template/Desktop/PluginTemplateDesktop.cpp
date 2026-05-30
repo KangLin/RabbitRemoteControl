@@ -56,7 +56,7 @@ const QString CPluginTemplateDesktop::Details() const
 COperate *CPluginTemplateDesktop::OnCreateOperate(const QString &szId)
 {
     if(szId != Id()) {
-        qCritical(log) << "Invalid ID";
+        qCritical(log) << "Invalid ID:" << szId;
         return nullptr;
     }
     return new COperateTemplateDesktop(this);

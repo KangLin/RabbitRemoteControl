@@ -15,11 +15,11 @@ public:
 private:
     CParameterTemplateDesktop* m_pPara;
 
-    // COperate interface
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 
-    // COperateDesktop interface
 protected:
     virtual CBackend *InstanceBackend() override;
+    virtual int Initial() override;
+    virtual int Clean() override;
 };

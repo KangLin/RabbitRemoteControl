@@ -44,8 +44,8 @@ const QString CPlugin::TypeName(const TYPE t) const
     {
     case TYPE::Client:
         return tr("Client");
-    case TYPE::Service:
-        return tr("Service");
+    case TYPE::Server:
+        return tr("Server");
     case TYPE::RemoteDesktop:
         return tr("Remote Desktop");
     case TYPE::Terminal:

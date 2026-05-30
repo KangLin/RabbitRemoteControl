@@ -21,7 +21,7 @@ CPluginSftpServer::~CPluginSftpServer()
 
 const CPlugin::TYPE CPluginSftpServer::Type() const
 {
-    return CPlugin::TYPE::Service;
+    return CPlugin::TYPE::Server;
 }
 
 const QString CPluginSftpServer::Protocol() const
@@ -74,7 +74,7 @@ const QString CPluginSftpServer::Details() const
 COperate *CPluginSftpServer::OnCreateOperate(const QString &szId)
 {
     if(szId != Id()) {
-        qCritical(log) << "Invalid ID";
+        qCritical(log) << "Invalid ID:" << szId;
         return nullptr;
     }
     return new COperateSftpServer(this);

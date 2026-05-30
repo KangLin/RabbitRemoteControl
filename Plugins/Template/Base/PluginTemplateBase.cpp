@@ -64,7 +64,7 @@ const QString CPluginTemplateBase::Details() const
 COperate *CPluginTemplateBase::OnCreateOperate(const QString &szId)
 {
     if(szId != Id()) {
-        qCritical(log) << "Invalid ID";
+        qCritical(log) << "Invalid ID:" << szId;
         return nullptr;
     }
     return new COperateTemplateBase(this);

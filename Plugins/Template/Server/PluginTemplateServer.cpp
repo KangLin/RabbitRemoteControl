@@ -18,8 +18,7 @@ CPluginTemplateServer::~CPluginTemplateServer()
 
 const CPlugin::TYPE CPluginTemplateServer::Type() const
 {
-    // TODO: Modify type. See: CPlugin::TYPE
-    return CPlugin::TYPE::Custom;
+    return CPlugin::TYPE::Server;
 }
 
 const QString CPluginTemplateServer::Protocol() const
@@ -53,7 +52,7 @@ const QIcon CPluginTemplateServer::Icon() const
 {
     // TODO: add icon
 
-    return QIcon();
+    return QIcon::fromTheme("app");
 }
 
 const QString CPluginTemplateServer::Details() const
@@ -65,7 +64,7 @@ const QString CPluginTemplateServer::Details() const
 COperate *CPluginTemplateServer::OnCreateOperate(const QString &szId)
 {
     if(szId != Id()) {
-        qCritical(log) << "Invalid ID";
+        qCritical(log) << "Invalid ID:" << szId;
         return nullptr;
     }
     return new COperateTemplateServer(this);

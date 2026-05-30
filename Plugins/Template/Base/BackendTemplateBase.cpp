@@ -13,6 +13,22 @@ CBackendTemplateBase::~CBackendTemplateBase()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+/*!
+ * \~chinese 初始化
+ * \return
+ * \li OnInitReturnValue::Fail: 错误
+ * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
+ * \li OnInitReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
+ *
+ * \~english Initialization
+ * \return CBackend::OnInitReturnValue
+ * \li OnInitReturnValue::Fail: error
+ * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
+ * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
+ *
+ * \~
+ * \see Start()
+ */
 CBackend::OnInitReturnValue CBackendTemplateBase::OnInit()
 {
     OnInitReturnValue ret = OnInitReturnValue::NotUseOnProcess;
@@ -26,6 +42,7 @@ int CBackendTemplateBase::OnClean()
 {
     int nRet = 0;
     // TODO: Modify clean
+
     emit sigFinished();
     return nRet;
 }

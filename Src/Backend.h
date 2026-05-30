@@ -100,15 +100,15 @@ protected:
     /*!
      * \~chinese 初始化
      * \return
-     * \li < 0: 错误
-     * \li = 0: 使用 OnProcess() (非 Qt 事件循环)
-     * \li > 0: 不使用 OnProcess() (qt 事件循环)
+     * \li OnInitReturnValue::Fail: 错误
+     * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
+     * \li OnInitReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
      *
      * \~english Initialization
-     * \return
-     * \li < 0: error
-     * \li = 0: Use OnProcess() (non-Qt event loop)
-     * \li > 0: Don't use OnProcess() (qt event loop)
+     * \return CBackend::OnInitReturnValue
+     * \li OnInitReturnValue::Fail: error
+     * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
+     * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
      *
      * \~
      * \see Start()

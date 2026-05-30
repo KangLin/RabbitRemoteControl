@@ -23,7 +23,7 @@ CPluginFtpServer::~CPluginFtpServer()
 
 const CPlugin::TYPE CPluginFtpServer::Type() const
 {
-    return TYPE::Service;
+    return TYPE::Server;
 }
 
 const QString CPluginFtpServer::Protocol() const

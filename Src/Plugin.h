@@ -23,7 +23,7 @@ public:
         RemoteDesktop,
         Terminal,
         Client,
-        Service,
+        Server,
         FileTransfers,
         NetworkTools,
         Tools,
