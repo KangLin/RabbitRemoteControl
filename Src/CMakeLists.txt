@@ -34,6 +34,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     Backend.h
     BackendThread.h
     BackendDesktop.h
+    BackendServer.h
     Channel/Channel.h
     Event.h
     DlgUserPassword.h
@@ -89,6 +90,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     Backend.cpp
     BackendThread.cpp
     BackendDesktop.cpp
+    BackendServer.cpp
     FrmScroll.cpp
     OperateServer.cpp
     FrmViewServer.cpp

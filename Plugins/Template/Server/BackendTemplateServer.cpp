@@ -1,9 +1,10 @@
 #include <QLoggingCategory>
 #include "BackendTemplateServer.h"
+#include "Backend.h"
 
 static Q_LOGGING_CATEGORY(log, "Backend.TemplateServer")
 CBackendTemplateServer::CBackendTemplateServer(COperateTemplateServer* pOperate, bool bStopSignal)
-    : CBackend(pOperate, bStopSignal)
+    : CBackendServer(pOperate, bStopSignal)
 {
     qDebug(log) << Q_FUNC_INFO;
 }

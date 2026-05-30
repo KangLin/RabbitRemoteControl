@@ -1,10 +1,11 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include "Backend.h"
-#include "OperateTemplateServer.h"
 
-class CBackendTemplateServer : public CBackend
+#include "OperateTemplateServer.h"
+#include "BackendServer.h"
+
+class CBackendTemplateServer : public CBackendServer
 {
     Q_OBJECT
 public:
@@ -12,11 +13,7 @@ public:
     virtual ~CBackendTemplateServer();
 
 public Q_SLOTS:
-    void slotDisconnect(const QString& szIp, const quint16 port);
-Q_SIGNALS:
-    void sigConnectCount(int nTotal, int nConnect, int nDisconnect);
-    void sigConnected(const QString& szIp, const quint16 port);
-    void sigDisconnected(const QString& szIp, const quint16 port);
+    void slotDisconnect(const QString& szIp, const quint16 port) override;
 
     // CBackend interface
 protected:
