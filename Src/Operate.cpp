@@ -197,6 +197,8 @@ int COperate::Initial()
     m_pActionSettings = new QAction(QIcon::fromTheme("system-settings"),
                               tr("Settings"), &m_Menu);
     if(m_pActionSettings) {
+        m_pActionSettings->setStatusTip(m_pActionSettings->text());
+        m_pActionSettings->setToolTip(m_pActionSettings->text());
         bool check = connect(m_pActionSettings, SIGNAL(triggered()),
                              this, SLOT(slotSettings()));
         Q_ASSERT(check);

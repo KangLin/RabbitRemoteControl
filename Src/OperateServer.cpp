@@ -69,6 +69,8 @@ int COperateServer::Initial()
     m_pActionStart = m_Menu.addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start server"));
     if(m_pActionStart) {
+        m_pActionStart->setStatusTip(m_pActionStart->text());
+        m_pActionStart->setToolTip(m_pActionStart->text());
         m_pActionStart->setCheckable(true);
         bool check = connect(m_pActionStart, &QAction::toggled,
                              this, &COperateServer::slotStart);
@@ -76,8 +78,10 @@ int COperateServer::Initial()
         m_pViewer->AddActionInToolBar(m_pActionStart);
     }
     m_Menu.addSeparator();
-    if(m_pActionSettings)
+    if(m_pActionSettings) {
         m_Menu.addAction(m_pActionSettings);
+        m_pViewer->AddActionInToolBar(m_pActionSettings);
+    }
     return nRet;
 }
 
