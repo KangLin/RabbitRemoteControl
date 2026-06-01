@@ -211,6 +211,14 @@ fi
 echo_status "Make plugin \"$PLUGIN_NAME\" directory ......"
 if [ -d "$INSTALL_DIR" ]; then
     echo_warn "The plugin directory is exits"
+
+    read -t 60 -p "Do you continue? (y/N): " INPUT
+    if [ "${INPUT:-N}" != "Y" ] && [ "${INPUT:-N}" != "y" ]; then
+        echo_error "User cancelled"
+        exit 0
+    fi
+
+    echo ""
 else
     mkdir -p "$INSTALL_DIR"
 fi

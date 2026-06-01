@@ -910,4 +910,5 @@ After install sdk and runtime, Run again:
           # Compile AppImage
           ./Script/build_appimage.sh
 
+- [create_plugin.sh]: Generate plugin from template
 - [deploy.sh](../../deploy.sh): Deploy. Only used by administarotr
