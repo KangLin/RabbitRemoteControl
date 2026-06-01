@@ -1,41 +1,36 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
 #include <QFileDialog>
-#include <QHBoxLayout>
-#include <QLoggingCategory>
-#include "DlgSettings.h"
-#include "ui_DlgSettings.h"
+#include "ParameterFtpServer.h"
+#include "DlgSettingsFtpServer.h"
+#include "ui_DlgSettingsFtpServer.h"
 
-static Q_LOGGING_CATEGORY(log, "FtpServer.DlgSettings")
-CDlgSettings::CDlgSettings(CParameterFtpServer* para, QWidget *parent)
+CDlgSettingsFtpServer::CDlgSettingsFtpServer(CParameterFtpServer *pPara, QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::CDlgSettings)
-    , m_pPara(para)
+    , ui(new Ui::CDlgSettingsFtpServer)
+    , m_pPara(pPara)
     , m_pServerUI(nullptr)
 {
     ui->setupUi(this);
     m_pServerUI = new CParameterServerUI();
     if(m_pServerUI) {
-        m_pServerUI->SetParameter(m_pPara);
-        ui->wContain->insertTab(0, m_pServerUI, m_pServerUI->windowIcon(), m_pServerUI->windowTitle());
+        m_pServerUI->SetParameter(pPara);
+        ui->tabWidget->insertTab(0, m_pServerUI, m_pServerUI->windowIcon(), m_pServerUI->windowTitle());
     }
-    ui->wContain->setCurrentIndex(0);
+    ui->tabWidget->setCurrentIndex(0);
     ui->cbAnonymousLogin->setChecked(m_pPara->GetAnonymousLogin());
     ui->cbReadOnly->setChecked(m_pPara->GetReadOnly());
     ui->leRoot->setText(m_pPara->GetRoot());
 }
 
-CDlgSettings::~CDlgSettings()
+CDlgSettingsFtpServer::~CDlgSettingsFtpServer()
 {
     delete ui;
 }
 
-void CDlgSettings::accept()
+void CDlgSettingsFtpServer::accept()
 {
     bool nRet = 0;
-    if(!m_pPara) return;
-
     nRet = m_pServerUI->CheckValidity(true);
     if(!nRet) return;
     if(m_pServerUI)
@@ -44,10 +39,11 @@ void CDlgSettings::accept()
     m_pPara->SetReadOnly(ui->cbReadOnly->isChecked());
     m_pPara->SetRoot(ui->leRoot->text());
 
+
     QDialog::accept();
 }
 
-void CDlgSettings::on_pbRoot_clicked()
+void CDlgSettingsFtpServer::on_pbRoot_clicked()
 {
     QString szDir = QFileDialog::getExistingDirectory(this, QString(), ui->leRoot->text());
     if(szDir.isEmpty())

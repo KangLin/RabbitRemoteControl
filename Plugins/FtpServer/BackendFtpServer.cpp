@@ -1,15 +1,15 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
 #include <QSslSocket>
 #include <QLoggingCategory>
 #include "BackendFtpServer.h"
 #include "OperateFtpServer.h"
-#include "ParameterFilter.h"
+#include "ParameterFtpServer.h"
+#include "Backend.h"
 
-static Q_LOGGING_CATEGORY(log, "FtpServer.Backend")
-CBackendFtpServer::CBackendFtpServer(COperateFtpServer *pOperate)
-    : CBackend(pOperate)
+static Q_LOGGING_CATEGORY(log, "Backend.FtpServer")
+CBackendFtpServer::CBackendFtpServer(COperateFtpServer* pOperate, bool bStopSignal)
+    : CBackendServer(pOperate, bStopSignal)
     , m_pOperate(pOperate)
     , m_pServer(nullptr)
     , m_nTotal(0)
@@ -24,6 +24,22 @@ CBackendFtpServer::~CBackendFtpServer()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+/*!
+ * \~chinese 初始化
+ * \return
+ * \li OnInitReturnValue::Fail: 错误
+ * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
+ * \li OnInitReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
+ *
+ * \~english Initialization
+ * \return CBackend::OnInitReturnValue
+ * \li OnInitReturnValue::Fail: error
+ * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
+ * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
+ *
+ * \~
+ * \see Start()
+ */
 CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -50,8 +66,8 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
     }
 
     m_pServer = new CFtpServer(this, m_pPara->GetRoot(), net.GetPort(),
-                              szUser, szPassword,
-                              m_pPara->GetReadOnly());
+                               szUser, szPassword,
+                               m_pPara->GetReadOnly());
     if(!m_pServer) {
         qCritical(log) << "Failed to new CFtpServer";
         return OnInitReturnValue::Fail;
@@ -63,12 +79,12 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         bListen = m_pServer->Listening();
         if(bListen) {
             QString szMsg = tr("Ftp server listen on all address port %1. the lan ip is %2")
-                                .arg(net.GetPort()).arg(m_pServer->lanIp());
+            .arg(net.GetPort()).arg(m_pServer->lanIp());
             qInfo(log) << szMsg;
             emit sigInformation(szMsg);
         } else {
             QString szErr = tr("Failed to Ftp server is listening on %1")
-               .arg(net.GetPort());
+            .arg(net.GetPort());
             qCritical(log) << szErr;
             emit sigError(-1, szErr);
             return OnInitReturnValue::Fail;
@@ -86,7 +102,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
             bListen = m_pServer->Listening(addr);
             if(!bListen) {
                 szErr = tr("Failed to Ftp server is listening on %1:%2")
-                                    .arg(addr.toString()).arg(net.GetPort());
+                .arg(addr.toString()).arg(net.GetPort());
                 qCritical(log) << szErr;
                 emit sigError(-1, szErr);
                 return OnInitReturnValue::Fail;
@@ -119,7 +135,7 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
     bool bFilte = false;
     if(!socket) return true;
     QString szIP = socket->peerAddress().toString();
-    
+
     auto& white = m_pPara->m_WhiteFilter;
     auto& black = m_pPara->m_BlackFilter;
 
@@ -160,14 +176,14 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
     check = connect(socket, SIGNAL(disconnected()),
                     this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    
+
     quint16 port = socket->peerPort();
     m_Sockets.append(socket);
     m_nTotal++;
     emit sigConnectCount(m_nTotal, m_Sockets.size(), m_nDisconnect);
     emit sigConnected(szIP, port);
     qDebug(log) << "Current connect count:" << m_Sockets.size()
-             << "; new connect from:" << szIP + ":" + QString::number(port);
+                << "; new connect from:" << szIP + ":" + QString::number(port);
     return false;
 }
 
@@ -182,10 +198,10 @@ void CBackendFtpServer::slotDisconnected()
     quint16 port = socket->peerPort();
     emit sigDisconnected(ip, port);
     qDebug(log) << "Current connect count:" << m_Sockets.size()
-             << "; remove connect:" << socket->peerAddress().toString();
+                << "; remove connect:" << socket->peerAddress().toString();
 }
 
-void CBackendFtpServer::slotDisconnect(const QString& szIp, quint16 port)
+void CBackendFtpServer::slotDisconnect(const QString &szIp, const quint16 port)
 {
     foreach (auto s, m_Sockets) {
         if(s->peerAddress().toString() == szIp && s->peerPort() == port){

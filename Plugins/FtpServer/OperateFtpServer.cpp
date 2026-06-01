@@ -1,19 +1,16 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
-
-#include "BackendFtpServer.h"
-#include "DlgSettings.h"
 #include "Plugin.h"
+#include "BackendFtpServer.h"
+#include "ParameterFtpServer.h"
+#include "DlgSettingsFtpServer.h"
 #include "OperateFtpServer.h"
 
-static Q_LOGGING_CATEGORY(log, "FtpServer.Operate")
+static Q_LOGGING_CATEGORY(log, "Operate.FtpServer")
 COperateFtpServer::COperateFtpServer(CPlugin *plugin)
-    : COperate(plugin)
-    , m_pThread(nullptr)
-    , m_pView(nullptr)
-    , m_pStart(nullptr)
+    : COperateServer(plugin)
+    , m_pPara(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -21,178 +18,17 @@ COperateFtpServer::COperateFtpServer(CPlugin *plugin)
 COperateFtpServer::~COperateFtpServer()
 {
     qDebug(log) << Q_FUNC_INFO;
+    QString szClass = this->metaObject()->className();
+    QString szWhat;
+    szWhat += "Please call ";
+    szWhat += szClass;
+    szWhat += "::Stop() first";
+    Q_ASSERT_X(!m_pPara, szClass.toStdString().c_str(), szWhat.toStdString().c_str());
 }
 
-const qint16 COperateFtpServer::Version() const
+CParameterFtpServer* COperateFtpServer::GetParameter() const
 {
-    return 0;
-}
-
-QWidget *COperateFtpServer::GetViewer()
-{
-    return m_pView;
-}
-
-int COperateFtpServer::Start()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    emit sigRunning();
-    return 0;
-}
-
-int COperateFtpServer::Stop()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    if(m_pStart && m_pStart->isChecked())
-        m_pStart->setChecked(false);
-    emit sigFinished();
-    return 0;
-}
-
-CBackend* COperateFtpServer::InstanceBackend()
-{
-    auto p = new CBackendFtpServer(this);
-    bool check = connect(p, SIGNAL(sigConnectCount(int,int,int)),
-                         m_pView, SLOT(slotConnectCount(int,int,int)));
-    Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigConnected(QString,quint16)),
-                    m_pView, SLOT(slotConnected(QString,quint16)));
-    Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigDisconnected(QString,quint16)),
-                    m_pView, SLOT(slotDisconnected(QString,quint16)));
-    Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigDisconnect(QString,quint16)),
-                    p, SLOT(slotDisconnect(QString,quint16)));
-    Q_ASSERT(check);
-    return p;
-}
-
-int COperateFtpServer::SetPluginParameters(CParameterPlugin *pPara)
-{
-    if(GetParameter()) {
-        GetParameter()->SetPluginParameters(pPara);
-        GetParameter()->m_Net.m_User.SetSavePassword(true);
-        GetParameter()->m_Net.m_User.SetSavePassphrase(true);
-        if(pPara) {
-            bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
-                                 this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-        }
-        return 0;
-    } else {
-        QString szMsg = "There is not parameters! "
-                        "please first create parameters, "
-                        "then call SetParameter() in the ";
-        szMsg += metaObject()->className() + QString("::")
-                 + metaObject()->className();
-        szMsg += QString("() or ") + metaObject()->className()
-                 + QString("::") + "Initial()";
-        szMsg += " to set the parameters pointer. "
-                 "Default set CParameterClient for the parameters of operate "
-                 "(CParameterOperate or its derived classes) "
-                 "See CManager::CreateOperate. "
-                 "If you are sure the parameter of operate "
-                 "does not need CParameterClient. "
-                 "Please overload the SetPluginParameters() in the ";
-        szMsg += QString(metaObject()->className()) + " . don't set it";
-        qCritical(log) << szMsg.toStdString().c_str();
-        Q_ASSERT(false);
-    }
-    return -1;
-}
-
-QDialog *COperateFtpServer::OnOpenDialogSettings(QWidget *parent)
-{
-    auto pDlg = new CDlgSettings(&m_Para, parent);
-    return pDlg;
-}
-
-int COperateFtpServer::Load(QSettings &set)
-{
-    return m_Para.Load(set);
-}
-
-int COperateFtpServer::Save(QSettings &set)
-{
-    return m_Para.Save(set);
-}
-
-int COperateFtpServer::Initial()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
-    bool check = false;
-
-    check = connect(&m_Para, &CParameter::sigChanged,
-                    this, [&](){
-                        emit this->sigUpdateParameters(this);
-                    });
-    Q_ASSERT(check);
-
-    nRet = COperate::Initial();
-    if(nRet)
-        return nRet;
-
-    m_pStart = m_Menu.addAction(QIcon::fromTheme("media-playback-start"), tr("Start server"));
-    check = connect(m_pStart, &QAction::toggled, this, &COperateFtpServer::slotStart);
-    Q_ASSERT(check);
-    m_pStart->setCheckable(true);
-    m_pStart->setToolTip(m_pStart->text());
-    if(m_pActionSettings) {
-        m_Menu.addSeparator();
-        m_Menu.addAction(m_pActionSettings);
-    }
-
-    m_pView = new CFrmMain(this);
-    return nRet;
-}
-
-int COperateFtpServer::Clean()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    if(m_pView)
-        delete m_pView;
-    return 0;
-}
-
-CParameterFtpServer *COperateFtpServer::GetParameter()
-{
-    return &m_Para;
-}
-
-void COperateFtpServer::slotStart(bool checked)
-{
-    qDebug(log) << Q_FUNC_INFO << m_pStart->isChecked();
-    bool check = false;
-    if(!checked) {
-        m_pStart->setText(tr("Start server"));
-        m_pStart->setToolTip(m_pStart->text());
-        m_pStart->setIcon(QIcon::fromTheme("media-playback-start"));
-        if(m_pThread)
-        {
-            slotSetSecurityLevel(CSecurityLevel::Level::No);
-            m_pThread->quit();
-            //Don't delete m_pThread, See CBackendThread
-            m_pThread = nullptr;
-        }
-        return;
-    }
-
-    m_pStart->setText(tr("Stop server"));
-    m_pStart->setToolTip(m_pStart->text());
-    m_pStart->setIcon(QIcon::fromTheme("media-playback-stop"));
-    Q_ASSERT(!m_pThread);
-    m_pThread = new CBackendThread(this, false);
-    if(!m_pThread) {
-        qCritical(log) << "new CBackendThread fail";
-        return;
-    }
-    check = connect(this, &COperateFtpServer::sigError,
-                    this, [this](const int nError, const QString &szError){
-                        m_pStart->setChecked(false);
-                    });
-    Q_ASSERT(check);
-    m_pThread->start();
+    return m_pPara;
 }
 
 const QString COperateFtpServer::Name()
@@ -248,4 +84,74 @@ const QString COperateFtpServer::Description()
         szDescription += tr("Description: ") + GetPlugin()->Description();
 
     return szDescription;
+}
+
+const qint16 COperateFtpServer::Version() const
+{
+    return 0;
+}
+
+CBackend* COperateFtpServer::InstanceBackend()
+{
+    return new CBackendFtpServer(this);
+}
+
+int COperateFtpServer::SetPluginParameters(CParameterPlugin *pPara)
+{
+    int nRet = 0;
+    // TODO: Modify apply plugin parameters
+    if(m_pPara) {
+        m_pPara->SetPluginParameters(pPara);
+        m_pPara->m_Net.m_User.SetSavePassword(true);
+        m_pPara->m_Net.m_User.SetSavePassphrase(true);
+    }
+    return nRet;
+}
+
+QDialog *COperateFtpServer::OnOpenDialogSettings(QWidget *parent)
+{
+    return new CDlgSettingsFtpServer(m_pPara, parent);
+}
+
+int COperateFtpServer::Load(QSettings &set)
+{
+    int nRet = 0;
+
+    if(m_pPara)
+        nRet = m_pPara->Load(set);
+
+    return nRet;
+}
+
+int COperateFtpServer::Save(QSettings &set)
+{
+    int nRet = 0;
+    if(m_pPara)
+        nRet = m_pPara->Save(set);
+    return nRet;
+}
+
+int COperateFtpServer::Initial()
+{
+    int nRet = 0;
+    nRet = COperateServer::Initial();
+    if(nRet) return nRet;
+    m_pPara = new CParameterFtpServer();
+
+    // TODO: add initial
+
+    return nRet;
+}
+
+int COperateFtpServer::Clean()
+{
+    int nRet = 0;
+    // TODO: add Clean
+
+    if(m_pPara) {
+        delete m_pPara;
+        m_pPara = nullptr;
+    }
+    nRet = COperateServer::Clean();
+    return nRet;
 }

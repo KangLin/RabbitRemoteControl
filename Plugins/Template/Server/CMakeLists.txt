@@ -20,7 +20,6 @@ SET(TemplateServer_SOURCE_FILES
     BackendTemplateServer.cpp
     ParameterTemplateServer.cpp
     DlgSettingsTemplateServer.cpp
-
     )
 
 SET(TemplateServer_HEADER_FILES
@@ -29,15 +28,13 @@ SET(TemplateServer_HEADER_FILES
     BackendTemplateServer.h
     ParameterTemplateServer.h
     DlgSettingsTemplateServer.h
-
     )
 
 SET(TemplateServer_UI_FILES
     DlgSettingsTemplateServer.ui
-
     )
 
-ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
+ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${TemplateServer_SOURCE_FILES} ${TemplateServer_HEADER_FILES} ${TemplateServer_UI_FILES}
     PRIVATE_LIBS ${TemplateServer_LIBS}

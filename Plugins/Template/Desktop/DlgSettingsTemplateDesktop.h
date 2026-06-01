@@ -19,7 +19,7 @@ public:
     virtual ~CDlgSettingsTemplateDesktop();
 
     // QDialog interface
-public slots:
+public Q_SLOTS:
     virtual void accept() override;
 
 private:

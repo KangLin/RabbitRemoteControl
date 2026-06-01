@@ -1,30 +1,26 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
 
-#include "Backend.h"
 #include "ftpserver.h"
-#include "ParameterFtpServer.h"
+#include "OperateFtpServer.h"
+#include "BackendServer.h"
 
 class COperateFtpServer;
-class CBackendFtpServer : public CBackend, CFtpServerFilter
+class CBackendFtpServer : public CBackendServer, CFtpServerFilter
 {
     Q_OBJECT
-
 public:
-    explicit CBackendFtpServer(COperateFtpServer *pOperate = nullptr);
-    ~CBackendFtpServer() override;
-    
+    explicit CBackendFtpServer(COperateFtpServer *pOperate = nullptr, bool bStopSignal = true);
+    virtual ~CBackendFtpServer();
+
     // CFtpServerFilter interface
     virtual bool onFilter(QSslSocket *socket) override;
-public Q_SLOTS:
-    void slotDisconnect(const QString& szIp, const quint16 port);
-Q_SIGNALS:
-    void sigConnectCount(int nTotal, int nConnect, int nDisconnect);
-    void sigConnected(const QString& szIp, const quint16 port);
-    void sigDisconnected(const QString& szIp, const quint16 port);
 
+public Q_SLOTS:
+    void slotDisconnect(const QString& szIp, const quint16 port) override;
+
+    // CBackend interface
 protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
@@ -34,8 +30,8 @@ private Q_SLOTS:
 
 private:
     COperateFtpServer* m_pOperate;
-    CFtpServer* m_pServer;
     CParameterFtpServer* m_pPara;
+    CFtpServer* m_pServer;
     QList<QSslSocket*> m_Sockets;
     int m_nTotal;
     int m_nDisconnect;

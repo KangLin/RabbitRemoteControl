@@ -1,4 +1,3 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
@@ -7,14 +6,16 @@
 class CPluginFtpServer : public CPlugin
 {
     Q_OBJECT
+
+public:
+    explicit CPluginFtpServer(QObject *parent = nullptr);
+    virtual ~CPluginFtpServer();
+
     Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
-public:
-    explicit CPluginFtpServer(QObject *parent = nullptr);
-    virtual ~CPluginFtpServer();
 
 public:
     virtual const TYPE Type() const override;

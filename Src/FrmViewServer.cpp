@@ -2,7 +2,7 @@
 
 #include <QMenu>
 #include <QHeaderView>
-#include <QTime>
+#include <QDateTime>
 #include <QVBoxLayout>
 #include <QLoggingCategory>
 #include "FrmViewServer.h"
@@ -28,7 +28,7 @@ CFrmViewServer::CFrmViewServer(QWidget *parent)
         m_ptvClients->installEventFilter(this);
         m_ptvClients->setModel(&m_ModelConnect);
         //m_ptvClients->verticalHeader()->hide();
-        m_ptvClients->setSelectionMode(QAbstractItemView::MultiSelection);
+        m_ptvClients->setSelectionMode(QAbstractItemView::SingleSelection);
         m_ptvClients->setSelectionBehavior(QAbstractItemView::SelectRows);
         m_ptvClients->setEditTriggers(QAbstractItemView::NoEditTriggers);
         m_ModelConnect.setHorizontalHeaderItem(0, new QStandardItem(tr("IP")));
@@ -47,6 +47,7 @@ CFrmViewServer::CFrmViewServer(QWidget *parent)
 #endif
             QHeaderView::Interactive);
 
+        m_ptvClients->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
         check = connect(m_ptvClients, SIGNAL(customContextMenuRequested(const QPoint &)),
                         this, SLOT(slotContextMenuRequested(const QPoint&)));
         Q_ASSERT(check);
@@ -82,8 +83,8 @@ void CFrmViewServer::slotConnected(const QString& szIp, const quint16 port)
     lstItem << pIP;
     QStandardItem* pPort = new QStandardItem(QString::number(port));
     lstItem << pPort;
-    QStandardItem* pTime = new QStandardItem(QTime::currentTime().toString(
-        QLocale::system().timeFormat()));
+    QStandardItem* pTime = new QStandardItem(QDateTime::currentDateTime().toString(
+        QLocale::system().dateTimeFormat()));
     lstItem << pTime;
     m_ModelConnect.appendRow(lstItem);
     m_ptvClients->resizeColumnToContents(0);
@@ -107,8 +108,10 @@ void CFrmViewServer::slotDisconnected(const QString& szIp, const quint16 port)
 
 void CFrmViewServer::slotContextMenuRequested(const QPoint& pos)
 {
+    if(m_ModelConnect.rowCount() == 0)
+        return;
     QMenu m;
-    m.addAction(tr("Disconnect"), [this](){
+    m.addAction(tr("Disconnect"), this, [this](){
         QItemSelectionModel* pSelect = m_ptvClients->selectionModel();
         QModelIndexList lstIndex = pSelect->selectedRows();
         foreach(auto index, lstIndex) {

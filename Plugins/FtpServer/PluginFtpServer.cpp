@@ -1,15 +1,10 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
-#include <QApplication>
-#include <QStyle>
 #include <QLoggingCategory>
-
-#include "PluginFtpServer.h"
 #include "OperateFtpServer.h"
+#include "PluginFtpServer.h"
 
-static Q_LOGGING_CATEGORY(log, "FtpServer.Plugin")
-
+static Q_LOGGING_CATEGORY(log, "Plugin.FtpServer")
 CPluginFtpServer::CPluginFtpServer(QObject *parent)
     : CPlugin{parent}
 {
@@ -23,7 +18,7 @@ CPluginFtpServer::~CPluginFtpServer()
 
 const CPlugin::TYPE CPluginFtpServer::Type() const
 {
-    return TYPE::Server;
+    return CPlugin::TYPE::Server;
 }
 
 const QString CPluginFtpServer::Protocol() const
@@ -49,7 +44,11 @@ const QString CPluginFtpServer::Description() const
 
 const QString CPluginFtpServer::Version() const
 {
-    return PluginFtpServer_VERSION;
+#ifdef FtpServer_VERSION
+    return FtpServer_VERSION;
+#else
+    return QString();
+#endif
 }
 
 const QIcon CPluginFtpServer::Icon() const
@@ -67,7 +66,9 @@ const QString CPluginFtpServer::Details() const
 
 COperate *CPluginFtpServer::OnCreateOperate(const QString &szId)
 {
-    if(Id() == szId)
-        return new COperateFtpServer(this);
-    return nullptr;
+    if(szId != Id()) {
+        qCritical(log) << "Invalid ID:" << szId;
+        return nullptr;
+    }
+    return new COperateFtpServer(this);
 }

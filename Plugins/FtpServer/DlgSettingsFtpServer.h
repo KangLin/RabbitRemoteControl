@@ -6,25 +6,25 @@
 #include "ParameterServerUI.h"
 
 namespace Ui {
-class CDlgSettingsTemplateServer;
+class CDlgSettingsFtpServer;
 }
 
-class CParameterTemplateServer;
-class CDlgSettingsTemplateServer : public QDialog
+class CParameterFtpServer;
+class CDlgSettingsFtpServer : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CDlgSettingsTemplateServer(CParameterTemplateServer* pPara,
+    explicit CDlgSettingsFtpServer(CParameterFtpServer* pPara,
                                       QWidget *parent = nullptr);
-    virtual ~CDlgSettingsTemplateServer();
+    virtual ~CDlgSettingsFtpServer();
 
     // QDialog interface
 public Q_SLOTS:
     virtual void accept() override;
-
+    void on_pbRoot_clicked();
 private:
-    Ui::CDlgSettingsTemplateServer *ui;
-    CParameterTemplateServer* m_pPara;
+    Ui::CDlgSettingsFtpServer *ui;
+    CParameterFtpServer* m_pPara;
     CParameterServerUI* m_pServerUI;
 };

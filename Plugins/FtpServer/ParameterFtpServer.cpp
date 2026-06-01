@@ -1,4 +1,3 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
 #include "ParameterFtpServer.h"
@@ -13,28 +12,29 @@ CParameterFtpServer::CParameterFtpServer(QObject *parent, const QString &szPrefi
 #else
     m_Net.SetPort(21);
 #endif
-
     m_Net.SetEnablleUI(CParameterNet::SHOW_UI::Port | CParameterNet::SHOW_UI::User);
 }
 
 int CParameterFtpServer::OnLoad(QSettings &set)
 {
-    int nRet = CParameterServer::OnLoad(set);
+    int nRet = 0;
+    nRet = CParameterServer::OnLoad(set);
     if(nRet) return nRet;
     SetAnonymousLogin(set.value("AnonemousLogin", GetAnonymousLogin()).toBool());
     SetReadOnly(set.value("ReadOnly", GetReadOnly()).toBool());
     SetRoot(set.value("Root", GetRoot()).toString());
-    return 0;
+    return nRet;
 }
 
 int CParameterFtpServer::OnSave(QSettings &set)
 {
-    int nRet = CParameterServer::OnSave(set);
+    int nRet = 0;
+    nRet = CParameterServer::OnSave(set);
     if(nRet) return nRet;
     set.setValue("AnonemousLogin", GetAnonymousLogin());
     set.setValue("ReadOnly", GetReadOnly());
     set.setValue("Root", GetRoot());
-    return 0;
+    return nRet;
 }
 
 bool CParameterFtpServer::GetAnonymousLogin() const

@@ -1,48 +1,39 @@
-// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include "Operate.h"
-#include "BackendThread.h"
-#include "ParameterFtpServer.h"
-#include "FrmMain.h"
 
-class COperateFtpServer : public COperate
+#include "OperateServer.h"
+class CBackend;
+class CParameterFtpServer;
+class COperateFtpServer : public COperateServer
 {
     Q_OBJECT
-
 public:
     explicit COperateFtpServer(CPlugin *plugin);
-    ~COperateFtpServer();
+    virtual ~COperateFtpServer();
 
+    /*!
+     * \brief Get parameter
+     */
+    [[nodiscard]] virtual CParameterFtpServer* GetParameter() const;
+
+    // COperate interface
 public:
     virtual const QString Name() override;
     virtual const QString Description() override;
     virtual const qint16 Version() const override;
-    virtual QWidget *GetViewer() override;
-    virtual int Start() override;
-    virtual int Stop() override;
-
-    CParameterFtpServer* GetParameter();
 
 protected:
-    Q_INVOKABLE virtual CBackend* InstanceBackend();
     virtual int SetPluginParameters(CParameterPlugin *pPara) override;
-    virtual int Initial() override;
-    virtual int Clean() override;
+    Q_INVOKABLE virtual CBackend* InstanceBackend() override;
+    Q_INVOKABLE virtual int Initial() override;
+    Q_INVOKABLE virtual int Clean() override;
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
-
-private Q_SLOTS:
-    void slotStart(bool checked);
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 
 private:
-    CBackendThread* m_pThread;
-    CParameterFtpServer m_Para;
-    CFrmMain* m_pView;
-    QAction* m_pStart;
-    friend class CFrmMain;
+    CParameterFtpServer* m_pPara;
 };

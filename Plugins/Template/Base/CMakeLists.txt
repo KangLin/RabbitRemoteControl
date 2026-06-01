@@ -37,7 +37,7 @@ SET(TemplateBase_UI_FILES
     FrmViewerTemplateBase.ui
     )
 
-ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
+ADD_PLUGIN_TARGET(NAME Plugin${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${TemplateBase_SOURCE_FILES} ${TemplateBase_HEADER_FILES} ${TemplateBase_UI_FILES}
     PRIVATE_LIBS ${TemplateBase_LIBS}
