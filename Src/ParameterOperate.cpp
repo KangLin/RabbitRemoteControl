@@ -32,7 +32,7 @@ CParameterOperate::CParameterOperate(QObject *parent, const QString &szPrefix)
 
 CParameterPlugin* CParameterOperate::GetPluginParameters()
 {
-    if(!m_pParameterPlugin&& m_Parent) return m_Parent->GetPluginParameters();
+    if(!m_pParameterPlugin && m_Parent) return m_Parent->GetPluginParameters();
     return m_pParameterPlugin;
 }
 

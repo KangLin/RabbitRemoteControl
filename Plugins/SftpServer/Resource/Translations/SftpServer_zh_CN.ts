@@ -10,8 +10,8 @@
     </message>
     <message>
         <location filename="../../BackendSftpServer.cpp" line="516"/>
-        <source>Version:</source>
-        <translation>版本：</translation>
+        <source>Version</source>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../BackendSftpServer.cpp" line="517"/>
@@ -30,8 +30,8 @@
     </message>
     <message>
         <location filename="../../BackendSftpServer.cpp" line="520"/>
-        <source>User &quot;%1&quot; logged in %2</source>
-        <translation>用户 &quot;%1&quot; 登录于 %2</translation>
+        <source>User &quot;%1&quot; logged in at %2</source>
+        <translation>用户 &quot;%1&quot; 于 %2 登录</translation>
     </message>
 </context>
 <context>

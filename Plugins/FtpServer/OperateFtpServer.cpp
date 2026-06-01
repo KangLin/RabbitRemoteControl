@@ -99,7 +99,6 @@ CBackend* COperateFtpServer::InstanceBackend()
 int COperateFtpServer::SetPluginParameters(CParameterPlugin *pPara)
 {
     int nRet = 0;
-    // TODO: Modify apply plugin parameters
     if(m_pPara) {
         m_pPara->SetPluginParameters(pPara);
         m_pPara->m_Net.m_User.SetSavePassword(true);
@@ -137,8 +136,6 @@ int COperateFtpServer::Initial()
     nRet = COperateServer::Initial();
     if(nRet) return nRet;
     m_pPara = new CParameterFtpServer();
-
-    // TODO: add initial
 
     return nRet;
 }

@@ -2,17 +2,15 @@
 
 #pragma once
 
-#include "Operate.h"
+#include "OperateServer.h"
 
 class CBackend;
-class CBackendThread;
-class CFrmViewServer;
 class CParameterSftpServer;
-class COperateSftpServer : public COperate
+class COperateSftpServer : public COperateServer
 {
     Q_OBJECT
 public:
-    COperateSftpServer(CPlugin *plugin);
+    explicit COperateSftpServer(CPlugin *plugin);
     virtual ~COperateSftpServer();
 
     /*!
@@ -22,10 +20,9 @@ public:
 
     // COperate interface
 public:
+    virtual const QString Name() override;
+    virtual const QString Description() override;
     virtual const qint16 Version() const override;
-    virtual QWidget *GetViewer() override;
-    virtual int Start() override;
-    virtual int Stop() override;
 
 protected:
     virtual int SetPluginParameters(CParameterPlugin *pPara) override;
@@ -40,7 +37,4 @@ private:
 
 private:
     CParameterSftpServer* m_pPara;
-    CFrmViewServer* m_pViewer;
-    CBackendThread* m_pThread;
-
 };

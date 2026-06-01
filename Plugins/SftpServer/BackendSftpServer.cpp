@@ -83,7 +83,9 @@ static bool GetClientAddressAndPort(ssh_session session, QString& ip, quint16& p
 }
 
 CBackendSftpServer::CBackendSftpServer(COperateSftpServer *pOperate, bool bStopSignal)
-    : CBackend(pOperate, bStopSignal)
+    : CBackendServer(pOperate, bStopSignal)
+    , m_nTotal(0)
+    , m_nDisconnect(0)
     , m_pPara(pOperate->GetParameter())
     , m_event(nullptr)
 {
@@ -99,6 +101,10 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
 {
     OnInitReturnValue ret = OnInitReturnValue::Fail;
     if(!m_pPara) return ret;
+
+    m_nTotal = 0;
+    m_nDisconnect = 0;
+    emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
 
     m_event = ssh_event_new();
     if(!m_event)
@@ -120,7 +126,8 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
         foreach (auto add, m_pPara->GetListen()) {
             Listen(add, port);
         }
-        qInfo(log) << "SFTP Server is listend on port:" << port << m_pPara->GetListen()
+        qInfo(log) << "SFTP Server is listend on port:"
+                   << port << m_pPara->GetListen()
                    << "; Root path:" << root.absolutePath();
     } else
         return ret;
@@ -139,13 +146,16 @@ int CBackendSftpServer::OnClean()
     }
     m_lstListen.clear();
 
-    if(m_event)
-        ssh_event_free(m_event);
-
     foreach (auto c, m_lstClients) {
-        RemoveClient(c);
+        DeleteClient(c);
     }
     m_lstClients.clear();
+    emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
+    
+    if(m_event) {
+        ssh_event_free(m_event);
+        m_event = nullptr;
+    }
 
     return nRet;
 }
@@ -177,14 +187,28 @@ int CBackendSftpServer::OnProcess()
 
     if(m_lstClients.isEmpty())
         return 10;
+    
+    QList<sClientData*> toRemove;
 
     nRet = ssh_event_dopoll(m_event, 100);
     if (SSH_ERROR == nRet) {
         qDebug(log) << "Failed: ssh_event_dopoll. nRet:" << nRet;
-        return -1;
+        foreach (auto pData, m_lstClients) {
+            qDebug(log) << "ip:" << pData->ip << "port:" << pData->port
+                           << "error code:" << ssh_get_error_code(pData->session)
+                           << ssh_get_error(pData->session);
+            if(ssh_get_error_code(pData->session) != SSH_OK)
+                toRemove.push_back(pData);
+        }
+        foreach(auto pData, toRemove) {
+            m_lstClients.removeAll(pData);
+            DeleteClient(pData);
+        }
+        if(!toRemove.isEmpty())
+            emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
+        return 0;
     }
 
-    QList<sClientData*> toRemove;
     foreach(auto pData, m_lstClients) {
         if(!pData) {
             toRemove.push_back(pData);
@@ -204,15 +228,19 @@ int CBackendSftpServer::OnProcess()
             pData->m_Time = QTime();
         }
 
-        if(pData->channel && !ssh_channel_is_open(pData->channel)) {
+        if(pData->channel && (!ssh_channel_is_open(pData->channel)
+                               || ssh_channel_is_eof(pData->channel))) {
             qWarning(log) << "Then channel is not open";
+            toRemove.push_back(pData);
         }
     }
 
     foreach(auto pData, toRemove) {
         m_lstClients.removeAll(pData);
-        RemoveClient(pData);
+        DeleteClient(pData);
     }
+    if(!toRemove.isEmpty())
+        emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
 
     return 0;
 }
@@ -297,6 +325,8 @@ void CBackendSftpServer::slotNewConnection()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = SSH_ERROR;
+    
+    m_nTotal++;
 
     QSocketNotifier* pSocketNotifier = qobject_cast<QSocketNotifier*>(sender());
     if(!pSocketNotifier) return;
@@ -349,15 +379,16 @@ void CBackendSftpServer::slotNewConnection()
         }
 
         // Check filter
-        QString szIp = GetClientAddress(session);
-        qDebug(log) << "IP:" << szIp;
+        bool bRet = GetClientAddressAndPort(session, pData->ip, pData->port);
+        if(!bRet) break;
+        qDebug(log) << "IP:" << pData->ip << "Port:" << pData->port;
         auto& white = m_pPara->m_WhiteFilter;
         auto& black = m_pPara->m_BlackFilter;
         bool bFilte = false;
         bool bInWhite = false;
         if(!white.isEmpty()) {
             white.OnProcess([&](const QString& szKey)->int {
-                QHostAddress addr(szIp);
+                QHostAddress addr(pData->ip);
                 auto sub = QHostAddress::parseSubnet(szKey);
                 if(addr.isInSubnet(sub.first, sub.second)) {
                     bInWhite = true;
@@ -369,10 +400,10 @@ void CBackendSftpServer::slotNewConnection()
 
         if(!bInWhite && !black.isEmpty()) {
             black.OnProcess([&](const QString& szKey)->int {
-                QHostAddress addr(szIp);
+                QHostAddress addr(pData->ip);
                 auto sub = QHostAddress::parseSubnet(szKey);
                 if(addr.isInSubnet(sub.first, sub.second)) {
-                    qInfo(log) << "Filtered" << szIp << "in blacklist";
+                    qInfo(log) << "Filtered" << pData->ip << "in blacklist";
                     bFilte = true;
                     return -1;
                 }
@@ -394,15 +425,21 @@ void CBackendSftpServer::slotNewConnection()
             qCritical(log) << "Failed: event add session";
 
         m_lstClients.push_back(pData);
+
+        emit sigConnected(pData->ip, pData->port);
+        emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
         return;
     } while(0);
-
+    
     if(pData)
         delete pData;
     if(session) {
         ssh_disconnect(session);
         ssh_free(session);
     }
+    
+    m_nDisconnect++;
+    emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
 }
 
 int CBackendSftpServer::cbAuthPassword(ssh_session session, const char *userName,
@@ -488,7 +525,7 @@ ssh_channel CBackendSftpServer::cbChannelOpen(ssh_session session, void *userdat
     return pData->channel;
 }
 
-int CBackendSftpServer::RemoveClient(sClientData *pClient)
+int CBackendSftpServer::DeleteClient(sClientData *pClient)
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
@@ -503,8 +540,13 @@ int CBackendSftpServer::RemoveClient(sClientData *pClient)
     if(pClient->session) {
         if(ssh_is_connected(pClient->session))
             ssh_disconnect(pClient->session);
+        if(m_event)
+            ssh_event_remove_session(m_event, pClient->session);
         ssh_free(pClient->session);
     }
+
+    m_nDisconnect++;
+    emit sigDisconnected(pClient->ip, pClient->port);
 
     delete pClient;
     return nRet;
@@ -513,14 +555,26 @@ int CBackendSftpServer::RemoveClient(sClientData *pClient)
 void CBackendSftpServer::SendBanner(ssh_session session, const QString& user)
 {
     QString szBanner = "\n" + tr("Welcome to \"Rabbit Remote Control - SFTP Server\"") + "\n";
-    szBanner += " * " + tr("Version:") + " " + QString(SftpServer_VERSION) + "\n";
+    szBanner += " * " + tr("Version") + ": " + QString(SftpServer_VERSION) + "\n";
     szBanner += " * " + tr("Home page") + ": https://github.com/KangLin/RabbitRemoteControl.git\n";
     szBanner += " * " + tr("Author: Kang Lin") + " <kl222@126.com>\n";
     szBanner += " * " + tr("Support") + ": https://github.com/KangLin/RabbitRemoteControl/issues\n";
-    szBanner += tr("User \"%1\" logged in %2").arg(user, QDateTime::currentDateTime().toString()) + "\n\n";
+    szBanner += tr("User \"%1\" logged in at %2").arg(user, QDateTime::currentDateTime().toString()) + "\n\n";
     ssh_string banner = ssh_string_from_char(szBanner.toStdString().c_str());
     if (banner) {
         ssh_send_issue_banner(session, banner);
         ssh_string_free(banner);
+    }
+}
+
+void CBackendSftpServer::slotDisconnect(const QString &szIp, const quint16 port)
+{
+    foreach(auto c, m_lstClients) {
+        if(c->ip == szIp && c->port == port) {
+            m_lstClients.removeAll(c);
+            DeleteClient(c);
+            emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
+            break;
+        }
     }
 }

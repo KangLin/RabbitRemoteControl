@@ -8,11 +8,11 @@
 #include <libssh/sftpserver.h>
 #include <libssh/callbacks.h>
 
-#include "Backend.h"
+#include "BackendServer.h"
 #include "OperateSftpServer.h"
 #include "ParameterSftpServer.h"
 
-class CBackendSftpServer : public CBackend
+class CBackendSftpServer : public CBackendServer
 {
     Q_OBJECT
 
@@ -20,6 +20,9 @@ public:
     explicit CBackendSftpServer(COperateSftpServer *pOperate = nullptr,
                                 bool bStopSignal = true);
     virtual ~CBackendSftpServer();
+
+public Q_SLOTS:
+    virtual void slotDisconnect(const QString& szIp, const quint16 port) override;
 
 protected:
     virtual OnInitReturnValue OnInit() override;
@@ -31,6 +34,8 @@ private Q_SLOTS:
     void slotNewConnection();
 
 private:
+    int m_nTotal;
+    int m_nDisconnect;
     CParameterSftpServer* m_pPara;
     ssh_event m_event;
 
@@ -41,6 +46,8 @@ private:
     QList<sBindData*> m_lstListen;
     struct sClientData
     {
+        QString ip;
+        quint16 port;
         ssh_session session;
         ssh_channel channel;
         sftp_session sftp;
@@ -64,6 +71,6 @@ private:
     int Listen(const QString &szIp, qint16 nPort);
     ssh_bind GetSshBind(QSocketNotifier* notifier);
     bool InitHostKey(ssh_bind ssdBind);
-    int RemoveClient(sClientData* pClient);
+    int DeleteClient(sClientData* pClient);
     static void SendBanner(ssh_session session, const QString& user);
 };

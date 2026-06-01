@@ -1,19 +1,16 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
-
-#include "BackendThread.h"
+#include "Plugin.h"
 #include "BackendSftpServer.h"
 #include "ParameterSftpServer.h"
-#include "FrmViewServer.h"
 #include "DlgSettingsSftpServer.h"
 #include "OperateSftpServer.h"
 
 static Q_LOGGING_CATEGORY(log, "Operate.SftpServer")
 COperateSftpServer::COperateSftpServer(CPlugin *plugin)
-    : COperate(plugin)
+    : COperateServer(plugin)
     , m_pPara(nullptr)
-    , m_pViewer(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -21,6 +18,13 @@ COperateSftpServer::COperateSftpServer(CPlugin *plugin)
 COperateSftpServer::~COperateSftpServer()
 {
     qDebug(log) << Q_FUNC_INFO;
+    QString szClass = this->metaObject()->className();
+    QString szWhat;
+    szWhat += "Please call ";
+    szWhat += szClass;
+    szWhat += "::Stop() first";
+    Q_ASSERT_X(!m_pPara, szClass.toStdString().c_str(), szWhat.toStdString().c_str());
+
 }
 
 CParameterSftpServer* COperateSftpServer::GetParameter() const
@@ -28,38 +32,65 @@ CParameterSftpServer* COperateSftpServer::GetParameter() const
     return m_pPara;
 }
 
+const QString COperateSftpServer::Name()
+{
+    QString szName;
+    // Show the name of parameter
+    if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
+        szName += GetParameter()->GetName();
+    else {
+        // Show the name
+        szName += COperate::Name();
+    }
+
+    // Show the prefix of security level
+    QString szSecurityLevel;
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetParameter() && GetParameter()->GetPluginParameters()
+        && (GetParameter()->GetPluginParameters()->GetNameStyles()
+            & CParameterPlugin::NameStyle::SecurityLevel)
+        && !(GetSecurityLevel() & CSecurityLevel::Level::No)
+        && !sl.GetUnicodeIcon().isEmpty())
+        szSecurityLevel = sl.GetUnicodeIcon().left(2);
+
+    return szSecurityLevel + szName;
+}
+
+const QString COperateSftpServer::Description()
+{
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+
+    if(!GetTypeName().isEmpty())
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
+
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol();
+#ifdef DEBUG
+        if(!GetPlugin()->DisplayName().isEmpty())
+            szDescription += " - " + GetPlugin()->DisplayName();
+#endif
+        szDescription += "\n";
+    }
+
+    CSecurityLevel sl(GetSecurityLevel());
+    if(!(GetSecurityLevel() & CSecurityLevel::Level::No)) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
+
+    if(!GetPlugin()->Description().isEmpty())
+        szDescription += tr("Description: ") + GetPlugin()->Description();
+
+    return szDescription;
+}
+
 const qint16 COperateSftpServer::Version() const
 {
     return 0;
-}
-
-QWidget *COperateSftpServer::GetViewer()
-{
-    return m_pViewer;
-}
-
-int COperateSftpServer::Start()
-{
-    int nRet = 0;
-    m_pThread = new CBackendThread(this);
-    if(!m_pThread) {
-        qCritical(log) << "new CBackendThread fail";
-        return -1;
-    }
-    m_pThread->start();
-    return nRet;
-}
-
-int COperateSftpServer::Stop()
-{
-    int nRet = 0;
-    if(m_pThread)
-    {
-        m_pThread->quit();
-        //Don't delete m_pThread, See CBackendThread
-        m_pThread = nullptr;
-    }
-    return nRet;
 }
 
 CBackend* COperateSftpServer::InstanceBackend()
@@ -102,13 +133,11 @@ int COperateSftpServer::Save(QSettings &set)
 int COperateSftpServer::Initial()
 {
     int nRet = 0;
-    nRet = COperate::Initial();
+    nRet = COperateServer::Initial();
     if(nRet) return nRet;
 
     m_pPara = new CParameterSftpServer();
-    m_pViewer = new CFrmViewServer();
 
-    m_Menu.addAction(m_pActionSettings);
     return nRet;
 }
 
@@ -119,10 +148,6 @@ int COperateSftpServer::Clean()
         delete m_pPara;
         m_pPara = nullptr;
     }
-    if(m_pViewer) {
-        delete m_pViewer;
-        m_pViewer = nullptr;
-    }
-    nRet = COperate::Clean();
+    nRet = COperateServer::Clean();
     return nRet;
 }
