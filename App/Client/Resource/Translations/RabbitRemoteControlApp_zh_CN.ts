@@ -785,7 +785,7 @@ File: %1</source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="569"/>
-        <location filename="../../mainwindow.cpp" line="857"/>
+        <location filename="../../mainwindow.cpp" line="859"/>
         <source>Stop other</source>
         <translation>停止其它的</translation>
     </message>
@@ -870,7 +870,7 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="296"/>
         <location filename="../../mainwindow.ui" line="299"/>
         <location filename="../../mainwindow.ui" line="302"/>
-        <location filename="../../mainwindow.cpp" line="1004"/>
+        <location filename="../../mainwindow.cpp" line="1006"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
@@ -895,8 +895,8 @@ File: %1</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="993"/>
-        <location filename="../../mainwindow.cpp" line="1012"/>
+        <location filename="../../mainwindow.cpp" line="995"/>
+        <location filename="../../mainwindow.cpp" line="1014"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
@@ -1005,52 +1005,52 @@ File: %1</source>
         <translation>除了当前的 &quot;%1&quot; 以外全部停止</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1006"/>
+        <location filename="../../mainwindow.cpp" line="1008"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1128"/>
+        <location filename="../../mainwindow.cpp" line="1130"/>
         <source>Starting: </source>
         <translation>开始：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1221"/>
+        <location filename="../../mainwindow.cpp" line="1223"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1355"/>
+        <location filename="../../mainwindow.cpp" line="1357"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1364"/>
+        <location filename="../../mainwindow.cpp" line="1366"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1403"/>
+        <location filename="../../mainwindow.cpp" line="1405"/>
         <source>Use message box to display information</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1649"/>
+        <location filename="../../mainwindow.cpp" line="1651"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1650"/>
+        <location filename="../../mainwindow.cpp" line="1652"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1681"/>
+        <location filename="../../mainwindow.cpp" line="1683"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1682"/>
+        <location filename="../../mainwindow.cpp" line="1684"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>

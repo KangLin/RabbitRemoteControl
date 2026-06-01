@@ -20,7 +20,6 @@ public:
                                       QWidget *parent = nullptr);
     virtual ~CDlgSettingsSftpServer();
 
-    // QDialog interface
 public slots:
     virtual void accept() override;
     void on_pbRoot_clicked();
@@ -29,6 +28,4 @@ private:
     Ui::CDlgSettingsSftpServer *ui;
     CParameterSftpServer* m_pPara;
     CParameterServerUI* m_pServerUI;
-    CParameterFilterUI* m_pWhitelist;
-    CParameterFilterUI* m_pBlacklist;
 };

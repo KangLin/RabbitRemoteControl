@@ -372,6 +372,34 @@
     </message>
 </context>
 <context>
+    <name>CFrmViewServer</name>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="34"/>
+        <source>IP</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="35"/>
+        <source>Port</source>
+        <translation>端口</translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="36"/>
+        <source>Time</source>
+        <translation>時間</translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="74"/>
+        <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
+        <translation>當前連接數：%1；斷開連接數：%2; 總數：%3</translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="114"/>
+        <source>Disconnect</source>
+        <translation>斷開連接</translation>
+    </message>
+</context>
+<context>
     <name>CFrmViewer</name>
     <message>
         <location filename="../../FrmViewer.cpp" line="561"/>
@@ -631,6 +659,20 @@ Some features are limited.
     </message>
 </context>
 <context>
+    <name>COperateServer</name>
+    <message>
+        <location filename="../../OperateServer.cpp" line="70"/>
+        <location filename="../../OperateServer.cpp" line="104"/>
+        <source>Start server</source>
+        <translation>開始服務</translation>
+    </message>
+    <message>
+        <location filename="../../OperateServer.cpp" line="117"/>
+        <source>Stop server</source>
+        <translation>停止服務</translation>
+    </message>
+</context>
+<context>
     <name>COperateTerminal</name>
     <message>
         <source>Name: </source>
@@ -847,7 +889,7 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterFilterUI.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterFilterUI.ui" line="42"/>
@@ -1422,35 +1464,15 @@ Some features are limited.
 <context>
     <name>CParameterServerUI</name>
     <message>
-        <source>General</source>
-        <translation type="vanished">通用</translation>
-    </message>
-    <message>
         <location filename="../../ParameterCompone/ParameterServerUI.ui" line="25"/>
         <source>Max connect count:</source>
         <translation>最大連接數：</translation>
     </message>
     <message>
-        <source>Root directory:</source>
-        <translation type="vanished">根目錄：</translation>
-    </message>
-    <message>
-        <source>Browser</source>
-        <translation type="vanished">瀏覽</translation>
-    </message>
-    <message>
-        <source>Anonymous Login</source>
-        <translation type="vanished">匿名登錄</translation>
-    </message>
-    <message>
-        <source>Read only</source>
-        <translation type="vanished">只讀</translation>
-    </message>
-    <message>
         <location filename="../../ParameterCompone/ParameterServerUI.ui" line="14"/>
         <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="19"/>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>連接</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterServerUI.ui" line="50"/>
@@ -1478,14 +1500,14 @@ Some features are limited.
         <translation>允許在所有網絡接口上監聽</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="26"/>
         <source>Whitelist</source>
-        <translation type="unfinished">白名單</translation>
+        <translation>白名單</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="26"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="22"/>
         <source>Blacklist</source>
-        <translation type="unfinished">黑名單</translation>
+        <translation>黑名單</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="40"/>
@@ -1912,8 +1934,12 @@ Some features are limited.
         <translation>客戶端</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="48"/>
         <source>Service</source>
+        <translation type="vanished">服務</translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="48"/>
+        <source>Server</source>
         <translation>服務</translation>
     </message>
     <message>

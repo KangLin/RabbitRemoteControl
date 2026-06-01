@@ -4,32 +4,32 @@
 <context>
     <name>CBackendSftpServer</name>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="517"/>
+        <location filename="../../BackendSftpServer.cpp" line="515"/>
         <source>Welcome to &quot;Rabbit Remote Control - SFTP Server&quot;</source>
         <translation>欢迎使用 &quot;玉兔远程控制 - SFTP 服务&quot;</translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="518"/>
+        <location filename="../../BackendSftpServer.cpp" line="516"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="519"/>
+        <location filename="../../BackendSftpServer.cpp" line="517"/>
         <source>Home page</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="520"/>
+        <location filename="../../BackendSftpServer.cpp" line="518"/>
         <source>Author: Kang Lin</source>
         <translation>作者：康林</translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="521"/>
+        <location filename="../../BackendSftpServer.cpp" line="519"/>
         <source>Support</source>
         <translation>支持</translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="522"/>
+        <location filename="../../BackendSftpServer.cpp" line="520"/>
         <source>User &quot;%1&quot; logged in %2</source>
         <translation>用户 &quot;%1&quot; 登录于 %2</translation>
     </message>

@@ -372,6 +372,34 @@
     </message>
 </context>
 <context>
+    <name>CFrmViewServer</name>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="34"/>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="35"/>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="36"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="74"/>
+        <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmViewServer.cpp" line="114"/>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmViewer</name>
     <message>
         <location filename="../../FrmViewer.cpp" line="561"/>
@@ -626,6 +654,20 @@ Some features are limited.
     <message>
         <location filename="../../OperateDesktop.cpp" line="566"/>
         <source>Stop record</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>COperateServer</name>
+    <message>
+        <location filename="../../OperateServer.cpp" line="70"/>
+        <location filename="../../OperateServer.cpp" line="104"/>
+        <source>Start server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateServer.cpp" line="117"/>
+        <source>Stop server</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1379,12 +1421,12 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="26"/>
         <source>Whitelist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="26"/>
+        <location filename="../../ParameterCompone/ParameterServerUI.cpp" line="22"/>
         <source>Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1638,7 +1680,7 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="48"/>
-        <source>Service</source>
+        <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

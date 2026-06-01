@@ -4,147 +4,88 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="65"/>
+        <location filename="../../BackendFtpServer.cpp" line="81"/>
         <source>Ftp server listen on all address port %1. the lan ip is %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="70"/>
+        <location filename="../../BackendFtpServer.cpp" line="86"/>
         <source>Failed to Ftp server is listening on %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="79"/>
+        <location filename="../../BackendFtpServer.cpp" line="95"/>
         <source>Failed: Ftp server is not set to listen on any address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="88"/>
+        <location filename="../../BackendFtpServer.cpp" line="104"/>
         <source>Failed to Ftp server is listening on %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="99"/>
+        <location filename="../../BackendFtpServer.cpp" line="115"/>
         <source>Ftp server is listening on </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>CDlgSettings</name>
+    <name>CDlgSettingsFtpServer</name>
     <message>
-        <location filename="../../DlgSettings.ui" line="14"/>
+        <location filename="../../DlgSettingsFtpServer.ui" line="14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="21"/>
+        <location filename="../../DlgSettingsFtpServer.ui" line="21"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="29"/>
-        <source>Anonymous Login</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="36"/>
-        <source>Read only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="47"/>
+        <location filename="../../DlgSettingsFtpServer.ui" line="29"/>
         <source>Root directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="57"/>
+        <location filename="../../DlgSettingsFtpServer.ui" line="39"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>CFrmMain</name>
     <message>
-        <location filename="../../FrmMain.ui" line="14"/>
-        <source>Form</source>
+        <location filename="../../DlgSettingsFtpServer.ui" line="50"/>
+        <source>Anonymous Login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmMain.ui" line="35"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmMain.ui" line="45"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmMain.ui" line="64"/>
-        <source>Connect count:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmMain.cpp" line="23"/>
-        <source>IP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmMain.cpp" line="24"/>
-        <source>Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmMain.cpp" line="25"/>
-        <source>Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmMain.cpp" line="74"/>
-        <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmMain.cpp" line="112"/>
-        <source>Disconnect</source>
+        <location filename="../../DlgSettingsFtpServer.ui" line="57"/>
+        <source>Read only</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>COperateFtpServer</name>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="136"/>
-        <location filename="../../OperateFtpServer.cpp" line="168"/>
-        <source>Start server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateFtpServer.cpp" line="181"/>
-        <source>Stop server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateFtpServer.cpp" line="225"/>
+        <location filename="../../OperateFtpServer.cpp" line="61"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="228"/>
+        <location filename="../../OperateFtpServer.cpp" line="64"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="231"/>
+        <location filename="../../OperateFtpServer.cpp" line="67"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="241"/>
+        <location filename="../../OperateFtpServer.cpp" line="77"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="248"/>
+        <location filename="../../OperateFtpServer.cpp" line="84"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -152,27 +93,27 @@
 <context>
     <name>CPluginFtpServer</name>
     <message>
-        <location filename="../../PluginFtpServer.cpp" line="41"/>
+        <location filename="../../PluginFtpServer.cpp" line="36"/>
         <source>FTP(File Transfer Protocol) Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFtpServer.cpp" line="46"/>
+        <location filename="../../PluginFtpServer.cpp" line="41"/>
         <source>FTP(File Transfer Protocol) Server: include FTP, FTP-ES.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFtpServer.cpp" line="47"/>
+        <location filename="../../PluginFtpServer.cpp" line="42"/>
         <source>It uses: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFtpServer.cpp" line="63"/>
+        <location filename="../../PluginFtpServer.cpp" line="62"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFtpServer.cpp" line="64"/>
+        <location filename="../../PluginFtpServer.cpp" line="63"/>
         <source>QFtpServerLib version</source>
         <translation type="unfinished"></translation>
     </message>
