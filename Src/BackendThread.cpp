@@ -87,7 +87,7 @@ void CBackendThread::run()
     if(m_pBackend) {
         nRet = m_pBackend->Start();
         if(nRet) {
-            qCritical(log) << "Backend start fail" << nRet;
+            qCritical(log) << "Backend start fail:" << nRet;
             m_pBackend->Stop();
             m_pBackend->deleteLater();
             m_pBackend = nullptr;

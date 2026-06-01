@@ -1,6 +1,6 @@
-#ifndef FRMVIEWERTEMPLATEBASE_H
-#define FRMVIEWERTEMPLATEBASE_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include <QWidget>
 
 namespace Ui {
@@ -18,5 +18,3 @@ public:
 private:
     Ui::CFrmViewerTemplateBase *ui;
 };
-
-#endif // FRMVIEWERTEMPLATEBASE_H

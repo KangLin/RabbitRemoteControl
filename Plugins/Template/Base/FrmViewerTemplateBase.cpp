@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "FrmViewerTemplateBase.h"
 #include "ui_FrmViewerTemplateBase.h"
 
