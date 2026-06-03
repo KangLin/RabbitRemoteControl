@@ -30,8 +30,8 @@
     </message>
     <message>
         <location filename="../../BackendSftpServer.cpp" line="520"/>
-        <source>User &quot;%1&quot; logged in at %2</source>
-        <translation>用户 &quot;%1&quot; 于 %2 登录</translation>
+        <source>User &quot;%1&quot; logged in from %2 at %3</source>
+        <translation>用户 &quot;%1&quot; 从 %2 于 %3 登录</translation>
     </message>
 </context>
 <context>

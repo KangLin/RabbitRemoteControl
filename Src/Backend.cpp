@@ -95,7 +95,7 @@ int CBackend::Start()
     case OnInitReturnValue::NotUseOnProcess:
         break;
     default:
-        qWarning(log) << "Unknow return value:" << (int)nRet;
+        qWarning(log) << "Unknown return value:" << (int)nRet;
     }
     return 0;
 }

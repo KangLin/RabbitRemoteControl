@@ -33,8 +33,9 @@
     - Add file transfer
       - SFTP
       - FTP
-    - Server
+    - Add Server
       - FTP server
+      - SFTP server
     - Player
       - Add display subtitle
     - Add web browser

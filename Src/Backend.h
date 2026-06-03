@@ -85,7 +85,10 @@ public:
      */
     virtual int Stop();
     /*!
-     * \brief Wake up. When it is block(a non-Qt event loop)
+     * \~chinese 唤醒后台线程。
+     * \note 调用者是主线程（UI线程）。
+     * \~english
+     * \brief Wake up backend thread(background thread). When it is block(a non-Qt event loop)
      * \note The caller is main thread(UI thread)
      */
     virtual int WakeUp();
@@ -97,7 +100,7 @@ protected:
         UseOnProcess = Success,
         NotUseOnProcess = 1,
     };
-    Q_ENUM(OnInitReturnValue)
+    //Q_ENUM(OnInitReturnValue)
     /*!
      * \~chinese 初始化
      * \return

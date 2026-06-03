@@ -30,8 +30,8 @@
     </message>
     <message>
         <location filename="../../BackendSftpServer.cpp" line="520"/>
-        <source>User &quot;%1&quot; logged in %2</source>
-        <translation>用戶 &quot;%1&quot; 於 %2 登錄</translation>
+        <source>User &quot;%1&quot; logged in from %2 at %3</source>
+        <translation>用戶 &quot;%1&quot; 從 %2 於 %3 登錄</translation>
     </message>
 </context>
 <context>
@@ -44,35 +44,27 @@
     <message>
         <location filename="../../DlgSettingsSftpServer.ui" line="21"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>通用</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSftpServer.ui" line="29"/>
         <source>Anonymous Login</source>
-        <translation type="unfinished"></translation>
+        <translation>匿名登錄</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSftpServer.ui" line="36"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>只讀</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSftpServer.ui" line="47"/>
         <source>Root directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>根目錄：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSftpServer.ui" line="57"/>
         <source>Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Whitelist</source>
-        <translation type="vanished">白名單</translation>
-    </message>
-    <message>
-        <source>Blacklist</source>
-        <translation type="vanished">黑名單</translation>
+        <translation>瀏覽</translation>
     </message>
 </context>
 <context>

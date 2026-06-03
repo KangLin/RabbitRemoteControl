@@ -12,6 +12,9 @@
 #include "OperateSftpServer.h"
 #include "ParameterSftpServer.h"
 
+/*!
+ * \brief The CBackendSftpServer class
+ */
 class CBackendSftpServer : public CBackendServer
 {
     Q_OBJECT
@@ -72,5 +75,5 @@ private:
     ssh_bind GetSshBind(QSocketNotifier* notifier);
     bool InitHostKey(ssh_bind ssdBind);
     int DeleteClient(sClientData* pClient);
-    static void SendBanner(ssh_session session, const QString& user);
+    static void SendBanner(sClientData* pClient, const QString& user);
 };

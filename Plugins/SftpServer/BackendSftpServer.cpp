@@ -14,6 +14,7 @@
     #include <netinet/in.h>
     #include <arpa/inet.h>
 #endif
+#include "Stats.h"
 #include "BackendSftpServer.h"
 
 #define DEF_STR_SIZE 1024
@@ -131,6 +132,12 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
                    << "; Root path:" << root.absolutePath();
     } else
         return ret;
+
+    if(m_pPara->GetAnonymousLogin())
+        emit sigSecurityLevel(CSecurityLevel::Level::SecureChannel);
+    else if(!m_pPara->m_Net.m_User.GetPassword().isEmpty())
+        emit sigSecurityLevel(CSecurityLevel::Level::SecureChannel
+                              | CSecurityLevel::Level::Authentication);
 
     return OnInitReturnValue::UseOnProcess;
 }
@@ -447,13 +454,15 @@ int CBackendSftpServer::cbAuthPassword(ssh_session session, const char *userName
 {
     qDebug(log) << Q_FUNC_INFO;
     struct sClientData *pData = (struct sClientData *)userdata;
+    Q_ASSERT(pData);
 
     CParameterSftpServer* para = pData->pPara;
     if(!para) return SSH_AUTH_DENIED;
     auto &user = para->m_Net.m_User;
-    if (userName == user.GetUser() && pass == user.GetPassword())
+    if (para->GetAnonymousLogin()
+        || (userName == user.GetUser() && pass == user.GetPassword()))
     {
-        SendBanner(session, userName);
+        SendBanner(pData, userName);
         return SSH_AUTH_SUCCESS;
     }
     pData->m_nAuthAttempts++;
@@ -471,7 +480,7 @@ int CBackendSftpServer::cbAuthPublickey(ssh_session session,
 
     if (signature_state == SSH_PUBLICKEY_STATE_NONE)
     {
-        SendBanner(session, user);
+        SendBanner(pData, user);
         return SSH_AUTH_SUCCESS;
     }
 
@@ -552,17 +561,17 @@ int CBackendSftpServer::DeleteClient(sClientData *pClient)
     return nRet;
 }
 
-void CBackendSftpServer::SendBanner(ssh_session session, const QString& user)
+void CBackendSftpServer::SendBanner(sClientData *pClient, const QString& user)
 {
     QString szBanner = "\n" + tr("Welcome to \"Rabbit Remote Control - SFTP Server\"") + "\n";
     szBanner += " * " + tr("Version") + ": " + QString(SftpServer_VERSION) + "\n";
     szBanner += " * " + tr("Home page") + ": https://github.com/KangLin/RabbitRemoteControl.git\n";
     szBanner += " * " + tr("Author: Kang Lin") + " <kl222@126.com>\n";
     szBanner += " * " + tr("Support") + ": https://github.com/KangLin/RabbitRemoteControl/issues\n";
-    szBanner += tr("User \"%1\" logged in at %2").arg(user, QDateTime::currentDateTime().toString()) + "\n\n";
+    szBanner += tr("User \"%1\" logged in from %2 at %3").arg(user, pClient->ip, QDateTime::currentDateTime().toString()) + "\n\n";
     ssh_string banner = ssh_string_from_char(szBanner.toStdString().c_str());
     if (banner) {
-        ssh_send_issue_banner(session, banner);
+        ssh_send_issue_banner(pClient->session, banner);
         ssh_string_free(banner);
     }
 }
