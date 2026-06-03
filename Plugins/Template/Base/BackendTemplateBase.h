@@ -15,4 +15,5 @@ public:
 protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
+    virtual int OnProcess() override;
 };

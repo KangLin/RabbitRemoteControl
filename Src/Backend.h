@@ -97,6 +97,7 @@ protected:
         UseOnProcess = Success,
         NotUseOnProcess = 1,
     };
+    Q_ENUM(OnInitReturnValue)
     /*!
      * \~chinese 初始化
      * \return
@@ -126,13 +127,13 @@ protected:
      * \return 
      *       \li >= 0: 继续。再次调用间隔时间，单位毫秒
      *       \li = -1: 停止
-     *       \li < -1: 错误
+     *       \li < -1: 错误代码
      *     
      * \~english Specific operation processing of plug-in
      * \return 
      *       \li >= 0: continue, Interval call time (msec)
      *       \li = -1: stop
-     *       \li < -1: error
+     *       \li < -1: error code
      * \~
      * \see Start() slotTimeOut()
      */
@@ -142,12 +143,12 @@ protected Q_SLOTS:
     /*!
      * \~chinese 一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。
      *   如果是不是一个非 Qt 事件循环（就是普通的循环处理），
-     *   可以重载它，或者 OnInit() 返回值大于 0
+     *   可以重载它，或者 OnInit() 返回值 OnInitReturnValue::NotUseOnProcess
      *
      * \~english a non-Qt event loop (that is, normal loop processing)，
      *   It call OnProcess(), and start timer.
      *   If it is not have a non-Qt event loop,
-     *   can override it, or OnInit() return >0
+     *   can override it, or OnInit() return OnInitReturnValue::NotUseOnProcess
      *
      * \~
      * \see Start() OnProcess()

@@ -84,12 +84,19 @@ int CBackend::SetConnect(COperate *pOperate)
 int CBackend::Start()
 {
     qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
-    nRet = static_cast<int>(OnInit());
-    if(nRet < 0) return nRet;
-
-    if(0 == nRet)
+    OnInitReturnValue nRet = OnInitReturnValue::Fail;
+    nRet = OnInit();
+    switch(nRet) {
+    case OnInitReturnValue::Fail:
+        return -1;
+    case OnInitReturnValue::Success:
         QTimer::singleShot(0, this, SLOT(slotTimeOut()));
+        break;
+    case OnInitReturnValue::NotUseOnProcess:
+        break;
+    default:
+        qWarning(log) << "Unknow return value:" << (int)nRet;
+    }
     return 0;
 }
 

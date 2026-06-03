@@ -171,13 +171,13 @@ int CBackendSftpServer::WakeUp()
  * \return
  *       \li >= 0: 继续。再次调用间隔时间，单位毫秒
  *       \li = -1: 停止
- *       \li < -1: 错误
+ *       \li < -1: 错误代码
  *
  * \~english Specific operation processing of plug-in
  * \return
  *       \li >= 0: continue, Interval call time (msec)
  *       \li = -1: stop
- *       \li < -1: error
+ *       \li < -1: error code
  * \~
  * \see Start() slotTimeOut()
  */

@@ -48,6 +48,28 @@ int CBackendTemplateServer::OnClean()
     return nRet;
 }
 
+/*!
+ * \~chinese 具体操作处理
+ * \return 
+ *       \li >= 0: 继续。再次调用间隔时间，单位毫秒
+ *       \li = -1: 停止
+ *       \li < -1: 错误代码
+ *     
+ * \~english Specific operation processing of plug-in
+ * \return 
+ *       \li >= 0: continue, Interval call time (msec)
+ *       \li = -1: stop
+ *       \li < -1: error code
+ * \~
+ * \see Start() slotTimeOut()
+ */
+int CBackendTemplateServer::OnProcess()
+{
+    // TODO: add event dispatch (non-Qt event loop)
+    
+    return 0;
+}
+
 void CBackendTemplateServer::slotDisconnect(const QString &szIp, const quint16 port)
 {
     // TODO: Disconnect
