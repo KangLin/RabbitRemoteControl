@@ -10,6 +10,15 @@ class CBackendThread;
 class CFrmViewServer;
 
 /*!
+ * \~chinese
+ * \defgroup gOperateServer 服务类
+ * \~english
+ * \defgroup gOperateServer Server class
+ * \~
+ * \ingroup PLUGIN_API
+ */
+
+/*!
  * \~chinese 服务操作接口
  * \note 此接口仅由插件实现。 \n
  *      此接口实例运行在主线程(UI线程)中。 \n
@@ -23,7 +32,8 @@ class CFrmViewServer;
  *            The connection object runs in a background thread.
  *
  * \~
- * \see CFrmViewServer
+ * \see CFrmViewServer CBackendServer
+ * \ingroup gOperateServer
  */
 class PLUGIN_EXPORT COperateServer : public COperate
 {

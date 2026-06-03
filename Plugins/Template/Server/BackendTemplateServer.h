@@ -9,7 +9,8 @@ class CBackendTemplateServer : public CBackendServer
 {
     Q_OBJECT
 public:
-    explicit CBackendTemplateServer(COperateTemplateServer *pOperate = nullptr, bool bStopSignal = true);
+    explicit CBackendTemplateServer(
+        COperateTemplateServer *pOperate = nullptr, bool bStopSignal = true);
     virtual ~CBackendTemplateServer();
 
 public Q_SLOTS:

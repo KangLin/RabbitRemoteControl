@@ -2,7 +2,8 @@
 
 #include "ParameterTemplateServer.h"
 
-CParameterTemplateServer::CParameterTemplateServer(QObject *parent, const QString &szPrefix)
+CParameterTemplateServer::CParameterTemplateServer(
+    QObject *parent, const QString &szPrefix)
     : CParameterServer{parent, szPrefix}
 {}
 

@@ -29,7 +29,6 @@ COperateTemplateBase::~COperateTemplateBase()
     szWhat += "::Stop() first";
     Q_ASSERT_X(!m_pThread && !m_pPara && !m_pViewer,
                szClass.toStdString().c_str(), szWhat.toStdString().c_str());
-
 }
 
 CParameterTemplateBase* COperateTemplateBase::GetParameter() const

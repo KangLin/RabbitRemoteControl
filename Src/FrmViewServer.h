@@ -14,7 +14,8 @@
 
 /*!
  * \brief The CFrmViewServer class
- * \see COperateServer
+ * \see COperateServer CBackendServer
+ * \ingroup gOperateServer
  */
 class PLUGIN_EXPORT CFrmViewServer : public QWidget
 {

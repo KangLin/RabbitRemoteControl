@@ -4,7 +4,8 @@
 #include "DlgSettingsTemplateServer.h"
 #include "ui_DlgSettingsTemplateServer.h"
 
-CDlgSettingsTemplateServer::CDlgSettingsTemplateServer(CParameterTemplateServer *pPara, QWidget *parent)
+CDlgSettingsTemplateServer::CDlgSettingsTemplateServer(
+    CParameterTemplateServer *pPara, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CDlgSettingsTemplateServer)
     , m_pPara(pPara)

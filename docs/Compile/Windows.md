@@ -63,6 +63,15 @@ Prior versions don't have CMake support.
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
 - vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)
+- Bash shell:
+  - [MSys2](https://www.msys2.org/)
+  - [Cygwin](https://cygwin.com/)
+
+  Msys2 or Cygwin uses the default installation.
+  You can open the "Operate → terminal" with [this program](https://github.com/KangLin/RabbitRemoteControl/releases),
+  and it will automatically appear in 'Settings → Properties → Shell Name'.
+  If it is not the default installation location,
+  please check 'Help' and set it according to the methods there.
 
 ### Compilation
 
@@ -117,7 +126,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  
+
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
         bootstrap-vcpkg.bat
@@ -129,7 +138,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - Compile from source code
   + Source-code location: https://github.com/FreeRDP/FreeRDP
   + Compilation instructions: https://github.com/FreeRDP/FreeRDP/wiki/Compilation
- 
+
           git clone https://github.com/FreeRDP/FreeRDP.git
           cd FreeRDP
           mkdir build
@@ -150,7 +159,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - Compile from source code
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
-  
+
         cd vcpkg
         vcpkg install zlib openssl libjpeg-turbo
         git clone https://github.com/KangLin/libvncserver.git
@@ -163,7 +172,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
   the CMake parameter needs to be specified to compile this project:
 
       -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
-  
+
 #### RabbitVNC
 
 - Compile from source code
@@ -176,7 +185,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
         mkdir build
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config Release --target install
-    
+
 - When RabbitVNC is compiled from source,
   the CMake parameter needs to be specified to compile this project:
 
@@ -208,7 +217,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  
+
         cd vcpkg
         vcpkg install libdatachannel
 
@@ -217,7 +226,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 - Compile from source code
   + Source-code location:  [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + Compilation instructions: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
- 
+
         git clone https://github.com/paullouisageneau/libdatachannel.git
         cd libdatachannel
         git submodule update --init --recursive
@@ -235,7 +244,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 - Compile from source code
   + Source-code location: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
-  
+
         git clone https://github.com/qxmpp-project/qxmpp.git
         cd qxmpp
         mkdir build
@@ -247,7 +256,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   the CMake parameter needs to be specified to compile this project:
 
       -DQXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
-  
+
 #### QTermWidget (Not currently supported on Windows)
 - Compile from source code
   + Source-code location:  [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
@@ -263,12 +272,12 @@ Source-code location: https://github.com/KangLin/tigervnc
       )
 
   Reference: [msvc.yml](../../.github/workflows/msvc.yml)
-  
+
 #### libssh
 
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  
+
         cd vcpkg
         vcpkg install libssh
 
@@ -284,14 +293,14 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 - Compile from source code
   + Source-code location: https://github.com/KangLin/qt-solutions/
-  
+
         git clone https://github.com/KangLin/qt-solutions.git
         cd qt-solutions
         mkdir build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         cmake --build . --config Release --target install
-        
+
 - When QtService is compiled from source,
   the CMake parameter needs to be specified to compile this project:
 

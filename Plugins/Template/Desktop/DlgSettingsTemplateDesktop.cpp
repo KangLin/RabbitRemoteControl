@@ -4,7 +4,8 @@
 #include "DlgSettingsTemplateDesktop.h"
 #include "ui_DlgSettingsTemplateDesktop.h"
 
-CDlgSettingsTemplateDesktop::CDlgSettingsTemplateDesktop(CParameterTemplateDesktop *pPara, QWidget *parent)
+CDlgSettingsTemplateDesktop::CDlgSettingsTemplateDesktop(
+    CParameterTemplateDesktop *pPara, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CDlgSettingsTemplateDesktop)
     , m_pPara(pPara)

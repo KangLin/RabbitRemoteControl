@@ -50,7 +50,7 @@
             cmake -DQT_ROOT=[Qt 安装位置] -DQt6_DIR=[Qt 安装位置] ......
             #当使用 Qt5 时
             cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
-    
+
   - IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
     当前使用版本：18.0.0
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
@@ -60,6 +60,13 @@
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
 - vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)
+- Bash shell:
+  - [MSys2](https://www.msys2.org/)
+  - [Cygwin](https://cygwin.com/)
+
+  Msys2 或者 Cygwin 使用默认安装，可用[本程序](https://github.com/KangLin/RabbitRemoteControl/releases)
+  打开“操作 → 终端”，在“设置 → 属性 → Shell 名称”中会自动出现。
+  如果不是默认安装位置，请查看“帮助”并按其中方法设置。
 
 ### 编译
 
@@ -114,7 +121,7 @@
 
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
-  
+
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
         bootstrap-vcpkg.bat
@@ -131,7 +138,7 @@
           mkdir build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DWITH_SERVER=ON
           cmake --build . --config Release --target install
-          
+
 - 当 FreeRDP 从源码编译时，编译本项需要指定的 CMake 参数：
   - -DBUILD_FREERDP=ON
   - -DWinPR_DIR=[freerdp 安装目录]/lib/cmake/WinPR3
@@ -145,7 +152,7 @@
 - 从源码编译
   + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   建议使用补丁: https://github.com/KangLin/libvncserver
-  
+
         cd vcpkg
         vcpkg install zlib openssl libjpeg-turbo 
         git clone https://github.com/KangLin/libvncserver.git
@@ -153,11 +160,11 @@
         mkdir build
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config Release --target install
-  
+
 - 当 LibVNCServer 从源码编译时，编译本项需要指定的 CMake 参数：
 
       -DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
-  
+
 #### RabbitVNC
 
 - 从源码编译
@@ -189,23 +196,23 @@
     mkdir build
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --config Release --target install
-    
+
 - 当 TigerVNC 从源码编译时，编译本项需要指定的 CMake 参数：
 
       -Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
-  
+
 #### libdatachannel
 
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
-  
+
         cd vcpkg
         vcpkg install libdatachannel
 
 - 从源码编译
   + 源码位置： [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + 编译详见： [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
-  
+
         git clone https://github.com/paullouisageneau/libdatachannel.git
         cd libdatachannel
         git submodule update --init --recursive
@@ -223,7 +230,7 @@
 
 - 从源码编译
   + 源码位置： [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
-  
+
         git clone https://github.com/qxmpp-project/qxmpp.git
         cd qxmpp
         mkdir build
@@ -234,7 +241,7 @@
 - 当 QXmpp 从源码编译时，编译本项需要指定的 CMake 参数：
 
       -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
-  
+
 #### QTermWidget (暂不支持 Windows）
 
 - 从源码编译
@@ -252,7 +259,7 @@
   参考： [msvc.yml](../../.github/workflows/msvc.yml)
 
 #### QtWebEngine
-  
+
 默认情况下，包括 Webm(开源),不包括 x264、x265(版权原因)
 - 检查支持
   在你的 QtWebEngine 程序中访问 chrome://media-internals 或 chrome://gpu 可以看到当前支持的解码格式。
@@ -271,12 +278,12 @@
         ./configure -webengine-proprietary-codecs
         make
         make install
-          
+
 #### libssh
 
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
-  
+
         cd vcpkg
         vcpkg install libssh
 
@@ -290,14 +297,14 @@
 
 - 从源码编译
   + 源码位置：: https://github.com/KangLin/qt-solutions/
-  
+
         git clone https://github.com/KangLin/qt-solutions.git
         cd qt-solutions
         mkdir build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         cmake --build . --config Release --target install
-        
+
 - 当 QtService 从源码编译时，编译本项需要指定的 CMake 参数：
 
       -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
@@ -306,7 +313,7 @@
 
 - 从源码编译
   + 源码位置： https://github.com/seladb/PcapPlusPlus
-  
+
         git clone https://github.com/seladb/PcapPlusPlus.git
 
   + 从 [npcap](https://npcap.com) 下载 `npcap SDK`
@@ -388,7 +395,7 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
         参见： https://learn.microsoft.com/vcpkg/users/buildsystems/cmake-integration#settings-reference
 - 编译
   + 命令行编译
-  
+
           cd RabbitRemoteControl
           mkdir build
           cmake .. -DCMAKE_BUILD_TYPE=Release ^
