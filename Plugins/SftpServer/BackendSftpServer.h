@@ -37,8 +37,6 @@ private Q_SLOTS:
     void slotNewConnection();
 
 private:
-    int m_nTotal;
-    int m_nDisconnect;
     CParameterSftpServer* m_pPara;
     ssh_event m_event;
 

@@ -72,11 +72,29 @@ protected:
     virtual int OnSave(QSettings &set) override;
 };
 
+class PLUGIN_EXPORT CStatsSever : public CStats {
+    Q_OBJECT
+
+public:
+    explicit CStatsSever(CParameterOperate* parent = nullptr,
+                    const QString& szPrefix = QString());
+    QString ToString() const;
+    quint64 GetTotalConnects() const;
+    quint64 GetConnects() const;
+    quint64 GetDisconnects() const;
+    void AddConnects(quint64 c = 1);
+    void Disconnects(quint64 c = 1);
+
+private:
+    QAtomicInteger<quint64> m_TotalConnects;
+    QAtomicInteger<quint64> m_Disconnects;
+};
+
 /*!
  * \~chinese 安全级别
  * \~english Security level
  */
-class PLUGIN_EXPORT CSecurityLevel : QObject {
+class PLUGIN_EXPORT CSecurityLevel : public QObject {
     Q_OBJECT
 
 public:

@@ -33,6 +33,4 @@ private:
     CParameterFtpServer* m_pPara;
     CFtpServer* m_pServer;
     QList<QSslSocket*> m_Sockets;
-    int m_nTotal;
-    int m_nDisconnect;
 };

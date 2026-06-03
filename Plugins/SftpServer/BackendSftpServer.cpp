@@ -85,8 +85,6 @@ static bool GetClientAddressAndPort(ssh_session session, QString& ip, quint16& p
 
 CBackendSftpServer::CBackendSftpServer(COperateSftpServer *pOperate, bool bStopSignal)
     : CBackendServer(pOperate, bStopSignal)
-    , m_nTotal(0)
-    , m_nDisconnect(0)
     , m_pPara(pOperate->GetParameter())
     , m_event(nullptr)
 {
@@ -102,10 +100,6 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
 {
     OnInitReturnValue ret = OnInitReturnValue::Fail;
     if(!m_pPara) return ret;
-
-    m_nTotal = 0;
-    m_nDisconnect = 0;
-    emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
 
     m_event = ssh_event_new();
     if(!m_event)
@@ -157,8 +151,7 @@ int CBackendSftpServer::OnClean()
         DeleteClient(c);
     }
     m_lstClients.clear();
-    emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
-    
+
     if(m_event) {
         ssh_event_free(m_event);
         m_event = nullptr;
@@ -211,8 +204,7 @@ int CBackendSftpServer::OnProcess()
             m_lstClients.removeAll(pData);
             DeleteClient(pData);
         }
-        if(!toRemove.isEmpty())
-            emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
+
         return 0;
     }
 
@@ -246,8 +238,6 @@ int CBackendSftpServer::OnProcess()
         m_lstClients.removeAll(pData);
         DeleteClient(pData);
     }
-    if(!toRemove.isEmpty())
-        emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
 
     return 0;
 }
@@ -332,8 +322,6 @@ void CBackendSftpServer::slotNewConnection()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = SSH_ERROR;
-    
-    m_nTotal++;
 
     QSocketNotifier* pSocketNotifier = qobject_cast<QSocketNotifier*>(sender());
     if(!pSocketNotifier) return;
@@ -434,7 +422,6 @@ void CBackendSftpServer::slotNewConnection()
         m_lstClients.push_back(pData);
 
         emit sigConnected(pData->ip, pData->port);
-        emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
         return;
     } while(0);
     
@@ -444,9 +431,6 @@ void CBackendSftpServer::slotNewConnection()
         ssh_disconnect(session);
         ssh_free(session);
     }
-    
-    m_nDisconnect++;
-    emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
 }
 
 int CBackendSftpServer::cbAuthPassword(ssh_session session, const char *userName,
@@ -554,7 +538,6 @@ int CBackendSftpServer::DeleteClient(sClientData *pClient)
         ssh_free(pClient->session);
     }
 
-    m_nDisconnect++;
     emit sigDisconnected(pClient->ip, pClient->port);
 
     delete pClient;
@@ -582,7 +565,6 @@ void CBackendSftpServer::slotDisconnect(const QString &szIp, const quint16 port)
         if(c->ip == szIp && c->port == port) {
             m_lstClients.removeAll(c);
             DeleteClient(c);
-            emit sigConnectCount(m_nTotal, m_lstClients.size(), m_nDisconnect);
             break;
         }
     }

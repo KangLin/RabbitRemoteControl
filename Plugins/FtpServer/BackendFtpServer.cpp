@@ -12,8 +12,6 @@ CBackendFtpServer::CBackendFtpServer(COperateFtpServer* pOperate, bool bStopSign
     : CBackendServer(pOperate, bStopSignal)
     , m_pOperate(pOperate)
     , m_pServer(nullptr)
-    , m_nTotal(0)
-    , m_nDisconnect(0)
 {
     qDebug(log) << Q_FUNC_INFO;
     m_pPara = m_pOperate->GetParameter();
@@ -48,10 +46,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         return OnInitReturnValue::Fail;
     }
 
-    m_nTotal = 0;
-    m_nDisconnect = 0;
     m_Sockets.clear();
-    emit sigConnectCount(m_nTotal, m_Sockets.size(), m_nDisconnect);
 
     CSecurityLevel::Levels securityLevel;
     QString szUser;
@@ -179,8 +174,6 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
 
     quint16 port = socket->peerPort();
     m_Sockets.append(socket);
-    m_nTotal++;
-    emit sigConnectCount(m_nTotal, m_Sockets.size(), m_nDisconnect);
     emit sigConnected(szIP, port);
     qDebug(log) << "Current connect count:" << m_Sockets.size()
                 << "; new connect from:" << szIP + ":" + QString::number(port);
@@ -192,8 +185,6 @@ void CBackendFtpServer::slotDisconnected()
     QSslSocket *socket = qobject_cast<QSslSocket*>(sender());
     if(!socket) return;
     m_Sockets.removeAll(socket);
-    m_nDisconnect++;
-    emit sigConnectCount(m_nTotal, m_Sockets.size(), m_nDisconnect);
     QString ip = socket->peerAddress().toString();
     quint16 port = socket->peerPort();
     emit sigDisconnected(ip, port);

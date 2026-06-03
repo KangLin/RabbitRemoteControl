@@ -69,13 +69,6 @@ void CFrmViewServer::AddActionInToolBar(QAction *pAction)
         m_pToolBar->addAction(pAction);
 }
 
-void CFrmViewServer::slotConnectCount(int nTotal, int nConnect, int nDisconnect)
-{
-    QString szCount = tr("Connect count: Current: %1; Disconnect: %2; Total: %3")
-    .arg(nConnect).arg(nDisconnect).arg(nTotal);
-    m_plbConnectCount->setText(szCount);
-}
-
 void CFrmViewServer::slotConnected(const QString& szIp, const quint16 port)
 {
     QList<QStandardItem*> lstItem;
@@ -90,6 +83,9 @@ void CFrmViewServer::slotConnected(const QString& szIp, const quint16 port)
     m_ptvClients->resizeColumnToContents(0);
     m_ptvClients->resizeColumnToContents(1);
     m_ptvClients->resizeColumnToContents(2);
+
+    m_Stats.AddConnects();
+    m_plbConnectCount->setText(m_Stats.ToString());
 }
 
 void CFrmViewServer::slotDisconnected(const QString& szIp, const quint16 port)
@@ -101,6 +97,8 @@ void CFrmViewServer::slotDisconnected(const QString& szIp, const quint16 port)
         QString szPort = m_ModelConnect.data(indexPort).toString();
         if (szIp  == ip && szPort == QString::number(port)) {
             m_ModelConnect.removeRows(row, 1);
+            m_Stats.Disconnects();
+            m_plbConnectCount->setText(m_Stats.ToString());
             break;
         }
     }

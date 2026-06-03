@@ -122,6 +122,43 @@ int CStats::OnSave(QSettings &set)
     return 0;
 }
 
+CStatsSever::CStatsSever(CParameterOperate *parent, const QString &szPrefix)
+    : CStats(parent, szPrefix)
+{
+}
+
+QString CStatsSever::ToString() const
+{
+    return tr("Connect count: Current: %1; Disconnect: %2; Total: %3")
+        .arg(GetTotalConnects() - GetDisconnects())
+             .arg(GetDisconnects()).arg(GetTotalConnects());
+}
+
+quint64 CStatsSever::GetTotalConnects() const
+{
+    return m_TotalConnects;
+}
+
+quint64 CStatsSever::GetConnects() const
+{
+    return m_TotalConnects - m_Disconnects;
+}
+
+quint64 CStatsSever::GetDisconnects() const
+{
+    return m_Disconnects;
+}
+
+void CStatsSever::AddConnects(quint64 c)
+{
+    m_TotalConnects += c;
+}
+
+void CStatsSever::Disconnects(quint64 c)
+{
+    m_Disconnects += c;
+}
+
 CSecurityLevel::CSecurityLevel(Levels level, QObject* parent)
     : QObject(parent)
     , m_Level(level)
@@ -258,3 +295,4 @@ QIcon CSecurityLevel::GetIcon(const Levels &level)
         return QIcon::fromTheme("dialog-warning");
     return QIcon::fromTheme("unlock");
 }
+

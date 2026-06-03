@@ -22,11 +22,7 @@ int CBackendServer::SetConnect(COperateServer* pOperate)
     Q_ASSERT(pOperate);
     auto *pView = qobject_cast<CFrmViewServer*>(pOperate->GetViewer());
     Q_ASSERT(pView);
-    bool check = connect(this, SIGNAL(sigConnectCount(int,int,int)),
-                         pView, SLOT(slotConnectCount(int,int,int)));
-    Q_ASSERT(check);
-
-    check = connect(this, SIGNAL(sigConnected(QString,quint16)),
+    bool check = connect(this, SIGNAL(sigConnected(QString,quint16)),
                     pView, SLOT(slotConnected(QString,quint16)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigDisconnected(QString,quint16)),

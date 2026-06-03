@@ -10,6 +10,8 @@
 #include <QAction>
 #include "plugin_export.h"
 
+#include "Stats.h"
+
 /*!
  * \brief The CFrmViewServer class
  * \see COperateServer
@@ -27,7 +29,6 @@ Q_SIGNALS:
     void sigDisconnect(const QString& szIp, const quint16 port);
 
 private Q_SLOTS:
-    void slotConnectCount(int nTotal, int nConnect, int nDisconnect);
     void slotConnected(const QString& szIp, const quint16 port);
     void slotDisconnected(const QString& szIp, const quint16 port);
     void slotContextMenuRequested(const QPoint& pos);
@@ -37,4 +38,5 @@ private:
     QTableView* m_ptvClients;
     QStandardItemModel m_ModelConnect;
     QLabel* m_plbConnectCount;
+    CStatsSever m_Stats;
 };

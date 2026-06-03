@@ -15,7 +15,6 @@ public Q_SLOTS:
     virtual void slotDisconnect(const QString& szIp, const quint16 port) = 0;
 
 Q_SIGNALS:
-    void sigConnectCount(int nTotal, int nConnect, int nDisconnect);
     void sigConnected(const QString& szIp, const quint16 port);
     void sigDisconnected(const QString& szIp, const quint16 port);
 
