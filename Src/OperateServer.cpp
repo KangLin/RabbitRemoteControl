@@ -29,34 +29,23 @@ QWidget *COperateServer::GetViewer()
 int COperateServer::Start()
 {
     qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
     emit sigRunning();
     return 0;
-    // m_pThread = new CBackendThread(this);
-    // if(!m_pThread) {
-    //     qCritical(log) << "new CBackendThread fail";
-    //     return -1;
-    // }
-
-    // m_pThread->start();
-    // return nRet;
 }
 
 int COperateServer::Stop()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    if(m_pActionStart && m_pActionStart->isChecked())
+    if(m_pActionStart && m_pActionStart->isChecked()) {
+        bool check = connect(m_pThread, SIGNAL(finished()),
+                             this, SIGNAL(sigFinished()));
+        Q_ASSERT(check);
         m_pActionStart->setChecked(false);
-    emit sigFinished();
+    } else
+        emit sigFinished();
+
     return nRet;
-    // if(m_pThread)
-    // {
-    //     m_pThread->quit();
-    //     // NOTE: Don't delete m_pThread, See CBackendThread
-    //     m_pThread = nullptr;
-    // }
-    // return nRet;
 }
 
 int COperateServer::Initial()

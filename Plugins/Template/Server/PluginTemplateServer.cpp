@@ -52,12 +52,13 @@ const QIcon CPluginTemplateServer::Icon() const
 {
     // TODO: add icon
 
-    return QIcon::fromTheme("app");
+    return QIcon();
 }
 
 const QString CPluginTemplateServer::Details() const
 {
     // TODO: add details
+
     return QString();
 }
 

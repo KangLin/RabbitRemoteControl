@@ -17,7 +17,6 @@ public:
      */
     [[nodiscard]] virtual CParameterTemplateServer* GetParameter() const;
 
-    // COperate interface
 public:
     virtual const qint16 Version() const override;
 

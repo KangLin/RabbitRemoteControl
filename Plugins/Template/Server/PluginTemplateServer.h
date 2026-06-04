@@ -17,7 +17,6 @@ public:
     Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
 
-    // CPlugin interface
 public:
     virtual const TYPE Type() const override;
     virtual const QString Protocol() const override;
