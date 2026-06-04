@@ -4,27 +4,27 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="81"/>
+        <location filename="../../BackendFtpServer.cpp" line="76"/>
         <source>Ftp server listen on all address port %1. the lan ip is %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="86"/>
+        <location filename="../../BackendFtpServer.cpp" line="81"/>
         <source>Failed to Ftp server is listening on %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="95"/>
+        <location filename="../../BackendFtpServer.cpp" line="90"/>
         <source>Failed: Ftp server is not set to listen on any address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="104"/>
+        <location filename="../../BackendFtpServer.cpp" line="99"/>
         <source>Failed to Ftp server is listening on %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="115"/>
+        <location filename="../../BackendFtpServer.cpp" line="110"/>
         <source>Ftp server is listening on </source>
         <translation type="unfinished"></translation>
     </message>

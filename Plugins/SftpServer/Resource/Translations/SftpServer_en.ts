@@ -4,33 +4,33 @@
 <context>
     <name>CBackendSftpServer</name>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="515"/>
+        <location filename="../../BackendSftpServer.cpp" line="549"/>
         <source>Welcome to &quot;Rabbit Remote Control - SFTP Server&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="516"/>
-        <source>Version:</source>
+        <location filename="../../BackendSftpServer.cpp" line="550"/>
+        <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="517"/>
+        <location filename="../../BackendSftpServer.cpp" line="551"/>
         <source>Home page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="518"/>
+        <location filename="../../BackendSftpServer.cpp" line="552"/>
         <source>Author: Kang Lin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="519"/>
+        <location filename="../../BackendSftpServer.cpp" line="553"/>
         <source>Support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendSftpServer.cpp" line="520"/>
-        <source>User &quot;%1&quot; logged in %2</source>
+        <location filename="../../BackendSftpServer.cpp" line="554"/>
+        <source>User &quot;%1&quot; logged in from %2 at %3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -76,7 +76,40 @@
     </message>
 </context>
 <context>
+    <name>COperateSftpServer</name>
+    <message>
+        <location filename="../../OperateSftpServer.cpp" line="63"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSftpServer.cpp" line="66"/>
+        <source>Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSftpServer.cpp" line="69"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSftpServer.cpp" line="79"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSftpServer.cpp" line="86"/>
+        <source>Description: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CPluginSftpServer</name>
+    <message>
+        <location filename="../../PluginSftpServer.cpp" line="39"/>
+        <source>SFTP(Secure File Transfer Protocol) Server</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../../PluginSftpServer.cpp" line="60"/>
         <source>libssh version:</source>

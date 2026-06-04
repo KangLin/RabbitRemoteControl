@@ -102,81 +102,81 @@
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Host key hash:</source>
         <translation>Hash da chave do host:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="318"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="342"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="319"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="344"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="334"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="357"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Reject the host key</source>
         <translation>Chave de host rejeitada</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="338"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>is unknown. Do you trust the host key?</source>
         <translation>é desconhecida. Você confia na chave do host?</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Error:</source>
         <translation>Erro:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="362"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="364"/>
         <source>the host key hash:</source>
         <translation>o hash da chave do host:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="365"/>
         <source>Will be stopped.</source>
         <translation>Será interrompido.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="414"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="416"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
         <translation>Falha no SSH: Falha na autenticação com a chave pública:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="438"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="440"/>
         <source>Failed authenticating with password. User: </source>
         <translation>Falha na autenticação com senha. Usuário: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="465"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
         <source>SSH failed: There is not set public key file.</source>
         <translation>Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
         <source>SSH failed: Import public key fail.</source>
         <translation>Falha no SSH: importação do arquivo de chave pública.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="510"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="478"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="511"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
         <translation>O arquivo não existe ou a permissão foi negada:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="488"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="521"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="522"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation>Falha no SSH: falha na autenticação. Usuário:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="497"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="499"/>
         <source>SSH failed: There is not set private key file.</source>
         <translation>SSH failed: There is no private key file defined.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="509"/>
         <source>SSH failed: Import private key fail.</source>
         <translation>Falha no SSH: importação do arquivo de chave privada.</translation>
     </message>
@@ -468,12 +468,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmViewServer.cpp" line="74"/>
-        <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmViewServer.cpp" line="114"/>
+        <location filename="../../FrmViewServer.cpp" line="112"/>
         <source>Disconnect</source>
         <translation type="unfinished">Desconectar</translation>
     </message>
@@ -801,13 +796,13 @@ Some features are limited.
 <context>
     <name>COperateServer</name>
     <message>
-        <location filename="../../OperateServer.cpp" line="70"/>
-        <location filename="../../OperateServer.cpp" line="104"/>
+        <location filename="../../OperateServer.cpp" line="37"/>
+        <location filename="../../OperateServer.cpp" line="93"/>
         <source>Start server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateServer.cpp" line="117"/>
+        <location filename="../../OperateServer.cpp" line="106"/>
         <source>Stop server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2063,42 +2058,42 @@ Some features are limited.
 <context>
     <name>CSecurityLevel</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="193"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="230"/>
         <source>Secure</source>
         <translation type="unfinished">Seguro</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="203"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="240"/>
         <source>Risk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="195"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="232"/>
         <source>Normal</source>
         <translation type="unfinished">Normal</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="165"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="202"/>
         <source>Secure channel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="170"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="207"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="176"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="213"/>
         <source>Proxy</source>
         <translation type="unfinished">Proxy</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="181"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="218"/>
         <source>Gateway</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="186"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="223"/>
         <source>Redirect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2130,6 +2125,14 @@ Some features are limited.
         <location filename="../../ParameterCompone/Stats.cpp" line="71"/>
         <source>S</source>
         <translation>S</translation>
+    </message>
+</context>
+<context>
+    <name>CStatsSever</name>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="132"/>
+        <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

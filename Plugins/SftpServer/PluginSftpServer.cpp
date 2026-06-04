@@ -36,7 +36,7 @@ const QString CPluginSftpServer::Name() const
 
 const QString CPluginSftpServer::Description() const
 {
-    return "SFTP(Secure File Transfer Protocol) Server";
+    return tr("SFTP(Secure File Transfer Protocol) Server");
 }
 
 const QString CPluginSftpServer::Version() const

@@ -102,81 +102,81 @@
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Host key hash:</source>
         <translation>主机密钥哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="318"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="342"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="319"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="344"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="334"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="357"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Reject the host key</source>
         <translation>拒绝主机密钥</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="338"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>is unknown. Do you trust the host key?</source>
         <translation>服务器未知。您信任主机密钥吗？</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Error:</source>
         <translation>错误：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="362"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="364"/>
         <source>the host key hash:</source>
         <translation>公钥哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="365"/>
         <source>Will be stopped.</source>
         <translation>将停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="414"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="416"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
         <translation>SSH 失败：使用公钥进行身份验证失败：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="438"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="440"/>
         <source>Failed authenticating with password. User: </source>
         <translation>用户密码进行身份验证失败。用户：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="465"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
         <source>SSH failed: There is not set public key file.</source>
         <translation>SSH失败：未设置公钥文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
         <source>SSH failed: Import public key fail.</source>
         <translation>SSH失败：导入公钥失败。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="510"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="478"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="511"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
         <translation>文件不存在或权限被拒绝：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="488"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="521"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="522"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation>SSH 失败：身份验证失败。用户：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="497"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="499"/>
         <source>SSH failed: There is not set private key file.</source>
         <translation>SSH 失败：未设置私钥文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="509"/>
         <source>SSH failed: Import private key fail.</source>
         <translation>SSH 失败：导入私钥失败。</translation>
     </message>
@@ -389,12 +389,7 @@
         <translation>时间</translation>
     </message>
     <message>
-        <location filename="../../FrmViewServer.cpp" line="74"/>
-        <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
-        <translation>当前连接数：%1；断开连接数：%2; 总数：%3</translation>
-    </message>
-    <message>
-        <location filename="../../FrmViewServer.cpp" line="114"/>
+        <location filename="../../FrmViewServer.cpp" line="112"/>
         <source>Disconnect</source>
         <translation>断开连接</translation>
     </message>
@@ -661,13 +656,13 @@ Some features are limited.
 <context>
     <name>COperateServer</name>
     <message>
-        <location filename="../../OperateServer.cpp" line="70"/>
-        <location filename="../../OperateServer.cpp" line="104"/>
+        <location filename="../../OperateServer.cpp" line="37"/>
+        <location filename="../../OperateServer.cpp" line="93"/>
         <source>Start server</source>
         <translation>开始服务</translation>
     </message>
     <message>
-        <location filename="../../OperateServer.cpp" line="117"/>
+        <location filename="../../OperateServer.cpp" line="106"/>
         <source>Stop server</source>
         <translation>停止服务</translation>
     </message>
@@ -1979,42 +1974,42 @@ Some features are limited.
 <context>
     <name>CSecurityLevel</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="193"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="230"/>
         <source>Secure</source>
         <translation>安全</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="203"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="240"/>
         <source>Risk</source>
         <translation>危险</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="195"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="232"/>
         <source>Normal</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="165"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="202"/>
         <source>Secure channel</source>
         <translation>安全通道</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="170"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="207"/>
         <source>Authentication</source>
         <translation>认证</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="176"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="213"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="181"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="218"/>
         <source>Gateway</source>
         <translation>网关</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="186"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="223"/>
         <source>Redirect</source>
         <translation>重定向</translation>
     </message>
@@ -2046,6 +2041,14 @@ Some features are limited.
         <location filename="../../ParameterCompone/Stats.cpp" line="71"/>
         <source>S</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>CStatsSever</name>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="132"/>
+        <source>Connect count: Current: %1; Disconnect: %2; Total: %3</source>
+        <translation>当前连接数：%1；断开连接数：%2; 总数：%3</translation>
     </message>
 </context>
 </TS>
