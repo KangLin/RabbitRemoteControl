@@ -36,7 +36,9 @@ CBackend::OnInitReturnValue CBackendTemplateDesktop::OnInit()
     OnInitReturnValue ret = OnInitReturnValue::NotUseOnProcess;
     // TODO: Modify Initialization
 
+    // When ready
     emit sigRunning();
+
     return ret;
 }
 
@@ -45,7 +47,6 @@ int CBackendTemplateDesktop::OnClean()
     int nRet = 0;
     // TODO: Modify clean
 
-    emit sigFinished();
     return nRet;
 }
 
@@ -67,7 +68,9 @@ int CBackendTemplateDesktop::OnClean()
 int CBackendTemplateDesktop::OnProcess()
 {
     // TODO: add event dispatch (non-Qt event loop)
-    
+
+    // TODO: When an error occurs. emit sigStop();
+
     return 0;
 }
 

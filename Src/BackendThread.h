@@ -14,16 +14,19 @@
 class PLUGIN_EXPORT CBackendThread : public QThread
 {
     Q_OBJECT
-    
+
 public:
     /*!
      * \brief CBackendThread
      * \param pOperate
+     * \param bRunningSignal
+     *          - true: when the thread is running, emit COperate::sigRunning signal
+     *          - false: not emit signal
      * \param bFinishedSignal
-     *          - true: When the thread is quit, emit a `COperate::sigFinished()` signal
+     *          - true: when the thread is quit, emit COperate::sigFinished signal
      *          - false: not emit signal
      */
-    explicit CBackendThread(COperate *pOperate = nullptr, bool bFinishedSignal = true);
+    explicit CBackendThread(COperate *pOperate, bool bRunningSignal, bool bFinishedSignal);
     virtual ~CBackendThread() override;
     /*!
      * \brief Quit
@@ -35,7 +38,7 @@ protected:
     virtual void run() override;
     COperate* m_pOperate;
     CBackend* m_pBackend;
-    
-    //! When the thread is quit, emit a `COperate::sigFinished()` signal
+
+    bool m_bRunningSignal;
     bool m_bFinishedSignal;
 };

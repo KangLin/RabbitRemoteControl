@@ -26,28 +26,6 @@ QWidget *COperateServer::GetViewer()
     return m_pViewer;
 }
 
-int COperateServer::Start()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    emit sigRunning();
-    return 0;
-}
-
-int COperateServer::Stop()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
-    if(m_pActionStart && m_pActionStart->isChecked()) {
-        bool check = connect(m_pThread, SIGNAL(finished()),
-                             this, SIGNAL(sigFinished()));
-        Q_ASSERT(check);
-        m_pActionStart->setChecked(false);
-    } else
-        emit sigFinished();
-
-    return nRet;
-}
-
 int COperateServer::Initial()
 {
     int nRet = 0;
@@ -85,6 +63,28 @@ int COperateServer::Clean()
     return nRet;
 }
 
+int COperateServer::Start()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    emit sigRunning();
+    return 0;
+}
+
+int COperateServer::Stop()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    int nRet = 0;
+    if(m_pActionStart && m_pActionStart->isChecked()) {
+        bool check = connect(m_pThread, SIGNAL(finished()),
+                             this, SIGNAL(sigFinished()));
+        Q_ASSERT(check);
+        m_pActionStart->setChecked(false);
+    } else
+        emit sigFinished();
+
+    return nRet;
+}
+
 void COperateServer::slotStart(bool checked)
 {
     qDebug(log) << Q_FUNC_INFO << m_pActionStart->isChecked();
@@ -107,7 +107,7 @@ void COperateServer::slotStart(bool checked)
     m_pActionStart->setToolTip(m_pActionStart->text());
     m_pActionStart->setIcon(QIcon::fromTheme("media-playback-stop"));
     Q_ASSERT(!m_pThread);
-    m_pThread = new CBackendThread(this, false);
+    m_pThread = new CBackendThread(this, false, false);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
         return;

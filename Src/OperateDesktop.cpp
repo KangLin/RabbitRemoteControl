@@ -368,11 +368,11 @@ int COperateDesktop::InitialMenu()
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecordPause);
 #endif
-    
+
     m_Menu.addSeparator();
     if(m_pActionSettings)
         m_Menu.addAction(m_pActionSettings);
-    
+
     return nRet;
 }
 
@@ -385,15 +385,15 @@ int COperateDesktop::Start()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-
-    m_pThread = new CBackendThread(this);
+    // When the operate is not running, the viewer does not accept keyboard and mouse events.
+    // Therefore, when the backend is ready, the sigRunning signal is emitted by the backend.
+    // See: CFrmViewer::CFrmViewer(), CFrmViewer::slotRunning()
+    m_pThread = new CBackendThread(this, false, true);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
         return -1;
     }
-    
     m_pThread->start();
-    
     return nRet;
 }
 

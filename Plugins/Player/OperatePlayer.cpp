@@ -121,7 +121,7 @@ int COperatePlayer::InitialMenu()
     QAction* pStart = m_Menu.addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start"));
     pStart->setCheckable(true);
-    check = connect(this, &CConnecterPlayer::sigRunning,
+    check = connect(this, &COperatePlayer::sigRunning,
                     pStart, &QAction::toggle);
     Q_ASSERT(check);
     check = connect(pStart, &QAction::toggled,

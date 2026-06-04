@@ -43,9 +43,9 @@ CFrmViewer::CFrmViewer(QWidget *parent)
     setFocusPolicy(Qt::WheelFocus);
     setFocus();
 
-    // When the connecter is not connected, don't accept keyboard and mouse event
-    // When the CConnecter::sigConnected() set true. accept keyboard and mouse event
-    // \see CConnecter::sigConnected()
+    // When the operate is not run, don't accept keyboard and mouse event
+    // When the COperate::sigRunning() set true. accept keyboard and mouse event
+    // \see COperate::sigRunning()
     setEnabled(false);
 
     bool check = connect(&m_TimerRecordVideo, SIGNAL(timeout()),

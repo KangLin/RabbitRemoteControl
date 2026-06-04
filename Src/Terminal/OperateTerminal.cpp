@@ -254,7 +254,7 @@ int COperateTerminal::Start()
     int nRet = 0;
 
     slotUpdateParameter(this);
-    m_pThread = new CBackendThread(this);
+    m_pThread = new CBackendThread(this, false, true);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
         return -2;

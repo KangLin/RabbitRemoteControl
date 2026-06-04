@@ -67,7 +67,9 @@ int CBackendTemplateServer::OnClean()
 int CBackendTemplateServer::OnProcess()
 {
     // TODO: add event dispatch (non-Qt event loop)
-    
+
+    // TODO: When an error occurs. emit sigStop();
+
     return 0;
 }
 
