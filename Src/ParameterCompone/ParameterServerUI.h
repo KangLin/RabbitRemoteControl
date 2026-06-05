@@ -11,6 +11,10 @@ namespace Ui {
 class CParameterServerUI;
 }
 
+/*!
+ * \brief The server base parameters UI
+ * \ingroup gOperateServer
+ */
 class PLUGIN_EXPORT CParameterServerUI : public CParameterUI
 {
     Q_OBJECT

@@ -79,6 +79,10 @@
   \image html docs/Image/PluginAPI.svg
 + Sequence diagram
   \image html docs/Image/PluginSequenceDiagram.svg
++ Generate plugin from template using a script: Script/create_plugin.sh
+  \code
+  ./create_plugin.sh -h
+  \endcode
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
@@ -121,10 +125,6 @@
     - Implement remote console, which can be derived from COperateTerminal
     - If the above two cannot meet your needs, you  can be derived from COperate
   - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP
-+ Generate plugin from template using a script: Script/create_plugin.sh
-  \code
-  ./create_plugin.sh -h
-  \endcode
 
 \defgroup LIBAPI_THREAD Thread module
 \ingroup LIBAPI_PLUGIN
@@ -133,10 +133,10 @@
 + Thread classification
   - Main thread(UI thread)
     - COperate
-    - CFrmView
+    - CFrmViewer
     - CParameter
   - Work thread
-    - CConnect
+    - CBackend
 + The module of work thread
   - Blocked: Most control protocol implementation library connections are blocking.
     \see CPlugin COperateThread

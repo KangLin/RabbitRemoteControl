@@ -75,6 +75,10 @@
   \image html docs/Image/PluginAPI.svg
 + 序列图：
   \image html docs/Image/PluginSequenceDiagram.svg
++ 用脚本从模板生成插件： Script/create_plugin.sh
+  \code
+  ./create_plugin.sh -h
+  \endcode
 + 写一个插件：
   - 生成插件目标名称格式为： PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
@@ -109,10 +113,6 @@
     + 实现远程控制台，可以从 \ref COperateTerminal 派生
     + 如果上面两个不能满足你的需要，你可以直接从 \ref COperate 派生
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectFreeRDP
-+ 用脚本从模板生成插件： Script/create_plugin.sh
-  \code
-  ./create_plugin.sh -h
-  \endcode
 
 \defgroup LIBAPI_THREAD 线程模型
 \ingroup LIBAPI_PLUGIN
@@ -121,10 +121,10 @@
 + 线程分类
   - 主线程（UI线程）。以下类在主线程中：
     - COperate
-    - CFrmView
+    - CFrmViewer
     - CParameter
   - 工作线程。以下类在工作线程中：
-    - CConnect
+    - CBackend
 
 + 工作线程模型
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。

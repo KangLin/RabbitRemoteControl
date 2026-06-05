@@ -160,7 +160,7 @@ init_global() {
         TEMPLATE_NAME="Base"
     fi
     case $TEMPLATE_NAME in
-        Base|Desktop|Server)
+        Base|Desktop|Server|QtEvent)
             ;;
         *)
             echo_error "The template name is not know"
@@ -226,7 +226,7 @@ fi
 copy_files
 
 echo ""
-echo_info "Please add the following code in $PLUGIN_DIR"
+echo_info "Please add the following code in $PLUGIN_DIR/CMakeLists.txt"
 echo_color_yellow "option(BUILD_$PLUGIN_NAME \"Build $PLUGIN_NAME\" ON)"
 echo_color_yellow "if(BUILD_$PLUGIN_NAME)"
 echo_color_yellow "    add_subdirectory($PLUGIN_NAME)"

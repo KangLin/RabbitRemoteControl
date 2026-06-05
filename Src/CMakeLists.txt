@@ -28,6 +28,7 @@ endif()
 list(APPEND PLUGIN_INSTALL_HEADER_FILES
     Manager.h
     Plugin.h
+    PluginBackendThread.h
     Operate.h
     OperateDesktop.h
     OperateServer.h
@@ -70,6 +71,8 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
 
 list(APPEND PLUGIN_HEADER_FILES
     ${PLUGIN_INSTALL_HEADER_FILES}
+    PluginThread.h
+    ManageBackend.h
     FrmManagePlugins.h
     FrmViewer.h
     FrmViewServer.h
@@ -83,8 +86,11 @@ list(APPEND PLUGIN_HEADER_FILES
 
 list(APPEND PLUGIN_SOURCE_FILES
     Manager.cpp
+    ManageBackend.cpp
     FrmManagePlugins.cpp
     Plugin.cpp
+    PluginBackendThread.cpp
+    PluginThread.cpp
     Operate.cpp
     OperateDesktop.cpp
     Backend.cpp

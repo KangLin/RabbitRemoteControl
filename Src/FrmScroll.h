@@ -1,8 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CFrmScroll_H_2024_11_01
-#define CFrmScroll_H_2024_11_01
-
 #pragma once
 
 #include <QScrollArea>
@@ -11,7 +8,7 @@
 
 /*!
  * \brief The scroll form class
- * \ingroup PLUGIN_API
+ * \ingroup gOperateDesktop
  */
 class CFrmScroll : public QScrollArea
 {
@@ -30,5 +27,3 @@ public Q_SLOTS:
 private Q_SLOTS:
     void slotMouseMoveEvent(QMouseEvent *event);
 };
-
-#endif // CFrmScroll_H_2024_11_01

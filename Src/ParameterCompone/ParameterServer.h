@@ -4,6 +4,10 @@
 
 #include "ParameterNet.h"
 
+/*!
+ * \brief The server base parameters
+ * \ingroup gOperateServer
+ */
 class PLUGIN_EXPORT CParameterServer : public CParameterOperate
 {
     Q_OBJECT

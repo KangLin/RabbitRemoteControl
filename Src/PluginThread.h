@@ -1,26 +1,22 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPLUGINHREAD_H_KL_2021_08_05
-#define CPLUGINHREAD_H_KL_2021_08_05
-
 #pragma once
 
 #include <QThread>
-#include "ConnecterConnect.h"
+#include "Operate.h"
 
 /*!
- * \~chinese 一个线程处理多个连接者 CConnecterConnect 。
- *           一个连接者对应一个连接，也就是一个线程处理多个连接。
- *           此类仅用于 CPluginClientThread
+ * \~chinese 一个线程处理多个操作 COperate 。
+ *           此类仅用于 CPluginBackendThread
  *           由插件使用。
- * \~english One thread handles multiple CConnecterConnect.
- *           only used by CPluginClientThread.
+ * \~english One thread handles multiple operate.
+ *           only used by CPluginBackendThread.
  *           Be used by plugin.
  * \~
- * \see CPluginClientThread CManageConnect CConnecterConnect
+ * \see CPluginBackendThread CManageBackend
  * \ingroup LIBAPI_THREAD
  */
-class CLIENT_EXPORT CPluginThread : public QThread
+class CPluginThread : public QThread
 {
     Q_OBJECT
     
@@ -29,11 +25,9 @@ public:
     virtual ~CPluginThread();
 
 Q_SIGNALS:
-    void sigConnect(CConnecterConnect*);
-    void sigDisconnect(CConnecterConnect*);
+    void sigNewBackend(COperate* pOperate);
+    void sigDeleteBackend(COperate* pOperate);
 
 protected:
     virtual void run() override;
 };
-
-#endif // CPLUGINHREAD_H_KL_2021_08_05
