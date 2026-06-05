@@ -29,7 +29,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * \brief New backend siganl
+     * \brief New backend signal
      * \param pOperate
      * \see CPluginThread CPluginBackendThread::CreateOperate CManageBackend
      */

@@ -45,8 +45,9 @@ const QString COperateFtpServer::Name()
     // Show the prefix of security level
     QString szSecurityLevel;
     CSecurityLevel sl(GetSecurityLevel());
-    if((GetParameter()->GetPluginParameters()->GetNameStyles()
-         & CParameterPlugin::NameStyle::SecurityLevel)
+    if(GetParameter() && GetParameter()->GetPluginParameters()
+        && (GetParameter()->GetPluginParameters()->GetNameStyles()
+            & CParameterPlugin::NameStyle::SecurityLevel)
         && !(GetSecurityLevel() & CSecurityLevel::Level::No)
         && !sl.GetUnicodeIcon().isEmpty())
         szSecurityLevel = sl.GetUnicodeIcon().left(2);

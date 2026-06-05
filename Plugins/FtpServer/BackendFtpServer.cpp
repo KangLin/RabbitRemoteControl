@@ -120,8 +120,10 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
 int CBackendFtpServer::OnClean()
 {
     qDebug(log) << Q_FUNC_INFO;
-    if(m_pServer)
+    if(m_pServer) {
         delete m_pServer;
+        m_pServer = nullptr;
+    }
     return 0;
 }
 
