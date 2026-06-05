@@ -6,7 +6,7 @@
 
 \defgroup LIBAPI 库
 
-\defgroup LIBAPI_SERVICE 服务端库
+\defgroup LIBAPI_SERVICE 服务端库(废弃)
 \ingroup LIBAPI
 \brief 服务端库
 \details 
@@ -64,20 +64,33 @@
 \brief 插件接口.
 \details
 
-+ 线程模型：
-  - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
-    \see CPlugin COperateThread
-  - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
-    - 插件没有后台线程，所有连接使用主线程
-    - 插件有一个后台线程，所有连接使用同一个后台线程
-    \see CPluginClientThread COperateDesktop
++ \ref LIBAPI_THREAD
 + 类关系：
   \image html docs/Image/PluginAPI.svg
 + 序列图：
   \image html docs/Image/PluginSequenceDiagram.svg
 + 用脚本从模板生成插件： Script/create_plugin.sh
   \code
-  ./create_plugin.sh -h
+  ./Script/create_plugin.sh -h
+
+    create_plugin.sh - Generate plugin from template
+
+    Usage: ./Script/create_plugin.sh [OPTION] PluginName
+
+    Options:
+      -h, --help            Show this help message
+      -v, --verbose[=LEVEL] Set verbose mode. [LEVEL: ON, OFF]
+
+    Directory options:
+      --install=DIR         Set installation directory
+
+    Other options:
+      --name=NAME           Plugin name
+      --template=NAME       Template name. [NAME: Base(Default), Desktop, Server, QtEvent]
+
+    Examples:
+      ./Script/create_plugin.sh --name=Server
+
   \endcode
 + 写一个插件：
   - 生成插件目标名称格式为： PluginClient${PROJECT_NAME}
@@ -102,7 +115,7 @@
         + 实现属性、函数
           - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。
             \include Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp
-  - 实现连接者接口 \ref COperate 。
+  - 实现操作接口 \ref COperate 。
     + 实现远程桌面
       - 如果是阻塞线程模型。实现一个后台线程处理一个远程连接，连接是阻塞的。
         可以从 \ref COperateThread 派生。例如：\ref COperateFreeRDP
@@ -111,8 +124,9 @@
         可以从 \ref COperateDesktop 派生。
         \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     + 实现远程控制台，可以从 \ref COperateTerminal 派生
+    + 实现服务，可以从 COperateServer 派生
     + 如果上面两个不能满足你的需要，你可以直接从 \ref COperate 派生
-  - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectFreeRDP
+  - 实现具体的连接，从 \ref COperate 派生 。例如：\ref COperateFreeRDP
 
 \defgroup LIBAPI_THREAD 线程模型
 \ingroup LIBAPI_PLUGIN
@@ -129,10 +143,12 @@
 + 工作线程模型
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
          每个连接者启动一个后台线程。
-    \see CPlugin COperateThread
+    \see CPlugin CBackendThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
-    插件启动一个线程，连接者重用此线程，它不再启动线程。
-    \see CPluginClientThread COperateDesktop
+    插件启动一个线程，连接重用此线程，它不再启动线程。
+    - 插件没有后台线程，所有连接都在主线程中。
+    - 插件有一个后台线程，所有连接在此后台线程中。
+    \see CPluginBackendThread CPluginThread COperateTemplateQtEvent
 
 + 类关系：
   \image html docs/Image/PluginAPI.svg

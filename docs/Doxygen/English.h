@@ -5,7 +5,7 @@
 
 \defgroup LIBAPI Libraries
 
-\defgroup LIBAPI_SERVICE Service library
+\defgroup LIBAPI_SERVICE Service library(deprecated)
 \ingroup LIBAPI
 \brief Service library
 \details
@@ -68,13 +68,7 @@
 \ingroup LIBAPI_PLUGIN
 \brief Plugin interfaces.
 \details
-+ Thread module
-  - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPlugin COperateThread
-  - No-blocking: eg: qt event. A thread can handle multiple connections.
-    - The plugin does not have a background thread, and all connections use the main thread
-    - The plugin has a background thread, and all connections use the same background thread
-      \see CPluginClientThread COperateDesktop
++ \ref LIBAPI_THREAD
 + Class relationship
   \image html docs/Image/PluginAPI.svg
 + Sequence diagram
@@ -82,6 +76,25 @@
 + Generate plugin from template using a script: Script/create_plugin.sh
   \code
   ./create_plugin.sh -h
+
+    create_plugin.sh - Generate plugin from template
+
+    Usage: ./Script/create_plugin.sh [OPTION] PluginName
+
+    Options:
+      -h, --help            Show this help message
+      -v, --verbose[=LEVEL] Set verbose mode. [LEVEL: ON, OFF]
+
+    Directory options:
+      --install=DIR         Set installation directory
+
+    Other options:
+      --name=NAME           Plugin name
+      --template=NAME       Template name. [NAME: Base(Default), Desktop, Server, QtEvent]
+
+    Examples:
+      ./Script/create_plugin.sh --name=Server
+
   \endcode
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginClient${PROJECT_NAME}
@@ -123,8 +136,9 @@
         which can be derived from COperateDesktop.
         \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     - Implement remote console, which can be derived from COperateTerminal
+    - Implement server, which can be derived from COperateServer
     - If the above two cannot meet your needs, you  can be derived from COperate
-  - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP
+  - Implement a specific connection, derived from COperate. For example: COperateFreeRDP
 
 \defgroup LIBAPI_THREAD Thread module
 \ingroup LIBAPI_PLUGIN
@@ -139,9 +153,12 @@
     - CBackend
 + The module of work thread
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPlugin COperateThread
+    So one thread handles one connection.
+    \see CPlugin CBackendThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
-    \see CPluginClientThread COperateDesktop
+    - The plugin has no background thread; all connections use the main thread
+    - The plugin has a background thread; all connections use the same background thread
+      \see CPluginBackendThread CPluginThread COperateTemplateQtEvent
 + Class relationship
   \image html docs/Image/PluginAPI.svg
 

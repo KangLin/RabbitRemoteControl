@@ -35,7 +35,7 @@ Directory options:
 
 Other options:
   --name=NAME           Plugin name
-  --template=NAME       Template name. [NAME: Base(Default), Desktop, Server]
+  --template=NAME       Template name. [NAME: Base(Default), Desktop, Server, QtEvent]
 
 Examples:
   $0 --name=Server

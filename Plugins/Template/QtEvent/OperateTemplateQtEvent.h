@@ -8,6 +8,9 @@ class CBackend;
 class CBackendThread;
 class CFrmViewerTemplateQtEvent;
 class CParameterTemplateQtEvent;
+/*!
+ * \brief The operate is not block. eg: QtEvent
+ */
 class COperateTemplateQtEvent : public COperate
 {
     Q_OBJECT

@@ -7,9 +7,9 @@
 #include "Backend.h"
 
 /**
- * \~chinese 管理操作。此类仅用于 CPluginThread
+ * \~chinese 管理操作的后端。此类仅用于 CPluginThread
  * \note 它运行在后台线程中。
- * \~english Manage operate. only used by CPluginThread
+ * \~english Manage the backend of operate. only used by CPluginThread
  * \note It runs in a background thread.
  * \~
  * \see CPluginThread CPluginBackendThread

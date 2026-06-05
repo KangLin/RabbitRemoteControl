@@ -15,7 +15,7 @@ class CParameterDatabase;
  * \~english Provide interfaces such as opening the database and initializing the database
  *
  * \~
- * \ingroup APP_API PLUGIN_API LIBAPI_DATABASE
+ * \ingroup APP_API LIBAPI_DATABASE
  */
 class PLUGIN_EXPORT CDatabase : public QObject
 {

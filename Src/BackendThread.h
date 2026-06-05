@@ -9,7 +9,7 @@
 
 /*!
  * \brief The backend thread
- * \ingroup PLUGIN_API
+ * \ingroup LIBAPI_THREAD
  */
 class PLUGIN_EXPORT CBackendThread : public QThread
 {

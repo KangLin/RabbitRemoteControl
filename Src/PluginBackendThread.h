@@ -6,10 +6,12 @@
 
 class CPluginThread;
 /*!
- * \chinese 插件有一个后台线程，所有操作后端运行在此后台线程中
- * \english The plugin has a background thread,
+ * \~chinese 插件有一个后台线程，所有操作后端运行在此后台线程中
+ * \~english The plugin has a background thread,
  *          and all backend of the operations run on this background thread.
+ * \~
  * \see CPluginThread
+ * \ingroup LIBAPI_THREAD
  */
 class PLUGIN_EXPORT CPluginBackendThread : public CPlugin
 {

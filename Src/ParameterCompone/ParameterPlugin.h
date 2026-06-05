@@ -41,6 +41,10 @@ public:
     virtual ~CParameterPlugin();
 
 public:
+    /*!
+     * \brief Get global parameters.
+     * The global parameters is valid in both the application and the Client and the plugin.
+     */
     CParameterGlobal *GetGlobalParameters();
 private:
     CParameterGlobal* m_pGlobalParameter;
