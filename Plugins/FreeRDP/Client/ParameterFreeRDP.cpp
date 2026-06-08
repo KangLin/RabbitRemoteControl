@@ -11,7 +11,7 @@
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Parameter")
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
-    : CParameterBase(parent),
+    : CParameterDesktop(parent),
     m_nWidth(GetScreenGeometry().width()),
     m_nHeight(GetScreenGeometry().height()),
     m_nColorDepth(32),
@@ -54,7 +54,7 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
 
 int CParameterFreeRDP::OnLoad(QSettings &set)
 {
-    CParameterBase::OnLoad(set);
+    CParameterDesktop::OnLoad(set);
     
     set.beginGroup("FreeRDP");
     SetDomain(set.value("Domain", GetDomain()).toString());
@@ -96,7 +96,7 @@ int CParameterFreeRDP::OnLoad(QSettings &set)
 
 int CParameterFreeRDP::OnSave(QSettings &set)
 {
-    CParameterBase::OnSave(set);
+    CParameterDesktop::OnSave(set);
 
     set.beginGroup("FreeRDP");
     set.setValue("Domain", GetDomain());

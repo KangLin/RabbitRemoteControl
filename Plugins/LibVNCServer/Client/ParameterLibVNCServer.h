@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include <ParameterBase.h>
+#include <ParameterDesktop.h>
 
-class CParameterLibVNCServer : public CParameterBase
+class CParameterLibVNCServer : public CParameterDesktop
 {
     Q_OBJECT
 public:

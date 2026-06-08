@@ -1,10 +1,10 @@
 #ifndef CPARAMETERVNC_H
 #define CPARAMETERVNC_H
 
-#include "ParameterBase.h"
+#include "ParameterDesktop.h"
 #include "ParameterNet.h"
 
-class CParameterVnc : public CParameterBase
+class CParameterVnc : public CParameterDesktop
 {
     Q_OBJECT
 

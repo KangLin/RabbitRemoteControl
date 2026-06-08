@@ -46,7 +46,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterPlugin.h
     ParameterCompone/ParameterFilter.h
     ParameterCompone/ParameterFilterUI.h
-    ParameterCompone/ParameterBase.h
+    ParameterCompone/ParameterDesktop.h
     ParameterCompone/ParameterNet.h
     ParameterCompone/ParameterNetUI.h
     ParameterCompone/ParameterUser.h
@@ -110,7 +110,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterCompone/ParameterPluginUI.cpp
     ParameterCompone/ParameterFilter.cpp
     ParameterCompone/ParameterFilterUI.cpp
-    ParameterCompone/ParameterBase.cpp
+    ParameterCompone/ParameterDesktop.cpp
     ParameterCompone/ParameterNet.cpp
     ParameterCompone/ParameterNetUI.cpp
     ParameterCompone/ParameterUser.cpp

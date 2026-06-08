@@ -3,9 +3,9 @@
 #ifndef PARAMETERPLAYER_H
 #define PARAMETERPLAYER_H
 
-#include "ParameterBase.h"
+#include "ParameterDesktop.h"
 
-class CParameterPlayer : public CParameterBase
+class CParameterPlayer : public CParameterDesktop
 {
     Q_OBJECT
 public:

@@ -2,7 +2,7 @@
 #include "rfb/encodings.h"
 
 CParameterVnc::CParameterVnc(QObject *parent)
-    : CParameterBase(parent)
+    : CParameterDesktop(parent)
 {
     m_Net.SetPort(5900);
 
@@ -45,7 +45,7 @@ CParameterVnc::CParameterVnc(QObject *parent)
 int CParameterVnc::OnLoad(QSettings &set)
 {
     int nRet = 0;
-    nRet = CParameterBase::OnLoad(set);
+    nRet = CParameterDesktop::OnLoad(set);
     if(nRet) return nRet;
     
     set.beginGroup("VNC");
@@ -99,7 +99,7 @@ int CParameterVnc::OnLoad(QSettings &set)
 int CParameterVnc::OnSave(QSettings &set)
 {
     int nRet = 0;
-    nRet = CParameterBase::OnSave(set);
+    nRet = CParameterDesktop::OnSave(set);
     if(nRet) return nRet;
 
     set.beginGroup("VNC");

@@ -1,12 +1,12 @@
 #ifndef CPARAMETERFREERDP_H
 #define CPARAMETERFREERDP_H
 
-#include "ParameterBase.h"
+#include "ParameterDesktop.h"
 #include "ParameterProxy.h"
 #include "freerdp/freerdp.h"
 
 //! [Declare CParameterFreeRDP]
-class CParameterFreeRDP : public CParameterBase
+class CParameterFreeRDP : public CParameterDesktop
 //! [Declare CParameterFreeRDP]
 {
     Q_OBJECT

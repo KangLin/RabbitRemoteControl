@@ -1,12 +1,12 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ParameterBase.h"
+#include "ParameterDesktop.h"
 #include "ParameterPlugin.h"
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Base")
 
-CParameterBase::CParameterBase(QObject* parent)
+CParameterDesktop::CParameterDesktop(QObject* parent)
     : CParameterOperate(parent)
     , m_Net(this)
     , m_Proxy(this)
@@ -16,7 +16,7 @@ CParameterBase::CParameterBase(QObject* parent)
     Init();
 }
 
-CParameterBase::CParameterBase(CParameterOperate* parent,
+CParameterDesktop::CParameterDesktop(CParameterOperate* parent,
                                const QString& szPrefix)
     : CParameterOperate(parent, szPrefix)
     , m_Net(this)
@@ -26,7 +26,7 @@ CParameterBase::CParameterBase(CParameterOperate* parent,
     Init();
 }
 
-int CParameterBase::Init()
+int CParameterDesktop::Init()
 {
     m_bShowServerName = true;
     m_bOnlyView = false;
@@ -40,7 +40,7 @@ int CParameterBase::Init()
     return 0;
 }
 
-int CParameterBase::OnLoad(QSettings &set)
+int CParameterDesktop::OnLoad(QSettings &set)
 {
     SetServerName(set.value("ServerName", GetServerName()).toString());
     SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
@@ -60,7 +60,7 @@ int CParameterBase::OnLoad(QSettings &set)
     return CParameterOperate::OnLoad(set);
 }
 
-int CParameterBase::OnSave(QSettings &set)
+int CParameterDesktop::OnSave(QSettings &set)
 {
     set.setValue("ServerName", GetServerName());
     set.setValue("ShowServerName", GetShowServerName());
@@ -76,12 +76,12 @@ int CParameterBase::OnSave(QSettings &set)
     return CParameterOperate::OnSave(set);
 }
 
-const QString CParameterBase::GetServerName() const
+const QString CParameterDesktop::GetServerName() const
 {
     return m_szServerName;
 }
 
-void CParameterBase::SetServerName(const QString& szName)
+void CParameterDesktop::SetServerName(const QString& szName)
 {
     if(m_szServerName == szName)
         return;
@@ -89,12 +89,12 @@ void CParameterBase::SetServerName(const QString& szName)
     SetModified(true);
 }
 
-bool CParameterBase::GetShowServerName() const
+bool CParameterDesktop::GetShowServerName() const
 {
     return m_bShowServerName;
 }
 
-void CParameterBase::SetShowServerName(bool NewShowServerName)
+void CParameterDesktop::SetShowServerName(bool NewShowServerName)
 {
     if (m_bShowServerName == NewShowServerName)
         return;
@@ -103,12 +103,12 @@ void CParameterBase::SetShowServerName(bool NewShowServerName)
     emit sigShowServerNameChanged();
 }
 
-bool CParameterBase::GetOnlyView() const
+bool CParameterDesktop::GetOnlyView() const
 {
     return m_bOnlyView;
 }
 
-void CParameterBase::SetOnlyView(bool only)
+void CParameterDesktop::SetOnlyView(bool only)
 {
     if(m_bOnlyView == only)
         return;
@@ -116,12 +116,12 @@ void CParameterBase::SetOnlyView(bool only)
     SetModified(true);
 }
 
-const bool CParameterBase::GetLocalCursor() const
+const bool CParameterDesktop::GetLocalCursor() const
 {
     return m_bLocalCursor;
 }
 
-void CParameterBase::SetLocalCursor(bool cursor)
+void CParameterDesktop::SetLocalCursor(bool cursor)
 {
     if(m_bLocalCursor == cursor)
         return;
@@ -129,12 +129,12 @@ void CParameterBase::SetLocalCursor(bool cursor)
     SetModified(true);
 }
 
-const bool CParameterBase::GetCursorPosition() const
+const bool CParameterDesktop::GetCursorPosition() const
 {
     return m_bCursorPosition;
 }
 
-void CParameterBase::SetCursorPosition(bool pos)
+void CParameterDesktop::SetCursorPosition(bool pos)
 {
     if(m_bCursorPosition == pos)
         return;
@@ -142,12 +142,12 @@ void CParameterBase::SetCursorPosition(bool pos)
     SetModified(true);
 }
 
-const bool CParameterBase::GetClipboard() const
+const bool CParameterDesktop::GetClipboard() const
 {
     return m_bClipboard;
 }
 
-void CParameterBase::SetClipboard(bool c)
+void CParameterDesktop::SetClipboard(bool c)
 {
     if(m_bClipboard == c)
         return;
@@ -155,12 +155,12 @@ void CParameterBase::SetClipboard(bool c)
     SetModified(true);
 }
 
-bool CParameterBase::GetSupportsDesktopResize() const
+bool CParameterDesktop::GetSupportsDesktopResize() const
 {
     return m_bSupportsDesktopResize;
 }
 
-void CParameterBase::SetSupportsDesktopResize(bool newSupportsDesktopResize)
+void CParameterDesktop::SetSupportsDesktopResize(bool newSupportsDesktopResize)
 {
     if(m_bSupportsDesktopResize == newSupportsDesktopResize)
         return;
@@ -168,12 +168,12 @@ void CParameterBase::SetSupportsDesktopResize(bool newSupportsDesktopResize)
     SetModified(true);
 }
 
-bool CParameterBase::GetLedState() const
+bool CParameterDesktop::GetLedState() const
 {
     return m_bLedState;
 }
 
-void CParameterBase::SetLedState(bool state)
+void CParameterDesktop::SetLedState(bool state)
 {
     if(m_bLedState == state)
         return;
@@ -181,12 +181,12 @@ void CParameterBase::SetLedState(bool state)
     SetModified(true);
 }
 
-CFrmViewer::ADAPT_WINDOWS CParameterBase::GetAdaptWindows()
+CFrmViewer::ADAPT_WINDOWS CParameterDesktop::GetAdaptWindows()
 {
     return m_AdaptWindows;
 }
 
-void CParameterBase::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
+void CParameterDesktop::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
 {
     if(m_AdaptWindows == aw)
         return;
@@ -195,12 +195,12 @@ void CParameterBase::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
     emit sigAdaptWindowsChanged(m_AdaptWindows);
 }
 
-double CParameterBase::GetZoomFactor() const
+double CParameterDesktop::GetZoomFactor() const
 {
     return m_dbZoomFactor;
 }
 
-void CParameterBase::SetZoomFactor(double newZoomFactor)
+void CParameterDesktop::SetZoomFactor(double newZoomFactor)
 {
     if(m_dbZoomFactor == newZoomFactor)
         return;
@@ -210,13 +210,13 @@ void CParameterBase::SetZoomFactor(double newZoomFactor)
     return;
 }
 
-void CParameterBase::slotSetPluginParameters()
+void CParameterDesktop::slotSetPluginParameters()
 {
     CParameterPlugin* pPlugin = GetPluginParameters();
     if(!pPlugin) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;
-        Q_ASSERT_X(false, "CParameterBase", szErr.toStdString().c_str());
+        Q_ASSERT_X(false, "CParameterDesktop", szErr.toStdString().c_str());
         return;
     }
 
@@ -229,12 +229,12 @@ void CParameterBase::slotSetPluginParameters()
     return;
 }
 
-bool CParameterBase::GetEnableLocalInputMethod() const
+bool CParameterDesktop::GetEnableLocalInputMethod() const
 {
     return m_bEnableLocalInputMethod;
 }
 
-void CParameterBase::SetEnableLocalInputMethod(bool enable)
+void CParameterDesktop::SetEnableLocalInputMethod(bool enable)
 {
     if(m_bEnableLocalInputMethod == enable)
         return;

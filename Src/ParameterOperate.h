@@ -12,7 +12,7 @@
  *  - 仅在插件中实现和使用
  *  - 应用程序不能访问，只能通过 COperate::OpenDialogSettings 进行设置。
  *  - 插件通过 COperateDesktop::GetParameter()、COperateTerminal::GetParameter()　等访问操作参数
- *  - \ref section_Use_CParameterBase
+ *  - \ref section_Use_CParameterDesktop
  *  - 需要访问插件的全局参数 (CParameterPlugin) 的分类，需要从此类派生。
  *    通过调用 CParameterOperate::GetPluginParameters()
  *    访问全局参数 (CParameterPlugin)
@@ -39,14 +39,14 @@
  *
  * \section section_CParameterOperate_CATEGORY_USAGE 操作参数分类使用
  *  因为可能会有很多参数，所以需要按参数类型分类。每个分类可以从此类派生出一个单独的类。\n
- *  因为操作参数都有一些基本的参数（例如网络地址等），所以这些基本参数放入 CParameterBase 。
+ *  因为操作参数都有一些基本的参数（例如网络地址等），所以这些基本参数放入 CParameterDesktop 。
  *  而每个分类做为它的成员变量。
  *
  *  例如：\n
  *  操作参数包括以下几种类型：
  *  - 基本参数
  *    \code
- *    class CParameterBase : public CParameterOperate
+ *    class CParameterDesktop : public CParameterOperate
  *    \endcode
  *  - 用户参数
  *    \code
@@ -61,24 +61,24 @@
  *    class CParameterAudio : public CParameter
  *    \endcode
  *
- *  其中 CParameterBase ， CParameterUser 它需要插件的全局参数，
+ *  其中 CParameterDesktop ， CParameterUser 它需要插件的全局参数，
  *  所以必须从 CParameterOperate 派生。
  *  其它的类型则不需要插件的全局参数的，从 CParameter 派生。
  *
  *  那么操作参数可以是以上类型的集合：
  *
  *  \code
- *  class CParameterBase : public CParameterOperate
+ *  class CParameterDesktop : public CParameterOperate
  *  {
  *  public:
- *      explicit CParameterBase(CParameterOperate *parent = nullptr);
+ *      explicit CParameterDesktop(CParameterOperate *parent = nullptr);
  *
  *      CParameterUser m_User;
  *      CParameterVideo m_Video;
  *      CParameterAudio m_Audio;
  *  };
  *
- *  CParameterBase::CParameterBase(CParameterOperate *parent = nullptr)
+ *  CParameterDesktop::CParameterDesktop(CParameterOperate *parent = nullptr)
  *   : CParameterOperate(parent),
  *     m_User(this, "Host"),
  *     m_Video(this),
@@ -107,7 +107,7 @@
  *    must be derived from the class.
  *    Access the plugin parameters (CParameterPlugin)
  *    via CParameterOperate::GetPluginParameters()
- *  - \ref section_Use_CParameterBase
+ *  - \ref section_Use_CParameterDesktop
  *
  * \details
  * Set and get plugin parameters. Parameters that need to manipulate plugin parameters should be derived from this class.
@@ -147,7 +147,7 @@
  *  Operate parameters include the following categories:
  *  - Base
  *    \code
- *    class CParameterBase : public CParameterOperate
+ *    class CParameterDesktop : public CParameterOperate
  *    \endcode
  *  - User
  *    \code
@@ -162,24 +162,24 @@
  *    class CParameterAudio : public CParameter
  *    \endcode
  *
- *  CParameterBase, CParameterUser need plugin parameters,
+ *  CParameterDesktop, CParameterUser need plugin parameters,
  *  so that it must derived from CParameterOperate.
  *  other is derived from CParameter.
  *  
  *  Then the operate parameters can be a combination of the above categories:
  *
  *  \code
- *  class CParameterBase : public CParameterOperate
+ *  class CParameterDesktop : public CParameterOperate
  *  {
  *  public:
- *      explicit CParameterBase(CParameterOperate *parent = nullptr);
+ *      explicit CParameterDesktop(CParameterOperate *parent = nullptr);
  *
  *      CParameterUser m_User;
  *      CParameterVideo m_Video;
  *      CParameterAudio m_Audio;
  *  };
  *
- *  CParameterBase::CParameterBase(CParameterOperate *parent = nullptr)
+ *  CParameterDesktop::CParameterDesktop(CParameterOperate *parent = nullptr)
  *   : CParameterOperate(parent),
  *     m_User(this, "Host"),
  *     m_Video(this),

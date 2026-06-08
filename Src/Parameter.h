@@ -18,7 +18,7 @@
  *      \see 
  *        \ref section_CParameterOperate_CATEGORY_USAGE
  *        CParameterOperate
- *        CParameterBase
+ *        CParameterDesktop
  *   2. 在插件管理者 (CManager) 和插件内有效。\n
  *      应用程序不能访问，但是可以通过 CManager::GetSettingsWidgets 进行设置。\n
  *      插件管理者 (CManager) 和插件可以直接使用。插件可以以其做为初始化值。
@@ -45,7 +45,7 @@
  *      \see
  *        \ref section_CParameterOperate_CATEGORY_USAGE
  *        CParameterOperate
- *        CParameterBase
+ *        CParameterDesktop
  *   2. Valid in the CManager and the plugin.\n
  *      The application cannot access it,
  *      but the application can be set it via CManager::GetSettingsWidgets.\n

@@ -3,7 +3,7 @@
 #pragma once
 #include "ParameterBase.h"
 
-class CParameterTemplateDesktop : public CParameterBase
+class CParameterTemplateDesktop : public CParameterDesktop
 {
     Q_OBJECT
 public:

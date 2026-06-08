@@ -4,7 +4,7 @@
 
 CParameterTemplateDesktop::CParameterTemplateDesktop(
     CParameterOperate *parent, const QString &szPrefix)
-    : CParameterBase{parent, szPrefix}
+    : CParameterDesktop{parent, szPrefix}
 {}
 
 int CParameterTemplateDesktop::OnLoad(QSettings &set)

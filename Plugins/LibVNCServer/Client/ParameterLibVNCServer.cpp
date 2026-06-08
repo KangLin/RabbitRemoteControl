@@ -1,7 +1,7 @@
 #include "ParameterLibVNCServer.h"
 
 CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
-    : CParameterBase(parent)
+    : CParameterDesktop(parent)
 {
     m_Net.SetPort(5900);
     m_Net.m_User.SetType(QList<CParameterUser::TYPE>() << CParameterUser::TYPE::OnlyPassword);
@@ -25,12 +25,12 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
 
 int CParameterLibVNCServer::OnLoad(QSettings &set)
 {
-    return CParameterBase::OnLoad(set);
+    return CParameterDesktop::OnLoad(set);
 }
 
 int CParameterLibVNCServer::OnSave(QSettings &set)
 {
-    return CParameterBase::OnSave(set);
+    return CParameterDesktop::OnSave(set);
 }
 
 int CParameterLibVNCServer::GetQualityLevel() const

@@ -447,12 +447,12 @@ int COperateDesktop::SetPluginParameters(CParameterPlugin *pPara)
 }
 //! [Desktop set global paramets]
 
-CParameterBase* COperateDesktop::GetParameter() const
+CParameterDesktop* COperateDesktop::GetParameter() const
 {
     return m_pPara;
 }
 
-int COperateDesktop::SetParameter(CParameterBase *p)
+int COperateDesktop::SetParameter(CParameterDesktop *p)
 {
     Q_ASSERT(!m_pPara);
     m_pPara = p;

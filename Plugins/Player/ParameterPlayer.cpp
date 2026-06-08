@@ -3,7 +3,7 @@
 #include "ParameterPlayer.h"
 
 CParameterPlayer::CParameterPlayer(QObject *parent)
-    : CParameterBase{parent}
+    : CParameterDesktop{parent}
     , m_Type(TYPE::Url)
     , m_nCamera(-1)
     , m_nAudioInput(-1)

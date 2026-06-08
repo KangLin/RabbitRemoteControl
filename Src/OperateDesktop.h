@@ -5,7 +5,7 @@
 #include <QSpinBox>
 #include "Operate.h"
 #include "Backend.h"
-#include "ParameterBase.h"
+#include "ParameterDesktop.h"
 #include "FrmScroll.h"
 
 class CBackendThread;
@@ -98,7 +98,7 @@ public:
     /*!
      * \brief Get parameter
      */
-    [[nodiscard]] virtual CParameterBase* GetParameter() const;
+    [[nodiscard]] virtual CParameterDesktop* GetParameter() const;
     /*!
      * \~chinese 设置参数指针
      * \note 先建立参数，然后构造函数或 Initial() 中调用此函数设置参数指针
@@ -106,7 +106,7 @@ public:
      * \note establishes the parameter first, and then calls this function
      *       in the constructor or Initial() to set the parameter pointer
      */
-    virtual int SetParameter(CParameterBase* p);
+    virtual int SetParameter(CParameterDesktop* p);
 
     [[nodiscard]] virtual const QString Id() override;
     [[nodiscard]] virtual const QString Name() override;
@@ -160,7 +160,7 @@ protected:
     virtual int InitialMenu();
 
 private:
-    CParameterBase* m_pPara;
+    CParameterDesktop* m_pPara;
     CBackendThread* m_pThread;
     CFrmViewer *m_pFrmViewer;
     CFrmScroll* m_pScroll;

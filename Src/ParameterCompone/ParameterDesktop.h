@@ -12,8 +12,8 @@
  * 远程桌面的基础参数接口。包括基本参数（网络参数等）。
  * 所有远程桌面插件的参数都应从此类派生。
  *
- * \section section_Use_CParameterBase 使用远程桌面基础参数
- *  - 因为插件都有一些公共参数（例如：网络地址等），所以插件参数请从 CParameterBase 派生。
+ * \section section_Use_CParameterDesktop 使用远程桌面基础参数
+ *  - 因为插件都有一些公共参数（例如：网络地址等），所以插件参数请从 CParameterDesktop 派生。
  *    \snippet Plugins/FreeRDP/Client/ParameterFreeRDP.h Declare CParameterFreeRDP
  *  - 请在 COperate 派生类的构造函数中实例化参数。
  *    \snippet Plugins/FreeRDP/Client/OperateFreeRDP.h Initialize parameter
@@ -26,9 +26,9 @@
  *  The interface of remote desktop base parameters.
  *  include base parameters(network etc).
  *  All plug-in remote desktop parameters should be derived from this class.
- * \section section_Use_CParameterBase Use remote desktop parameter
+ * \section section_Use_CParameterDesktop Use remote desktop parameter
  *  - The plugins have some common parameters (e.g., network address, etc.),
- *    please derive the plugin parameters from CParameterBase.
+ *    please derive the plugin parameters from CParameterDesktop.
  *    \snippet Plugins/FreeRDP/Client/ParameterFreeRDP.h Declare CParameterFreeRDP
  *  - Instantiate the parameters in the constructor of
  *    the derived class of COperate.
@@ -42,7 +42,7 @@
  * \ingroup CLIENT_PARAMETER_COMPONE 
  * \ingroup gOperateDesktop
  */
-class PLUGIN_EXPORT CParameterBase : public CParameterOperate
+class PLUGIN_EXPORT CParameterDesktop : public CParameterOperate
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
@@ -53,8 +53,8 @@ class PLUGIN_EXPORT CParameterBase : public CParameterOperate
     Q_PROPERTY(bool LocalCursor READ GetLocalCursor WRITE SetLocalCursor)
 
 public:
-    explicit CParameterBase(QObject* parent = nullptr);
-    explicit CParameterBase(CParameterOperate* parent,
+    explicit CParameterDesktop(QObject* parent = nullptr);
+    explicit CParameterDesktop(CParameterOperate* parent,
                             const QString& szPrefix = QString());
 
     const QString GetServerName() const;
