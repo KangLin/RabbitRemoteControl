@@ -208,11 +208,15 @@ private:
     bool m_bOnlyLoadInWhitelist;
 
 public:
+    //!@{
+    //! \~chinese \name 用于插件的参数的初始化值
+    //! \~english \name Initial values for plugin parameters
     CParameterRecord m_Record;
     CParameterMediaDevices m_MediaDevices;
 #if defined(HAVE_QTERMWIDGET)
     CParameterTerminal m_Terminal;
 #endif
+    //!@}
 };
 
 // 在类外部声明操作符（通常放在头文件末尾）
