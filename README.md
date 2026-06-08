@@ -75,7 +75,7 @@ https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25
 - [x] Windows 7 SP1 and later
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
-- [x] mac os
+- [x] macOS
 
 See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html),
 [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
@@ -87,37 +87,37 @@ If you want to donate the development devices to me, please contact: (email: kl2
 
 - Remote desktop
 
-|        |Windows|Unix/linux|Android|MAC|
-|--------|:-----:|:--------:|:-----:|:-:|
-|vnc     |✓      |✓         |✓      |✓  |
-|RDP     |✓      |✓         |✓      |✓  |
-|Spice   |       |          |       |   |
-|Scrcpy  |       |          |       |   |
+|        |Windows|Unix/Linux|Android|macOS|
+|--------|:-----:|:--------:|:-----:|:---:|
+|vnc     |✓      |✓         |✓      |✓    |
+|RDP     |✓      |✓         |✓      |✓    |
+|Spice   |       |          |       |     |
+|Scrcpy  |       |          |       |     |
 
 - Terminal
 
-|             |Windows|Unix/linux|Android|MAC|
-|-------------|-------|----------|-------|---|
-|Terminal     |✓      |✓         |❌     |✓  |
-|SSH          |✓      |✓         |❌     |✓  |
-|TELNET       |✓      |✓         |❌     |✓  |
-|Serial port  |✓      |✓         |❌     |✓  |
+|             |Windows|Unix/Linux|Android|macOS|
+|-------------|-------|----------|-------|-----|
+|Terminal     |✓      |✓         |❌     |✓    |
+|SSH          |✓      |✓         |❌     |✓    |
+|TELNET       |✓      |✓         |❌     |✓    |
+|Serial port  |✓      |✓         |❌     |✓    |
 
 - File Transfer
 
-|        |Windows|Unix/linux|Android|MAC|
-|--------|-------|----------|-------|---|
-|FTP     |…      |…         |…      |…  |
-|SFTP    |…      |…         |…      |…  |
+|        |Windows|Unix/Linux|Android|macOS|
+|--------|-------|----------|-------|-----|
+|FTP     |…      |…         |…      |…    |
+|SFTP    |…      |…         |…      |…    |
 
 - Tool
 
-|           |Windows|Unix/linux|Android|MAC|
-|-----------|-------|----------|-------|---|
-|Player     |✓      |✓         |✓      |✓  |
-|Wake on lan|✓      |✓         |✓      |✓  |
-|Screenshot |✓      |✓         |       |✓  |
-|Web browser|✓      |✓         |❌     |✓  |
+|           |Windows|Unix/Linux|Android|macOS|
+|-----------|-------|----------|-------|-----|
+|Player     |✓      |✓         |✓      |✓    |
+|Wake on lan|✓      |✓         |✓      |✓    |
+|Screenshot |✓      |✓         |       |✓    |
+|Web browser|✓      |✓         |❌     |✓    |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
@@ -260,18 +260,18 @@ Contact me:
 
 ## Contribution
 
+- [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
+- [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [Mailing list](https://sourceforge.net/p/rabbitremotecontrol/mailman/)
   - Developer <rabbitremotecontrol-developer@lists.sourceforge.net>
   - Discuss <rabbitremotecontrol-discuss@lists.sourceforge.net>
-- [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
-- [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-- [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
+- [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors):
   Thank [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 - Maintenance package
   - [ ] Linux
     - [ ] Debian: Need to maintain official packages
-    - [ ] rpm: Need to maintain official packages
+    - [ ] RPM: Need to maintain official packages
     - [x] AppImage
     - [x] Snap: https://snapcraft.io/rabbitremotecontrol
     - [x] Flatpak: https://github.com/flathub/io.github.KangLin.RabbitRemoteControl

@@ -74,7 +74,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 - [x] Windows 7 SP1 及以后
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
-- [x] mac os
+- [x] macOS
 
 详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、
 [Qt6 支持平台](https://doc.qt.io/qt-6/supported-platforms.html)。
@@ -86,37 +86,37 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 - 远程桌面
 
-|        |Windows|Unix/linux|Android|MAC|
-|--------|-------|----------|-------|---|
-|vnc     |✓      |✓         |✓      |✓  |
-|RDP     |✓      |✓         |✓      |✓  |
-|Spice   |       |          |       |   |
-|Scrcpy  |       |          |       |   |
+|        |Windows|Unix/Linux|Android|macOS|
+|--------|-------|----------|-------|-----|
+|vnc     |✓      |✓         |✓      |✓    |
+|RDP     |✓      |✓         |✓      |✓    |
+|Spice   |       |          |       |     |
+|Scrcpy  |       |          |       |     |
 
 - 终端
 
-|        |Windows|Unix/linux|Android|MAC|
-|--------|-------|----------|-------|---|
-|终端     |✓      |✓         |       |✓  |
-|SSH     |✓      |✓         |       |✓  |
-|TELNET  |       |✓         |       |✓  |
-|串口     |✓      |✓         |       |✓  |
+|        |Windows|Unix/Linux|Android|macOS|
+|--------|-------|----------|-------|-----|
+|终端     |✓      |✓         |       |✓    |
+|SSH     |✓      |✓         |       |✓    |
+|TELNET  |       |✓         |       |✓    |
+|串口     |✓      |✓         |       |✓    |
 
 - 文件传输
 
-|        |Windows|Unix/linux|Android|MAC|
-|--------|-------|----------|-------|---|
-|FTP     |……     |……        |……     |…… |
-|SFTP    |……     |……        |……     |…… |
+|        |Windows|Unix/Linux|Android|macOS|
+|--------|-------|----------|-------|-----|
+|FTP     |……     |……        |……     |……   |
+|SFTP    |……     |……        |……     |……   |
 
 - 工具
 
-|            |Windows|Unix/linux|Android|MAC|
-|------------|-------|----------|-------|---|
-|播放器       |✓      |✓         |✓      |✓  |
-|局域网唤醒主机 |✓      |✓         |❌     |✓  |
-|截屏         |✓      |✓         |❌     |✓  |
-|网页浏览器    |✓      |✓         |❌     |✓  |
+|            |Windows|Unix/Linux|Android|macOS|
+|------------|-------|----------|-------|-----|
+|播放器       |✓      |✓         |✓      |✓    |
+|局域网唤醒主机 |✓      |✓         |❌     |✓   |
+|截屏         |✓      |✓         |❌     |✓   |
+|网页浏览器    |✓      |✓         |❌     |✓   |
 
 图例：  
  ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
@@ -258,12 +258,12 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 ## 贡献
 
+- [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
+- [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [邮件列表](https://sourceforge.net/p/rabbitremotecontrol/mailman/)
   - 开发组 <rabbitremotecontrol-developer@lists.sourceforge.net>
   - 讨论组 <rabbitremotecontrol-discuss@lists.sourceforge.net>
-- [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
-- [![加入聊天 https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-- [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
+- [![加入聊天 https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 - [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors):
   感谢[贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 - 维护打包
