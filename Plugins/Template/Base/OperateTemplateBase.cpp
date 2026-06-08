@@ -9,7 +9,7 @@
 #include "DlgSettingsTemplateBase.h"
 #include "OperateTemplateBase.h"
 
-static Q_LOGGING_CATEGORY(log, "Operate.TemplateBase")
+static Q_LOGGING_CATEGORY(log, "TemplateBase.Operate")
 COperateTemplateBase::COperateTemplateBase(CPlugin *plugin)
     : COperate(plugin)
     , m_pPara(nullptr)

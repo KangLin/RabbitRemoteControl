@@ -4,7 +4,7 @@
 #include "BackendTemplateServer.h"
 #include "Backend.h"
 
-static Q_LOGGING_CATEGORY(log, "Backend.TemplateServer")
+static Q_LOGGING_CATEGORY(log, "TemplateServer.Backend")
 CBackendTemplateServer::CBackendTemplateServer(
     COperateTemplateServer* pOperate, bool bStopSignal)
     : CBackendServer(pOperate, bStopSignal)

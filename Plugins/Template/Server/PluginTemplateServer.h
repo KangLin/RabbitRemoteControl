@@ -7,15 +7,15 @@ class CPluginTemplateServer : public CPlugin
 {
     Q_OBJECT
 
-public:
-    explicit CPluginTemplateServer(QObject *parent = nullptr);
-    virtual ~CPluginTemplateServer();
-
     Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
+
+public:
+    explicit CPluginTemplateServer(QObject *parent = nullptr);
+    virtual ~CPluginTemplateServer();
 
 public:
     virtual const TYPE Type() const override;

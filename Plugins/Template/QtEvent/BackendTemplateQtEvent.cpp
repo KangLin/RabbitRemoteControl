@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include "BackendTemplateQtEvent.h"
 
-static Q_LOGGING_CATEGORY(log, "Backend.TemplateQtEvent")
+static Q_LOGGING_CATEGORY(log, "TemplateQtEvent.Backend")
 CBackendTemplateQtEvent::CBackendTemplateQtEvent(
     COperateTemplateQtEvent* pOperate, bool bStopSignal)
     : CBackend(pOperate, bStopSignal)

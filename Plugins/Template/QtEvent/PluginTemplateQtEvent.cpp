@@ -4,7 +4,7 @@
 #include "OperateTemplateQtEvent.h"
 #include "PluginTemplateQtEvent.h"
 
-static Q_LOGGING_CATEGORY(log, "Plugin.TemplateQtEvent")
+static Q_LOGGING_CATEGORY(log, "TemplateQtEvent.Plugin")
 CPluginTemplateQtEvent::CPluginTemplateQtEvent(QObject *parent)
     : CPluginBackendThread{parent}
 {
@@ -19,7 +19,7 @@ CPluginTemplateQtEvent::~CPluginTemplateQtEvent()
 const CPlugin::TYPE CPluginTemplateQtEvent::Type() const
 {
     // TODO: Modify type. See: CPlugin::TYPE
-    return CPlugin::TYPE::Custom;
+    return TYPE::Custom;
 }
 
 const QString CPluginTemplateQtEvent::Protocol() const

@@ -7,14 +7,15 @@ class CPluginTemplateDesktop : public CPlugin
 {
     Q_OBJECT
 
-public:
-    explicit CPluginTemplateDesktop(QObject *parent = nullptr);
-
     Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
+
+public:
+    explicit CPluginTemplateDesktop(QObject *parent = nullptr);
+    virtual ~CPluginTemplateDesktop();
 
     // CPlugin interface
 public:

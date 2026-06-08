@@ -19,7 +19,7 @@ CPluginTemplateBase::~CPluginTemplateBase()
 const CPlugin::TYPE CPluginTemplateBase::Type() const
 {
     // TODO: Modify type. See: CPlugin::TYPE
-    return CPlugin::TYPE::Custom;
+    return TYPE::Custom;
 }
 
 const QString CPluginTemplateBase::Protocol() const

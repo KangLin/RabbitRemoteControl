@@ -7,7 +7,7 @@
 #include "DlgSettingsTemplateServer.h"
 #include "OperateTemplateServer.h"
 
-static Q_LOGGING_CATEGORY(log, "Operate.TemplateServer")
+static Q_LOGGING_CATEGORY(log, "TemplateServer.Operate")
 COperateTemplateServer::COperateTemplateServer(CPlugin *plugin)
     : COperateServer(plugin)
     , m_pPara(nullptr)

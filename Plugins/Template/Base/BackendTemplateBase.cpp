@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include "BackendTemplateBase.h"
 
-static Q_LOGGING_CATEGORY(log, "Backend.TemplateBase")
+static Q_LOGGING_CATEGORY(log, "TemplateBase.Backend")
 CBackendTemplateBase::CBackendTemplateBase(COperateTemplateBase* pOperate, bool bStopSignal)
     : CBackend(pOperate, bStopSignal)
 {

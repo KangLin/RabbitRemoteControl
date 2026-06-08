@@ -4,7 +4,7 @@
 #include "OperateTemplateServer.h"
 #include "PluginTemplateServer.h"
 
-static Q_LOGGING_CATEGORY(log, "Plugin.TemplateServer")
+static Q_LOGGING_CATEGORY(log, "TemplateServer.Plugin")
 CPluginTemplateServer::CPluginTemplateServer(QObject *parent)
     : CPlugin{parent}
 {
@@ -18,7 +18,7 @@ CPluginTemplateServer::~CPluginTemplateServer()
 
 const CPlugin::TYPE CPluginTemplateServer::Type() const
 {
-    return CPlugin::TYPE::Server;
+    return TYPE::Server;
 }
 
 const QString CPluginTemplateServer::Protocol() const

@@ -11,15 +11,15 @@ class CPluginTemplateQtEvent : public CPluginBackendThread
 {
     Q_OBJECT
 
-public:
-    explicit CPluginTemplateQtEvent(QObject *parent = nullptr);
-    virtual ~CPluginTemplateQtEvent();
-
     Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
+
+public:
+    explicit CPluginTemplateQtEvent(QObject *parent = nullptr);
+    virtual ~CPluginTemplateQtEvent();
 
     // CPlugin interface
 public:

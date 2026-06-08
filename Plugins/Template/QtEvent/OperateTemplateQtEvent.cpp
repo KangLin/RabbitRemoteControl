@@ -9,7 +9,7 @@
 #include "DlgSettingsTemplateQtEvent.h"
 #include "OperateTemplateQtEvent.h"
 
-static Q_LOGGING_CATEGORY(log, "Operate.TemplateQtEvent")
+static Q_LOGGING_CATEGORY(log, "TemplateQtEvent.Operate")
 COperateTemplateQtEvent::COperateTemplateQtEvent(CPlugin *plugin)
     : COperate(plugin)
     , m_pPara(nullptr)

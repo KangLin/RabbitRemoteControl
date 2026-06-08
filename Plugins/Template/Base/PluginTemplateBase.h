@@ -7,15 +7,15 @@ class CPluginTemplateBase : public CPlugin
 {
     Q_OBJECT
 
-public:
-    explicit CPluginTemplateBase(QObject *parent = nullptr);
-    virtual ~CPluginTemplateBase();
-
     Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
+
+public:
+    explicit CPluginTemplateBase(QObject *parent = nullptr);
+    virtual ~CPluginTemplateBase();
 
     // CPlugin interface
 public:

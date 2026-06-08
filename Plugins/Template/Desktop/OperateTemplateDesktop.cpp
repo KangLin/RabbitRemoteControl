@@ -7,7 +7,7 @@
 #include "BackendTemplateDesktop.h"
 #include "OperateTemplateDesktop.h"
 
-static Q_LOGGING_CATEGORY(log, "Operate.TemplateDesktop")
+static Q_LOGGING_CATEGORY(log, "TemplateDesktop.Operate")
 COperateTemplateDesktop::COperateTemplateDesktop(CPlugin *plugin)
     : COperateDesktop(plugin)
     , m_pPara(nullptr)

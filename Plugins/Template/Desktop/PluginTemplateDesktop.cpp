@@ -4,14 +4,21 @@
 #include "OperateTemplateDesktop.h"
 #include "PluginTemplateDesktop.h"
 
-static Q_LOGGING_CATEGORY(log, "Plugin.TemplateDesktop")
+static Q_LOGGING_CATEGORY(log, "TemplateDesktop.Plugin")
 CPluginTemplateDesktop::CPluginTemplateDesktop(QObject *parent)
     : CPlugin{parent}
-{}
+{
+    qDebug(log) << Q_FUNC_INFO;
+}
+
+CPluginTemplateDesktop::~CPluginTemplateDesktop()
+{
+    qDebug(log) << Q_FUNC_INFO;
+}
 
 const CPlugin::TYPE CPluginTemplateDesktop::Type() const
 {
-    return CPlugin::TYPE::RemoteDesktop;
+    return TYPE::RemoteDesktop;
 }
 
 const QString CPluginTemplateDesktop::Protocol() const

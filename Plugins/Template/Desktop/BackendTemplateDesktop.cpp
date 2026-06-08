@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include "BackendTemplateDesktop.h"
 
-static Q_LOGGING_CATEGORY(log, "Backend.TemplateDesktop")
+static Q_LOGGING_CATEGORY(log, "TemplateDesktop.Backend")
 CBackendTemplateDesktop::CBackendTemplateDesktop(COperateTemplateDesktop *pOperate)
     : CBackendDesktop(pOperate)
 {
