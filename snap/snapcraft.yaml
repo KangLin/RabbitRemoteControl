@@ -82,7 +82,7 @@ parts:
     plugin: cmake
     source: https://git.libssh.org/projects/libssh.git/
     source-type: git
-    source-tag: libssh-0.11.3
+    source-tag: libssh-0.12.0
     source-depth: 1
     build-packages:
       - libssl-dev
@@ -92,6 +92,8 @@ parts:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_VERBOSE_MAKEFILE=OFF
+      - -DWITH_SERVER=ON
+      - -DSERVER_TESTING=OFF
     stage:
       - -usr/include
     prime:

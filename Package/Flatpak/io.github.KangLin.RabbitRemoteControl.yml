@@ -130,13 +130,15 @@ modules:
     disabled: false
     sources:
       - type: archive
-        url: "https://www.libssh.org/files/0.11/libssh-0.11.3.tar.xz"
-        sha256: "7d8a1361bb094ec3f511964e78a5a4dba689b5986e112afabe4f4d0d6c6125c3"
+        url: "https://www.libssh.org/files/0.12/libssh-0.12.0.tar.xz"
+        sha256: "1a6af424d8327e5eedef4e5fe7f5b924226dd617ac9f3de80f217d82a36a7121"
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
       - -DWITH_EXAMPLES=OFF
       - -DCMAKE_BUILD_TYPE=Release
+      - -DWITH_SERVER=ON
+      - -DSERVER_TESTING=OFF
     cleanup:
       - /bin
 
