@@ -31,14 +31,15 @@ Options:
   -v, --verbose[=LEVEL] Set verbose mode. [LEVEL: ON, OFF]
 
 Directory options:
-  --install=DIR         Set installation directory
+  -i, --install=DIR         Set installation directory
 
 Other options:
-  --name=NAME           Plugin name
-  --template=NAME       Template name. [NAME: Base(Default), Desktop, Server, QtEvent]
+  -n, --name=NAME           Plugin name
+  -t, --template=NAME       Template name. [NAME: Base(Default), Desktop, Server, QtEvent]
 
 Examples:
-  $0 --name=Server
+  $0 --name=Test --template=Base
+  $0 -n Test -t Base
 
 EOF
     exit 0
@@ -56,7 +57,7 @@ parse_with_getopt() {
         # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
         # -n 选项后接选项解析错误时提示的脚本名字
         OPTS=help,verbose::,install:,name:,template:
-        ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
+        ARGS=`getopt -o h,v::,i:,n:,t: -l $OPTS -n $(basename $0) -- "$@"`
         if [ $? != 0 ]; then
             echo_error "exec getopt fail: $?"
             exit 1
@@ -71,11 +72,11 @@ parse_with_getopt() {
             #echo "\$1: $1"
             #echo "\$2: $2"
             case $1 in
-            --install)
+            -i | --install)
                 INSTALL_DIR=$2
                 shift 2
                 ;;
-            --name|--)  # -- 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
+            -n | --name|--)  # -- 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
                 if [ -n "$2" ]; then
                     PLUGIN_NAME=$2
                     shift 2
@@ -83,7 +84,7 @@ parse_with_getopt() {
                     shift
                 fi
                 ;;
-            --template)
+            -t | --template)
                 TEMPLATE_NAME=$2
                 shift 2
                 ;;
@@ -163,7 +164,7 @@ init_global() {
         Base|Desktop|Server|QtEvent)
             ;;
         *)
-            echo_error "The template name is not know"
+            echo_error "The template name is not know: $TEMPLATE_NAME"
             exit -1
             ;;
     esac
