@@ -751,7 +751,7 @@ See: [Script](#Script)
         snapcraft build [<part-name>]
         snapcraft stage [<part-name>]
         snapcraft prime [<part-name>]
-        snapcraft pack or snapcraft
+        snapcraft pack
         
   - Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
     The following commands enable you to step into this encapsulated environment:

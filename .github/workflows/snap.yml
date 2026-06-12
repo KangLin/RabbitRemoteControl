@@ -28,19 +28,12 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v6
 
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v3
-              
-      # You can now run Snapcraft shell commands
-      - name: Build snap
-        run: |
-           #sudo snap install snapcraft --classic
-           #sudo usermod -aG lxd $USER
-           snapcraft -v --debug
+      - name: build with snapcraft
+        id: snapcraft
+        uses: snapcore/action-build@v1
 
       - name: Update artifact
         uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}
-          path: |
-            ${{github.workspace}}/*.snap
+          path: ${{ steps.snapcraft.outputs.snap }}

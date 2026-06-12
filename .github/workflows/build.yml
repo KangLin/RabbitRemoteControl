@@ -39,7 +39,6 @@ jobs:
 
   snap:
     uses: ./.github/workflows/snap.yml
-    if: false
     secrets: inherit
 
   docker:
@@ -126,7 +125,6 @@ jobs:
 
       - name: Download snap
         uses: actions/download-artifact@v7
-        if: false
         with:
           pattern: ${{ needs.snap.outputs.name }}*
           path: ${{ env.artifact_path }}
