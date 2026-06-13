@@ -55,7 +55,7 @@ jobs:
       VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;terminal;filetransfer"
+      VCPKG_MANIFEST_FEATURES: "freerdp-server;vnc;terminal;filetransfer"
       artifact_name: build_macos
       RabbitRemoteControl_VERSION: v0.1.0-dev
 
@@ -373,6 +373,7 @@ jobs:
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
               -DVCPKG_VERBOSE=ON \
               -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+              -DVCPKG_MANIFEST_FEATURES="${{env.VCPKG_MANIFEST_FEATURES}}" \
               -DRABBIT_WITH_MACDEPLOY=OFF \
               -DWITH_WebEngineWidgets=ON \
               -DBUILD_FREERDP=ON \

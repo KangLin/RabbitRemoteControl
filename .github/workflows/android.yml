@@ -54,7 +54,7 @@ jobs:
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol;filetransfer"
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol;filetransfer;${{matrix.VCPKG_MANIFEST_FEATURES}}"
       BUILD_DIR:     ${{github.workspace}}/build
       SOURCE_DIR:    ${{github.workspace}}/.cache/source
       TOOLS_DIR:     ${{github.workspace}}/.cache/tools
@@ -437,6 +437,7 @@ jobs:
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
               -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+              -DVCPKG_MANIFEST_FEATURES="${{env.VCPKG_MANIFEST_FEATURES}}" \
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
               -DVCPKG_VERBOSE=ON \
               -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
