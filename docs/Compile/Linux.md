@@ -910,5 +910,27 @@ After install sdk and runtime, Run again:
           # Compile AppImage
           ./Script/build_appimage.sh
 
-- [create_plugin.sh]: Generate plugin from template
+- [create_plugin.sh](../../Script/create_plugin.sh): Generate plugin from template
+
+      k@k:/home/RabbitRemoteControl$ ./Script/create_plugin.sh -h
+      
+      create_plugin.sh - Generate plugin from template
+      
+      Usage: ./Script/create_plugin.sh [OPTION] PluginName
+      
+      Options:
+        -h, --help            Show this help message
+        -v, --verbose[=LEVEL] Set verbose mode. [LEVEL: ON, OFF]
+      
+      Directory options:
+        -i, --install=DIR         Set installation directory
+      
+      Other options:
+        -n, --name=NAME           Plugin name
+        -t, --template=NAME       Template name. [NAME: Base(Default), Desktop, Server, QtEvent]
+        
+      Examples:
+        ./Script/create_plugin.sh --name=Test --template=Base
+        ./Script/create_plugin.sh -n Test -t Base
+
 - [deploy.sh](../../deploy.sh): Deploy. Only used by administarotr

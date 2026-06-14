@@ -429,3 +429,32 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
 
 CMake 使用参数 -DENABLE_UPDATE_TRANSLATIONS=ON 会自行产生资源文件，并更新资源文件。
 更新后，你可以直接修改 .ts 文件。
+
+### 脚本
+
+- [create_plugin.sh](../../Script/create_plugin.sh): 从模板产生插件。
+
+    ```
+    k@k:/home/RabbitRemoteControl$ ./Script/create_plugin.sh -h
+    
+    create_plugin.sh - Generate plugin from template
+    
+    Usage: ./Script/create_plugin.sh [OPTION] PluginName
+    
+    Options:
+      -h, --help            Show this help message
+      -v, --verbose[=LEVEL] Set verbose mode. [LEVEL: ON, OFF]
+    
+    Directory options:
+      -i, --install=DIR         Set installation directory
+    
+    Other options:
+      -n, --name=NAME           Plugin name
+      -t, --template=NAME       Template name. [NAME: Base(Default), Desktop, Server, QtEvent]
+      
+    Examples:
+      ./Script/create_plugin.sh --name=Test --template=Base
+      ./Script/create_plugin.sh -n Test -t Base
+    ```
+
+- [deploy.sh](../../deploy.sh): 分发版本。仅由管理员使用。

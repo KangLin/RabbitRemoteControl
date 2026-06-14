@@ -71,7 +71,7 @@
   \image html docs/Image/PluginSequenceDiagram.svg
 + 用脚本从模板生成插件： Script/create_plugin.sh
   \code
-  ./Script/create_plugin.sh -h
+    ./Script/create_plugin.sh -h
 
     create_plugin.sh - Generate plugin from template
 
