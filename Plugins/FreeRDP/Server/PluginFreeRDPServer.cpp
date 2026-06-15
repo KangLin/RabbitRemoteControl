@@ -1,25 +1,24 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "PluginFreeRDP.h"
+#include <freerdp/server/shadow.h>
+#include <freerdp/version.h>
 #include "winpr/wlog.h"
-#include "freerdp/version.h"
 
 #include <QLoggingCategory>
 
 #ifdef HAVE_LIBSSH
-    #include "ChannelSSHTunnel.h"
+#include "ChannelSSHTunnel.h"
 #endif
 
-#include "OperateFreeRDP.h"
+#include "OperateFreeRDPServer.h"
+#include "PluginFreeRDPServer.h"
 
-static Q_LOGGING_CATEGORY(log, "FreeRDP.Plugin")
+static Q_LOGGING_CATEGORY(log, "FreeRDPServer.Plugin")
 static Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
 static Q_LOGGING_CATEGORY(LoggerFreeRDPTrace, "FreeRDP.Log.Trace")
 static Q_LOGGING_CATEGORY(LoggerFreeRDPFatal, "FreeRDP.Log.Fatal")
-
-//! [Initialize resource]
-CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
-    : CPlugin(parent)
+CPluginFreeRDPServer::CPluginFreeRDPServer(QObject *parent)
+    : CPlugin{parent}
 {
     qDebug(log) << Q_FUNC_INFO;
     qInfo(log) << "FreeRDP version:" << freerdp_get_version_string()
@@ -60,55 +59,47 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     }
     WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
-//! [Initialize resource]
 
-//! [Clean resource]
-CPluginFreeRDP::~CPluginFreeRDP()
+CPluginFreeRDPServer::~CPluginFreeRDPServer()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
-//! [Clean resource]
 
-const CPlugin::TYPE CPluginFreeRDP::Type() const
+const CPlugin::TYPE CPluginFreeRDPServer::Type() const
 {
-    return TYPE::RemoteDesktop;
+    return TYPE::Server;
 }
 
-const QString CPluginFreeRDP::Name() const
-{
-    return "FreeRDP";
-}
-
-const QString CPluginFreeRDP::DisplayName() const
-{
-    return tr("Free remote desktop protocol");
-}
-
-const QString CPluginFreeRDP::Description() const
-{
-    return tr("RDP(Remote desktop Protocol): Access remote desktops such as windows.") + "\n"
-           + tr("It uses FreeRDP: https://github.com/FreeRDP/FreeRDP/");
-}
-
-const QString CPluginFreeRDP::Protocol() const
+const QString CPluginFreeRDPServer::Protocol() const
 {
     return "RDP";
 }
 
-const QIcon CPluginFreeRDP::Icon() const
+const QString CPluginFreeRDPServer::Name() const
+{
+    return "FreeRDPServer";
+}
+
+const QString CPluginFreeRDPServer::Description() const
+{
+    return "FreeRDP - Server";
+}
+
+const QString CPluginFreeRDPServer::Version() const
+{
+#ifdef FreeRDPServer_VERSION
+    return FreeRDPServer_VERSION;
+#else
+    return QString();
+#endif
+}
+
+const QIcon CPluginFreeRDPServer::Icon() const
 {
     return QIcon::fromTheme("windows");
 }
 
-const QString CPluginFreeRDP::Version() const
-{
-    return PluginFreeDP_VERSION;
-}
-
-/*!
- * \brief Show the plugin depends on the freerdp version 
- */
-const QString CPluginFreeRDP::Details() const
+const QString CPluginFreeRDPServer::Details() const
 {
     QString szDetails;
     szDetails += "- " + tr("Dependency libraries") + "\n";
@@ -138,10 +129,11 @@ const QString CPluginFreeRDP::Details() const
     return szDetails;
 }
 
-COperate *CPluginFreeRDP::OnCreateOperate(const QString &szId)
+COperate *CPluginFreeRDPServer::OnCreateOperate(const QString &szId)
 {
-    if(Id() == szId)
-        return new COperateFreeRDP(this);
-
-    return nullptr;
+    if(szId != Id()) {
+        qCritical(log) << "Invalid ID:" << szId;
+        return nullptr;
+    }
+    return new COperateFreeRDPServer(this);
 }
