@@ -37,6 +37,7 @@
     - Add Server
       - FTP server
       - SFTP server
+      - FreeRDP server
     - Player
       - Add display subtitle
     - Add web browser
