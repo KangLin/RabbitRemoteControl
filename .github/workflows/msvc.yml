@@ -436,7 +436,6 @@ jobs:
             -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
             -DVCPKG_APPLOCAL_DEPS=ON ^
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
-            -DVCPKG_MANIFEST_FEATURES="${{env.VCPKG_MANIFEST_FEATURES}}" ^
             -DENABLE_UPDATE_TRANSLATIONS=ON ^
             -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
             -DBUILD_APP=ON ^
@@ -469,7 +468,7 @@ jobs:
         run: |
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
-          copy /Y vcpkg_installed\${{matrix.VCPKG_TARGET_TRIPLET}}\bin\*.dll install\bin
+          copy /Y ${{env.INSTALL_DIR}}\vcpkg_installed\${{matrix.VCPKG_TARGET_TRIPLET}}\bin\*.dll install\bin
           IF EXIST "${{env.INSTALL_DIR}}\share\qtermwidget6" (
               xcopy /Y /S /I "${{env.INSTALL_DIR}}\share\qtermwidget6" install\share\qtermwidget6
           )
@@ -510,7 +509,7 @@ jobs:
 
       - name: Update artifact update_windows.xml
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.3' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_xml
           path: |

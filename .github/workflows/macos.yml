@@ -408,8 +408,8 @@ jobs:
             #lipo -info RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
             #otool -l RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui | grep -A3 -B1 "LC_RPATH"
             #otool -L RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
-
           fi
+
       - name: Update configure file
         if: ${{ !matrix.WITH_MACOSX_BUNDLE }}
         working-directory: ${{github.workspace}}/build

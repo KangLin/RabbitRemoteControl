@@ -152,7 +152,11 @@ jobs:
           else
             docker_image="${{matrix.variant.image}}"
           fi
-          ./Script/build_linux.sh --docker --docker-image="${docker_image}" --docker-platform="${{matrix.variant.platform}}" --${{matrix.variant.PACKAGE}}
+          ./Script/build_linux.sh --install=${{env.INSTALL_DIR}} \
+            --source=${{env.SOURCE_DIR}} \
+            --tools=${{env.TOOLS_DIR}} \
+            --docker-image="${docker_image}" \
+            --docker-platform="${{matrix.variant.platform}}" --${{matrix.variant.PACKAGE}}
 
       - name: Rename deb file
         if: ${{ matrix.variant.PACKAGE == 'deb' }}
