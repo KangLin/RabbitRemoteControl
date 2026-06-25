@@ -144,6 +144,11 @@ jobs:
       - name: chmod qt-cmake
         run: |
           sudo chmod 777 ${QT_ROOT_DIR}/bin/qt-cmake
+          # 清理 resConfig
+          find ${QT_ROOT_DIR} -path "*/templates/build.gradle" -type f | while read file; do
+              echo "Fixing: $file"
+              sed -i 's/resConfig "en"//g' "$file"
+          done
 
       - name: libpcap
         working-directory: ${{env.SOURCE_DIR}}

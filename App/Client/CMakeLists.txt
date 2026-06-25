@@ -130,6 +130,12 @@ if(ANDROID)
         file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/plugins)
     endif()
     set_target_properties(${PROJECT_NAME} PROPERTIES
+        # Android 包名
+        QT_ANDROID_PACKAGE_NAME "io.github.KangLinStudio.RabbitRemoteControl"
+        # 最小 SDK 版本
+        QT_ANDROID_MIN_SDK_VERSION 28
+        # 目标 SDK 版本
+        QT_ANDROID_TARGET_SDK_VERSION 34
         QT_ANDROID_EXTRA_PLUGINS
             ${CMAKE_BINARY_DIR}/plugins
         )
