@@ -945,7 +945,9 @@ get_section() {
 # TODO: 初始化，必须放在此文件最后
 init_global() {
     if [ ! $INIT_GLOBAL_RABBIT ]; then
-        echo_status "Init global ......"
+        if [ "$BUILD_VERBOSE" = "ON" ]; then
+            echo_status "Init global ......"
+        fi
         export INIT_GLOBAL_RABBIT=TRUE
         #check_echo_color
         check_echo_color_with_tput
