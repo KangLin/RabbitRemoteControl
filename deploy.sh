@@ -3,7 +3,7 @@
 
 set -e
 
-update_verion() {
+update_version() {
 
     $SED_CMD "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Package/Windows.nsi
     #$SED_CMD "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
@@ -454,7 +454,7 @@ create_tag
 
 echo "= Update version to $VERSION ......"
 
-update_verion
+update_version
 
 echo_success "Version updated to $VERSION successfully!"
 #echo "  Time: $DATE_TIME_UTC"
