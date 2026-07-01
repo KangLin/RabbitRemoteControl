@@ -29,9 +29,9 @@ Architecture: any
 #Suggests: libqt6svg6
 Depends: libqt6sql6-mysql, libqt6sql6-sqlite, libqt6sql6-odbc, libqt6sql6-psql, libmysqlclient24,
   ${shlibs:Depends}, ${misc:Depends}
-Replaces: rabbitcommon (>=2.3.2)
+Replaces: rabbitcommon (>=2.4.0)
 Description: Rabbit Remote Control
- Rabbit remote control is  is a cross-platform,
+ Rabbit remote control is is a cross-platform,
  multi-protocol remote control software.
  .
  Allows you to use any device and system in anywhere and remotely manage
