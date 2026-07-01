@@ -500,6 +500,7 @@ validate_parameters
 # Display configuration
 show_configuration
 
+# Set libraries install path
 case "$DISTRO" in
 ubuntu|debian)
     LIB_PATH="lib"
