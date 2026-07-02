@@ -5,8 +5,8 @@
   - App: 重命名界面提示
 
       | 老名称  |  新名称   |  功能    |
-      |--------|----------|----------|
-      |远程     | 操作     | 菜单      |
+      |--------|----------|---------|
+      |远程     | 操作     | 菜单     |
       |远程->连接|操作->开始|菜单或工具条|
       |远程->断开|操作->停止|菜单或工具条|
 
@@ -24,6 +24,7 @@
       |CParameterClient   |CParameterPlugin  |
       |FrmParameterClient |CParameterPluginUI|
 
+- 新增
   - 插件
     - 终端
     - SSH 终端
@@ -38,22 +39,22 @@
     - 播放器
       - 增加显示字幕
     - 增加网页浏览器
-  - 插件接口
-    - 增加统计信息
-    - 增加安全级别
-
-- 增加活动菜单
-- [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
-- 应用程序
-  - [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)
-  - 最近列表和收藏使用数据库保存
-  - 增加视图布局
-  - 增加菜单到工具条中
-- 增加 macOS 编译脚本。生成　App 捆绑包
-- 为 windows 安装包增加“不安装执行功能”。
-- [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)
-- 修复禁用桌面快捷键。详见: 　https://github.com/KangLin/RabbitRemoteControl/discussions/91
-- 增加生成插件的模板
+    - 插件接口
+      - 增加统计信息
+      - 增加安全级别
+    - 增加生成插件的模板
+  - 增加活动菜单
+  - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
+  - 应用程序
+    - [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)
+    - 最近列表和收藏使用数据库保存
+    - 增加视图布局
+    - 增加菜单到工具条中
+  - 增加 macOS 编译脚本。生成　App 捆绑包
+  - 为 windows 安装包增加“不安装执行功能”。
+  - [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)
+- 修复
+  - 修复禁用桌面快捷键。详见: https://github.com/KangLin/RabbitRemoteControl/discussions/91
 
 ### v0.0.36
 - Client:

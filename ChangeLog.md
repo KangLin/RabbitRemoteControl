@@ -25,11 +25,12 @@
       |CParameterClient   |CParameterPlugin  |
       |FrmParameterClient |CParameterPluginUI|
 
+- Add
   - Plugin
-    - Terminal
-    - Terminal SSH
-    - Terminal telnet
-    - Serail port
+    - Add Terminal
+      - Terminal SSH
+      - Terminal telnet
+      - Serail port
     - Add file transfer
       - SFTP
       - FTP
@@ -39,22 +40,22 @@
     - Player
       - Add display subtitle
     - Add web browser
-  - Plugin interface
-    - Add stats
-    - Add security level
-
-- Add activity menu
-- [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
-- Application
-  - [App: add favorite from activity list and recent list](https://github.com/KangLin/RabbitRemoteControl/issues/49)
-  - favorite and recent with database
-  - Add view layout
-  - Add main menu in toolbaar
-- Add build_mscos.sh. add App bundle
-- Add run the program directly without installation for windows install package
-- [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
-- Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91
-- Add plugin template
+    - Add plugin template   
+    - Plugin interface
+      - Add stats
+      - Add security level
+  - Add activity menu
+  - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
+  - Application
+    - [App: add favorite from activity list and recent list](https://github.com/KangLin/RabbitRemoteControl/issues/49)
+    - favorite and recent with database
+    - Add view layout
+    - Add main menu in toolbaar
+  - Add build_mscos.sh. add App bundle
+  - Add run the program directly without installation for windows install package
+  - [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
+- Fix
+  - Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91
 
 ### v0.0.36
 - Client:
