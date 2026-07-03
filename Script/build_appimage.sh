@@ -230,9 +230,9 @@ if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     $QMAKE --version
 fi
 
-if [ -n "$QMAKE" ]; then
+if [ -z "$QMAKE" ]; then
     if command -v qmake >/dev/null 2>&1; then
-        command -v qmake
+        export QMAKE=`command -v qmake`
     else
         echo_error "Please set 'QMAKE'"
     fi
