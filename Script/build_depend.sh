@@ -502,7 +502,7 @@ show_configuration
 
 # Set libraries install path
 case "$DISTRO" in
-ubuntu|debian)
+ubuntu|debian|linuxmint)
     LIB_PATH="lib"
     ;;
 fedora)
@@ -572,7 +572,7 @@ if [ $BASE_LIBS -eq 1 ]; then
         # FFmpeg needed by QtMultimedia and freerdp
         package_install libavcodec-dev libavformat-dev libswscale-dev
         case "$DISTRO" in
-        ubuntu|debian)
+        ubuntu|debian|linuxmint)
             package_install libresample1-dev
             ;;
         deepin)
@@ -585,22 +585,26 @@ if [ $BASE_LIBS -eq 1 ]; then
         # Needed by QtMultimedia
         #package_install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
         # Needed by AppImage and FreeRDP
-        case "$DISTRO_VERSION" in
-            24.*)
-                package_install libfuse-dev fuse
+        case "$DISTRO" in
+            ubuntu)
+                case "$DISTRO_VERSION" in
+                    24.*)
+                        package_install libfuse-dev fuse
+                        ;;
+                    26.*|25.*)
+                        package_install libfuse3-dev fuse3
+                        ;;
+                esac
+                package_install libmysqlclient-dev
                 ;;
-            26.*|25.*)
-                package_install libfuse3-dev fuse3
+            linuxmint)
+                package_install libfuse3-dev libmysqlclient-dev fuse3
+                ;;
+            debian)
+                # libmysqlclient
+                package_install libmariadb-dev libmariadb-dev-compat
                 ;;
         esac
-        # Other
-        if [ "$DISTRO" = "ubuntu" ]; then
-            package_install libmysqlclient-dev
-        fi
-        if [ "$DISTRO" = "debian" ]; then
-            # libmysqlclient
-            package_install libmariadb-dev libmariadb-dev-compat
-        fi
         # Needed by qtkeychain
         package_install libsecret-1-dev
     fi
@@ -634,41 +638,14 @@ fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then
     echo_status "Install default dependency libraries ......"
-    if [ "$PACKAGE_TOOL" = "apt" ]; then
-        package_install libvncserver-dev
-        if [ $FREERDP -ne 1 ]; then
-            package_install freerdp2-dev
-        fi
-        if [ $LIBSSH -ne 1 ]; then
-            package_install libssh-dev
-        fi
-        # File transfer
-        package_install libcurl4-openssl-dev
-        # Qt6
-        if [ $QT -ne 1 ]; then
-            package_install qmake6 qt6-tools-dev qt6-tools-dev-tools \
-                qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
-                qt6-svg-dev qt6-l10n-tools qt6-translations-l10n \
-                qt6-scxml-dev qt6-multimedia-dev qt6-serialport-dev qt6-websockets-dev \
-                qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev \
-                libqt6sql6-mysql libqt6sql6-sqlite libqt6sql6-odbc libqt6sql6-psql \
-                qt6-speech-dev
-        fi
-        if [ $QTKEYCHAIN -ne 1 ]; then
-            package_install qtkeychain-qt6-dev
-        fi
-    fi # apt
-
-    if [ "$PACKAGE_TOOL" = "dnf" ]; then
-        if [ $QT -ne 1 ]; then
-            package_install qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
-                qt6-qt5compat-devel qt6-qtscxml-devel \
-                qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel \
-                qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
-        fi
-
+    case "$DISTRO" in
+    ubuntu|debian|deepin|linuxmint)
+        install_debian_depend $REPO_ROOT
+        ;;
+    fedora)
         dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
-    fi
+        ;;
+    esac
 
     if [ $MACOS -eq 1 ]; then
         package_install qt freerdp libvncserver libssh pcapplusplus qtkeychain #libpcap

@@ -221,7 +221,7 @@ get_linux_version() {
 get_package_tool() {
     local distro=$1
     case $distro in
-        ubuntu|debian|kali)
+        ubuntu|debian|kali|linuxmint)
             echo "apt"
             ;;
         deepin)
@@ -298,36 +298,42 @@ create_debian_folder() {
     local repo_root=$1
     if [ ! -d "$repo_root/debian" ]; then
         echo_status "Create $repo_root/debian ......"
-        ln -s $repo_root/Package/debian $repo_root/debian
-
-        if [ ! -f "$repo_root/debian/control" ]; then
-            case "${DISTRO}:${DISTRO_VERSION}" in
-                ubuntu:26.*|ubuntu:25.*)
-                    control_source="$repo_root/Package/debian/control.ubuntu.26"
-                    ;;
-                debian:12)
-                    control_source="$repo_root/Package/debian/control.debian.12"
-                    ;;
-                debian:13)
-                    control_source="$repo_root/Package/debian/control.debian.13"
-                    ;;
-                deepin*)
-                    control_source="$repo_root/Package/debian/control.deepin.23"
-                    ;;
-                *)
-                    control_source="$repo_root/Package/debian/control.default"
-                    ;;
-            esac
-            if [ -f "$control_source" ]; then
-                ln -s $control_source $repo_root/debian/control
-                if [ "$BUILD_VERBOSE" = "ON" ]; then
-                    echo "ln -s $control_source $repo_root/debian/control"
-                fi
-            else
-                echo_error "Error: $control_source is not exist"
-            fi
+        if [ -d "$repo_root/Package/debian" ]; then
+            ln -s $repo_root/Package/debian $repo_root/debian
+        else
+            echo_error "Don't exist '$repo_root/Package/debian'"
+            return
         fi
-
+    fi
+    if [ ! -f "$repo_root/debian/control" ]; then
+        case "${DISTRO}:${DISTRO_VERSION}" in
+            ubuntu:26.*|ubuntu:25.*)
+                control_source="$repo_root/Package/debian/control.ubuntu.26"
+                ;;
+            ubuntu:24.*|linuxmint:22.*)
+                control_source="$repo_root/Package/debian/control.ubuntu.24"
+                ;;
+            debian:12)
+                control_source="$repo_root/Package/debian/control.debian.12"
+                ;;
+            debian:13)
+                control_source="$repo_root/Package/debian/control.debian.13"
+                ;;
+            deepin*)
+                control_source="$repo_root/Package/debian/control.deepin.23"
+                ;;
+            *)
+                echo_error "Don't support debian/control in ${DISTRO}:${DISTRO_VERSION}"
+                ;;
+        esac
+        if [ -f "$control_source" ]; then
+            if [ "$BUILD_VERBOSE" = "ON" ]; then
+                echo "ln -s $control_source $repo_root/debian/control"
+            fi
+            ln -s $control_source $repo_root/debian/control
+        else
+            echo_error "Error: $control_source is not exist"
+        fi
     fi
 }
 
@@ -338,7 +344,7 @@ install_debian_depend() {
         echo_status "Install deb depends ......"
         pushd $repo_root
         # 安装编译依赖到系统中
-        apt-get build-dep -y .
+        $PACKAGE_TOOL build-dep -y .
         popd
         # 创建虚拟包来管理依赖， -r : 在编译完成后再删除
         #mk-build-deps -i -r --tool 'apt-get -y' "$repo_root/debian/control"

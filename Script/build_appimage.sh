@@ -232,7 +232,7 @@ fi
 
 if [ -z "$QMAKE" ]; then
     if command -v qmake >/dev/null 2>&1; then
-        export QMAKE=`command -v qmake`
+        export QMAKE=`command -v qmake6`
     else
         echo_error "Please set 'QMAKE'"
     fi

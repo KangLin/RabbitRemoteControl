@@ -105,14 +105,11 @@ jobs:
       - name: Install dependency libraries
         run: |
           sudo ./Script/build_depend.sh --system_update --base --default \
-              --tigervnc --pcapplusplus --QtService \
+              --tigervnc --pcapplusplus --qtermwidget --qftpserver --libssh \
               --install ${{env.INSTALL_DIR}} \
               --source ${{env.SOURCE_DIR}} \
               --tools ${{env.TOOLS_DIR}} \
               --build ${{env.BUILD_DIR}}
-          if [ "ubuntu-22.04-arm" != ${{matrix.os}} ]; then
-               sudo apt install -y -q qt6-5compat-dev
-          fi
 
       - name: build_debpackage.sh
         working-directory: ${{github.workspace}}

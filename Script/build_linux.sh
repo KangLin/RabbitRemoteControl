@@ -284,7 +284,7 @@ validate_parameters() {
     case "$DOCKER_IMAGE" in
         "")
             ;;
-        ubuntu*|debian*|kali*|*kylin*|*deepin*)
+        ubuntu*|debian*|kali*|*kylin*|*deepin*|linuxmint*)
             if [ $RPM -eq 1 ]; then
               echo_error "Error: Not recommended build rpm package in $DOCKER_IMAGE"
               exit 1
@@ -371,7 +371,7 @@ if [ $DOCKER -eq 1 ]; then
     popd
 
     if [ $DEB -eq 1 ]; then
-        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
+        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian|linuxmint) ]]; then
             DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         fi
         echo "DOCKER_PLATFORM: $DOCKER_PLATFORM"
@@ -398,11 +398,11 @@ if [ $DOCKER -eq 1 ]; then
     fi
 
     if [ $APPIMAGE -eq 1 ]; then
-        #if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
+        #if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian|linuxmint) ]]; then
         #    DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         #fi
         case "$DISTRO" in
-        ubuntu|debian)
+        ubuntu|debian|linuxmint)
             DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
             ;;
         fedora)
@@ -496,7 +496,7 @@ fi
 if [ $APPIMAGE -eq 1 ]; then
     echo_status "build AppImage ......"
     case "$DISTRO" in
-    ubuntu)
+    ubuntu|linuxmint)
 #        case "$DISTRO_VERSION" in
 #            "24.04"|"24.10")
 #                depend_para="--qt=${QT_VERSION}"
@@ -539,6 +539,7 @@ if [ $APPIMAGE -eq 1 ]; then
 
     ./build_appimage.sh --install=${INSTALL_DIR} \
         --tools=${TOOLS_DIR} \
+        --source=${SOURCE_DIR} \
         --verbose=${BUILD_VERBOSE}
 fi
 

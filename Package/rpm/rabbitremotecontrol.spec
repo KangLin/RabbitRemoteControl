@@ -22,7 +22,7 @@ BuildRequires: cmake desktop-file-utils appstream curl wget
 # Qt6
 BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
-BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtspeech-devel
+BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtspeech-devel qt6-qtwebsockets-devel
 BuildRequires: qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
 
 BuildRequires: qtkeychain-qt6-devel qtermwidget-devel
