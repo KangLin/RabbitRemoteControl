@@ -13,6 +13,7 @@
  */
 class CHook : public QObject
 {
+    Q_OBJECT
 public:
     static CHook* GetHook(CParameterPlugin* pPara, QObject *parent = nullptr);
 

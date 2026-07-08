@@ -7,7 +7,7 @@ DESKTOP_ENV=$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')
 echo "Check desktop environment: $DESKTOP_ENV"
 
 case $DESKTOP_ENV in
-    *gnome*)
+    *gnome*|*cinnamon*)
         echo "Restore GNOME shortcuts ......"
         # 重置所有 GNOME 快捷键设置
         gsettings reset-recursively org.gnome.desktop.wm.keybindings

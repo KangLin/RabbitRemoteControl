@@ -10,6 +10,9 @@
 #include <QFile>
 #include <QDir>
 
+/*!
+ * \brief Manage desktop shortcut keys
+ */
 class CDesktopShortcutManager : public QObject
 {
     Q_OBJECT
@@ -36,7 +39,7 @@ private:
     bool m_shortcutsDisabled = false;
     
     // 存储原始设置
-    QMap<QString, QVariant> m_gnomeSettings;
+    QMap<QString, QMap<QString, QString> > m_gnomeSettings;
     QMap<QString, QString> m_kdeSettings;
     QString m_gnomeBackupPath;
     QString m_kdeBackupPath;

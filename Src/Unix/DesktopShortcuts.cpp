@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QRegularExpression>
 #include <QLoggingCategory>
 #include <QStandardPaths>
 #include <QTemporaryDir>
@@ -10,6 +11,7 @@ static Q_LOGGING_CATEGORY(log, "Plugin.Hook.Desktop.Shortcut")
 CDesktopShortcutManager::CDesktopShortcutManager(QObject *parent)
     : QObject(parent)
 {
+    qDebug(log) << Q_FUNC_INFO;
     m_desktopEnv = detectDesktopEnvironment();
     qDebug(log) << "Desktop environment:" << m_desktopEnv;
     
@@ -21,6 +23,7 @@ CDesktopShortcutManager::CDesktopShortcutManager(QObject *parent)
 
 CDesktopShortcutManager::~CDesktopShortcutManager()
 {
+    qDebug(log) << Q_FUNC_INFO;
     // 确保退出时恢复快捷键
     if (m_shortcutsDisabled) {
         qWarning(log) << "Shortcuts is disabled, restoring ......";
@@ -62,7 +65,7 @@ bool CDesktopShortcutManager::disableAllShortcuts()
     bool success = false;
 
 #if defined(Q_OS_LINUX)
-    if (m_desktopEnv == "GNOME") {
+    if("GNOME" == m_desktopEnv || "Cinnamon" == m_desktopEnv || "MATE" == m_desktopEnv) {
         success = disableGNOMEShortcuts();
     } else if (m_desktopEnv == "KDE") {
         success = disableKDEShortcuts();
@@ -113,6 +116,7 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
 
 #if defined(Q_OS_LINUX)
 // GNOME 快捷键管理
+// 设置 -> 键盘 -> 键盘快捷键
 bool CDesktopShortcutManager::disableGNOMEShortcuts()
 {
     qDebug(log) << "Disable GNOME shortcuts ......";
@@ -120,112 +124,80 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
     // 备份当前设置
     backupGNOMESettings();
 
-    // 使用正确的数据结构来存储设置
-    struct GNOMESetting {
-        QString schema;
-        QString key;
-        QString value;
-    };
-    
-    QVector<GNOMESetting> disabledSettings = {
-        // Super 键
-        {"org.gnome.mutter", "overlay-key", "''"},
+    // 禁止设置
+    bool bAllSuccess = true;
+    int nSuccessCount = 0;
+    int nTotalCount = 0;
+    for (auto it = m_gnomeSettings.begin(); it != m_gnomeSettings.end(); ++it) {
+        QString szSchema = it.key();
+        auto keys = it.value();
+        for(auto itKey = keys.begin(); itKey != keys.end(); itKey++) {
+            nTotalCount++;
+            QString szKey = itKey.key();
+            // Super 键
+            if("org.gnome.mutter" == szSchema && "overlay-key" == szKey) {
+                if (runCommand("gsettings", {"set", szSchema, szKey, "''"})) {
+                    nSuccessCount++;
+                    qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + "''";
+                } else {
+                    qCritical(log) << "Disabled failed:" << szSchema + ": " + szKey + " = " + "''";
+                    bAllSuccess = false;
+                }
+                continue;
+            }
 
-        // 窗口管理
-        {"org.gnome.desktop.wm.keybindings", "close", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "minimize", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "maximize", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "unmaximize", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "begin-move", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "begin-resize", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "toggle-fullscreen", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "toggle-maximized", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "show-desktop", "['']"},
-        
-        // 工作区
-        {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-left", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-right", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-up", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-down", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-last", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "move-to-workspace-left", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "move-to-workspace-right", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "move-to-workspace-up", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "move-to-workspace-down", "['']"},
+            QString szValue = itKey.value();
+            // 是否包含 "[]"
+            // 方法一：直接判断包含 []
+            //if(!(szValue.contains('[') && szValue.contains(']'))) continue;
+            // 方法二：使用正则表达式: \[.*\]
+            if(!szValue.contains(QRegularExpression("\\[.*\\]"))) continue;
 
-        {"org.gnome.desktop.wm.keybindings", "switch-input-source", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-input-source-backward", "['']"},
-
-        // 面板和 Shell
-        {"org.gnome.shell.keybindings", "toggle-application-view", "['']"},
-        {"org.gnome.shell.keybindings", "toggle-message-tray", "['']"},
-        {"org.gnome.shell.keybindings", "focus-active-notification", "['']"},
-        {"org.gnome.shell.keybindings", "toggle-overview", "['']"},
-
-        {"org.gnome.shell.keybindings", "screenshot", "['']"},
-        {"org.gnome.shell.keybindings", "screenshot-window", "['']"},
-        {"org.gnome.shell.keybindings", "show-screenshot-ui", "['']"},
-        {"org.gnome.shell.keybindings", "show-screen-recording-ui", "['']"},
-        
-        // 媒体键
-        {"org.gnome.settings-daemon.plugins.media-keys", "home", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "email", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "www", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "calculator", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "screensaver", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "media", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "volume-up", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "volume-down", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "volume-mute", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "next", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "previous", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "play", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "pause", "['']"},
-        {"org.gnome.settings-daemon.plugins.media-keys", "stop", "['']"},
-        
-        // 自定义快捷键
-        {"org.gnome.settings-daemon.plugins.media-keys", "custom-keybindings", "['']"},
-        
-        // 其他系统快捷键
-        {"org.gnome.desktop.wm.keybindings", "panel-main-menu", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "panel-run-dialog", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-applications", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-applications-backward", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-windows", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-windows-backward", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-group", "['']"},
-        {"org.gnome.desktop.wm.keybindings", "switch-group-backward", "['']"}
-
-    };
-    
-    // 应用设置
-    bool allSuccess = true;
-    int successCount = 0;
-    int totalCount = disabledSettings.size();
-    
-    for (const GNOMESetting &setting : disabledSettings) {
-        if (runCommand("gsettings", {"set", setting.schema, setting.key, setting.value})) {
-            successCount++;
-            qDebug(log) << "Disabled:" << setting.schema << setting.key;
-        } else {
-            qCritical(log) << "Disable fail:" << setting.schema << setting.key;
-            allSuccess = false;
+            // 去掉 [] 中的内容:
+            /*
+             * 方法一：正则表达式写法:
+             *
+             *   (?<=\[)[^\]]*(?=\])
+             *
+             * 说明：
+             * - (?<=\[) — 正向肯定后顾，匹配在 [ 之后的位置
+             * - [^\]]* — 匹配任意不是 ] 的字符（0个或多个）
+             * - (?=\]) — 正向肯定前瞻，匹配在 ] 之前的位置
+             *
+             * 这样匹配到的就是括号内的内容，不包括括号本身。
+             * 注意：QRegularExpression 对前瞻/后顾的支持
+             * Qt 的 QRegularExpression（基于 PCRE）支持前瞻 (?=) 和后顾 (?<=)，所以上面的写法是有效的。
+             */
+            //szValue = szValue.replace(QRegularExpression("(?<=\\[)[^\\]]*(?=\\])"), "");
+            /* 方法二：使用捕获组
+             * 正则表达式：
+             *  \[([^\]]*)\]
+             * 说明:
+             * |正则    |C++ 字符串|含义               |
+             * |-------|---------|-------------------|
+             * |\[     |"\\["    |匹配左方括号 [       |
+             * |(      |"("      |开始捕获组           |
+             * |[^\]]  |"[^\\]]" |匹配任意不是 ] 的字符 |
+             * |*      |"*"      |重复 0 次或多次      |
+             * |)      |")"      |结束捕获组           |
+             * |\]     |"\\]"    |匹配右方括号 ]       |
+             *
+             * 注意： [^\\]] 在正则中表示字符类 [^]]（匹配非 ] 的字符），但在 C++ 字符串中需要对 \ 和 ] 进行转义。
+             */
+            szValue.replace(QRegularExpression("\\[([^\\]]*)\\]"), "[]");
+            if (runCommand("gsettings", {"set", szSchema, szKey, szValue})) {
+                nSuccessCount++;
+                qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + szValue;
+            } else {
+                qCritical(log) << "Disabled failed:" << szSchema + ": " + szKey + " = " + szValue;
+                bAllSuccess = false;
+            }
         }
     }
 
-    qDebug(log) << QString("GNOME is disabled: %1/%2 Success").arg(successCount).arg(totalCount);
+    qDebug(log) << QString("GNOME is disabled: %1/%2 Success").arg(nSuccessCount).arg(nTotalCount);
 
-    /*/ 重启 GNOME Shell 使设置生效
-    if (allSuccess || successCount > 0) {
-        qDebug(log) << "Reboot GNOME Shell ......";
-        if (runCommand("killall", {"-3", "gnome-shell"})) {
-            qDebug(log) << "GNOME Shell reboot signal is sended";
-        } else {
-            qWarning(log) << "Reboot GNOME Shell fail, Some settings may require you to log in again to take effect.";
-        }
-    } //*/
-
-    return allSuccess;
+    return bAllSuccess;
 }
 
 bool CDesktopShortcutManager::restoreGNOMEShortcuts()
@@ -237,31 +209,31 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
         return false;
     }
     
-    bool allSuccess = true;
-    int successCount = 0;
-    int totalCount = m_gnomeSettings.size();
+    bool bAllSuccess = true;
+    int nSuccessCount = 0;
+    int nTotalCount = 0;
     
     // 恢复备份的设置
     for (auto it = m_gnomeSettings.begin(); it != m_gnomeSettings.end(); ++it) {
-        QStringList parts = it.key().split("|");
-        if (parts.size() == 2) {
-            QString schema = parts[0];
-            QString key = parts[1];
-            QString value = it.value().toString();
-            
-            if (runCommand("gsettings", {"set", schema, key, value})) {
-                successCount++;
-                qDebug(log) << "Restored:" << schema << key << value;
+        QString szSchema = it.key();
+        auto keys = it.value();
+        for(auto itKey = keys.begin(); itKey != keys.end(); itKey++) {
+            nTotalCount++;
+            QString szKey = itKey.key();
+            QString szValue = itKey.value();
+            if (runCommand("gsettings", {"set", szSchema, szKey, szValue})) {
+                nSuccessCount++;
+                qDebug(log) << "Restored:" << szSchema + ": " + szKey + " = " + szValue;
             } else {
-                qCritical(log) << "Restore failed:" << schema << key << value;
-                allSuccess = false;
+                qCritical(log) << "Restore failed:" << szSchema + ": " + szKey + " = " + szValue;
+                bAllSuccess = false;
             }
         }
     }
 
-    qDebug(log) << QString("GNOME shortcut restoration completed: %1/%2 successful").arg(successCount).arg(totalCount);
+    qDebug(log) << QString("GNOME shortcut restoration completed: %1/%2 successful").arg(nSuccessCount).arg(nTotalCount);
 
-    /*/ 重启 GNOME Shell 使设置生效
+    /* 重启 GNOME Shell 使设置生效。锁屏和注销需要重启才能生效
     if (successCount > 0) {
         qDebug(log) << "Restart GNOME Shell...";
         if (runCommand("killall", {"-3", "gnome-shell"})) {
@@ -271,7 +243,7 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
         }
     } //*/
     
-    return allSuccess;
+    return bAllSuccess;
 }
 
 bool CDesktopShortcutManager::resetGNOMEShortcuts()
@@ -283,30 +255,30 @@ bool CDesktopShortcutManager::resetGNOMEShortcuts()
         return false;
     }
 
-    bool allSuccess = true;
-    int successCount = 0;
-    int totalCount = m_gnomeSettings.size();
+    bool bAllSuccess = true;
+    int nSuccessCount = 0;
+    int nTotalCount = 0;
 
-    // 恢复备份的设置
+    // 重置
     for (auto it = m_gnomeSettings.begin(); it != m_gnomeSettings.end(); ++it) {
-        QStringList parts = it.key().split("|");
-        if (parts.size() == 2) {
-            QString schema = parts[0];
-            QString key = parts[1];
-
-            if (runCommand("gsettings", {"reset", schema, key})) {
-                successCount++;
-                qDebug(log) << "Reset:" << schema << key;
+        QString szSchema = it.key();
+        auto keys = it.value();
+        for(auto itKey = keys.begin(); itKey != keys.end(); itKey++) {
+            nTotalCount++;
+            QString szKey = itKey.key();
+            if (runCommand("gsettings", {"reset", szSchema, szKey})) {
+                nSuccessCount++;
+                qDebug(log) << "Reset:" << szSchema + ": " + szKey;
             } else {
-                qCritical(log) << "Reset failed:" << schema << key;
-                allSuccess = false;
+                qCritical(log) << "Reset failed:" << szSchema + ": " + szKey;
+                bAllSuccess = false;
             }
         }
     }
 
-    qDebug(log) << QString("GNOME shortcut reset completed: %1/%2 successful").arg(successCount).arg(totalCount);
+    qDebug(log) << QString("GNOME shortcut reset completed: %1/%2 successful").arg(nSuccessCount).arg(nTotalCount);
 
-    /*/ 重启 GNOME Shell 使设置生效
+    /* 重启 GNOME Shell 使设置生效。锁屏和注销需要重启才能生效
     if (successCount > 0) {
         qDebug(log) << "Restart GNOME Shell...";
         if (runCommand("killall", {"-3", "gnome-shell"})) {
@@ -316,24 +288,54 @@ bool CDesktopShortcutManager::resetGNOMEShortcuts()
         }
     } //*/
 
-    return allSuccess;
+    return bAllSuccess;
 }
 
 void CDesktopShortcutManager::backupGNOMESettings()
 {
     qDebug(log) << "Backup GNOME settings ......";
+    int nTotalCount = 0;
 
     m_gnomeSettings.clear();
 
-    // 重要的 GNOME 设置 schema
-    QVector<QString> schemas = {
-        "org.gnome.desktop.wm.keybindings",
-        "org.gnome.shell.keybindings", 
-        "org.gnome.settings-daemon.plugins.media-keys",
-        "org.gnome.mutter"
+    struct GNOMESetting {
+        QString schema;
+        QString key;
+    };
+    QVector<GNOMESetting> vKeys = {
+        // Super 键
+        {"org.gnome.mutter", "overlay-key"}
+    };
+    foreach (auto setting, vKeys) {
+        QMap<QString, QString> mKey;
+        QString value = getCommandOutput("gsettings", {"get", setting.schema, setting.key}).trimmed();
+        if (!value.isEmpty()) {
+            nTotalCount++;
+            mKey.insert(setting.key, value);
+            qDebug(log) << "Backup:" << setting.schema + ": " + setting.key << "=" << value;
+        } else {
+            qWarning(log) << "Backup fail:" << setting.schema + ": " + setting.key;
+        }
+        if(!mKey.isEmpty())
+            m_gnomeSettings.insert(setting.schema, mKey);
+    }
+
+    QVector<QString> vSchemas = {
+        // 媒体键
+        "org.gnome.settings-daemon.plugins.media-keys"
     };
 
-    for (const QString &schema : schemas) {
+    // 可以使用下面命令得到 schema
+    // `gsettings list-schemas|grep keybindings`
+    QString szSchemas = getCommandOutput("gsettings", {"list-schemas"});
+    //qDebug(log) << "Schemas:\n" << szSchemas;
+    QStringList lstSchemas = szSchemas.split('\n', Qt::SkipEmptyParts);
+    foreach (const QString &schema, lstSchemas) {
+        if(!schema.contains("keybindings")) continue;
+        vSchemas.append(schema);
+    }
+
+    foreach (const QString &schema, vSchemas) {
         // 获取 schema 的所有键
         QString output = getCommandOutput("gsettings", {"list-keys", schema});
         if (output.isEmpty()) {
@@ -341,23 +343,24 @@ void CDesktopShortcutManager::backupGNOMESettings()
             continue;
         }
 
+        QMap<QString, QString> vKey;
         QStringList keys = output.split('\n', Qt::SkipEmptyParts);
         qDebug(log) << QString("Schema %1 has %2 keys").arg(schema).arg(keys.size());
-
         foreach (const QString &key, keys) {
             QString value = getCommandOutput("gsettings", {"get", schema, key}).trimmed();
             if (!value.isEmpty()) {
-                // 使用 schema + key 作为唯一标识
-                QString settingKey = schema + "|" + key;
-                m_gnomeSettings[settingKey] = value;
-                qDebug(log) << "Backup:" << settingKey << "=" << value;
+                nTotalCount++;
+                vKey.insert(key, value);
+                qDebug(log) << "Backup:" << schema + ": " + key << "=" << value;
             } else {
-                qWarning(log) << "Backup fail:" << schema + "|" + key;
+                qWarning(log) << "Backup fail:" << schema + ": " + key;
             }
         }
+        if(!vKey.isEmpty())
+            m_gnomeSettings.insert(schema, vKey);
     }
 
-    qDebug(log) << QString("GNOME settings backup completed, a total of %1 settings were backed up").arg(m_gnomeSettings.size());
+    qDebug(log) << QString("GNOME settings backup completed, a total of %1 settings were backed up").arg(nTotalCount);
 }
 
 // KDE 快捷键管理
