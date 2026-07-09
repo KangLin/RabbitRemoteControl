@@ -41,6 +41,7 @@ private:
     // 存储原始设置
     QMap<QString, QMap<QString, QString> > m_gnomeSettings;
     QMap<QString, QString> m_kdeSettings;
+    QMap<QString, QString> m_xfceSettings;  // XFCE 快捷键配置备份
     QString m_gnomeBackupPath;
     QString m_kdeBackupPath;
 
@@ -49,12 +50,18 @@ private:
     bool disableGNOMEShortcuts();
     bool restoreGNOMEShortcuts();
     bool resetGNOMEShortcuts();
-    void backupGNOMESettings();
+    int backupGNOMESettings();
     
     // KDE 方法
     bool disableKDEShortcuts();
     bool restoreKDEShortcuts();
-    void backupKDESettings();
+    int backupKDESettings();
+
+    // XFCE 方法
+    bool disableXFCEShortcuts();
+    bool restoreXFCEShortcuts();
+    int backupXFCEShortcuts();
+
 #endif
 
     // 通用方法

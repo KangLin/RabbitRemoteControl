@@ -70,8 +70,7 @@ bool CDesktopShortcutManager::disableAllShortcuts()
     } else if (m_desktopEnv == "KDE") {
         success = disableKDEShortcuts();
     } else if (m_desktopEnv == "XFCE") {
-        // XFCE 实现类似
-        qWarning(log) << "XFCE Shortcut key disabling is not yet implemented";
+        success = disableXFCEShortcuts();
     } else {
         qWarning(log) << "Unsupported desktop environment:" << m_desktopEnv;
         return false;
@@ -101,6 +100,8 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
         //resetGNOMEShortcuts();
     } else if (m_desktopEnv == "KDE") {
         success = restoreKDEShortcuts();
+    } else if (m_desktopEnv == "XFCE") {
+        success = restoreXFCEShortcuts();
     } else {
         qWarning(log) << "Unsupported desktop environment:" << m_desktopEnv;
         return false;
@@ -115,8 +116,12 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
 }
 
 #if defined(Q_OS_LINUX)
-// GNOME 快捷键管理
-// 设置 -> 键盘 -> 键盘快捷键
+
+/*!
+ * \brief 禁止 GNOME 快捷键
+ * \return 如果有错误则返回 false， 全对则返回 true
+ * \details 可以在系统中 "设置 -> 键盘 -> 键盘快捷键" 查看和设置快捷键
+ */
 bool CDesktopShortcutManager::disableGNOMEShortcuts()
 {
     qDebug(log) << "Disable GNOME shortcuts ......";
@@ -200,6 +205,10 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
     return bAllSuccess;
 }
 
+/*!
+ * \brief 恢复 GNOME 桌面快捷键
+ * \return 如果有错误则返回 false， 全对则返回 true
+ */
 bool CDesktopShortcutManager::restoreGNOMEShortcuts()
 {
     qDebug(log) << "Restore GNOME shortcuts ......";
@@ -246,6 +255,10 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
     return bAllSuccess;
 }
 
+/*!
+ * \brief 重置 GNOME 桌面快捷键
+ * \return 如果有错误则返回 false， 全对则返回 true
+ */
 bool CDesktopShortcutManager::resetGNOMEShortcuts()
 {
     qDebug(log) << "Reset GNOME shortcuts ......";
@@ -291,10 +304,15 @@ bool CDesktopShortcutManager::resetGNOMEShortcuts()
     return bAllSuccess;
 }
 
-void CDesktopShortcutManager::backupGNOMESettings()
+/*!
+ * \brief 备份 GNOME 桌面快捷键
+ * \return 返回备份的个数
+ */
+int CDesktopShortcutManager::backupGNOMESettings()
 {
-    qDebug(log) << "Backup GNOME settings ......";
     int nTotalCount = 0;
+
+    qDebug(log) << "Backup GNOME settings ......";
 
     m_gnomeSettings.clear();
 
@@ -361,9 +379,13 @@ void CDesktopShortcutManager::backupGNOMESettings()
     }
 
     qDebug(log) << QString("GNOME settings backup completed, a total of %1 settings were backed up").arg(nTotalCount);
+    return nTotalCount;
 }
 
-// KDE 快捷键管理
+/*!
+ * \brief 禁止 KDE 快捷键
+ * \return 如果有错误则返回 false， 全对则返回 true
+ */
 bool CDesktopShortcutManager::disableKDEShortcuts()
 {
     qDebug(log) << "Disable KDE shortcuts ......";
@@ -397,6 +419,10 @@ bool CDesktopShortcutManager::disableKDEShortcuts()
     return success;
 }
 
+/*!
+ * \brief 恢复 KDE 桌面快捷键
+ * \return 如果有错误则返回 false， 全对则返回 true
+ */
 bool CDesktopShortcutManager::restoreKDEShortcuts()
 {
     qDebug(log) << "Restore KDE shortcuts ......";
@@ -425,8 +451,20 @@ bool CDesktopShortcutManager::restoreKDEShortcuts()
     return true;
 }
 
-void CDesktopShortcutManager::backupKDESettings()
+/*!
+ * \brief 备份 KDE 桌面快捷键
+ * \return 备份个数
+ * \details 可以在系统中 "设置 -> 键盘 -> 键盘快捷键" 查看和设置快捷键
+ *
+ * KDE 快捷键存储在两个主要位置：
+ * 1. ~/.config/kglobalshortcutsrc - 全局快捷键配置
+ * 2. ~/.config/kwinrc - KWin 窗口管理器快捷键
+ *
+ * 使用 kwriteconfig5/kreadconfig5 工具进行读写
+ */
+int CDesktopShortcutManager::backupKDESettings()
 {
+    int nCount = 0;
     qDebug(log) << "Backup KDE settings ......";
 
     QString configDir = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
@@ -460,7 +498,236 @@ void CDesktopShortcutManager::backupKDESettings()
             m_kdeSettings[setting] = value.trimmed();
         }
     }
+
+    return nCount;
 }
+
+/*!
+ * \brief 禁止 XFCE 桌面快捷键
+ * \return 如果有错误则返回 false， 全对则返回 true
+ */
+bool CDesktopShortcutManager::disableXFCEShortcuts()
+{
+    qDebug(log) << "Disable XFCE settings ......";
+
+    // 先备份当前设置
+    backupXFCEShortcuts();
+
+    if (m_xfceSettings.isEmpty()) {
+        qWarning(log) << "No XFCE settings to disable";
+        return false;
+    }
+
+    bool bAllSuccess = true;
+    int nSuccessCount = 0;
+    int nTotalCount = 0;
+
+    // 遍历所有备份的快捷键，将其设置为空或无效值
+    for (auto it = m_xfceSettings.begin(); it != m_xfceSettings.end(); ++it) {
+        nTotalCount++;
+        QString property = it.key();
+        QString value = it.value();
+
+        /*
+        // 跳过一些系统必需的快捷键（如果不想禁用的话）
+        // 例如：保留窗口管理器的基本功能
+        if (property.contains("/xfwm4/system/") ||
+            property.contains("/xfwm4/default/")) {
+            qDebug(log) << "Skip system shortcut:" << property;
+            continue;
+        }//*/
+
+        // 对于 XFCE，使用 xfconf-query 重置快捷键
+        // 方法1：将值设置为空字符串（对于某些类型的快捷键有效）
+        // 方法2：使用 --reset 重置为默认值
+        // 方法3：设置为无效的值
+
+        QStringList args;
+        args << "--channel" << "xfce4-keyboard-shortcuts";
+
+        // 检查属性类型，有些是 string 类型，有些是 int 类型
+        // 尝试重置该属性
+        args << "--reset" << "--property" << property;
+
+        if (runCommand("xfconf-query", args)) {
+            nSuccessCount++;
+            qDebug(log) << "Disabled:" << property << "=" << value;
+        } else {
+            // 如果重置失败，尝试设置为空值
+            QStringList setArgs;
+            setArgs << "--channel" << "xfce4-keyboard-shortcuts"
+                    << "--property" << property
+                    << "--set" << "";
+
+            if (runCommand("xfconf-query", setArgs)) {
+                nSuccessCount++;
+                qDebug(log) << "Disabled (set empty):" << property << "=" << value;
+            } else {
+                qCritical(log) << "Disabled failed:" << property;
+                bAllSuccess = false;
+            }
+        }
+    }
+
+    qDebug(log) << QString("XFCE shortcuts disabled: %1/%2 success").arg(nSuccessCount).arg(nTotalCount);
+
+    // 通知 XFCE 设置已更改
+    //runCommand("xfce4-settings-helper", {"--restart"});
+    return bAllSuccess;
+}
+
+/*!
+ * \brief 备份 XFCE 桌面快捷键
+ * \return 返回备份成功的个数
+ * \details 可使用命令 `xfce4-settings-manager` 打开设置对话框，
+ *       或者在系统中 "设置 -> 设置管理器 -> 键盘 -> 应用程序快捷键" 查看和设置快捷键
+ * - 步骤 1：查看现有快捷键
+ *   运行以下命令列出所有已配置的快捷键：
+ *   `xfconf-query --channel xfce4-keyboard-shortcuts -lv`
+ * - 步骤 2：添加新快捷键
+ *   例如，将 Ctrl+Alt+T 设置为打开终端：
+ *
+ *   ```
+ *   xfconf-query --create --channel xfce4-keyboard-shortcuts \
+ *   --property "/commands/custom/<Primary><Alt>T" \
+ *   --type string --set "xfce4-terminal"
+ *   ```
+ *
+ * - 步骤 3：删除快捷键
+ *   取消某个快捷键（如 Ctrl+Alt+Left）：
+ *
+ *   ```
+ *   xfconf-query --reset --channel xfce4-keyboard-shortcuts \
+ *   --property "/xfwm4/custom/<Primary><Alt>Left"
+ *   ```
+ *
+ * 注意事项
+ * <Primary> 指的是 Ctrl, <Super> 指的是 Windows 键.
+ * 快捷键配置文件位于 ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml，可以手动编辑以实现更高级的自定义
+ * Both methods allow you to efficiently set up shortcuts tailored to your workflow!
+ */
+int CDesktopShortcutManager::backupXFCEShortcuts()
+{
+    int nCount = 0;
+    qDebug(log) << "Backup XFCE settings ......";
+
+    // 清空之前备份
+    m_xfceSettings.clear();
+
+    // 获取 XFCE 键盘快捷键的所有配置
+    // xfconf-query --channel xfce4-keyboard-shortcuts -lv
+    QString output = getCommandOutput("xfconf-query", {"--channel", "xfce4-keyboard-shortcuts", "-lv"});
+    if (output.isEmpty()) {
+        qWarning(log) << "Unable to get XFCE keyboard shortcuts configuration";
+        return 0;
+    }
+
+    // 解析输出格式: "/property/path value"
+    // 例如: "/xfwm4/custom/<Alt>F4 close_window"
+    //       "/commands/custom/<Primary><Alt>T xfce4-terminal"
+    //       "/xfwm4/custom/<Super>d show_desktop"
+    // 注意：有些属性可能只有路径而没有值，需要跳过
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    foreach(const QString &line, lines) {
+        // 使用正则表达式解析: 路径 + 值
+        // 格式: "/path/to/property value"
+        QRegularExpression regex("^(\"[^\"]*\"|/[^\\s]+)\\s+(.*)$");
+        QRegularExpressionMatch match = regex.match(line);
+
+        if (match.hasMatch()) {
+            QString property = match.captured(1);
+            // 移除可能的引号
+            if (property.startsWith('"') && property.endsWith('"')) {
+                property = property.mid(1, property.length() - 2);
+            }
+
+            QString value = match.captured(2).trimmed();
+
+            // 存储配置到内存
+            m_xfceSettings[property] = value;
+            nCount++;
+            qDebug(log) << "Backup:" << property << " = " << value;
+        } else {
+            // 可能是一些只有属性没有值的行，或者是其他格式
+            qDebug(log) << "Skipping line (unable to parse):" << line;
+        }
+    }
+
+    /*
+    // 同时备份配置文件本身作为额外保障
+    QString configPath = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
+                         + "/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml";
+
+    if (QFile::exists(configPath)) {
+        // 构建备份路径
+        QString backupDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+        QString backupFile = backupDir + "/xfce4-keyboard-shortcuts_backup.xml";
+
+        if (backupFile(configPath, backupFile)) {
+            qDebug(log) << "Backup configuration file:" << configPath << "->" << backupFile;
+        } else {
+            qWarning(log) << "Failed to backup configuration file:" << configPath;
+        }
+    }//*/
+
+    qDebug(log) << QString("XFCE settings backup completed, a total of %1 settings were backed up").arg(nCount);
+    return nCount;
+}
+
+/*!
+ * \brief 恢复 XFCE 桌面快捷键
+ * \return 如果有错误则返回 false， 全对则返回 true
+ */
+bool CDesktopShortcutManager::restoreXFCEShortcuts()
+{
+    qDebug(log) << "Restore XFCE settings ......";
+
+    if (m_xfceSettings.isEmpty()) {
+        qWarning(log) << "No backup settings are available to restore";
+        return false;
+    }
+
+    bool bAllSuccess = true;
+    int nSuccessCount = 0;
+    int nTotalCount = 0;
+
+    // 恢复备份的设置
+    for (auto it = m_xfceSettings.begin(); it != m_xfceSettings.end(); ++it) {
+        nTotalCount++;
+        QString property = it.key();
+        QString value = it.value();
+
+        /*
+        // 跳过系统快捷键
+        if (property.contains("/xfwm4/system/") ||
+            property.contains("/xfwm4/default/")) {
+            qDebug(log) << "Skip system shortcut restore:" << property;
+            continue;
+        }//*/
+
+        // 恢复快捷键设置
+        QStringList args;
+        args << "--channel" << "xfce4-keyboard-shortcuts"
+             << "--property" << property
+             << "--set" << value;
+
+        if (runCommand("xfconf-query", args)) {
+            nSuccessCount++;
+            qDebug(log) << "Restored:" << property << "=" << value;
+        } else {
+            qCritical(log) << "Restore failed:" << property << "=" << value;
+            bAllSuccess = false;
+        }
+    }
+
+    qDebug(log) << QString("XFCE shortcuts restored: %1/%2 success").arg(nSuccessCount).arg(nTotalCount);
+
+    // 通知 XFCE 设置已更改
+    //runCommand("xfce4-settings-helper", {"--restart"});
+    return bAllSuccess;
+}
+
 #endif // #if defined(Q_OS_LINUX)
 
 // 通用工具方法
