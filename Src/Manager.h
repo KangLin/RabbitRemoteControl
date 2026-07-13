@@ -37,6 +37,7 @@
 #endif
 
 class CParameterPlugin;
+class QPluginLoader;
 
 /*!
  * \~chinese 管理插件
@@ -226,10 +227,10 @@ private:
     int FindPlugins(QDir dir, QStringList filters);
     /*!
      * \brief Append Plugin
-     * \param plugin
+     * \param pLoader
      * \return
      */
-    int AppendPlugin(CPlugin* plugin);
+    int AppendPlugin(QPluginLoader *pLoader, CPlugin *p);
 
 private Q_SLOTS:
     void slotCaptureAllKeyboard();
@@ -237,7 +238,7 @@ private Q_SLOTS:
 private:
     QString m_szSettingsFile;
     //! ID -> CPlugin
-    QMap<QString, CPlugin*> m_Plugins;
+    QMap<QString, QPluginLoader*> m_Plugins;
     qint8 m_FileVersion;
     QSharedPointer<QTranslator> m_Translator;
     CHook* m_pHook;

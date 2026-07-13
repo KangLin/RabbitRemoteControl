@@ -74,9 +74,13 @@ int main(int argc, char *argv[])
 {
     int nRet = 0;
 
-// #if HAVE_VirtualKeyboard && defined(Q_OS_ANDROID)
-//     InitAndroidVirtualKeyboard();
-// #endif
+//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+//    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
+//#endif
+
+//#if HAVE_VirtualKeyboard && defined(Q_OS_ANDROID)
+//    InitAndroidVirtualKeyboard();
+//#endif
 
     // 检查环境变量是否设置成功
     QByteArray imModule = qgetenv("QT_IM_MODULE");
@@ -116,10 +120,6 @@ int main(int argc, char *argv[])
     QtAndroid::hideSplashScreen();
 #endif
 
-//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-//    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
-//#endif
-
     QApplication::setApplicationVersion(RabbitRemoteControl_VERSION);
     QApplication::setApplicationName("RabbitRemoteControl");
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
@@ -139,88 +139,93 @@ int main(int argc, char *argv[])
                       + " " + QObject::tr("Start") + " ......"
                << "\n" << app.arguments();
 
-    QSharedPointer<QTranslator> tApp =
-        RabbitCommon::CTools::Instance()->InstallTranslator("RabbitRemoteControlApp");
+    {
+        QSharedPointer<QTranslator> tApp =
+            RabbitCommon::CTools::Instance()->InstallTranslator("RabbitRemoteControlApp");
 
-    app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
-    app.setOrganizationName(QObject::tr("Kang Lin Studio"));
+        app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
+        app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
 #ifdef HAVE_UPDATE
-    // Check update version
-    QScopedPointer<CFrmUpdater> pUpdater(new CFrmUpdater());
+        // Check update version
+        QScopedPointer<CFrmUpdater> pUpdater(new CFrmUpdater());
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    if(qEnvironmentVariable("SNAP").isEmpty()
-        && qEnvironmentVariable("FLATPAK_ID").isEmpty())
+        if(qEnvironmentVariable("SNAP").isEmpty()
+            && qEnvironmentVariable("FLATPAK_ID").isEmpty())
 #else
-    if(qgetenv("SNAP").isEmpty()
-        && qgetenv("FLATPAK_ID").isEmpty())
+        if(qgetenv("SNAP").isEmpty()
+            && qgetenv("FLATPAK_ID").isEmpty())
 #endif
-    {
-        if(pUpdater) {
-            pUpdater->setAttribute(Qt::WA_DeleteOnClose, false);
-            QIcon icon = QIcon::fromTheme("app");
-            if(!icon.isNull()) {
-                auto sizeList = icon.availableSizes();
-                if(!sizeList.isEmpty()) {
-                    QPixmap p = icon.pixmap(*sizeList.begin());
-                    pUpdater->SetTitle(p.toImage());
+        {
+            if(pUpdater) {
+                pUpdater->setAttribute(Qt::WA_DeleteOnClose, false);
+                QIcon icon = QIcon::fromTheme("app");
+                if(!icon.isNull()) {
+                    auto sizeList = icon.availableSizes();
+                    if(!sizeList.isEmpty()) {
+                        QPixmap p = icon.pixmap(*sizeList.begin());
+                        pUpdater->SetTitle(p.toImage());
+                    }
                 }
-            }
-            if(app.arguments().length() > 1) {
-                try {
-                    pUpdater->GenerateUpdateJson();
-                    pUpdater->GenerateUpdateXml();
-                } catch(...) {
-                    qCritical(log) << "Generate update fail";
+                if(app.arguments().length() > 1) {
+                    try {
+                        pUpdater->GenerateUpdateJson();
+                        pUpdater->GenerateUpdateXml();
+                    } catch(...) {
+                        qCritical(log) << "Generate update fail";
+                    }
+                    qInfo(log) << app.applicationName() + " " + app.applicationVersion()
+                                      + " " + QObject::tr("Generate update json file End");
+                    return 0;
                 }
-                qInfo(log) << app.applicationName() + " " + app.applicationVersion()
-                                  + " " + QObject::tr("Generate update json file End");
-                return 0;
+            } else {
+                qCritical(log) << "new CFrmUpdater() fail";
             }
-        } else {
-            qCritical(log) << "new CFrmUpdater() fail";
         }
-    }
 #endif // #ifdef HAVE_UPDATE
 
-    CStatsAppUsage* pStats = nullptr;
-    /*
-    QTimer::singleShot(RabbitCommon::CTools::GetRandomNumber(10, 50), [&](){
-        pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
-        app.processEvents();
-    });//*/
+        CStatsAppUsage* pStats = nullptr;
+        /*
+        QTimer::singleShot(RabbitCommon::CTools::GetRandomNumber(10, 50), [&]() {
+            pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
+            app.processEvents();
+        });//*/
 
-    MainWindow* w = new MainWindow();
+        MainWindow* w = new MainWindow();
 
-    try {
-        //w->setWindowIcon(QIcon::themeName("app"));
-        //w->setWindowTitle(app.applicationDisplayName());
-        app.processEvents();
-        RC_SHOW_WINDOW(w);
-        app.processEvents();
-        // For time-consuming operations
-        nRet = w->Initial();
-        if(!nRet)
-            nRet = app.exec();
-    } catch (std::exception &e) {
-        qCritical(log) << "exception:" << e.what();
-    } catch(...) {
-        qCritical(log) << "exception:";
+        try {
+            //w->setWindowIcon(QIcon::themeName("app"));
+            //w->setWindowTitle(app.applicationDisplayName());
+            app.processEvents();
+            RC_SHOW_WINDOW(w);
+            app.processEvents();
+            // For time-consuming operations
+            nRet = w->Initial();
+            if(!nRet)
+                nRet = app.exec();
+        } catch (std::exception &e) {
+            qCritical(log) << "exception:" << e.what();
+        } catch(...) {
+            qCritical(log) << "exception:";
+        }
+
+        delete w;
+        if(pStats) {
+            pStats->Stop();
+            delete pStats;
+        }
+
+        if(tApp)
+            RabbitCommon::CTools::Instance()->RemoveTranslator(tApp);
     }
 
-    delete w;
-    if(pStats) {
-        pStats->Stop();
-        delete pStats;
-    }
+    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + "End";
 
     RabbitCommon::CTools::Instance()->Clean();
-    if(tApp)
-        RabbitCommon::CTools::Instance()->RemoveTranslator(tApp);
+
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
 
-    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + "End";
     return nRet;
 }

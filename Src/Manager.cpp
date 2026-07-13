@@ -52,10 +52,17 @@ CManager::~CManager()
     qDebug(log) << "CManager::~CManager()";
 
     qApp->removeEventFilter(this);
-    
+
     if(m_pDatabaseFile) {
         delete m_pDatabaseFile;
         m_pDatabaseFile = nullptr;
+    }
+
+    for(auto it = m_Plugins.begin(); it != m_Plugins.end(); it++)
+    {
+        auto pLoader = it.value();
+        pLoader->unload();
+        pLoader->deleteLater();
     }
 
     if(m_pHook) {
@@ -85,7 +92,7 @@ int CManager::Initial(QString szFile)
     //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     //    Q_INIT_RESOURCE(translations_Plugin);
     //#endif
-    
+
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
         "Plugin", RabbitCommon::CTools::TranslationType::Library);
 
@@ -96,7 +103,7 @@ int CManager::Initial(QString szFile)
     m_pParameterPlugin = new CParameterPlugin();
     if(m_pParameterPlugin) {
         LoadSettings(m_szSettingsFile);
-        
+
         // Initial database
         auto pg = GetGlobalParameters();
         Q_ASSERT(pg);
@@ -146,7 +153,7 @@ int CManager::Initial(QString szFile)
             msg.checkBox()->setChecked(
                 m_pParameterPlugin->GetPromptAdministratorPrivilege());
             nRet = msg.exec();
-            
+
             m_pParameterPlugin->SetPromptAdministratorPrivilege(
                 msg.checkBox()->isChecked());
             SaveSettings(m_szSettingsFile);
@@ -156,7 +163,7 @@ int CManager::Initial(QString szFile)
                 return -1;
             }
         }
-        
+
         check = connect(m_pParameterPlugin, SIGNAL(sigCaptureAllKeyboard()),
                         this, SLOT(slotCaptureAllKeyboard()));
         Q_ASSERT(check);
@@ -169,7 +176,7 @@ int CManager::Initial(QString szFile)
         qCritical(log) << "new CParameterPlugin() fail";
         Q_ASSERT(m_pParameterPlugin);
     }
-    
+
     LoadPlugins();
 
     m_pDatabaseFile = new CDatabaseFile();
@@ -185,21 +192,6 @@ int CManager::Initial(QString szFile)
 int CManager::LoadPlugins()
 {
     int nRet = 0;
-    /*
-    foreach (QObject *plugin, QPluginLoader::staticInstances())
-    {
-        CPlugin* p = qobject_cast<CPlugin*>(plugin);
-        if(p)
-        {
-            if(m_Plugins.find(p->Id()) == m_Plugins.end())
-            {
-                qInfo(log) << "Success: Load plugin" << p->Name();
-                AppendPlugin(p);
-            }
-            else
-                qWarning(log) << "The plugin" << p->Name() << " is exist.";
-        }
-    }//*/
 
     QStringList lstPaths;
     if(m_pParameterPlugin->GetEnableSetPluginsPath()) {
@@ -300,37 +292,39 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
 int CManager::LoadPlugin(const QString &szPath)
 {
     int nRet = -1;
-    QPluginLoader loader(szPath);
-    QObject *plugin = loader.instance();
-    if (plugin) {
-        CPlugin* p = qobject_cast<CPlugin*>(plugin);
-        if(p)
-        {
-            if(m_Plugins.find(p->Id()) == m_Plugins.end())
-            {
-                qInfo(log) << "Success: Load plugin"
-                           << p->Name() << "from" << szPath;
-                AppendPlugin(p);
-            }
-            else
-                qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
-            return 0;
-        } else
-            qCritical(log) << "The plugin is not \"CPlugin\":" << szPath;
-    } else {
-        QString szMsg;
-        szMsg = "Error: Load plugin fail from " + szPath;
-        if(!loader.errorString().isEmpty())
-            szMsg += "; Error: " + loader.errorString();
-        qCritical(log) << szMsg.toStdString().c_str();
-    }
+    QPluginLoader* pLoader = new QPluginLoader(szPath, this);
+    do{
+        QObject *plugin = pLoader->instance();
+        if (plugin) {
+            CPlugin* p = qobject_cast<CPlugin*>(plugin);
+            if(p) {
+                if(m_Plugins.find(p->Id()) == m_Plugins.end()) {
+                    qInfo(log) << "Success: Load plugin"
+                               << p->Name() << "from" << szPath;
+                    nRet = AppendPlugin(pLoader, p);
+                    return nRet;
+                } else {
+                    qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
+                    nRet = 0;
+                }
+            } else
+                qCritical(log) << "The plugin is not \"CPlugin\":" << szPath;
+        } else {
+            QString szMsg;
+            szMsg = "Error: Load plugin fail from " + szPath;
+            if(!pLoader->errorString().isEmpty())
+                szMsg += "; Error: " + pLoader->errorString();
+            qCritical(log) << szMsg.toStdString().c_str();
+        }
+    } while(0);
+    pLoader->deleteLater();
     return nRet;
 }
 
-int CManager::AppendPlugin(CPlugin *p)
+int CManager::AppendPlugin(QPluginLoader *pLoader, CPlugin* p)
 {
-    if(!p) return -1;
-    m_Plugins.insert(p->Id(), p);
+    if(!pLoader) return -1;
+    m_Plugins.insert(p->Id(), pLoader);
     //p->InitTranslator();
     int val = 0;
     bool bRet = QMetaObject::invokeMethod(
@@ -357,6 +351,7 @@ int CManager::AppendPlugin(CPlugin *p)
         m_szDetails += p->Details() + "\n";
 
     bRet = connect(p, &CPlugin::sigNewOperate, this, &CManager::sigNewOperate);
+    Q_ASSERT(bRet);
     return 0;
 }
 
@@ -369,7 +364,7 @@ COperate* CManager::CreateOperate(const QString& id)
     {
         bool bRet = 0;
         qDebug(log) << "CreateOperate id:" << id;
-        auto plugin = it.value();
+        auto plugin = it.value()->instance();
         if(plugin) {
             //p = plugin->CreateOperate(id);
             bRet = QMetaObject::invokeMethod(
@@ -612,7 +607,8 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
     }
 
     //! [Get the widget to set global parameters for the plugin]
-    foreach(auto plugin, m_Plugins) {
+    foreach(auto pLoader, m_Plugins) {
+        auto plugin = pLoader->instance();
         if(!plugin) continue;
         QWidget* pSettings = nullptr;
         bool bRet = QMetaObject::invokeMethod(
@@ -636,10 +632,10 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 int CManager::EnumPlugins(Handle *handle)
 {
     int nRet = 0;
-    QMap<QString, CPlugin*>::iterator it;
-    for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
+    for(auto it = m_Plugins.begin(); it != m_Plugins.end(); it++)
     {
-        nRet = handle->onProcess(it.key(), it.value());
+        CPlugin* p = qobject_cast<CPlugin*>(it.value()->instance());
+        nRet = handle->onProcess(it.key(), p);
         if(nRet)
             return nRet;
     }
@@ -650,10 +646,10 @@ int CManager::EnumPlugins(Handle *handle)
 int CManager::EnumPlugins(std::function<int(const QString &, CPlugin *)> cb)
 {
     int nRet = 0;
-    QMap<QString, CPlugin*>::iterator it;
-    for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
+    for(auto it = m_Plugins.begin(); it != m_Plugins.end(); it++)
     {
-        nRet = cb(it.key(), it.value());
+        CPlugin* p = qobject_cast<CPlugin*>(it.value()->instance());
+        nRet = cb(it.key(), p);
         if(nRet)
             return nRet;
     }
