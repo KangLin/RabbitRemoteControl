@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.25)
 MESSAGE(STATUS "Found CMake ${CMAKE_VERSION}")
 
 project(RabbitRemoteControl
@@ -36,18 +36,6 @@ endif()
 if(POLICY CMP0021)
     cmake_policy(SET CMP0021 NEW)
 endif()
-
-IF(MSVC)
-    # This option is to enable the /MP switch for Visual Studio 2005 and above compilers
-    OPTION(WIN32_USE_MP "Set to ON to build with the /MP option (Visual Studio 2005 and above)." ON)
-    MARK_AS_ADVANCED(WIN32_USE_MP)
-    IF(WIN32_USE_MP)
-        #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
-        add_compile_options(/MP)
-    ENDIF(WIN32_USE_MP)
-    add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
-    add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-ENDIF(MSVC)
 
 SET(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libs")
 if (BUILD_SHARED_LIBS)
@@ -99,9 +87,6 @@ SET(CMAKE_AUTOMOC ON)
 SET(CMAKE_AUTORCC ON)
 
 # Need qt components
-if(CMAKE_VERSION VERSION_LESS "3.7.0")
-    set(CMAKE_INCLUDE_CURRENT_DIR ON)
-endif()
 SET(QT_COMPONENTS Core)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})
