@@ -1,13 +1,18 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "PluginPlayer.h"
 #include "OperatePlayer.h"
 #include <QLoggingCategory>
+#include "RabbitCommonTools.h"
+#include "PluginPlayer.h"
+
 static Q_LOGGING_CATEGORY(log, "Player.Plugin")
 CPluginPlayer::CPluginPlayer(QObject *parent)
     : CPlugin{parent}
 {
     qDebug(log) << Q_FUNC_INFO;
+    QStringList lstPermission;
+    lstPermission << "android.permission.CAMERA";
+    RabbitCommon::CTools::AndroidRequestPermission(lstPermission);
 }
 
 CPluginPlayer::~CPluginPlayer()

@@ -140,6 +140,13 @@ int main(int argc, char *argv[])
                << "\n" << app.arguments();
 
     {
+        QStringList permissions;
+        permissions << "android.permission.WRITE_EXTERNAL_STORAGE"
+                    << "android.permission.READ_EXTERNAL_STORAGE"
+                    << "android.permission.INTERNET"
+                    << "android.permission.WAKE_LOCK";
+        RabbitCommon::CTools::AndroidRequestPermission(permissions);
+
         QSharedPointer<QTranslator> tApp =
             RabbitCommon::CTools::Instance()->InstallTranslator("RabbitRemoteControlApp");
 

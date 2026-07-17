@@ -100,7 +100,7 @@ option(WITH_MACOSX_BUNDLE "Create BUNDLE directory" OFF)
 if(WITH_MACOSX_BUNDLE)
     set(IS_MACOSX_BUNDLE "IS_MACOSX_BUNDLE")
 endif()
-set(APP_ID io.github.KangLin.RabbitRemoteControl)
+set(APP_ID "io.github.KangLin.RabbitRemoteControl")
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
@@ -129,17 +129,86 @@ if(ANDROID)
     if(NOT EXISTS ${CMAKE_BINARY_DIR}/plugins)
         file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/plugins)
     endif()
+
+    if(NOT RabbitRemoteControl_VERSION)
+        message(WARNING "RabbitRemoteControl_VERSION is empty, using default version")
+        set(RabbitRemoteControl_VERSION "1.0.0")
+    endif()
+
+    # 确保版本号格式正确
+    if(NOT RabbitRemoteControl_VERSION MATCHES "^[0-9]+\\.[0-9]+\\.[0-9]+")
+        message(WARNING "Version format is not 'x.y.z', using fallback parsing")
+    endif()
+
+    # 使用方案一的解析逻辑
+    string(REGEX MATCHALL "[0-9]+" VERSION_PARTS "${RabbitRemoteControl_VERSION}")
+    list(LENGTH VERSION_PARTS PARTS_COUNT)
+
+    if(PARTS_COUNT GREATER_EQUAL 3)
+        list(GET VERSION_PARTS 0 VERSION_MAJOR)
+        list(GET VERSION_PARTS 1 VERSION_MINOR)
+        list(GET VERSION_PARTS 2 VERSION_PATCH)
+    else()
+        # 不足3段时补齐
+        set(VERSION_MAJOR 1)
+        set(VERSION_MINOR 0)
+        set(VERSION_PATCH 0)
+    endif()
+
+    math(EXPR QT_ANDROID_VERSION_CODE "${VERSION_MAJOR}*10000 + ${VERSION_MINOR}*100 + ${VERSION_PATCH}")
+    set(QT_ANDROID_VERSION_NAME "${RabbitRemoteControl_VERSION}")
+
+    message(STATUS "${PROJECT_NAME} Version Code: ${QT_ANDROID_VERSION_CODE}, Version Name: ${QT_ANDROID_VERSION_NAME}")
+
     set_target_properties(${PROJECT_NAME} PROPERTIES
-        # Android 包名
-        QT_ANDROID_PACKAGE_NAME "io.github.KangLinStudio.RabbitRemoteControl"
-        # 最小 SDK 版本
-        QT_ANDROID_MIN_SDK_VERSION 28
-        # 目标 SDK 版本
+        QT_ANDROID_PACKAGE_NAME "${APP_ID}"
+        QT_ANDROID_APP_NAME "@string/app_name"
+        QT_ANDROID_APP_ICON "@drawable/icon"
+        QT_ANDROID_VERSION_CODE ${QT_ANDROID_VERSION_CODE}
+        QT_ANDROID_VERSION_NAME ${QT_ANDROID_VERSION_NAME}
+        #QT_ANDROID_MIN_SDK_VERSION 28
         QT_ANDROID_TARGET_SDK_VERSION 34
         QT_ANDROID_EXTRA_PLUGINS
             ${CMAKE_BINARY_DIR}/plugins
         )
-endif()
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.ACCESS_NETWORK_STATE
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.INTERNET
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.WRITE_EXTERNAL_STORAGE
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.READ_EXTERNAL_STORAGE
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.BLUETOOTH
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.ACCESS_FINE_LOCATION
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.VIBRATE
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.CAMERA
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.CALL_PHONE
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.WAKE_LOCK
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.DEVICE_POWER
+    )
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.REQUEST_INSTALL_PACKAGES
+    )
+
+endif(ANDROID)
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
     configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt_debug.ini

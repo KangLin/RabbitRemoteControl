@@ -31,7 +31,8 @@
     
 #include <QLoggingCategory>
 #include <QDir>
-    
+
+#include "RabbitCommonTools.h"
 #include "PluginWakeOnLan.h"
 #include "OperateWakeOnLan.h"
 
@@ -105,6 +106,13 @@ const QString CPluginWakeOnLan::Details() const
 COperate* CPluginWakeOnLan::CreateOperate(const QString& szId, CParameterPlugin *para)
 {
     if(!m_pOperate) {
+        QStringList permissions;
+        permissions << "android.permission.CHANGE_WIFI_STATE"
+                    << "android.permission.ACCESS_WIFI_STATE"
+                    << "android.permission.ACCESS_NETWORK_STATE"
+                    << "android.permission.CHANGE_NETWORK_STATE";
+        RabbitCommon::CTools::AndroidRequestPermission(permissions);
+
         m_pOperate = CPlugin::CreateOperate(szId, para);
         if(!m_pOperate) return m_pOperate;
 

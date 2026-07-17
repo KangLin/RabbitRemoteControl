@@ -59,8 +59,8 @@ update_version() {
         $SED_CMD "s/  \"version-string\":.*\"${VERSION_PATTERN}\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
     fi
 
-    $SED_CMD "s/android:versionCode=\".*\"/android:versionCode=\"${MAJOR_VERSION}\"/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
-    $SED_CMD "s/android:versionName=\"${VERSION_PATTERN}\"/android:versionName=\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
+    #$SED_CMD "s/android:versionCode=\".*\"/android:versionCode=\"${MAJOR_VERSION}\"/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
+    #$SED_CMD "s/android:versionName=\"${VERSION_PATTERN}\"/android:versionName=\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
 
     #echo "# $VERSION " > ChangeLogDetail.tmp
     #echo "`git log --pretty=format:'- %s (%an <%ae>)' ${PRE_TAG}..HEAD`" >> ChangeLogDetail.tmp
