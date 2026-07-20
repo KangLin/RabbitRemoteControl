@@ -125,7 +125,7 @@ else()
             "       git clone https://github.com/KangLin/RabbitCommon.git ${CMAKE_SOURCE_DIR}/..\n"
             "2.2 Then set cmake variable or environment variable RabbitCommon_ROOT to download root directory.\n"
             "   ag:\n"
-            "       cmake -DRabbitCommon_ROOT=${CMAKE_SOURCE_DIR}/.. ")
+            "       cmake -DRabbitCommon_ROOT=${CMAKE_SOURCE_DIR}/../RabbitCommon ")
     endif()
 endif()
 

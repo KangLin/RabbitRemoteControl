@@ -384,7 +384,7 @@ create_tag() {
         check_chang_log
         echo ""
 
-        read -t 60 -p "? Deploy? (y/N): " INPUT
+        read -t 60 -p "? Deploy? (y/N): " INPUT || true
         if [ "${INPUT:-N}" != "Y" ] && [ "${INPUT:-N}" != "y" ]; then
             echo_error "Deployment cancelled"
             exit 0
