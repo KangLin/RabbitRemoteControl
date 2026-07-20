@@ -145,7 +145,14 @@ jobs:
             ${{env.TOOLS_DIR}}/qt_*
           key: install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}${{matrix.variant.lable}}_${{matrix.variant.os}}
 
+      - name: git clone RabbitCommon
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+            git clone https://github.com/KangLin/RabbitCommon.git
+
       - name: run docker
+        env:
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
           if [ -n "${{matrix.variant.lable}}" ]; then
             docker_image="${{matrix.variant.image}}:${{matrix.variant.lable}}"

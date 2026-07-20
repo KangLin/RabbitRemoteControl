@@ -680,15 +680,21 @@ fi
 
 if [ $RabbitCommon -eq 1 ]; then
     echo_status "Install RabbitCommon ......"
-    pushd "$SOURCE_DIR"
-    if [ ! -d RabbitCommon ]; then
-        git clone https://github.com/KangLin/RabbitCommon.git
-    else
-        pushd RabbitCommon
+    if [ -d "$RabbitCommon_ROOT" ]; then
+        pushd $RabbitCommon_ROOT
         git pull
         popd
+    else
+        pushd "$SOURCE_DIR"
+        if [ ! -d RabbitCommon ]; then
+            git clone https://github.com/KangLin/RabbitCommon.git
+        else
+            pushd RabbitCommon
+            git pull
+            popd
+        fi
+        popd
     fi
-    popd
 fi
 
 if [ $LIBSSH -eq 1 ]; then

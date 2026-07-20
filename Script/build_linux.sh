@@ -42,7 +42,7 @@ Options:
 
 Directory options:
   --install=DIR         Set installation directory
-  --source=DIR          Set source code directory  
+  --source=DIR          Set source code directory
   --tools=DIR           Set tools directory
   --build=DIR           Set build directory
 
@@ -57,7 +57,7 @@ Target options:
   --appimage:           Build AppImage
   --macos:              Build macOS
   --lint:               Check with lint
-  
+
 Other options:
   --qt=VERSION    Install Qt (can specify version)(only --appimage)
 
@@ -93,7 +93,7 @@ parse_with_getopt() {
         #将规范化后的命令行参数分配至位置参数（$1,$2,......)
         eval set -- "${ARGS}"
         #echo "formatted parameters=[$@]"
-    
+
         while [ $1 ]
         do
             #echo "\$1: $1"
@@ -370,16 +370,20 @@ if [ $DOCKER -eq 1 ]; then
     chmod a+rw ${BUILD_LINUX_DIR}/RabbitRemoteControl.tar.gz
     popd
 
+    DOCKER_PARA="$DOCKER_PARA -e CI=${CI}"
+    if [ -d "$RabbitCommon_ROOT" ]; then
+        DOCKER_PARA="$DOCKER_PARA --volume ${RabbitCommon_ROOT}:/home/RabbitCommon -e RabbitCommon_ROOT=/home/RabbitCommon"
+    fi
     if [ $DEB -eq 1 ]; then
         if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian|linuxmint) ]]; then
-            DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+            DOCKER_PARA="$DOCKER_PARA -e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         fi
         echo "DOCKER_PLATFORM: $DOCKER_PLATFORM"
         if [ -n "$DOCKER_PLATFORM" ]; then
             DOCKER_PARA="$DOCKER_PARA --platform $DOCKER_PLATFORM"
         fi
+
         docker run --privileged ${DOCKER_PARA} \
-            -e CI=${CI} \
             --volume ${REPO_ROOT}:/home/RabbitRemoteControl \
             --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
@@ -399,11 +403,11 @@ if [ $DOCKER -eq 1 ]; then
 
     if [ $APPIMAGE -eq 1 ]; then
         #if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian|linuxmint) ]]; then
-        #    DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        #    DOCKER_PARA="$DOCKER_PARA -e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         #fi
         case "$DISTRO" in
         ubuntu|debian|linuxmint)
-            DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+            DOCKER_PARA="$DOCKER_PARA -e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
             ;;
         fedora)
             # Install getopt
@@ -411,7 +415,6 @@ if [ $DOCKER -eq 1 ]; then
             ;;
         esac
         docker run --privileged ${DOCKER_PARA} \
-            -e CI=${CI} \
             --volume ${REPO_ROOT}:/home/RabbitRemoteControl \
             --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
@@ -440,7 +443,7 @@ if [ $DOCKER -eq 1 ]; then
     fi
 
     if [ $RPM -eq 1 ]; then
-        docker run --volume ${BUILD_LINUX_DIR}:/home/build \
+        docker run ${DOCKER_PARA} --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
             --volume ${TOOLS_DIR}:/home/tools \
             --privileged --interactive --rm ${DOCKER_IMAGE} \
@@ -475,6 +478,15 @@ if [ $DEB -eq 1 ]; then
         export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DINSTALL_QTKEYCHAIN=ON"
     fi
 
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
+    # Disable ci warn
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
+    fi
+
     ./build_depend.sh ${depend_para} \
         --rabbitcommon --tigervnc --pcapplusplus --qtermwidget --qftpserver --libssh \
         --install=${INSTALL_DIR} \
@@ -482,14 +494,8 @@ if [ $DEB -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    # Disable ci warn
-    if [ $CI ]; then
-        git config --global --add safe.directory $REPO_ROOT
-    fi
-
     export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON -DINSTALL_QFtpServer=ON"
     ./build_debpackage.sh --install=${INSTALL_DIR} \
-        --rabbitcommon=${SOURCE_DIR}/RabbitCommon \
         --verbose=${BUILD_VERBOSE}
 fi
 
@@ -519,23 +525,32 @@ if [ $APPIMAGE -eq 1 ]; then
     *)
     esac
 
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-    export BUILD_FREERDP=ON
-    export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
-    export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
-    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
-
     ./build_depend.sh --system_update --base --default \
-        --rabbitcommon --tigervnc --pcapplusplus ${depend_para} \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
+    export BUILD_FREERDP=ON
+    export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
+    export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
+    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
     # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
     fi
+
+    ./build_depend.sh \
+        --rabbitcommon --tigervnc --pcapplusplus ${depend_para} \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 
     ./build_appimage.sh --install=${INSTALL_DIR} \
         --tools=${TOOLS_DIR} \
@@ -546,7 +561,24 @@ fi
 if [ $RPM -eq 1 ]; then
     echo_status "build rpm package ......"
     #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
+
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
+
+    # Disable ci warn
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
+    fi
+
+    ./build_depend.sh --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus --qftpserver \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
@@ -562,19 +594,28 @@ fi
 
 if [ $MACOS -eq 1 ]; then
     echo_status "build macos bundle package ......"
+
+    ./build_depend.sh --system_update --base --default --macos \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
+    # Disable ci warn
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
+    fi
+
     ./build_depend.sh --system_update --base --default --macos \
         --rabbitcommon --tigervnc --qtermwidget --qftpserver \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
-
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-
-    # Disable ci warn
-    if [ $CI ]; then
-        git config --global --add safe.directory $REPO_ROOT
-    fi
 
     ./build_macos.sh --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
@@ -596,7 +637,21 @@ if [ $LINT -eq 1 ]; then
     *)
     esac
 
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    ./build_depend.sh --system_update --base --default \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
+    # Disable ci warn
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
+    fi
+
     export BUILD_FREERDP=ON
     export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
     export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH

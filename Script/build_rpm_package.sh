@@ -129,9 +129,13 @@ pushd $REPO_ROOT
 
 if [ ! -f ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz ]; then
     mkdir -p ~/rpmbuild/SOURCES/
-    git archive --format=tar.gz --prefix=RabbitRemoteControl/ -o ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz HEAD
+    if [ -d $REPO_ROOT/.git ]; then
+        git archive --format=tar.gz --prefix=RabbitRemoteControl/ -o ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz HEAD
+    fi
 fi
-export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+if [ -z "$RabbitCommon_ROOT" ] then;
+    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+fi
 export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 export INSTALL_DIR=${INSTALL_DIR}
 rpmbuild --nodebuginfo -bb Package/rpm/rabbitremotecontrol.spec --define "build_time $(date '+%a %b %d %Y')"
