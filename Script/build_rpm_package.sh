@@ -133,7 +133,7 @@ if [ ! -f ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz ]; then
         git archive --format=tar.gz --prefix=RabbitRemoteControl/ -o ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz HEAD
     fi
 fi
-if [ -z "$RabbitCommon_ROOT" ] then;
+if [ -z "$RabbitCommon_ROOT" ]; then
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
 fi
 export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
