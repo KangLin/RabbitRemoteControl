@@ -78,7 +78,7 @@ bool CDesktopShortcutManager::disableAllShortcuts()
 #endif
 
     if (success) {
-        qDebug(log) << "All desktop shortcuts have been disabled";
+        qInfo(log) << "All desktop shortcuts have been disabled";
     }
 
     return success;
@@ -109,7 +109,7 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
 #endif
 
     if (success) {
-        qDebug(log) << "All desktop shortcuts have been restored";
+        qInfo(log) << "All desktop shortcuts have been restored";
     }
 
     return success;
