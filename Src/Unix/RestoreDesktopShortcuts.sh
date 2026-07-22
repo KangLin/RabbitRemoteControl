@@ -10,10 +10,13 @@ case $DESKTOP_ENV in
     *gnome*|*cinnamon*)
         echo "Restore GNOME shortcuts ......"
         # 重置所有 GNOME 快捷键设置
-        gsettings reset-recursively org.gnome.desktop.wm.keybindings
-        gsettings reset-recursively org.gnome.shell.keybindings
+	for schema in `gsettings list-schemas|grep keybindings`
+	do
+		echo "Reset Schema: $schema"
+		gsettings reset-recursively $schema
+	done
         gsettings reset-recursively org.gnome.settings-daemon.plugins.media-keys
-        gsettings reset org.gnome.mutter overlay-key
+	gsettings reset org.gnome.mutter overlay-key
         #killall -3 gnome-shell
         echo "GNOME is restored"
         ;;
