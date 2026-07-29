@@ -550,17 +550,17 @@ File: %1</source>
         <translation>Janela principal</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="172"/>
+        <location filename="../../ParameterDlgSettings.ui" line="159"/>
         <source>No</source>
         <translation>Nenhum</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="196"/>
+        <location filename="../../ParameterDlgSettings.ui" line="310"/>
         <source>Main window receiver short cut key</source>
         <translation>Janela principal recebe teclas de atalho</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="132"/>
+        <location filename="../../ParameterDlgSettings.ui" line="303"/>
         <source>Save main window status</source>
         <translation>Salvar o status da janela principal</translation>
     </message>
@@ -580,82 +580,82 @@ File: %1</source>
         <translation>Retomar as últimas atividades na inicialização</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="152"/>
+        <location filename="../../ParameterDlgSettings.ui" line="139"/>
         <source>System tray icon context menu</source>
         <translation>Menu de contexto do ícone da bandeja do sistema</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="158"/>
+        <location filename="../../ParameterDlgSettings.ui" line="145"/>
         <source>Operate</source>
         <translation>Atividades</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="165"/>
+        <location filename="../../ParameterDlgSettings.ui" line="152"/>
         <source>Main menu bar</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="179"/>
+        <location filename="../../ParameterDlgSettings.ui" line="166"/>
         <source>Recent open</source>
         <translation>Recentes</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="203"/>
+        <location filename="../../ParameterDlgSettings.ui" line="176"/>
         <source>Tab view</source>
         <translation>Visualização de abas</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="215"/>
+        <location filename="../../ParameterDlgSettings.ui" line="188"/>
         <source>Position</source>
         <translation>Posição</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="288"/>
+        <location filename="../../ParameterDlgSettings.ui" line="261"/>
         <source>ToolTip</source>
         <translation>Tooltip</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="278"/>
+        <location filename="../../ParameterDlgSettings.ui" line="251"/>
         <source>Icon</source>
         <translation>Ícone</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="189"/>
+        <location filename="../../ParameterDlgSettings.ui" line="317"/>
         <source>Enable system tray icon</source>
         <translation>Ativar ícone da bandeja do sistema</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="227"/>
+        <location filename="../../ParameterDlgSettings.ui" line="200"/>
         <source>North</source>
         <translation>Superior</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="240"/>
+        <location filename="../../ParameterDlgSettings.ui" line="213"/>
         <source>South</source>
         <translation>Inferior</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="253"/>
+        <location filename="../../ParameterDlgSettings.ui" line="226"/>
         <source>West</source>
         <translation>Esquerda</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="266"/>
+        <location filename="../../ParameterDlgSettings.ui" line="239"/>
         <source>East</source>
         <translation>Direita</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="298"/>
+        <location filename="../../ParameterDlgSettings.ui" line="271"/>
         <source>Elided</source>
         <translation>Sem Título</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="310"/>
+        <location filename="../../ParameterDlgSettings.ui" line="283"/>
         <source>When the split view is full-screen, the split view is maintained</source>
         <translation>A exibição dividida (&quot;Ver-&gt;Tipo&quot;) é mantida em tela cheia</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="317"/>
+        <location filename="../../ParameterDlgSettings.ui" line="132"/>
         <source>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</source>
         <translation>&quot;Menu-&gt;Atividades-&gt;Iniciar&quot;: agrupar por tipo de plug-in</translation>
     </message>
@@ -1241,17 +1241,17 @@ File: %1</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="145"/>
+        <location filename="../../main.cpp" line="153"/>
         <source>Rabbit Remote Control</source>
         <translation>Rabbit Remote Control</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="146"/>
+        <location filename="../../main.cpp" line="154"/>
         <source>Kang Lin Studio</source>
         <translation>Kang Lin Studio</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="177"/>
+        <location filename="../../main.cpp" line="185"/>
         <source>Generate update json file End</source>
         <translation>Fim da geração do arquivo JSON de atualização</translation>
     </message>

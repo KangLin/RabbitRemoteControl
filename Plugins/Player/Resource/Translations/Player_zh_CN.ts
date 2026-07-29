@@ -194,48 +194,48 @@
 <context>
     <name>CPluginPlayer</name>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="35"/>
+        <location filename="../../PluginPlayer.cpp" line="40"/>
         <source>Player</source>
         <translation>播放器</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="35"/>
-        <location filename="../../PluginPlayer.cpp" line="44"/>
+        <location filename="../../PluginPlayer.cpp" line="40"/>
+        <location filename="../../PluginPlayer.cpp" line="49"/>
         <source>(Experimental)</source>
         <translation>(实验性的)</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="40"/>
+        <location filename="../../PluginPlayer.cpp" line="45"/>
         <source>Player: play media files or camera.</source>
         <translation>播放器：播放多媒体或摄像头。</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="42"/>
+        <location filename="../../PluginPlayer.cpp" line="47"/>
         <source> Record camera or media stream.</source>
         <translation> 录制摄像头或多媒体流。</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="69"/>
+        <location filename="../../PluginPlayer.cpp" line="74"/>
         <source>Dependency libraries</source>
         <translation>依赖库</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="70"/>
+        <location filename="../../PluginPlayer.cpp" line="75"/>
         <source>Qt version:</source>
         <translation>Qt 版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="71"/>
+        <location filename="../../PluginPlayer.cpp" line="76"/>
         <source>Compile version: </source>
         <translation>编译版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="72"/>
+        <location filename="../../PluginPlayer.cpp" line="77"/>
         <source>Runtime version: </source>
         <translation>运行版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="74"/>
+        <location filename="../../PluginPlayer.cpp" line="79"/>
         <source>Use QVideoWidget</source>
         <translation>使用 QVideoWidget</translation>
     </message>

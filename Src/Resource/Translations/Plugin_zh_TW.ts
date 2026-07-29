@@ -409,7 +409,7 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="134"/>
+        <location filename="../../Manager.cpp" line="141"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -417,68 +417,68 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="137"/>
+        <location filename="../../Manager.cpp" line="144"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系統快捷鍵（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="139"/>
+        <location filename="../../Manager.cpp" line="146"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域網內喚醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="141"/>
+        <location filename="../../Manager.cpp" line="148"/>
         <source>Restart program by administrator?</source>
         <translation>用管理員權限重啟程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="142"/>
+        <location filename="../../Manager.cpp" line="149"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="144"/>
+        <location filename="../../Manager.cpp" line="151"/>
         <source>Always shown</source>
         <translation>總是顯示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="250"/>
+        <location filename="../../Manager.cpp" line="242"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="348"/>
-        <location filename="../../Manager.cpp" line="676"/>
+        <location filename="../../Manager.cpp" line="342"/>
+        <location filename="../../Manager.cpp" line="672"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="349"/>
+        <location filename="../../Manager.cpp" line="343"/>
         <source>Type:</source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="351"/>
+        <location filename="../../Manager.cpp" line="345"/>
         <source>Protocol:</source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="352"/>
+        <location filename="../../Manager.cpp" line="346"/>
         <source>ID:</source>
         <translation>標識：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="354"/>
+        <location filename="../../Manager.cpp" line="348"/>
         <source>Description:</source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="596"/>
+        <location filename="../../Manager.cpp" line="591"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="681"/>
+        <location filename="../../Manager.cpp" line="677"/>
         <source>Dependency libraries</source>
         <translation>依賴庫</translation>
     </message>
@@ -514,6 +514,11 @@ Some features are limited.
         <location filename="../../Operate.cpp" line="108"/>
         <source>Set </source>
         <translation>設置 </translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="193"/>
+        <source>&quot;%1&quot; operations</source>
+        <translation>&quot;%1&quot; 操作</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="198"/>

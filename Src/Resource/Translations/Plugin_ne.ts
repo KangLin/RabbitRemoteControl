@@ -405,75 +405,75 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="134"/>
+        <location filename="../../Manager.cpp" line="141"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="137"/>
+        <location filename="../../Manager.cpp" line="144"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="139"/>
+        <location filename="../../Manager.cpp" line="146"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="141"/>
+        <location filename="../../Manager.cpp" line="148"/>
         <source>Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="142"/>
+        <location filename="../../Manager.cpp" line="149"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="144"/>
+        <location filename="../../Manager.cpp" line="151"/>
         <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="250"/>
+        <location filename="../../Manager.cpp" line="242"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="348"/>
-        <location filename="../../Manager.cpp" line="676"/>
+        <location filename="../../Manager.cpp" line="342"/>
+        <location filename="../../Manager.cpp" line="672"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="349"/>
+        <location filename="../../Manager.cpp" line="343"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="351"/>
+        <location filename="../../Manager.cpp" line="345"/>
         <source>Protocol:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="352"/>
+        <location filename="../../Manager.cpp" line="346"/>
         <source>ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="354"/>
+        <location filename="../../Manager.cpp" line="348"/>
         <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="596"/>
+        <location filename="../../Manager.cpp" line="591"/>
         <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="681"/>
+        <location filename="../../Manager.cpp" line="677"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -508,6 +508,11 @@ Some features are limited.
     <message>
         <location filename="../../Operate.cpp" line="108"/>
         <source>Set </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="193"/>
+        <source>&quot;%1&quot; operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

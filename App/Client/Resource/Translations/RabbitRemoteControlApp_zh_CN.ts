@@ -435,7 +435,7 @@ File: %1</source>
         <translation>最近打开文件最大数：</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="172"/>
+        <location filename="../../ParameterDlgSettings.ui" line="159"/>
         <source>No</source>
         <translation>无</translation>
     </message>
@@ -445,17 +445,17 @@ File: %1</source>
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="196"/>
+        <location filename="../../ParameterDlgSettings.ui" line="310"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷键</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="132"/>
+        <location filename="../../ParameterDlgSettings.ui" line="303"/>
         <source>Save main window status</source>
         <translation>保存主窗口状态</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="227"/>
+        <location filename="../../ParameterDlgSettings.ui" line="200"/>
         <source>North</source>
         <translation>上</translation>
     </message>
@@ -475,77 +475,77 @@ File: %1</source>
         <translation>启动时，恢复上次关闭时的操作</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="240"/>
+        <location filename="../../ParameterDlgSettings.ui" line="213"/>
         <source>South</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="253"/>
+        <location filename="../../ParameterDlgSettings.ui" line="226"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="266"/>
+        <location filename="../../ParameterDlgSettings.ui" line="239"/>
         <source>East</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="152"/>
+        <location filename="../../ParameterDlgSettings.ui" line="139"/>
         <source>System tray icon context menu</source>
         <translation>系统托盘图标右键菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="158"/>
+        <location filename="../../ParameterDlgSettings.ui" line="145"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="165"/>
+        <location filename="../../ParameterDlgSettings.ui" line="152"/>
         <source>Main menu bar</source>
         <translation>主菜单条</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="179"/>
+        <location filename="../../ParameterDlgSettings.ui" line="166"/>
         <source>Recent open</source>
         <translation>最近打开菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="203"/>
+        <location filename="../../ParameterDlgSettings.ui" line="176"/>
         <source>Tab view</source>
         <translation>标签视图</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="215"/>
+        <location filename="../../ParameterDlgSettings.ui" line="188"/>
         <source>Position</source>
         <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="278"/>
+        <location filename="../../ParameterDlgSettings.ui" line="251"/>
         <source>Icon</source>
         <translation>图标</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="288"/>
+        <location filename="../../ParameterDlgSettings.ui" line="261"/>
         <source>ToolTip</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="189"/>
+        <location filename="../../ParameterDlgSettings.ui" line="317"/>
         <source>Enable system tray icon</source>
         <translation>允许系统托盘图标</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="298"/>
+        <location filename="../../ParameterDlgSettings.ui" line="271"/>
         <source>Elided</source>
         <translation>省略号</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="310"/>
+        <location filename="../../ParameterDlgSettings.ui" line="283"/>
         <source>When the split view is full-screen, the split view is maintained</source>
         <translation>当拆分视图全屏时，保持拆分视图</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="317"/>
+        <location filename="../../ParameterDlgSettings.ui" line="132"/>
         <source>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</source>
         <translation>&quot;菜单-&gt;操作-&gt;开始&quot;: 根据类型分组</translation>
     </message>
@@ -1063,17 +1063,17 @@ File: %1</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="145"/>
+        <location filename="../../main.cpp" line="153"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔远程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="146"/>
+        <location filename="../../main.cpp" line="154"/>
         <source>Kang Lin Studio</source>
         <translation>康林工作室</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="177"/>
+        <location filename="../../main.cpp" line="185"/>
         <source>Generate update json file End</source>
         <translation>产生更新文件结束</translation>
     </message>
