@@ -189,10 +189,10 @@ int COperate::Save(QString szFile)
 
 int COperate::Initial()
 {
-    m_Menu.setIcon(m_pPlugin->Icon());
-    m_Menu.setTitle(m_pPlugin->DisplayName());
-    m_Menu.setToolTip(m_pPlugin->DisplayName());
-    m_Menu.setStatusTip(m_pPlugin->DisplayName());
+    m_Menu.setIcon(GetPlugin()->Icon());
+    m_Menu.setTitle(tr("\"%1\" operations").arg(GetPlugin()->DisplayName()));
+    m_Menu.setToolTip(m_Menu.title());
+    m_Menu.setStatusTip(m_Menu.title());
     
     m_pActionSettings = new QAction(QIcon::fromTheme("system-settings"),
                               tr("Settings"), &m_Menu);

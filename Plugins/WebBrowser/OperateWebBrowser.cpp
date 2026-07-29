@@ -82,9 +82,9 @@ int COperateWebBrowser::Initial()
     if(m_pWeb) {
         pMenu = m_pWeb->GetMenu();
         pMenu->setIcon(GetPlugin()->Icon());
-        pMenu->setTitle(GetPlugin()->DisplayName());
-        pMenu->setToolTip(GetPlugin()->DisplayName());
-        pMenu->setStatusTip(GetPlugin()->DisplayName());
+        pMenu->setTitle(tr("\"%1\" operations").arg(GetPlugin()->DisplayName()));
+        pMenu->setToolTip(pMenu->title());
+        pMenu->setStatusTip(pMenu->title());
         m_pWeb->setWindowIcon(COperate::Icon());
         bool check = connect(m_pWeb, &CFrmWebBrowser::sigInformation,
                              this, &COperateWebBrowser::sigInformation);
