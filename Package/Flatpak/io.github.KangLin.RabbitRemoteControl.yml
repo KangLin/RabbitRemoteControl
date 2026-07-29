@@ -80,7 +80,7 @@ modules:
           url-template: https://www.openssl.org/source/openssl-$version.tar.gz
 
   - name: xprop
-    disabled: false
+    disabled: true
     sources:
       - type: archive
         url: "https://xorg.freedesktop.org/releases/individual/app/xprop-1.2.8.tar.xz"
