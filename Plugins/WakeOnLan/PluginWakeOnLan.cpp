@@ -98,7 +98,7 @@ const QString CPluginWakeOnLan::Details() const
                  + pcpp::getPcapPlusPlusVersionFull().c_str();
     szDetails += "\n";
     szDetails += "      - " + tr("Pcap lib version info: ")
-                 + pcpp::IPcapDevice::getPcapLibVersionInfo().c_str();
+                 + pcpp::PcapLiveDevice::getPcapLibVersionInfo().c_str();
 #endif
     return szDetails;
 }

@@ -772,7 +772,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/pcapplusplus ]; then
         if [ ! -d PcapPlusPlus ]; then
-            git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+            git clone -b v26.07 --depth=1 https://github.com/seladb/PcapPlusPlus.git
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/PcapPlusPlus
         pushd $BUILD_DEPEND_DIR/PcapPlusPlus

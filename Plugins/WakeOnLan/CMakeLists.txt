@@ -4,10 +4,10 @@ project(WakeOnLan
     DESCRIPTION "Wake on lan plugin"
     )
 
-find_package(PcapPlusPlus)
+find_package(PcapPlusPlus 28.07)
 if(PcapPlusPlus_FOUND)
-    if(PcapPlusPlus_VERSION VERSION_LESS 24.09)
-        message("Found PcapPlusPlus ${PcapPlusPlus_VERSION} less 24.09. Please version >=24.09 . "
+    if(PcapPlusPlus_VERSION VERSION_LESS 26.07)
+        message("Found PcapPlusPlus ${PcapPlusPlus_VERSION} less 24.09. Please version >=26.07 . "
         "Please build and install from https://github.com/seladb/PcapPlusPlus.git . ")
     endif()
     message(STATUS "Using Pcap++ ${PcapPlusPlus_VERSION}")
