@@ -4,6 +4,12 @@
 
 ### 快速开始
 
+    # 下载源码
+    git clone https://github.com/KangLin/RabbitRemoteControl.git
+    # 下载 RabbitComm
+    git clone https://github.com/KangLin/RabbitCommon.git
+    # 进入项目
+    cd RabbitRemoteControl
     # 仅编译 AppImage
     ./Script/build_linux.sh --appimage
     # 仅编译 deb 包

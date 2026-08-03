@@ -5,6 +5,12 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
 
 ### Quickly started
 
+    # Download source code
+    git clone https://github.com/KangLin/RabbitRemoteControl.git
+    # Download RabbitComm
+    git clone https://github.com/KangLin/RabbitCommon.git
+    # Entry project source code
+    cd RabbitRemoteControl
     # Only build AppImage
     ./Script/build_linux.sh --appimage
     # Only build deb package
