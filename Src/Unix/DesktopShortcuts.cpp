@@ -349,7 +349,8 @@ int CDesktopShortcutManager::backupGNOMESettings()
     //qDebug(log) << "Schemas:\n" << szSchemas;
     QStringList lstSchemas = szSchemas.split('\n', Qt::SkipEmptyParts);
     foreach (const QString &schema, lstSchemas) {
-        if(!schema.contains("keybindings")) continue;
+        if(!(schema.contains("keybindings") || schema.contains("media-keys")))
+            continue;
         vSchemas.append(schema);
     }
 

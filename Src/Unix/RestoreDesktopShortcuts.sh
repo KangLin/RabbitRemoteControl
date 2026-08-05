@@ -1,6 +1,22 @@
 #!/bin/bash
 
+#set -x
+#set -e
+#set -v
+
 echo "=== Desktop shortcuts restore tools ==="
+
+function resetGNOME() {
+    for schema in $(gsettings list-schemas | grep -E 'keybindings|media-keys')
+    do
+        for key in $(gsettings list-keys $schema)
+        do
+            if [[ $(gsettings range $schema $key) == "type as" ]]; then
+                gsettings reset $schema $key
+            fi
+        done
+    done
+}
 
 DESKTOP_ENV=$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')
 
@@ -9,14 +25,9 @@ echo "Check desktop environment: $DESKTOP_ENV"
 case $DESKTOP_ENV in
     *gnome*|*cinnamon*)
         echo "Restore GNOME shortcuts ......"
-        # 重置所有 GNOME 快捷键设置
-	for schema in `gsettings list-schemas|grep keybindings`
-	do
-		echo "Reset Schema: $schema"
-		gsettings reset-recursively $schema
-	done
-        gsettings reset-recursively org.gnome.settings-daemon.plugins.media-keys
-	gsettings reset org.gnome.mutter overlay-key
+        # super key
+        gsettings reset org.gnome.mutter overlay-key
+        resetGNOME
         #killall -3 gnome-shell
         echo "GNOME is restored"
         ;;
