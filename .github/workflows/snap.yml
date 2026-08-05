@@ -11,6 +11,9 @@ on:
 
 jobs:
   build_snap:
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm] #, ubuntu-22.04, ubuntu-22.04-arm]
     env:
       artifact_name: build_snap
       RabbitRemoteControl_VERSION: v0.0.36
@@ -18,7 +21,7 @@ jobs:
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
 
     # Map the job outputs to step outputs
     outputs:
@@ -35,5 +38,5 @@ jobs:
       - name: Update artifact
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.artifact_name }}
+          name: ${{ env.artifact_name }}_${{matrix.os}}
           path: ${{ steps.snapcraft.outputs.snap }}
