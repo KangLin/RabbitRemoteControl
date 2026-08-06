@@ -80,10 +80,12 @@ parts:
 
   libssh:
     plugin: cmake
-    source: https://git.libssh.org/projects/libssh.git/
-    source-type: git
-    source-tag: libssh-0.12.0
-    source-depth: 1
+    #source: https://git.libssh.org/projects/libssh.git/
+    #source-type: git
+    #source-tag: libssh-0.12.2
+    #source-depth: 1
+    source: https://www.libssh.org/files/0.12/libssh-0.12.2.tar.xz
+    source-type: tar
     build-packages:
       - libssl-dev
       - libcrypt-dev

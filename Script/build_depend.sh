@@ -726,7 +726,12 @@ if [ $LIBSSH -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/libssh ]; then
         if [ ! -d libssh ]; then
-            git clone -b libssh-0.12.0 --depth=1 https://git.libssh.org/projects/libssh.git
+            LIBSSH_VERSION=0.12.2
+            LIBSSH_VERSION_DIR=0.12
+            #git clone -b libssh-${LIBSSH_VERSION} --depth=1 https://git.libssh.org/projects/libssh.git
+            wget https://www.libssh.org/files/${LIBSSH_VERSION_DIR}/libssh-${LIBSSH_VERSION}.tar.xz
+            tar -xf libssh-${LIBSSH_VERSION}.tar.xz
+            mv libssh-${LIBSSH_VERSION} libssh
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/libssh
         pushd $BUILD_DEPEND_DIR/libssh
