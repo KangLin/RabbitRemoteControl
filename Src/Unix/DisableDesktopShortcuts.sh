@@ -92,7 +92,9 @@ case $DESKTOP_ENV in
         kwin_x11 --replace &
         echo "KDE shortcuts is disabled"
         ;;
-        
+    *xfce*)
+        xfconf-query -c xfce4-keyboard-shortcuts -r -R
+        ;;
     *)
         echo "Unsupported desktop: $DESKTOP_ENV"
         ;;
