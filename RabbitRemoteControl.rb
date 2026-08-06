@@ -1,27 +1,8 @@
-# https://docs.brew.sh/Formula-Cookbook
+# Documentation: https://docs.brew.sh/Formula-Cookbook
+#                https://docs.brew.sh/rubydoc/Formula
 
 class Rabbitremotecontrol < Formula
-  desc " Rabbit remote control is  is a cross-platform,
-  multi-protocol remote control software.
-  .
-  Allows you to use any device and system in anywhere and remotely manage
-  any device and system in any way. 
-  .
-  It's goal is to be simple, convenient, security and easy to use, improving work efficiency.
-  .
-  It include remote desktop, remote control, file transfer(FTP, SFTP),
-  terminal, remote terminal(SSH, TELNET), player, network tools etc functions.
-  .
-  Author: Kang Lin <kl222@126.com>
-  .
-  Donation:
-  .
-  https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
-  .
-  https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
-  .
-  https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
-  "
+  desc "A open source remote desktop and remote control. Support VNC, RDP, Terminal, SSH, TELNET, network tools, player etc"
   homepage "https://github.com/KangLin/RabbitRemoteControl"
   license "GNU General Public License v3.0"
   # 明确使用 develop 分支
@@ -50,23 +31,37 @@ class Rabbitremotecontrol < Formula
   depends_on "qtmultimedia"
   depends_on "qtwebengine"
   depends_on "qtserialport"
-
-  # 如果是GUI应用
-  depends_on "qwt" if build.with? "qwt"
+  depends_on "qtimageformats"
+  depends_on "qt5compat"
+  depends_on "qtwebsockets"
+  depends_on "qtpositioning"
+  depends_on "qtwebchannel"
+  depends_on "qtpdf"
+  depends_on "qtvirtualkeyboard"
 
   def install
     args = std_cmake_args + %W[
       -DCMAKE_INSTALL_PREFIX=#{prefix}
       -DCMAKE_BUILD_TYPE=Release
+      -DCMARK_SHARED=OFF
+      -DCMARK_TESTS=OFF
+      -DCMARK_STATIC=ON
+      -DWITH_CMARK=OFF
+      -DWITH_CMARK_GFM=ON
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      -DBUILD_FREERDP=ON
     ]
-    
+
     # 创建build目录
     mkdir "build" do
       system "cmake", "..", *args
-      system "make", "-j#{ENV.make_jobs}"
-      system "make", "install"
+      system "cmake", "--build", ".", "--config", "Release", "-j#{ENV.make_jobs}"
+      system "cmake", "--install", ".", "--config", "Release", "--strip", "--component", "DependLibraries"
+      system "cmake", "--install", ".", "--config", "Release", "--strip", "--component", "Runtime"
+      system "cmake", "--install", ".", "--config", "Release", "--strip", "--component", "Plugin"
+      system "cmake", "--install", ".", "--config", "Release", "--strip", "--component", "Application"
     end
-    
+
     # 安装应用程序（如果是macOS .app）
     if OS.mac? && build.stable?
       prefix.install Dir["build/*.app"]
