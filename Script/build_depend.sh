@@ -37,10 +37,8 @@ fi
 
 source $(dirname $(safe_readlink $0))/common.sh
 
-install_gnu_getopt
 if [ "$DISTRO" = "macOS" ]; then
     MACOS=1
-    setup_macos
 else
     MACOS=0
 fi

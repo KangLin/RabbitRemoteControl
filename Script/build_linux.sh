@@ -35,10 +35,8 @@ fi
 
 source $(dirname $(safe_readlink $0))/common.sh
 
-install_gnu_getopt
 if [ "$OS" = "macOS" ]; then
     MACOS=1
-    setup_macos
 else
     MACOS=0
 fi
@@ -634,7 +632,7 @@ if [ $MACOS -eq 1 ]; then
         git config --global --add safe.directory $RabbitCommon_ROOT
     fi
 
-    ./build_depend.sh --system_update --base --default --macos \
+    ./build_depend.sh --macos \
         --rabbitcommon --tigervnc --qtermwidget --qftpserver \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \

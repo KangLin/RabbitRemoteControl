@@ -48,9 +48,9 @@ GNU getopt needs to be installed.
     # Verify installation
     getopt --version
 
-#### automake、autoconf、fakeroot
+#### automake、autoconf、libtool、pkg-config、fakeroot
 
-    ~$ brew install automake fakeroot
+    ~$ brew install automake fakeroot libtool pkg-config
   
 #### Ninja: [https://ninja-build.org/](https://ninja-build.org/)
 

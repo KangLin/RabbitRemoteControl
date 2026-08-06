@@ -11,10 +11,8 @@ fi
 
 source $(dirname $(readlink -f $0))/common.sh
 
-install_gnu_getopt
 if [ "$OS" = "macOS" ]; then
     MACOS=1
-    setup_macos
 else
     MACOS=0
 fi

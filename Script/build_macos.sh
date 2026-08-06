@@ -155,7 +155,7 @@ echo "INSTALL_DIR: $INSTALL_DIR"
 pushd "$BUILD_MACOS_DIR"
 
 #echo "Install macos tools and dependency libraries ......"
-#brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus
+#brew install -y qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus
 
 cmake "$REPO_ROOT" \
   -DCMAKE_INSTALL_PREFIX=RabbitRemoteControl.App/Contents \
