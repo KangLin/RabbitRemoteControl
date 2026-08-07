@@ -37,7 +37,7 @@ const QString CPluginTemplateBase::Name() const
 const QString CPluginTemplateBase::Description() const
 {
     // TODO: Modify description
-    return "TemplateBase plugin";
+    return tr("TemplateBase plugin");
 }
 
 const QString CPluginTemplateBase::Version() const

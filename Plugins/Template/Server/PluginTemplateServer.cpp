@@ -36,7 +36,7 @@ const QString CPluginTemplateServer::Name() const
 const QString CPluginTemplateServer::Description() const
 {
     // TODO: Modify description
-    return "TemplateServer plugin";
+    return tr("TemplateServer plugin");
 }
 
 const QString CPluginTemplateServer::Version() const

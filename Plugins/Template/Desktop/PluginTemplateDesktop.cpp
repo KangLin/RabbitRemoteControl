@@ -36,7 +36,7 @@ const QString CPluginTemplateDesktop::Name() const
 const QString CPluginTemplateDesktop::Description() const
 {
     // TODO: Modify description
-    return "TemplateDesktop plugin";
+    return tr("TemplateDesktop plugin");
 }
 
 const QString CPluginTemplateDesktop::Version() const

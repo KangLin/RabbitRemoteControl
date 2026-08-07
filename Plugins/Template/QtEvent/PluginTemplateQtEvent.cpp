@@ -37,7 +37,7 @@ const QString CPluginTemplateQtEvent::Name() const
 const QString CPluginTemplateQtEvent::Description() const
 {
     // TODO: Modify description
-    return "TemplateQtEvent plugin";
+    return tr("TemplateQtEvent plugin");
 }
 
 const QString CPluginTemplateQtEvent::Version() const
