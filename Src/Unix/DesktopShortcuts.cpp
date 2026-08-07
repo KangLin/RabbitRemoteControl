@@ -143,7 +143,7 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
             if("org.gnome.mutter" == szSchema && "overlay-key" == szKey) {
                 if (runCommand("gsettings", {"set", szSchema, szKey, "''"})) {
                     nSuccessCount++;
-                    qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + "''";
+                    //qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + "''";
                 } else {
                     qCritical(log) << "Disabled failed:" << szSchema + ": " + szKey + " = " + "''";
                     bAllSuccess = false;
@@ -192,7 +192,7 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
             szValue.replace(QRegularExpression("\\[([^\\]]*)\\]"), "[]");
             if (runCommand("gsettings", {"set", szSchema, szKey, szValue})) {
                 nSuccessCount++;
-                qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + szValue;
+                //qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + szValue;
             } else {
                 qCritical(log) << "Disabled failed:" << szSchema + ": " + szKey + " = " + szValue;
                 bAllSuccess = false;
@@ -232,7 +232,7 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
             QString szValue = itKey.value();
             if (runCommand("gsettings", {"set", szSchema, szKey, szValue})) {
                 nSuccessCount++;
-                qDebug(log) << "Restored:" << szSchema + ": " + szKey + " = " + szValue;
+                //qDebug(log) << "Restored:" << szSchema + ": " + szKey + " = " + szValue;
             } else {
                 qCritical(log) << "Restore failed:" << szSchema + ": " + szKey + " = " + szValue;
                 bAllSuccess = false;
@@ -281,7 +281,7 @@ bool CDesktopShortcutManager::resetGNOMEShortcuts()
             QString szKey = itKey.key();
             if (runCommand("gsettings", {"reset", szSchema, szKey})) {
                 nSuccessCount++;
-                qDebug(log) << "Reset:" << szSchema + ": " + szKey;
+                //qDebug(log) << "Reset:" << szSchema + ": " + szKey;
             } else {
                 qCritical(log) << "Reset failed:" << szSchema + ": " + szKey;
                 bAllSuccess = false;
@@ -330,7 +330,7 @@ int CDesktopShortcutManager::backupGNOMESettings()
         if (!value.isEmpty()) {
             nTotalCount++;
             mKey.insert(setting.key, value);
-            qDebug(log) << "Backup:" << setting.schema + ": " + setting.key << "=" << value;
+            //qDebug(log) << "Backup:" << setting.schema + ": " + setting.key << "=" << value;
         } else {
             qWarning(log) << "Backup fail:" << setting.schema + ": " + setting.key;
         }
@@ -364,13 +364,13 @@ int CDesktopShortcutManager::backupGNOMESettings()
 
         QMap<QString, QString> vKey;
         QStringList keys = output.split('\n', Qt::SkipEmptyParts);
-        qDebug(log) << QString("Schema %1 has %2 keys").arg(schema).arg(keys.size());
+        //qDebug(log) << QString("Schema %1 has %2 keys").arg(schema).arg(keys.size());
         foreach (const QString &key, keys) {
             QString value = getCommandOutput("gsettings", {"get", schema, key}).trimmed();
             if (!value.isEmpty()) {
                 nTotalCount++;
                 vKey.insert(key, value);
-                qDebug(log) << "Backup:" << schema + ": " + key << "=" << value;
+                //qDebug(log) << "Backup:" << schema + ": " + key << "=" << value;
             } else {
                 qWarning(log) << "Backup fail:" << schema + ": " + key;
             }
