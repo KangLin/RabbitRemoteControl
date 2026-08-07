@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include "ParameterBase.h"
+#include "ParameterDesktop.h"
 
 class CParameterTemplateDesktop : public CParameterDesktop
 {

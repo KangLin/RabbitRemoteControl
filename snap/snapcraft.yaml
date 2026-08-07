@@ -213,8 +213,10 @@ parts:
     source-depth: 1
     build-packages:
       - libpcap-dev
+      - libnl-3-dev # Netlink 库用于网络配置
     stage-packages:
       - libpcap0.8t64
+      - libnl-3-200
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DPCAPPP_BUILD_EXAMPLES=OFF
@@ -460,13 +462,21 @@ apps:
    # See: https://snapcraft.io/docs/supported-interfaces
    # Interface:　run `snap interface -all`
    plugs:
+     # 基础网络
      - network
      - network-status
      - network-bind
-     - network-control
      - network-manager
      - network-manager-observe
-     - network-observe
+
+     # 网卡数据捕获（PcapPlusPlus）
+     # 这些接口已在顶层plugs中声明，支持Snap Store的自动连接规则
+     - network-control      # 混杂模式和网卡配置
+     - network-observe      # 读取网卡信息
+     - netlink-audit
+     - netlink-connector
+     - netlink-driver
+
      - bluetooth-control
      - broadcom-asic-control
      - opengl
