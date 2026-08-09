@@ -37,7 +37,7 @@ if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(safe_readlink $0))/common.sh
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
 
 usage_long() {
     echo "$0 [--install=<install directory>] [ [-h|--help] [-v|--verbose[=0|1]] --source=<source directory>] [--tools=<tools directory>] [--build=<build directory>]"

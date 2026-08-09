@@ -9,7 +9,7 @@ if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(readlink -f $0))/common.sh
+source $(dirname $(readlink -f ${BASH_SOURCE[0]}))/common.sh
 
 if [ "$OS" = "macOS" ]; then
     MACOS=1

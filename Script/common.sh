@@ -25,7 +25,7 @@ safe_readlink() {
     fi
 }
 
-REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
+REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink ${BASH_SOURCE[0]}))))
 echo "REPO_ROOT: $REPO_ROOT"
 if [ -z "$RabbitCommon_ROOT" ]; then
     if [ -f "$REPO_ROOT/../RabbitCommon/Script/RabbitCommon.sh" ]; then

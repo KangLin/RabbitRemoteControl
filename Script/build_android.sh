@@ -34,7 +34,7 @@ if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(safe_readlink -f $0))/common.sh
+source $(dirname $(safe_readlink -f ${BASH_SOURCE[0]}))/common.sh
 
 # modify follow value
 Qt6_DIR=/opt/Qt/6.6.3/android_x86_64

@@ -36,7 +36,7 @@ fi
 
 INSTALL_BUILD_DEPEND=0
 
-source $(dirname $(safe_readlink $0))/common.sh
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>] [--rabbitcommon<RabbitCommon directory>"
