@@ -144,14 +144,13 @@
    </attribute>
    <addaction name="actionOpenListRecent"/>
    <addaction name="separator"/>
-   <addaction name="actionAdd_to_favorite"/>
-   <addaction name="actionClone"/>
-   <addaction name="separator"/>
    <addaction name="actionStop"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="actionTabBar_B"/>
    <addaction name="separator"/>
+   <addaction name="actionAdd_to_favorite"/>
+   <addaction name="actionClone"/>
    <addaction name="actionSettings"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
