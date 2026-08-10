@@ -44,13 +44,13 @@
       - 增加统计信息
       - 增加安全级别
     - 增加生成插件的模板
-  - 增加活动菜单
-  - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
+    - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
   - 应用程序
     - [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)
     - 最近列表和收藏使用数据库保存
     - 增加视图布局
     - 增加菜单到工具条中
+    - 增加活动菜单
   - 增加 macOS 编译脚本。生成　App 捆绑包
   - 为 windows 安装包增加“不安装执行功能”。
   - [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)

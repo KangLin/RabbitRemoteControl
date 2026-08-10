@@ -1767,6 +1767,7 @@ void MainWindow::on_actionOpenListRecent_triggered()
     if(pLayout){
         pLayout->addWidget(p);
         check = connect(p, SIGNAL(destroyed()), &d, SLOT(reject()));
+        Q_ASSERT(check);
         d.setLayout(pLayout);
     }
     RC_SHOW_WINDOW(&d);

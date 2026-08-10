@@ -45,13 +45,13 @@
     - Plugin interface
       - Add stats
       - Add security level
-  - Add activity menu
-  - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
+    - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
   - Application
     - [App: add favorite from activity list and recent list](https://github.com/KangLin/RabbitRemoteControl/issues/49)
     - favorite and recent with database
     - Add view layout
     - Add main menu in toolbaar
+    - Add activity menu
   - Add build_mscos.sh. add App bundle
   - Add run the program directly without installation for windows install package
   - [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
