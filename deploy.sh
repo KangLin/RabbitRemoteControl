@@ -9,7 +9,7 @@ update_version() {
     #$SED_CMD "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
     #$SED_CMD "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
     #$SED_CMD "s/RabbitRemoteControlVersion:.*/RabbitRemoteControlVersion: ${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
-    $SED_CMD "s/v${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/docs/Doxygen/Develop*.md
+    $SED_CMD "s/${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/docs/Doxygen/Develop*.md
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
@@ -18,9 +18,9 @@ update_version() {
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos_script.yml
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/flatpak.yml
-    $SED_CMD "s/v${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
+    $SED_CMD "s/${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
     $SED_CMD "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
-    $SED_CMD "s/          \"version\":[[:blank:]]*\"v\?${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
+    $SED_CMD "s/          \"version\":[[:blank:]]*\"${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
 
     $SED_CMD "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
     $SED_CMD "s/SET(RabbitRemoteControlTag .*)/SET(RabbitRemoteControlTag \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
