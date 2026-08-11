@@ -1003,7 +1003,7 @@
     <message>
         <location filename="../../Extension/FrmExtensionManager.cpp" line="386"/>
         <source>Developer tools for extensions not yet implemented</source>
-        <translation type="unfinished"></translation>
+        <translation>扩展的开发者工具尚未实现</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionManager.cpp" line="452"/>
@@ -1076,217 +1076,217 @@
         <location filename="../../Extension/FrmExtensionStore.ui" line="14"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="51"/>
         <source>Chrome Extension Store</source>
-        <translation type="unfinished"></translation>
+        <translation>Chrome 扩展存储</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="22"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="101"/>
         <source>Search extensions...</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索扩展 ……</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="29"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="104"/>
         <source>Search</source>
-        <translation type="unfinished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="36"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="105"/>
         <source>Popular</source>
-        <translation type="unfinished"></translation>
+        <translation>受欢迎</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="43"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="106"/>
         <source>Recommended</source>
-        <translation type="unfinished"></translation>
+        <translation>推荐</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="76"/>
         <source>Extension Details</source>
-        <translation type="unfinished">扩展详情</translation>
+        <translation>扩展详情</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="86"/>
         <source>Select an extension to view details</source>
-        <translation type="unfinished"></translation>
+        <translation>选择一个扩展以查看详情</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="122"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="107"/>
         <source>Download</source>
-        <translation type="unfinished">下载</translation>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="129"/>
         <source>Install from File</source>
-        <translation type="unfinished"></translation>
+        <translation>从文件安装</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="136"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="109"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="143"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="110"/>
         <source>Details</source>
-        <translation type="unfinished">详情</translation>
+        <translation>详情</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="150"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="111"/>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="157"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="112"/>
         <source>Clear Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>清理缓存</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
         <source>Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>图标</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
         <source>Name</source>
-        <translation type="unfinished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>评分</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>ID</source>
-        <translation type="unfinished">标识</translation>
+        <translation>标识</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>状态</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="108"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>安装</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="115"/>
         <source>Extension Name</source>
-        <translation type="unfinished"></translation>
+        <translation>扩展名</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
         <source>Warning</source>
-        <translation type="unfinished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
         <source>Please enter a search keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入搜索关键词</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
         <source>Please select an extension</source>
-        <translation type="unfinished"></translation>
+        <translation>请选择一个扩展</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="398"/>
         <source>Confirm</source>
-        <translation type="unfinished">确认</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="399"/>
         <source>Do you want to download &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>你想下载 &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="416"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="417"/>
         <source>Extension manager not set</source>
-        <translation type="unfinished"></translation>
+        <translation>扩展管理没有设置</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="422"/>
         <source>Chrome Extension (*.crx);;Extension Folder;;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chrome 扩展程序 (*.crx);;扩展文件夹;;所有文件 (*)</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="424"/>
         <source>Select Downloaded Extension</source>
-        <translation type="unfinished"></translation>
+        <translation>选择下载的扩展</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
         <source>Info</source>
-        <translation type="unfinished">信息</translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
         <source>All downloads cancelled</source>
-        <translation type="unfinished"></translation>
+        <translation>取消所有下载</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>成功</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
         <source>Cache cleared</source>
-        <translation type="unfinished"></translation>
+        <translation>清空缓存</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="525"/>
         <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <translation>网络错误</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="526"/>
         <source>Failed to connect to extension store</source>
-        <translation type="unfinished"></translation>
+        <translation>无法连接到扩展商店</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="581"/>
         <source>Not Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>未安装</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="586"/>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>已安装</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="637"/>
         <source>Install Now?</source>
-        <translation type="unfinished"></translation>
+        <translation>现在安装？</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="638"/>
         <source>Do you want to install this extension now?</source>
-        <translation type="unfinished"></translation>
+        <translation>是否现在安装此扩展？</translation>
     </message>
 </context>
 <context>
@@ -1299,7 +1299,7 @@
     <message>
         <location filename="../../History/FrmHistory.ui" line="20"/>
         <source>toolBar</source>
-        <translation></translation>
+        <translation>工具条</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.ui" line="35"/>

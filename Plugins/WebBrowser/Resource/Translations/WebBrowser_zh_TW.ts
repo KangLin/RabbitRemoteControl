@@ -66,7 +66,7 @@
     <message>
         <location filename="../../AddressCompleter.cpp" line="276"/>
         <source>Bookmarks</source>
-        <translation>書簽</translation>
+        <translation>書籤</translation>
     </message>
     <message>
         <location filename="../../AddressCompleter.cpp" line="377"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../../Bookmark/BookmarkDatabase.cpp" line="40"/>
         <source>Bookmarks</source>
-        <translation>書簽</translation>
+        <translation>書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/BookmarkDatabase.cpp" line="41"/>
@@ -177,12 +177,12 @@
     <message>
         <location filename="../../DlgSettings.ui" line="167"/>
         <source>New tab url:</source>
-        <translation>新標簽 url:</translation>
+        <translation>新標籤 url:</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="137"/>
         <source>Open previous windows and tabs</source>
-        <translation>打開之前的窗口和標簽頁</translation>
+        <translation>打開之前的窗口和標籤頁</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="45"/>
@@ -370,7 +370,7 @@
     <message>
         <location filename="../../DlgWebAuth.cpp" line="187"/>
         <source> attempts remaining</source>
-        <translation> 剩余嘗試次數</translation>
+        <translation> 剩餘嘗試次數</translation>
     </message>
     <message>
         <location filename="../../DlgWebAuth.cpp" line="217"/>
@@ -449,7 +449,7 @@
     <message>
         <location filename="../../Bookmark/FrmAddBookmark.ui" line="14"/>
         <source>Add bookmark</source>
-        <translation>增加書簽</translation>
+        <translation>增加書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmAddBookmark.ui" line="22"/>
@@ -469,7 +469,7 @@
     <message>
         <location filename="../../Bookmark/FrmAddBookmark.ui" line="57"/>
         <source>Tag:</source>
-        <translation>標簽：</translation>
+        <translation>標籤：</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmAddBookmark.ui" line="69"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../../Bookmark/FrmAddBookmark.cpp" line="134"/>
         <source>Delete %1 bookmarks</source>
-        <translation>刪除 %1 個書簽</translation>
+        <translation>刪除 %1 個書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmAddBookmark.cpp" line="183"/>
@@ -523,7 +523,7 @@
         <location filename="../../Bookmark/FrmBookmark.ui" line="14"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="30"/>
         <source>Bookmark</source>
-        <translation>書簽</translation>
+        <translation>書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="61"/>
@@ -533,7 +533,7 @@
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="65"/>
         <source>Input keyword to search boolmark ......</source>
-        <translation>輸入關鍵字搜索書簽……</translation>
+        <translation>輸入關鍵字搜索書籤……</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="84"/>
@@ -547,7 +547,7 @@
         <location filename="../../Bookmark/FrmBookmark.cpp" line="341"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="547"/>
         <source>Add bookmark</source>
-        <translation>增加書簽</translation>
+        <translation>增加書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="107"/>
@@ -628,7 +628,7 @@
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="336"/>
         <source>Edit bookmark</source>
-        <translation>編輯書簽</translation>
+        <translation>編輯書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="356"/>
@@ -648,7 +648,7 @@
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="382"/>
         <source>Are you sure you want to delete the bookmark &quot;%1&quot;?</source>
-        <translation>確認刪除書簽 &quot;%1&quot; ？</translation>
+        <translation>確認刪除書籤 &quot;%1&quot; ？</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="384"/>
@@ -666,17 +666,17 @@
         <location filename="../../Bookmark/FrmBookmark.cpp" line="438"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="445"/>
         <source>Import bookmarks</source>
-        <translation>導入書簽</translation>
+        <translation>導入書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
         <source>Successfully imported bookmarks from file: %1</source>
-        <translation>成功從文件導入書簽：%1</translation>
+        <translation>成功從文件導入書籤：%1</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="439"/>
         <source>Failed to import bookmark from file: %1</source>
-        <translation>從文件導入書簽失敗：%1</translation>
+        <translation>從文件導入書籤失敗：%1</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="446"/>
@@ -693,12 +693,12 @@
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="463"/>
         <source>Bookmarks successfully exported to file: %1</source>
-        <translation>成功導出書簽到文件：%1</translation>
+        <translation>成功導出書籤到文件：%1</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="466"/>
         <source>Failed to export bookmark to file: %1</source>
-        <translation>導出書簽到文件失敗：%1</translation>
+        <translation>導出書籤到文件失敗：%1</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="453"/>
@@ -706,7 +706,7 @@
         <location filename="../../Bookmark/FrmBookmark.cpp" line="465"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="472"/>
         <source>Export bookmarks</source>
-        <translation>導入書簽</translation>
+        <translation>導入書籤</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="535"/>
@@ -739,7 +739,7 @@
     <message>
         <location filename="../../FrmDownload.cpp" line="124"/>
         <source>%p% - %1 of %2 downloaded - %3/s - time left: %4</source>
-        <translation>%p% - 已下載： %1 / %2 - %3/秒 - 剩余時間： %4</translation>
+        <translation>%p% - 已下載： %1 / %2 - %3/秒 - 剩餘時間： %4</translation>
     </message>
     <message>
         <location filename="../../FrmDownload.cpp" line="131"/>
@@ -795,7 +795,7 @@
     <message>
         <location filename="../../FrmDownload.cpp" line="230"/>
         <source>Copy url to clipboard</source>
-        <translation>復製鏈接到剪切板</translation>
+        <translation>複製鏈接到剪切板</translation>
     </message>
     <message>
         <location filename="../../FrmDownload.cpp" line="236"/>
@@ -857,12 +857,12 @@
     <message>
         <location filename="../../Extension/FrmExtensionManager.cpp" line="79"/>
         <source>Copy popup url to clipboard</source>
-        <translation>復製彈出窗口 Url 到剪切板</translation>
+        <translation>複製彈出窗口 Url 到剪切板</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionManager.cpp" line="81"/>
         <source>Copy path to clipboard</source>
-        <translation>復製路徑到剪切板</translation>
+        <translation>複製路徑到剪切板</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionManager.cpp" line="83"/>
@@ -1003,7 +1003,7 @@
     <message>
         <location filename="../../Extension/FrmExtensionManager.cpp" line="386"/>
         <source>Developer tools for extensions not yet implemented</source>
-        <translation type="unfinished"></translation>
+        <translation>擴展的開發者工具尚未實現</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionManager.cpp" line="452"/>
@@ -1076,217 +1076,217 @@
         <location filename="../../Extension/FrmExtensionStore.ui" line="14"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="51"/>
         <source>Chrome Extension Store</source>
-        <translation type="unfinished"></translation>
+        <translation>Chrome 擴展存儲</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="22"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="101"/>
         <source>Search extensions...</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索擴展 ……</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="29"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="104"/>
         <source>Search</source>
-        <translation type="unfinished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="36"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="105"/>
         <source>Popular</source>
-        <translation type="unfinished"></translation>
+        <translation>受歡迎</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="43"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="106"/>
         <source>Recommended</source>
-        <translation type="unfinished"></translation>
+        <translation>推薦</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="76"/>
         <source>Extension Details</source>
-        <translation type="unfinished">擴展詳情</translation>
+        <translation>擴展詳情</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="86"/>
         <source>Select an extension to view details</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇一個擴展以查看詳情</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="122"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="107"/>
         <source>Download</source>
-        <translation type="unfinished">下載</translation>
+        <translation>下載</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="129"/>
         <source>Install from File</source>
-        <translation type="unfinished"></translation>
+        <translation>從文件安裝</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="136"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="109"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="143"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="110"/>
         <source>Details</source>
-        <translation type="unfinished">詳情</translation>
+        <translation>詳情</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="150"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="111"/>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.ui" line="157"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="112"/>
         <source>Clear Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>清理緩存</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
         <source>Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>圖標</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
         <source>Name</source>
-        <translation type="unfinished">名稱</translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>評分</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>下載</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>ID</source>
-        <translation type="unfinished">標識</translation>
+        <translation>標識</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>狀態</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="108"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>安裝</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="115"/>
         <source>Extension Name</source>
-        <translation type="unfinished"></translation>
+        <translation>擴展名</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
         <source>Warning</source>
-        <translation type="unfinished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
         <source>Please enter a search keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>請輸入搜索關鍵詞</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
         <source>Please select an extension</source>
-        <translation type="unfinished"></translation>
+        <translation>請選擇一個擴展</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="398"/>
         <source>Confirm</source>
-        <translation type="unfinished">確認</translation>
+        <translation>確認</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="399"/>
         <source>Do you want to download &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>你想下載 &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="416"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="417"/>
         <source>Extension manager not set</source>
-        <translation type="unfinished"></translation>
+        <translation>擴展管理沒有設置</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="422"/>
         <source>Chrome Extension (*.crx);;Extension Folder;;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chrome 擴展程序 (*.crx);;擴展文件夾;;所有文件 (*)</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="424"/>
         <source>Select Downloaded Extension</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇下載的擴展</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
         <source>Info</source>
-        <translation type="unfinished">信息</translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
         <source>All downloads cancelled</source>
-        <translation type="unfinished"></translation>
+        <translation>取消所有下載</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>成功</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
         <source>Cache cleared</source>
-        <translation type="unfinished"></translation>
+        <translation>清空緩存</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="525"/>
         <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <translation>網絡錯誤</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="526"/>
         <source>Failed to connect to extension store</source>
-        <translation type="unfinished"></translation>
+        <translation>無法連接到擴展商店</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="581"/>
         <source>Not Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>未安裝</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="586"/>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>已安裝</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="637"/>
         <source>Install Now?</source>
-        <translation type="unfinished"></translation>
+        <translation>現在安裝？</translation>
     </message>
     <message>
         <location filename="../../Extension/FrmExtensionStore.cpp" line="638"/>
         <source>Do you want to install this extension now?</source>
-        <translation type="unfinished"></translation>
+        <translation>是否現在安裝此擴展？</translation>
     </message>
 </context>
 <context>
@@ -1299,7 +1299,7 @@
     <message>
         <location filename="../../History/FrmHistory.ui" line="20"/>
         <source>toolBar</source>
-        <translation></translation>
+        <translation>工具條</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.ui" line="35"/>
@@ -1320,7 +1320,7 @@
     <message>
         <location filename="../../History/FrmHistory.cpp" line="73"/>
         <source>Limit</source>
-        <translation>限製</translation>
+        <translation>限制</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="86"/>
@@ -1365,17 +1365,17 @@
     <message>
         <location filename="../../History/FrmHistory.cpp" line="204"/>
         <source>Open in new tab</source>
-        <translation>在新標簽中打開</translation>
+        <translation>在新標籤中打開</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="212"/>
         <source>Copy url</source>
-        <translation>復製網址</translation>
+        <translation>複製網址</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="221"/>
         <source>Copy title</source>
-        <translation>復製標題</translation>
+        <translation>複製標題</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="231"/>
@@ -1506,7 +1506,7 @@
     <message>
         <location filename="../../History/FrmHistory.cpp" line="50"/>
         <source>One Week</source>
-        <translation>一周</translation>
+        <translation>一週</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="51"/>
@@ -1549,7 +1549,7 @@
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="193"/>
         <source>Add tab page</source>
-        <translation>增加標簽頁</translation>
+        <translation>增加標籤頁</translation>
     </message>
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="205"/>
@@ -1580,12 +1580,12 @@
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="626"/>
         <source>Add incognito tab</source>
-        <translation>添加隱身標簽頁</translation>
+        <translation>添加隱身標籤頁</translation>
     </message>
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="191"/>
         <source>Add bookmark</source>
-        <translation>增加書簽</translation>
+        <translation>增加書籤</translation>
     </message>
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="636"/>
@@ -1673,12 +1673,12 @@
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="780"/>
         <source>Bookmark</source>
-        <translation>書簽</translation>
+        <translation>書籤</translation>
     </message>
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="784"/>
         <source>Manage Bookmark </source>
-        <translation>管理書簽</translation>
+        <translation>管理書籤</translation>
     </message>
     <message>
         <location filename="../../FrmWebBrowser.cpp" line="789"/>
