@@ -143,7 +143,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpenListRecent"/>
-   <addaction name="separator"/>
    <addaction name="actionStop"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
