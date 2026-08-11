@@ -357,13 +357,18 @@ check_version() {
 check_chang_log() {
     echo "  - Modified change log ?"
     local content=$(<${SOURCE_DIR}/ChangeLog.md)
-    if [[ $content =~ "$VERSION" ]]; then
+    local escaped_version="${VERSION//./\\.}"
+    #echo "Looking for version: $VERSION"
+    local pattern="$escaped_version([[:space:]]|\$|$)"
+    #echo "pattern: $pattern"
+    if [[ $content =~ $pattern ]]; then
         echo_color_success "    √ Modified in \"ChangeLog.md\""
+        #echo "匹配到的版本: ${BASH_REMATCH[0]}"
     else
         echo_color_warn "    ! Warning: Don't include \"$VERSION\" in the file \"ChangeLog.md\""
     fi
     content=$(<${SOURCE_DIR}/ChangeLog_zh_CN.md)
-    if [[ $content =~ "$VERSION" ]]; then
+    if [[ $content =~ $pattern ]]; then
         echo_color_success "    √ Modified in \"ChangeLog_zh_CN.md\""
     else
         echo_color_warn "    ! Warning: Don't include \"$VERSION\" in the file \"ChangeLog_zh_CN.md\""
