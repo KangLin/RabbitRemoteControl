@@ -84,6 +84,7 @@ void CViewSplitterContainer::slotTabPositionChanged()
         if(pLayout) {
             pLayout->addWidget(m_pTab);
             pLayout->addWidget(m_pView);
+            m_pView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
         }
         break;
     }
@@ -93,6 +94,7 @@ void CViewSplitterContainer::slotTabPositionChanged()
         auto pLayout = layout();
         if(pLayout) {
             pLayout->addWidget(m_pView);
+            m_pView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
             pLayout->addWidget(m_pTab);
         }
         break;
