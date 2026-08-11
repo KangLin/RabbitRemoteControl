@@ -1,0 +1,9 @@
+<map id="CParameterTemplateQtEvent" name="CParameterTemplateQtEvent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,225,216,251"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="35,152,186,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,191,113,225,108,225,108,191"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="参数接口" alt="" coords="61,79,160,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,118,113,152,108,152,108,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="73,5,148,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,44,113,79,108,79,108,44"/>
+</map>

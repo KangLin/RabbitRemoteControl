@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Template/Desktop/OperateTemplateDesktop.cpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate10</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b4eaef40a1fe20bedafe9e8e719ce66.html">Plugins</a></li><li class="navelem"><a class="el" href="dir_6b6d1d6fac81b2434b06ba2090714379.html">Template</a></li><li class="navelem"><a class="el" href="dir_fa45e5abaee7b8782c11650e64868e7d.html">Desktop</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">OperateTemplateDesktop.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;QLoggingCategory&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;DlgSettingsTemplateDesktop.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;ParameterTemplateDesktop.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;BackendTemplateDesktop.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;OperateTemplateDesktop.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">static</span> Q_LOGGING_CATEGORY(log, <span class="stringliteral">&quot;TemplateDesktop.Operate&quot;</span>)</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><a class="code hl_class" href="classCOperateTemplateDesktop.html">COperateTemplateDesktop</a>::<a class="code hl_class" href="classCOperateTemplateDesktop.html">COperateTemplateDesktop</a>(<a class="code hl_class" href="classCPlugin.html">CPlugin</a> *plugin)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    : <a class="code hl_class" href="classCOperateDesktop.html">COperateDesktop</a>(plugin)</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    , m_pPara(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>COperateTemplateDesktop::~COperateTemplateDesktop()</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    QString szClass = this-&gt;metaObject()-&gt;className();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    QString szWhat;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    szWhat += <span class="stringliteral">&quot;Please call &quot;</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    szWhat += szClass;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    szWhat += <span class="stringliteral">&quot;::Stop() first&quot;</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    Q_ASSERT_X(!m_pPara, szClass.toStdString().c_str(), szWhat.toStdString().c_str());</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classCOperateTemplateDesktop.html#ae13397615304f394fc6c7fed9141908f">   30</a></span>QDialog *<a class="code hl_function" href="classCOperateTemplateDesktop.html#ae13397615304f394fc6c7fed9141908f">COperateTemplateDesktop::OnOpenDialogSettings</a>(QWidget *parent)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="classCDlgSettingsTemplateDesktop.html">CDlgSettingsTemplateDesktop</a>(m_pPara, parent);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classCOperateTemplateDesktop.html#a8634159db6c3a3b6f917bcce8c483ece">   35</a></span><a class="code hl_class" href="classCBackend.html">CBackend</a> *<a class="code hl_function" href="classCOperateTemplateDesktop.html#a8634159db6c3a3b6f917bcce8c483ece">COperateTemplateDesktop::InstanceBackend</a>()</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="classCBackendTemplateDesktop.html">CBackendTemplateDesktop</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classCOperateTemplateDesktop.html#a68e5dfb3cda832592b9681fc2446460e">   40</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateTemplateDesktop.html#a68e5dfb3cda832592b9681fc2446460e">COperateTemplateDesktop::Initial</a>()</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    nRet = <a class="code hl_function" href="classCOperateDesktop.html#aa9fa0ee13f9c1ee206aaaa72d3a4bfa0">COperateDesktop::Initial</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">if</span>(nRet) <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    m_pPara = <span class="keyword">new</span> <a class="code hl_class" href="classCParameterTemplateDesktop.html">CParameterTemplateDesktop</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">if</span>(m_pPara)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <a class="code hl_function" href="classCOperateDesktop.html#a8945da8d59ad1f252ea8cc22b1b307e7">SetParameter</a>(m_pPara);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classCOperateTemplateDesktop.html#a67f2c232b0feb557e6c7de2a7f8ca53c">   51</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateTemplateDesktop.html#a67f2c232b0feb557e6c7de2a7f8ca53c">COperateTemplateDesktop::Clean</a>()</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// TODO: add Clean</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">if</span>(m_pPara) {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keyword">delete</span> m_pPara;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        m_pPara = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    nRet = <a class="code hl_function" href="classCOperateDesktop.html#ae045badc0648d4beef1df5fb5f9bf7ac">COperateDesktop::Clean</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+</div>
+<div class="ttc" id="aclassCBackendTemplateDesktop_html"><div class="ttname"><a href="classCBackendTemplateDesktop.html">CBackendTemplateDesktop</a></div><div class="ttdef"><b>Definition</b> <a href="BackendTemplateDesktop_8h_source.html#l00008">BackendTemplateDesktop.h:9</a></div></div>
+<div class="ttc" id="aclassCBackend_html"><div class="ttname"><a href="classCBackend.html">CBackend</a></div><div class="ttdoc">后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...</div><div class="ttdef"><b>Definition</b> <a href="Backend_8h_source.html#l00041">Backend.h:42</a></div></div>
+<div class="ttc" id="aclassCDlgSettingsTemplateDesktop_html"><div class="ttname"><a href="classCDlgSettingsTemplateDesktop.html">CDlgSettingsTemplateDesktop</a></div><div class="ttdef"><b>Definition</b> <a href="DlgSettingsTemplateDesktop_8h_source.html#l00012">DlgSettingsTemplateDesktop.h:13</a></div></div>
+<div class="ttc" id="aclassCOperateDesktop_html"><div class="ttname"><a href="classCOperateDesktop.html">COperateDesktop</a></div><div class="ttdoc">远程桌面操作接口</div><div class="ttdef"><b>Definition</b> <a href="OperateDesktop_8h_source.html#l00068">OperateDesktop.h:69</a></div></div>
+<div class="ttc" id="aclassCOperateDesktop_html_a8945da8d59ad1f252ea8cc22b1b307e7"><div class="ttname"><a href="classCOperateDesktop.html#a8945da8d59ad1f252ea8cc22b1b307e7">COperateDesktop::SetParameter</a></div><div class="ttdeci">virtual int SetParameter(CParameterDesktop *p)</div><div class="ttdoc">设置参数指针</div><div class="ttdef"><b>Definition</b> <a href="OperateDesktop_8cpp_source.html#l00455">OperateDesktop.cpp:455</a></div></div>
+<div class="ttc" id="aclassCOperateDesktop_html_aa9fa0ee13f9c1ee206aaaa72d3a4bfa0"><div class="ttname"><a href="classCOperateDesktop.html#aa9fa0ee13f9c1ee206aaaa72d3a4bfa0">COperateDesktop::Initial</a></div><div class="ttdeci">virtual int Initial() override</div><div class="ttdoc">Initial parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="OperateDesktop_8cpp_source.html#l00192">OperateDesktop.cpp:192</a></div></div>
+<div class="ttc" id="aclassCOperateDesktop_html_ae045badc0648d4beef1df5fb5f9bf7ac"><div class="ttname"><a href="classCOperateDesktop.html#ae045badc0648d4beef1df5fb5f9bf7ac">COperateDesktop::Clean</a></div><div class="ttdeci">virtual int Clean() override</div><div class="ttdoc">Clean parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="OperateDesktop_8cpp_source.html#l00215">OperateDesktop.cpp:215</a></div></div>
+<div class="ttc" id="aclassCOperateTemplateDesktop_html"><div class="ttname"><a href="classCOperateTemplateDesktop.html">COperateTemplateDesktop</a></div><div class="ttdef"><b>Definition</b> <a href="OperateTemplateDesktop_8h_source.html#l00008">OperateTemplateDesktop.h:9</a></div></div>
+<div class="ttc" id="aclassCOperateTemplateDesktop_html_a67f2c232b0feb557e6c7de2a7f8ca53c"><div class="ttname"><a href="classCOperateTemplateDesktop.html#a67f2c232b0feb557e6c7de2a7f8ca53c">COperateTemplateDesktop::Clean</a></div><div class="ttdeci">virtual int Clean() override</div><div class="ttdoc">Clean parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="OperateTemplateDesktop_8cpp_source.html#l00051">OperateTemplateDesktop.cpp:51</a></div></div>
+<div class="ttc" id="aclassCOperateTemplateDesktop_html_a68e5dfb3cda832592b9681fc2446460e"><div class="ttname"><a href="classCOperateTemplateDesktop.html#a68e5dfb3cda832592b9681fc2446460e">COperateTemplateDesktop::Initial</a></div><div class="ttdeci">virtual int Initial() override</div><div class="ttdoc">Initial parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="OperateTemplateDesktop_8cpp_source.html#l00040">OperateTemplateDesktop.cpp:40</a></div></div>
+<div class="ttc" id="aclassCOperateTemplateDesktop_html_a8634159db6c3a3b6f917bcce8c483ece"><div class="ttname"><a href="classCOperateTemplateDesktop.html#a8634159db6c3a3b6f917bcce8c483ece">COperateTemplateDesktop::InstanceBackend</a></div><div class="ttdeci">virtual CBackend * InstanceBackend() override</div><div class="ttdoc">新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。</div><div class="ttdef"><b>Definition</b> <a href="OperateTemplateDesktop_8cpp_source.html#l00035">OperateTemplateDesktop.cpp:35</a></div></div>
+<div class="ttc" id="aclassCOperateTemplateDesktop_html_ae13397615304f394fc6c7fed9141908f"><div class="ttname"><a href="classCOperateTemplateDesktop.html#ae13397615304f394fc6c7fed9141908f">COperateTemplateDesktop::OnOpenDialogSettings</a></div><div class="ttdeci">virtual QDialog * OnOpenDialogSettings(QWidget *parent) override</div><div class="ttdoc">得到设置对话框</div><div class="ttdef"><b>Definition</b> <a href="OperateTemplateDesktop_8cpp_source.html#l00030">OperateTemplateDesktop.cpp:30</a></div></div>
+<div class="ttc" id="aclassCParameterTemplateDesktop_html"><div class="ttname"><a href="classCParameterTemplateDesktop.html">CParameterTemplateDesktop</a></div><div class="ttdef"><b>Definition</b> <a href="ParameterTemplateDesktop_8h_source.html#l00006">ParameterTemplateDesktop.h:7</a></div></div>
+<div class="ttc" id="aclassCPlugin_html"><div class="ttname"><a href="classCPlugin.html">CPlugin</a></div><div class="ttdoc">插件接口</div><div class="ttdef"><b>Definition</b> <a href="Plugin_8h_source.html#l00014">Plugin.h:15</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

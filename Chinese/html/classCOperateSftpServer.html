@@ -1,0 +1,910 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: COperateSftpServer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate10</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCOperateSftpServer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">COperateSftpServer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 COperateSftpServer 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCOperateSftpServer__inherit__graph.png" border="0" usemap="#aCOperateSftpServer_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCOperateSftpServer_inherit__map" id="aCOperateSftpServer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,225,156,251"/>
+<area shape="rect" href="classCOperateServer.html" title="服务操作接口" alt="" coords="18,152,143,177"/>
+<area shape="poly" title=" " alt="" coords="83,191,83,225,78,225,78,191"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="39,79,122,104"/>
+<area shape="poly" title=" " alt="" coords="83,118,83,152,78,152,78,118"/>
+<area shape="rect" title=" " alt="" coords="43,5,118,31"/>
+<area shape="poly" title=" " alt="" coords="83,44,83,79,78,79,78,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+COperateSftpServer 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCOperateSftpServer__coll__graph.png" border="0" usemap="#aCOperateSftpServer_coll__map" alt="Collaboration graph"/></div>
+<map name="aCOperateSftpServer_coll__map" id="aCOperateSftpServer_coll__map">
+<area shape="rect" title=" " alt="" coords="3037,231,3188,256"/>
+<area shape="rect" href="classCOperateServer.html" title="服务操作接口" alt="" coords="1701,161,1827,187"/>
+<area shape="poly" title=" " alt="" coords="1841,185,1952,201,2077,209,2847,209,2951,215,3044,228,3043,233,2950,220,2847,214,2077,214,1951,206,1840,191"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="413,136,496,161"/>
+<area shape="poly" title=" " alt="" coords="510,146,801,146,1435,146,1578,152,1701,164,1701,169,1578,157,1435,151,801,151,510,151"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="737,64,868,89"/>
+<area shape="poly" title=" " alt="" coords="509,138,605,123,713,101,762,87,764,92,714,106,606,128,510,144"/>
+<area shape="rect" title=" " alt="" coords="5,187,80,212"/>
+<area shape="poly" title=" " alt="" coords="93,191,413,151,413,156,94,196"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="143,136,214,161"/>
+<area shape="poly" title=" " alt="" coords="90,179,143,159,145,164,91,184"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,641,228,667"/>
+<area shape="poly" title=" " alt="" coords="47,226,51,314,60,431,77,545,90,589,106,620,117,631,130,639,128,644,114,635,102,624,85,591,72,546,54,432,45,314,42,226"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1717,516,1811,541"/>
+<area shape="poly" title=" " alt="" coords="50,225,63,322,89,448,106,507,127,556,151,589,164,598,178,601,1435,601,1491,594,1568,578,1717,539,1718,544,1569,583,1492,599,1435,606,177,606,162,603,147,593,122,558,101,508,84,449,58,323,44,226"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="252,65,339,91"/>
+<area shape="poly" title=" " alt="" coords="62,174,92,147,128,121,191,96,251,82,252,87,193,101,131,126,95,151,66,178"/>
+<area shape="poly" title=" " alt="" coords="228,146,413,146,413,151,228,151"/>
+<area shape="rect" href="classCFrmViewServer.html" title="The CFrmViewServer class" alt="" coords="1368,187,1499,212"/>
+<area shape="poly" title=" " alt="" coords="1513,192,1677,179,1701,177,1701,183,1678,185,1513,197"/>
+<area shape="rect" title=" " alt="" coords="1128,187,1207,212"/>
+<area shape="poly" title=" " alt="" coords="1221,197,1368,197,1368,202,1221,202"/>
+<area shape="rect" href="classCStatsSever.html" title=" " alt="" coords="1117,236,1218,261"/>
+<area shape="poly" title=" " alt="" coords="1231,235,1329,217,1367,209,1368,215,1330,222,1232,240"/>
+<area shape="rect" href="classCStats.html" title=" " alt="" coords="771,236,835,261"/>
+<area shape="poly" title=" " alt="" coords="848,246,1116,246,1116,251,848,251"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="379,388,530,413"/>
+<area shape="poly" title=" " alt="" coords="469,375,510,325,538,299,569,278,622,259,677,248,729,244,770,244,770,249,729,249,678,253,624,264,572,283,541,303,514,328,473,378"/>
+<area shape="poly" title=" " alt="" coords="424,373,433,365,455,361,473,364,484,370,487,380,481,389,477,387,481,379,480,373,471,369,455,367,435,370,427,377"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1353,513,1513,539"/>
+<area shape="poly" title=" " alt="" coords="500,416,571,441,654,461,738,473,909,492,1080,506,1353,521,1353,526,1080,511,909,497,737,478,653,466,570,446,498,421"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1107,405,1228,431"/>
+<area shape="poly" title=" " alt="" coords="544,400,1107,414,1106,419,544,405"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="739,439,867,464"/>
+<area shape="poly" title=" " alt="" coords="544,411,739,439,738,445,543,416"/>
+<area shape="rect" href="classCParameterServer.html" title="The server base parameters" alt="" coords="2573,324,2713,349"/>
+<area shape="poly" title=" " alt="" coords="482,377,522,351,570,329,633,309,683,300,735,297,801,297,2363,297,2421,299,2480,305,2582,321,2581,327,2479,310,2421,304,2363,302,801,302,735,302,684,305,634,314,572,334,525,356,485,382"/>
+<area shape="poly" title=" " alt="" coords="189,628,214,581,250,532,294,493,342,458,425,411,428,416,345,463,297,497,254,536,218,584,193,630"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2574,651,2713,676"/>
+<area shape="poly" title=" " alt="" coords="210,672,255,700,314,730,382,754,418,761,453,763,2363,763,2401,761,2440,753,2513,729,2576,699,2621,674,2624,678,2579,704,2515,734,2441,758,2402,766,2363,769,453,769,417,766,381,759,312,735,252,705,207,677"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="2008,609,2148,635"/>
+<area shape="poly" title=" " alt="" coords="242,651,453,651,1435,651,1596,649,1755,642,2008,625,2008,630,1756,647,1596,654,1435,657,453,657,242,657"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="2296,484,2427,509"/>
+<area shape="poly" title=" " alt="" coords="210,632,255,607,315,580,383,559,418,552,453,550,989,550,1092,545,1171,531,1250,514,1353,498,1479,480,1534,475,1606,473,2079,473,2194,477,2296,486,2295,492,2194,483,2079,478,1606,478,1535,480,1480,486,1354,503,1251,520,1172,537,1092,550,989,555,453,555,419,558,384,564,317,585,258,611,212,637"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="571,804,713,829"/>
+<area shape="poly" title=" " alt="" coords="189,679,211,733,229,761,254,782,291,803,332,817,374,827,417,832,501,833,572,827,572,832,501,839,417,837,374,832,330,822,289,808,250,787,225,764,206,736,184,681"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="892,692,1083,717"/>
+<area shape="poly" title=" " alt="" coords="237,667,252,670,428,690,605,701,764,704,892,704,892,710,764,710,604,706,428,695,252,675,236,672"/>
+<area shape="poly" title=" " alt="" coords="2629,639,2597,581,2575,550,2548,523,2519,502,2494,491,2431,474,2345,452,2271,436,2144,419,2015,408,1850,389,1782,376,1730,365,1677,356,1609,353,801,353,721,356,642,366,510,391,509,385,641,361,721,351,801,347,1609,347,1678,351,1731,359,1783,371,1851,383,2015,403,2144,414,2272,431,2346,447,2433,469,2496,486,2522,497,2551,519,2579,547,2602,578,2634,637"/>
+<area shape="poly" title=" " alt="" coords="2162,625,2574,656,2574,661,2162,631"/>
+<area shape="poly" title=" " alt="" coords="1527,538,1702,565,2008,610,2007,615,1701,570,1526,543"/>
+<area shape="poly" title=" " alt="" coords="1527,524,1717,526,1717,531,1527,529"/>
+<area shape="poly" title=" " alt="" coords="1213,433,1402,511,1400,516,1211,438"/>
+<area shape="poly" title=" " alt="" coords="1241,411,2573,338,2573,343,1242,417"/>
+<area shape="poly" title=" " alt="" coords="880,447,977,441,1082,431,1106,428,1107,433,1083,437,977,447,880,452"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="363,489,547,515"/>
+<area shape="poly" title=" " alt="" coords="556,485,738,458,739,463,557,490"/>
+<area shape="poly" title=" " alt="" coords="1808,544,1851,559,1888,568,1918,572,1985,585,2048,607,2046,612,1983,590,1917,577,1887,573,1850,565,1806,549"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="2015,513,2141,539"/>
+<area shape="poly" title=" " alt="" coords="1824,525,1851,525,2014,524,2014,529,1851,530,1825,530"/>
+<area shape="poly" title=" " alt="" coords="2397,514,2622,648,2619,653,2394,519"/>
+<area shape="poly" title=" " alt="" coords="2398,475,2548,393,2621,347,2624,352,2551,398,2401,480"/>
+<area shape="poly" title=" " alt="" coords="2155,517,2266,506,2295,503,2296,508,2267,511,2155,522"/>
+<area shape="poly" title=" " alt="" coords="727,814,986,814,2363,814,2460,814,2501,806,2548,782,2578,758,2603,728,2634,675,2639,678,2607,731,2582,762,2551,787,2502,811,2461,820,2363,819,986,819,727,819"/>
+<area shape="poly" title=" " alt="" coords="1096,702,1289,702,2363,702,2423,699,2484,692,2588,673,2589,679,2485,698,2424,705,2363,707,1289,707,1096,707"/>
+<area shape="poly" title=" " alt="" coords="882,68,1031,62,1231,65,1342,72,1455,84,1568,102,1678,127,1714,142,1745,159,1742,164,1712,147,1677,133,1567,107,1454,89,1341,77,1231,70,1032,68,882,73"/>
+<area shape="rect" title=" " alt="" coords="416,5,493,31"/>
+<area shape="poly" title=" " alt="" coords="507,20,603,31,714,49,762,61,761,66,713,54,603,36,507,25"/>
+<area shape="poly" title=" " alt="" coords="353,75,737,74,737,80,353,81"/>
+<area shape="rect" href="classCParameterSftpServer.html" title=" " alt="" coords="2763,271,2928,296"/>
+<area shape="poly" title=" " alt="" coords="2941,266,3037,252,3038,257,2942,272"/>
+<area shape="poly" title=" " alt="" coords="2705,318,2796,293,2797,299,2706,323"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a7673d11887d416a8d9c3c5cb8ce0af37" id="r_a7673d11887d416a8d9c3c5cb8ce0af37"><td class="memItemLeft" align="right" valign="top"><a id="a7673d11887d416a8d9c3c5cb8ce0af37" name="a7673d11887d416a8d9c3c5cb8ce0af37"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>COperateSftpServer</b> (<a class="el" href="classCPlugin.html">CPlugin</a> *plugin)</td></tr>
+<tr class="separator:a7673d11887d416a8d9c3c5cb8ce0af37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e54d3e5a41006b5506939f6862160b2" id="r_a4e54d3e5a41006b5506939f6862160b2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCParameterSftpServer.html">CParameterSftpServer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a> () const</td></tr>
+<tr class="memdesc:a4e54d3e5a41006b5506939f6862160b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get parameter  <br /></td></tr>
+<tr class="separator:a4e54d3e5a41006b5506939f6862160b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10274be08ddf43d7f300df4c92ab20b9" id="r_a10274be08ddf43d7f300df4c92ab20b9"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a10274be08ddf43d7f300df4c92ab20b9">Name</a> () override</td></tr>
+<tr class="memdesc:a10274be08ddf43d7f300df4c92ab20b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">名称  <br /></td></tr>
+<tr class="separator:a10274be08ddf43d7f300df4c92ab20b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af48062496134c8ed24740f1fb3b218dd" id="r_af48062496134c8ed24740f1fb3b218dd"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#af48062496134c8ed24740f1fb3b218dd">Description</a> () override</td></tr>
+<tr class="memdesc:af48062496134c8ed24740f1fb3b218dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">描述  <br /></td></tr>
+<tr class="separator:af48062496134c8ed24740f1fb3b218dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34fb3d73de40db9415da808ace922f8f" id="r_a34fb3d73de40db9415da808ace922f8f"><td class="memItemLeft" align="right" valign="top">virtual const qint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a34fb3d73de40db9415da808ace922f8f">Version</a> () const override</td></tr>
+<tr class="memdesc:a34fb3d73de40db9415da808ace922f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">版本  <br /></td></tr>
+<tr class="separator:a34fb3d73de40db9415da808ace922f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCOperateServer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCOperateServer')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCOperateServer.html">COperateServer</a></td></tr>
+<tr class="memitem:a127434e9d35429c4e760b30f1d164b25 inherit pub_methods_classCOperateServer" id="r_a127434e9d35429c4e760b30f1d164b25"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>COperateServer</b> (<a class="el" href="classCPlugin.html">CPlugin</a> *plugin)</td></tr>
+<tr class="separator:a127434e9d35429c4e760b30f1d164b25 inherit pub_methods_classCOperateServer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b038a90307371ac8633a2cde4a6342a inherit pub_methods_classCOperateServer" id="r_a3b038a90307371ac8633a2cde4a6342a"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateServer.html#a3b038a90307371ac8633a2cde4a6342a">GetViewer</a> () override</td></tr>
+<tr class="memdesc:a3b038a90307371ac8633a2cde4a6342a inherit pub_methods_classCOperateServer"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到显示视图  <br /></td></tr>
+<tr class="separator:a3b038a90307371ac8633a2cde4a6342a inherit pub_methods_classCOperateServer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dc901ed2b7568f9b5deff94bf1ff3ce inherit pub_methods_classCOperateServer" id="r_a5dc901ed2b7568f9b5deff94bf1ff3ce"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateServer.html#a5dc901ed2b7568f9b5deff94bf1ff3ce">Start</a> () override</td></tr>
+<tr class="memdesc:a5dc901ed2b7568f9b5deff94bf1ff3ce inherit pub_methods_classCOperateServer"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始  <br /></td></tr>
+<tr class="separator:a5dc901ed2b7568f9b5deff94bf1ff3ce inherit pub_methods_classCOperateServer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c443f4b6cda154da4f4f5f60a676de2 inherit pub_methods_classCOperateServer" id="r_a4c443f4b6cda154da4f4f5f60a676de2"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateServer.html#a4c443f4b6cda154da4f4f5f60a676de2">Stop</a> () override</td></tr>
+<tr class="memdesc:a4c443f4b6cda154da4f4f5f60a676de2 inherit pub_methods_classCOperateServer"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭  <br /></td></tr>
+<tr class="separator:a4c443f4b6cda154da4f4f5f60a676de2 inherit pub_methods_classCOperateServer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCOperate"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCOperate')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a4fe89e9c49d70d29a1a7243f07101f30 inherit pub_methods_classCOperate" id="r_a4fe89e9c49d70d29a1a7243f07101f30"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>COperate</b> (<a class="el" href="classCPlugin.html">CPlugin</a> *plugin)</td></tr>
+<tr class="separator:a4fe89e9c49d70d29a1a7243f07101f30 inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a064b7e2e81cfc551114c64c562840143 inherit pub_methods_classCOperate" id="r_a064b7e2e81cfc551114c64c562840143"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a064b7e2e81cfc551114c64c562840143">OpenDialogSettings</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:a064b7e2e81cfc551114c64c562840143 inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">打开设置对话框  <br /></td></tr>
+<tr class="separator:a064b7e2e81cfc551114c64c562840143 inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd6ece9b69fbe38ab1282a41028ed46b inherit pub_methods_classCOperate" id="r_afd6ece9b69fbe38ab1282a41028ed46b"><td class="memItemLeft" align="right" valign="top">virtual QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#afd6ece9b69fbe38ab1282a41028ed46b">GetMenu</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:afd6ece9b69fbe38ab1282a41028ed46b inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get menu  <br /></td></tr>
+<tr class="separator:afd6ece9b69fbe38ab1282a41028ed46b inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea757665fa03520c1f93b902bcd2351e inherit pub_methods_classCOperate" id="r_aea757665fa03520c1f93b902bcd2351e"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#aea757665fa03520c1f93b902bcd2351e">Id</a> ()</td></tr>
+<tr class="memdesc:aea757665fa03520c1f93b902bcd2351e inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">标识  <br /></td></tr>
+<tr class="separator:aea757665fa03520c1f93b902bcd2351e inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a934697b05c0e4ac12b936570ed9e74 inherit pub_methods_classCOperate" id="r_a6a934697b05c0e4ac12b936570ed9e74"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a> () const</td></tr>
+<tr class="memdesc:a6a934697b05c0e4ac12b936570ed9e74 inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议  <br /></td></tr>
+<tr class="separator:a6a934697b05c0e4ac12b936570ed9e74 inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186714ec49c6deec8defe524a9caf43d inherit pub_methods_classCOperate" id="r_a186714ec49c6deec8defe524a9caf43d"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a186714ec49c6deec8defe524a9caf43d">Icon</a> () const</td></tr>
+<tr class="memdesc:a186714ec49c6deec8defe524a9caf43d inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">图标  <br /></td></tr>
+<tr class="separator:a186714ec49c6deec8defe524a9caf43d inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc05d8435e47d32420e74cac0f580153 inherit pub_methods_classCOperate" id="r_afc05d8435e47d32420e74cac0f580153"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#afc05d8435e47d32420e74cac0f580153">GetTypeName</a> () const</td></tr>
+<tr class="memdesc:afc05d8435e47d32420e74cac0f580153 inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">类型名  <br /></td></tr>
+<tr class="separator:afc05d8435e47d32420e74cac0f580153 inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecf088d4236d28e15fd82bfc454b03d0 inherit pub_methods_classCOperate" id="r_aecf088d4236d28e15fd82bfc454b03d0"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#aecf088d4236d28e15fd82bfc454b03d0">GetSettingsFile</a> ()</td></tr>
+<tr class="separator:aecf088d4236d28e15fd82bfc454b03d0 inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0bed4e220beeff11f0d14b0ccaa3d3 inherit pub_methods_classCOperate" id="r_aea0bed4e220beeff11f0d14b0ccaa3d3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#aea0bed4e220beeff11f0d14b0ccaa3d3">SetSettingsFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:aea0bed4e220beeff11f0d14b0ccaa3d3 inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19710604825ae865b0e2a39c4f10824f inherit pub_methods_classCOperate" id="r_a19710604825ae865b0e2a39c4f10824f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCStats.html">CStats</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a19710604825ae865b0e2a39c4f10824f">GetStats</a> ()</td></tr>
+<tr class="memdesc:a19710604825ae865b0e2a39c4f10824f inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到统计信息。如果有，其派生类则需要重载此函数提供统计信息。  <br /></td></tr>
+<tr class="separator:a19710604825ae865b0e2a39c4f10824f inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b279f9a0df86cca2caa6f444b79830c inherit pub_methods_classCOperate" id="r_a0b279f9a0df86cca2caa6f444b79830c"><td class="memItemLeft" align="right" valign="top">virtual CSecurityLevel::Levels&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a> () const</td></tr>
+<tr class="memdesc:a0b279f9a0df86cca2caa6f444b79830c inherit pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Security Level  <br /></td></tr>
+<tr class="separator:a0b279f9a0df86cca2caa6f444b79830c inherit pub_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a0c10db5fa2331e09f70b2b81e7a4c61e" id="r_a0c10db5fa2331e09f70b2b81e7a4c61e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a0c10db5fa2331e09f70b2b81e7a4c61e">SetPluginParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara) override</td></tr>
+<tr class="memdesc:a0c10db5fa2331e09f70b2b81e7a4c61e"><td class="mdescLeft">&#160;</td><td class="mdescRight">应用插件全局参数  <br /></td></tr>
+<tr class="separator:a0c10db5fa2331e09f70b2b81e7a4c61e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f3da7a9efed1396079ebd681d9d1ab7" id="r_a8f3da7a9efed1396079ebd681d9d1ab7"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE <a class="el" href="classCBackend.html">CBackend</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a8f3da7a9efed1396079ebd681d9d1ab7">InstanceBackend</a> ()</td></tr>
+<tr class="memdesc:a8f3da7a9efed1396079ebd681d9d1ab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。  <br /></td></tr>
+<tr class="separator:a8f3da7a9efed1396079ebd681d9d1ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b3ad96bb0e8d097bbb209cd7a2443c2" id="r_a6b3ad96bb0e8d097bbb209cd7a2443c2"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a6b3ad96bb0e8d097bbb209cd7a2443c2">Initial</a> () override</td></tr>
+<tr class="memdesc:a6b3ad96bb0e8d097bbb209cd7a2443c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial parameters and resource  <br /></td></tr>
+<tr class="separator:a6b3ad96bb0e8d097bbb209cd7a2443c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad919c04bb3d166f40e3e765294c2eb47" id="r_ad919c04bb3d166f40e3e765294c2eb47"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#ad919c04bb3d166f40e3e765294c2eb47">Clean</a> () override</td></tr>
+<tr class="memdesc:ad919c04bb3d166f40e3e765294c2eb47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean parameters and resource  <br /></td></tr>
+<tr class="separator:ad919c04bb3d166f40e3e765294c2eb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f3cffd4deb37f2d3393351625311b1" id="r_a20f3cffd4deb37f2d3393351625311b1"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a20f3cffd4deb37f2d3393351625311b1">Load</a> (QSettings &amp;set) override</td></tr>
+<tr class="memdesc:a20f3cffd4deb37f2d3393351625311b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载参数  <br /></td></tr>
+<tr class="separator:a20f3cffd4deb37f2d3393351625311b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a681d4902028e39e24fab1341ff58892a" id="r_a681d4902028e39e24fab1341ff58892a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a681d4902028e39e24fab1341ff58892a">Save</a> (QSettings &amp;set) override</td></tr>
+<tr class="memdesc:a681d4902028e39e24fab1341ff58892a"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存参数  <br /></td></tr>
+<tr class="separator:a681d4902028e39e24fab1341ff58892a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCOperate')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a8c9a54a1786a6a974e342e88c92055ef inherit pro_methods_classCOperate" id="r_a8c9a54a1786a6a974e342e88c92055ef"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="el" href="classCPlugin.html">CPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a> () const</td></tr>
+<tr class="memdesc:a8c9a54a1786a6a974e342e88c92055ef inherit pro_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get plugin  <br /></td></tr>
+<tr class="separator:a8c9a54a1786a6a974e342e88c92055ef inherit pro_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79cdead4fe3515eabf47c0f88684aeb6 inherit pro_methods_classCOperate" id="r_a79cdead4fe3515eabf47c0f88684aeb6"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a79cdead4fe3515eabf47c0f88684aeb6">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:a79cdead4fe3515eabf47c0f88684aeb6 inherit pro_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件中加载参数  <br /></td></tr>
+<tr class="separator:a79cdead4fe3515eabf47c0f88684aeb6 inherit pro_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4c0a9bd8531f562d60530d62aebb057 inherit pro_methods_classCOperate" id="r_ac4c0a9bd8531f562d60530d62aebb057"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#ac4c0a9bd8531f562d60530d62aebb057">Save</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ac4c0a9bd8531f562d60530d62aebb057 inherit pro_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存参数到文件中  <br /></td></tr>
+<tr class="separator:ac4c0a9bd8531f562d60530d62aebb057 inherit pro_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a622eaebc65b849655a4df7423238c3ec" id="r_a622eaebc65b849655a4df7423238c3ec"><td class="memItemLeft" align="right" valign="top">virtual QDialog *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a622eaebc65b849655a4df7423238c3ec">OnOpenDialogSettings</a> (QWidget *parent) override</td></tr>
+<tr class="memdesc:a622eaebc65b849655a4df7423238c3ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到设置对话框  <br /></td></tr>
+<tr class="separator:a622eaebc65b849655a4df7423238c3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a76c916c9488ea80fafee1571dcbc15bf" id="r_a76c916c9488ea80fafee1571dcbc15bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterSftpServer.html">CParameterSftpServer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperateSftpServer.html#a76c916c9488ea80fafee1571dcbc15bf">m_pPara</a></td></tr>
+<tr class="separator:a76c916c9488ea80fafee1571dcbc15bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCOperate"><td colspan="2" onclick="javascript:toggleInherit('signals_classCOperate')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a890148e63236cc433c278d0baf2b4716 inherit signals_classCOperate" id="r_a890148e63236cc433c278d0baf2b4716"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a890148e63236cc433c278d0baf2b4716">sigViewerFocusIn</a> (QWidget *pView)</td></tr>
+<tr class="memdesc:a890148e63236cc433c278d0baf2b4716 inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">视图获得焦点  <br /></td></tr>
+<tr class="separator:a890148e63236cc433c278d0baf2b4716 inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4246d9f74e9b4c178d2ad692f906e703 inherit signals_classCOperate" id="r_a4246d9f74e9b4c178d2ad692f906e703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a4246d9f74e9b4c178d2ad692f906e703">sigFullScreen</a> (bool bFullScreen)</td></tr>
+<tr class="memdesc:a4246d9f74e9b4c178d2ad692f906e703 inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">全屏。由操作触发  <br /></td></tr>
+<tr class="separator:a4246d9f74e9b4c178d2ad692f906e703 inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af678e062e6e19ff4b2b6ff5b57459245 inherit signals_classCOperate" id="r_af678e062e6e19ff4b2b6ff5b57459245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#af678e062e6e19ff4b2b6ff5b57459245">sigUpdateName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:af678e062e6e19ff4b2b6ff5b57459245 inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4d9a96a357aac505e11ca49e0a52ef3 inherit signals_classCOperate" id="r_ad4d9a96a357aac505e11ca49e0a52ef3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#ad4d9a96a357aac505e11ca49e0a52ef3">sigUpdateParameters</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate)</td></tr>
+<tr class="memdesc:ad4d9a96a357aac505e11ca49e0a52ef3 inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新参数，通知应用程序保存或显示参数  <br /></td></tr>
+<tr class="separator:ad4d9a96a357aac505e11ca49e0a52ef3 inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4359400858718fa9e46e598f519bbe6d inherit signals_classCOperate" id="r_a4359400858718fa9e46e598f519bbe6d"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (const int nError, const QString &amp;szError)</td></tr>
+<tr class="memdesc:a4359400858718fa9e46e598f519bbe6d inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发。 <br /></td></tr>
+<tr class="separator:a4359400858718fa9e46e598f519bbe6d inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14ab2bf2aeb0d7b9ef17402fd25d114b inherit signals_classCOperate" id="r_a14ab2bf2aeb0d7b9ef17402fd25d114b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a14ab2bf2aeb0d7b9ef17402fd25d114b">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:a14ab2bf2aeb0d7b9ef17402fd25d114b inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">中主窗口中显示信息  <br /></td></tr>
+<tr class="separator:a14ab2bf2aeb0d7b9ef17402fd25d114b inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfd742b7a7032cad45fd39263decff3f inherit signals_classCOperate" id="r_adfd742b7a7032cad45fd39263decff3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#adfd742b7a7032cad45fd39263decff3f">sigShowMessageBox</a> (const QString &amp;title, const QString &amp;message, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:adfd742b7a7032cad45fd39263decff3f inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:adfd742b7a7032cad45fd39263decff3f inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae25e874fdb05097d12aaff788b5cc51f inherit signals_classCOperate" id="r_ae25e874fdb05097d12aaff788b5cc51f"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigClipBoardChanged</b> ()</td></tr>
+<tr class="separator:ae25e874fdb05097d12aaff788b5cc51f inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76bdbff5533a359705e213d71b30f26 inherit signals_classCOperate" id="r_af76bdbff5533a359705e213d71b30f26"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigSecurityLevel</b> ()</td></tr>
+<tr class="memdesc:af76bdbff5533a359705e213d71b30f26 inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">当安全级别改变时触发。其派生类不要直接触发，需要使用 slotSetSecurityLevel 触发 <br /></td></tr>
+<tr class="separator:af76bdbff5533a359705e213d71b30f26 inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2452dc9b1667645e4c38692329a46ea2 inherit signals_classCOperate" id="r_a2452dc9b1667645e4c38692329a46ea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a2452dc9b1667645e4c38692329a46ea2">sigRunning</a> ()</td></tr>
+<tr class="memdesc:a2452dc9b1667645e4c38692329a46ea2 inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始成功信号。仅由插件触发。  <br /></td></tr>
+<tr class="separator:a2452dc9b1667645e4c38692329a46ea2 inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6942d314368c7584494222cdc107a69c inherit signals_classCOperate" id="r_a6942d314368c7584494222cdc107a69c"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigStop</b> ()</td></tr>
+<tr class="memdesc:a6942d314368c7584494222cdc107a69c inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">通知用户停止。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 当应用接收到此信号后，调用 <a class="el" href="classCOperate.html#ab3f69dd4cd02c5dae9414e9dfe2d9eb4" title="关闭">Stop()</a> 关闭连接。 <br /></td></tr>
+<tr class="separator:a6942d314368c7584494222cdc107a69c inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172ed2a87941c21dd2fd98c4bdd2145d inherit signals_classCOperate" id="r_a172ed2a87941c21dd2fd98c4bdd2145d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a172ed2a87941c21dd2fd98c4bdd2145d">sigFinished</a> ()</td></tr>
+<tr class="memdesc:a172ed2a87941c21dd2fd98c4bdd2145d inherit signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">断开连接成功信号。仅由插件触发  <br /></td></tr>
+<tr class="separator:a172ed2a87941c21dd2fd98c4bdd2145d inherit signals_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCOperate')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:ad50c8e544fda7613c0b9260b9c6782bc inherit pro_slots_classCOperate" id="r_ad50c8e544fda7613c0b9260b9c6782bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#ad50c8e544fda7613c0b9260b9c6782bc">slotUpdateName</a> ()</td></tr>
+<tr class="separator:ad50c8e544fda7613c0b9260b9c6782bc inherit pro_slots_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8660f99cde7622b297936156c815ad1 inherit pro_slots_classCOperate" id="r_ab8660f99cde7622b297936156c815ad1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#ab8660f99cde7622b297936156c815ad1">slotSetSecurityLevel</a> (CSecurityLevel::Levels level)</td></tr>
+<tr class="separator:ab8660f99cde7622b297936156c815ad1 inherit pro_slots_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_static_methods_classCOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_classCOperate')"><img src="closed.png" alt="-"/>&#160;静态 Protected 成员函数 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a2998c743fa276f8f489b3520bc78ab32 inherit pro_static_methods_classCOperate" id="r_a2998c743fa276f8f489b3520bc78ab32"><td class="memItemLeft" align="right" valign="top">static QObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a2998c743fa276f8f489b3520bc78ab32">createObject</a> (const QString &amp;className, QObject *parent=NULL)</td></tr>
+<tr class="memdesc:a2998c743fa276f8f489b3520bc78ab32 inherit pro_static_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create Object  <br /></td></tr>
+<tr class="separator:a2998c743fa276f8f489b3520bc78ab32 inherit pro_static_methods_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCOperate')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a40fefa0033ac9fe0cb637e87275e4f14 inherit pro_attribs_classCOperate" id="r_a40fefa0033ac9fe0cb637e87275e4f14"><td class="memItemLeft" align="right" valign="top">QMenu&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a40fefa0033ac9fe0cb637e87275e4f14">m_Menu</a></td></tr>
+<tr class="separator:a40fefa0033ac9fe0cb637e87275e4f14 inherit pro_attribs_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9464c390a69ad3af54fd7151c15d681b inherit pro_attribs_classCOperate" id="r_a9464c390a69ad3af54fd7151c15d681b"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCOperate.html#a9464c390a69ad3af54fd7151c15d681b">m_pActionSettings</a></td></tr>
+<tr class="separator:a9464c390a69ad3af54fd7151c15d681b inherit pro_attribs_classCOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8h_source.html">OperateSftpServer.h</a> 第 <a class="el" href="OperateSftpServer_8h_source.html#l00009">9</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a9401142136b87a08c15f5a86e486e57c" name="a9401142136b87a08c15f5a86e486e57c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9401142136b87a08c15f5a86e486e57c">&#9670;&#160;</a></span>~COperateSftpServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">COperateSftpServer::~COperateSftpServer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ad919c04bb3d166f40e3e765294c2eb47" name="ad919c04bb3d166f40e3e765294c2eb47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad919c04bb3d166f40e3e765294c2eb47">&#9670;&#160;</a></span>Clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateSftpServer::Clean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clean parameters and resource </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCManager.html#a706d4e1645fe0fe7b35731ac8b4ee9bd" title="Delete COperate">CManager::DeleteOperate</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperateServer.html#ac40b1d510a8883ef4660bd2853f292f2">COperateServer</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af48062496134c8ed24740f1fb3b218dd" name="af48062496134c8ed24740f1fb3b218dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af48062496134c8ed24740f1fb3b218dd">&#9670;&#160;</a></span>Description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString COperateSftpServer::Description </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描述 </p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateDesktop.html#adf085b90c58d30f98b69c7a757df29e2">COperateDesktop::Description</a>()</div>
+<div class="line">{</div>
+<div class="line">    QString szDescription;</div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperateSftpServer.html#a10274be08ddf43d7f300df4c92ab20b9">Name</a>().isEmpty())</div>
+<div class="line">        szDescription = tr(<span class="stringliteral">&quot;Name: &quot;</span>) + <a class="code hl_function" href="classCOperateSftpServer.html#a10274be08ddf43d7f300df4c92ab20b9">Name</a>() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#afc05d8435e47d32420e74cac0f580153">GetTypeName</a>().isEmpty())</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Type: &quot;</span>) + <a class="code hl_function" href="classCOperate.html#afc05d8435e47d32420e74cac0f580153">GetTypeName</a>() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>().isEmpty()) {</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Protocol: &quot;</span>) + <a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>();</div>
+<div class="line"><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line">        <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;DisplayName().isEmpty())</div>
+<div class="line">            szDescription += <span class="stringliteral">&quot; - &quot;</span> + <a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCPlugin.html#a9f02199b6529be4a51f814c5c3194509">DisplayName</a>();</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line">        szDescription += <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(!ServerName().isEmpty())</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Server name: &quot;</span>) + ServerName() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()) {</div>
+<div class="line">        <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;m_Net.GetHost().isEmpty())</div>
+<div class="line">            szDescription += tr(<span class="stringliteral">&quot;Server address: &quot;</span>) + <a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;m_Net.GetHost() + <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line">                             + QString::number(<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;m_Net.GetPort()) + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">        </div>
+<div class="line">        QString szProxy(tr(<span class="stringliteral">&quot;Proxy&quot;</span>) + <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line">        <span class="keyword">auto</span> &amp;proxy = <a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;m_Proxy;</div>
+<div class="line">        <span class="keywordflow">switch</span>(proxy.GetUsedType()) {</div>
+<div class="line">        <span class="keywordflow">case</span> CParameterProxy::TYPE::SSHTunnel:</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keyword">auto</span> &amp;sshNet = proxy.m_SSH.m_Net;</div>
+<div class="line">            szProxy += <span class="stringliteral">&quot;(&quot;</span> + tr(<span class="stringliteral">&quot;SSH tunnel&quot;</span>) + <span class="stringliteral">&quot;): &quot;</span> + sshNet.GetHost() + <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line">                       + QString::number(sshNet.GetPort());</div>
+<div class="line">            <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">case</span> CParameterProxy::TYPE::SockesV5:</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keyword">auto</span> &amp;sockesV5 = proxy.m_SockesV5;</div>
+<div class="line">            szProxy += <span class="stringliteral">&quot;(&quot;</span> + tr(<span class="stringliteral">&quot;Sockes v5&quot;</span>) + <span class="stringliteral">&quot;): &quot;</span> + sockesV5.GetHost() + <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line">                       + QString::number(sockesV5.GetPort());</div>
+<div class="line">            <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">default</span>:</div>
+<div class="line">            szProxy.clear();</div>
+<div class="line">            <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line">        </div>
+<div class="line">        <span class="keywordflow">if</span>(!szProxy.isEmpty())</div>
+<div class="line">            szDescription += szProxy + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="classCSecurityLevel.html">CSecurityLevel</a> sl(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>());</div>
+<div class="line">    <span class="keywordflow">if</span>(!(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>() &amp; CSecurityLevel::Level::No)) {</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Security level: &quot;</span>);</div>
+<div class="line">        <span class="keywordflow">if</span>(!sl.GetUnicodeIcon().isEmpty())</div>
+<div class="line">            szDescription += sl.GetUnicodeIcon() + <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">        szDescription += sl.GetString() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCOperateSftpServer.html#af48062496134c8ed24740f1fb3b218dd">Description</a>().isEmpty())</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Description: &quot;</span>) + <a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCPlugin.html#aecbb4f2d85cfe4c75ae53c3e050f7813">Description</a>();</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">return</span> szDescription;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassCOperateDesktop_html_adf085b90c58d30f98b69c7a757df29e2"><div class="ttname"><a href="classCOperateDesktop.html#adf085b90c58d30f98b69c7a757df29e2">COperateDesktop::Description</a></div><div class="ttdeci">virtual const QString Description() override</div><div class="ttdoc">[The name of the desktop operate]</div><div class="ttdef"><b>Definition</b> <a href="OperateDesktop_8cpp_source.html#l00120">OperateDesktop.cpp:120</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a10274be08ddf43d7f300df4c92ab20b9"><div class="ttname"><a href="classCOperateSftpServer.html#a10274be08ddf43d7f300df4c92ab20b9">COperateSftpServer::Name</a></div><div class="ttdeci">virtual const QString Name() override</div><div class="ttdoc">名称</div><div class="ttdef"><b>Definition</b> <a href="OperateSftpServer_8cpp_source.html#l00035">OperateSftpServer.cpp:35</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a4e54d3e5a41006b5506939f6862160b2"><div class="ttname"><a href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">COperateSftpServer::GetParameter</a></div><div class="ttdeci">virtual CParameterSftpServer * GetParameter() const</div><div class="ttdoc">Get parameter</div><div class="ttdef"><b>Definition</b> <a href="OperateSftpServer_8cpp_source.html#l00030">OperateSftpServer.cpp:30</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_af48062496134c8ed24740f1fb3b218dd"><div class="ttname"><a href="classCOperateSftpServer.html#af48062496134c8ed24740f1fb3b218dd">COperateSftpServer::Description</a></div><div class="ttdeci">virtual const QString Description() override</div><div class="ttdoc">描述</div><div class="ttdef"><b>Definition</b> <a href="OperateSftpServer_8cpp_source.html#l00059">OperateSftpServer.cpp:59</a></div></div>
+<div class="ttc" id="aclassCOperate_html_a0b279f9a0df86cca2caa6f444b79830c"><div class="ttname"><a href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">COperate::GetSecurityLevel</a></div><div class="ttdeci">virtual CSecurityLevel::Levels GetSecurityLevel() const</div><div class="ttdoc">Get Security Level</div><div class="ttdef"><b>Definition</b> <a href="Operate_8cpp_source.html#l00129">Operate.cpp:129</a></div></div>
+<div class="ttc" id="aclassCOperate_html_a6a934697b05c0e4ac12b936570ed9e74"><div class="ttname"><a href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">COperate::Protocol</a></div><div class="ttdeci">virtual const QString Protocol() const</div><div class="ttdoc">协议</div><div class="ttdef"><b>Definition</b> <a href="Operate_8cpp_source.html#l00081">Operate.cpp:81</a></div></div>
+<div class="ttc" id="aclassCOperate_html_a8c9a54a1786a6a974e342e88c92055ef"><div class="ttname"><a href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">COperate::GetPlugin</a></div><div class="ttdeci">Q_INVOKABLE CPlugin * GetPlugin() const</div><div class="ttdoc">Get plugin</div><div class="ttdef"><b>Definition</b> <a href="Operate_8cpp_source.html#l00221">Operate.cpp:221</a></div></div>
+<div class="ttc" id="aclassCOperate_html_afc05d8435e47d32420e74cac0f580153"><div class="ttname"><a href="classCOperate.html#afc05d8435e47d32420e74cac0f580153">COperate::GetTypeName</a></div><div class="ttdeci">virtual const QString GetTypeName() const</div><div class="ttdoc">类型名</div><div class="ttdef"><b>Definition</b> <a href="Operate_8cpp_source.html#l00086">Operate.cpp:86</a></div></div>
+<div class="ttc" id="aclassCPlugin_html_a9f02199b6529be4a51f814c5c3194509"><div class="ttname"><a href="classCPlugin.html#a9f02199b6529be4a51f814c5c3194509">CPlugin::DisplayName</a></div><div class="ttdeci">virtual const QString DisplayName() const</div><div class="ttdoc">在界面上显示的名称</div><div class="ttdef"><b>Definition</b> <a href="Plugin_8cpp_source.html#l00076">Plugin.cpp:76</a></div></div>
+<div class="ttc" id="aclassCPlugin_html_aecbb4f2d85cfe4c75ae53c3e050f7813"><div class="ttname"><a href="classCPlugin.html#aecbb4f2d85cfe4c75ae53c3e050f7813">CPlugin::Description</a></div><div class="ttdeci">virtual const QString Description() const =0</div><div class="ttdoc">描述</div></div>
+<div class="ttc" id="aclassCSecurityLevel_html"><div class="ttname"><a href="classCSecurityLevel.html">CSecurityLevel</a></div><div class="ttdoc">安全级别</div><div class="ttdef"><b>Definition</b> <a href="Stats_8h_source.html#l00097">Stats.h:97</a></div></div>
+</div><!-- fragment --> <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperateDesktop.html#adf085b90c58d30f98b69c7a757df29e2" title="[The name of the desktop operate]">COperateDesktop::Description()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperate.html#ad409710c69a36d5cd22ab261a8bdf509">COperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4e54d3e5a41006b5506939f6862160b2" name="a4e54d3e5a41006b5506939f6862160b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e54d3e5a41006b5506939f6862160b2">&#9670;&#160;</a></span>GetParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterSftpServer.html">CParameterSftpServer</a> * COperateSftpServer::GetParameter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get parameter </p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b3ad96bb0e8d097bbb209cd7a2443c2" name="a6b3ad96bb0e8d097bbb209cd7a2443c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b3ad96bb0e8d097bbb209cd7a2443c2">&#9670;&#160;</a></span>Initial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateSftpServer::Initial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial parameters and resource </p>
+<dl class="section note"><dt>注解</dt><dd>Call before <a class="el" href="classCOperateSftpServer.html#a20f3cffd4deb37f2d3393351625311b1" title="加载参数">Load()</a></dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCManager.html#a37bfb18878dd6fbdc05280a960912464" title="新建 COperate 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleOperate()　须释放指针。 调用者必须连接信号 COperate::sigFinished 。 释放指针 (...">CManager::CreateOperate</a> <a class="el" href="classCOperateSftpServer.html#a20f3cffd4deb37f2d3393351625311b1" title="加载参数">Load</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperateServer.html#a118ac940832bca7dfa8c7c677d21b5fc">COperateServer</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00133">133</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8f3da7a9efed1396079ebd681d9d1ab7" name="a8f3da7a9efed1396079ebd681d9d1ab7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f3da7a9efed1396079ebd681d9d1ab7">&#9670;&#160;</a></span>InstanceBackend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBackend.html">CBackend</a> * COperateSftpServer::InstanceBackend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。 </p>
+
+<p>实现了 <a class="el" href="classCOperateServer.html#a8fb396b1707c8c9b7d4c31434bc83320">COperateServer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a20f3cffd4deb37f2d3393351625311b1" name="a20f3cffd4deb37f2d3393351625311b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20f3cffd4deb37f2d3393351625311b1">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateSftpServer::Load </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>加载参数 </p>
+
+<p>实现了 <a class="el" href="classCOperate.html#a67a5952d8064b359cf35cfe8cdd01d75">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a10274be08ddf43d7f300df4c92ab20b9" name="a10274be08ddf43d7f300df4c92ab20b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10274be08ddf43d7f300df4c92ab20b9">&#9670;&#160;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString COperateSftpServer::Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>名称 </p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateDesktop.html#a656dd93f948c23fd0029d01c47fc6a2d">COperateDesktop::Name</a>()</div>
+<div class="line">{</div>
+<div class="line">    QString szName;</div>
+<div class="line">    <span class="comment">// Show the name of parameter</span></div>
+<div class="line">    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>() &amp;&amp; !(<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;GetName().isEmpty()))</div>
+<div class="line">        szName += <a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;GetName();</div>
+<div class="line">    <span class="keywordflow">else</span> {</div>
+<div class="line">        <span class="comment">// Show the prefix of protocol</span></div>
+<div class="line">        <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>() &amp;&amp; <a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;GetPluginParameters()</div>
+<div class="line">            &amp;&amp; (<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;GetPluginParameters()-&gt;GetNameStyles()</div>
+<div class="line">                &amp; CParameterPlugin::NameStyle::Protocol)</div>
+<div class="line">            &amp;&amp; !<a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>().isEmpty())</div>
+<div class="line">            szName = <a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>() + <span class="stringliteral">&quot;: &quot;</span>;</div>
+<div class="line">        <span class="comment">// Show the server name</span></div>
+<div class="line">        szName += ServerName();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span>(szName.isEmpty())</div>
+<div class="line">        szName = <a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f">Name</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Show the prefix of security level</span></div>
+<div class="line">    QString szSecurityLevel;</div>
+<div class="line">    <a class="code hl_class" href="classCSecurityLevel.html">CSecurityLevel</a> sl(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>());</div>
+<div class="line">    <span class="keywordflow">if</span>((<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;GetPluginParameters()-&gt;GetNameStyles()</div>
+<div class="line">         &amp; CParameterPlugin::NameStyle::SecurityLevel)</div>
+<div class="line">        &amp;&amp; !(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>() &amp; CSecurityLevel::Level::No)</div>
+<div class="line">        &amp;&amp; !sl.GetUnicodeIcon().isEmpty())</div>
+<div class="line">        szSecurityLevel = sl.GetUnicodeIcon().left(2);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> szSecurityLevel + szName;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassCOperateDesktop_html_a656dd93f948c23fd0029d01c47fc6a2d"><div class="ttname"><a href="classCOperateDesktop.html#a656dd93f948c23fd0029d01c47fc6a2d">COperateDesktop::Name</a></div><div class="ttdeci">virtual const QString Name() override</div><div class="ttdoc">[The name of the desktop operate]</div><div class="ttdef"><b>Definition</b> <a href="OperateDesktop_8cpp_source.html#l00086">OperateDesktop.cpp:86</a></div></div>
+<div class="ttc" id="aclassCPlugin_html_a946a3be8eed821236c0d894d2a14401f"><div class="ttname"><a href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f">CPlugin::Name</a></div><div class="ttdeci">virtual const QString Name() const =0</div><div class="ttdoc">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。</div></div>
+</div><!-- fragment --> <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperateDesktop.html#a656dd93f948c23fd0029d01c47fc6a2d" title="[The name of the desktop operate]">COperateDesktop::Name()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperate.html#aa189e87cb33699d031f1159252f2148b">COperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a622eaebc65b849655a4df7423238c3ec" name="a622eaebc65b849655a4df7423238c3ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a622eaebc65b849655a4df7423238c3ec">&#9670;&#160;</a></span>OnOpenDialogSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDialog * COperateSftpServer::OnOpenDialogSettings </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>得到设置对话框 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>返回窗口的父窗口 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>QDialog*: 对话框必须在堆内存中分配，它的所有者是调用者。</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperate.html#a064b7e2e81cfc551114c64c562840143" title="打开设置对话框">OpenDialogSettings</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCOperate.html#a03df7eea47732b9293f3f5484d0f2b04">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00112">112</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a681d4902028e39e24fab1341ff58892a" name="a681d4902028e39e24fab1341ff58892a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a681d4902028e39e24fab1341ff58892a">&#9670;&#160;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateSftpServer::Save </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>保存参数 </p>
+
+<p>实现了 <a class="el" href="classCOperate.html#adbaef4edcfc816c1d3905ea48c0c7365">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0c10db5fa2331e09f70b2b81e7a4c61e" name="a0c10db5fa2331e09f70b2b81e7a4c61e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c10db5fa2331e09f70b2b81e7a4c61e">&#9670;&#160;</a></span>SetPluginParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateSftpServer::SetPluginParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td>
+          <td class="paramname"><em>pPara</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>应用插件全局参数 </p>
+<dl class="section note"><dt>注解</dt><dd>调用 CParameterOperate::SetPluginParameters 设置操作参数的全局参数，并连接与全局参数相关的信号</dd></dl>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateDesktop.html#a0406d865924117b00f0b771f4896377d">COperateDesktop::SetPluginParameters</a>(<a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()) {</div>
+<div class="line">        <a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>()-&gt;SetPluginParameters(pPara);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">if</span>(pPara) {</div>
+<div class="line">            <span class="keywordtype">bool</span> check = connect(pPara, SIGNAL(sigNameStylesChanged()),</div>
+<div class="line">                                 <span class="keyword">this</span>, SLOT(slotUpdateName()));</div>
+<div class="line">            Q_ASSERT(check);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        LoadAdaptWindows();</div>
+<div class="line">        <span class="keywordflow">return</span> 0;</div>
+<div class="line">    } <span class="keywordflow">else</span> {</div>
+<div class="line">        QString szMsg = <span class="stringliteral">&quot;There is not parameters! &quot;</span></div>
+<div class="line">                        <span class="stringliteral">&quot;please first create parameters, &quot;</span></div>
+<div class="line">                        <span class="stringliteral">&quot;then call SetParameter() in the &quot;</span>;</div>
+<div class="line">        szMsg += metaObject()-&gt;className() + QString(<span class="stringliteral">&quot;::&quot;</span>)</div>
+<div class="line">                 + metaObject()-&gt;className();</div>
+<div class="line">        szMsg += QString(<span class="stringliteral">&quot;() or &quot;</span>) + metaObject()-&gt;className()</div>
+<div class="line">                 + QString(<span class="stringliteral">&quot;::&quot;</span>) + <span class="stringliteral">&quot;Initial()&quot;</span>;</div>
+<div class="line">        szMsg += <span class="stringliteral">&quot; to set the parameters pointer. &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;Default set CParameterClient for the parameters of operate &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;(CParameterOperate or its derived classes) &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;See CManager::CreateOperate. &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;If you are sure the parameter of operate &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;does not need CParameterClient. &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;Please overload the SetPluginParameters() in the &quot;</span>;</div>
+<div class="line">        szMsg += QString(metaObject()-&gt;className()) + <span class="stringliteral">&quot; . don&#39;t set it&quot;</span>;</div>
+<div class="line">        qCritical(log) &lt;&lt; szMsg.toStdString().c_str();</div>
+<div class="line">        Q_ASSERT(<span class="keyword">false</span>);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> -1;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassCOperateDesktop_html_a0406d865924117b00f0b771f4896377d"><div class="ttname"><a href="classCOperateDesktop.html#a0406d865924117b00f0b771f4896377d">COperateDesktop::SetPluginParameters</a></div><div class="ttdeci">virtual int SetPluginParameters(CParameterPlugin *pPara) override</div><div class="ttdoc">Set Global Parameters</div><div class="ttdef"><b>Definition</b> <a href="OperateDesktop_8cpp_source.html#l00414">OperateDesktop.cpp:414</a></div></div>
+<div class="ttc" id="aclassCParameterPlugin_html"><div class="ttname"><a href="classCParameterPlugin.html">CParameterPlugin</a></div><div class="ttdoc">插件的全局参数。</div><div class="ttdef"><b>Definition</b> <a href="ParameterPlugin_8h_source.html#l00035">ParameterPlugin.h:36</a></div></div>
+</div><!-- fragment --> <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCManager.html#a37bfb18878dd6fbdc05280a960912464" title="新建 COperate 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleOperate()　须释放指针。 调用者必须连接信号 COperate::sigFinished 。 释放指针 (...">CManager::CreateOperate</a> <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCOperate.html#a12dc3be591154c37a3b599334055c65e">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a34fb3d73de40db9415da808ace922f8f" name="a34fb3d73de40db9415da808ace922f8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34fb3d73de40db9415da808ace922f8f">&#9670;&#160;</a></span>Version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const qint16 COperateSftpServer::Version </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>版本 </p>
+
+<p>实现了 <a class="el" href="classCOperate.html#a04f3eed2100aefdcd4c651296fb9b379">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a> 第 <a class="el" href="OperateSftpServer_8cpp_source.html#l00091">91</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a76c916c9488ea80fafee1571dcbc15bf" name="a76c916c9488ea80fafee1571dcbc15bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76c916c9488ea80fafee1571dcbc15bf">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterSftpServer.html">CParameterSftpServer</a>* COperateSftpServer::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="OperateSftpServer_8h_source.html">OperateSftpServer.h</a> 第 <a class="el" href="OperateSftpServer_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SftpServer/<a class="el" href="OperateSftpServer_8h_source.html">OperateSftpServer.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SftpServer/<a class="el" href="OperateSftpServer_8cpp_source.html">OperateSftpServer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<map id="CConnection" name="CConnection">
+<area shape="rect" id="Node000001" title=" " alt="" coords="265,243,369,268"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="36,44,35,75,39,111,50,147,70,178,90,196,113,211,165,233,218,245,265,250,265,256,217,250,163,238,111,216,87,201,66,182,45,149,33,112,29,75,31,44"/>
+<area shape="poly" id="edge3_Node000001_Node000002" title=" " alt="" coords="52,44,61,111,74,147,94,178,132,209,177,229,223,242,266,249,265,254,222,247,175,234,130,213,90,182,69,149,56,112,47,45"/>
+<area shape="rect" id="Node000005" href="$classCParameterService.html" title=" " alt="" coords="127,80,273,105"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="81,34,176,78,174,82,79,39"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="563,155,693,180"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="566,186,438,221,350,245,349,240,437,216,565,181"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="585,187,462,221,370,246,369,240,461,216,583,181"/>
+<area shape="rect" id="Node000004" href="$classCParameterServiceRabbitVNC.html" title=" " alt="" coords="92,155,308,180"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="228,186,303,240,300,245,225,190"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="203,120,203,154,197,154,197,120"/>
+<area shape="rect" id="Node000006" href="$classCParameterServiceTigerVNC.html" title=" " alt="" coords="333,155,539,180"/>
+<area shape="poly" id="edge9_Node000006_Node000005" title=" " alt="" coords="251,107,400,152,398,157,250,112"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="410,190,335,245,332,240,407,186"/>
+</map>

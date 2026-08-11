@@ -1,0 +1,19 @@
+<map id="CParameterDesktop" name="CParameterDesktop">
+<area shape="rect" id="Node000001" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="473,104,625,129"/>
+<area shape="rect" id="Node000005" href="$classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="703,5,856,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="578,94,621,66,672,40,708,28,709,33,674,44,624,70,580,98"/>
+<area shape="rect" id="Node000006" href="$classCParameterLibVNCServer.html" title=" " alt="" coords="686,55,873,80"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="622,99,719,77,720,83,623,104"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlayer.html" title=" " alt="" coords="710,104,849,129"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="639,114,710,114,710,119,639,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterTemplateDesktop.html" title=" " alt="" coords="673,153,885,179"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="623,130,720,151,719,156,622,135"/>
+<area shape="rect" id="Node000009" href="$classCParameterVnc.html" title=" " alt="" coords="718,203,841,228"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="580,135,624,163,674,189,719,202,717,208,672,194,621,168,578,140"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="275,104,425,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="439,114,473,114,473,119,439,119"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="参数接口" alt="" coords="128,104,227,129"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="240,114,274,114,274,119,240,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,104,80,129"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,114,128,114,128,119,94,119"/>
+</map>

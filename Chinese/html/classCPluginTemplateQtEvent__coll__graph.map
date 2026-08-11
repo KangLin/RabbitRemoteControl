@@ -1,0 +1,13 @@
+<map id="CPluginTemplateQtEvent" name="CPluginTemplateQtEvent">
+<area shape="rect" id="Node000001" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="9,243,191,268"/>
+<area shape="rect" id="Node000002" href="$classCPluginBackendThread.html" title="插件有一个后台线程，所有操作后端运行在此后台线程中" alt="" coords="15,168,185,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,208,103,242,97,242,97,208"/>
+<area shape="rect" id="Node000003" href="$classCPlugin.html" title="插件接口" alt="" coords="7,80,78,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="60,115,94,166,90,169,56,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="45,45,45,80,40,80,40,45"/>
+<area shape="rect" id="Node000005" href="$classCPluginThread.html" title="一个线程处理多个操作 COperate 。 此类仅用于 CPluginBackendThread 由插件使用。" alt="" coords="102,80,218,105"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="146,118,111,169,106,166,142,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="121,5,199,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="163,45,163,80,157,80,157,45"/>
+</map>

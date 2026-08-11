@@ -1,0 +1,6 @@
+<map id="程序" name="程序">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,61,80"/>
+<area shape="rect" id="Node000003" href="$group__Service.html" title="玉兔远程控制服务程序。" alt="" coords="127,5,319,31"/>
+<area shape="rect" id="Node000004" href="$group__ServiceConfigure.html" title="玉兔远程控制服务配置程序" alt="" coords="109,55,336,80"/>
+<area shape="rect" id="Node000002" href="$group__VIEWER__APP.html" title="玉兔远程控制程序" alt="" coords="143,104,302,129"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="CICE" name="CICE">
+<area shape="rect" id="Node000001" title="提供管理、访问ICE的一个单例对象" alt="" coords="22,168,74,193"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="46,44,50,168,45,168,41,45"/>
+<area shape="rect" id="Node000003" href="$classCParameterICE.html" title="ICE 参数辅助类。用于管理 ICE 的参数。" alt="" coords="65,80,183,105"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="68,38,112,78,109,82,64,42"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="107,118,61,169,57,166,103,114"/>
+</map>

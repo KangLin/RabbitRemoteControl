@@ -1,0 +1,9 @@
+<map id="CInStreamChannel" name="CInStreamChannel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="37,168,179,193"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,168,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,118,108,167,102,168,90,119"/>
+<area shape="rect" id="Node000003" href="$classCChannel.html" title="The channel interface class." alt="" coords="193,80,277,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,115,127,170,124,166,205,111"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="189,5,280,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="237,45,237,80,232,80,232,45"/>
+</map>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Template/Desktop/BackendTemplateDesktop.cpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate10</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b4eaef40a1fe20bedafe9e8e719ce66.html">Plugins</a></li><li class="navelem"><a class="el" href="dir_6b6d1d6fac81b2434b06ba2090714379.html">Template</a></li><li class="navelem"><a class="el" href="dir_fa45e5abaee7b8782c11650e64868e7d.html">Desktop</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">BackendTemplateDesktop.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;QLoggingCategory&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;BackendTemplateDesktop.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">static</span> Q_LOGGING_CATEGORY(log, <span class="stringliteral">&quot;TemplateDesktop.Backend&quot;</span>)</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><a class="code hl_class" href="classCBackendTemplateDesktop.html">CBackendTemplateDesktop</a>::<a class="code hl_class" href="classCBackendTemplateDesktop.html">CBackendTemplateDesktop</a>(<a class="code hl_class" href="classCOperateTemplateDesktop.html">COperateTemplateDesktop</a> *pOperate)</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    : <a class="code hl_class" href="classCBackendDesktop.html">CBackendDesktop</a>(pOperate)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>CBackendTemplateDesktop::~CBackendTemplateDesktop()</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classCBackendTemplateDesktop.html#ae303f902be86851d5af614544d201400">   34</a></span>CBackend::OnInitReturnValue <a class="code hl_function" href="classCBackendTemplateDesktop.html#ae303f902be86851d5af614544d201400">CBackendTemplateDesktop::OnInit</a>()</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    OnInitReturnValue ret = OnInitReturnValue::NotUseOnProcess;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// TODO: Modify Initialization</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// When ready</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    emit <a class="code hl_signal" href="classCBackend.html#a995a76442b28b067ab34dbe0fdffbbb5">sigRunning</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classCBackendTemplateDesktop.html#a936fcc841780b9ec8699f48f83e9e9d4">   45</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCBackendTemplateDesktop.html#a936fcc841780b9ec8699f48f83e9e9d4">CBackendTemplateDesktop::OnClean</a>()</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// TODO: Modify clean</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classCBackendTemplateDesktop.html#aafb2d799edf38957f097359026dc58ce">   68</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCBackendTemplateDesktop.html#aafb2d799edf38957f097359026dc58ce">CBackendTemplateDesktop::OnProcess</a>()</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// TODO: add event dispatch (non-Qt event loop)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// TODO: When an error occurs. emit sigStop();</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">void</span> CBackendTemplateDesktop::slotClipBoardChanged()</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// TODO: add clipboard operate</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
+<div class="ttc" id="aclassCBackendDesktop_html"><div class="ttname"><a href="classCBackendDesktop.html">CBackendDesktop</a></div><div class="ttdoc">远程桌面接口。它由协议插件实现。</div><div class="ttdef"><b>Definition</b> <a href="BackendDesktop_8h_source.html#l00037">BackendDesktop.h:38</a></div></div>
+<div class="ttc" id="aclassCBackendTemplateDesktop_html"><div class="ttname"><a href="classCBackendTemplateDesktop.html">CBackendTemplateDesktop</a></div><div class="ttdef"><b>Definition</b> <a href="BackendTemplateDesktop_8h_source.html#l00008">BackendTemplateDesktop.h:9</a></div></div>
+<div class="ttc" id="aclassCBackendTemplateDesktop_html_a936fcc841780b9ec8699f48f83e9e9d4"><div class="ttname"><a href="classCBackendTemplateDesktop.html#a936fcc841780b9ec8699f48f83e9e9d4">CBackendTemplateDesktop::OnClean</a></div><div class="ttdeci">virtual int OnClean() override</div><div class="ttdoc">清理</div><div class="ttdef"><b>Definition</b> <a href="BackendTemplateDesktop_8cpp_source.html#l00045">BackendTemplateDesktop.cpp:45</a></div></div>
+<div class="ttc" id="aclassCBackendTemplateDesktop_html_aafb2d799edf38957f097359026dc58ce"><div class="ttname"><a href="classCBackendTemplateDesktop.html#aafb2d799edf38957f097359026dc58ce">CBackendTemplateDesktop::OnProcess</a></div><div class="ttdeci">virtual int OnProcess() override</div><div class="ttdoc">具体操作处理</div><div class="ttdef"><b>Definition</b> <a href="BackendTemplateDesktop_8cpp_source.html#l00068">BackendTemplateDesktop.cpp:68</a></div></div>
+<div class="ttc" id="aclassCBackendTemplateDesktop_html_ae303f902be86851d5af614544d201400"><div class="ttname"><a href="classCBackendTemplateDesktop.html#ae303f902be86851d5af614544d201400">CBackendTemplateDesktop::OnInit</a></div><div class="ttdeci">virtual OnInitReturnValue OnInit() override</div><div class="ttdoc">初始化</div><div class="ttdef"><b>Definition</b> <a href="BackendTemplateDesktop_8cpp_source.html#l00034">BackendTemplateDesktop.cpp:34</a></div></div>
+<div class="ttc" id="aclassCBackend_html_a995a76442b28b067ab34dbe0fdffbbb5"><div class="ttname"><a href="classCBackend.html#a995a76442b28b067ab34dbe0fdffbbb5">CBackend::sigRunning</a></div><div class="ttdeci">void sigRunning()</div><div class="ttdoc">当插件开始成功后触发。仅由插件触发</div></div>
+<div class="ttc" id="aclassCOperateTemplateDesktop_html"><div class="ttname"><a href="classCOperateTemplateDesktop.html">COperateTemplateDesktop</a></div><div class="ttdef"><b>Definition</b> <a href="OperateTemplateDesktop_8h_source.html#l00008">OperateTemplateDesktop.h:9</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
