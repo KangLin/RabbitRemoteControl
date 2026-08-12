@@ -58,6 +58,7 @@
 - 修复
   - 修复禁用桌面快捷键。详见: https://github.com/KangLin/RabbitRemoteControl/discussions/91
   - 修复拆分视图错误
+  - 修复在 wayland 下，设置全屏工具栏位置无效的错误。
 
 ### v0.0.36
 - Client:

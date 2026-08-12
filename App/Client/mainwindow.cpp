@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QWindow>
 #include <QFontMetrics>
 #include <QGridLayout>
 #include <QMessageBox>
@@ -773,19 +774,12 @@ void MainWindow::on_actionFull_screen_F_triggered()
     }
 
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
+    bool bWaylan = (-1 != QGuiApplication::platformName().indexOf(QRegularExpression("wayland.*")));
     // Delete it when the widget is close
-    m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
-    QScreen* pScreen = qApp->primaryScreen();
-    if(pScreen) {
-        QPoint pos(pScreen->geometry().left()
-                       + (pScreen->geometry().width()
-                          - m_pFullScreenToolBar->frameGeometry().width()) / 2,
-                   pScreen->geometry().top());
-        qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
-                    << "availableGeometry:" << pScreen->availableGeometry()
-                    << pos << mapToGlobal(pos);
-        m_pFullScreenToolBar->move(pos);
-    }
+    m_pFullScreenToolBar = new CFrmFullScreenToolBar(this, bWaylan ? this : nullptr);
+    if(!m_pFullScreenToolBar) return;
+    m_pFullScreenToolBar->show();
+
     bool check = connect(m_pFullScreenToolBar, SIGNAL(sigExitFullScreen()),
                          this, SLOT(on_actionFull_screen_F_triggered()));
     Q_ASSERT(check);
@@ -798,7 +792,32 @@ void MainWindow::on_actionFull_screen_F_triggered()
                     SLOT(slotOperateMenuChanged(QAction*)));
     Q_ASSERT(check);
 
-    m_pFullScreenToolBar->show();
+    QScreen* pScreen = qApp->primaryScreen();
+    if(pScreen) {
+        QPoint pos(pScreen->geometry().left()
+                   + (pScreen->geometry().width()
+                     - m_pFullScreenToolBar->frameGeometry().width()) / 2,
+                   pScreen->geometry().top());
+
+        qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
+                    << "availableGeometry:" << pScreen->availableGeometry()
+                    << "Main window frameGeom:" << frameGeometry()
+                    << pos << mapToGlobal(pos);
+        qDebug(log) << "platform:" << QGuiApplication::platformName();
+        if (m_pFullScreenToolBar->windowHandle()) {
+            qDebug(log) << "have windowHandle;"
+                        << "isVisible=" << m_pFullScreenToolBar->isVisible()
+                        << "isExposed=" << m_pFullScreenToolBar->windowHandle()->isExposed()
+                        << "screen=" << m_pFullScreenToolBar->windowHandle()->screen();
+            auto tp = m_pFullScreenToolBar->windowHandle()->transientParent();
+            qDebug(log) << "transientParent()=" << tp;
+        } else {
+            qDebug(log) << "no windowHandle yet";
+        }
+
+        m_pFullScreenToolBar->move(bWaylan ? mapFromGlobal(pos) : pos);
+        m_pFullScreenToolBar->raise();
+    }
 }
 
 void MainWindow::slotViewerFocusIn(QWidget *pView)

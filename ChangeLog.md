@@ -59,6 +59,7 @@
 - Fix
   - Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91
   - Fix splitter view bug
+  - Fix full screen tool bar position in wayland bug
 
 ### v0.0.36
 - Client:
