@@ -806,7 +806,6 @@ void MainWindow::on_actionFull_screen_F_triggered()
     // because the size of widget full screen is same the size of primary screen.
     // so that using the size of primary screen.
     m_pFullScreenToolBar->move(pos);
-    m_pFullScreenToolBar->raise();
 }
 
 void MainWindow::slotViewerFocusIn(QWidget *pView)

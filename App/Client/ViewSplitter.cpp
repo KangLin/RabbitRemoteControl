@@ -366,7 +366,7 @@ int CViewSplitter::ActiveContainer(QWidget *pView)
     foreach (auto c, m_Container) {
         if(!c) continue;
         if(c->GetView() == pView && nullptr != pView) {
-            c->setFrameStyle(QFrame::Panel|QFrame::Raised);
+            c->setFrameStyle(QFrame::Panel | QFrame::Raised);
             c->setLineWidth(5);
             c->setMidLineWidth(5);
         } else {

@@ -54,7 +54,10 @@
   - 增加 macOS 编译脚本。生成　App 捆绑包
   - 为 windows 安装包增加“不安装执行功能”。
   - [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)
-- 修改工具条
+- 修改
+  - 应用程序
+    - 修改工具条
+    - 修改全屏工具条的背景色
 - 修复
   - 应用程序
     - 修复禁用桌面快捷键。详见: https://github.com/KangLin/RabbitRemoteControl/discussions/91

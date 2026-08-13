@@ -55,7 +55,10 @@
   - Add build_mscos.sh. add App bundle
   - Add run the program directly without installation for windows install package
   - [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
-- Modify toolbar
+- Modify
+  - Application
+    - Modify toolbar
+    - Modify full screen tool bar backgroud color
 - Fix
   - Application
     - Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91

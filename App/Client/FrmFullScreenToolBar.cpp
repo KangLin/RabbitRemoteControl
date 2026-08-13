@@ -1,24 +1,23 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "FrmFullScreenToolBar.h"
-#include "ui_FrmFullScreenToolBar.h"
-#include "ui_mainwindow.h"
-#include "RabbitCommonDir.h"
 #include <QStyleOption>
 #include <QVBoxLayout>
 #include <QSettings>
 #include <QScreen>
 #include <QApplication>
 #include <QLoggingCategory>
+#include <QPalette>
+
+#include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
+#include "FrmFullScreenToolBar.h"
+#include "ui_FrmFullScreenToolBar.h"
+#include "ui_mainwindow.h"
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow.FullScreen")
 
 CFrmFullScreenToolBar::CFrmFullScreenToolBar(QWidget *parent) :
-    QWidget(parent,
-              Qt::WindowStaysOnTopHint
-                  | Qt::Tool
-                  | Qt::FramelessWindowHint
-                  | Qt::CustomizeWindowHint),
+    QWidget(parent),
     ui(new Ui::CFrmFullScreenToolBar),
     m_ToolBar(this),
     m_pOperateMenu(nullptr),
@@ -33,6 +32,19 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_ShowWithoutActivating);
     setAutoFillBackground(true);
+    setAttribute(Qt::WA_TranslucentBackground, false);
+
+    Qt::WindowFlags flags;
+    flags = Qt::WindowStaysOnTopHint
+#ifndef WIN32
+            | Qt::X11BypassWindowManagerHint  //这个标志是在x11下有用,查看帮助QWidget::showFullScreen(),符合ICCCM协
+#endif
+            | Qt::FramelessWindowHint
+            | Qt::CustomizeWindowHint;
+    if(-1 == QGuiApplication::platformName().indexOf(QRegularExpression("wayland.*"))) {
+        flags |= Qt::Tool;
+    }
+    setWindowFlags(flags);
 
     ui->setupUi(this);
 
@@ -91,6 +103,11 @@ void CFrmFullScreenToolBar::mousePressEvent(QMouseEvent *event)
 
 int CFrmFullScreenToolBar::ReToolBarSize()
 {
+    QPalette palette = this->palette();
+    palette.setColor(QPalette::Window,
+                     m_pMain->palette().color(QPalette::Window));
+    this->setPalette(palette);
+
     int marginW = style()->pixelMetric(
                 QStyle::PM_FocusFrameHMargin) << 1;
     int marginH = style()->pixelMetric(
@@ -105,6 +122,11 @@ int CFrmFullScreenToolBar::ReToolBarSize()
     if(frameGeometry().top() > m_pMain->frameGeometry().height() >> 1)
         move(frameGeometry().left(),
              m_pMain->frameGeometry().height() - frameGeometry().height());
+
+    this->raise();
+    qDebug(log) << Q_FUNC_INFO << "frameGeometry:" << frameGeometry()
+                << "main window frameGeometry:" << m_pMain->frameGeometry();
+
     return 0;    
 }
 
@@ -114,7 +136,12 @@ void CFrmFullScreenToolBar::slotTimeOut()
     if(m_isHide) return;
     
     if(m_pNail->isChecked()) return;
-    
+
+    QPalette palette = this->palette();
+    palette.setColor(QPalette::Window,
+                     RabbitCommon::CTools::InvertColor(palette.color(QPalette::Window)));
+    this->setPalette(palette);
+
     m_isHide = true;
     m_Timer.stop();
     m_ToolBar.hide();
@@ -125,6 +152,10 @@ void CFrmFullScreenToolBar::slotTimeOut()
         move(frameGeometry().left(), 0);
     else
         move(frameGeometry().left(),  m_pMain->frameGeometry().height() - area);
+
+    this->raise();
+    qDebug(log) << Q_FUNC_INFO << "frameGeometry:" << frameGeometry()
+                << "main window frameGeometry:" << m_pMain->frameGeometry();
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
