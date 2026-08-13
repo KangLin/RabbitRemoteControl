@@ -26,13 +26,19 @@ cleanup:
   - "/lib/pkgconfig"
   - "/share/licenses"
 
-finish-args:
+finish-args: #See: https://docs.flatpak.org/en/latest/sandbox-permissions.html
   - --share=ipc
+  # Needs to talk to the network
   - --share=network
+  - --allow=bluetooth
   - --socket=pulseaudio
   - --socket=pcsc
   - --socket=ssh-auth
-  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  - --socket=fallback-x11
+  # X11 + XShm access
+  #- --socket=x11
   - --device=all
   - --filesystem=xdg-documents
   - --talk-name=org.freedesktop.Notifications
@@ -44,6 +50,7 @@ finish-args:
   - --filesystem=xdg-public-share
   - --filesystem=home:ro
   # https://github.com/flathub/io.qt.qtwebengine.BaseApp
+  # GPU acceleration (OpenGL rendering)
   - --device=dri
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
 

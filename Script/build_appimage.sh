@@ -235,7 +235,7 @@ echo_status "Build AppImage ......"
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
 #export QMAKE=$QT_ROOT/bin/qmake6
 #export PATH=$QT_ROOT/libexec:$PATH
-export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so"
+export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so;libqwayland.so"
 #export DEPLOY_PLATFORM_THEMES=true
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 # qtmodules: https://doc.qt.io/archives/qt-6.7/qtmodules.html
@@ -255,8 +255,10 @@ if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
 fi
 
 if [ -z "$QMAKE" ]; then
-    if command -v qmake >/dev/null 2>&1; then
+    if command -v qmake6 >/dev/null 2>&1; then
         export QMAKE=`command -v qmake6`
+    elif command -v qmake >/dev/null 2>&1; then
+        export QMAKE=`command -v qmake`
     else
         echo_error "Please set 'QMAKE'"
     fi

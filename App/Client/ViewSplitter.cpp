@@ -284,8 +284,7 @@ int CViewSplitter::SetFullScreen(bool bFull)
                 }
             }
         }
-    }
-    else {
+    } else {
         setStyleSheet(m_szStyleSheet);
         m_pMainSplitter->setHandleWidth(m_HandleWidth);
         for(int i = 0; i < m_nRow; i++) {

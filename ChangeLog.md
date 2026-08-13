@@ -58,7 +58,7 @@
 - Modify
   - Application
     - Modify toolbar
-    - Modify full screen tool bar backgroud color
+    - Modify full screen tool bar background color
 - Fix
   - Application
     - Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91

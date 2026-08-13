@@ -63,11 +63,11 @@ jobs:
 
           - PACKAGE: appimage
             image: ubuntu
-            lable: "25.04"
+            lable: "26.04"
             os: ubuntu-24.04
           - PACKAGE: appimage
             image: ubuntu
-            lable: "25.04"
+            lable: "26.04"
             os: ubuntu-24.04-arm
           # - PACKAGE: appimage
           #   image: fedora

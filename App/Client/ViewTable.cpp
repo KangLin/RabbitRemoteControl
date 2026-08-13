@@ -145,8 +145,7 @@ void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle,
 int CViewTable::SetFullScreen(bool bFull)
 {
     if(!m_pTab) return -1;
-    if(bFull)
-    {
+    if(bFull) {
         m_szStyleSheet = m_pTab->styleSheet();
         SetVisibleTab(false);
         //qDebug(log) << m_szStyleSheet;

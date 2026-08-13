@@ -801,8 +801,8 @@ void MainWindow::on_actionFull_screen_F_triggered()
                 << "Primary screen available geometry:" << pScreen->availableGeometry()
                 << "Main window frameGeometry:" << frameGeometry()
                 << "Position:" << pos << "local position:" << mapFromGlobal(pos);
-    // When platfrom is wayland, the widget is show, so the frameGeometry is right. the size is full screen.
-    // When platfrom is x11, the widget is not show, so the frameGeometry is error. the size is old size.
+    // When platform is wayland, the widget is show, so the frameGeometry is right. the size is full screen.
+    // When platform is x11, the widget is not show, so the frameGeometry is error. the size is old size.
     // because the size of widget full screen is same the size of primary screen.
     // so that using the size of primary screen.
     m_pFullScreenToolBar->move(pos);
