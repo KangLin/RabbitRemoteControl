@@ -12,39 +12,29 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow.FullScreen")
-static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.FullScreen.Record")
 
-CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent) :
+CFrmFullScreenToolBar::CFrmFullScreenToolBar(QWidget *parent) :
     QWidget(parent,
-            parent ? Qt::FramelessWindowHint :
-                Qt::FramelessWindowHint
-#ifndef WIN32
-                    | Qt::X11BypassWindowManagerHint  //这个标志是在x11下有用,查看帮助QWidget::showFullScreen(),符合ICCCM协议的不需要这个
-#endif
-                    | Qt::Tool
-                    | Qt::WindowStaysOnTopHint
-                    | Qt::CustomizeWindowHint
-
-            ),
+              Qt::WindowStaysOnTopHint
+                  | Qt::Tool
+                  | Qt::FramelessWindowHint
+                  | Qt::CustomizeWindowHint),
     ui(new Ui::CFrmFullScreenToolBar),
     m_ToolBar(this),
     m_pOperateMenu(nullptr),
     m_pNail(nullptr),
-    m_pMain(pMain),
+    m_pMain(qobject_cast<MainWindow*>(parent)),
     m_TimeOut(3000),
     m_isHide(false)
 {
     bool check = false;
+    Q_ASSERT(m_pMain);
+
     setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_ShowWithoutActivating);
-    if(parent) {
-        //setAttribute(Qt::WA_TranslucentBackground, false);
-        setAutoFillBackground(true);
-    }
+    setAutoFillBackground(true);
 
     ui->setupUi(this);
-
-    //setFocusPolicy(Qt::NoFocus);
 
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
     m_ToolBar.addSeparator();
@@ -74,7 +64,6 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     Q_ASSERT(check);
 
     m_Timer.start(m_TimeOut);
-
     ReToolBarSize();
 }
 

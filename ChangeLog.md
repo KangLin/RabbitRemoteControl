@@ -57,9 +57,22 @@
   - [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
 - Modify toolbar
 - Fix
-  - Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91
-  - Fix splitter view bug
-  - Fix full screen tool bar position in wayland bug
+  - Application
+    - Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91
+    - Fix splitter view bug
+    - Fix full screen tool bar position in wayland bug.
+      The reason is that on the Wayland platform,
+      the toolbar's QWindow has already been exposed (isExposed() == true),
+      but the compositor doesn't treat the absolute position you requested
+      as the final position (it puts top-level windows in the center).
+      This is common behavior in Wayland—many compositors perform
+      server-side placement for top-level windows (including Qt::Tool / transient windows),
+      so client move() requests are often ignored or overridden.
+      The most reliable solution is to avoid making the toolbar
+      a "top-level window placed by the compositor" and instead treat
+      it as a child of the main window (client-side placement).
+      So, the fullscreen toolbar was refactored to be a child window of the main window,
+      and `raise()` is used to keep it on top.
 
 ### v0.0.36
 - Client:

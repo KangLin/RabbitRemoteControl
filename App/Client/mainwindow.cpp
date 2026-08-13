@@ -718,7 +718,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
         m_pDockActive->setVisible(m_FullState.dockListActive);
         m_pDockRecent->setVisible(m_FullState.dockListRecent);
         m_pDockFavorite->setVisible(m_FullState.dockFavorite);
-        // TODO: This is hade code. it is in RabbitCommon
+        // NOTE: This is hade code. it is in RabbitCommon
         QDockWidget* pDockDebugLog = findChild<QDockWidget*>("dockDebugLog");
         if(pDockDebugLog)
         {
@@ -727,7 +727,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
         if(m_pFullScreenToolBar)
         {
-            // Delete it when the widget is close
+            // NOTE: Delete it when the widget is close. see: CFrmFullScreenToolBar
             m_pFullScreenToolBar->close();
             m_pFullScreenToolBar = nullptr;
         }
@@ -765,7 +765,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_pDockRecent->setVisible(false);
     m_FullState.dockFavorite = m_pDockFavorite->isVisible();
     m_pDockFavorite->setVisible(false);
-    // This is hade code. it is in RabbitCommon
+    // NOTE: This is hade code. it is in RabbitCommon
     QDockWidget* pDockDebugLog = findChild<QDockWidget*>("dockDebugLog");
     if(pDockDebugLog)
     {
@@ -774,9 +774,8 @@ void MainWindow::on_actionFull_screen_F_triggered()
     }
 
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
-    bool bWaylan = (-1 != QGuiApplication::platformName().indexOf(QRegularExpression("wayland.*")));
-    // Delete it when the widget is close
-    m_pFullScreenToolBar = new CFrmFullScreenToolBar(this, bWaylan ? this : nullptr);
+    // NOTE: Delete it when the widget is close
+    m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
     if(!m_pFullScreenToolBar) return;
     m_pFullScreenToolBar->show();
 
@@ -792,32 +791,22 @@ void MainWindow::on_actionFull_screen_F_triggered()
                     SLOT(slotOperateMenuChanged(QAction*)));
     Q_ASSERT(check);
 
-    QScreen* pScreen = qApp->primaryScreen();
-    if(pScreen) {
-        QPoint pos(pScreen->geometry().left()
+    QScreen* pScreen = QGuiApplication::primaryScreen();
+    QPoint pos(pScreen->geometry().left()
                    + (pScreen->geometry().width()
-                     - m_pFullScreenToolBar->frameGeometry().width()) / 2,
-                   pScreen->geometry().top());
+                      - m_pFullScreenToolBar->frameGeometry().width()) / 2,
+               pScreen->geometry().top());
 
-        qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
-                    << "availableGeometry:" << pScreen->availableGeometry()
-                    << "Main window frameGeom:" << frameGeometry()
-                    << pos << mapToGlobal(pos);
-        qDebug(log) << "platform:" << QGuiApplication::platformName();
-        if (m_pFullScreenToolBar->windowHandle()) {
-            qDebug(log) << "have windowHandle;"
-                        << "isVisible=" << m_pFullScreenToolBar->isVisible()
-                        << "isExposed=" << m_pFullScreenToolBar->windowHandle()->isExposed()
-                        << "screen=" << m_pFullScreenToolBar->windowHandle()->screen();
-            auto tp = m_pFullScreenToolBar->windowHandle()->transientParent();
-            qDebug(log) << "transientParent()=" << tp;
-        } else {
-            qDebug(log) << "no windowHandle yet";
-        }
-
-        m_pFullScreenToolBar->move(bWaylan ? mapFromGlobal(pos) : pos);
-        m_pFullScreenToolBar->raise();
-    }
+    qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
+                << "Primary screen available geometry:" << pScreen->availableGeometry()
+                << "Main window frameGeometry:" << frameGeometry()
+                << "Position:" << pos << "local position:" << mapFromGlobal(pos);
+    // When platfrom is wayland, the widget is show, so the frameGeometry is right. the size is full screen.
+    // When platfrom is x11, the widget is not show, so the frameGeometry is error. the size is old size.
+    // because the size of widget full screen is same the size of primary screen.
+    // so that using the size of primary screen.
+    m_pFullScreenToolBar->move(pos);
+    m_pFullScreenToolBar->raise();
 }
 
 void MainWindow::slotViewerFocusIn(QWidget *pView)

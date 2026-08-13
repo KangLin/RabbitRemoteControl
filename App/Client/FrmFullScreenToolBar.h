@@ -20,7 +20,7 @@ class CFrmFullScreenToolBar : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmFullScreenToolBar(MainWindow* pMain, QWidget *parent = nullptr);
+    explicit CFrmFullScreenToolBar(QWidget *parent);
     virtual ~CFrmFullScreenToolBar() override;
     
 Q_SIGNALS:
@@ -41,7 +41,7 @@ protected:
     virtual void enterEvent(QEvent *event) override;
 #endif
     virtual void leaveEvent(QEvent *event) override;
-    
+
 private:
     int ReToolBarSize();
     
@@ -56,6 +56,7 @@ private:
     QTimer m_Timer;
     int m_TimeOut;
     bool m_isHide;
+
 };
 
 #endif // FRMFULLSCREENTOOLBAR_H

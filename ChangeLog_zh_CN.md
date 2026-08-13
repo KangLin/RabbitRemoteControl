@@ -56,9 +56,17 @@
   - [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 - 修改工具条
 - 修复
-  - 修复禁用桌面快捷键。详见: https://github.com/KangLin/RabbitRemoteControl/discussions/91
-  - 修复拆分视图错误
-  - 修复在 wayland 下，设置全屏工具栏位置无效的错误。
+  - 应用程序
+    - 修复禁用桌面快捷键。详见: https://github.com/KangLin/RabbitRemoteControl/discussions/91
+    - 修复拆分视图错误
+    - 修复在 wayland 下，设置全屏工具栏位置无效的错误。
+      原因是Wayland 平台下工具条的 QWindow 已经被暴露（isExposed()==true），
+      但 compositor 并没有把你请求的绝对位置当成最终位置（它把顶层窗口放在中间）。
+      这是 Wayland 的常见行为——很多 compositor 会对顶层（包括 Qt::Tool / transient）
+      窗口进行 server-side placement（例如居中或跟随父窗口策略），客户端的 move() 请求常被忽略或改写。
+      最可靠的解决办法是：不要让工具条成为“顶层窗口由 compositor 放置”，
+      而把它当作主窗口的子窗口（client-side placement）。
+      所以重构了全屏工具栏，把它设置为主窗口的子窗口，并且用 `raise()` 放在最顶端。
 
 ### v0.0.36
 - Client:
