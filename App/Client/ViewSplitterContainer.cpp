@@ -44,7 +44,7 @@ CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pP
 CViewSplitterContainer::~CViewSplitterContainer()
 {
     qDebug(log) << Q_FUNC_INFO;
-    if(layout())
+    if(layout() && m_pView)
         layout()->removeWidget(m_pView);
 }
 
@@ -74,13 +74,20 @@ void CViewSplitterContainer::slotTabPositionChanged()
     if(!m_pParameterApp || !m_pView)
         return;
 
+    auto pLayout = layout();
+    if(pLayout) {
+        if(m_pTab)
+            pLayout->removeWidget(m_pTab);
+        if(m_pView)
+            pLayout->removeWidget(m_pView);
+    }
+
     qDebug(log) << Q_FUNC_INFO << m_pParameterApp->GetTabPosition();
     switch(m_pParameterApp->GetTabPosition())
     {
     case QTabWidget::TabPosition::North:
     case QTabWidget::TabPosition::West:
     {
-        auto pLayout = layout();
         if(pLayout) {
             pLayout->addWidget(m_pTab);
             pLayout->addWidget(m_pView);
@@ -91,7 +98,6 @@ void CViewSplitterContainer::slotTabPositionChanged()
     case QTabWidget::TabPosition::South:
     case QTabWidget::TabPosition::East:
     {
-        auto pLayout = layout();
         if(pLayout) {
             pLayout->addWidget(m_pView);
             m_pView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
@@ -100,6 +106,7 @@ void CViewSplitterContainer::slotTabPositionChanged()
         break;
     }
     }
+
     m_pView->show();
 }
 

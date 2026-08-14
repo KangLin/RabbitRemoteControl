@@ -36,7 +36,7 @@ private:
     int m_nCount; // Total number
     int m_nIdxRow, m_nIdxCol;  // Index
 
-    QSplitter* m_pMain;
+    QSplitter* m_pMainSplitter;
     QVector<QSplitter*> m_Row;
 
     QMap<QWidget*, CViewSplitterContainer*> m_Container;

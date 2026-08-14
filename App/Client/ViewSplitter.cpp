@@ -25,14 +25,14 @@ CViewSplitter::CViewSplitter(CParameterApp *pPara, QWidget *parent)
     }
     p->setContentsMargins(0, 0, 0, 0);
     setLayout(p);
-    m_pMain = new QSplitter(Qt::Vertical, this);
-    if(!m_pMain) {
+    m_pMainSplitter = new QSplitter(Qt::Vertical, this);
+    if(!m_pMainSplitter) {
         //m_pMain->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         qCritical(log) << "m_pMain is nullptr";
         return;
     }
-    p->addWidget(m_pMain);
-    m_HandleWidth = m_pMain->handleWidth();
+    p->addWidget(m_pMainSplitter);
+    m_HandleWidth = m_pMainSplitter->handleWidth();
     /*
     setStyleSheet("QWidget { background-color: red }");
     m_pMain->setStyleSheet("QSplitter::handle { background-color: white }");//*/
@@ -66,7 +66,7 @@ int CViewSplitter::AddView(QWidget *pView)
 
     // 是否需要新增加一行
     if(m_nCount + 1 > m_nRow * m_nRow) {
-        QSplitter* p = new QSplitter(Qt::Horizontal, m_pMain);
+        QSplitter* p = new QSplitter(Qt::Horizontal, m_pMainSplitter);
         if(p) {
             p->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             //p->setStyleSheet("QSplitter::handle { background-color: blue }");
@@ -88,7 +88,7 @@ int CViewSplitter::AddView(QWidget *pView)
 
     auto pContainer = new CViewSplitterContainer(pView, m_pParameterApp);
     if(pContainer) {
-        // 设置当前视频索引
+        // 设置当前视图索引
         m_nIdxRow = i;
         m_nIdxCol = sp->count();
         sp->addWidget(pContainer);
@@ -120,7 +120,7 @@ int CViewSplitter::AddView(QWidget *pView)
 
     SetSizes();
 
-    qDebug(log) << Q_FUNC_INFO << "Row:" << m_nRow << m_pMain->count() << "Count:" << m_nCount
+    qDebug(log) << Q_FUNC_INFO << "Row:" << m_nRow << m_pMainSplitter->count() << "Count:" << m_nCount
                 << "Current row:" << m_nIdxRow << "Current col:" << m_nIdxCol
                 << "Current count:" << sp->count();
     emit sigCurrentChanged(pView);
@@ -261,8 +261,8 @@ int CViewSplitter::SetFullScreen(bool bFull)
         m_szStyleSheet = styleSheet();
         //qDebug(log) << "Style:" << m_szStyleSheet;
         setStyleSheet("QWidget::pane{top:0px;left:0px;border:none;}");
-        m_HandleWidth = m_pMain->handleWidth();
-        m_pMain->setHandleWidth(0);
+        m_HandleWidth = m_pMainSplitter->handleWidth();
+        m_pMainSplitter->setHandleWidth(0);
         for(int i = 0; i < m_nRow; i++) {
             auto sp = m_Row[i];
             if(!sp) {
@@ -287,7 +287,7 @@ int CViewSplitter::SetFullScreen(bool bFull)
     }
     else {
         setStyleSheet(m_szStyleSheet);
-        m_pMain->setHandleWidth(m_HandleWidth);
+        m_pMainSplitter->setHandleWidth(m_HandleWidth);
         for(int i = 0; i < m_nRow; i++) {
             auto sp = m_Row[i];
             sp->setHandleWidth(m_HandleWidth);
@@ -383,15 +383,19 @@ int CViewSplitter::SetSizes()
     int w = 0, h = 0;
     if(0 == m_nCount)
         return 0;
+
     foreach(auto sp, m_Row) {
         for(int i = 0; i < sp->count(); i++) {
             auto pContainer = sp->widget(i);
-            w = qMax(w, pContainer->frameGeometry().width());
-            h = qMax(h, pContainer->frameGeometry().height());
+            if(pContainer) {
+                pContainer->adjustSize();
+                w = qMax(w, pContainer->frameGeometry().width());
+                h = qMax(h, pContainer->frameGeometry().height());
+            }
         }
     }
 
-    qDebug(log) << "Width:" << w << "Height:" << h;
+    qDebug(log) << Q_FUNC_INFO << "Width:" << w << "Height:" << h;
 
     QList<int> wSizes, hSizes;
     foreach(auto sp, m_Row) {
@@ -400,11 +404,11 @@ int CViewSplitter::SetSizes()
             wSizes.push_back(w);
         }
         sp->setSizes(wSizes);
-        qDebug(log) << "wSizes:" << wSizes << sp->sizes();
+        qDebug(log) << Q_FUNC_INFO  << "wSizes:" << wSizes << sp->sizes();
         hSizes.push_back(h);
     }
-    m_pMain->setSizes(hSizes);
-    qDebug(log) << "hSizes:" << hSizes << m_pMain->sizes();
+    m_pMainSplitter->setSizes(hSizes);
+    qDebug(log) << Q_FUNC_INFO  << "hSizes:" << hSizes << m_pMainSplitter->sizes();
 
     return 0;
 }
