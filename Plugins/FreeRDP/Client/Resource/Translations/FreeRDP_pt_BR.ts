@@ -748,14 +748,12 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation>O servidor está vazio, insira-o</translation>
+        <translation type="vanished">O servidor está vazio, insira-o</translation>
     </message>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation type="vanished">Erro</translation>
     </message>
 </context>
 <context>

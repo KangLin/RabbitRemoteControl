@@ -4,27 +4,27 @@
 <context>
     <name>CPluginFreeRDPServer</name>
     <message>
-        <location filename="../../PluginFreeRDPServer.cpp" line="56"/>
+        <location filename="../../PluginFreeRDPServer.cpp" line="105"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDPServer.cpp" line="57"/>
+        <location filename="../../PluginFreeRDPServer.cpp" line="106"/>
         <source>FreeRDP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDPServer.cpp" line="58"/>
+        <location filename="../../PluginFreeRDPServer.cpp" line="107"/>
         <source>version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDPServer.cpp" line="61"/>
+        <location filename="../../PluginFreeRDPServer.cpp" line="110"/>
         <source>Build version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDPServer.cpp" line="67"/>
+        <location filename="../../PluginFreeRDPServer.cpp" line="116"/>
         <source>Build date: </source>
         <translation type="unfinished"></translation>
     </message>

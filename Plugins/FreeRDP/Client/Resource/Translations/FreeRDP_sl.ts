@@ -733,19 +733,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
 </context>
 <context>
-    <name>ConnectLayerSSHTunnel</name>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <location filename="../../BackendFreeRDP.cpp" line="1642"/>
