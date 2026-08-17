@@ -25,9 +25,9 @@ public:
     explicit CDlgSetFreeRDP(CParameterFreeRDP* pSettings, QWidget *parent = nullptr);
     ~CDlgSetFreeRDP();
 
-private slots:
-    void on_pbOk_clicked();
-    void on_pbCancel_clicked();
+public Q_SLOTS:
+    // QDialog interface
+    virtual void accept() override;
     void on_rbLocalScreen_clicked(bool checked);
 
     void on_rbAudioDisable_toggled(bool checked);

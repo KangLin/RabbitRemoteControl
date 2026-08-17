@@ -1,5 +1,6 @@
-#ifndef CPARAMETERFREERDP_H
-#define CPARAMETERFREERDP_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include "ParameterDesktop.h"
 #include "ParameterProxy.h"
@@ -131,5 +132,3 @@ private:
     UINT32 m_ConnectType;
     UINT32 m_PerformanceFlags;
 };
-
-#endif // CPARAMETERFREERDP_H

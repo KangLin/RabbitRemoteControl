@@ -8,7 +8,7 @@ class CParameterTemplateDesktop : public CParameterDesktop
     Q_OBJECT
 public:
     explicit CParameterTemplateDesktop(CParameterOperate *parent = nullptr,
-                                    const QString& szPrefix = QString());
+                                       const QString& szPrefix = QString());
 
     // CParameter interface
 protected:

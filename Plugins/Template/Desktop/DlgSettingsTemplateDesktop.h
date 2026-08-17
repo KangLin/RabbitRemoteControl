@@ -15,7 +15,7 @@ class CDlgSettingsTemplateDesktop : public QDialog
 
 public:
     explicit CDlgSettingsTemplateDesktop(CParameterTemplateDesktop* pPara,
-                                      QWidget *parent = nullptr);
+                                         QWidget *parent = nullptr);
     virtual ~CDlgSettingsTemplateDesktop();
 
     // QDialog interface
