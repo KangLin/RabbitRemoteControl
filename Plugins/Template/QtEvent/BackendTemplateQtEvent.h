@@ -11,6 +11,8 @@ public:
     explicit CBackendTemplateQtEvent(COperateTemplateQtEvent *pOperate = nullptr, bool bStopSignal = true);
     virtual ~CBackendTemplateQtEvent();
 
+    virtual int WakeUp() override;
+
     // CBackend interface
 protected:
     virtual OnInitReturnValue OnInit() override;

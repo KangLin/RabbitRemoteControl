@@ -12,6 +12,8 @@ public:
     explicit CBackendTemplateDesktop(COperateTemplateDesktop *pOperate = nullptr);
     virtual ~CBackendTemplateDesktop();
 
+    virtual int WakeUp() override;
+
     // CBackend interface
 protected:
     virtual OnInitReturnValue OnInit() override;

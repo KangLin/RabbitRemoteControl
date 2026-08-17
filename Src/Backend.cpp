@@ -108,11 +108,6 @@ int CBackend::Stop()
     return nRet;
 }
 
-int CBackend::WakeUp()
-{
-    return 0;
-}
-
 void CBackend::slotTimeOut()
 {
     //qDebug(log) << "CConnect::slotTimeOut()";

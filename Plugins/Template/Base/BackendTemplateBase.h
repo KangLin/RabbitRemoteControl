@@ -11,6 +11,8 @@ public:
     explicit CBackendTemplateBase(COperateTemplateBase *pOperate = nullptr, bool bStopSignal = true);
     virtual ~CBackendTemplateBase();
 
+    virtual int WakeUp() override;
+
     // CBackend interface
 protected:
     virtual OnInitReturnValue OnInit() override;

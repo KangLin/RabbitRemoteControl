@@ -22,6 +22,11 @@ CBackendFtpServer::~CBackendFtpServer()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+int CBackendFtpServer::WakeUp()
+{
+    return 0;
+}
+
 /*!
  * \~chinese 初始化
  * \return

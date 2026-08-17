@@ -21,6 +21,11 @@ CBackendFreeRDPServer::~CBackendFreeRDPServer()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+int CBackendFreeRDPServer::WakeUp()
+{
+    return 0;
+}
+
 /*!
  * \~chinese 初始化
  * \return

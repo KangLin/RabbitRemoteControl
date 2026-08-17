@@ -350,11 +350,6 @@ void CBackendDesktop::InputMethodEvent(QInputMethodEvent *event)
     qDebug(logMouse) << "Need to implement CBackendDesktop::InputMethodEvent";
 }
 
-int CBackendDesktop::WakeUp()
-{
-    return 0;
-}
-
 bool CBackendDesktop::event(QEvent *event)
 {
     //qDebug(log) << "CBackendDesktop::event" << event;

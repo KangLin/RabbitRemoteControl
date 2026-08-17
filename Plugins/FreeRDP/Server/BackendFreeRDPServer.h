@@ -15,6 +15,8 @@ public:
         COperateFreeRDPServer *pOperate = nullptr, bool bStopSignal = true);
     virtual ~CBackendFreeRDPServer();
 
+    virtual int WakeUp() override;
+
 public Q_SLOTS:
     void slotDisconnect(const QString& szIp, const quint16 port) override;
 

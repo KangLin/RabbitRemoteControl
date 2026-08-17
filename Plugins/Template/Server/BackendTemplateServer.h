@@ -16,6 +16,8 @@ public:
 public Q_SLOTS:
     void slotDisconnect(const QString& szIp, const quint16 port) override;
 
+    virtual int WakeUp() override;
+
     // CBackend interface
 protected:
     virtual OnInitReturnValue OnInit() override;

@@ -16,6 +16,17 @@ CBackendTemplateBase::~CBackendTemplateBase()
 }
 
 /*!
+ * \~chinese 唤醒后台线程
+ * \~english Wake up Backend thread(background thread)
+ */
+int CBackendTemplateBase::WakeUp()
+{
+    // TODO: add wake up
+
+    return 0;
+}
+
+/*!
  * \~chinese 初始化
  * \return
  * \li OnInitReturnValue::Fail: 错误
