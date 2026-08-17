@@ -51,7 +51,7 @@ int COperateTemplateBase::Start()
 {
     int nRet = 0;
     // TODO: If backend threads are not needed, modifications are required.
-    m_pThread = new CBackendThread(this, false, false);
+    m_pThread = new CBackendThread(this);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
         return -1;

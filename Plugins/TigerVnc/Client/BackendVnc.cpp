@@ -435,6 +435,7 @@ int CBackendVnc::OnClean()
     if(m_DataChannel) {
         m_DataChannel->close();
     }
+    emit sigFinished();
     return 0;
 }
 

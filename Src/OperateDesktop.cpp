@@ -388,7 +388,7 @@ int COperateDesktop::Start()
     // When the operate is not running, the viewer does not accept keyboard and mouse events.
     // Therefore, when the backend is ready, the sigRunning signal is emitted by the backend.
     // See: CFrmViewer::CFrmViewer(), CFrmViewer::slotRunning()
-    m_pThread = new CBackendThread(this, false, true);
+    m_pThread = new CBackendThread(this, this);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
         return -1;

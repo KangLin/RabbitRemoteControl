@@ -58,6 +58,8 @@ int CBackendTemplateDesktop::OnClean()
     int nRet = 0;
     // TODO: Modify clean
 
+    // When finished
+    emit sigFinished();
     return nRet;
 }
 

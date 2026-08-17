@@ -7,22 +7,18 @@
 
 static Q_LOGGING_CATEGORY(log, "BackendThread")
 
-CBackendThread::CBackendThread(COperate *pOperate,  bool bRunningSignal, bool bFinishedSignal)
-    // Note that the parent object pointer cannot be set here.
-    // If set the parent, the object is also deleted
-    // when the parent object (CConnecterThread) is destroyed.
-    // Because it is deleted when it is finished.
-    : QThread()
+CBackendThread::CBackendThread(COperate *pOperate, QObject *pParent)
+    : QThread(pParent)
     , m_pOperate(pOperate)
     , m_pBackend(nullptr)
-    , m_bRunningSignal(bRunningSignal)
-    , m_bFinishedSignal(bFinishedSignal)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
-    check = connect(this, SIGNAL(finished()),
-                    this, SLOT(deleteLater()));
-    Q_ASSERT(check);
+    if(nullptr == pParent) {
+        // It is deleted when it is finished.
+        check = connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+        Q_ASSERT(check);
+    }
 }
 
 CBackendThread::~CBackendThread()
@@ -71,6 +67,8 @@ void CBackendThread::run()
                 + QString(m_pOperate->metaObject()->className());
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "BackendThread", szErr.toStdString().c_str());
+        emit m_pOperate->sigFinished();
+        return;
     }
 
     bool bRet = QMetaObject::invokeMethod(
@@ -80,7 +78,6 @@ void CBackendThread::run()
     if(!m_pBackend || !bRet)
     {
         qCritical(log) << "InstanceBackend fail";
-        emit m_pOperate->sigStop();
         emit m_pOperate->sigFinished();
         return;
     }
@@ -92,12 +89,8 @@ void CBackendThread::run()
             m_pBackend->Stop();
             m_pBackend->deleteLater();
             m_pBackend = nullptr;
-            emit m_pOperate->sigStop();
-            emit m_pOperate->sigFinished();
+            //emit m_pOperate->sigFinished(); // 在 m_pBackend->Stop() 中触发
             return;
-        } else {
-            if(m_bRunningSignal)
-                emit m_pOperate->sigRunning();
         }
     }
 
@@ -107,9 +100,6 @@ void CBackendThread::run()
         m_pBackend->Stop();
         m_pBackend->deleteLater();
     }
-
-    if(m_bFinishedSignal)
-        emit m_pOperate->sigFinished();
 
     qDebug(log) << Q_FUNC_INFO << "end";
 }
