@@ -75,9 +75,11 @@ int COperateServer::Stop()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     if(m_pActionStart && m_pActionStart->isChecked()) {
-        bool check = connect(m_pThread, SIGNAL(finished()),
-                             this, SIGNAL(sigFinished()));
-        Q_ASSERT(check);
+        if(m_pThread) {
+            bool check = connect(m_pThread, SIGNAL(finished()),
+                                 this, SIGNAL(sigFinished()));
+            Q_ASSERT(check);
+        }
         m_pActionStart->setChecked(false);
     } else
         emit sigFinished();
@@ -107,7 +109,7 @@ void COperateServer::slotStart(bool checked)
     m_pActionStart->setToolTip(m_pActionStart->text());
     m_pActionStart->setIcon(QIcon::fromTheme("media-playback-stop"));
     Q_ASSERT(!m_pThread);
-    m_pThread = new CBackendThread(this, false, false);
+    m_pThread = new CBackendThread(this);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
         return;

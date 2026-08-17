@@ -135,6 +135,8 @@ int CBackendSSH::OnClean()
         m_pChannelSSH->deleteLater();
         m_pChannelSSH = nullptr;
     }
+
+    emit sigFinished();
     return nRet;
 }
 

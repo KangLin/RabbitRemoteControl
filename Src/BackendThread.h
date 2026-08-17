@@ -19,26 +19,19 @@ public:
     /*!
      * \brief CBackendThread
      * \param pOperate
-     * \param bRunningSignal
-     *          - true: when the thread is running, emit COperate::sigRunning signal
-     *          - false: not emit signal
-     * \param bFinishedSignal
-     *          - true: when the thread is quit, emit COperate::sigFinished signal
-     *          - false: not emit signal
+     * \param pParent: if is nullptr, then the thread is deleted when it is finished.
+     *                 other, the thread is deleted by the parent when the parent is deleted.
      */
-    explicit CBackendThread(COperate *pOperate, bool bRunningSignal, bool bFinishedSignal);
+    explicit CBackendThread(COperate *pOperate, QObject* pParent = nullptr);
     virtual ~CBackendThread() override;
     /*!
      * \brief Quit
      * \note Use this replace QThread::quit, QThread::exit, QThread::terminate
      */
-    virtual void quit();
+    void quit();
 
 protected:
     virtual void run() override;
     COperate* m_pOperate;
     CBackend* m_pBackend;
-
-    bool m_bRunningSignal;
-    bool m_bFinishedSignal;
 };

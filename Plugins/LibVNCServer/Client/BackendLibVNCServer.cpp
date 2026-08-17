@@ -287,6 +287,8 @@ int CBackendLibVNCServer::OnClean()
         rfbClientCleanup(m_pClient);
         m_pClient = nullptr;
     }
+
+    emit sigFinished();
     return 0;
 }
 

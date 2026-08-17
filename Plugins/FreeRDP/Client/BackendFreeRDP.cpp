@@ -348,6 +348,7 @@ int CBackendFreeRDP::OnClean()
     CleanSSHTunnelPipe();
 #endif
 
+    emit sigFinished();
     return nRet;
 }
 
