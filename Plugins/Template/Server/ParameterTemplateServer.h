@@ -8,7 +8,7 @@ class CParameterTemplateServer : public CParameterServer
     Q_OBJECT
 public:
     explicit CParameterTemplateServer(QObject *parent = nullptr,
-                                    const QString& szPrefix = QString());
+                                      const QString& szPrefix = QString());
 
 protected:
     virtual int OnLoad(QSettings &set) override;

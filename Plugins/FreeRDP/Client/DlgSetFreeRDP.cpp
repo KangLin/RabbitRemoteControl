@@ -4,10 +4,6 @@
 #include <openssl/tls1.h>
 #endif
 
-#include "DlgSetFreeRDP.h"
-#include "ui_DlgSetFreeRDP.h"
-#include "ParameterNetUI.h"
-
 #include <QApplication>
 #include <QScreen>
 #include <QFileSystemModel>
@@ -21,8 +17,13 @@
     #include <QAudioDeviceInfo>
 #endif
 
+#include "RabbitCommonTools.h"
 #include "DlgDesktopSize.h"
 #include "freerdp/version.h"
+
+#include "ParameterNetUI.h"
+#include "ui_DlgSetFreeRDP.h"
+#include "DlgSetFreeRDP.h"
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Parameter.Dlg")
 
@@ -235,7 +236,7 @@ CDlgSetFreeRDP::~CDlgSetFreeRDP()
 }
 
 // [Check validity and accept]
-void CDlgSetFreeRDP::on_pbOk_clicked()
+void CDlgSetFreeRDP::accept()
 {
     int nRet = 0;
 
@@ -367,14 +368,9 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
         performanceFlags |= PERF_ENABLE_DESKTOP_COMPOSITION;
     m_pSettings->SetPerformanceFlags(performanceFlags);
 
-    accept();
+    QDialog::accept();
 }
 // [Check validity and accept]
-
-void CDlgSetFreeRDP::on_pbCancel_clicked()
-{
-    reject();
-}
 
 void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
 {
@@ -571,7 +567,7 @@ void CDlgSetFreeRDP::on_pbSizeEdit_clicked()
     for(int i = 0; i < ui->cbDesktopSize->count(); i++)
         lstSize << ui->cbDesktopSize->itemText(i);
     dlg.SetDesktopSizes(lstSize);
-    if(QDialog::Accepted == dlg.exec())
+    if(QDialog::Accepted == RC_SHOW_WINDOW(&dlg))
     {
         ui->cbDesktopSize->clear();
         foreach(auto s, dlg.GetDesktopSize())
@@ -651,28 +647,10 @@ void CDlgSetFreeRDP::on_cbConnectType_currentIndexChanged(int index)
 
 void CDlgSetFreeRDP::InsertView(QWidget* pView, int pos)
 {
-    int nWidth = 0;
-    int nHeigth = 0;
-    if(!pView) return;
-    nWidth = qMax(nWidth, pView->frameSize().width());
-    nHeigth = qMax(nHeigth, pView->frameSize().height());
-
-    bool bScroll = false;
-    QScreen* pScreen = QApplication::primaryScreen();
-    QSize size = this->size();
-    if(nWidth > size.width() || nHeigth > size.height())
-        bScroll = true;
-    // [connect accepted to slotAccept of widget]
-
     QString szMsg;
-    if(bScroll)
-    {
-        QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
-        if(!pScroll) return;
-        pScroll->setWidget(pView);
-        pView = pScroll;
-    }
-    ui->tabWidget->insertTab(pos, pView, pView->windowIcon(), pView->windowTitle());
+    if(!pView) return;
+
+    // [connect accepted to slotAccept of widget]
     bool check = false;
     check = connect(this, SIGNAL(accepted()), pView, SLOT(slotAccept()));
     if(!check)
@@ -682,9 +660,29 @@ void CDlgSetFreeRDP::InsertView(QWidget* pView, int pos)
             + "Or the class derived from CParameterUI";
         qCritical(log) << szMsg;
     }
-    Q_ASSERT_X(check, "CParameterDlgSettings", szMsg.toStdString().c_str());
-
+    Q_ASSERT_X(check, "CDlgSetFreeRDP", szMsg.toStdString().c_str());
     // [connect accepted to slotAccept of widget]
+
+    bool bScroll = false;
+    int nWidth = 0;
+    int nHeigth = 0;
+    nWidth = qMax(nWidth, pView->frameSize().width());
+    nHeigth = qMax(nHeigth, pView->frameSize().height());
+
+    QSize size = this->size();
+    if(nWidth > size.width() || nHeigth > size.height())
+        bScroll = true;
+
+    QWidget* p = pView;
+    if(bScroll)
+    {
+        QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
+        if(!pScroll) return;
+        pScroll->setWidget(pView);
+        p = pScroll;
+    }
+    ui->tabWidget->insertTab(pos, p, pView->windowIcon(), pView->windowTitle());
+
 }
 
 void CDlgSetFreeRDP::AddViewers(const QList<QWidget *> &wViewer)
@@ -697,10 +695,13 @@ void CDlgSetFreeRDP::AddViewers(const QList<QWidget *> &wViewer)
         nHeigth = qMax(nHeigth, p->frameSize().height());
     }
     bool bScroll = false;
-    QScreen* pScreen = QApplication::primaryScreen();
+#ifdef Q_OS_ANDROID
+    bScroll = true;
+#else
     QSize size = this->size();
     if(nWidth > size.width() || nHeigth > size.height())
         bScroll = true;
+#endif
     // [connect accepted to slotAccept of widget]
     foreach(auto p, wViewer)
     {

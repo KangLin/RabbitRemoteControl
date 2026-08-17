@@ -8,7 +8,7 @@ class CParameterTemplateQtEvent : public CParameterOperate
     Q_OBJECT
 public:
     explicit CParameterTemplateQtEvent(QObject *parent = nullptr,
-                                    const QString& szPrefix = QString());
+                                       const QString& szPrefix = QString());
 
     // CParameter interface
 protected:
