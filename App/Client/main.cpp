@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 
-/*
+//*
 #if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) \
     && (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)))
     // https://doc.qt.io/qt-6/zh/wayland-and-qt.html
