@@ -18,6 +18,11 @@
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
+ *  - 信号：
+ *    - 当开始/初始化完成后，必须触发 sigRunning() 信号
+ *    - 当停止/清理完成后，必须触发 sigFinished() 信号
+ *    - 如果内部需要停止，则触发 sigStop() 信号
+ *    - 如果内部出错，则触发 sigError() 信号和 sigStop() 信号
  * 
  * \~english
  * \brief Backend interface. It is implemented by the Protocol plugin.
@@ -33,6 +38,11 @@
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
+ *  - Signals:
+ *    - Once started/initialized, the sigRunning() signal must be triggered
+ *    - Once stopping/cleaning is done, the sigFinished() signal has to be triggered
+ *    - If it needs to stop internally, trigger the sigStop() signal
+ *    - If an internal error occurs, it triggers the sigError() signal and the sigStop() signal
  *
  * \~
  * \see CBackendThread::run() CFrmViewer
@@ -91,7 +101,7 @@ public:
      * \brief Wake up backend thread(background thread). When it is block(a non-Qt event loop)
      * \note The caller is main thread(UI thread)
      */
-    virtual int WakeUp();
+    virtual int WakeUp() = 0;
 
 protected:
     enum class OnInitReturnValue {

@@ -60,6 +60,11 @@ CBackendFileTransfer::~CBackendFileTransfer()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+int CBackendFileTransfer::WakeUp()
+{
+    return 0;
+}
+
 bool CBackendFileTransfer::event(QEvent *event)
 {
     if(event->type() == QEvent::Type::User) {

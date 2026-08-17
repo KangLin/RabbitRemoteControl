@@ -19,6 +19,7 @@ public:
     CBackendFileTransfer(COperateFileTransfer* pOperate);
     virtual ~CBackendFileTransfer();
 
+    virtual int WakeUp() override;
     virtual bool event(QEvent *event) override;
 
 protected:

@@ -200,6 +200,11 @@ int CBackendPlayer::OnClean()
     return 0;
 }
 
+int CBackendPlayer::WakeUp()
+{
+    return 0;
+}
+
 void CBackendPlayer::slotStart()
 {
     qDebug(log) << Q_FUNC_INFO;

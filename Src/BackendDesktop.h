@@ -91,11 +91,6 @@ public Q_SLOTS:
     virtual void slotInputMethodEvent(QInputMethodEvent* event);
     
 protected:
-    /*!
-     * \~chinese 唤醒后台线程
-     * \~english Wake up Backend thread(background thread)
-     */
-    virtual int WakeUp() override;
     // \~chinese 以下函数在后台线程中调用
     // \~english The following functions are called in the Backend thread(background thread)
     virtual void mousePressEvent(QMouseEvent *event);

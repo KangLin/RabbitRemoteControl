@@ -40,6 +40,7 @@ public Q_SLOTS:
 protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
+    virtual int WakeUp() override;
 
 private Q_SLOTS:
     void slotVideoFrameChanged(const QVideoFrame &frame);

@@ -14,6 +14,7 @@ public:
     explicit CBackendFtpServer(COperateFtpServer *pOperate = nullptr, bool bStopSignal = true);
     virtual ~CBackendFtpServer();
 
+    virtual int WakeUp() override;
     // CFtpServerFilter interface
     virtual bool onFilter(QSslSocket *socket) override;
 
