@@ -62,7 +62,7 @@ if [ -z "$RabbitCommon_ROOT" ]; then
     export RabbitCommon_ROOT=$REPO_ROOT/../RabbitCommon
 fi
 if [ ! -f "$RabbitCommon_ROOT/Script/RabbitCommon.sh" ]; then
-    echo "Failed to set 'RabbitCommon_ROOT' to the RabbitCommon root, please set it correctly"
+    echo "Failed to set 'RabbitCommon_ROOT=$RabbitCommon_ROOT' to the RabbitCommon root, please set it correctly"
     exit 1
 fi
 

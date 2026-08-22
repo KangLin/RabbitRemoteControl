@@ -395,8 +395,10 @@ jobs:
             macdeployqt RabbitRemoteControl.App -dmg -verbose=3
 
             7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip ./RabbitRemoteControl.App
+            chmod a+rx RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip
             if [ -f RabbitRemoteControl.dmg ]; then
               cp RabbitRemoteControl.dmg RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.dmg
+              chmod a+rx RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.dmg
             fi
             
             lipo -info RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
@@ -419,6 +421,7 @@ jobs:
           MD5SUM=`md5 RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip|awk '{print $4}'`
           echo "RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip md5sum: ${MD5SUM}"
           RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp \
+            -f "update_macos_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
             --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip \
             --md5 "${MD5SUM}" \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip?viasf=1"
@@ -430,5 +433,5 @@ jobs:
           path: |
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip
             #${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_bundle.zip
-            ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
+            ${{github.workspace}}/build/update_*.json
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.dmg

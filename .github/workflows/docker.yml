@@ -111,10 +111,10 @@ jobs:
     env:
       RabbitRemoteControl_VERSION: 0.1.0-dev
       artifact_name: build_docker
-      BUILD_DIR:   ${{github.workspace}}/build
-      SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOLS_DIR:   ${{github.workspace}}/.cache/tools_${{matrix.variant.os}}
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
+      BUILD_DIR:     ${{github.workspace}}/build
+      SOURCE_DIR:    ${{github.workspace}}/.cache/source
+      TOOLS_DIR:     ${{github.workspace}}/.cache/tools_${{matrix.variant.os}}
+      INSTALL_DIR:   ${{github.workspace}}/.cache/install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
       BUILD_VERBOSE: ${{matrix.variant.BUILD_VERBOSE}}
 
     # Map the job outputs to step outputs
@@ -168,8 +168,8 @@ jobs:
       - name: Rename deb file
         if: ${{ matrix.variant.PACKAGE == 'deb' }}
         #continue-on-error: true
+        working-directory: ${{env.BUILD_DIR}}/build_linux
         run: |
-          cd ${{env.BUILD_DIR}}/build_linux
           if [ -n "${{matrix.variant.lable}}" ]; then
             docker_image="${{matrix.variant.image}}${{matrix.variant.lable}}"
           else
@@ -177,17 +177,11 @@ jobs:
           fi
           mv rabbitremotecontrol_*.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${docker_image}_`uname -m`.deb
 
-      - name: AppIagme update configure file
+      - name: Zip AppIagme file
         if: ${{ matrix.variant.PACKAGE == 'appimage' && matrix.variant.image == 'ubuntu'}}
+        working-directory: ${{env.BUILD_DIR}}/build_linux
         #continue-on-error: true
         run: |
-          #sudo ./Script/build_depend.sh --system_update --base
-          sudo apt update -y -q
-          sudo apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
-          sudo apt install -y -q libfuse-dev libfuse3-dev
-          sudo Xvfb :91.0 -ac -screen 0 1200x900x24 &
-          sleep 1
-          export DISPLAY=:91.0
           ARCH=`uname -m`
           pushd ${{env.BUILD_DIR}}/build_linux/install
           sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
@@ -195,35 +189,43 @@ jobs:
           pushd ${{env.BUILD_DIR}}/build_linux
           mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
           zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup/*
-
-          if [ "matrix.variant.lable" == "25.04" ]; then
-            md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum
-            MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum|awk '{print $1}'`
-            echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip: ${MD5SUM}"
-            echo "Generate update configure file ......"
-            pushd RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
-            ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage \
-               -f "${{github.workspace}}/update_appimage_${{matrix.variant.os}}.json" \
-               --foc 1 \
-               --file-name ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip \
-               -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip?viasf=1" \
-               --md5 "${MD5SUM}"
-            popd
-          fi
-
           popd
 
-      - name: AppIagme update configure file
-        if: ${{ matrix.variant.PACKAGE == 'appimage' && matrix.variant.image == 'fedora'}}
-        #continue-on-error: true
+      - name: update configure file
+        working-directory: ${{env.BUILD_DIR}}/build_linux
         run: |
           ARCH=`uname -m`
-          pushd ${{env.BUILD_DIR}}/build_linux/install
-          sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}.AppImage
-          popd
-          pushd ${{env.BUILD_DIR}}/build_linux
-          mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}_Setup
-          zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}_Setup/*
+          OS="${{matrix.variant.image}}"
+          OS_VERSIOIN="${{matrix.variant.lable}}"
+          if [ -n "${{matrix.variant.lable}}" ]; then
+            docker_image="${{matrix.variant.image}}${{matrix.variant.lable}}"
+          else
+            docker_image="${{matrix.variant.image}}"
+          fi
+          cd ${{env.BUILD_DIR}}/build_linux
+          case ${{matrix.variant.PACKAGE}} in
+            "deb")
+              FILE_NAME=rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${docker_image}_`uname -m`.deb
+              ;;
+            "rpm")
+              RPM_VERSION=${RabbitRemoteControl_VERSION//-/\_}
+              FILE_NAME=rabbitremotecontrol-${RPM_VERSION}-1.fc${{matrix.variant.lable}}.${ARCH}.rpm
+              ;;
+            "appimage")
+              FILE_NAME=RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip
+              OS="AppImage"
+              OS_VERSIOIN=""
+              ;;
+          esac
+          sudo chmod a+xr ${FILE_NAME}
+          echo "Generate update configure file ......"
+          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh -v \
+            -f update_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${ARCH}.json \
+            -p ${FILE_NAME} \
+            -s ${OS} \
+            --system-version=${OS_VERSIOIN} \
+            -a ${ARCH} \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/${FILE_NAME},https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/${FILE_NAME}?viasf=1"
 
       - name: Update artifact
         #if: ${{matrix.variant.PACKAGE != 'deb'}}
@@ -234,4 +236,4 @@ jobs:
             ${{env.BUILD_DIR}}/build_linux/rabbitremotecontrol*.rpm
             ${{env.BUILD_DIR}}/build_linux/rabbitremotecontrol_*.deb
             ${{env.BUILD_DIR}}/build_linux/RabbitRemoteControl_*_Setup.zip
-            ${{env.BUILD_DIR}}/build_linux/update_appimage_*.json
+            ${{env.BUILD_DIR}}/build_linux/update_*.json
