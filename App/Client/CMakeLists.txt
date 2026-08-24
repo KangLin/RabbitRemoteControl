@@ -54,9 +54,9 @@ if(WIN32)
     set(RCC_FILES Resource/App.rc)
 endif()
 
-if(LINUX)
-    LIST(APPEND RCC_FILES Resource/Resource.qrc)
-endif()
+
+LIST(APPEND RCC_FILES Resource/Resource.qrc)
+
 
 list(APPEND APP_INCLUDE_DIRS
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Recent>
@@ -220,7 +220,7 @@ if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
 endif()
 
 if(WIN32)
-    install(FILES Resource/icons/rabbit-green/ico/app.ico
+    install(FILES Resource/Image/app.ico
         DESTINATION .
             COMPONENT Application)
 elseif(APPLE)

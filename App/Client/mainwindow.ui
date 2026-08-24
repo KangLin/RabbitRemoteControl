@@ -14,7 +14,8 @@
    <string>Rabbit Remote Control</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="app"/>
+   <iconset resource="Resource/Resource.qrc">
+    <normaloff>:/images/app</normaloff>:/images/app</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -577,6 +578,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resource/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
