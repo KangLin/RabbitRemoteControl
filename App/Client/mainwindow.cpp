@@ -656,7 +656,7 @@ void MainWindow::on_actionAbout_triggered()
 {
 #ifdef HAVE_ABOUT
     CDlgAbout *about = new CDlgAbout(this);
-    QIcon icon = QIcon::fromTheme("app");
+    QIcon icon = windowIcon(); // QIcon::fromTheme("app");
     if(!icon.isNull()) {
         auto sizeList = icon.availableSizes();
         if(!sizeList.isEmpty()) {
@@ -681,7 +681,7 @@ void MainWindow::on_actionUpdate_triggered()
     } else {
 #ifdef HAVE_UPDATE
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
-    QIcon icon = QIcon::fromTheme("app");
+    QIcon icon = windowIcon(); // QIcon::fromTheme("app");
     if(!icon.isNull()) {
         auto sizeList = icon.availableSizes();
         if(!sizeList.isEmpty()) {
@@ -1986,7 +1986,8 @@ void MainWindow::on_actionUser_manual_triggered()
     QString szUrl = "https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual";
     if(RabbitCommon::CTools::GetLanguage() == "zh_CN"
         || RabbitCommon::CTools::GetLanguage() == "zh_TW")
-        szUrl += "_zh_CN";    
+        szUrl += "_zh_CN";
+    QDesktopServices::openUrl(QUrl(szUrl));
 }
 
 void MainWindow::on_actionLayoutDefault_triggered()
