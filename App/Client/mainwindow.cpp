@@ -161,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(
-        tr("Recently"), QIcon::fromTheme("document-open-recent"), false, this);
+        tr("Recently"), QIcon::fromTheme("document-open-recent"), false, true, this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotOpenFile(const QString&)));
     Q_ASSERT(check);
