@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path
+        name="files-path"
+        path="." />
+    <cache-path
+        name="cache-path"
+        path="." />
+    <external-path
+        name="external_storage_root"
+        path="." />
+    <external-files-path
+        name="external_file_path"
+        path="." />
+    <external-cache-path
+        name="external_cache_path"
+        path="." />
+    <!--配置root-path。这样子可以读取到sd卡和一些应用分身的目录，否则微信分身保存的图片，就会导致 java.lang.IllegalArgumentException: Failed to find configured root that contains /storage/emulated/999/tencent/MicroMsg/WeiXin/export1544062754693.jpg-->
+    <root-path
+        name="root-path"
+        path="" />
+</paths>
+
+<!--
+标签对应的目录汇总如下：
+
+    root-path：表示根目录，“/”。
+    files-path：表示 content.getFileDir() 获取到的目录
+    cache-path：表示 content.getCacheDir() 获取到的目录
+    external-path：表示Environment.getExternalStorageDirectory() 指向的目录
+    external-files-path：表示 ContextCompat.getExternalFilesDirs() 获取到的目录
+    external-cache-path：表示 ContextCompat.getExternalCacheDirs() 获取到的目录
+
+TAG 	            Value                   Path
+TAG_ROOT_PATH 	    root-path 	            /
+TAG_FILES_PATH  	files-path 	            /data/data/<包名>/files
+TAG_CACHE_PATH   	cache-path 	            /data/data/<包名>/cache
+TAG_EXTERNAL 	    external-path       	/storage/emulate/0
+TAG_EXTERNAL_FILES 	external-files-path 	/storage/emulate/0/Android/data/<包名>/files
+TAG_EXTERNAL_CACHE 	external-cache-path 	/storage/emulate/0/Android/data/<包名>/cache
+
+注意：
+如果App有选择和剪裁图片的需求，最好配置下root-path，这样子可以读取到sd卡和一些应用分身的目录，否则微信等应用分身保存的图片，在App里面读取时就发生下面异常。
+
+链接：https://www.jianshu.com/p/c87ff5eda539
+
+-->
