@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release]
-        os: [ubuntu-24.04, ubuntu-24.04-arm]
+        os: [ubuntu-26.04, ubuntu-26.04-arm, ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04, ubuntu-22.04-arm]
         PACKAGE: [deb]
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
@@ -63,7 +63,13 @@ jobs:
             ${{env.TOOLS_DIR}}/qt_*
           key: install_linux_${{matrix.os}}
 
+      - name: git clone RabbitCommon
+        working-directory: ${{env.SOURCE_DIR}}
+        run: git clone https://github.com/KangLin/RabbitCommon.git
+
       - name: build linux
+        env:
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         #continue-on-error: true
         run: |
           sudo ./Script/build_linux.sh --${{matrix.PACKAGE}} --install=${{env.INSTALL_DIR}}
