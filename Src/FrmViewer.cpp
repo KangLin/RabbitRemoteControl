@@ -265,7 +265,9 @@ void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 
 void CFrmViewer::inputMethodEvent(QInputMethodEvent *event)
 {
-    qDebug(logInputMethod) << Q_FUNC_INFO << event;
+    qDebug(logInputMethod) << Q_FUNC_INFO << event
+                           << event->preeditString() << event->commitString()
+                           << event->replacementStart() << event->replacementLength();
     emit sigInputMethodEvent(event);
     event->accept();
     /*
@@ -277,20 +279,33 @@ void CFrmViewer::inputMethodEvent(QInputMethodEvent *event)
 
 QVariant CFrmViewer::inputMethodQuery(Qt::InputMethodQuery query) const
 {
+    /*
     qDebug(logInputMethod) << Q_FUNC_INFO << query;
     switch ( query )
     {
     case Qt::ImCursorRectangle: {
         QPoint p = mapFromGlobal(cursor().pos());
         QRect r(p.x(), p.y() , 1, fontMetrics().height());
+        qDebug(logInputMethod) << "Qt::ImCursorRectangle:" << r;
         return r;
     }
+    // case Qt::ImCursorPosition: {
+    //     QPoint p = cursor().pos();
+    //     qDebug(logInputMethod) << "Qt::ImCursorPosition:" << p;
+    //     return p;
+    // }
     default:
         break;
-    }
+    }//*/
     QVariant r = QWidget::inputMethodQuery(query);
-    qDebug(logKey) << Q_FUNC_INFO << query << r;
+    qDebug(logInputMethod) << Q_FUNC_INFO << query << r;
     return r;
+}
+
+void CFrmViewer::slotEnableInputMethod(bool bEnable)
+{
+    qDebug(logInputMethod) << Q_FUNC_INFO << bEnable;
+    setAttribute(Qt::WA_InputMethodEnabled, bEnable);
 }
 
 QSize CFrmViewer::GetDesktopSize()
@@ -361,12 +376,6 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
 void CFrmViewer::slotRunning()
 {
     setEnabled(true);
-}
-
-void CFrmViewer::slotEnableInputMethod(bool bEnable)
-{
-    qDebug(logInputMethod) << Q_FUNC_INFO << bEnable;
-    setAttribute(Qt::WA_InputMethodEnabled, bEnable);
 }
 
 void CFrmViewer::slotSetName(const QString& szName)

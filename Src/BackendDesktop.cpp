@@ -12,7 +12,9 @@
 #include "FrmScroll.h"
 
 static Q_LOGGING_CATEGORY(log, "Backend.Desktop")
+static Q_LOGGING_CATEGORY(logKey, "Backend.Desktop.Key")
 static Q_LOGGING_CATEGORY(logMouse, "Backend.Desktop.Mouse")
+static Q_LOGGING_CATEGORY(logInputMethod, "Backend.Desktop.InputMethod")
 
 #define TypeRecordVideo (QEvent::User + 1)
 class QRecordVideoEvent : public QEvent
@@ -308,6 +310,7 @@ void CBackendDesktop::slotKeyReleaseEvent(QKeyEvent *event)
 
 void CBackendDesktop::slotInputMethodEvent(QInputMethodEvent *event)
 {
+    //qDebug(logInputMethod) << Q_FUNC_INFO << event;
     if(event->commitString().isEmpty()) return;
     QInputMethodEvent* e = new QInputMethodEvent(event->preeditString(), event->attributes());
     e->setCommitString(event->commitString(), event->replacementStart(), event->replacementLength());

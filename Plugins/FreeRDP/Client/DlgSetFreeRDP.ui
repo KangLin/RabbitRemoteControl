@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>484</height>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -272,7 +272,7 @@
             <x>0</x>
             <y>0</y>
             <width>544</width>
-            <height>391</height>
+            <height>443</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_13">
@@ -456,7 +456,7 @@
             <x>0</x>
             <y>0</y>
             <width>544</width>
-            <height>485</height>
+            <height>537</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_12">
@@ -549,7 +549,7 @@
            <item row="2" column="0">
             <widget class="QCheckBox" name="cbEnableLocalInputMethod">
              <property name="text">
-              <string>Enable local input method</string>
+              <string>Enable local input method(Takes effect after reboot)</string>
              </property>
             </widget>
            </item>

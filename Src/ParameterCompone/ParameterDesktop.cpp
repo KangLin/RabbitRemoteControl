@@ -11,7 +11,11 @@ CParameterDesktop::CParameterDesktop(QObject* parent)
     , m_Net(this)
     , m_Proxy(this)
     , m_Record(this)
+#if defined(Q_OS_ANDROID)
+    , m_bEnableLocalInputMethod(true)
+#else
     , m_bEnableLocalInputMethod(false)
+#endif
 {
     Init();
 }

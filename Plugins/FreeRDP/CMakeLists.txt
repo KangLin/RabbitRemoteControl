@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-set(FreeRDPVERSION 2.10.0)
+set(FreeRDPVERSION 2.6.1)
 find_package(WinPR)
 message("WinPR FOUND:${WinPR_VERSION}")
 

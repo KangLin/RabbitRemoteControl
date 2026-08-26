@@ -8,10 +8,11 @@
 #include "BackendLibVNCServer.h"
 #include "Channel.h"
 
-static Q_LOGGING_CATEGORY(log, "LibVNCServer.Connect")
-static Q_LOGGING_CATEGORY(logger, "LibVNCServer.Connect.log")
-static Q_LOGGING_CATEGORY(logKey, "LibVNCServer.Connect.Key")
-static Q_LOGGING_CATEGORY(logMouse, "LibVNCServer.Connect.Mouse")
+static Q_LOGGING_CATEGORY(log, "LibVNCServer.Backend")
+static Q_LOGGING_CATEGORY(logger, "LibVNCServer.Backend.log")
+static Q_LOGGING_CATEGORY(logKey, "LibVNCServer.Backend.Key")
+static Q_LOGGING_CATEGORY(logInputMethod, "LibVNCServer.Backend.InputMethod")
+static Q_LOGGING_CATEGORY(logMouse, "LibVNCServer.Backend.Mouse")
 
 const char* gThis = "This pointer";
 #define LOG_BUFFER_LENGTH 1024

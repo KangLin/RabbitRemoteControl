@@ -55,10 +55,11 @@
     #include "ChannelSSHTunnel.h"
 #endif
 
-static Q_LOGGING_CATEGORY(log, "VNC.Connect")
+static Q_LOGGING_CATEGORY(log, "VNC.Backend")
 static Q_LOGGING_CATEGORY(logVNC, "VNC.Log")
-static Q_LOGGING_CATEGORY(logKey, "VNC.Connect.Key")
-static Q_LOGGING_CATEGORY(logMouse, "VNC.Connect.Mouse")
+static Q_LOGGING_CATEGORY(logKey, "VNC.Backend.Key")
+static Q_LOGGING_CATEGORY(logInputMethod, "VNC.Backend.InputMethod")
+static Q_LOGGING_CATEGORY(logMouse, "VNC.Backend.Mouse")
 
 class VncLogger: public rfb::Logger
 {

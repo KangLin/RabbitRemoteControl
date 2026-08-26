@@ -61,9 +61,10 @@
 #endif
 #include "Channel.h"
 
-static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
-static Q_LOGGING_CATEGORY(logKey, "FreeRDP.Connect.Key")
-static Q_LOGGING_CATEGORY(logMouse, "FreeRDP.Connect.Mouse")
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Backend")
+static Q_LOGGING_CATEGORY(logKey, "FreeRDP.Backend.Key")
+static Q_LOGGING_CATEGORY(logInputMethod, "FreeRDP.Backend.InputMethod")
+static Q_LOGGING_CATEGORY(logMouse, "FreeRDP.Backend.Mouse")
 
 CBackendFreeRDP::CBackendFreeRDP(COperateFreeRDP *pOperate)
     : CBackendDesktop(pOperate)
@@ -2168,7 +2169,7 @@ void CBackendFreeRDP::wheelEvent(QWheelEvent *event)
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
 void CBackendFreeRDP::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
+    //qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
@@ -2177,7 +2178,7 @@ void CBackendFreeRDP::mouseMoveEvent(QMouseEvent *event)
 
 void CBackendFreeRDP::mousePressEvent(QMouseEvent *event)
 {
-    qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
+    //qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
 
@@ -2214,7 +2215,7 @@ void CBackendFreeRDP::mousePressEvent(QMouseEvent *event)
 
 void CBackendFreeRDP::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
+    //qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
 
@@ -2251,9 +2252,9 @@ void CBackendFreeRDP::mouseReleaseEvent(QMouseEvent *event)
 
 void CBackendFreeRDP::keyPressEvent(QKeyEvent *event)
 {
-    qDebug(logKey) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
+    //qDebug(logKey) << Q_FUNC_INFO << event;
     // Convert to rdp scan code freerdp/scancode.h
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
     if(RDP_SCANCODE_UNKNOWN != k)
@@ -2268,9 +2269,9 @@ void CBackendFreeRDP::keyPressEvent(QKeyEvent *event)
 
 void CBackendFreeRDP::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug(logKey) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
+    //qDebug(logKey) << Q_FUNC_INFO << event;
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
     if(RDP_SCANCODE_UNKNOWN != k)
 #if FREERDP_VERSION_MAJOR >= 3
@@ -2284,18 +2285,35 @@ void CBackendFreeRDP::keyReleaseEvent(QKeyEvent *event)
 
 void CBackendFreeRDP::InputMethodEvent(QInputMethodEvent *event)
 {
-    qDebug(logKey) << Q_FUNC_INFO << event;
+    /*
+    qDebug(logInputMethod) << Q_FUNC_INFO
+                           << event->preeditString() << event->commitString()
+                           << event->replacementStart() << event->replacementLength()
+                           << event;//*/
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
+    if(pRdpContext) {
+        rdpSettings* settings = pRdpContext->settings;
+        if(settings && !freerdp_settings_get_bool(settings, FreeRDP_UnicodeInput)) {
+            qWarning(log) << "Don't set unicode input in server, please"
+                          << tr("Settings") << "→" << tr("Local resource") << "→" << tr("Enable local input method(Takes effect after reboot)");
+            return;
+        }
+    }
     QString szText = event->commitString();
     if(szText.isEmpty())
         return;
     for(int i = 0; i < szText.length(); i++) {
         QChar c = szText.at(i);
+        //qDebug(logInputMethod) << c;
 #if FREERDP_VERSION_MAJOR >= 3
+        //See: https://github.com/awakecoding/FreeRDP-Manuals/blob/master/Developer/FreeRDP-Developer-Manual.markdown
         freerdp_input_send_unicode_keyboard_event(m_pContext->Context.context.input, 0, (UINT16)c.unicode());
+        freerdp_input_send_unicode_keyboard_event(m_pContext->Context.context.input, KBD_FLAGS_RELEASE, (UINT16)c.unicode());
 #else
         freerdp_input_send_unicode_keyboard_event(m_pContext->Context.input, 0, (UINT16)c.unicode());
+        freerdp_input_send_unicode_keyboard_event(m_pContext->Context.input, KBD_FLAGS_RELEASE, (UINT16)c.unicode());
 #endif
     }
 }
