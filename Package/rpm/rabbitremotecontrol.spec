@@ -20,7 +20,7 @@ BuildRequires: cmake desktop-file-utils appstream curl wget
 #BuildRequires: appstream
 
 # Qt6
-BuildRequires: qt6-qttools-devel qt6-qtbase-devel
+BuildRequires: qt6-qttools-devel qt6-qtbase-devel qt6-qttranslations
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
 BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtspeech-devel qt6-qtwebsockets-devel
 BuildRequires: qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
@@ -51,7 +51,7 @@ Requires: zlib gnutls nettle gmp pam
 Requires: qt6-qtbase qt6-qtbase-mysql qt6-qtbase-odbc qt6-qtbase-postgresql
 Requires: qt6-qtmultimedia qt6-qt5compat qt6-qtscxml qt6-qtserialport qt6-qtsvg
 Requires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel qt6-qtspeech
-Requires: qtkeychain-qt6 qtermwidget
+Requires: qtkeychain-qt6 qtermwidget qt6-qttranslations
 Requires: mysql-libs
 
 Requires: libXext libX11 libXi libXfixes libXtst
@@ -95,7 +95,7 @@ echo "-- RPM_SOURCE_DIR: $RPM_SOURCE_DIR"
 echo "-- RPM_SPECPARTS_DIR: $RPM_SPECPARTS_DIR"
 echo "-- pwd: `pwd`"
 
-cmake . -B $RPM_BUILD_DIR  \
+cmake . -B $RPM_BUILD_DIR \
     -DCMAKE_INSTALL_PREFIX=%{INSTALL_PREFIX} -DCMAKE_BUILD_TYPE=Release \
     -DRabbitCommon_ROOT=${RabbitCommon_ROOT} \
     -DCMARK_SHARED=OFF \

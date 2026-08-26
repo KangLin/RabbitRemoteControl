@@ -27,7 +27,8 @@ Section: net
 Architecture: any
 #Pre-Depends: ${misc:Pre-Depends}
 #Suggests: libqt6svg6
-Depends: libqt6sql6-mysql, libqt6sql6-sqlite, libqt6sql6-odbc, libqt6sql6-psql, libmysqlclient24,
+Depends: qt6-qpa-plugins, qt6-translations-l10n,
+  libqt6sql6-mysql, libqt6sql6-sqlite, libqt6sql6-odbc, libqt6sql6-psql, libmysqlclient24,
   ${shlibs:Depends}, ${misc:Depends}
 Replaces: rabbitcommon (>=2.4.0)
 Description: Rabbit Remote Control
