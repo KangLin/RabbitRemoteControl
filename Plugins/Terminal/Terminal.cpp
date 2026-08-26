@@ -92,6 +92,7 @@ int CTerminal::Initial()
     if(nRet)
         return nRet;
 #if !defined(Q_OS_WIN)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
     m_pOpenFolderWithExplorer = m_Menu.addAction(
         QIcon::fromTheme("folder-open"),
         tr("Open working directory with file explorer") + "\tCtrl+O",
@@ -100,6 +101,18 @@ int CTerminal::Initial()
             QDesktopServices::openUrl(
                 QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
         });
+#else
+    m_pOpenFolderWithExplorer = m_Menu.addAction(
+        QIcon::fromTheme("folder-open"),
+        tr("Open working directory with file explorer") + "\tCtrl+O",
+        this,
+        [&](){
+            QDesktopServices::openUrl(
+                QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
+        },
+        QKeySequence(QKeySequence::Open) //Qt::CTRL | Qt::Key_O)
+        );
+#endif
     m_Menu.insertAction(m_pActionFind, m_pOpenFolderWithExplorer);
     m_pCopyToClipboard = m_Menu.addAction(
         QIcon::fromTheme("edit-copy"),
