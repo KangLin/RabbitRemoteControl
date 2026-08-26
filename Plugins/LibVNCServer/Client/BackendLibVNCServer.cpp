@@ -934,6 +934,10 @@ void CBackendLibVNCServer::keyReleaseEvent(QKeyEvent *event)
     SendKeyEvent(m_pClient, k, FALSE);
 }
 
+void CBackendLibVNCServer::InputMethodEvent(QInputMethodEvent *event)
+{
+}
+
 //! [connect local socket server]
 void CBackendLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
 {

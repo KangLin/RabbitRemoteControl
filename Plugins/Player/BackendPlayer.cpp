@@ -499,3 +499,38 @@ void CBackendPlayer::slotDurationChanged(qint64 duration)
     //qDebug(log) << "Duration:" << duration;
     m_nDuration = duration;
 }
+
+void CBackendPlayer::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CBackendPlayer::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CBackendPlayer::mouseMoveEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CBackendPlayer::wheelEvent(QWheelEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CBackendPlayer::keyPressEvent(QKeyEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CBackendPlayer::keyReleaseEvent(QKeyEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CBackendPlayer::InputMethodEvent(QInputMethodEvent *event)
+{
+    Q_UNUSED(event)
+}

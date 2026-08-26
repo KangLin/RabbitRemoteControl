@@ -92,3 +92,45 @@ void CBackendTemplateDesktop::slotClipBoardChanged()
     // TODO: add clipboard operate
 
 }
+
+void CBackendTemplateDesktop::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+    qDebug(log) << "Need to implement CBackendTemplateDesktop::mouseMoveEvent";
+}
+
+void CBackendTemplateDesktop::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+    qDebug(log) << "Need to implement CBackendTemplateDesktop::mousePressEvent";
+}
+
+void CBackendTemplateDesktop::mouseMoveEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+    qDebug(log) << "Need to implement CBackendTemplateDesktop::mouseMoveEvent";
+}
+
+void CBackendTemplateDesktop::wheelEvent(QWheelEvent *event)
+{
+    Q_UNUSED(event)
+    qDebug(log) << "Need to implement CBackendTemplateDesktop::wheelEvent";
+}
+
+void CBackendTemplateDesktop::keyPressEvent(QKeyEvent *event)
+{
+    Q_UNUSED(event)
+    qDebug(log) << "Need to implement CBackendTemplateDesktop::keyPressEvent";
+}
+
+void CBackendTemplateDesktop::keyReleaseEvent(QKeyEvent *event)
+{
+    Q_UNUSED(event)
+    qDebug(log) << "Need to implement CBackendTemplateDesktop::keyReleaseEvent";
+}
+
+void CBackendTemplateDesktop::InputMethodEvent(QInputMethodEvent *event)
+{
+    Q_UNUSED(event)
+    qDebug(log) << "Need to implement CBackendTemplateDesktop::InputMethodEvent";
+}

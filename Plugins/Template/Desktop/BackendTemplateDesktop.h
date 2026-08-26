@@ -14,13 +14,20 @@ public:
 
     virtual int WakeUp() override;
 
-    // CBackend interface
 protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
 
-    // CBackendDesktop interface
 public slots:
     virtual void slotClipBoardChanged() override;
+
+protected:
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void InputMethodEvent(QInputMethodEvent *event) override;
 };

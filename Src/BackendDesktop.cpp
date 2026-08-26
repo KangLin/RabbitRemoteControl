@@ -315,41 +315,6 @@ void CBackendDesktop::slotInputMethodEvent(QInputMethodEvent *event)
     WakeUp();
 }
 
-void CBackendDesktop::mouseMoveEvent(QMouseEvent *event)
-{
-    qDebug(logMouse) << "Need to implement CBackendDesktop::mouseMoveEvent";
-}
-
-void CBackendDesktop::mousePressEvent(QMouseEvent *event)
-{
-    qDebug(logMouse) << "Need to implement CBackendDesktop::mousePressEvent";
-}
-
-void CBackendDesktop::mouseReleaseEvent(QMouseEvent *event)
-{
-    qDebug(logMouse) << "Need to implement CBackendDesktop::mouseReleaseEvent";
-}
-
-void CBackendDesktop::wheelEvent(QWheelEvent *event)
-{
-    qDebug(logMouse) << "Need to implement CBackendDesktop::wheelEvent";
-}
-
-void CBackendDesktop::keyPressEvent(QKeyEvent *event)
-{
-    qDebug(logMouse) << "Need to implement CBackendDesktop::keyPressEvent";
-}
-
-void CBackendDesktop::keyReleaseEvent(QKeyEvent *event)
-{
-    qDebug(logMouse) << "Need to implement CBackendDesktop::keyReleaseEvent";
-}
-
-void CBackendDesktop::InputMethodEvent(QInputMethodEvent *event)
-{
-    qDebug(logMouse) << "Need to implement CBackendDesktop::InputMethodEvent";
-}
-
 bool CBackendDesktop::event(QEvent *event)
 {
     //qDebug(log) << "CBackendDesktop::event" << event;

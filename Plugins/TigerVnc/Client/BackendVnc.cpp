@@ -956,6 +956,10 @@ void CBackendVnc::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
+void CBackendVnc::InputMethodEvent(QInputMethodEvent *event)
+{
+}
+
 QString CBackendVnc::ConnectInformation()
 {
     const int len = 128;

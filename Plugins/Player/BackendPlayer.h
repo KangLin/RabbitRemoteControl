@@ -33,14 +33,20 @@ public Q_SLOTS:
     virtual void slotRecord(bool bRecord) override;
 #endif
 
-    // CConnectDesktop interface
     virtual void slotClipBoardChanged() override;
 
-    // CConnect interface
 protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int WakeUp() override;
+
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void InputMethodEvent(QInputMethodEvent *event) override;
 
 private Q_SLOTS:
     void slotVideoFrameChanged(const QVideoFrame &frame);

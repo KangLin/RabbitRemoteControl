@@ -33,7 +33,7 @@ public:
     static rfbBool cb_cursor_pos(rfbClient* client, int x, int y);
     static void cb_got_cursor_shape(rfbClient* client, int xhot, int yhot, int width, int height, int bytesPerPixel);
     
-public Q_SLOTS:
+protected:
     virtual void slotClipBoardChanged() override;
     virtual void mousePressEvent(QMouseEvent* event) override;
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
@@ -41,7 +41,8 @@ public Q_SLOTS:
     virtual void wheelEvent(QWheelEvent* event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
-    
+    virtual void InputMethodEvent(QInputMethodEvent *event) override;
+
     void slotConnectProxyServer(QString szHost, quint16 nPort);
 #if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
     void slotConnectProxyServer(QString szFile);

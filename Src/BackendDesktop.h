@@ -93,13 +93,13 @@ public Q_SLOTS:
 protected:
     // \~chinese 以下函数在后台线程中调用
     // \~english The following functions are called in the Backend thread(background thread)
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseReleaseEvent(QMouseEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void wheelEvent(QWheelEvent *event);
-    virtual void keyPressEvent(QKeyEvent *event);
-    virtual void keyReleaseEvent(QKeyEvent *event);
-    virtual void InputMethodEvent(QInputMethodEvent* event);
+    virtual void mousePressEvent(QMouseEvent *event) = 0;
+    virtual void mouseReleaseEvent(QMouseEvent *event) = 0;
+    virtual void mouseMoveEvent(QMouseEvent *event) = 0;
+    virtual void wheelEvent(QWheelEvent *event) = 0;
+    virtual void keyPressEvent(QKeyEvent *event) = 0;
+    virtual void keyReleaseEvent(QKeyEvent *event) = 0;
+    virtual void InputMethodEvent(QInputMethodEvent* event) = 0;
     
     // QObject interface
 public:
