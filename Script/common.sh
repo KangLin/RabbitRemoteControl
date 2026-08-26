@@ -48,7 +48,7 @@ if [ -z "$RabbitCommon_ROOT" ]; then
         echo "Deployment cancelled"
         exit 1
     fi
-    echo "Starting download..."  # 添加这行
+    echo "Starting download..."
     if ! command -v git &> /dev/null; then
         echo "Error: git is not installed"
         exit 1

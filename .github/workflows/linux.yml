@@ -63,14 +63,7 @@ jobs:
             ${{env.TOOLS_DIR}}/qt_*
           key: install_linux_${{matrix.os}}
 
-      - name: git clone RabbitCommon
-        working-directory: ${{env.SOURCE_DIR}}
-        run: git clone https://github.com/KangLin/RabbitCommon.git
-
       - name: build linux
-        env:
-          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-        #continue-on-error: true
         run: |
           sudo ./Script/build_linux.sh --${{matrix.PACKAGE}} --install=${{env.INSTALL_DIR}}
 

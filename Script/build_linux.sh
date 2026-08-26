@@ -281,6 +281,7 @@ show_configuration() {
         echo ""
     fi
 
+    echo "RabbitCommon_ROOT: $RabbitCommon_ROOT"
     echo "Repo folder: $REPO_ROOT"
     echo "Old folder: $OLD_CWD"
     echo "Current folder: `pwd`"
