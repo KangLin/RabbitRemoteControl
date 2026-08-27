@@ -1,12 +1,14 @@
 // Author: Kang Lin <kl222@126.com>
 //! 
 #include <QImage>
-#include "BackendFreeRDP.h"
 #include <freerdp/gdi/gdi.h>
+#include <QLoggingCategory>
+#include "BackendFreeRDP.h"
 
-CCursorFreeRDP::CCursorFreeRDP(CBackendFreeRDP *parent) : QObject(parent),
-    m_pConnect(parent),
-    m_Logger("FreeRDP.Cursor")
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Cursor")
+CCursorFreeRDP::CCursorFreeRDP(CBackendFreeRDP *parent)
+    : QObject(parent),
+    m_pConnect(parent)
 {}
 
 int CCursorFreeRDP::RegisterPointer(rdpGraphics *graphics)
@@ -14,35 +16,34 @@ int CCursorFreeRDP::RegisterPointer(rdpGraphics *graphics)
     rdpPointer* pointer = NULL;
 	if (!(pointer = (rdpPointer*)calloc(1, sizeof(rdpPointer))))
 		return -1;
-
 	pointer->size = sizeof(_Pointer);
-	pointer->New = cb_Pointer_New;
-	pointer->Free = cb_Pointer_Free;
- 	pointer->Set = cb_Pointer_Set;
-	pointer->SetNull = cb_Pointer_SetNull;
-	pointer->SetDefault = cb_Pointer_SetDefault;
-	pointer->SetPosition = cb_Pointer_SetPosition;
+    pointer->New = CbPointerNew;
+    pointer->Free = CbPointerFree;
+    pointer->Set = CbPointerSet;
+    pointer->SetNull = CbPointerSetNull;
+    pointer->SetDefault = CbPointerSetDefault;
+    pointer->SetPosition = CbPointerSetPosition;
 	graphics_register_pointer(graphics, pointer);
 	free(pointer);
-    
     return 0;
 }
 
-BOOL CCursorFreeRDP::cb_Pointer_New(rdpContext *context, rdpPointer *pointer)
+BOOL CCursorFreeRDP::CbPointerNew(rdpContext *context, rdpPointer *pointer)
 {
-    //qDebug(m_Logger) << "cb_Pointer_New";
+    //qDebug(log) << "CbPointerNew";
     CBackendFreeRDP* pThis = ((CBackendFreeRDP::ClientContext*)context)->pThis;
-    return pThis->m_Cursor.onNew(context, pointer);
+    return pThis ? pThis->m_Cursor.OnNew(context, pointer) : false;
 }
 
-void CCursorFreeRDP::cb_Pointer_Free(rdpContext* context, rdpPointer* pointer)
+void CCursorFreeRDP::CbPointerFree(rdpContext* context, rdpPointer* pointer)
 {
-    //qDebug(m_Logger) << "cb_Pointer_Free";
+    //qDebug(log) << "CbPointerFree";
     CBackendFreeRDP* pThis = ((CBackendFreeRDP::ClientContext*)context)->pThis;
-    pThis->m_Cursor.onFree(context, pointer);   
+    if(pThis)
+        pThis->m_Cursor.OnFree(context, pointer);
 }
 
-BOOL CCursorFreeRDP::cb_Pointer_Set(rdpContext *context,
+BOOL CCursorFreeRDP::CbPointerSet(rdpContext *context,
                                     #if FREERDP_VERSION_MAJOR >= 3
                                     rdpPointer* pointer
                                     #else
@@ -50,37 +51,35 @@ BOOL CCursorFreeRDP::cb_Pointer_Set(rdpContext *context,
                                     #endif
                                     )
 {
-    //qDebug(m_Logger) << "cb_Pointer_Set";
+    //qDebug(log) << "CbPointerSet";
     CBackendFreeRDP* pThis = ((CBackendFreeRDP::ClientContext*)context)->pThis;
-    return pThis->m_Cursor.onSet(context, pointer);
+    return pThis ? pThis->m_Cursor.OnSet(context, pointer) : false;
 }
 
-BOOL CCursorFreeRDP::cb_Pointer_SetNull(rdpContext *context)
+BOOL CCursorFreeRDP::CbPointerSetNull(rdpContext *context)
 {
-    //qDebug(m_Logger) << "cb_Pointer_SetNull";
+    //qDebug(log) << "CbPointerSetNull";
     CBackendFreeRDP* pThis = ((CBackendFreeRDP::ClientContext*)context)->pThis;
-    return pThis->m_Cursor.onSetNull(context);
+    return pThis ? pThis->m_Cursor.OnSetNull(context) : false;
 }
 
-BOOL CCursorFreeRDP::cb_Pointer_SetDefault(rdpContext *context)
+BOOL CCursorFreeRDP::CbPointerSetDefault(rdpContext *context)
 {
-    //qDebug(m_Logger) << "cb_Pointer_SetDefault";
+    //qDebug(log) << "CbPointerSetDefault";
     CBackendFreeRDP* pThis = ((CBackendFreeRDP::ClientContext*)context)->pThis;
-    return pThis->m_Cursor.onSetDefault(context);
-    return TRUE;
+    return pThis ? pThis->m_Cursor.OnSetDefault(context) : false;
 }
 
-BOOL CCursorFreeRDP::cb_Pointer_SetPosition(rdpContext *context, UINT32 x, UINT32 y)
+BOOL CCursorFreeRDP::CbPointerSetPosition(rdpContext *context, UINT32 x, UINT32 y)
 {
-    //qDebug(m_Logger) << "cb_Pointer_SetPosition";
+    //qDebug(log) << "CbPointerSetPosition:" << x << y;
     CBackendFreeRDP* pThis = ((CBackendFreeRDP::ClientContext*)context)->pThis;
-    return pThis->m_Cursor.onSetPosition(context, x, y);
-    return TRUE;
+    return pThis ? pThis->m_Cursor.OnSetPosition(context, x, y) : false;
 }
 
-BOOL CCursorFreeRDP::onNew(rdpContext *context, rdpPointer *pointer)
+BOOL CCursorFreeRDP::OnNew(rdpContext *context, rdpPointer *pointer)
 {
-    return TRUE;
+    qDebug(log) << "onNew:" << pointer->xPos << pointer->yPos << pointer->width << pointer->height;
     BOOL bRet = TRUE;
     QImage cursor(pointer->width, pointer->height, QImage::Format_ARGB32);
     /**
@@ -100,20 +99,24 @@ BOOL CCursorFreeRDP::onNew(rdpContext *context, rdpPointer *pointer)
                                pointer->lengthAndMask,
                                pointer->xorBpp,
                                &context->gdi->palette);
-    if(bRet)
-    {
+    if(bRet) {
         m_Cursor = cursor;
-        emit m_pConnect->sigUpdateCursor(QCursor(QPixmap::fromImage(m_Cursor),
-                                                 pointer->xPos, pointer->yPos));
+        emit m_pConnect->sigUpdateCursor(
+            QCursor(QPixmap::fromImage(m_Cursor), pointer->xPos, pointer->yPos));
     }
     return bRet;
 }
 
-void CCursorFreeRDP::onFree(rdpContext* context, rdpPointer* pointer)
-{}
-
-BOOL CCursorFreeRDP::onSet(rdpContext *context, const rdpPointer *pointer)
+void CCursorFreeRDP::OnFree(rdpContext* context, rdpPointer* pointer)
 {
+    qDebug(log) << "OnFree";
+    Q_UNUSED(context)
+    Q_UNUSED(pointer)
+}
+
+BOOL CCursorFreeRDP::OnSet(rdpContext *context, const rdpPointer *pointer)
+{
+    qDebug(log) << "OnSet:" << pointer->xPos << pointer->yPos << pointer->width << pointer->height;
     BOOL bRet = TRUE;
     QImage cursor(pointer->width, pointer->height, QImage::Format_ARGB32);
     /**
@@ -133,32 +136,36 @@ BOOL CCursorFreeRDP::onSet(rdpContext *context, const rdpPointer *pointer)
                                pointer->lengthAndMask,
                                pointer->xorBpp,
                                &context->gdi->palette);
-    if(bRet)
-    {
+    if(bRet) {
         m_Cursor = cursor;
-        emit m_pConnect->sigUpdateCursor(QCursor(QPixmap::fromImage(m_Cursor),
-                                                 pointer->xPos, pointer->yPos));
+        emit m_pConnect->sigUpdateCursor(
+            QCursor(QPixmap::fromImage(m_Cursor), pointer->xPos, pointer->yPos));
     }
     return bRet;
 }
 
-BOOL CCursorFreeRDP::onSetDefault(rdpContext *context)
+BOOL CCursorFreeRDP::OnSetDefault(rdpContext *context)
 {
+    qDebug(log) << "OnSetDefault";
+    Q_UNUSED(context)
     m_Cursor = QImage();
     emit m_pConnect->sigUpdateCursor(QCursor());
     return TRUE;
 }
 
-BOOL CCursorFreeRDP::onSetNull(rdpContext *context)
+BOOL CCursorFreeRDP::OnSetNull(rdpContext *context)
 {
+    qDebug(log) << "OnSetNull";
+    Q_UNUSED(context)
     m_Cursor = QImage();
     emit m_pConnect->sigUpdateCursor(QCursor(Qt::BlankCursor));
     return TRUE;
 }
 
-BOOL CCursorFreeRDP::onSetPosition(rdpContext *context, UINT32 x, UINT32 y)
+BOOL CCursorFreeRDP::OnSetPosition(rdpContext *context, UINT32 x, UINT32 y)
 {
-    emit m_pConnect->sigUpdateCursor(QCursor(QPixmap::fromImage(m_Cursor),
-                                                                   x, y));
+    qDebug(log) << "OnSetPosition" << x << y;
+    Q_UNUSED(context)
+    emit m_pConnect->sigUpdateCursorPosition(QPoint(x, y));
     return TRUE;
 }

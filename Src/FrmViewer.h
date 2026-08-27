@@ -183,7 +183,8 @@ private:
 
     int ReSize(int width, int height);
     void paintDesktop();
-    int TranslationMousePoint(QPointF inPos, QPointF &outPos);
+    int PointToRemote(const QPointF &inPos, QPointF &outPos);
+    int PointFromRemote(const QPointF &inPos, QPointF &outPos);
     QRectF GetAspectRationRect();
 
 public:

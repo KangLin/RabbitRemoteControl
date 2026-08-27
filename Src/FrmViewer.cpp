@@ -138,9 +138,9 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
     paintDesktop();
 }
 
-int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
+int CFrmViewer::PointToRemote(const QPointF &inPos, QPointF &outPos)
 {
-    qDebug(logMouse) << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
+    //qDebug(logMouse) << "PointToRemote x:" << inPos.x() << ";y:" << inPos.y();
 
     switch (m_AdaptWindows) {
     case ADAPT_WINDOWS::Auto:
@@ -169,10 +169,42 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
         break;
     }
     default:
+        qWarning(logMouse) << "Unsupported:" << m_AdaptWindows;
         break;
     }
 
-    return 0; 
+    return 0;
+}
+
+int CFrmViewer::PointFromRemote(const QPointF &inPos, QPointF &outPos)
+{
+    //qDebug(logMouse) << "PointFromRemote x:" << inPos.x() << ";y:" << inPos.y();
+
+    switch (m_AdaptWindows) {
+    case ADAPT_WINDOWS::Auto:
+    case ADAPT_WINDOWS::Original:
+        outPos = inPos;
+        break;
+    case ADAPT_WINDOWS::Zoom:
+        outPos.setX(inPos.x() * GetZoomFactor());
+        outPos.setY(inPos.y() * GetZoomFactor());
+        break;
+    case ADAPT_WINDOWS::ZoomToWindow:
+        outPos.setX(width() * inPos.x() / m_DesktopSize.width());
+        outPos.setY(height() * inPos.y() / m_DesktopSize.height());
+        break;
+    case ADAPT_WINDOWS::KeepAspectRationToWindow:
+    {
+        QRectF r = GetAspectRationRect();
+        outPos.setX(r.width() * inPos.x() / m_DesktopSize.width() + r.left());
+        outPos.setY(r.height() * inPos.y() / m_DesktopSize.height() + r.top());
+        break;
+    }
+    default:
+        qWarning(logMouse) << "Unsupported:" << m_AdaptWindows;
+        break;
+    }
+    return 0;
 }
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
@@ -184,14 +216,13 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
         event->pos();
 #endif
 
-    if(TranslationMousePoint(pos, pos)) return;
+    if(PointToRemote(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
     qDebug(logMouse) << "CFrmViewer::mousePressEvent"
                      << event << event->button() << event->buttons() << pos;
     emit sigMousePressEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
-
     if(testAttribute(Qt::WA_InputMethodEnabled)
         && event->button() == Qt::LeftButton) {
         qDebug(logInputMethod) << Q_FUNC_INFO << "Update micro focus";
@@ -207,7 +238,7 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 #else
         event->pos();
 #endif
-    if(TranslationMousePoint(pos, pos)) return;
+    if(PointToRemote(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
     qDebug(logMouse) << "CFrmViewer::mouseReleaseEvent"
@@ -224,12 +255,15 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 #else
         event->pos();
 #endif
-    if(TranslationMousePoint(pos, pos)) return;
+    QPointF outPos = pos;
+    if(PointToRemote(pos, outPos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
     qDebug(logMouse) << "CFrmViewer::mouseMoveEvent"
-                     << event->button() << event->buttons() << pos;
-    emit sigMouseMoveEvent(event, QPoint(pos.x(), pos.y()));
+                     << event->button() << event->buttons()
+                     << pos << "outPos:" << outPos
+                     << "mapToGlobal(pos):" << mapToGlobal(pos.toPoint());
+    emit sigMouseMoveEvent(event, QPoint(outPos.x(), outPos.y()));
     emit sigMouseMoveEvent(event);
     event->accept();
 }
@@ -242,7 +276,7 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 #else
         event->pos();
 #endif
-    if(TranslationMousePoint(pos, pos)) return;
+    if(PointToRemote(pos, pos)) return;
     qDebug(logMouse) << "CFrmViewer::wheelEvent"
                      << event->buttons() << event->angleDelta() << pos;
     emit sigWheelEvent(event, QPoint(pos.x(), pos.y()));
@@ -279,7 +313,7 @@ void CFrmViewer::inputMethodEvent(QInputMethodEvent *event)
 
 QVariant CFrmViewer::inputMethodQuery(Qt::InputMethodQuery query) const
 {
-    /*
+    //*
     qDebug(logInputMethod) << Q_FUNC_INFO << query;
     switch ( query )
     {
@@ -423,18 +457,23 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 
 void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
 {
-    //qDebug(log) << Q_FUNC_INFO << cursor;
+    qDebug(logMouse) << Q_FUNC_INFO << cursor << cursor.pos();
     setCursor(cursor);
     if(testAttribute(Qt::WA_InputMethodEnabled)) {
         qDebug(logInputMethod) << Q_FUNC_INFO << "Update micro focus";
         updateMicroFocus();
     }
+    return;
 }
 
 void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
 {
-    //qDebug(log) << Q_FUNC_INFO << pos;
-    cursor().setPos(pos);
+    qDebug(logMouse) << Q_FUNC_INFO << pos;
+    QPointF outPos;
+    if(PointFromRemote(pos, outPos)) return;
+    cursor().setPos(mapToGlobal(outPos.toPoint()));
+    qDebug(logMouse) << "Cursor Point:" << pos << "Out:" << outPos
+                     << "cursor().pos():" << cursor().pos();
     if(testAttribute(Qt::WA_InputMethodEnabled)) {
         qDebug(logInputMethod) << Q_FUNC_INFO << "Update micro focus";
         updateMicroFocus();
