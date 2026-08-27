@@ -687,65 +687,65 @@ File: %1</source>
         <translation>玉兔远程控制</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="31"/>
+        <location filename="../../mainwindow.ui" line="32"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="39"/>
+        <location filename="../../mainwindow.ui" line="40"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="70"/>
-        <location filename="../../mainwindow.ui" line="73"/>
-        <location filename="../../mainwindow.ui" line="76"/>
+        <location filename="../../mainwindow.ui" line="71"/>
+        <location filename="../../mainwindow.ui" line="74"/>
+        <location filename="../../mainwindow.ui" line="77"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="124"/>
+        <location filename="../../mainwindow.ui" line="125"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="137"/>
+        <location filename="../../mainwindow.ui" line="138"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="162"/>
-        <location filename="../../mainwindow.ui" line="165"/>
-        <location filename="../../mainwindow.ui" line="168"/>
-        <location filename="../../mainwindow.ui" line="171"/>
-        <location filename="../../mainwindow.ui" line="174"/>
+        <location filename="../../mainwindow.ui" line="163"/>
+        <location filename="../../mainwindow.ui" line="166"/>
+        <location filename="../../mainwindow.ui" line="169"/>
+        <location filename="../../mainwindow.ui" line="172"/>
+        <location filename="../../mainwindow.ui" line="175"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="182"/>
-        <location filename="../../mainwindow.ui" line="185"/>
-        <location filename="../../mainwindow.ui" line="188"/>
-        <location filename="../../mainwindow.ui" line="191"/>
-        <location filename="../../mainwindow.ui" line="194"/>
+        <location filename="../../mainwindow.ui" line="183"/>
+        <location filename="../../mainwindow.ui" line="186"/>
+        <location filename="../../mainwindow.ui" line="189"/>
+        <location filename="../../mainwindow.ui" line="192"/>
+        <location filename="../../mainwindow.ui" line="195"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="205"/>
-        <location filename="../../mainwindow.ui" line="208"/>
-        <location filename="../../mainwindow.ui" line="211"/>
-        <location filename="../../mainwindow.ui" line="214"/>
-        <location filename="../../mainwindow.ui" line="217"/>
+        <location filename="../../mainwindow.ui" line="206"/>
+        <location filename="../../mainwindow.ui" line="209"/>
+        <location filename="../../mainwindow.ui" line="212"/>
+        <location filename="../../mainwindow.ui" line="215"/>
+        <location filename="../../mainwindow.ui" line="218"/>
         <source>ToolBar</source>
         <translation>工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="225"/>
-        <location filename="../../mainwindow.ui" line="228"/>
-        <location filename="../../mainwindow.ui" line="231"/>
-        <location filename="../../mainwindow.ui" line="234"/>
-        <location filename="../../mainwindow.ui" line="237"/>
+        <location filename="../../mainwindow.ui" line="226"/>
+        <location filename="../../mainwindow.ui" line="229"/>
+        <location filename="../../mainwindow.ui" line="232"/>
+        <location filename="../../mainwindow.ui" line="235"/>
+        <location filename="../../mainwindow.ui" line="238"/>
         <location filename="../../mainwindow.cpp" line="709"/>
         <location filename="../../mainwindow.cpp" line="710"/>
         <location filename="../../mainwindow.cpp" line="711"/>
@@ -754,183 +754,183 @@ File: %1</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="248"/>
-        <location filename="../../mainwindow.ui" line="251"/>
-        <location filename="../../mainwindow.ui" line="254"/>
-        <location filename="../../mainwindow.ui" line="257"/>
-        <location filename="../../mainwindow.ui" line="260"/>
+        <location filename="../../mainwindow.ui" line="249"/>
+        <location filename="../../mainwindow.ui" line="252"/>
+        <location filename="../../mainwindow.ui" line="255"/>
+        <location filename="../../mainwindow.ui" line="258"/>
+        <location filename="../../mainwindow.ui" line="261"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="274"/>
-        <location filename="../../mainwindow.ui" line="277"/>
-        <location filename="../../mainwindow.ui" line="280"/>
+        <location filename="../../mainwindow.ui" line="275"/>
+        <location filename="../../mainwindow.ui" line="278"/>
+        <location filename="../../mainwindow.ui" line="281"/>
         <source>Stop Operate</source>
         <translation>停止操作</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="291"/>
+        <location filename="../../mainwindow.ui" line="292"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="314"/>
-        <location filename="../../mainwindow.ui" line="317"/>
-        <location filename="../../mainwindow.ui" line="320"/>
-        <location filename="../../mainwindow.ui" line="323"/>
-        <location filename="../../mainwindow.ui" line="326"/>
+        <location filename="../../mainwindow.ui" line="315"/>
+        <location filename="../../mainwindow.ui" line="318"/>
+        <location filename="../../mainwindow.ui" line="321"/>
+        <location filename="../../mainwindow.ui" line="324"/>
+        <location filename="../../mainwindow.ui" line="327"/>
         <source>TabBar</source>
         <translation>标签条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="348"/>
-        <location filename="../../mainwindow.ui" line="351"/>
-        <location filename="../../mainwindow.ui" line="354"/>
+        <location filename="../../mainwindow.ui" line="349"/>
+        <location filename="../../mainwindow.ui" line="352"/>
+        <location filename="../../mainwindow.ui" line="355"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="396"/>
-        <location filename="../../mainwindow.ui" line="399"/>
-        <location filename="../../mainwindow.ui" line="402"/>
-        <location filename="../../mainwindow.ui" line="405"/>
-        <location filename="../../mainwindow.ui" line="408"/>
+        <location filename="../../mainwindow.ui" line="397"/>
+        <location filename="../../mainwindow.ui" line="400"/>
+        <location filename="../../mainwindow.ui" line="403"/>
+        <location filename="../../mainwindow.ui" line="406"/>
+        <location filename="../../mainwindow.ui" line="409"/>
         <source>Open the list of recent</source>
         <translation>打开最近列表</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="470"/>
+        <location filename="../../mainwindow.ui" line="471"/>
         <source>Tab</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="478"/>
+        <location filename="../../mainwindow.ui" line="479"/>
         <source>Split</source>
         <translation>拆分</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="481"/>
-        <location filename="../../mainwindow.ui" line="484"/>
+        <location filename="../../mainwindow.ui" line="482"/>
+        <location filename="../../mainwindow.ui" line="485"/>
         <source>Split view</source>
         <translation>拆分视图</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="492"/>
+        <location filename="../../mainwindow.ui" line="493"/>
         <source>User manual</source>
         <translation>用户手册</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="500"/>
-        <location filename="../../mainwindow.ui" line="503"/>
+        <location filename="../../mainwindow.ui" line="501"/>
+        <location filename="../../mainwindow.ui" line="504"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="511"/>
-        <location filename="../../mainwindow.ui" line="514"/>
+        <location filename="../../mainwindow.ui" line="512"/>
+        <location filename="../../mainwindow.ui" line="515"/>
         <source>Simple</source>
         <translation>简单</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="522"/>
-        <location filename="../../mainwindow.ui" line="525"/>
+        <location filename="../../mainwindow.ui" line="523"/>
+        <location filename="../../mainwindow.ui" line="526"/>
         <source>Minimalism</source>
         <translation>极简</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="536"/>
+        <location filename="../../mainwindow.ui" line="537"/>
         <source>Keyboard</source>
         <translation>键盘</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="539"/>
-        <location filename="../../mainwindow.ui" line="542"/>
+        <location filename="../../mainwindow.ui" line="540"/>
+        <location filename="../../mainwindow.ui" line="543"/>
         <source>Show keyboard</source>
         <translation>显示键盘</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="550"/>
+        <location filename="../../mainwindow.ui" line="551"/>
         <source>Stop All</source>
         <translation>全部停止</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="553"/>
-        <location filename="../../mainwindow.ui" line="556"/>
-        <location filename="../../mainwindow.ui" line="559"/>
+        <location filename="../../mainwindow.ui" line="554"/>
+        <location filename="../../mainwindow.ui" line="557"/>
+        <location filename="../../mainwindow.ui" line="560"/>
         <source>Stop All Operate</source>
         <translation>停止全部操作</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="567"/>
+        <location filename="../../mainwindow.ui" line="568"/>
         <location filename="../../mainwindow.cpp" line="866"/>
         <source>Stop other</source>
         <translation>停止其它的</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="570"/>
-        <location filename="../../mainwindow.ui" line="573"/>
-        <location filename="../../mainwindow.ui" line="576"/>
+        <location filename="../../mainwindow.ui" line="571"/>
+        <location filename="../../mainwindow.ui" line="574"/>
+        <location filename="../../mainwindow.ui" line="577"/>
         <source>Stop other Operate</source>
         <translation>停止其它操作</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="379"/>
-        <location filename="../../mainwindow.ui" line="382"/>
-        <location filename="../../mainwindow.ui" line="385"/>
-        <location filename="../../mainwindow.ui" line="388"/>
+        <location filename="../../mainwindow.ui" line="380"/>
+        <location filename="../../mainwindow.ui" line="383"/>
+        <location filename="../../mainwindow.ui" line="386"/>
+        <location filename="../../mainwindow.ui" line="389"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夹</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="99"/>
+        <location filename="../../mainwindow.ui" line="100"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="419"/>
-        <location filename="../../mainwindow.ui" line="422"/>
-        <location filename="../../mainwindow.ui" line="425"/>
-        <location filename="../../mainwindow.ui" line="428"/>
-        <location filename="../../mainwindow.ui" line="431"/>
+        <location filename="../../mainwindow.ui" line="420"/>
+        <location filename="../../mainwindow.ui" line="423"/>
+        <location filename="../../mainwindow.ui" line="426"/>
+        <location filename="../../mainwindow.ui" line="429"/>
+        <location filename="../../mainwindow.ui" line="432"/>
         <source>Main menu bar</source>
         <translation>主菜单条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="439"/>
-        <location filename="../../mainwindow.ui" line="442"/>
-        <location filename="../../mainwindow.ui" line="445"/>
-        <location filename="../../mainwindow.ui" line="448"/>
-        <location filename="../../mainwindow.ui" line="451"/>
+        <location filename="../../mainwindow.ui" line="440"/>
+        <location filename="../../mainwindow.ui" line="443"/>
+        <location filename="../../mainwindow.ui" line="446"/>
+        <location filename="../../mainwindow.ui" line="449"/>
+        <location filename="../../mainwindow.ui" line="452"/>
         <source>Status bar</source>
         <translation>状态条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="462"/>
+        <location filename="../../mainwindow.ui" line="463"/>
         <source>Record video</source>
         <translation>录制视频</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="334"/>
-        <location filename="../../mainwindow.ui" line="337"/>
-        <location filename="../../mainwindow.ui" line="340"/>
+        <location filename="../../mainwindow.ui" line="335"/>
+        <location filename="../../mainwindow.ui" line="338"/>
+        <location filename="../../mainwindow.ui" line="341"/>
         <source>Zoom window to remote desktop</source>
         <translation>缩放窗口到远程桌面大小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="43"/>
+        <location filename="../../mainwindow.ui" line="44"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="53"/>
-        <location filename="../../mainwindow.ui" line="56"/>
-        <location filename="../../mainwindow.ui" line="59"/>
+        <location filename="../../mainwindow.ui" line="54"/>
+        <location filename="../../mainwindow.ui" line="57"/>
+        <location filename="../../mainwindow.ui" line="60"/>
         <source>Activity</source>
         <translation>活动的</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="103"/>
+        <location filename="../../mainwindow.ui" line="104"/>
         <location filename="../../mainwindow.cpp" line="195"/>
         <location filename="../../mainwindow.cpp" line="196"/>
         <location filename="../../mainwindow.cpp" line="197"/>
@@ -938,25 +938,25 @@ File: %1</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="268"/>
-        <location filename="../../mainwindow.ui" line="271"/>
+        <location filename="../../mainwindow.ui" line="269"/>
+        <location filename="../../mainwindow.ui" line="272"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="288"/>
-        <location filename="../../mainwindow.ui" line="294"/>
-        <location filename="../../mainwindow.ui" line="297"/>
-        <location filename="../../mainwindow.ui" line="300"/>
+        <location filename="../../mainwindow.ui" line="289"/>
+        <location filename="../../mainwindow.ui" line="295"/>
+        <location filename="../../mainwindow.ui" line="298"/>
+        <location filename="../../mainwindow.ui" line="301"/>
         <location filename="../../mainwindow.cpp" line="1013"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="362"/>
-        <location filename="../../mainwindow.ui" line="365"/>
-        <location filename="../../mainwindow.ui" line="368"/>
-        <location filename="../../mainwindow.ui" line="371"/>
+        <location filename="../../mainwindow.ui" line="363"/>
+        <location filename="../../mainwindow.ui" line="366"/>
+        <location filename="../../mainwindow.ui" line="369"/>
+        <location filename="../../mainwindow.ui" line="372"/>
         <source>Clone</source>
         <translation>克隆</translation>
     </message>
@@ -1141,17 +1141,17 @@ File: %1</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="156"/>
+        <location filename="../../main.cpp" line="167"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔远程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="157"/>
+        <location filename="../../main.cpp" line="168"/>
         <source>Kang Lin Studio</source>
         <translation>康林工作室</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="188"/>
+        <location filename="../../main.cpp" line="199"/>
         <source>Generate update json file End</source>
         <translation>产生更新文件结束</translation>
     </message>

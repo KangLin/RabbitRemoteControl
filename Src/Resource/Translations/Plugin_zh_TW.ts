@@ -356,7 +356,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="561"/>
+        <location filename="../../FrmViewer.cpp" line="570"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新鍵盤 LED 狀態失敗</translation>
     </message>
@@ -621,12 +621,12 @@ Some features are limited.
     <name>COperateServer</name>
     <message>
         <location filename="../../OperateServer.cpp" line="37"/>
-        <location filename="../../OperateServer.cpp" line="93"/>
+        <location filename="../../OperateServer.cpp" line="95"/>
         <source>Start server</source>
         <translation>開始服務</translation>
     </message>
     <message>
-        <location filename="../../OperateServer.cpp" line="106"/>
+        <location filename="../../OperateServer.cpp" line="108"/>
         <source>Stop server</source>
         <translation>停止服務</translation>
     </message>
