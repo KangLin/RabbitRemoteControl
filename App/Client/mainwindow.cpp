@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QSplashScreen>
 #include <QWindow>
 #include <QFontMetrics>
 #include <QGridLayout>
@@ -435,32 +436,36 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::ShowMessageInSplashScreen(QSplashScreen *pSplashScreen, const QString &szMsg)
+{
+    if(!pSplashScreen) return;
+    QString szTitle = qApp->applicationDisplayName() + "\n\n";
+    pSplashScreen->showMessage(szTitle + szMsg, Qt::AlignCenter,
+                               pSplashScreen->palette().color(QPalette::WindowText));
+    QCoreApplication::processEvents();
+}
+
 //! For time-consuming operations
-int MainWindow::Initial()
+int MainWindow::Initial(QSplashScreen *pSplashScreen)
 {
     qDebug(log) << Q_FUNC_INFO;
 
     int nRet = 0;
     QString szErr;
 
-    setEnabled(false);
     do {
-        QMessageBox initMsgBox(QMessageBox::Information, tr("Load"), tr("Load ......"));
-        initMsgBox.showNormal();
-        qApp->processEvents();
+        QString szMsg;
 
-        QString szMsg;    
         szMsg = tr("Load plugins ......");
-        initMsgBox.setText(szMsg);
         slotInformation(szMsg);
-        qApp->processEvents();
+        ShowMessageInSplashScreen(pSplashScreen, szMsg);
         nRet = m_Manager.Initial();
         if(nRet) {
             szErr = tr("Initial manage error");
             break;
         }
         m_Manager.EnumPlugins(this);
-        
+
         auto pg = m_Manager.GetGlobalParameters();
         if(pg) {
             //m_Parameter.SetGlobalParameters(pg);
@@ -479,9 +484,8 @@ int MainWindow::Initial()
 
         if(m_pRecent) {
             szMsg = tr("Load list recent dock ......");
-            initMsgBox.setText(szMsg);
             slotInformation(szMsg);
-            qApp->processEvents();
+            ShowMessageInSplashScreen(pSplashScreen, szMsg);
             nRet = m_pRecent->Initial();
             if(nRet) {
                 szErr = tr("Initial recent dock error");
@@ -491,9 +495,8 @@ int MainWindow::Initial()
 
         if(m_pRecentMenu) {
             szMsg = tr("Load recent menu ......");
-            initMsgBox.setText(szMsg);
             slotInformation(szMsg);
-            qApp->processEvents();
+            ShowMessageInSplashScreen(pSplashScreen, szMsg);
             if(m_pRecent) {
                 auto recents = m_pRecent->GetRecents(m_Parameter.GetRecentMenuMaxCount());
                 //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
@@ -517,9 +520,8 @@ int MainWindow::Initial()
 
         if(m_pFavoriteView) {
             szMsg = tr("Load favorite ......");
-            initMsgBox.setText(szMsg);
             slotInformation(szMsg);
-            qApp->processEvents();
+            ShowMessageInSplashScreen(pSplashScreen, szMsg);
             nRet = m_pFavoriteView->Initial();
             if(nRet) {
                 szErr = tr("Initial favorite error");
@@ -529,12 +531,9 @@ int MainWindow::Initial()
 
         slotEnableSystemTrayIcon();
 
-        setEnabled(true);
-
         szMsg = tr("Load laster operate ......");
-        initMsgBox.setText(szMsg);
         slotInformation(szMsg);
-        qApp->processEvents();
+        ShowMessageInSplashScreen(pSplashScreen, szMsg);
         nRet = LoadOperateLasterClose();
         if(nRet) {
             szErr = tr("Initial load laster close operate error");
@@ -545,8 +544,6 @@ int MainWindow::Initial()
 
         return nRet;
     } while(false);
-
-    setEnabled(true);
     
     slotError(nRet, szErr);
     QMessageBox errMsgBox;

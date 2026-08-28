@@ -27,6 +27,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class CFrmFullScreenToolBar;
+class QSplashScreen;
 
 /*!
  * \brief The MainWindow class
@@ -41,7 +42,8 @@ public:
     virtual ~MainWindow() override;
 public:
     //! For time-consuming operations
-    [[nodiscard]] int Initial();
+    [[nodiscard]] int Initial(QSplashScreen* pSplashScreen);
+    static void ShowMessageInSplashScreen(QSplashScreen *pSplashScreen, const QString& szMsg);
 
 Q_SIGNALS:
     void sigFullScreen(bool bFullScreen);

@@ -13,6 +13,7 @@
  *  \ingroup APP
  */
 
+#include <QSplashScreen>
 #include <QtGlobal>
 #include <QLoggingCategory>
 #include <QApplication>
@@ -27,8 +28,8 @@
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     #include <QRandomGenerator>
 #endif
-#if defined(Q_OS_ANDROID) && (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#include <QtAndroid>
+#if defined(Q_OS_ANDROID) && ((QT_VERSION < QT_VERSION_CHECK(6, 0, 0)) && (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)))
+    #include <QtAndroid>
 #endif
 
 #include "RabbitCommonTools.h"
@@ -119,9 +120,6 @@ int main(int argc, char *argv[])
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
-#if defined(Q_OS_ANDROID) && (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    QtAndroid::hideSplashScreen();
-#endif
 
     QApplication::setApplicationVersion(RabbitRemoteControl_VERSION);
     QApplication::setApplicationName("RabbitRemoteControl");
@@ -143,7 +141,16 @@ int main(int argc, char *argv[])
                << "\n" << app.arguments();
 
     {
+        QSplashScreen* pSplashScreen = new QSplashScreen();
+
 #if defined(Q_OS_ANDROID)
+        //See: https://www.qt.io/blog/android-and-qt-splash-screen
+        #if QT_VERSION > QT_VERSION_CHECK(6, 2, 0)
+                QNativeInterface::QAndroidApplication::hideSplashScreen();
+        #elif QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+                QtAndroid::hideSplashScreen();
+        #endif
+
         QStringList permissions;
         permissions << "android.permission.WRITE_EXTERNAL_STORAGE"
                     << "android.permission.READ_EXTERNAL_STORAGE"
@@ -159,6 +166,8 @@ int main(int argc, char *argv[])
                     << "android.permission.WAKE_LOCK"
                     << "android.permission.DEVICE_POWER";
         RabbitCommon::CTools::AndroidRequestPermission(permissions);
+#else
+        RC_SHOW_WINDOW(pSplashScreen);
 #endif
 
         QSharedPointer<QTranslator> tApp =
@@ -166,6 +175,8 @@ int main(int argc, char *argv[])
 
         app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
         app.setOrganizationName(QObject::tr("Kang Lin Studio"));
+
+        MainWindow::ShowMessageInSplashScreen(pSplashScreen, QObject::tr("Update ......"));
 
 #ifdef HAVE_UPDATE
         // Check update version
@@ -212,18 +223,18 @@ int main(int argc, char *argv[])
             app.processEvents();
         });//*/
 
+        MainWindow::ShowMessageInSplashScreen(pSplashScreen, QObject::tr("Create main window ......"));
+
         MainWindow* w = new MainWindow();
 
         try {
-            //w->setWindowIcon(QIcon::themeName("app"));
-            //w->setWindowTitle(app.applicationDisplayName());
-            app.processEvents();
-            RC_SHOW_WINDOW(w);
-            app.processEvents();
             // For time-consuming operations
-            nRet = w->Initial();
-            if(!nRet)
+            nRet = w->Initial(pSplashScreen);
+            pSplashScreen->deleteLater();
+            if(!nRet) {
+                RC_SHOW_WINDOW(w);
                 nRet = app.exec();
+            }
         } catch (std::exception &e) {
             qCritical(log) << "exception:" << e.what();
         } catch(...) {
