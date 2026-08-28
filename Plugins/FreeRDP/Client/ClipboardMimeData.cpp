@@ -308,8 +308,8 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
 }
 
 //! if(pData == nullptr && nLen == 0) is Notify clipboard program has exited
-void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
-                                             UINT32 id)
+void CClipboardMimeData::slotServerFormatData(
+    const BYTE* pData, UINT32 nLen, UINT32 id)
 {
     //*
     qDebug(log) << "CClipboardMimeData::slotServerFormatData: id:" << id;//*/
@@ -380,7 +380,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
         }
         case CF_UNICODETEXT:
         {
-            m_Variant = QString::fromUtf16((const char16_t*)data, size / 2);
+            m_Variant = QString((QChar*)data);
             break;
         }
         default:

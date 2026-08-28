@@ -41,8 +41,7 @@ public:
     virtual QStringList formats() const override;
     
 public Q_SLOTS:
-    void slotServerFormatData(const BYTE* pData, UINT32 nLen,
-                             UINT32 id);
+    void slotServerFormatData(const BYTE* pData, UINT32 nLen, UINT32 id);
     void slotServerFileContentsRespose(UINT32 streamId, QByteArray& data);
 
 protected:
