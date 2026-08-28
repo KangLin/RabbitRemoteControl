@@ -4,158 +4,203 @@
 <context>
     <name>CChannelSSH</name>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation type="vanished">libssh 版本：</translation>
+        <translation>libssh 版本：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation type="vanished">libssh 協議版本：</translation>
+        <translation>libssh 協議版本：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation type="vanished">OpenSSH 服務器：</translation>
+        <translation>OpenSSH 服務器：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation type="vanished">SSH 失敗：ssh_new</translation>
+        <translation>SSH 失敗：ssh_new</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation type="vanished">SSH 失敗：服務器為空</translation>
+        <translation>SSH 失敗：服務器為空</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation type="vanished">SSH 失敗：設置主機失敗。主機：</translation>
+        <translation>SSH 失敗：設置主機失敗。主機：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation type="vanished">SSH 失敗：設置端口失敗。端口：</translation>
+        <translation>SSH 失敗：設置端口失敗。端口：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation type="vanished">SSH 失敗：ssh_pcap_file_new: </translation>
+        <translation>SSH 失敗：ssh_pcap_file_new: </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation type="vanished">SSH 連接失敗</translation>
+        <translation>SSH 連接失敗</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation type="vanished">用戶取消</translation>
+        <translation>用戶取消</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="258"/>
         <source>SSH failed: Get server public key.</source>
-        <translation type="vanished">SSH 失敗：得到服務器公鑰失敗</translation>
+        <translation>SSH 失敗：得到服務器公鑰失敗</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="273"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation type="vanished">SSH 失敗：得到公鑰哈希值失敗。</translation>
+        <translation>SSH 失敗：得到公鑰哈希值失敗。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
         <source>the host key for server changed. it is now:</source>
-        <translation type="vanished">服務器主機密鑰改變。它現在是：</translation>
+        <translation>服務器主機密鑰改變。它現在是：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="293"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="304"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation type="vanished">因為安全原因，連接將停止。</translation>
+        <translation>因為安全原因，連接將停止。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="294"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="305"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation type="vanished">請查看 OpenSSL 文檔，關於如何增加私有證書到存儲。</translation>
+        <translation>請查看 OpenSSL 文檔，關於如何增加私有證書到存儲。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="301"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation type="vanished">服務端主機密鑰未發現，但是另一個健已存在。</translation>
+        <translation>服務端主機密鑰未發現，但是另一個健已存在。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation type="vanished">攻擊者可能會更改默認服務器密鑰，使客戶端誤以為該密鑰不存在。</translation>
+        <translation>攻擊者可能會更改默認服務器密鑰，使客戶端誤以為該密鑰不存在。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
         <source>is not find in known host file.</source>
-        <translation type="vanished">未能發現主機。</translation>
+        <translation>未能發現主機。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation type="vanished">如果您在此處接受主機密鑰，則將自動創建文件。</translation>
+        <translation>如果您在此處接受主機密鑰，則將自動創建文件。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Host key hash:</source>
-        <translation type="vanished">主機密鑰哈希值：</translation>
+        <translation>主機密鑰哈希值：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="319"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="344"/>
         <source>Error</source>
-        <translation type="vanished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Reject the host key</source>
-        <translation type="vanished">拒絕主機密鑰</translation>
+        <translation>拒絕主機密鑰</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation type="vanished">服務器未知。您信任主機密鑰嗎？</translation>
+        <translation>服務器未知。您信任主機密鑰嗎？</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Error:</source>
-        <translation type="vanished">錯誤：</translation>
+        <translation>錯誤：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="364"/>
         <source>the host key hash:</source>
-        <translation type="vanished">公鑰哈希值：</translation>
+        <translation>公鑰哈希值：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="365"/>
         <source>Will be stopped.</source>
-        <translation type="vanished">將停止。</translation>
+        <translation>將停止。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="416"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation type="vanished">SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
+        <translation>SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="440"/>
         <source>Failed authenticating with password. User: </source>
-        <translation type="vanished">用戶密碼進行身份驗證失敗。用戶：</translation>
+        <translation>用戶密碼進行身份驗證失敗。用戶：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation type="vanished">SSH失敗：未設置公鑰文件。</translation>
+        <translation>SSH失敗：未設置公鑰文件。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation type="vanished">SSH失敗：導入公鑰失敗。</translation>
+        <translation>SSH失敗：導入公鑰失敗。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="478"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="511"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation type="vanished">文件不存在或權限被拒絕：</translation>
+        <translation>文件不存在或權限被拒絕：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="522"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation type="vanished">SSH 失敗：身份驗證失敗。用戶：</translation>
+        <translation>SSH 失敗：身份驗證失敗。用戶：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="499"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation type="vanished">SSH 失敗：未設置私鑰文件。</translation>
+        <translation>SSH 失敗：未設置私鑰文件。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="509"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation type="vanished">SSH 失敗：導入私鑰失敗。</translation>
+        <translation>SSH 失敗：導入私鑰失敗。</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation type="vanished">SSH 失敗：打開轉發。</translation>
+        <translation>SSH 失敗：打開轉發。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="376"/>
         <source>The channel is eof</source>
-        <translation type="vanished">通道已結束</translation>
+        <translation>通道已結束</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation type="vanished">通道已結束</translation>
+        <translation>通道已結束</translation>
     </message>
 </context>
 <context>
@@ -356,7 +401,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="570"/>
+        <location filename="../../FrmViewer.cpp" line="609"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新鍵盤 LED 狀態失敗</translation>
     </message>
@@ -634,60 +679,79 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="120"/>
         <source>Name: </source>
-        <translation type="vanished">名稱：</translation>
+        <translation>名稱：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="123"/>
         <source>Type: </source>
-        <translation type="vanished">類型：</translation>
+        <translation>類型：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="126"/>
         <source>Protocol: </source>
-        <translation type="vanished">協議：</translation>
+        <translation>協議：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="136"/>
         <source>Security level: </source>
-        <translation type="vanished">安全級別：</translation>
+        <translation>安全級別：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="143"/>
         <source>Description: </source>
-        <translation type="vanished">描述：</translation>
+        <translation>描述：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
+        <source>QTermWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="203"/>
         <source>Copy selection to clipboard</source>
-        <translation type="vanished">復製選擇到剪切板</translation>
+        <translation>復製選擇到剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="206"/>
         <source>Paste clipboard</source>
-        <translation type="vanished">粘貼剪切板</translation>
+        <translation>粘貼剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="208"/>
         <source>Paste selection</source>
-        <translation type="vanished">粘貼到選擇</translation>
+        <translation>粘貼到選擇</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="210"/>
         <source>Zoom in</source>
-        <translation type="vanished">放大</translation>
+        <translation>放大</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="212"/>
         <source>Zoom out</source>
-        <translation type="vanished">縮小</translation>
+        <translation>縮小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="214"/>
         <source>Zoom reset</source>
-        <translation type="vanished">重置縮放</translation>
+        <translation>重置縮放</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="229"/>
         <source>Find ......</source>
-        <translation type="vanished">查找 ……</translation>
+        <translation>查找 ……</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="234"/>
         <source>Clear</source>
-        <translation type="vanished">清除</translation>
+        <translation>清除</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Version:</source>
-        <translation type="vanished">版本：</translation>
+        <translation>版本：</translation>
     </message>
 </context>
 <context>
@@ -1486,100 +1550,131 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation type="vanished">通用</translation>
+        <translation>通用</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation type="vanished">字體：</translation>
+        <translation>字體：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation type="vanished">顏色方案：</translation>
+        <translation>顏色方案：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation type="vanished">光標形狀：</translation>
+        <translation>光標形狀：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation type="vanished">透明度：</translation>
+        <translation>透明度：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation type="vanished">背景圖像：</translation>
+        <translation>背景圖像：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation type="vanished">滾動條位置：</translation>
+        <translation>滾動條位置：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation type="vanished">瀏覽(&amp;B)</translation>
+        <translation>瀏覽(&amp;B)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation type="vanished">鍵盤綁定：</translation>
+        <translation>鍵盤綁定：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation type="vanished">窗口大小改變時顯示其大小</translation>
+        <translation>窗口大小改變時顯示其大小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation type="vanished">允許雙向文本</translation>
+        <translation>允許雙向文本</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation type="vanished">歷史記錄</translation>
+        <translation>歷史記錄</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation type="vanished">歷史記錄大小（行數）：</translation>
+        <translation>歷史記錄大小（行數）：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation type="vanished">無限製</translation>
+        <translation>無限製</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation type="vanished">流量控製</translation>
+        <translation>流量控製</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation type="vanished">示例：顯示字體</translation>
+        <translation>示例：顯示字體</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation type="vanished">背景圖像</translation>
+        <translation>背景圖像</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="vanished">圖像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation>圖像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation type="vanished">方塊光標</translation>
+        <translation>方塊光標</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation type="vanished">下劃線光標</translation>
+        <translation>下劃線光標</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation type="vanished">I 形光標</translation>
+        <translation>I 形光標</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation type="vanished">無</translation>
+        <translation>無</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation type="vanished">左</translation>
+        <translation>左</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation type="vanished">右</translation>
+        <translation>右</translation>
     </message>
 </context>
 <context>
@@ -1930,8 +2025,9 @@ Some features are limited.
 <context>
     <name>CSSHTunnelThread</name>
     <message>
+        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation type="vanished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
 </context>
 <context>

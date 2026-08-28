@@ -77,6 +77,9 @@
       it as a child of the main window (client-side placement).
       So, the fullscreen toolbar was refactored to be a child window of the main window,
       and `raise()` is used to keep it on top.
+  - Plugins
+    - FreeRDP: fix get text bug in clipboard.
+      BUG Description: There's an NULL at the end of the string
 
 ### v0.0.36
 - Client:

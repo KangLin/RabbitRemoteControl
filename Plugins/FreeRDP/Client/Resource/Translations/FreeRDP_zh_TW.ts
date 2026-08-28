@@ -254,17 +254,17 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>網關消息</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="2299"/>
+        <location filename="../../BackendFreeRDP.cpp" line="2300"/>
         <source>Settings</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="2299"/>
+        <location filename="../../BackendFreeRDP.cpp" line="2300"/>
         <source>Local resource</source>
         <translation>本地資源</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="2299"/>
+        <location filename="../../BackendFreeRDP.cpp" line="2300"/>
         <source>Enable local input method(Takes effect after reboot)</source>
         <translation>允許本地輸入法(重啟後生效)</translation>
     </message>
@@ -744,12 +744,14 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation type="vanished">服務器為空，請輸入</translation>
+        <translation>服務器為空，請輸入</translation>
     </message>
     <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation type="vanished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
 </context>
 <context>

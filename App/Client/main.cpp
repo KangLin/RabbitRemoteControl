@@ -21,9 +21,9 @@
 #include <QDebug>
 #include <QtGlobal>
 #include <QSharedPointer>
+#include <QException>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QRegularExpression>
-    #include <QRandomGenerator>
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     #include <QRandomGenerator>
@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
         app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
         app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
-        MainWindow::ShowMessageInSplashScreen(pSplashScreen, QObject::tr("Update ......"));
+        MainWindow::ShowMessageInSplashScreen(pSplashScreen, QObject::tr("Start") + " ......");
 
 #ifdef HAVE_UPDATE
         // Check update version
@@ -237,11 +237,12 @@ int main(int argc, char *argv[])
             }
         } catch (std::exception &e) {
             qCritical(log) << "exception:" << e.what();
-        } catch(...) {
-            qCritical(log) << "exception:";
+        } catch (...) {
+            qCritical(log) << "app exec exception";
         }
 
         delete w;
+
         if(pStats) {
             pStats->Stop();
             delete pStats;

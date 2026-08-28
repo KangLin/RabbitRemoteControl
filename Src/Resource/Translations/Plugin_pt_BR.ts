@@ -4,158 +4,203 @@
 <context>
     <name>CChannelSSH</name>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation type="vanished">Versão do libssh:</translation>
+        <translation>Versão do libssh:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation type="vanished">Versão de protocolo do libssh:</translation>
+        <translation>Versão de protocolo do libssh:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation type="vanished">Servidor OpenSSH:</translation>
+        <translation>Servidor OpenSSH:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation type="vanished">Falha no SSH: ssh_new.</translation>
+        <translation>Falha no SSH: ssh_new.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation type="vanished">Falha no SSH: o servidor está vazio</translation>
+        <translation>Falha no SSH: o servidor está vazio</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation type="vanished">Falha no SSH: falha na definição de host. Host:</translation>
+        <translation>Falha no SSH: falha na definição de host. Host:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation type="vanished">Falha no SSH: falha na definição de porta. Porta:</translation>
+        <translation>Falha no SSH: falha na definição de porta. Porta:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation type="vanished">Falha no SSH: ssh_pcap_file_new: </translation>
+        <translation>Falha no SSH: ssh_pcap_file_new: </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation type="vanished">Falha no SSH: ssh connect </translation>
+        <translation>Falha no SSH: ssh connect </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation type="vanished">Cancelado pelo usuário</translation>
+        <translation>Cancelado pelo usuário</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="258"/>
         <source>SSH failed: Get server public key.</source>
-        <translation type="vanished">Falha no SSH: obtenção da chave pública do servidor.</translation>
+        <translation>Falha no SSH: obtenção da chave pública do servidor.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="273"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation type="vanished">Falha no SSH: falha na obtenção do valor de hash da chave pública.</translation>
+        <translation>Falha no SSH: falha na obtenção do valor de hash da chave pública.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
         <source>the host key for server changed. it is now:</source>
-        <translation type="vanished">a chave do host para o servidor foi alterada. Agora é:</translation>
+        <translation>a chave do host para o servidor foi alterada. Agora é:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="293"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="304"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation type="vanished">Por motivos de segurança, a conexão será interrompida.</translation>
+        <translation>Por motivos de segurança, a conexão será interrompida.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="294"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="305"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation type="vanished">Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
+        <translation>Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="301"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation type="vanished">a chave de host para este servidor não foi encontrada, mas existe outro tipo de chave.</translation>
+        <translation>a chave de host para este servidor não foi encontrada, mas existe outro tipo de chave.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation type="vanished">Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
+        <translation>Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
         <source>is not find in known host file.</source>
-        <translation type="vanished">não foi encontrado no arquivo known_hosts.</translation>
+        <translation>não foi encontrado no arquivo known_hosts.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation type="vanished">Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
+        <translation>Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Host key hash:</source>
-        <translation type="vanished">Hash da chave do host:</translation>
+        <translation>Hash da chave do host:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="319"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="344"/>
         <source>Error</source>
-        <translation type="vanished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Reject the host key</source>
-        <translation type="vanished">Chave de host rejeitada</translation>
+        <translation>Chave de host rejeitada</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation type="vanished">é desconhecida. Você confia na chave do host?</translation>
+        <translation>é desconhecida. Você confia na chave do host?</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Error:</source>
-        <translation type="vanished">Erro:</translation>
+        <translation>Erro:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="364"/>
         <source>the host key hash:</source>
-        <translation type="vanished">o hash da chave do host:</translation>
+        <translation>o hash da chave do host:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="365"/>
         <source>Will be stopped.</source>
-        <translation type="vanished">Será interrompido.</translation>
+        <translation>Será interrompido.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="416"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation type="vanished">Falha no SSH: Falha na autenticação com a chave pública:</translation>
+        <translation>Falha no SSH: Falha na autenticação com a chave pública:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="440"/>
         <source>Failed authenticating with password. User: </source>
-        <translation type="vanished">Falha na autenticação com senha. Usuário: </translation>
+        <translation>Falha na autenticação com senha. Usuário: </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation type="vanished">Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
+        <translation>Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation type="vanished">Falha no SSH: importação do arquivo de chave pública.</translation>
+        <translation>Falha no SSH: importação do arquivo de chave pública.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="478"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="511"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation type="vanished">O arquivo não existe ou a permissão foi negada:</translation>
+        <translation>O arquivo não existe ou a permissão foi negada:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="522"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation type="vanished">Falha no SSH: falha na autenticação. Usuário:</translation>
+        <translation>Falha no SSH: falha na autenticação. Usuário:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="499"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation type="vanished">SSH failed: There is no private key file defined.</translation>
+        <translation>SSH failed: There is no private key file defined.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="509"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation type="vanished">Falha no SSH: importação do arquivo de chave privada.</translation>
+        <translation>Falha no SSH: importação do arquivo de chave privada.</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation type="vanished">Falha no SSH: open forward.</translation>
+        <translation>Falha no SSH: open forward.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="376"/>
         <source>The channel is eof</source>
-        <translation type="vanished">O canal é EOF</translation>
+        <translation>O canal é EOF</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation type="vanished">O canal é EOF</translation>
+        <translation>O canal é EOF</translation>
     </message>
 </context>
 <context>
@@ -431,7 +476,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="561"/>
+        <location filename="../../FrmViewer.cpp" line="609"/>
         <source>Failed to update keyboard LED state</source>
         <translation>Falha ao atualizar o estado do LED do teclado</translation>
     </message>
@@ -757,12 +802,12 @@ Some features are limited.
     <name>COperateServer</name>
     <message>
         <location filename="../../OperateServer.cpp" line="37"/>
-        <location filename="../../OperateServer.cpp" line="93"/>
+        <location filename="../../OperateServer.cpp" line="95"/>
         <source>Start server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateServer.cpp" line="106"/>
+        <location filename="../../OperateServer.cpp" line="108"/>
         <source>Stop server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -770,60 +815,79 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="120"/>
         <source>Name: </source>
-        <translation type="vanished">Nome: </translation>
+        <translation>Nome: </translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="123"/>
         <source>Type: </source>
-        <translation type="vanished">Tipo: </translation>
+        <translation>Tipo: </translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="126"/>
         <source>Protocol: </source>
-        <translation type="vanished">Protocolo: </translation>
+        <translation>Protocolo: </translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="136"/>
         <source>Security level: </source>
-        <translation type="vanished">Nível de segurança: </translation>
+        <translation>Nível de segurança: </translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="143"/>
         <source>Description: </source>
-        <translation type="vanished">Descrição: </translation>
+        <translation>Descrição: </translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
+        <source>QTermWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="203"/>
         <source>Copy selection to clipboard</source>
-        <translation type="vanished">Copiar seleção para a área de transferência</translation>
+        <translation>Copiar seleção para a área de transferência</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="206"/>
         <source>Paste clipboard</source>
-        <translation type="vanished">Colar da área de transferência</translation>
+        <translation>Colar da área de transferência</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="208"/>
         <source>Paste selection</source>
-        <translation type="vanished">Colar seleção</translation>
+        <translation>Colar seleção</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="210"/>
         <source>Zoom in</source>
-        <translation type="vanished">Ampliar</translation>
+        <translation>Ampliar</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="212"/>
         <source>Zoom out</source>
-        <translation type="vanished">Diminuir o zoom</translation>
+        <translation>Diminuir o zoom</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="214"/>
         <source>Zoom reset</source>
-        <translation type="vanished">Redefinição de zoom</translation>
+        <translation>Redefinição de zoom</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="229"/>
         <source>Find ......</source>
-        <translation type="vanished">Localizar ...</translation>
+        <translation>Localizar ...</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="234"/>
         <source>Clear</source>
-        <translation type="vanished">Limpar</translation>
+        <translation>Limpar</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Version:</source>
-        <translation type="obsolete">Versão:</translation>
+        <translation type="unfinished">Versão:</translation>
     </message>
     <message>
         <source>QTermWidget:</source>
@@ -1637,104 +1701,131 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation type="vanished">Geral</translation>
+        <translation>Geral</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation type="vanished">Fonte:</translation>
+        <translation>Fonte:</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation type="vanished">Esquema de cores:</translation>
+        <translation>Esquema de cores:</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation type="vanished">Cursor:</translation>
+        <translation>Cursor:</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation type="vanished">Transparência do Terminal:</translation>
+        <translation>Transparência do Terminal:</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
         <source>%</source>
-        <translation type="vanished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation type="vanished">Imagem de Fundo:</translation>
+        <translation>Imagem de Fundo:</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation type="vanished">Mapeamento de teclas:</translation>
+        <translation>Mapeamento de teclas:</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation type="vanished">Redimensionar o tamanho do terminal quando a janela for redimensionada</translation>
+        <translation>Redimensionar o tamanho do terminal quando a janela for redimensionada</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation type="vanished">Barra de rolagem:</translation>
+        <translation>Barra de rolagem:</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation type="vanished">Procurar(&amp;P)</translation>
+        <translation>Procurar(&amp;P)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation type="vanished">Habilitar suporte a texto bidirecional</translation>
+        <translation>Habilitar suporte a texto bidirecional</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation type="vanished">Histórico</translation>
+        <translation>Histórico</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation type="vanished">Tamanho do histórico (em linhas):</translation>
+        <translation>Tamanho do histórico (em linhas):</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation type="vanished">Ilimitado</translation>
+        <translation>Ilimitado</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation type="vanished">Controle de fluxo</translation>
+        <translation>Controle de fluxo</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation type="vanished">Exemplo: Fonte de exibição</translation>
+        <translation>Exemplo: Fonte de exibição</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation type="vanished">Imagem de fundo</translation>
+        <translation>Imagem de fundo</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="vanished">Imagens (*.png *.xpm *.jpg *.bmp *.jpeg);; Todos os arquivos (*.*)</translation>
+        <translation>Imagens (*.png *.xpm *.jpg *.bmp *.jpeg);; Todos os arquivos (*.*)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation type="vanished">BlockCursor</translation>
+        <translation>BlockCursor</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation type="vanished">UnderlineCursor</translation>
+        <translation>UnderlineCursor</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation type="vanished">IBeamCursor</translation>
+        <translation>IBeamCursor</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation type="vanished">Nenhum</translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation type="vanished">Esquerda</translation>
+        <translation>Esquerda</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation type="vanished">Direita</translation>
+        <translation>Direita</translation>
     </message>
 </context>
 <context>
@@ -2010,8 +2101,9 @@ Some features are limited.
 <context>
     <name>CSSHTunnelThread</name>
     <message>
+        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation type="vanished">Erro</translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>

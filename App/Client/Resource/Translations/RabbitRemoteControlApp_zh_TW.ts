@@ -282,7 +282,7 @@
         <location filename="../../Recent/FrmRecent.cpp" line="77"/>
         <location filename="../../Recent/FrmRecent.cpp" line="78"/>
         <source>Copy</source>
-        <translation>復製</translation>
+        <translation>複製</translation>
     </message>
     <message>
         <location filename="../../Recent/FrmRecent.cpp" line="80"/>
@@ -472,7 +472,7 @@ File: %1</source>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="76"/>
         <source>Resume the operates when it was last closed at startup</source>
-        <translation>啟動時，恢復上次關閉時的操作</translation>
+        <translation>啓動時，恢復上次關閉時的操作</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="213"/>
@@ -512,12 +512,12 @@ File: %1</source>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="176"/>
         <source>Tab view</source>
-        <translation>標簽視圖</translation>
+        <translation>標籤視圖</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="188"/>
         <source>Position</source>
-        <translation>標簽位置</translation>
+        <translation>標籤位置</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="251"/>
@@ -602,89 +602,11 @@ File: %1</source>
     </message>
 </context>
 <context>
-    <name>CVirtualKeyboardSettingsDialog</name>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="13"/>
-        <source>虚拟键盘设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="41"/>
-        <source>输入语言</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="56"/>
-        <source>选择输入语言:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="61"/>
-        <source>外观设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="66"/>
-        <source>键盘主题:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="77"/>
-        <source>按键大小:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="95"/>
-        <source>显示按键辅助小文本</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="96"/>
-        <source>自动大写</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="101"/>
-        <source>按键反馈</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="104"/>
-        <source>启用按键音</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="105"/>
-        <source>启用震动反馈</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="112"/>
-        <source>恢复默认</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="113"/>
-        <source>应用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="114"/>
-        <source>确定</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="115"/>
-        <source>取消</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../mainwindow.ui" line="14"/>
         <source>Rabbit Remote Control</source>
-        <translation>玉兔遠程控製</translation>
+        <translation>玉兔遠程控制</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="32"/>
@@ -701,7 +623,7 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="74"/>
         <location filename="../../mainwindow.ui" line="77"/>
         <source>Layout</source>
-        <translation>布局</translation>
+        <translation>佈局</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="125"/>
@@ -746,10 +668,10 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="232"/>
         <location filename="../../mainwindow.ui" line="235"/>
         <location filename="../../mainwindow.ui" line="238"/>
+        <location filename="../../mainwindow.cpp" line="706"/>
+        <location filename="../../mainwindow.cpp" line="707"/>
+        <location filename="../../mainwindow.cpp" line="708"/>
         <location filename="../../mainwindow.cpp" line="709"/>
-        <location filename="../../mainwindow.cpp" line="710"/>
-        <location filename="../../mainwindow.cpp" line="711"/>
-        <location filename="../../mainwindow.cpp" line="712"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -781,7 +703,7 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="324"/>
         <location filename="../../mainwindow.ui" line="327"/>
         <source>TabBar</source>
-        <translation>標簽條</translation>
+        <translation>標籤條</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="349"/>
@@ -802,7 +724,7 @@ File: %1</source>
     <message>
         <location filename="../../mainwindow.ui" line="471"/>
         <source>Tab</source>
-        <translation>標簽</translation>
+        <translation>標籤</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="479"/>
@@ -863,7 +785,7 @@ File: %1</source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="568"/>
-        <location filename="../../mainwindow.cpp" line="866"/>
+        <location filename="../../mainwindow.cpp" line="863"/>
         <source>Stop other</source>
         <translation>停止其它的</translation>
     </message>
@@ -931,9 +853,9 @@ File: %1</source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="104"/>
-        <location filename="../../mainwindow.cpp" line="195"/>
         <location filename="../../mainwindow.cpp" line="196"/>
         <location filename="../../mainwindow.cpp" line="197"/>
+        <location filename="../../mainwindow.cpp" line="198"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
@@ -948,9 +870,9 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="295"/>
         <location filename="../../mainwindow.ui" line="298"/>
         <location filename="../../mainwindow.ui" line="301"/>
-        <location filename="../../mainwindow.cpp" line="1013"/>
+        <location filename="../../mainwindow.cpp" line="1010"/>
         <source>Open rabbit remote control file</source>
-        <translation>打開玉兔遠程控製文件</translation>
+        <translation>打開玉兔遠程控制文件</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="363"/>
@@ -965,100 +887,90 @@ File: %1</source>
         <translation type="vanished">ICE 信令狀態</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="747"/>
+        <location filename="../../mainwindow.cpp" line="748"/>
+        <location filename="../../mainwindow.cpp" line="749"/>
         <location filename="../../mainwindow.cpp" line="750"/>
-        <location filename="../../mainwindow.cpp" line="751"/>
-        <location filename="../../mainwindow.cpp" line="752"/>
-        <location filename="../../mainwindow.cpp" line="753"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1002"/>
-        <location filename="../../mainwindow.cpp" line="1021"/>
+        <location filename="../../mainwindow.cpp" line="999"/>
+        <location filename="../../mainwindow.cpp" line="1018"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="125"/>
         <location filename="../../mainwindow.cpp" line="126"/>
+        <location filename="../../mainwindow.cpp" line="127"/>
         <source>Send rate</source>
         <translation>發送速率</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="130"/>
         <location filename="../../mainwindow.cpp" line="131"/>
+        <location filename="../../mainwindow.cpp" line="132"/>
         <source>Receives rate</source>
         <translation>接收速率</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="135"/>
         <location filename="../../mainwindow.cpp" line="136"/>
+        <location filename="../../mainwindow.cpp" line="137"/>
         <source>Total sends</source>
-        <translation>總發送數</translation>
+        <translation>總髮送數</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="140"/>
         <location filename="../../mainwindow.cpp" line="141"/>
+        <location filename="../../mainwindow.cpp" line="142"/>
         <source>Total receives</source>
         <translation>總接收數</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="164"/>
+        <location filename="../../mainwindow.cpp" line="165"/>
         <source>Recently</source>
         <translation>最近的</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="391"/>
+        <location filename="../../mainwindow.cpp" line="392"/>
         <source>ICE signal status</source>
         <translation>ICE 信令狀態</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="453"/>
+        <location filename="../../mainwindow.cpp" line="459"/>
         <source>Load plugins ......</source>
         <translation>加載插件&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="493"/>
+        <location filename="../../mainwindow.cpp" line="497"/>
         <source>Load recent menu ......</source>
         <translation>加載最近菜單&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="519"/>
+        <location filename="../../mainwindow.cpp" line="522"/>
         <source>Load favorite ......</source>
         <translation>加載收藏夾&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="481"/>
+        <location filename="../../mainwindow.cpp" line="486"/>
         <source>Load list recent dock ......</source>
         <translation>加載最近列表&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="448"/>
-        <source>Load</source>
-        <translation>加載</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="448"/>
-        <source>Load ......</source>
-        <translation>加載 ......</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="459"/>
+        <location filename="../../mainwindow.cpp" line="464"/>
         <source>Initial manage error</source>
         <translation>初始 CManage 錯誤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="473"/>
+        <location filename="../../mainwindow.cpp" line="478"/>
         <source>Failed to set global parameters</source>
         <translation>設置全局參數錯誤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="487"/>
+        <location filename="../../mainwindow.cpp" line="491"/>
         <source>Initial recent dock error</source>
         <translation>初始化最近停泊條錯誤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="525"/>
+        <location filename="../../mainwindow.cpp" line="527"/>
         <source>Initial favorite error</source>
         <translation>初始化收藏錯誤</translation>
     </message>
@@ -1068,67 +980,67 @@ File: %1</source>
         <translation>加載上次關閉時的操作&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="540"/>
+        <location filename="../../mainwindow.cpp" line="539"/>
         <source>Initial load laster close operate error</source>
         <translation>初始化上次關閉時的操作錯誤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="544"/>
+        <location filename="../../mainwindow.cpp" line="543"/>
         <source>Ready</source>
         <translation>準備好了</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="843"/>
+        <location filename="../../mainwindow.cpp" line="840"/>
         <source>Stop other except the current &quot;%1&quot;</source>
         <translation>除了當前的 &quot;%1&quot; 以外全部停止</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1015"/>
+        <location filename="../../mainwindow.cpp" line="1012"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
-        <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
+        <translation>玉兔遠程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1137"/>
+        <location filename="../../mainwindow.cpp" line="1134"/>
         <source>Starting: </source>
         <translation>開始：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1230"/>
+        <location filename="../../mainwindow.cpp" line="1227"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1364"/>
+        <location filename="../../mainwindow.cpp" line="1361"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令狀態：連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1373"/>
+        <location filename="../../mainwindow.cpp" line="1370"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令狀態：斷開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1412"/>
+        <location filename="../../mainwindow.cpp" line="1409"/>
         <source>Use message box to display information</source>
         <translation>使用消息框顯示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1658"/>
+        <location filename="../../mainwindow.cpp" line="1655"/>
         <source>Hide menu bar</source>
         <translation>隱藏菜單欄</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1659"/>
+        <location filename="../../mainwindow.cpp" line="1656"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>將隱藏菜單欄，必須顯示工具條。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1690"/>
+        <location filename="../../mainwindow.cpp" line="1687"/>
         <source>Hide tool bar</source>
         <translation>隱藏工具條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1691"/>
+        <location filename="../../mainwindow.cpp" line="1688"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>將隱藏工具條，必須顯示菜單欄。</translation>
     </message>
@@ -1136,32 +1048,38 @@ File: %1</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="142"/>
+        <location filename="../../main.cpp" line="143"/>
+        <location filename="../../main.cpp" line="174"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="167"/>
+        <location filename="../../main.cpp" line="171"/>
         <source>Rabbit Remote Control</source>
-        <translation>玉兔遠程控製</translation>
+        <translation>玉兔遠程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="168"/>
+        <location filename="../../main.cpp" line="172"/>
         <source>Kang Lin Studio</source>
         <translation>康林工作室</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="199"/>
+        <location filename="../../main.cpp" line="205"/>
         <source>Generate update json file End</source>
         <translation>產生更新文件結束</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="553"/>
+        <location filename="../../main.cpp" line="221"/>
+        <source>Create main window ......</source>
+        <translation>建立主窗口 ......</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="550"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="554"/>
+        <location filename="../../mainwindow.cpp" line="551"/>
         <source>Initial error:</source>
         <translation>初始化錯誤：</translation>
     </message>
