@@ -17,7 +17,7 @@ usage_long() {
     echo "  -h|--help: show help"
     echo "Directory:"
     echo "  --install: Set install directory"
-    exit
+    exit -1
 }
 
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
@@ -133,7 +133,7 @@ if [ ! -d $DESKTOP_FILE_DIR ]; then
     mkdir -p $DESKTOP_FILE_DIR
 fi
 
-pushd $ROOT_DIR > /dev/null 
+pushd $ROOT_DIR > /dev/null
 
 APPIMAGE_FILE=`ls RabbitRemoteControl_*.AppImage`
 if [ $INSTALL_DIR != $ROOT_DIR ]; then

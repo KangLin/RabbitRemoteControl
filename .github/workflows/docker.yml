@@ -197,6 +197,7 @@ jobs:
           ARCH=`uname -m`
           OS="${{matrix.variant.image}}"
           OS_VERSIOIN="${{matrix.variant.lable}}"
+          PACKAGE_NAME="rabbitremotecontrol"
           if [ -n "${{matrix.variant.lable}}" ]; then
             docker_image="${{matrix.variant.image}}${{matrix.variant.lable}}"
           else
@@ -215,14 +216,15 @@ jobs:
               FILE_NAME=RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip
               OS="AppImage"
               OS_VERSIOIN=""
+              PACKAGE_NAME="io.github.KangLin.RabbitRemoteControl"
               ;;
           esac
           sudo chmod a+xr ${FILE_NAME}
           echo "Generate update configure file ......"
           ${{env.SOURCE_DIR}}/RabbitCommon/Script/GenerateJsonFile.sh -v \
             -f update_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${ARCH}.json \
-            -n "rabbitremotecontrol" \
-            -p ${FILE_NAME} \
+            -n "${PACKAGE_NAME}" \
+            -p "${FILE_NAME}" \
             -s ${OS} \
             --system-version=${OS_VERSIOIN} \
             -a ${ARCH} \

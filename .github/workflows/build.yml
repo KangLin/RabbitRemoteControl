@@ -171,7 +171,7 @@ jobs:
       - name: Process configure file
         run: |
           git clone https://github.com/KangLin/RabbitCommon.git
-          ./RabbitCommon/Install/MergeJsonFile.sh \
+          ./RabbitCommon/Script/MergeJsonFile.sh \
               "${{ github.workspace }}/update.json" \
               "${{ env.artifact_path }}" "${{ env.artifact_path }}/version.json"
           rm ${{ env.artifact_path }}/*.json

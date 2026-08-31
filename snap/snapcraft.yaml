@@ -475,7 +475,7 @@ apps:
      - network-observe      # 读取网卡信息
      - netlink-audit
      - netlink-connector
-     - netlink-driver
+     #- netlink-driver
 
      - bluetooth-control
      - broadcom-asic-control

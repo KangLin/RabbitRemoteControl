@@ -422,6 +422,7 @@ jobs:
           echo "RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip md5sum: ${MD5SUM}"
           RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp \
             -f "update_macos_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
+            --foc 1 \
             --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip \
             --md5 "${MD5SUM}" \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip?viasf=1"
