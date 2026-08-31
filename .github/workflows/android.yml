@@ -508,7 +508,7 @@ jobs:
       - name: Update configure file
         working-directory: ${{github.workspace}}/build
         run: |
-          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
+          ${{env.SOURCE_DIR}}/RabbitCommon/Script/GenerateJsonFile.sh \
               -f update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json \
               -p RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk \
               -s android -a ${{matrix.arch}} \

@@ -219,8 +219,9 @@ jobs:
           esac
           sudo chmod a+xr ${FILE_NAME}
           echo "Generate update configure file ......"
-          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh -v \
+          ${{env.SOURCE_DIR}}/RabbitCommon/Script/GenerateJsonFile.sh -v \
             -f update_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${ARCH}.json \
+            -n "rabbitremotecontrol" \
             -p ${FILE_NAME} \
             -s ${OS} \
             --system-version=${OS_VERSIOIN} \
