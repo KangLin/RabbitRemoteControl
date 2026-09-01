@@ -712,6 +712,84 @@ File: %1</source>
     </message>
 </context>
 <context>
+    <name>CVirtualKeyboardSettingsDialog</name>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="13"/>
+        <source>虚拟键盘设置</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="41"/>
+        <source>输入语言</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="56"/>
+        <source>选择输入语言:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="61"/>
+        <source>外观设置</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="66"/>
+        <source>键盘主题:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="77"/>
+        <source>按键大小:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="95"/>
+        <source>显示按键辅助小文本</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="96"/>
+        <source>自动大写</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="101"/>
+        <source>按键反馈</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="104"/>
+        <source>启用按键音</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="105"/>
+        <source>启用震动反馈</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="112"/>
+        <source>恢复默认</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="113"/>
+        <source>应用</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="114"/>
+        <source>确定</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="115"/>
+        <source>取消</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../mainwindow.ui" line="14"/>
@@ -931,7 +1009,7 @@ File: %1</source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="568"/>
-        <location filename="../../mainwindow.cpp" line="863"/>
+        <location filename="../../mainwindow.cpp" line="854"/>
         <source>Stop other</source>
         <translation type="unfinished"></translation>
     </message>
@@ -980,10 +1058,10 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="232"/>
         <location filename="../../mainwindow.ui" line="235"/>
         <location filename="../../mainwindow.ui" line="238"/>
-        <location filename="../../mainwindow.cpp" line="706"/>
-        <location filename="../../mainwindow.cpp" line="707"/>
-        <location filename="../../mainwindow.cpp" line="708"/>
-        <location filename="../../mainwindow.cpp" line="709"/>
+        <location filename="../../mainwindow.cpp" line="697"/>
+        <location filename="../../mainwindow.cpp" line="698"/>
+        <location filename="../../mainwindow.cpp" line="699"/>
+        <location filename="../../mainwindow.cpp" line="700"/>
         <source>Full screen</source>
         <translation>Tela cheia</translation>
     </message>
@@ -1048,16 +1126,16 @@ File: %1</source>
         <translation type="vanished">Sair do modo de tela cheia(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="747"/>
-        <location filename="../../mainwindow.cpp" line="748"/>
-        <location filename="../../mainwindow.cpp" line="749"/>
-        <location filename="../../mainwindow.cpp" line="750"/>
+        <location filename="../../mainwindow.cpp" line="738"/>
+        <location filename="../../mainwindow.cpp" line="739"/>
+        <location filename="../../mainwindow.cpp" line="740"/>
+        <location filename="../../mainwindow.cpp" line="741"/>
         <source>Exit full screen</source>
         <translation>Sair do modo de tela cheia</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="999"/>
-        <location filename="../../mainwindow.cpp" line="1018"/>
+        <location filename="../../mainwindow.cpp" line="990"/>
+        <location filename="../../mainwindow.cpp" line="1009"/>
         <source>Load file fail: </source>
         <translation>Falha no carregamento do arquivo: </translation>
     </message>
@@ -1066,7 +1144,7 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="295"/>
         <location filename="../../mainwindow.ui" line="298"/>
         <location filename="../../mainwindow.ui" line="301"/>
-        <location filename="../../mainwindow.cpp" line="1010"/>
+        <location filename="../../mainwindow.cpp" line="1001"/>
         <source>Open rabbit remote control file</source>
         <translation>Abrir arquivo do Rabbit Remote Control</translation>
     </message>
@@ -1113,112 +1191,112 @@ File: %1</source>
         <translation>Status de sinal ICE</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="459"/>
+        <location filename="../../mainwindow.cpp" line="450"/>
         <source>Load plugins ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="497"/>
+        <location filename="../../mainwindow.cpp" line="488"/>
         <source>Load recent menu ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="522"/>
+        <location filename="../../mainwindow.cpp" line="513"/>
         <source>Load favorite ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="486"/>
+        <location filename="../../mainwindow.cpp" line="477"/>
         <source>Load list recent dock ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="464"/>
+        <location filename="../../mainwindow.cpp" line="455"/>
         <source>Initial manage error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="478"/>
+        <location filename="../../mainwindow.cpp" line="469"/>
         <source>Failed to set global parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="491"/>
+        <location filename="../../mainwindow.cpp" line="482"/>
         <source>Initial recent dock error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="527"/>
+        <location filename="../../mainwindow.cpp" line="518"/>
         <source>Initial favorite error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="534"/>
+        <location filename="../../mainwindow.cpp" line="525"/>
         <source>Load laster operate ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="539"/>
+        <location filename="../../mainwindow.cpp" line="530"/>
         <source>Initial load laster close operate error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="543"/>
+        <location filename="../../mainwindow.cpp" line="534"/>
         <source>Ready</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="840"/>
+        <location filename="../../mainwindow.cpp" line="831"/>
         <source>Stop other except the current &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1012"/>
+        <location filename="../../mainwindow.cpp" line="1003"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>Arquivos do Rabbit Remote Control (*.rrc);; Todos os arquivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1134"/>
+        <location filename="../../mainwindow.cpp" line="1125"/>
         <source>Starting: </source>
         <translation>Iniciando: </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1227"/>
+        <location filename="../../mainwindow.cpp" line="1218"/>
         <source>Connected to </source>
         <translation>Conectado a </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1361"/>
+        <location filename="../../mainwindow.cpp" line="1352"/>
         <source>ICE signal status: Connected</source>
         <translation>Status de sinal ICE: Conectado</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1370"/>
+        <location filename="../../mainwindow.cpp" line="1361"/>
         <source>ICE signal status: Disconnected</source>
         <translation>Status de sinal ICE: Desconectado</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1409"/>
+        <location filename="../../mainwindow.cpp" line="1400"/>
         <source>Use message box to display information</source>
         <translation>Usar caixa de mensagem para exibir informações</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1655"/>
+        <location filename="../../mainwindow.cpp" line="1646"/>
         <source>Hide menu bar</source>
         <translation>Ocultar barra de menu</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1656"/>
+        <location filename="../../mainwindow.cpp" line="1647"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>A barra de menus ficará oculta, a barra de ferramentas deve ser mostrada.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1687"/>
+        <location filename="../../mainwindow.cpp" line="1678"/>
         <source>Hide tool bar</source>
         <translation>Ocultar barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1688"/>
+        <location filename="../../mainwindow.cpp" line="1679"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>A barra de ferramentas ficará oculta, a barra de menus deve ser mostrada.</translation>
     </message>
@@ -1226,28 +1304,28 @@ File: %1</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="143"/>
-        <location filename="../../main.cpp" line="174"/>
+        <location filename="../../main.cpp" line="140"/>
+        <location filename="../../main.cpp" line="175"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="171"/>
+        <location filename="../../main.cpp" line="172"/>
         <source>Rabbit Remote Control</source>
         <translation>Rabbit Remote Control</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="172"/>
+        <location filename="../../main.cpp" line="173"/>
         <source>Kang Lin Studio</source>
         <translation>Kang Lin Studio</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="205"/>
+        <location filename="../../main.cpp" line="206"/>
         <source>Generate update json file End</source>
         <translation>Fim da geração do arquivo JSON de atualização</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="221"/>
+        <location filename="../../main.cpp" line="222"/>
         <source>Create main window ......</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1256,12 +1334,12 @@ File: %1</source>
         <translation type="vanished">Fim</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="550"/>
+        <location filename="../../mainwindow.cpp" line="541"/>
         <source>Error</source>
         <translation type="unfinished">Erro</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="551"/>
+        <location filename="../../mainwindow.cpp" line="542"/>
         <source>Initial error:</source>
         <translation type="unfinished"></translation>
     </message>

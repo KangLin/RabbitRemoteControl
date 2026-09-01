@@ -333,8 +333,8 @@ int CManager::LoadPlugin(const QString &szPath)
             if(p) {
                 if(m_Plugins.find(p->Id()) == m_Plugins.end()) {
                     QString szMsg =
-                        tr("Success: Load plugin %1 from %2").arg(p->Name(), szPath);
-                    qInfo(log) << szMsg;
+                        tr("Success: Load plugin %1").arg(p->Name());
+                    qInfo(log) << szMsg << "from" << szPath;
                     ShowMessageInSplashScreen(szTitle + szMsg);
                     nRet = AppendPlugin(pLoader, p);
                     return nRet;
@@ -346,7 +346,7 @@ int CManager::LoadPlugin(const QString &szPath)
                 qCritical(log) << "The plugin is not \"CPlugin\":" << szPath;
         } else {
             QString szMsg;
-            szMsg = tr("Error: Load plugin fail from ") + szPath;
+            szMsg = tr("Failed: Load plugin from %1").arg(szPath);
             if(!pLoader->errorString().isEmpty())
                 szMsg += "; " + tr("Error:") + " " + pLoader->errorString();
             qCritical(log) << szMsg.toStdString().c_str();
