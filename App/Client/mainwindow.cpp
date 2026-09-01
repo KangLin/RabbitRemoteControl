@@ -436,17 +436,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::ShowMessageInSplashScreen(QSplashScreen *pSplashScreen, const QString &szMsg)
-{
-    if(!pSplashScreen) return;
-    QString szTitle = qApp->applicationDisplayName() + "\n\n";
-    pSplashScreen->showMessage(szTitle + szMsg, Qt::AlignCenter,
-                               pSplashScreen->palette().color(QPalette::WindowText));
-    QCoreApplication::processEvents();
-}
-
 //! For time-consuming operations
-int MainWindow::Initial(QSplashScreen *pSplashScreen)
+int MainWindow::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
 
@@ -458,7 +449,7 @@ int MainWindow::Initial(QSplashScreen *pSplashScreen)
 
         szMsg = tr("Load plugins ......");
         slotInformation(szMsg);
-        ShowMessageInSplashScreen(pSplashScreen, szMsg);
+        ShowMessageInSplashScreen(szMsg);
         nRet = m_Manager.Initial();
         if(nRet) {
             szErr = tr("Initial manage error");
@@ -485,7 +476,7 @@ int MainWindow::Initial(QSplashScreen *pSplashScreen)
         if(m_pRecent) {
             szMsg = tr("Load list recent dock ......");
             slotInformation(szMsg);
-            ShowMessageInSplashScreen(pSplashScreen, szMsg);
+            ShowMessageInSplashScreen(szMsg);
             nRet = m_pRecent->Initial();
             if(nRet) {
                 szErr = tr("Initial recent dock error");
@@ -496,7 +487,7 @@ int MainWindow::Initial(QSplashScreen *pSplashScreen)
         if(m_pRecentMenu) {
             szMsg = tr("Load recent menu ......");
             slotInformation(szMsg);
-            ShowMessageInSplashScreen(pSplashScreen, szMsg);
+            ShowMessageInSplashScreen(szMsg);
             if(m_pRecent) {
                 auto recents = m_pRecent->GetRecents(m_Parameter.GetRecentMenuMaxCount());
                 //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
@@ -521,7 +512,7 @@ int MainWindow::Initial(QSplashScreen *pSplashScreen)
         if(m_pFavoriteView) {
             szMsg = tr("Load favorite ......");
             slotInformation(szMsg);
-            ShowMessageInSplashScreen(pSplashScreen, szMsg);
+            ShowMessageInSplashScreen(szMsg);
             nRet = m_pFavoriteView->Initial();
             if(nRet) {
                 szErr = tr("Initial favorite error");
@@ -533,7 +524,7 @@ int MainWindow::Initial(QSplashScreen *pSplashScreen)
 
         szMsg = tr("Load laster operate ......");
         slotInformation(szMsg);
-        ShowMessageInSplashScreen(pSplashScreen, szMsg);
+        ShowMessageInSplashScreen(szMsg);
         nRet = LoadOperateLasterClose();
         if(nRet) {
             szErr = tr("Initial load laster close operate error");

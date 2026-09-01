@@ -141,8 +141,6 @@ int main(int argc, char *argv[])
                << "\n" << app.arguments();
 
     {
-        QSplashScreen* pSplashScreen = new QSplashScreen();
-
 #if defined(Q_OS_ANDROID)
         //See: https://www.qt.io/blog/android-and-qt-splash-screen
         #if QT_VERSION > QT_VERSION_CHECK(6, 2, 0)
@@ -166,8 +164,6 @@ int main(int argc, char *argv[])
                     << "android.permission.WAKE_LOCK"
                     << "android.permission.DEVICE_POWER";
         RabbitCommon::CTools::AndroidRequestPermission(permissions);
-#else
-        RC_SHOW_WINDOW(pSplashScreen);
 #endif
 
         QSharedPointer<QTranslator> tApp =
@@ -176,7 +172,7 @@ int main(int argc, char *argv[])
         app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
         app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
-        MainWindow::ShowMessageInSplashScreen(pSplashScreen, QObject::tr("Start") + " ......");
+        ShowMessageInSplashScreen(QObject::tr("Start") + " ......");
 
 #ifdef HAVE_UPDATE
         // Check update version
@@ -223,16 +219,16 @@ int main(int argc, char *argv[])
             app.processEvents();
         });//*/
 
-        MainWindow::ShowMessageInSplashScreen(pSplashScreen, QObject::tr("Create main window ......"));
+        ShowMessageInSplashScreen(QObject::tr("Create main window ......"));
 
         MainWindow* w = new MainWindow();
 
         try {
             // For time-consuming operations
-            nRet = w->Initial(pSplashScreen);
-            pSplashScreen->deleteLater();
+            nRet = w->Initial();
             if(!nRet) {
                 RC_SHOW_WINDOW(w);
+                ShowMessageInSplashScreen();
                 nRet = app.exec();
             }
         } catch (std::exception &e) {

@@ -10,6 +10,8 @@
 #include <QLoggingCategory>
 #include <QMessageBox>
 #include <QCheckBox>
+#include <QSplashScreen>
+#include <QScreen>
 
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
@@ -38,6 +40,33 @@
 #include "Manager.h"
 
 static Q_LOGGING_CATEGORY(log, "Manager")
+
+void ShowMessageInSplashScreen(const QString &szMsg)
+{
+    static QSplashScreen* pSplashScreen = nullptr;
+    if(!pSplashScreen) {
+        pSplashScreen = new QSplashScreen();
+        QScreen* pScreen = QApplication::primaryScreen();
+        if(pScreen) {
+            QRect rect = pScreen->availableGeometry();
+            pSplashScreen->move(rect.width() / 4, rect.height() / 4);
+            QCoreApplication::processEvents();
+            pSplashScreen->resize(rect.width() / 2, rect.height() / 2);
+            QCoreApplication::processEvents();
+        }
+        RC_SHOW_WINDOW(pSplashScreen);
+        QCoreApplication::processEvents();
+    }
+    if(szMsg.isEmpty()) {
+        pSplashScreen->deleteLater();
+        pSplashScreen = nullptr;
+        return;
+    }
+    QString szTitle = qApp->applicationDisplayName() + "\n\n";
+    pSplashScreen->showMessage(szTitle + szMsg, Qt::AlignCenter,
+                               pSplashScreen->palette().color(QPalette::WindowText));
+    QCoreApplication::processEvents();
+}
 
 CManager::CManager(QObject *parent) : QObject(parent)
     , m_FileVersion(1)  //TODO: update version it if update data
@@ -93,6 +122,7 @@ int CManager::Initial(QString szFile)
     //    Q_INIT_RESOURCE(translations_Plugin);
     //#endif
 
+    ShowMessageInSplashScreen(tr("Load manager translations ......"));
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
         "Plugin", RabbitCommon::CTools::TranslationType::Library);
 
@@ -100,6 +130,7 @@ int CManager::Initial(QString szFile)
 
     CChannel::InitTranslation();
 
+    ShowMessageInSplashScreen(tr("Load manager parameters and database ......"));
     m_pParameterPlugin = new CParameterPlugin();
     if(m_pParameterPlugin) {
         LoadSettings(m_szSettingsFile);
@@ -177,6 +208,7 @@ int CManager::Initial(QString szFile)
         Q_ASSERT(m_pParameterPlugin);
     }
 
+    ShowMessageInSplashScreen(tr("Load plugins ......"));
     LoadPlugins();
 
     m_pDatabaseFile = new CDatabaseFile();
@@ -294,13 +326,16 @@ int CManager::LoadPlugin(const QString &szPath)
     int nRet = -1;
     QPluginLoader* pLoader = new QPluginLoader(szPath, this);
     do{
+        QString szTitle = tr("Load plugins ......") + "\n\n";
         QObject *plugin = pLoader->instance();
         if (plugin) {
             CPlugin* p = qobject_cast<CPlugin*>(plugin);
             if(p) {
                 if(m_Plugins.find(p->Id()) == m_Plugins.end()) {
-                    qInfo(log) << "Success: Load plugin"
-                               << p->Name() << "from" << szPath;
+                    QString szMsg =
+                        tr("Success: Load plugin %1 from %2").arg(p->Name(), szPath);
+                    qInfo(log) << szMsg;
+                    ShowMessageInSplashScreen(szTitle + szMsg);
                     nRet = AppendPlugin(pLoader, p);
                     return nRet;
                 } else {
@@ -311,10 +346,11 @@ int CManager::LoadPlugin(const QString &szPath)
                 qCritical(log) << "The plugin is not \"CPlugin\":" << szPath;
         } else {
             QString szMsg;
-            szMsg = "Error: Load plugin fail from " + szPath;
+            szMsg = tr("Error: Load plugin fail from ") + szPath;
             if(!pLoader->errorString().isEmpty())
-                szMsg += "; Error: " + pLoader->errorString();
+                szMsg += "; " + tr("Error:") + " " + pLoader->errorString();
             qCritical(log) << szMsg.toStdString().c_str();
+            ShowMessageInSplashScreen(szTitle + szMsg);
         }
     } while(0);
     pLoader->deleteLater();

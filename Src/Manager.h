@@ -38,6 +38,7 @@
 
 class CParameterPlugin;
 class QPluginLoader;
+class QSplashScreen;
 
 /*!
  * \~chinese 管理插件
@@ -52,7 +53,7 @@ class PLUGIN_EXPORT CManager : public QObject
 public:
     explicit CManager(QObject *parent = nullptr);
     virtual ~CManager();
-    
+
     /*!
      * \brief Initial
      * \param szFile
@@ -246,3 +247,5 @@ private:
     QString m_szDetails;
     CDatabaseFile* m_pDatabaseFile;
 };
+
+PLUGIN_EXPORT void ShowMessageInSplashScreen(const QString &szMsg = QString());
