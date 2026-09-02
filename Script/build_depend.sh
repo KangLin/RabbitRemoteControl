@@ -749,7 +749,7 @@ if [ $FREERDP -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
         if [ ! -d FreeRDP ]; then
-            git clone -b 3.24.1 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+            git clone -b 3.31.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/FreeRDP
         pushd $BUILD_DEPEND_DIR/FreeRDP
