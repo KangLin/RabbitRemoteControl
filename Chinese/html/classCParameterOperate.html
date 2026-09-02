@@ -1,0 +1,868 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterOperate类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-slots">Protected 槽</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterOperate-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterOperate类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>操作参数接口。仅在插件内有效。  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterOperate_8h_source.html">ParameterOperate.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterOperate 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterOperate__inherit__graph.png" border="0" usemap="#aCParameterOperate_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCParameterOperate_inherit__map" id="aCParameterOperate_inherit__map">
+<area shape="rect" title="操作参数接口。仅在插件内有效。" alt="" coords="275,400,425,425"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="499,55,659,80"/>
+<area shape="poly" title=" " alt="" coords="351,386,359,325,379,245,395,202,415,161,440,123,472,89,497,74,500,79,475,93,444,126,419,163,399,204,384,246,364,326,356,387"/>
+<area shape="rect" href="classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="503,104,655,129"/>
+<area shape="poly" title=" " alt="" coords="353,385,364,333,386,266,402,231,421,197,444,166,472,139,501,123,504,127,475,143,448,169,425,200,406,233,391,268,369,334,358,386"/>
+<area shape="rect" href="classCParameterFileTransfer.html" title=" " alt="" coords="492,153,665,179"/>
+<area shape="poly" title=" " alt="" coords="356,385,370,342,393,288,427,234,448,209,472,188,491,177,494,181,475,192,452,213,431,237,398,291,375,344,361,387"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="518,203,639,228"/>
+<area shape="poly" title=" " alt="" coords="360,386,376,352,401,312,433,271,472,237,494,226,517,219,518,224,496,231,475,242,437,275,405,315,381,355,364,389"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="511,252,646,277"/>
+<area shape="poly" title=" " alt="" coords="366,387,410,336,439,309,472,286,510,272,512,277,475,291,443,313,414,339,370,391"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="517,301,641,327"/>
+<area shape="poly" title=" " alt="" coords="378,390,421,362,472,336,516,322,517,327,474,340,424,366,381,394"/>
+<area shape="rect" href="classCParameterScreenCapture.html" title=" " alt="" coords="482,351,675,376"/>
+<area shape="poly" title=" " alt="" coords="422,394,518,373,520,379,423,400"/>
+<area shape="rect" href="classCParameterServer.html" title="The server base parameters" alt="" coords="509,400,649,425"/>
+<area shape="poly" title=" " alt="" coords="439,410,509,410,509,415,439,415"/>
+<area shape="rect" href="classCParameterTemplateBase.html" title=" " alt="" coords="483,449,674,475"/>
+<area shape="poly" title=" " alt="" coords="423,426,520,447,518,452,422,431"/>
+<area shape="rect" href="classCParameterTemplateQtEvent.html" title=" " alt="" coords="473,499,684,524"/>
+<area shape="poly" title=" " alt="" coords="381,431,424,459,474,485,509,496,507,501,472,490,421,464,378,436"/>
+<area shape="rect" href="classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="485,548,672,573"/>
+<area shape="poly" title=" " alt="" coords="370,435,414,486,443,512,475,534,500,545,498,550,472,539,439,516,410,490,366,438"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="515,597,643,623"/>
+<area shape="poly" title=" " alt="" coords="364,437,381,471,405,511,437,551,475,584,494,594,515,601,514,606,492,599,472,588,433,554,401,514,376,473,360,439"/>
+<area shape="rect" href="classCParameterWakeOnLan.html" title="The wake on lan parameters." alt="" coords="491,647,666,672"/>
+<area shape="poly" title=" " alt="" coords="361,438,375,482,398,535,431,588,452,612,475,633,494,644,491,649,472,637,448,616,427,591,393,537,370,483,356,440"/>
+<area shape="rect" href="classCParameterWebBrowser.html" title=" " alt="" coords="489,696,668,721"/>
+<area shape="poly" title=" " alt="" coords="358,439,369,491,391,557,406,592,425,625,448,656,475,683,493,694,490,698,472,687,444,660,421,628,402,594,386,559,364,493,353,440"/>
+<area shape="rect" href="classCStats.html" title=" " alt="" coords="547,745,611,771"/>
+<area shape="poly" title=" " alt="" coords="356,439,364,499,384,579,399,621,419,662,444,699,475,732,491,743,510,750,547,756,546,761,508,755,489,747,472,736,440,703,415,664,395,623,379,581,359,500,351,439"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="128,400,227,425"/>
+<area shape="poly" title=" " alt="" coords="240,410,274,410,274,415,240,415"/>
+<area shape="rect" title=" " alt="" coords="5,400,80,425"/>
+<area shape="poly" title=" " alt="" coords="94,410,128,410,128,415,94,415"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="761,5,915,31"/>
+<area shape="poly" title=" " alt="" coords="666,97,683,89,697,78,706,65,715,52,731,40,760,27,762,32,733,44,719,56,710,68,701,81,685,94,669,102"/>
+<area shape="rect" href="classCParameterLibVNCServer.html" title=" " alt="" coords="745,55,931,80"/>
+<area shape="poly" title=" " alt="" coords="659,99,770,77,771,83,660,104"/>
+<area shape="rect" href="classCParameterPlayer.html" title=" " alt="" coords="769,104,907,129"/>
+<area shape="poly" title=" " alt="" coords="668,114,769,114,769,119,668,119"/>
+<area shape="rect" href="classCParameterTemplateDesktop.html" title=" " alt="" coords="732,153,944,179"/>
+<area shape="poly" title=" " alt="" coords="660,129,771,151,770,156,659,135"/>
+<area shape="rect" href="classCParameterVnc.html" title=" " alt="" coords="777,203,899,228"/>
+<area shape="poly" title=" " alt="" coords="669,130,685,138,701,151,710,164,719,176,733,188,777,204,775,209,731,192,715,180,706,167,697,154,683,143,666,135"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="755,252,921,277"/>
+<area shape="poly" title=" " alt="" coords="654,297,770,275,771,280,655,302"/>
+<area shape="rect" href="classCParameterFreeRDPServer.html" title=" " alt="" coords="741,301,935,327"/>
+<area shape="poly" title=" " alt="" coords="661,395,683,385,697,374,706,361,715,348,731,336,757,324,759,329,733,340,719,352,710,364,701,377,685,390,663,400"/>
+<area shape="rect" href="classCParameterFtpServer.html" title=" " alt="" coords="757,351,919,376"/>
+<area shape="poly" title=" " alt="" coords="659,395,770,373,771,379,660,400"/>
+<area shape="rect" href="classCParameterSftpServer.html" title=" " alt="" coords="755,400,921,425"/>
+<area shape="poly" title=" " alt="" coords="662,410,755,410,755,415,662,415"/>
+<area shape="rect" href="classCParameterTemplateServer.html" title=" " alt="" coords="738,449,938,475"/>
+<area shape="poly" title=" " alt="" coords="660,425,771,447,770,452,659,431"/>
+<area shape="rect" href="classCParameterRawStream.html" title=" " alt="" coords="751,499,925,524"/>
+<area shape="poly" title=" " alt="" coords="659,543,770,521,771,527,660,548"/>
+<area shape="rect" href="classCParameterSerialPort.html" title=" " alt="" coords="757,548,919,573"/>
+<area shape="poly" title=" " alt="" coords="686,558,757,558,757,563,686,563"/>
+<area shape="rect" href="classCParameterTelnet.html" title=" " alt="" coords="769,597,907,623"/>
+<area shape="poly" title=" " alt="" coords="660,573,771,595,770,600,659,579"/>
+<area shape="rect" href="classCParameterTerminalSSH.html" title=" " alt="" coords="748,647,928,672"/>
+<area shape="poly" title=" " alt="" coords="669,576,685,584,701,596,710,609,719,622,733,633,759,644,757,649,731,638,715,625,706,612,697,600,683,588,666,580"/>
+<area shape="rect" href="classCTerminalParameter.html" title=" " alt="" coords="761,696,915,721"/>
+<area shape="poly" title=" " alt="" coords="677,578,686,584,698,596,705,609,711,635,716,660,723,671,734,683,762,697,759,702,730,687,718,675,711,662,705,636,700,611,693,599,682,588,674,582"/>
+<area shape="rect" href="classCStatsSever.html" title=" " alt="" coords="787,745,889,771"/>
+<area shape="poly" title=" " alt="" coords="625,755,787,755,787,761,625,761"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterOperate 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterOperate__coll__graph.png" border="0" usemap="#aCParameterOperate_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCParameterOperate_coll__map" id="aCParameterOperate_coll__map">
+<area shape="rect" title="操作参数接口。仅在插件内有效。" alt="" coords="323,155,474,180"/>
+<area shape="poly" title=" " alt="" coords="488,160,501,167,492,174,474,177,474,171,490,169,495,167,486,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="209,448,369,473"/>
+<area shape="poly" title=" " alt="" coords="403,194,404,242,398,303,381,367,367,398,349,426,334,440,318,450,315,446,331,435,345,422,362,395,376,365,392,302,398,241,398,194"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="229,352,350,377"/>
+<area shape="poly" title=" " alt="" coords="382,193,374,205,359,239,350,267,341,296,324,329,304,353,300,350,319,327,336,294,345,266,354,237,370,203,378,190"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="175,253,303,279"/>
+<area shape="poly" title=" " alt="" coords="359,188,323,206,254,255,251,251,320,202,356,183"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="556,80,655,105"/>
+<area shape="poly" title=" " alt="" coords="560,112,432,157,430,152,559,107"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="532,872,671,897"/>
+<area shape="poly" title=" " alt="" coords="632,113,650,137,656,151,659,166,659,770,656,811,640,849,619,874,615,870,635,847,651,810,653,770,653,166,651,152,646,139,628,117"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="77,660,217,685"/>
+<area shape="poly" title=" " alt="" coords="542,99,411,106,258,118,188,128,131,139,93,152,83,159,80,167,80,558,86,588,100,616,135,658,131,661,96,619,81,590,75,558,75,165,79,156,90,148,130,134,187,122,257,113,410,100,542,93"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="481,756,612,781"/>
+<area shape="poly" title=" " alt="" coords="608,119,608,166,608,674,603,700,592,723,562,757,558,754,587,720,598,698,603,674,603,166,603,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="677,204,819,229"/>
+<area shape="poly" title=" " alt="" coords="647,109,676,127,715,166,742,202,738,205,711,170,673,131,645,114"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="739,303,930,328"/>
+<area shape="poly" title=" " alt="" coords="669,105,709,119,752,139,792,167,824,203,835,229,840,257,839,303,834,303,835,257,830,230,819,205,788,171,749,144,707,124,667,110"/>
+<area shape="rect" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" title=" " alt="" coords="94,23,556,82,556,88,93,28"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="132,544,225,569"/>
+<area shape="poly" title=" " alt="" coords="37,44,29,92,29,414,33,437,42,458,56,477,73,495,113,523,151,542,149,546,111,527,70,499,52,481,37,461,28,439,24,414,24,91,32,43"/>
+<area shape="poly" title=" " alt="" coords="541,870,506,855,473,834,448,806,441,789,439,770,439,265,435,241,427,218,405,182,410,179,432,216,440,239,444,264,444,770,446,788,453,803,476,830,509,850,543,865"/>
+<area shape="poly" title=" " alt="" coords="170,693,218,735,279,779,348,818,423,845,478,860,532,871,531,876,477,865,422,851,346,823,276,784,215,739,167,697"/>
+<area shape="poly" title=" " alt="" coords="297,486,301,520,301,560,293,601,285,620,273,638,248,657,218,668,216,663,245,653,269,634,280,618,288,599,296,559,296,520,292,487"/>
+<area shape="poly" title=" " alt="" coords="235,481,207,499,192,522,184,545,179,543,187,519,203,495,232,477"/>
+<area shape="poly" title=" " alt="" coords="292,391,292,448,287,448,287,391"/>
+<area shape="poly" title=" " alt="" coords="249,291,265,327,281,350,277,353,260,329,244,293"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="115,155,299,180"/>
+<area shape="poly" title=" " alt="" coords="212,193,221,228,233,251,228,254,216,230,207,194"/>
+<area shape="poly" title=" " alt="" coords="144,579,132,595,128,611,129,628,142,659,137,661,124,629,122,610,127,592,140,576"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="259,660,386,685"/>
+<area shape="poly" title=" " alt="" coords="240,570,278,591,293,607,305,626,321,658,316,661,301,628,289,611,274,595,237,575"/>
+<area shape="poly" title=" " alt="" coords="544,795,543,821,550,847,561,860,575,870,572,874,557,864,546,849,538,822,539,795"/>
+<area shape="poly" title=" " alt="" coords="364,688,520,753,518,758,362,693"/>
+<area shape="poly" title=" " alt="" coords="736,242,721,276,713,314,713,770,711,795,705,814,694,831,676,850,658,864,638,874,636,870,655,860,673,846,689,828,700,812,706,794,708,770,708,314,716,274,731,240"/>
+<area shape="poly" title=" " alt="" coords="829,342,821,375,817,411,817,770,814,794,803,814,787,831,768,846,721,866,672,878,671,873,719,861,765,841,784,827,799,811,809,792,812,770,812,411,816,374,824,341"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a2e5750454b66d5ac60140f38c9e9a1ab" id="r_a2e5750454b66d5ac60140f38c9e9a1ab"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2e5750454b66d5ac60140f38c9e9a1ab">sigSetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a2e5750454b66d5ac60140f38c9e9a1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft"><a id="a4913c1cb94db4ce44dff54a7366aa468" name="a4913c1cb94db4ce44dff54a7366aa468"></a>
+void&#160;</td><td class="memItemRight"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2">信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a58bef92def69a3a3d6e42a68ff27a48e" id="r_a58bef92def69a3a3d6e42a68ff27a48e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:a95bd352215f9624f42b27b32bb0ca6db" id="r_a95bd352215f9624f42b27b32bb0ca6db"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a95bd352215f9624f42b27b32bb0ca6db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="memitem:a427a4b41e546d500a5a0e06f344a6453" id="r_a427a4b41e546d500a5a0e06f344a6453"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a427a4b41e546d500a5a0e06f344a6453">SetPluginParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:aa35b6d1854ae3abc4d6341d31977fc68 pub_methods_classCParameter" id="r_aa35b6d1854ae3abc4d6341d31977fc68"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-slots" class="groupheader"><a id="pro-slots" name="pro-slots"></a>
+Protected 槽</h2></td></tr>
+<tr class="memitem:a8728b70dd9f3c081c7c2bf24ac261c4e" id="r_a8728b70dd9f3c081c7c2bf24ac261c4e"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a8728b70dd9f3c081c7c2bf24ac261c4e">slotSetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a8728b70dd9f3c081c7c2bf24ac261c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft">QByteArray&#160;</td><td class="memItemRight"><a class="el" href="#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="memitem:ad096e684dac67ee83dd8b7e591cf799c" id="r_ad096e684dac67ee83dd8b7e591cf799c"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ad096e684dac67ee83dd8b7e591cf799c">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="memitem:ae95ad65979c0114568d1cb73a822e335" id="r_ae95ad65979c0114568d1cb73a822e335"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ae95ad65979c0114568d1cb73a822e335">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a9b4f6e8953afe9b69432b2dd06bfafb4" id="r_a9b4f6e8953afe9b69432b2dd06bfafb4"><td class="memItemLeft"><a class="el" href="classCParameterOperate.html">CParameterOperate</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a9b4f6e8953afe9b69432b2dd06bfafb4">m_Parent</a></td></tr>
+<tr class="memitem:ac1e611f2865689251e7c0c872367be4e" id="r_ac1e611f2865689251e7c0c872367be4e"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac1e611f2865689251e7c0c872367be4e">m_pParameterPlugin</a></td></tr>
+<tr class="memitem:af08d4d0d5265362fb8f9823f3b525f5d" id="r_af08d4d0d5265362fb8f9823f3b525f5d"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#af08d4d0d5265362fb8f9823f3b525f5d">m_szName</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2">属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>操作参数接口。仅在插件内有效。 </p>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>仅在插件中实现和使用</li>
+<li>应用程序不能访问，只能通过 <a class="el" href="classCOperate.html#a064b7e2e81cfc551114c64c562840143" title="打开设置对话框">COperate::OpenDialogSettings</a> 进行设置。</li>
+<li>插件通过 <a class="el" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff" title="Get parameter">COperateDesktop::GetParameter()</a>、COperateTerminal::GetParameter()　等访问操作参数</li>
+<li><a class="el" href="classCParameterDesktop.html#section_Use_CParameterDesktop" title="使用远程桌面基础参数">使用远程桌面基础参数</a></li>
+<li>需要访问插件的全局参数 (<a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>) 的分类，需要从此类派生。 通过调用 <a class="el" href="#a95bd352215f9624f42b27b32bb0ca6db" title="Get CParameterPlugin">CParameterOperate::GetPluginParameters()</a> 访问全局参数 (<a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>)</li>
+</ul>
+</dd></dl>
+<p>设置和得到插件的全局参数。需要操作插件的全局参数的参数应该从此类派生。 </p>
+<h1 class="doxsection"><a class="anchor" id="section_Use_CParameterPlugin"></a>
+使用插件的全局参数(CParameterPlugin)</h1>
+<h2 class="doxsection"><a class="anchor" id="sub_Set_CParameterPlugin_in_CParameterOperate"></a>
+为操作参数(CParameterOperate 或其派生类)设置全局参数(CParameterPlugin)</h2>
+<ul>
+<li>如果操作参数 ( <a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a> 或其派生类 ) 需要插件的全局参数 (<a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>) 。<ul>
+<li>请在 <a class="el" href="classCOperate.html" title="操作接口。">COperate</a> 派生类的构造函数中实例化操作参数。例如： <div class="fragment"><div class="line">    CParameterFreeRDP <a class="code hl_variable" href="classCOperateFreeRDP.html#a15698eda29b25344d80c1a36f98b1a86">m_ParameterFreeRdp</a>;</div>
+</div><!-- fragment --></li>
+<li>调用 <a class="el" href="classCOperateDesktop.html#a8945da8d59ad1f252ea8cc22b1b307e7" title="设置参数指针">COperateDesktop::SetParameter</a> 设置参数指针。例如： <div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFreeRDP.html#a8111a314bfe66f729692d0ac9075cf51">COperateFreeRDP::Initial</a>()</div>
+<div class="line">{</div>
+<div class="line">    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line">    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line">    nRet = <a class="code hl_function" href="classCOperateDesktop.html#aa9fa0ee13f9c1ee206aaaa72d3a4bfa0">COperateDesktop::Initial</a>();</div>
+<div class="line">    <span class="keywordflow">if</span>(nRet) <span class="keywordflow">return</span> nRet;</div>
+<div class="line">    nRet = <a class="code hl_function" href="classCOperateDesktop.html#a8945da8d59ad1f252ea8cc22b1b307e7">SetParameter</a>(&amp;<a class="code hl_variable" href="classCOperateFreeRDP.html#a15698eda29b25344d80c1a36f98b1a86">m_ParameterFreeRdp</a>);</div>
+<div class="line">    <span class="keywordflow">return</span> nRet;</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li>默认会自动为操作参数设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 。详见: <a class="el" href="classCPlugin.html#ac8cec990249ce5b34f0d43148925079e" title="新建 COperate 实例。仅由 CManager 调用">CPlugin::CreateOperate</a> 。 <div class="fragment"><div class="line"><a class="code hl_class" href="classCOperate.html">COperate</a>* <a class="code hl_function" href="classCPlugin.html#ac8cec990249ce5b34f0d43148925079e">CPlugin::CreateOperate</a>(</div>
+<div class="line">    <span class="keyword">const</span> QString &amp;szId, <a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a>* para)</div>
+<div class="line">{</div>
+<div class="line">    COperate* p = OnCreateOperate(szId);</div>
+<div class="line">    <span class="keywordflow">if</span>(p) {</div>
+<div class="line">        <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line">        <span class="comment">//nRet = p-&gt;Initial();</span></div>
+<div class="line">        <span class="keywordtype">bool</span> bRet = QMetaObject::invokeMethod(</div>
+<div class="line">            p,</div>
+<div class="line">            <span class="stringliteral">&quot;Initial&quot;</span>,</div>
+<div class="line">            Qt::DirectConnection,</div>
+<div class="line">            Q_RETURN_ARG(<span class="keywordtype">int</span>, nRet));</div>
+<div class="line">        <span class="keywordflow">if</span>(!bRet) {</div>
+<div class="line">            qCritical(log) &lt;&lt; <span class="stringliteral">&quot;Call p-&gt;Initial() fail.&quot;</span>;</div>
+<div class="line">            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">if</span>(nRet) {</div>
+<div class="line">            qCritical(log) &lt;&lt; <span class="stringliteral">&quot;Operate initial fail&quot;</span> &lt;&lt; nRet;</div>
+<div class="line">            <a class="code hl_function" href="classCPlugin.html#a63a012a7bf038de8006c30ef924e2c34">DeleteOperate</a>(p);</div>
+<div class="line">            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="comment">//nRet = p-&gt;SetPluginParameters(para);</span></div>
+<div class="line">        bRet = QMetaObject::invokeMethod(</div>
+<div class="line">            p,</div>
+<div class="line">            <span class="stringliteral">&quot;SetPluginParameters&quot;</span>,</div>
+<div class="line">            Qt::DirectConnection,</div>
+<div class="line">            Q_RETURN_ARG(<span class="keywordtype">int</span>, nRet),</div>
+<div class="line">            Q_ARG(CParameterPlugin*, para));</div>
+<div class="line">        <span class="keywordflow">if</span>(!bRet) {</div>
+<div class="line">            qCritical(log) &lt;&lt; <span class="stringliteral">&quot;Call p-&gt;SetParameterClient(para) fail.&quot;</span>;</div>
+<div class="line">            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">if</span>(nRet) {</div>
+<div class="line">            qCritical(log) &lt;&lt; <span class="stringliteral">&quot;SetParameterClient fail&quot;</span> &lt;&lt; nRet;</div>
+<div class="line">            <a class="code hl_function" href="classCPlugin.html#a63a012a7bf038de8006c30ef924e2c34">DeleteOperate</a>(p);</div>
+<div class="line">            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> p;</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li>如果参数不需要 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> ， 那请在 <a class="el" href="classCOperate.html" title="操作接口。">COperate</a> 派生类重载 <a class="el" href="classCOperate.html#a12dc3be591154c37a3b599334055c65e" title="应用插件全局参数">COperate::SetPluginParameters</a> 不设置它。 </li>
+</ul>
+</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="sub_Use_CParameterPlugin_in_CParameterOperate"></a>
+在操作参数 ( CParameterOperate 或其派生类 ) 中使用全局参数 (CParameterPlugin)</h2>
+<ul>
+<li>在操作参数 ( <a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a> 或其派生类 ) 使用 <a class="el" href="#a95bd352215f9624f42b27b32bb0ca6db" title="Get CParameterPlugin">CParameterOperate::GetPluginParameters()</a> 来得到全局参数 (<a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>) 。</li>
+<li>操作参数 ( <a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a> 或其派生类 ) 使用插件的全局参数 (<a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>) 的值做为其初始值。 请重载 <a class="el" href="#a8728b70dd9f3c081c7c2bf24ac261c4e" title="设置 CParameterPlugin 后调用，用于初始化与 CParameterPlugin 有关的操作。">CParameterOperate::slotSetPluginParameters</a> 并在其中初始化相关的值。<br  />
+ 例如：是否保存密码以 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 的成员值做为其初始化值。 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_slot" href="classCParameterUser.html#a1aa3d19c07e3aec3e6fd94fffca16686">CParameterUser::slotSetPluginParameters</a>()</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a>()) {</div>
+<div class="line">        QString szErr = <span class="stringliteral">&quot;The CParameterClient is null&quot;</span>;</div>
+<div class="line">        qCritical(log) &lt;&lt; szErr;</div>
+<div class="line">        Q_ASSERT_X(<span class="keyword">false</span>, <span class="stringliteral">&quot;CParameterUser&quot;</span>, szErr.toStdString().c_str());</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
+<div class="line">    }</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(<a class="code hl_function" href="#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a>())</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span>(<a class="code hl_function" href="#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a>()-&gt;GetEnableSystemUserToUser())</div>
+<div class="line">            SetUser(RabbitCommon::CTools::GetCurrentUser());</div>
+<div class="line">        <a class="code hl_function" href="classCParameterUser.html#a94e7e5a522f68fb4e409e97d2fc0f856">SetSavePassword</a>(<a class="code hl_function" href="#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a>()-&gt;GetSavePassword());</div>
+<div class="line">        SetSavePassphrase(<a class="code hl_function" href="#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a>()-&gt;GetSavePassword());</div>
+<div class="line">    }</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">return</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="section_CParameterOperate_CATEGORY_USAGE"></a>
+操作参数分类使用</h1>
+<p>因为可能会有很多参数，所以需要按参数类型分类。每个分类可以从此类派生出一个单独的类。<br  />
+ 因为操作参数都有一些基本的参数（例如网络地址等），所以这些基本参数放入 <a class="el" href="classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。">CParameterDesktop</a> 。 而每个分类做为它的成员变量。</p>
+<p>例如：<br  />
+ 操作参数包括以下几种类型：</p><ul>
+<li>基本参数 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classCParameterDesktop.html">CParameterDesktop</a> : <span class="keyword">public</span> <a class="code hl_function" href="#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a></div>
+<div class="ttc" id="aclassCParameterDesktop_html"><div class="ttname"><a href="classCParameterDesktop.html">CParameterDesktop</a></div><div class="ttdoc">远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。</div><div class="ttdef"><b>定义</b> <a href="ParameterDesktop_8h_source.html#l00045">ParameterDesktop.h:46</a></div></div>
+<div class="ttc" id="aclassCParameterOperate_html_a58bef92def69a3a3d6e42a68ff27a48e"><div class="ttname"><a href="#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate::CParameterOperate</a></div><div class="ttdeci">CParameterOperate(QObject *parent, const QString &amp;szPrefix=QString())</div></div>
+</div><!-- fragment --></li>
+<li>用户参数 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classCParameterUser.html">CParameterUser</a> : <span class="keyword">public</span> <a class="code hl_function" href="#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a></div>
+<div class="ttc" id="aclassCParameterUser_html"><div class="ttname"><a href="classCParameterUser.html">CParameterUser</a></div><div class="ttdoc">用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI</div><div class="ttdef"><b>定义</b> <a href="ParameterUser_8h_source.html#l00022">ParameterUser.h:23</a></div></div>
+</div><!-- fragment --></li>
+<li>视频参数 <div class="fragment"><div class="line"><span class="keyword">class </span>CParameterVideo : <span class="keyword">public</span> <a class="code hl_function" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter</a></div>
+<div class="ttc" id="aclassCParameter_html_aa35b6d1854ae3abc4d6341d31977fc68"><div class="ttname"><a href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter::CParameter</a></div><div class="ttdeci">CParameter(QObject *parent, const QString &amp;szPrefix=QString())</div></div>
+</div><!-- fragment --></li>
+<li>音频参数 <div class="fragment"><div class="line"><span class="keyword">class </span>CParameterAudio : <span class="keyword">public</span> <a class="code hl_function" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter</a></div>
+</div><!-- fragment --></li>
+</ul>
+<p>其中 <a class="el" href="classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。">CParameterDesktop</a> ， <a class="el" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI">CParameterUser</a> 它需要插件的全局参数， 所以必须从 <a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a> 派生。 其它的类型则不需要插件的全局参数的，从 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 派生。</p>
+<p>那么操作参数可以是以上类型的集合：</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classCParameterDesktop.html">CParameterDesktop</a> : <span class="keyword">public</span> <a class="code hl_function" href="#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a></div>
+<div class="line">{</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">explicit</span> <a class="code hl_class" href="classCParameterDesktop.html">CParameterDesktop</a>(<a class="code hl_function" href="#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a> *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="classCParameterUser.html">CParameterUser</a> m_User;</div>
+<div class="line">    CParameterVideo m_Video;</div>
+<div class="line">    CParameterAudio m_Audio;</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line">CParameterDesktop::CParameterDesktop(<a class="code hl_class" href="classCParameterOperate.html">CParameterOperate</a> *parent = <span class="keyword">nullptr</span>)</div>
+<div class="line"> : <a class="code hl_class" href="classCParameterOperate.html">CParameterOperate</a>(parent),</div>
+<div class="line">   m_User(this, <span class="stringliteral">&quot;Host&quot;</span>),</div>
+<div class="line">   m_Video(this),</div>
+<div class="line">   m_Audio(this)</div>
+<div class="line">{}</div>
+<div class="ttc" id="aclassCParameterOperate_html"><div class="ttname"><a href="classCParameterOperate.html">CParameterOperate</a></div><div class="ttdoc">操作参数接口。仅在插件内有效。</div><div class="ttdef"><b>定义</b> <a href="ParameterOperate_8h_source.html#l00209">ParameterOperate.h:210</a></div></div>
+</div><!-- fragment --><dl class="section note"><dt>注解</dt><dd><ul>
+<li>需要插件的全局参数的操作参数必须从 <a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a> 派生，否则可以从 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 派生</li>
+<li>当成员实例化时<ul>
+<li><a class="el" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI">CParameterUser</a> 必须设置构造函数的参数 parent 为 <a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a> 的实例（一般设置为 this）。</li>
+<li>m_Video ， m_Audio 必须设置构造函数的参数 parent 为 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 或其派生类的实例（一般设置为 this）。</li>
+</ul>
+</li>
+<li><a class="el" href="#sub_Set_CParameterPlugin_in_CParameterOperate" title="为操作参数(CParameterOperate 或其派生类)设置全局参数(CParameterPlugin)">为操作参数(CParameterOperate 或其派生类)设置全局参数(CParameterPlugin)</a></li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a> <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> <a class="el" href="classCManager.html#a37bfb18878dd6fbdc05280a960912464" title="新建 COperate 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleOperate()　须释放指针。 调用者必须连接信号 COperate::sigFinished 。 释放指针 (...">CManager::CreateOperate</a> <a class="el" href="classCPlugin.html#ac8cec990249ce5b34f0d43148925079e" title="新建 COperate 实例。仅由 CManager 调用">CPlugin::CreateOperate</a> <a class="el" href="classCOperate.html#a12dc3be591154c37a3b599334055c65e" title="应用插件全局参数">COperate::SetPluginParameters</a> <a class="el" href="classCOperateDesktop.html#a8945da8d59ad1f252ea8cc22b1b307e7" title="设置参数指针">COperateDesktop::SetParameter</a> <a class="el" href="#a95bd352215f9624f42b27b32bb0ca6db" title="Get CParameterPlugin">CParameterOperate::GetPluginParameters</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8h_source.html">ParameterOperate.h</a> 第 <a class="el" href="ParameterOperate_8h_source.html#l00209">209</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a58bef92def69a3a3d6e42a68ff27a48e" name="a58bef92def69a3a3d6e42a68ff27a48e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58bef92def69a3a3d6e42a68ff27a48e">&#9670;&#160;</a></span>CParameterOperate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterOperate::CParameterOperate </td>
+          <td>(</td>
+          <td class="paramtype">QObject *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szPrefix</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QString()</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter::CParameter</a> </dd></dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a5623fbb11de8cb188ed2202e4939f332" name="a5623fbb11de8cb188ed2202e4939f332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5623fbb11de8cb188ed2202e4939f332">&#9670;&#160;</a></span>GetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterOperate::GetName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00212">212</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a95bd352215f9624f42b27b32bb0ca6db" name="a95bd352215f9624f42b27b32bb0ca6db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95bd352215f9624f42b27b32bb0ca6db">&#9670;&#160;</a></span>GetPluginParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> * CParameterOperate::GetPluginParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a35bbb29677637c26da961c84e4185406" name="a35bbb29677637c26da961c84e4185406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35bbb29677637c26da961c84e4185406">&#9670;&#160;</a></span>LoadPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterOperate::LoadPassword </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szTitle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szKey</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;</td>          <td class="paramname"><span class="paramname"><em>password</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Restore password </p>
+<p>if the encryption key is incorrect, Password is set to empty. it proceeds to the normal password entry. flow chart:</p><div class="image">
+<object type="image/svg+xml" data="RestorePassword.svg" style="pointer-events: none;"></object>
+</div>
+ <dl class="section see"><dt>参见</dt><dd><a href="https://github.com/KangLin/RabbitRemoteControl/issues/79">https://github.com/KangLin/RabbitRemoteControl/issues/79</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad096e684dac67ee83dd8b7e591cf799c" name="ad096e684dac67ee83dd8b7e591cf799c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad096e684dac67ee83dd8b7e591cf799c">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterOperate::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCParameter.html">CParameter</a>.</p>
+
+<p>被 <a class="el" href="classCParameterNet.html#aeff5049c4a8c47664527a110875c0c05">CParameterNet</a> , 以及 <a class="el" href="classCParameterWakeOnLan.html#a03acf1a34ac8c10cc9c8dc3a90af9a52">CParameterWakeOnLan</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00226">226</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae95ad65979c0114568d1cb73a822e335" name="ae95ad65979c0114568d1cb73a822e335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95ad65979c0114568d1cb73a822e335">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterOperate::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCParameter.html">CParameter</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00232">232</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af9df5fc726cd293eede2432ac31664c0" name="af9df5fc726cd293eede2432ac31664c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9df5fc726cd293eede2432ac31664c0">&#9670;&#160;</a></span>PasswordSum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QByteArray CParameterOperate::PasswordSum </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>password</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aae8d78719ade689af5d32fe032503a44" name="aae8d78719ade689af5d32fe032503a44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae8d78719ade689af5d32fe032503a44">&#9670;&#160;</a></span>SavePassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterOperate::SavePassword </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szKey</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>password</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>bSave</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae48826c9a53d55acbd93e0f962e93bfb" name="ae48826c9a53d55acbd93e0f962e93bfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae48826c9a53d55acbd93e0f962e93bfb">&#9670;&#160;</a></span>SetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterOperate::SetName </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00217">217</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a427a4b41e546d500a5a0e06f344a6453" name="a427a4b41e546d500a5a0e06f344a6453"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a427a4b41e546d500a5a0e06f344a6453">&#9670;&#160;</a></span>SetPluginParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterOperate::SetPluginParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2e5750454b66d5ac60140f38c9e9a1ab" name="a2e5750454b66d5ac60140f38c9e9a1ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e5750454b66d5ac60140f38c9e9a1ab">&#9670;&#160;</a></span>sigSetPluginParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterOperate::sigSetPluginParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>仅由此类使用 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a8728b70dd9f3c081c7c2bf24ac261c4e" title="设置 CParameterPlugin 后调用，用于初始化与 CParameterPlugin 有关的操作。">slotSetPluginParameters</a> </dd></dl>
+
+</div>
+</div>
+<a id="a8728b70dd9f3c081c7c2bf24ac261c4e" name="a8728b70dd9f3c081c7c2bf24ac261c4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8728b70dd9f3c081c7c2bf24ac261c4e">&#9670;&#160;</a></span>slotSetPluginParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterOperate::slotSetPluginParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。 </p>
+<p><a class="el" href="#sub_Use_CParameterPlugin_in_CParameterOperate" title="在操作参数 ( CParameterOperate 或其派生类 ) 中使用全局参数 (CParameterPlugin)">在操作参数 ( CParameterOperate 或其派生类 ) 中使用全局参数 (CParameterPlugin)</a> </p>
+
+<p>被 <a class="el" href="classCParameterDesktop.html#a6b583464322c7dfdbe5c91e55465dab6">CParameterDesktop</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a> 第 <a class="el" href="ParameterOperate_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a9b4f6e8953afe9b69432b2dd06bfafb4" name="a9b4f6e8953afe9b69432b2dd06bfafb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b4f6e8953afe9b69432b2dd06bfafb4">&#9670;&#160;</a></span>m_Parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterOperate.html">CParameterOperate</a>* CParameterOperate::m_Parent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8h_source.html">ParameterOperate.h</a> 第 <a class="el" href="ParameterOperate_8h_source.html#l00260">260</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac1e611f2865689251e7c0c872367be4e" name="ac1e611f2865689251e7c0c872367be4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1e611f2865689251e7c0c872367be4e">&#9670;&#160;</a></span>m_pParameterPlugin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a>* CParameterOperate::m_pParameterPlugin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>参见</dt><dd>CManager::CreateConnecter <a class="el" href="classCOperate.html#a12dc3be591154c37a3b599334055c65e" title="应用插件全局参数">COperate::SetPluginParameters</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8h_source.html">ParameterOperate.h</a> 第 <a class="el" href="ParameterOperate_8h_source.html#l00264">264</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af08d4d0d5265362fb8f9823f3b525f5d" name="af08d4d0d5265362fb8f9823f3b525f5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af08d4d0d5265362fb8f9823f3b525f5d">&#9670;&#160;</a></span>m_szName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterOperate::m_szName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterOperate_8h_source.html">ParameterOperate.h</a> 第 <a class="el" href="ParameterOperate_8h_source.html#l00266">266</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ParameterOperate_8h_source.html">ParameterOperate.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ParameterOperate_8cpp_source.html">ParameterOperate.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

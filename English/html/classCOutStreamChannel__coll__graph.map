@@ -1,0 +1,9 @@
+<map id="COutStreamChannel" name="COutStreamChannel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="36,176,191,201"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,179,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,118,113,175,108,176,95,119"/>
+<area shape="rect" id="Node000003" href="$classCChannel.html" title="The channel interface class." alt="" coords="203,80,287,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,116,131,178,128,174,216,111"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="200,5,291,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="248,45,248,80,243,80,243,45"/>
+</map>

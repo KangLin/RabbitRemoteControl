@@ -1,0 +1,543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CIceSignalQxmpp类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCIceSignalQxmpp-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CIceSignalQxmpp类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CHANNEL.html">通道</a> &raquo; <a class="el" href="group__LIBAPI__ICE.html">ICE</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>QXMPP 实现 ICE 信令类  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="IceSignalQxmpp_8h_source.html">IceSignalQxmpp.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CIceSignalQxmpp 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCIceSignalQxmpp__inherit__graph.png" border="0" usemap="#aCIceSignalQxmpp_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCIceSignalQxmpp_inherit__map" id="aCIceSignalQxmpp_inherit__map">
+<area shape="rect" title="QXMPP 实现 ICE 信令类" alt="" coords="5,152,143,177"/>
+<area shape="rect" href="classCIceSignal.html" title="ICE 信令接口类" alt="" coords="29,79,119,104"/>
+<area shape="poly" title=" " alt="" coords="77,118,77,152,71,152,71,118"/>
+<area shape="rect" title=" " alt="" coords="37,5,111,31"/>
+<area shape="poly" title=" " alt="" coords="77,44,77,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CIceSignalQxmpp 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCIceSignalQxmpp__coll__graph.png" border="0" usemap="#aCIceSignalQxmpp_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCIceSignalQxmpp_coll__map" id="aCIceSignalQxmpp_coll__map">
+<area shape="rect" title="QXMPP 实现 ICE 信令类" alt="" coords="201,155,339,180"/>
+<area shape="rect" href="classCIceSignalQXmppManager.html" title=" " alt="" coords="65,251,259,276"/>
+<area shape="poly" title=" " alt="" coords="190,183,173,193,160,206,156,216,155,227,160,250,155,251,150,228,150,215,156,202,170,188,187,178"/>
+<area shape="rect" href="classCIceSignal.html" title="ICE 信令接口类" alt="" coords="225,80,315,105"/>
+<area shape="poly" title=" " alt="" coords="273,120,273,154,267,154,267,120"/>
+<area shape="rect" title=" " alt="" coords="233,5,307,31"/>
+<area shape="poly" title=" " alt="" coords="273,45,273,80,267,80,267,45"/>
+<area shape="poly" title=" " alt="" coords="212,243,239,225,255,202,264,179,269,181,260,205,243,229,215,247"/>
+<area shape="rect" title=" " alt="" coords="5,155,177,180"/>
+<area shape="poly" title=" " alt="" coords="109,190,135,225,154,249,150,252,131,228,105,193"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a97b69c071cae3e84070e7441bfe6c312" id="r_a97b69c071cae3e84070e7441bfe6c312"><td class="memItemLeft"><a id="a97b69c071cae3e84070e7441bfe6c312" name="a97b69c071cae3e84070e7441bfe6c312"></a>
+void&#160;</td><td class="memItemRight"><b>sigSendPackage</b> (<a class="el" href="classCIceSignalQXmppIq.html">CIceSignalQXmppIq</a> iq)</td></tr>
+<tr class="inherit_header signals_classCIceSignal"><td colspan="2">信号 继承自 <a class="el" href="classCIceSignal.html">CIceSignal</a></td></tr>
+<tr class="memitem:a9e41eadaab06ce31c84e0dd2b32be2ac signals_classCIceSignal" id="r_a9e41eadaab06ce31c84e0dd2b32be2ac"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigConnected</b> ()</td></tr>
+<tr class="memitem:ac7af0bca9524759b20502d91b7564303 signals_classCIceSignal" id="r_ac7af0bca9524759b20502d91b7564303"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigDisconnected</b> ()</td></tr>
+<tr class="memitem:a84516876dd78d054e06fc085215679da signals_classCIceSignal" id="r_a84516876dd78d054e06fc085215679da"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigError</b> (int nError, const QString &amp;szError)</td></tr>
+<tr class="memitem:a1e5f51b8c6756ea68247102d38fc2472 signals_classCIceSignal" id="r_a1e5f51b8c6756ea68247102d38fc2472"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCIceSignal.html#a1e5f51b8c6756ea68247102d38fc2472">sigOffer</a> (const QString &amp;fromUser, const QString &amp;toUser, const QString &amp;channelId, const QString &amp;type, const QString &amp;sdp)</td></tr>
+<tr class="memdesc:a1e5f51b8c6756ea68247102d38fc2472 signals_classCIceSignal"><td class="mdescLeft">&#160;</td><td class="mdescRight">sigOffer  <br /></td></tr>
+<tr class="memitem:a39979dfa294093f4b47d8c4bd8d09004 signals_classCIceSignal" id="r_a39979dfa294093f4b47d8c4bd8d09004"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCIceSignal.html#a39979dfa294093f4b47d8c4bd8d09004">sigCandidate</a> (const QString &amp;fromUser, const QString &amp;toUser, const QString &amp;channelId, const QString &amp;mid, const QString &amp;sdp)</td></tr>
+<tr class="memdesc:a39979dfa294093f4b47d8c4bd8d09004 signals_classCIceSignal"><td class="mdescLeft">&#160;</td><td class="mdescRight">sigCandiate  <br /></td></tr>
+<tr class="memitem:a22958ebef920f3897eb6647c25544076 signals_classCIceSignal" id="r_a22958ebef920f3897eb6647c25544076"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCIceSignal.html#a22958ebef920f3897eb6647c25544076">sigDescription</a> (const QString &amp;fromUser, const QString &amp;toUser, const QString &amp;channelId, const QString &amp;type, const QString &amp;sdp)</td></tr>
+<tr class="memdesc:a22958ebef920f3897eb6647c25544076 signals_classCIceSignal"><td class="mdescLeft">&#160;</td><td class="mdescRight">sigDescription  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a587c6d83a83217c85bd3d860289b6408" id="r_a587c6d83a83217c85bd3d860289b6408"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a587c6d83a83217c85bd3d860289b6408">CIceSignalQxmpp</a> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:a374391ca347d3b4c1bda3b46bc8a6870" id="r_a374391ca347d3b4c1bda3b46bc8a6870"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a374391ca347d3b4c1bda3b46bc8a6870">Open</a> (const QString &amp;szServer, quint16 nPort, const QString &amp;user=QString(), const QString &amp;password=QString()) override</td></tr>
+<tr class="memitem:ab0e40b1106404b8da32b729e4c0b13f6" id="r_ab0e40b1106404b8da32b729e4c0b13f6"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ab0e40b1106404b8da32b729e4c0b13f6">Close</a> () override</td></tr>
+<tr class="memitem:a2bd92344e29e9ab6f5eb6de4a939f1f6" id="r_a2bd92344e29e9ab6f5eb6de4a939f1f6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a2bd92344e29e9ab6f5eb6de4a939f1f6">IsConnected</a> () override</td></tr>
+<tr class="memitem:add1a1788a963333006b1915877039032" id="r_add1a1788a963333006b1915877039032"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#add1a1788a963333006b1915877039032">SendDescription</a> (const QString &amp;toUser, const QString &amp;channelId, const rtc::Description &amp;description, const QString &amp;fromUser) override</td></tr>
+<tr class="memitem:afc29eee469bbe262c2d0026d1141cf20" id="r_afc29eee469bbe262c2d0026d1141cf20"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#afc29eee469bbe262c2d0026d1141cf20">SendCandidate</a> (const QString &amp;toUser, const QString &amp;channelId, const rtc::Candidate &amp;candidate, const QString &amp;fromUser) override</td></tr>
+<tr class="memitem:a3be5ab87d59c061327020d9d7ff091bf" id="r_a3be5ab87d59c061327020d9d7ff091bf"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3be5ab87d59c061327020d9d7ff091bf">proecssIq</a> (<a class="el" href="classCIceSignalQXmppIq.html">CIceSignalQXmppIq</a> iq)</td></tr>
+<tr class="inherit_header pub_methods_classCIceSignal"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCIceSignal.html">CIceSignal</a></td></tr>
+<tr class="memitem:a6a8ca647d5db218b6b3b72d3085440da pub_methods_classCIceSignal" id="r_a6a8ca647d5db218b6b3b72d3085440da"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCIceSignal.html#a6a8ca647d5db218b6b3b72d3085440da">CIceSignal</a> (QObject *parent=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-slots" class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a298fcef92a61570771ddae5b5d290119" id="r_a298fcef92a61570771ddae5b5d290119"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a298fcef92a61570771ddae5b5d290119">slotError</a> (QXmppClient::Error e)</td></tr>
+<tr class="memitem:ad91d93e0172a2869ce3dee35728f2375" id="r_ad91d93e0172a2869ce3dee35728f2375"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad91d93e0172a2869ce3dee35728f2375">slotSendPackage</a> (<a class="el" href="classCIceSignalQXmppIq.html">CIceSignalQXmppIq</a> iq)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a0b242a79d2b877bef2e4794aa8c74ef0" id="r_a0b242a79d2b877bef2e4794aa8c74ef0"><td class="memItemLeft">QXmppClient&#160;</td><td class="memItemRight"><a class="el" href="#a0b242a79d2b877bef2e4794aa8c74ef0">m_Client</a></td></tr>
+<tr class="memitem:ad4cc43b14ff344bdd50b4aa3a8ba4738" id="r_ad4cc43b14ff344bdd50b4aa3a8ba4738"><td class="memItemLeft"><a class="el" href="classCIceSignalQXmppManager.html">CIceSignalQXmppManager</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad4cc43b14ff344bdd50b4aa3a8ba4738">m_Manager</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classCIceSignal"><td colspan="2">Protected 属性 继承自 <a class="el" href="classCIceSignal.html">CIceSignal</a></td></tr>
+<tr class="memitem:a2b009ade4cb1c89ce47b03376a41c48b pro_attribs_classCIceSignal" id="r_a2b009ade4cb1c89ce47b03376a41c48b"><td class="memItemLeft">QLoggingCategory&#160;</td><td class="memItemRight"><a class="el" href="classCIceSignal.html#a2b009ade4cb1c89ce47b03376a41c48b">m_Log</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>QXMPP 实现 ICE 信令类 </p>
+<dl class="section author"><dt>作者</dt><dd>Kang Lin(<a href="mai'+'lto:+'kl2'+'22'+'@12'+'6.'+'com'">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a>)</dd></dl>
+<p>此信令基于 <a href="https://github.com/paullouisageneau/libdatachannel">libdatachannel</a> </p>
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8h_source.html">IceSignalQxmpp.h</a> 第 <a class="el" href="IceSignalQxmpp_8h_source.html#l00022">22</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a587c6d83a83217c85bd3d860289b6408" name="a587c6d83a83217c85bd3d860289b6408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a587c6d83a83217c85bd3d860289b6408">&#9670;&#160;</a></span>CIceSignalQxmpp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CIceSignalQxmpp::CIceSignalQxmpp </td>
+          <td>(</td>
+          <td class="paramtype">QObject *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00009">9</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="ab0e40b1106404b8da32b729e4c0b13f6" name="ab0e40b1106404b8da32b729e4c0b13f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0e40b1106404b8da32b729e4c0b13f6">&#9670;&#160;</a></span>Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CIceSignalQxmpp::Close </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCIceSignal.html">CIceSignal</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00075">75</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2bd92344e29e9ab6f5eb6de4a939f1f6" name="a2bd92344e29e9ab6f5eb6de4a939f1f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bd92344e29e9ab6f5eb6de4a939f1f6">&#9670;&#160;</a></span>IsConnected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CIceSignalQxmpp::IsConnected </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCIceSignal.html">CIceSignal</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00081">81</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a374391ca347d3b4c1bda3b46bc8a6870" name="a374391ca347d3b4c1bda3b46bc8a6870"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374391ca347d3b4c1bda3b46bc8a6870">&#9670;&#160;</a></span>Open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CIceSignalQxmpp::Open </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szServer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">quint16</td>          <td class="paramname"><span class="paramname"><em>nPort</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>user</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QString()</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>password</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QString()</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCIceSignal.html">CIceSignal</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3be5ab87d59c061327020d9d7ff091bf" name="a3be5ab87d59c061327020d9d7ff091bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3be5ab87d59c061327020d9d7ff091bf">&#9670;&#160;</a></span>proecssIq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CIceSignalQxmpp::proecssIq </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCIceSignalQXmppIq.html">CIceSignalQXmppIq</a></td>          <td class="paramname"><span class="paramname"><em>iq</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc29eee469bbe262c2d0026d1141cf20" name="afc29eee469bbe262c2d0026d1141cf20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc29eee469bbe262c2d0026d1141cf20">&#9670;&#160;</a></span>SendCandidate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CIceSignalQxmpp::SendCandidate </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>toUser</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>channelId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const rtc::Candidate &amp;</td>          <td class="paramname"><span class="paramname"><em>candidate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>fromUser</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCIceSignal.html">CIceSignal</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00143">143</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add1a1788a963333006b1915877039032" name="add1a1788a963333006b1915877039032"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add1a1788a963333006b1915877039032">&#9670;&#160;</a></span>SendDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CIceSignalQxmpp::SendDescription </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>toUser</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>channelId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const rtc::Description &amp;</td>          <td class="paramname"><span class="paramname"><em>description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>fromUser</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCIceSignal.html">CIceSignal</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a298fcef92a61570771ddae5b5d290119" name="a298fcef92a61570771ddae5b5d290119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a298fcef92a61570771ddae5b5d290119">&#9670;&#160;</a></span>slotError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CIceSignalQxmpp::slotError </td>
+          <td>(</td>
+          <td class="paramtype">QXmppClient::Error</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00164">164</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad91d93e0172a2869ce3dee35728f2375" name="ad91d93e0172a2869ce3dee35728f2375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91d93e0172a2869ce3dee35728f2375">&#9670;&#160;</a></span>slotSendPackage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CIceSignalQxmpp::slotSendPackage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCIceSignalQXmppIq.html">CIceSignalQXmppIq</a></td>          <td class="paramname"><span class="paramname"><em>iq</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a> 第 <a class="el" href="IceSignalQxmpp_8cpp_source.html#l00159">159</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a0b242a79d2b877bef2e4794aa8c74ef0" name="a0b242a79d2b877bef2e4794aa8c74ef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b242a79d2b877bef2e4794aa8c74ef0">&#9670;&#160;</a></span>m_Client</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QXmppClient CIceSignalQxmpp::m_Client</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8h_source.html">IceSignalQxmpp.h</a> 第 <a class="el" href="IceSignalQxmpp_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad4cc43b14ff344bdd50b4aa3a8ba4738" name="ad4cc43b14ff344bdd50b4aa3a8ba4738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4cc43b14ff344bdd50b4aa3a8ba4738">&#9670;&#160;</a></span>m_Manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCIceSignalQXmppManager.html">CIceSignalQXmppManager</a> CIceSignalQxmpp::m_Manager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="IceSignalQxmpp_8h_source.html">IceSignalQxmpp.h</a> 第 <a class="el" href="IceSignalQxmpp_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="IceSignalQxmpp_8h_source.html">IceSignalQxmpp.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="IceSignalQxmpp_8cpp_source.html">IceSignalQxmpp.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,950 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBookmarkDatabase类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCBookmarkDatabase-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBookmarkDatabase类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__DATABASE.html">数据库</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="classCBookmarkDatabase.html" title="The CBookmarkDatabase class">CBookmarkDatabase</a> class  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="BookmarkDatabase_8h_source.html">BookmarkDatabase.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CBookmarkDatabase 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBookmarkDatabase__inherit__graph.png" border="0" usemap="#aCBookmarkDatabase_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCBookmarkDatabase_inherit__map" id="aCBookmarkDatabase_inherit__map">
+<area shape="rect" title="The CBookmarkDatabase class" alt="" coords="5,152,165,177"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="39,79,132,104"/>
+<area shape="poly" title=" " alt="" coords="88,118,88,152,83,152,83,118"/>
+<area shape="rect" title=" " alt="" coords="48,5,123,31"/>
+<area shape="poly" title=" " alt="" coords="88,44,88,79,83,79,83,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CBookmarkDatabase 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBookmarkDatabase__coll__graph.png" border="0" usemap="#aCBookmarkDatabase_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCBookmarkDatabase_coll__map" id="aCBookmarkDatabase_coll__map">
+<area shape="rect" title="The CBookmarkDatabase class" alt="" coords="944,202,1104,227"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="129,218,223,243"/>
+<area shape="poly" title=" " alt="" coords="229,244,272,253,342,257,413,253,582,248,750,237,943,220,944,226,751,243,582,253,413,259,342,262,272,259,228,250"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="585,366,725,391"/>
+<area shape="poly" title=" " alt="" coords="193,254,225,300,247,322,273,340,312,357,352,370,436,384,516,388,585,385,585,390,516,393,436,390,351,375,310,362,271,345,244,327,221,303,188,257"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="279,410,406,435"/>
+<area shape="poly" title=" " alt="" coords="186,256,208,317,225,349,249,378,272,395,298,408,295,412,269,400,245,382,221,352,203,319,181,258"/>
+<area shape="rect" href="classCDatabaseTree.html" title="The CDatabaseTree class" alt="" coords="595,117,715,142"/>
+<area shape="poly" title=" " alt="" coords="185,204,217,150,241,123,271,102,317,84,366,75,416,73,465,76,555,93,622,114,621,119,554,98,464,81,416,78,367,80,318,89,273,106,245,127,222,153,190,207"/>
+<area shape="rect" href="classCDatabaseNode.html" title="The CDatabaseNode class" alt="" coords="279,117,406,142"/>
+<area shape="poly" title=" " alt="" coords="194,205,217,181,245,159,289,140,291,144,248,164,221,185,198,209"/>
+<area shape="rect" href="classCDatabaseUrl.html" title=" " alt="" coords="599,202,711,227"/>
+<area shape="poly" title=" " alt="" coords="231,212,272,204,404,191,536,196,599,203,599,208,536,201,404,197,272,209,232,217"/>
+<area shape="rect" href="classCDatabaseIcon.html" title="Icon database" alt="" coords="283,218,403,243"/>
+<area shape="poly" title=" " alt="" coords="236,228,282,228,282,233,236,233"/>
+<area shape="rect" title=" " alt="" coords="5,455,80,481"/>
+<area shape="poly" title=" " alt="" coords="55,442,165,242,170,245,60,445"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="293,502,392,527"/>
+<area shape="poly" title=" " alt="" coords="94,473,294,504,293,510,93,478"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="2075,361,2235,386"/>
+<area shape="poly" title=" " alt="" coords="2146,348,2124,264,2106,212,2082,159,2051,109,2013,69,1992,53,1968,41,1943,33,1915,31,342,31,308,37,278,54,253,78,231,108,200,171,183,219,178,217,195,169,227,105,249,75,275,49,306,32,341,25,1915,25,1944,28,1970,36,1994,48,2017,65,2055,106,2086,156,2111,210,2129,263,2151,346"/>
+<area shape="poly" title=" " alt="" coords="2061,362,1989,355,1915,352,1023,352,863,359,726,373,725,367,862,354,1023,347,1915,347,1990,350,2061,357"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="1313,490,1463,515"/>
+<area shape="poly" title=" " alt="" coords="1477,499,1605,493,1746,479,1861,458,1974,428,2116,384,2118,389,1975,433,1862,463,1747,484,1605,498,1477,504"/>
+<area shape="poly" title=" " alt="" coords="1357,475,1366,467,1388,463,1406,466,1418,472,1421,482,1415,491,1410,489,1415,481,1413,475,1405,471,1388,469,1368,472,1360,479"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1853,393,1975,418"/>
+<area shape="poly" title=" " alt="" coords="1430,482,1503,455,1597,432,1693,417,1781,408,1853,404,1853,409,1782,413,1694,422,1599,437,1505,460,1432,487"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="1619,443,1747,469"/>
+<area shape="poly" title=" " alt="" coords="1476,486,1618,463,1619,469,1477,491"/>
+<area shape="poly" title=" " alt="" coords="371,534,406,560,452,588,505,614,561,632,613,640,655,640,751,632,835,629,920,619,1006,600,1123,571,1340,513,1342,518,1124,576,1007,606,920,624,836,634,751,637,655,645,613,645,559,637,503,619,449,593,403,564,368,538"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="955,494,1093,519"/>
+<area shape="poly" title=" " alt="" coords="406,511,955,505,955,510,406,517"/>
+<area shape="poly" title=" " alt="" coords="380,493,436,467,535,427,623,389,626,394,537,432,438,472,382,498"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="590,446,721,471"/>
+<area shape="poly" title=" " alt="" coords="405,501,589,468,590,473,406,506"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="584,547,727,573"/>
+<area shape="poly" title=" " alt="" coords="406,525,438,531,584,550,583,555,437,536,405,530"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="560,597,751,622"/>
+<area shape="poly" title=" " alt="" coords="388,530,438,548,561,583,604,594,603,599,559,588,437,553,386,535"/>
+<area shape="poly" title=" " alt="" coords="1107,503,1312,501,1312,506,1107,508"/>
+<area shape="poly" title=" " alt="" coords="740,386,843,402,888,412,921,423,949,438,974,457,1013,492,1009,496,971,461,946,443,919,428,887,417,842,408,739,391"/>
+<area shape="poly" title=" " alt="" coords="735,466,955,495,954,500,734,471"/>
+<area shape="poly" title=" " alt="" coords="420,429,590,449,589,454,420,434"/>
+<area shape="poly" title=" " alt="" coords="740,562,827,560,919,548,962,534,999,517,1001,522,964,539,921,553,828,566,741,567"/>
+<area shape="poly" title=" " alt="" coords="765,614,842,609,881,601,919,590,947,575,973,555,1010,517,1014,521,976,559,950,579,921,594,883,607,843,614,765,620"/>
+<area shape="poly" title=" " alt="" coords="1988,396,2050,388,2081,383,2081,389,2051,393,1989,401"/>
+<area shape="poly" title=" " alt="" coords="1760,454,1829,444,1862,431,1891,416,1894,420,1865,436,1830,449,1761,459"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="1296,539,1480,565"/>
+<area shape="poly" title=" " alt="" coords="1493,536,1544,524,1594,508,1632,488,1664,467,1667,471,1635,493,1596,513,1545,530,1494,541"/>
+<area shape="poly" title=" " alt="" coords="729,141,921,184,978,199,977,204,919,189,728,147"/>
+<area shape="poly" title=" " alt="" coords="420,127,595,127,595,132,420,132"/>
+<area shape="poly" title=" " alt="" coords="725,212,944,212,944,217,725,217"/>
+<area shape="poly" title=" " alt="" coords="416,225,536,219,599,215,599,221,536,224,416,230"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:add4b73a37c396eabf59b1190a9f1e75b" id="r_add4b73a37c396eabf59b1190a9f1e75b"><td class="memItemLeft"><a id="add4b73a37c396eabf59b1190a9f1e75b" name="add4b73a37c396eabf59b1190a9f1e75b"></a>
+void&#160;</td><td class="memItemRight"><b>bookmarksChanged</b> ()</td></tr>
+<tr class="memitem:ab71f4ef3c19a10da0c97631ad25c7b1d" id="r_ab71f4ef3c19a10da0c97631ad25c7b1d"><td class="memItemLeft"><a id="ab71f4ef3c19a10da0c97631ad25c7b1d" name="ab71f4ef3c19a10da0c97631ad25c7b1d"></a>
+void&#160;</td><td class="memItemRight"><b>bookmarkAdded</b> (const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;item)</td></tr>
+<tr class="memitem:a39a00d24eb530b6b085ed4bf885dea5d" id="r_a39a00d24eb530b6b085ed4bf885dea5d"><td class="memItemLeft"><a id="a39a00d24eb530b6b085ed4bf885dea5d" name="a39a00d24eb530b6b085ed4bf885dea5d"></a>
+void&#160;</td><td class="memItemRight"><b>bookmarkUpdated</b> (const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;item)</td></tr>
+<tr class="memitem:adc7051354d354729a497c8f436e4cfc5" id="r_adc7051354d354729a497c8f436e4cfc5"><td class="memItemLeft"><a id="adc7051354d354729a497c8f436e4cfc5" name="adc7051354d354729a497c8f436e4cfc5"></a>
+void&#160;</td><td class="memItemRight"><b>bookmarkDeleted</b> (int id)</td></tr>
+<tr class="memitem:aa47d0e1716c9802b7a722f3822096343" id="r_aa47d0e1716c9802b7a722f3822096343"><td class="memItemLeft"><a id="aa47d0e1716c9802b7a722f3822096343" name="aa47d0e1716c9802b7a722f3822096343"></a>
+void&#160;</td><td class="memItemRight"><b>folderAdded</b> (const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;folder)</td></tr>
+<tr class="memitem:ad3d44b31b019cc99ff16f1ea3437c352" id="r_ad3d44b31b019cc99ff16f1ea3437c352"><td class="memItemLeft"><a id="ad3d44b31b019cc99ff16f1ea3437c352" name="ad3d44b31b019cc99ff16f1ea3437c352"></a>
+void&#160;</td><td class="memItemRight"><b>folderUpdated</b> (const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;folder)</td></tr>
+<tr class="memitem:a13d71e87e0405eb33674c31a48c12f2c" id="r_a13d71e87e0405eb33674c31a48c12f2c"><td class="memItemLeft"><a id="a13d71e87e0405eb33674c31a48c12f2c" name="a13d71e87e0405eb33674c31a48c12f2c"></a>
+void&#160;</td><td class="memItemRight"><b>folderDeleted</b> (int folderId)</td></tr>
+<tr class="inherit_header signals_classCDatabase"><td colspan="2">信号 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:a9702e53141a678e8f5b4a63df6129966 signals_classCDatabase" id="r_a9702e53141a678e8f5b4a63df6129966"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigChanged</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a9d317bc28fa49fd9927185b025222200" id="r_a9d317bc28fa49fd9927185b025222200"><td class="memItemLeft"><a id="a9d317bc28fa49fd9927185b025222200" name="a9d317bc28fa49fd9927185b025222200"></a>
+&#160;</td><td class="memItemRight"><b>CBookmarkDatabase</b> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:a743975dea7073957de2a51a83eb79e17" id="r_a743975dea7073957de2a51a83eb79e17"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a743975dea7073957de2a51a83eb79e17">addBookmark</a> (const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;item)</td></tr>
+<tr class="memitem:a04909d84bcfe1c3a3f0996f2d600cef0" id="r_a04909d84bcfe1c3a3f0996f2d600cef0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a04909d84bcfe1c3a3f0996f2d600cef0">updateBookmark</a> (const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;item)</td></tr>
+<tr class="memitem:ae8fbf724efc5fe95d59314ddfa03b4cf" id="r_ae8fbf724efc5fe95d59314ddfa03b4cf"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae8fbf724efc5fe95d59314ddfa03b4cf">deleteBookmark</a> (int id)</td></tr>
+<tr class="memitem:a1abe3398e4e813fcdf124a492954e1c6" id="r_a1abe3398e4e813fcdf124a492954e1c6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1abe3398e4e813fcdf124a492954e1c6">deleteBookmark</a> (const QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt; &amp;items)</td></tr>
+<tr class="memitem:a7adb441696cb755c61e2e678cb7056ff" id="r_a7adb441696cb755c61e2e678cb7056ff"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7adb441696cb755c61e2e678cb7056ff">moveBookmark</a> (int id, int newFolderId)</td></tr>
+<tr class="memitem:a7ccb7224b7ae8935eefb90af1bef5ad0" id="r_a7ccb7224b7ae8935eefb90af1bef5ad0"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7ccb7224b7ae8935eefb90af1bef5ad0">addFolder</a> (const QString &amp;name, int parentId=0)</td></tr>
+<tr class="memitem:aa3b44e56ac890407e7d84eb9885464c2" id="r_aa3b44e56ac890407e7d84eb9885464c2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa3b44e56ac890407e7d84eb9885464c2">renameFolder</a> (int folderId, const QString &amp;newName)</td></tr>
+<tr class="memitem:a9afd678052307a816e01712acaf1faf5" id="r_a9afd678052307a816e01712acaf1faf5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9afd678052307a816e01712acaf1faf5">deleteFolder</a> (int folderId)</td></tr>
+<tr class="memitem:adfba72b556c096f3b921afc6754cd08f" id="r_adfba72b556c096f3b921afc6754cd08f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#adfba72b556c096f3b921afc6754cd08f">moveFolder</a> (int folderId, int newParentId)</td></tr>
+<tr class="memitem:a97aaf1a7ae5091839945386179a3ec33" id="r_a97aaf1a7ae5091839945386179a3ec33"><td class="memItemLeft"><a class="el" href="structBookmarkItem.html">BookmarkItem</a>&#160;</td><td class="memItemRight"><a class="el" href="#a97aaf1a7ae5091839945386179a3ec33">getBookmark</a> (int id)</td></tr>
+<tr class="memitem:ae7eaf9444045333090bf0475ff069612" id="r_ae7eaf9444045333090bf0475ff069612"><td class="memItemLeft">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae7eaf9444045333090bf0475ff069612">getBookmarkByUrl</a> (const QString &amp;url)</td></tr>
+<tr class="memitem:a98abbb47e2987bd0f3a5bf3c8d294e4e" id="r_a98abbb47e2987bd0f3a5bf3c8d294e4e"><td class="memItemLeft">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a98abbb47e2987bd0f3a5bf3c8d294e4e">getAllBookmarks</a> (int folderId=0)</td></tr>
+<tr class="memitem:a92e8cb5ba3783e017c061ee78e4eba57" id="r_a92e8cb5ba3783e017c061ee78e4eba57"><td class="memItemLeft">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a92e8cb5ba3783e017c061ee78e4eba57">searchBookmarks</a> (const QString &amp;keyword)</td></tr>
+<tr class="memitem:a6fb0855c4580e03e35b58e3107e81cd6" id="r_a6fb0855c4580e03e35b58e3107e81cd6"><td class="memItemLeft">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6fb0855c4580e03e35b58e3107e81cd6">getAllFolders</a> ()</td></tr>
+<tr class="memitem:a95232c18256adf4889ab4f379eae0c95" id="r_a95232c18256adf4889ab4f379eae0c95"><td class="memItemLeft">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a95232c18256adf4889ab4f379eae0c95">getSubFolders</a> (int folderId)</td></tr>
+<tr class="memitem:a5793dcdef10bd0e88c864594c9ebf43a" id="r_a5793dcdef10bd0e88c864594c9ebf43a"><td class="memItemLeft"><a class="el" href="classTreeItem.html">TreeItem</a>&#160;</td><td class="memItemRight"><a class="el" href="#a5793dcdef10bd0e88c864594c9ebf43a">BookmarkToTree</a> (const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;tree, bool setKey=false)</td></tr>
+<tr class="memitem:a9a929092194924ff1a6107d10cc89f30" id="r_a9a929092194924ff1a6107d10cc89f30"><td class="memItemLeft"><a class="el" href="structBookmarkItem.html">BookmarkItem</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9a929092194924ff1a6107d10cc89f30">TreeToBookmark</a> (const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;tree)</td></tr>
+<tr class="memitem:a7816b2f9ce53df25a3b342f341c318ec" id="r_a7816b2f9ce53df25a3b342f341c318ec"><td class="memItemLeft"><a class="el" href="structBookmarkItem.html">BookmarkItem</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7816b2f9ce53df25a3b342f341c318ec">TreeToBookmark</a> (const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;item, const <a class="el" href="structCDatabaseUrl_1_1UrlItem.html">CDatabaseUrl::UrlItem</a> &amp;url)</td></tr>
+<tr class="inherit_header pub_methods_classCDatabase"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:a5ab471a3d6124b928ebe5cac24cd6ea0 pub_methods_classCDatabase" id="r_a5ab471a3d6124b928ebe5cac24cd6ea0"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>CDatabase</b> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:ae3b8d009f020c71770c433e7ce66333a pub_methods_classCDatabase" id="r_ae3b8d009f020c71770c433e7ce66333a"><td class="memItemLeft">QSqlDatabase&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#ae3b8d009f020c71770c433e7ce66333a">GetDatabase</a> () const</td></tr>
+<tr class="memitem:ab4682557c6cebdc2269412de3604f8ca pub_methods_classCDatabase" id="r_ab4682557c6cebdc2269412de3604f8ca"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#ab4682557c6cebdc2269412de3604f8ca">IsOpen</a> () const</td></tr>
+<tr class="memitem:a2498713b7439cd59fac98decbf9d2359 pub_methods_classCDatabase" id="r_a2498713b7439cd59fac98decbf9d2359"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a2498713b7439cd59fac98decbf9d2359">CloseDatabase</a> ()</td></tr>
+<tr class="memdesc:a2498713b7439cd59fac98decbf9d2359 pub_methods_classCDatabase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close database  <br /></td></tr>
+<tr class="memitem:a5609547b798ab43c3ac99f2b8663cba1 pub_methods_classCDatabase" id="r_a5609547b798ab43c3ac99f2b8663cba1"><td class="memItemLeft">const <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a5609547b798ab43c3ac99f2b8663cba1">GetParameter</a> () const</td></tr>
+<tr class="memitem:aba87bc0518435c2a1a5484a6dcfbecbb pub_methods_classCDatabase" id="r_aba87bc0518435c2a1a5484a6dcfbecbb"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#aba87bc0518435c2a1a5484a6dcfbecbb">GetError</a> () const</td></tr>
+<tr class="memitem:ab986794c8105827cbac1da45e4c7f1cb pub_methods_classCDatabase" id="r_ab986794c8105827cbac1da45e4c7f1cb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#ab986794c8105827cbac1da45e4c7f1cb">SetDatabase</a> (const <a class="el" href="classCDatabase.html">CDatabase</a> *db)</td></tr>
+<tr class="memdesc:ab986794c8105827cbac1da45e4c7f1cb pub_methods_classCDatabase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Share an existing database  <br /></td></tr>
+<tr class="memitem:aa1a7be612b0ae9531b569d1a2f737b8b pub_methods_classCDatabase" id="r_aa1a7be612b0ae9531b569d1a2f737b8b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#aa1a7be612b0ae9531b569d1a2f737b8b">SetDatabase</a> (const QSqlDatabase db, const <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara)</td></tr>
+<tr class="memdesc:aa1a7be612b0ae9531b569d1a2f737b8b pub_methods_classCDatabase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Share an existing database  <br /></td></tr>
+<tr class="memitem:ac894f693ed9909c9ad877e1a34768f89 pub_methods_classCDatabase" id="r_ac894f693ed9909c9ad877e1a34768f89"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#ac894f693ed9909c9ad877e1a34768f89">OpenDatabase</a> (const <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara=nullptr, const QString &amp;szConnectName=QString())</td></tr>
+<tr class="memdesc:ac894f693ed9909c9ad877e1a34768f89 pub_methods_classCDatabase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a new database  <br /></td></tr>
+<tr class="memitem:a75b11e076f31b88ed0a3f1e24cbad182 pub_methods_classCDatabase" id="r_a75b11e076f31b88ed0a3f1e24cbad182"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a75b11e076f31b88ed0a3f1e24cbad182">OpenMySqlDatabase</a> (const <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara, const QString &amp;szConnectName=QString())</td></tr>
+<tr class="memitem:a8ae68f58126411354de3c217cf2501d0 pub_methods_classCDatabase" id="r_a8ae68f58126411354de3c217cf2501d0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a8ae68f58126411354de3c217cf2501d0">OpenODBCDatabase</a> (const <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara, const QString &amp;szConnectName=QString())</td></tr>
+<tr class="memitem:a7b1c3827144567430c48e770f2fe0046 pub_methods_classCDatabase" id="r_a7b1c3827144567430c48e770f2fe0046"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a7b1c3827144567430c48e770f2fe0046">OpenSQLiteDatabase</a> (const <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara, const QString &amp;szConnectionName=QString())</td></tr>
+<tr class="memitem:af12b5d96586f6b13e6f1c78d0cd489a3 pub_methods_classCDatabase" id="r_af12b5d96586f6b13e6f1c78d0cd489a3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#af12b5d96586f6b13e6f1c78d0cd489a3">OpenSQLiteDatabase</a> (const QString &amp;szFile, const QString &amp;szConnectionName=QString())</td></tr>
+<tr class="memitem:a4be75e0f7f8524444ea0cf8158460985 pub_methods_classCDatabase" id="r_a4be75e0f7f8524444ea0cf8158460985"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a4be75e0f7f8524444ea0cf8158460985">ExportToJsonFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="memitem:a5037079b0a05846d10194e89aa4cfa56 pub_methods_classCDatabase" id="r_a5037079b0a05846d10194e89aa4cfa56"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a5037079b0a05846d10194e89aa4cfa56">ImportFromJsonFile</a> (const QString &amp;szFile)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a1b2b2662b620db6ce470a1b70bde93f5" id="r_a1b2b2662b620db6ce470a1b70bde93f5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1b2b2662b620db6ce470a1b70bde93f5">OnInitializeDatabase</a> () override</td></tr>
+<tr class="memdesc:a1b2b2662b620db6ce470a1b70bde93f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize database  <br /></td></tr>
+<tr class="memitem:a5909d953ae2763f326b3aafa715bda90" id="r_a5909d953ae2763f326b3aafa715bda90"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a5909d953ae2763f326b3aafa715bda90">ExportToJson</a> (QJsonObject &amp;obj) override</td></tr>
+<tr class="memitem:a7b41b0b98bdf5a4dc00bdc7ae33a9257" id="r_a7b41b0b98bdf5a4dc00bdc7ae33a9257"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a7b41b0b98bdf5a4dc00bdc7ae33a9257">ImportFromJson</a> (const QJsonObject &amp;obj) override</td></tr>
+<tr class="memitem:a31bbc58eb81c1d424041e1ad9c07e263" id="r_a31bbc58eb81c1d424041e1ad9c07e263"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a31bbc58eb81c1d424041e1ad9c07e263">ExportToJson</a> (int parentId, QJsonArray &amp;obj)</td></tr>
+<tr class="memitem:add9ea77b6e8464b80c33a90ae29e608c" id="r_add9ea77b6e8464b80c33a90ae29e608c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#add9ea77b6e8464b80c33a90ae29e608c">ImportFromJson</a> (int parentId, const QJsonArray &amp;obj)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a28269c52767062f0c824f3ae92aa3668" id="r_a28269c52767062f0c824f3ae92aa3668"><td class="memItemLeft"><a class="el" href="classCDatabaseTree.html">CDatabaseTree</a>&#160;</td><td class="memItemRight"><a class="el" href="#a28269c52767062f0c824f3ae92aa3668">m_TreeDB</a></td></tr>
+<tr class="memitem:acaf7d1c820b4394db52522ec681d89f1" id="r_acaf7d1c820b4394db52522ec681d89f1"><td class="memItemLeft"><a class="el" href="classCDatabaseUrl.html">CDatabaseUrl</a>&#160;</td><td class="memItemRight"><a class="el" href="#acaf7d1c820b4394db52522ec681d89f1">m_UrlDB</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_methods_classCDatabase"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:af1c14c35d3a9fa1d5b1661fa45f23219 pro_methods_classCDatabase" id="r_af1c14c35d3a9fa1d5b1661fa45f23219"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#af1c14c35d3a9fa1d5b1661fa45f23219">SetError</a> (const QString &amp;szErr=QString())</td></tr>
+<tr class="memitem:af11d34ba6155f68b89bae9f80fcba7c6 pro_methods_classCDatabase" id="r_af11d34ba6155f68b89bae9f80fcba7c6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#af11d34ba6155f68b89bae9f80fcba7c6">OnInitializeSqliteDatabase</a> ()</td></tr>
+<tr class="memitem:a67872907acf1489f1cf321d23eab4813 pro_methods_classCDatabase" id="r_a67872907acf1489f1cf321d23eab4813"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a67872907acf1489f1cf321d23eab4813">OnInitializeMySqlDatabase</a> ()</td></tr>
+<tr class="inherit_header pro_attribs_classCDatabase"><td colspan="2">Protected 属性 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:ab637869da6fd315eb574b7ab13e60f51 pro_attribs_classCDatabase" id="r_ab637869da6fd315eb574b7ab13e60f51"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#ab637869da6fd315eb574b7ab13e60f51">m_szConnectName</a></td></tr>
+<tr class="memitem:a38cbbe64d454d584ac375e3ecfdcfc44 pro_attribs_classCDatabase" id="r_a38cbbe64d454d584ac375e3ecfdcfc44"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a38cbbe64d454d584ac375e3ecfdcfc44">m_MinVersion</a></td></tr>
+<tr class="memitem:a87b593e7b511b73569d2e97ef280cfd0 pro_attribs_classCDatabase" id="r_a87b593e7b511b73569d2e97ef280cfd0"><td class="memItemLeft">const <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCDatabase.html#a87b593e7b511b73569d2e97ef280cfd0">m_pPara</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>The <a class="el" href="classCBookmarkDatabase.html" title="The CBookmarkDatabase class">CBookmarkDatabase</a> class </p>
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8h_source.html">BookmarkDatabase.h</a> 第 <a class="el" href="BookmarkDatabase_8h_source.html#l00066">66</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="aeb6412d4e62816a38f8cc119e44202bb" name="aeb6412d4e62816a38f8cc119e44202bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6412d4e62816a38f8cc119e44202bb">&#9670;&#160;</a></span>~CBookmarkDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBookmarkDatabase::~CBookmarkDatabase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a743975dea7073957de2a51a83eb79e17" name="a743975dea7073957de2a51a83eb79e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a743975dea7073957de2a51a83eb79e17">&#9670;&#160;</a></span>addBookmark()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBookmarkDatabase::addBookmark </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7ccb7224b7ae8935eefb90af1bef5ad0" name="a7ccb7224b7ae8935eefb90af1bef5ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ccb7224b7ae8935eefb90af1bef5ad0">&#9670;&#160;</a></span>addFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBookmarkDatabase::addFolder </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>parentId</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5793dcdef10bd0e88c864594c9ebf43a" name="a5793dcdef10bd0e88c864594c9ebf43a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5793dcdef10bd0e88c864594c9ebf43a">&#9670;&#160;</a></span>BookmarkToTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTreeItem.html">TreeItem</a> CBookmarkDatabase::BookmarkToTree </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tree</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>setKey</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00194">194</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1abe3398e4e813fcdf124a492954e1c6" name="a1abe3398e4e813fcdf124a492954e1c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1abe3398e4e813fcdf124a492954e1c6">&#9670;&#160;</a></span>deleteBookmark() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::deleteBookmark </td>
+          <td>(</td>
+          <td class="paramtype">const QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>items</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00076">76</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae8fbf724efc5fe95d59314ddfa03b4cf" name="ae8fbf724efc5fe95d59314ddfa03b4cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8fbf724efc5fe95d59314ddfa03b4cf">&#9670;&#160;</a></span>deleteBookmark() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::deleteBookmark </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9afd678052307a816e01712acaf1faf5" name="a9afd678052307a816e01712acaf1faf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9afd678052307a816e01712acaf1faf5">&#9670;&#160;</a></span>deleteFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::deleteFolder </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>folderId</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a31bbc58eb81c1d424041e1ad9c07e263" name="a31bbc58eb81c1d424041e1ad9c07e263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31bbc58eb81c1d424041e1ad9c07e263">&#9670;&#160;</a></span>ExportToJson() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::ExportToJson </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>parentId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QJsonArray &amp;</td>          <td class="paramname"><span class="paramname"><em>obj</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00295">295</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5909d953ae2763f326b3aafa715bda90" name="a5909d953ae2763f326b3aafa715bda90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5909d953ae2763f326b3aafa715bda90">&#9670;&#160;</a></span>ExportToJson() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::ExportToJson </td>
+          <td>(</td>
+          <td class="paramtype">QJsonObject &amp;</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00241">241</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98abbb47e2987bd0f3a5bf3c8d294e4e" name="a98abbb47e2987bd0f3a5bf3c8d294e4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98abbb47e2987bd0f3a5bf3c8d294e4e">&#9670;&#160;</a></span>getAllBookmarks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt; CBookmarkDatabase::getAllBookmarks </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>folderId</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00138">138</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6fb0855c4580e03e35b58e3107e81cd6" name="a6fb0855c4580e03e35b58e3107e81cd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fb0855c4580e03e35b58e3107e81cd6">&#9670;&#160;</a></span>getAllFolders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt; CBookmarkDatabase::getAllFolders </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a97aaf1a7ae5091839945386179a3ec33" name="a97aaf1a7ae5091839945386179a3ec33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97aaf1a7ae5091839945386179a3ec33">&#9670;&#160;</a></span>getBookmark()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBookmarkItem.html">BookmarkItem</a> CBookmarkDatabase::getBookmark </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae7eaf9444045333090bf0475ff069612" name="ae7eaf9444045333090bf0475ff069612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7eaf9444045333090bf0475ff069612">&#9670;&#160;</a></span>getBookmarkByUrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt; CBookmarkDatabase::getBookmarkByUrl </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>url</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a95232c18256adf4889ab4f379eae0c95" name="a95232c18256adf4889ab4f379eae0c95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95232c18256adf4889ab4f379eae0c95">&#9670;&#160;</a></span>getSubFolders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt; CBookmarkDatabase::getSubFolders </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>folderId</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00182">182</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7b41b0b98bdf5a4dc00bdc7ae33a9257" name="a7b41b0b98bdf5a4dc00bdc7ae33a9257"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b41b0b98bdf5a4dc00bdc7ae33a9257">&#9670;&#160;</a></span>ImportFromJson() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::ImportFromJson </td>
+          <td>(</td>
+          <td class="paramtype">const QJsonObject &amp;</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00251">251</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add9ea77b6e8464b80c33a90ae29e608c" name="add9ea77b6e8464b80c33a90ae29e608c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add9ea77b6e8464b80c33a90ae29e608c">&#9670;&#160;</a></span>ImportFromJson() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::ImportFromJson </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>parentId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QJsonArray &amp;</td>          <td class="paramname"><span class="paramname"><em>obj</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00265">265</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7adb441696cb755c61e2e678cb7056ff" name="a7adb441696cb755c61e2e678cb7056ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7adb441696cb755c61e2e678cb7056ff">&#9670;&#160;</a></span>moveBookmark()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::moveBookmark </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newFolderId</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00089">89</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adfba72b556c096f3b921afc6754cd08f" name="adfba72b556c096f3b921afc6754cd08f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfba72b556c096f3b921afc6754cd08f">&#9670;&#160;</a></span>moveFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::moveFolder </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>folderId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newParentId</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1b2b2662b620db6ce470a1b70bde93f5" name="a1b2b2662b620db6ce470a1b70bde93f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b2b2662b620db6ce470a1b70bde93f5">&#9670;&#160;</a></span>OnInitializeDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::OnInitializeDatabase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize database </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p>重载 <a class="el" href="classCDatabase.html#aa39e4d53bbc4c7e54fe5be4ff4b1cffc">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa3b44e56ac890407e7d84eb9885464c2" name="aa3b44e56ac890407e7d84eb9885464c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b44e56ac890407e7d84eb9885464c2">&#9670;&#160;</a></span>renameFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::renameFolder </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>folderId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newName</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a92e8cb5ba3783e017c061ee78e4eba57" name="a92e8cb5ba3783e017c061ee78e4eba57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92e8cb5ba3783e017c061ee78e4eba57">&#9670;&#160;</a></span>searchBookmarks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &gt; CBookmarkDatabase::searchBookmarks </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>keyword</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00150">150</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7816b2f9ce53df25a3b342f341c318ec" name="a7816b2f9ce53df25a3b342f341c318ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7816b2f9ce53df25a3b342f341c318ec">&#9670;&#160;</a></span>TreeToBookmark() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBookmarkItem.html">BookmarkItem</a> CBookmarkDatabase::TreeToBookmark </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structCDatabaseUrl_1_1UrlItem.html">CDatabaseUrl::UrlItem</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>url</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00219">219</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a929092194924ff1a6107d10cc89f30" name="a9a929092194924ff1a6107d10cc89f30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a929092194924ff1a6107d10cc89f30">&#9670;&#160;</a></span>TreeToBookmark() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBookmarkItem.html">BookmarkItem</a> CBookmarkDatabase::TreeToBookmark </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tree</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00211">211</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a04909d84bcfe1c3a3f0996f2d600cef0" name="a04909d84bcfe1c3a3f0996f2d600cef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04909d84bcfe1c3a3f0996f2d600cef0">&#9670;&#160;</a></span>updateBookmark()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBookmarkDatabase::updateBookmark </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structBookmarkItem.html">BookmarkItem</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a> 第 <a class="el" href="BookmarkDatabase_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a28269c52767062f0c824f3ae92aa3668" name="a28269c52767062f0c824f3ae92aa3668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28269c52767062f0c824f3ae92aa3668">&#9670;&#160;</a></span>m_TreeDB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDatabaseTree.html">CDatabaseTree</a> CBookmarkDatabase::m_TreeDB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8h_source.html">BookmarkDatabase.h</a> 第 <a class="el" href="BookmarkDatabase_8h_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acaf7d1c820b4394db52522ec681d89f1" name="acaf7d1c820b4394db52522ec681d89f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf7d1c820b4394db52522ec681d89f1">&#9670;&#160;</a></span>m_UrlDB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDatabaseUrl.html">CDatabaseUrl</a> CBookmarkDatabase::m_UrlDB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BookmarkDatabase_8h_source.html">BookmarkDatabase.h</a> 第 <a class="el" href="BookmarkDatabase_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/Bookmark/<a class="el" href="BookmarkDatabase_8h_source.html">BookmarkDatabase.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/Bookmark/<a class="el" href="BookmarkDatabase_8cpp_source.html">BookmarkDatabase.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

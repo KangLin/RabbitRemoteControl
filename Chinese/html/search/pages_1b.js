@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['scm_20com_0',['scm com',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux__zh__CN.html#autotoc_md144',1,'GIT: &lt;a href=&quot;http://www.git-scm.com&quot;&gt;http://www.git-scm.com&lt;/a&gt;'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html#autotoc_md104',1,'Git: &lt;a href=&quot;https://www.git-scm.com/&quot;&gt;https://www.git-scm.com&lt;/a&gt;'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2macOS.html#autotoc_md188',1,'Git: &lt;a href=&quot;https://www.git-scm.com/&quot;&gt;https://www.git-scm.com&lt;/a&gt;']]],
+  ['screenshot_1',['Screenshot',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md357',1,'']]],
+  ['script_2',['Script',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html#autotoc_md136',1,'Script'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Windows.html#autotoc_md234',1,'Script'],['../dir_6b6d1d6fac81b2434b06ba2090714379.html#autotoc_md337',1,'Script']]],
+  ['semantic_20versioning_3a_3',['Semantic Versioning:',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Doxygen_2Develop.html#autotoc_md259',1,'']]],
+  ['server_20plugin_4',['Ftp server plugin',['../dir_e3880e2bc0ef3c08dec120340185b916.html#autotoc_md306',1,'']]],
+  ['service_5',['Service',['../dir_9e474741c0e5160a04653a7df8fd0179.html#autotoc_md299',1,'Service'],['../dir_11d6a4cc3e6690b210e91d1653df8540.html#autotoc_md313',1,'Service'],['../dir_6bcd7e062a314fbb78512e8cc81bcc0e.html#autotoc_md327',1,'Service'],['../dir_2a7e6a9d069690e271f4b231dd0c3d78.html#autotoc_md341',1,'Service']]],
+  ['set_20up_20to_20run_20the_20program_20from_20the_20console_6',['A: This is because there is no desktop environment set up to run the program from the console.',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Wiki_2Wiki.html#autotoc_md273',1,'']]],
+  ['sh_7',['brew: &lt;a href=&quot;https://brew.sh&quot;&gt;https://brew.sh&lt;/a&gt;',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2macOS.html#autotoc_md184',1,'']]],
+  ['shared_20modules_8',['Flathub shared modules',['../dir_8f30766ee05314f95369de35735701ab.html#autotoc_md281',1,'']]],
+  ['snap_9',['snap',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html#autotoc_md134',1,'snap'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux__zh__CN.html#autotoc_md174',1,'snap']]],
+  ['source_20code_10',['Source code',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html#autotoc_md126',1,'Source code'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2macOS.html#autotoc_md209',1,'Source code']]],
+  ['sponsorship_20and_20donations_11',['Sponsorship and Donations',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md372',1,'']]],
+  ['stargazers_20over_20time_12',['Stargazers over time',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md370',1,'']]],
+  ['started_13',['Quickly started',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html#autotoc_md98',1,'']]],
+  ['status_14',['Status',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md369',1,'']]],
+  ['status_15',['Build status',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md371',1,'']]],
+  ['style_16',['Multiple style',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md358',1,'']]],
+  ['supported_20multiple_20languages_17',['Supported multiple languages',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md363',1,'']]],
+  ['supported_20on_20windows_18',['QTermWidget (Not currently supported on Windows)',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Windows.html#autotoc_md228',1,'']]],
+  ['supported_20operating_20system_19',['Supported operating system',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md362',1,'']]],
+  ['supported_20protocols_20',['Supported protocols',['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md364',1,'']]],
+  ['system_21',['system',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html#autotoc_md100',1,'Operating system'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2macOS.html#autotoc_md180',1,'Operating system'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Windows.html#autotoc_md216',1,'Operating system'],['..//home/runner/work/RabbitRemoteControl/RabbitRemoteControl/README.md#autotoc_md362',1,'Supported operating system']]]
+];

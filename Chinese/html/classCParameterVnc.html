@@ -1,0 +1,1843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterVnc类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterVnc-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterVnc类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CParameterVnc 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterVnc__inherit__graph.png" border="0" usemap="#aCParameterVnc_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCParameterVnc_inherit__map" id="aCParameterVnc_inherit__map">
+<area shape="rect" title=" " alt="" coords="20,299,143,324"/>
+<area shape="rect" href="classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="5,225,157,251"/>
+<area shape="poly" title=" " alt="" coords="84,264,84,299,79,299,79,264"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="6,152,157,177"/>
+<area shape="poly" title=" " alt="" coords="84,191,84,225,79,225,79,191"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="32,79,131,104"/>
+<area shape="poly" title=" " alt="" coords="84,118,84,152,79,152,79,118"/>
+<area shape="rect" title=" " alt="" coords="44,5,119,31"/>
+<area shape="poly" title=" " alt="" coords="84,44,84,79,79,79,79,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterVnc 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterVnc__coll__graph.png" border="0" usemap="#aCParameterVnc_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCParameterVnc_coll__map" id="aCParameterVnc_coll__map">
+<area shape="rect" title=" " alt="" coords="1167,889,1290,915"/>
+<area shape="rect" href="classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="1153,773,1305,799"/>
+<area shape="poly" title=" " alt="" coords="1231,813,1231,889,1226,889,1226,813"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="900,155,1051,180"/>
+<area shape="poly" title=" " alt="" coords="1064,171,1155,181,1247,198,1287,210,1319,225,1341,243,1349,264,1349,692,1346,707,1340,721,1320,745,1293,763,1266,776,1263,771,1290,758,1316,741,1336,719,1341,706,1343,691,1343,265,1336,246,1316,230,1285,215,1246,204,1154,187,1064,177"/>
+<area shape="poly" title=" " alt="" coords="1065,160,1077,167,1069,174,1051,177,1050,171,1067,169,1072,167,1063,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="743,445,903,471"/>
+<area shape="poly" title=" " alt="" coords="949,190,933,206,893,272,862,342,840,404,829,446,824,444,835,402,857,340,888,269,929,202,945,186"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1064,349,1185,375"/>
+<area shape="poly" title=" " alt="" coords="1004,187,1021,202,1054,242,1082,283,1121,348,1116,351,1078,286,1050,245,1017,206,1001,190"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="1089,253,1217,279"/>
+<area shape="poly" title=" " alt="" coords="1027,182,1071,202,1110,227,1141,251,1138,255,1107,231,1069,206,1025,187"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="1057,677,1192,703"/>
+<area shape="poly" title=" " alt="" coords="968,194,958,227,953,265,953,575,956,595,964,612,976,627,992,640,1030,661,1070,675,1069,680,1028,666,989,645,972,631,959,615,950,597,947,576,947,264,952,226,963,192"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="988,445,1112,471"/>
+<area shape="poly" title=" " alt="" coords="984,193,1050,445,1044,446,979,194"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="339,80,438,105"/>
+<area shape="poly" title=" " alt="" coords="452,99,900,154,900,159,451,104"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="339,889,478,915"/>
+<area shape="poly" title=" " alt="" coords="326,100,292,108,262,120,240,139,234,151,231,166,231,787,234,807,242,824,255,840,271,853,310,873,351,887,349,892,308,878,268,857,251,843,238,827,229,809,226,788,226,166,228,150,235,136,259,115,291,102,325,95"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="687,677,827,703"/>
+<area shape="poly" title=" " alt="" coords="452,102,498,112,541,126,575,144,585,154,589,166,589,411,593,435,604,452,617,470,630,494,637,520,640,541,643,561,651,586,668,622,693,651,729,675,727,679,690,655,663,625,646,588,638,562,635,541,632,521,625,496,613,472,599,455,588,437,583,412,583,166,580,157,572,148,539,131,496,118,451,107"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="465,773,595,799"/>
+<area shape="poly" title=" " alt="" coords="330,113,312,122,297,134,286,148,282,166,282,691,286,704,299,717,345,739,405,758,465,771,464,776,403,763,343,744,296,721,282,707,277,692,277,166,281,146,293,130,309,117,328,108"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="317,677,460,703"/>
+<area shape="poly" title=" " alt="" coords="391,119,391,166,391,575,391,677,386,677,386,575,386,166,386,119"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="5,204,196,229"/>
+<area shape="poly" title=" " alt="" coords="326,102,269,112,211,132,181,148,154,169,113,206,110,202,151,164,179,144,209,127,267,107,325,97"/>
+<area shape="rect" title=" " alt="" coords="523,5,598,31"/>
+<area shape="poly" title=" " alt="" coords="522,38,417,82,415,78,520,34"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="661,561,754,587"/>
+<area shape="poly" title=" " alt="" coords="612,31,632,41,650,54,662,71,667,91,667,218,672,322,684,423,708,561,702,562,679,424,667,323,662,218,662,92,658,73,646,58,629,45,610,36"/>
+<area shape="poly" title=" " alt="" coords="491,889,547,879,570,871,584,863,607,838,617,814,627,749,629,713,620,678,599,649,566,603,550,576,539,549,536,521,542,494,581,431,629,374,685,325,743,282,802,246,857,216,943,178,946,183,860,221,805,250,746,286,688,329,633,378,585,434,547,496,541,521,544,547,555,574,570,600,604,646,624,676,635,713,633,750,623,815,611,841,588,867,572,876,549,884,492,894"/>
+<area shape="poly" title=" " alt="" coords="754,717,744,752,727,793,703,834,669,868,635,881,587,891,478,901,478,896,586,886,634,876,666,863,699,831,723,791,739,750,749,716"/>
+<area shape="poly" title=" " alt="" coords="829,484,846,610,850,633,851,643,846,655,831,670,813,680,811,675,828,665,841,652,845,642,845,633,841,611,824,485"/>
+<area shape="poly" title=" " alt="" coords="766,478,740,497,728,512,720,530,712,562,706,560,715,528,724,509,736,493,763,474"/>
+<area shape="poly" title=" " alt="" coords="1153,381,1203,428,1226,459,1244,494,1256,534,1261,575,1259,657,1247,727,1235,774,1230,772,1242,726,1254,657,1256,576,1251,535,1240,496,1222,462,1199,432,1149,385"/>
+<area shape="poly" title=" " alt="" coords="1075,381,1009,401,860,448,859,443,1008,396,1073,376"/>
+<area shape="poly" title=" " alt="" coords="1132,388,1134,398,1140,469,1143,499,1154,536,1161,548,1169,560,1172,585,1171,611,1175,632,1175,642,1171,655,1161,669,1148,679,1145,675,1157,665,1166,652,1170,642,1169,633,1166,611,1167,586,1163,562,1157,551,1149,538,1138,500,1135,469,1129,399,1127,389"/>
+<area shape="poly" title=" " alt="" coords="1097,385,1081,400,1066,424,1057,446,1052,444,1062,421,1077,397,1094,381"/>
+<area shape="poly" title=" " alt="" coords="1148,293,1131,350,1126,348,1143,291"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="1298,155,1482,180"/>
+<area shape="poly" title=" " alt="" coords="1350,188,1182,256,1180,251,1348,183"/>
+<area shape="poly" title=" " alt="" coords="702,600,698,626,704,652,715,665,730,675,727,680,712,669,700,655,693,627,696,600"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="484,677,611,703"/>
+<area shape="poly" title=" " alt="" coords="681,597,565,679,562,675,678,593"/>
+<area shape="poly" title=" " alt="" coords="509,810,423,891,419,887,506,806"/>
+<area shape="poly" title=" " alt="" coords="538,716,534,727,531,751,532,773,526,773,526,751,529,726,533,714"/>
+<area shape="poly" title=" " alt="" coords="407,711,427,731,451,747,540,754,735,763,1153,779,1153,785,735,768,539,759,449,752,423,735,403,715"/>
+<area shape="poly" title=" " alt="" coords="388,717,382,773,382,798,393,849,407,888,402,890,388,850,377,799,377,773,382,716"/>
+<area shape="poly" title=" " alt="" coords="98,243,93,276,90,313,90,787,93,807,100,822,112,832,127,839,166,850,211,863,276,882,340,892,339,898,275,887,209,868,165,855,125,844,109,836,96,825,88,809,85,788,85,313,87,276,93,243"/>
+<area shape="poly" title=" " alt="" coords="1143,712,1174,747,1208,771,1205,775,1171,751,1139,716"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="988,561,1155,587"/>
+<area shape="poly" title=" " alt="" coords="1085,598,1122,676,1117,678,1080,600"/>
+<area shape="poly" title=" " alt="" coords="1057,484,1072,560,1066,561,1052,485"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a8d38b87d644131e541ad85405971164e" id="r_a8d38b87d644131e541ad85405971164e"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><b>COLOR_LEVEL</b> { <b>Full</b>
+, <b>Medium</b>
+, <b>Low</b>
+, <b>VeryLow</b>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:af421aa965db508e2218fb15ebafe8051" id="r_af421aa965db508e2218fb15ebafe8051"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af421aa965db508e2218fb15ebafe8051">CParameterVnc</a> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:a3487773b88a76bb40e24d69c8323a381" id="r_a3487773b88a76bb40e24d69c8323a381"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a3487773b88a76bb40e24d69c8323a381">OnCheckValidity</a> () override</td></tr>
+<tr class="memdesc:a3487773b88a76bb40e24d69c8323a381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the parameters are complete to decide whether to open the parameter dialog  <br /></td></tr>
+<tr class="memitem:abd5c159413c65b3412ac046ed8afd135" id="r_abd5c159413c65b3412ac046ed8afd135"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abd5c159413c65b3412ac046ed8afd135">GetShared</a> () const</td></tr>
+<tr class="memitem:a4953861a97d2056c45a7984195ca5859" id="r_a4953861a97d2056c45a7984195ca5859"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4953861a97d2056c45a7984195ca5859">SetShared</a> (bool newShared)</td></tr>
+<tr class="memitem:ac886cc095c25c3afb14eb4a4964b7a0a" id="r_ac886cc095c25c3afb14eb4a4964b7a0a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac886cc095c25c3afb14eb4a4964b7a0a">GetBufferEndRefresh</a> () const</td></tr>
+<tr class="memitem:a8a4cbb2017d66df424cc1393028ae371" id="r_a8a4cbb2017d66df424cc1393028ae371"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8a4cbb2017d66df424cc1393028ae371">SetBufferEndRefresh</a> (bool newBufferEndRefresh)</td></tr>
+<tr class="memitem:a53d71ee5674cb048788afd76e92f108b" id="r_a53d71ee5674cb048788afd76e92f108b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a53d71ee5674cb048788afd76e92f108b">GetAutoSelect</a> () const</td></tr>
+<tr class="memitem:a9fe423f9d1a891cf40cc8102181f55e4" id="r_a9fe423f9d1a891cf40cc8102181f55e4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9fe423f9d1a891cf40cc8102181f55e4">SetAutoSelect</a> (bool newAutoSelect)</td></tr>
+<tr class="memitem:a1cf91f546d22a58e1aaf4152cf1b2f74" id="r_a1cf91f546d22a58e1aaf4152cf1b2f74"><td class="memItemLeft">COLOR_LEVEL&#160;</td><td class="memItemRight"><a class="el" href="#a1cf91f546d22a58e1aaf4152cf1b2f74">GetColorLevel</a> () const</td></tr>
+<tr class="memitem:a726a7a209a0ef7a3ade10112eb3c7cdb" id="r_a726a7a209a0ef7a3ade10112eb3c7cdb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a726a7a209a0ef7a3ade10112eb3c7cdb">SetColorLevel</a> (COLOR_LEVEL newColorLevel)</td></tr>
+<tr class="memitem:a9413af118a309ccb34202ae2664bc3d7" id="r_a9413af118a309ccb34202ae2664bc3d7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a9413af118a309ccb34202ae2664bc3d7">GetPreferredEncoding</a> () const</td></tr>
+<tr class="memitem:add990dd1894394b5dffe28399a4591f2" id="r_add990dd1894394b5dffe28399a4591f2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#add990dd1894394b5dffe28399a4591f2">SetPreferredEncoding</a> (int newEncoding)</td></tr>
+<tr class="memitem:a74ef8402449023844007c93d9a6eead5" id="r_a74ef8402449023844007c93d9a6eead5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a74ef8402449023844007c93d9a6eead5">GetEnableCompressLevel</a> () const</td></tr>
+<tr class="memitem:acec8c0dd9c0f7aed2d0921d14a99dec0" id="r_acec8c0dd9c0f7aed2d0921d14a99dec0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acec8c0dd9c0f7aed2d0921d14a99dec0">SetEnableCompressLevel</a> (bool newCompressLevel)</td></tr>
+<tr class="memitem:acb090eace5db21696dae3410a945eb61" id="r_acb090eace5db21696dae3410a945eb61"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#acb090eace5db21696dae3410a945eb61">GetCompressLevel</a> () const</td></tr>
+<tr class="memitem:aca97a6053f651db2cfc2063e317b1879" id="r_aca97a6053f651db2cfc2063e317b1879"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aca97a6053f651db2cfc2063e317b1879">SetCompressLevel</a> (int newCompressLevel)</td></tr>
+<tr class="memitem:af5f77658a8d76ac4d5e3444703360111" id="r_af5f77658a8d76ac4d5e3444703360111"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af5f77658a8d76ac4d5e3444703360111">GetNoJpeg</a> () const</td></tr>
+<tr class="memitem:a1d9b0c2ec9da349057cbe4bb3a7aa3ae" id="r_a1d9b0c2ec9da349057cbe4bb3a7aa3ae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1d9b0c2ec9da349057cbe4bb3a7aa3ae">SetNoJpeg</a> (bool newNoJpeg)</td></tr>
+<tr class="memitem:acbbb939bdac70dac65d903479b02b157" id="r_acbbb939bdac70dac65d903479b02b157"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#acbbb939bdac70dac65d903479b02b157">GetQualityLevel</a> () const</td></tr>
+<tr class="memitem:af5765562cd965e6dbf3e2e3f9988cbda" id="r_af5765562cd965e6dbf3e2e3f9988cbda"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af5765562cd965e6dbf3e2e3f9988cbda">SetQualityLevel</a> (int newQualityLevel)</td></tr>
+<tr class="memitem:abdbd3e54282793b4d9b2c823a7fdacfe" id="r_abdbd3e54282793b4d9b2c823a7fdacfe"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abdbd3e54282793b4d9b2c823a7fdacfe">GetIce</a> () const</td></tr>
+<tr class="memitem:a0e8696724361747f38b0fd59102b9432" id="r_a0e8696724361747f38b0fd59102b9432"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0e8696724361747f38b0fd59102b9432">SetIce</a> (bool newIce)</td></tr>
+<tr class="memitem:aa212b0695d1500f30ec6abebbccbce2d" id="r_aa212b0695d1500f30ec6abebbccbce2d"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aa212b0695d1500f30ec6abebbccbce2d">GetSignalServer</a> () const</td></tr>
+<tr class="memitem:a66a1258d55b4934279adbc58b2dd0626" id="r_a66a1258d55b4934279adbc58b2dd0626"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a66a1258d55b4934279adbc58b2dd0626">SetSignalServer</a> (const QString &amp;newSignalServer)</td></tr>
+<tr class="memitem:a9a4367fa93d51fd6d13174881dfa54f2" id="r_a9a4367fa93d51fd6d13174881dfa54f2"><td class="memItemLeft">quint16&#160;</td><td class="memItemRight"><a class="el" href="#a9a4367fa93d51fd6d13174881dfa54f2">GetSignalPort</a> () const</td></tr>
+<tr class="memitem:a7e43b2c9d9d5a84e945ca8c935e28339" id="r_a7e43b2c9d9d5a84e945ca8c935e28339"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7e43b2c9d9d5a84e945ca8c935e28339">SetSignalPort</a> (quint16 newSignalPort)</td></tr>
+<tr class="memitem:ad5f46d1ff4a99099f8b46a2fedbb8f58" id="r_ad5f46d1ff4a99099f8b46a2fedbb8f58"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad5f46d1ff4a99099f8b46a2fedbb8f58">GetSignalUser</a> () const</td></tr>
+<tr class="memitem:aebbf40969b3e87c7deb2a883aaf629fa" id="r_aebbf40969b3e87c7deb2a883aaf629fa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aebbf40969b3e87c7deb2a883aaf629fa">SetSignalUser</a> (const QString &amp;newSignalUser)</td></tr>
+<tr class="memitem:aa4e85c579173792c05a0499cddf84649" id="r_aa4e85c579173792c05a0499cddf84649"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aa4e85c579173792c05a0499cddf84649">GetSignalPassword</a> () const</td></tr>
+<tr class="memitem:ac2e43da3039c9d3a5e9b0ecc2e2a8e26" id="r_ac2e43da3039c9d3a5e9b0ecc2e2a8e26"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac2e43da3039c9d3a5e9b0ecc2e2a8e26">SetSignalPassword</a> (const QString &amp;newSignalPassword)</td></tr>
+<tr class="memitem:a16464e5453f84329222a1d4595928cca" id="r_a16464e5453f84329222a1d4595928cca"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a16464e5453f84329222a1d4595928cca">GetPeerUser</a> () const</td></tr>
+<tr class="memitem:ac033054b454daf58e6d6fe8b7cff1106" id="r_ac033054b454daf58e6d6fe8b7cff1106"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac033054b454daf58e6d6fe8b7cff1106">SetPeerUser</a> (const QString &amp;newPeerUser)</td></tr>
+<tr class="memitem:ac87b33ff4e5914c4fb921cd6c35f3dff" id="r_ac87b33ff4e5914c4fb921cd6c35f3dff"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac87b33ff4e5914c4fb921cd6c35f3dff">GetStunServer</a> () const</td></tr>
+<tr class="memitem:a95e671ac4b3b6f94b69246a654cf8efc" id="r_a95e671ac4b3b6f94b69246a654cf8efc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a95e671ac4b3b6f94b69246a654cf8efc">SetStunServer</a> (const QString &amp;newStunServer)</td></tr>
+<tr class="memitem:af66533b3de7f1b82176d8df4da3adfa9" id="r_af66533b3de7f1b82176d8df4da3adfa9"><td class="memItemLeft">quint16&#160;</td><td class="memItemRight"><a class="el" href="#af66533b3de7f1b82176d8df4da3adfa9">GetStunPort</a> () const</td></tr>
+<tr class="memitem:af471fdf30183bb04076721f7b858f9ed" id="r_af471fdf30183bb04076721f7b858f9ed"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af471fdf30183bb04076721f7b858f9ed">SetStunPort</a> (quint16 newStunPort)</td></tr>
+<tr class="memitem:a03129edaef4c290806bb1af5490c27e3" id="r_a03129edaef4c290806bb1af5490c27e3"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a03129edaef4c290806bb1af5490c27e3">GetTurnServer</a> () const</td></tr>
+<tr class="memitem:a4dd4c4907e392e5f899ac1a987f13ae8" id="r_a4dd4c4907e392e5f899ac1a987f13ae8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4dd4c4907e392e5f899ac1a987f13ae8">SetTurnServer</a> (const QString &amp;newTurnServer)</td></tr>
+<tr class="memitem:a895b4540c3a991d4da5017583740cbf6" id="r_a895b4540c3a991d4da5017583740cbf6"><td class="memItemLeft">quint16&#160;</td><td class="memItemRight"><a class="el" href="#a895b4540c3a991d4da5017583740cbf6">GetTurnPort</a> () const</td></tr>
+<tr class="memitem:adfc5544ee6ec0c918883fc77357e0772" id="r_adfc5544ee6ec0c918883fc77357e0772"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adfc5544ee6ec0c918883fc77357e0772">SetTurnPort</a> (quint16 newTurnPort)</td></tr>
+<tr class="memitem:a9a6fc1a3a780f499fc5d8a33613eef0a" id="r_a9a6fc1a3a780f499fc5d8a33613eef0a"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9a6fc1a3a780f499fc5d8a33613eef0a">GetTurnUser</a> () const</td></tr>
+<tr class="memitem:aaa5889d5a4d00c8a72f812fa60adba3e" id="r_aaa5889d5a4d00c8a72f812fa60adba3e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaa5889d5a4d00c8a72f812fa60adba3e">SetTurnUser</a> (const QString &amp;newTurnUser)</td></tr>
+<tr class="memitem:a1e3003b5f5a286e44081a7982a388069" id="r_a1e3003b5f5a286e44081a7982a388069"><td class="memItemLeft">const QString &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a1e3003b5f5a286e44081a7982a388069">GetTurnPassword</a> () const</td></tr>
+<tr class="memitem:a7df1b4e79013048b9ac5ac48f775c4b9" id="r_a7df1b4e79013048b9ac5ac48f775c4b9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7df1b4e79013048b9ac5ac48f775c4b9">SetTurnPassword</a> (const QString &amp;newTurnPassword)</td></tr>
+<tr class="inherit_header pub_methods_classCParameterDesktop"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCParameterDesktop.html">CParameterDesktop</a></td></tr>
+<tr class="memitem:a58e1a4e659137241e3e8a10fcd234c90 pub_methods_classCParameterDesktop" id="r_a58e1a4e659137241e3e8a10fcd234c90"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>CParameterDesktop</b> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:aabe69ea923d80b04d33a70a6337e400a pub_methods_classCParameterDesktop" id="r_aabe69ea923d80b04d33a70a6337e400a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#aabe69ea923d80b04d33a70a6337e400a">CParameterDesktop</a> (<a class="el" href="classCParameterOperate.html">CParameterOperate</a> *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:ae8fafedfbc344ae4823dc160409637b6 pub_methods_classCParameterDesktop" id="r_ae8fafedfbc344ae4823dc160409637b6"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#ae8fafedfbc344ae4823dc160409637b6">GetServerName</a> () const</td></tr>
+<tr class="memitem:acbddfc3f46e0449c52c78405d95ceb64 pub_methods_classCParameterDesktop" id="r_acbddfc3f46e0449c52c78405d95ceb64"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#acbddfc3f46e0449c52c78405d95ceb64">SetServerName</a> (const QString &amp;szName)</td></tr>
+<tr class="memitem:a7d9fea06039e111d76b517a6c398d288 pub_methods_classCParameterDesktop" id="r_a7d9fea06039e111d76b517a6c398d288"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a7d9fea06039e111d76b517a6c398d288">GetShowServerName</a> () const</td></tr>
+<tr class="memitem:a679d7a0d2f8deffb0b5d957ceb54405b pub_methods_classCParameterDesktop" id="r_a679d7a0d2f8deffb0b5d957ceb54405b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a679d7a0d2f8deffb0b5d957ceb54405b">SetShowServerName</a> (bool NewShowServerName)</td></tr>
+<tr class="memitem:a756d1751130ebe8d7138d30d9a1f1c76 pub_methods_classCParameterDesktop" id="r_a756d1751130ebe8d7138d30d9a1f1c76"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a756d1751130ebe8d7138d30d9a1f1c76">GetOnlyView</a> () const</td></tr>
+<tr class="memitem:aefb2d2402b1afcefda9bd0b6d70d8ab4 pub_methods_classCParameterDesktop" id="r_aefb2d2402b1afcefda9bd0b6d70d8ab4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#aefb2d2402b1afcefda9bd0b6d70d8ab4">SetOnlyView</a> (bool only)</td></tr>
+<tr class="memitem:ab5ca028fff5a73971ae41b936bc81d23 pub_methods_classCParameterDesktop" id="r_ab5ca028fff5a73971ae41b936bc81d23"><td class="memItemLeft">const bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#ab5ca028fff5a73971ae41b936bc81d23">GetLocalCursor</a> () const</td></tr>
+<tr class="memitem:ab439477bd9d3febca8b52f8ea2ede0d2 pub_methods_classCParameterDesktop" id="r_ab439477bd9d3febca8b52f8ea2ede0d2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#ab439477bd9d3febca8b52f8ea2ede0d2">SetLocalCursor</a> (bool cursor)</td></tr>
+<tr class="memitem:aad317c0cf53b26dbdaabe91de205623a pub_methods_classCParameterDesktop" id="r_aad317c0cf53b26dbdaabe91de205623a"><td class="memItemLeft">const bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#aad317c0cf53b26dbdaabe91de205623a">GetCursorPosition</a> () const</td></tr>
+<tr class="memitem:a2825559c7b641da0349b918c6d2825b5 pub_methods_classCParameterDesktop" id="r_a2825559c7b641da0349b918c6d2825b5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a2825559c7b641da0349b918c6d2825b5">SetCursorPosition</a> (bool pos)</td></tr>
+<tr class="memitem:a034bc765888f06eb6265cbe564fbeb66 pub_methods_classCParameterDesktop" id="r_a034bc765888f06eb6265cbe564fbeb66"><td class="memItemLeft">virtual const bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a034bc765888f06eb6265cbe564fbeb66">GetClipboard</a> () const</td></tr>
+<tr class="memitem:a7e9af1c328d9447ce6356429ac23f8ab pub_methods_classCParameterDesktop" id="r_a7e9af1c328d9447ce6356429ac23f8ab"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a7e9af1c328d9447ce6356429ac23f8ab">SetClipboard</a> (bool c)</td></tr>
+<tr class="memitem:af292c2b9ff2d0e24bab11e5cf320306c pub_methods_classCParameterDesktop" id="r_af292c2b9ff2d0e24bab11e5cf320306c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#af292c2b9ff2d0e24bab11e5cf320306c">GetSupportsDesktopResize</a> () const</td></tr>
+<tr class="memitem:a28033e9d3c7483fa9eff7d0d4e84e6e7 pub_methods_classCParameterDesktop" id="r_a28033e9d3c7483fa9eff7d0d4e84e6e7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a28033e9d3c7483fa9eff7d0d4e84e6e7">SetSupportsDesktopResize</a> (bool newSupportsDesktopResize)</td></tr>
+<tr class="memitem:aba2d21f79fb4e917f72fcf754b647078 pub_methods_classCParameterDesktop" id="r_aba2d21f79fb4e917f72fcf754b647078"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#aba2d21f79fb4e917f72fcf754b647078">GetLedState</a> () const</td></tr>
+<tr class="memitem:aab193f07a9a5162d63a3c0c94507bdaf pub_methods_classCParameterDesktop" id="r_aab193f07a9a5162d63a3c0c94507bdaf"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#aab193f07a9a5162d63a3c0c94507bdaf">SetLedState</a> (bool state)</td></tr>
+<tr class="memitem:affa3ade44c6e534d2ed679af9b794ec6 pub_methods_classCParameterDesktop" id="r_affa3ade44c6e534d2ed679af9b794ec6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#affa3ade44c6e534d2ed679af9b794ec6">GetEnableLocalInputMethod</a> () const</td></tr>
+<tr class="memitem:a2c176f7a02da341e0785b102f70755b3 pub_methods_classCParameterDesktop" id="r_a2c176f7a02da341e0785b102f70755b3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a2c176f7a02da341e0785b102f70755b3">SetEnableLocalInputMethod</a> (bool enable)</td></tr>
+<tr class="memitem:abf040934cb47e26f3e0c5ea73d90f1bf pub_methods_classCParameterDesktop" id="r_abf040934cb47e26f3e0c5ea73d90f1bf"><td class="memItemLeft"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#abf040934cb47e26f3e0c5ea73d90f1bf">GetAdaptWindows</a> ()</td></tr>
+<tr class="memitem:a87c1da14a079e289d166597625615196 pub_methods_classCParameterDesktop" id="r_a87c1da14a079e289d166597625615196"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a87c1da14a079e289d166597625615196">SetAdaptWindows</a> (<a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw)</td></tr>
+<tr class="memitem:ac388c04a3209c74fae8ed826de8f573a pub_methods_classCParameterDesktop" id="r_ac388c04a3209c74fae8ed826de8f573a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#ac388c04a3209c74fae8ed826de8f573a">GetZoomFactor</a> () const</td></tr>
+<tr class="memitem:a2fb4f9e2662b5f13b37257e572236414 pub_methods_classCParameterDesktop" id="r_a2fb4f9e2662b5f13b37257e572236414"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a2fb4f9e2662b5f13b37257e572236414">SetZoomFactor</a> (double newZoomFactor)</td></tr>
+<tr class="inherit_header pub_methods_classCParameterOperate"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a58bef92def69a3a3d6e42a68ff27a48e pub_methods_classCParameterOperate" id="r_a58bef92def69a3a3d6e42a68ff27a48e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:a95bd352215f9624f42b27b32bb0ca6db pub_methods_classCParameterOperate" id="r_a95bd352215f9624f42b27b32bb0ca6db"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a95bd352215f9624f42b27b32bb0ca6db pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="memitem:a427a4b41e546d500a5a0e06f344a6453 pub_methods_classCParameterOperate" id="r_a427a4b41e546d500a5a0e06f344a6453"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a427a4b41e546d500a5a0e06f344a6453">SetPluginParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332 pub_methods_classCParameterOperate" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb pub_methods_classCParameterOperate" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406 pub_methods_classCParameterOperate" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406 pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44 pub_methods_classCParameterOperate" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:aa35b6d1854ae3abc4d6341d31977fc68 pub_methods_classCParameter" id="r_aa35b6d1854ae3abc4d6341d31977fc68"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ada4aae3a245fba3090727b825ce9cae1" id="r_ada4aae3a245fba3090727b825ce9cae1"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ada4aae3a245fba3090727b825ce9cae1">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="memitem:a8387a3f5c57e0d95141ea38cd26c4295" id="r_a8387a3f5c57e0d95141ea38cd26c4295"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a8387a3f5c57e0d95141ea38cd26c4295">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="inherit_header pro_methods_classCParameterDesktop"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCParameterDesktop.html">CParameterDesktop</a></td></tr>
+<tr class="memitem:a6b583464322c7dfdbe5c91e55465dab6 pro_methods_classCParameterDesktop" id="r_a6b583464322c7dfdbe5c91e55465dab6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a6b583464322c7dfdbe5c91e55465dab6">slotSetPluginParameters</a> () override</td></tr>
+<tr class="memdesc:a6b583464322c7dfdbe5c91e55465dab6 pro_methods_classCParameterDesktop"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+<tr class="inherit_header pro_methods_classCParameterOperate"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0 pro_methods_classCParameterOperate" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft">QByteArray&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a3c79dbe002c74ae667c73e118e9c066a" id="r_a3c79dbe002c74ae667c73e118e9c066a"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a3c79dbe002c74ae667c73e118e9c066a">szServerName</a></td></tr>
+<tr class="memitem:ab3bb9af93ed8c54be534f107c9230236" id="r_ab3bb9af93ed8c54be534f107c9230236"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab3bb9af93ed8c54be534f107c9230236">m_bShared</a></td></tr>
+<tr class="memitem:a769dcbfd91e02f6ffc8e36cdaa95d868" id="r_a769dcbfd91e02f6ffc8e36cdaa95d868"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a769dcbfd91e02f6ffc8e36cdaa95d868">m_bBufferEndRefresh</a></td></tr>
+<tr class="memitem:a1c7403a86af670cd59f4f22709560d0f" id="r_a1c7403a86af670cd59f4f22709560d0f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1c7403a86af670cd59f4f22709560d0f">m_bAutoSelect</a></td></tr>
+<tr class="memitem:a94ce711f4f1208110d31008a4cafdd53" id="r_a94ce711f4f1208110d31008a4cafdd53"><td class="memItemLeft">COLOR_LEVEL&#160;</td><td class="memItemRight"><a class="el" href="#a94ce711f4f1208110d31008a4cafdd53">m_nColorLevel</a></td></tr>
+<tr class="memitem:adfab499d68941a51b49409ecf56701d4" id="r_adfab499d68941a51b49409ecf56701d4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#adfab499d68941a51b49409ecf56701d4">m_nPreferredEncoding</a></td></tr>
+<tr class="memitem:af24a16221ddb98c2053543c25cbcaab0" id="r_af24a16221ddb98c2053543c25cbcaab0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af24a16221ddb98c2053543c25cbcaab0">m_bCompressLevel</a></td></tr>
+<tr class="memitem:af1ae0081a660567f63ba610bdffa0ca7" id="r_af1ae0081a660567f63ba610bdffa0ca7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af1ae0081a660567f63ba610bdffa0ca7">m_nCompressLevel</a></td></tr>
+<tr class="memitem:a171009fbd0996f31babf1c3746a1c703" id="r_a171009fbd0996f31babf1c3746a1c703"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a171009fbd0996f31babf1c3746a1c703">m_bNoJpeg</a></td></tr>
+<tr class="memitem:a5e2b7d8769df5bd1060fcb253a9227a6" id="r_a5e2b7d8769df5bd1060fcb253a9227a6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a5e2b7d8769df5bd1060fcb253a9227a6">m_nQualityLevel</a></td></tr>
+<tr class="memitem:a58799a58a428b2ba6618ed363d2056a4" id="r_a58799a58a428b2ba6618ed363d2056a4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a58799a58a428b2ba6618ed363d2056a4">m_bIce</a></td></tr>
+<tr class="memitem:a9052c71202d19e911321bb7c293475c8" id="r_a9052c71202d19e911321bb7c293475c8"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a9052c71202d19e911321bb7c293475c8">m_szSignalServer</a></td></tr>
+<tr class="memitem:a7d6ad6c8ad58965c0ad4927d60394114" id="r_a7d6ad6c8ad58965c0ad4927d60394114"><td class="memItemLeft">quint16&#160;</td><td class="memItemRight"><a class="el" href="#a7d6ad6c8ad58965c0ad4927d60394114">m_nSignalPort</a></td></tr>
+<tr class="memitem:a8255ce6f60acbfd8f7410f3ab2927485" id="r_a8255ce6f60acbfd8f7410f3ab2927485"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a8255ce6f60acbfd8f7410f3ab2927485">m_szSignalUser</a></td></tr>
+<tr class="memitem:ab57a4ead0df251fb3fb178ba6dffad37" id="r_ab57a4ead0df251fb3fb178ba6dffad37"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#ab57a4ead0df251fb3fb178ba6dffad37">m_szSignalPassword</a></td></tr>
+<tr class="memitem:ad934adc6b1c2431562b41663b9e1b2d4" id="r_ad934adc6b1c2431562b41663b9e1b2d4"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#ad934adc6b1c2431562b41663b9e1b2d4">m_szPeerUser</a></td></tr>
+<tr class="memitem:abb53005713ede9c1c93e95a41c9d636f" id="r_abb53005713ede9c1c93e95a41c9d636f"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#abb53005713ede9c1c93e95a41c9d636f">m_szStunServer</a></td></tr>
+<tr class="memitem:aaa1f3bb5dbc5442f07a97d90f82028bd" id="r_aaa1f3bb5dbc5442f07a97d90f82028bd"><td class="memItemLeft">quint16&#160;</td><td class="memItemRight"><a class="el" href="#aaa1f3bb5dbc5442f07a97d90f82028bd">m_nStunPort</a></td></tr>
+<tr class="memitem:a98fc96d6451e1925b0911bdaae86ddc0" id="r_a98fc96d6451e1925b0911bdaae86ddc0"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a98fc96d6451e1925b0911bdaae86ddc0">m_szTurnServer</a></td></tr>
+<tr class="memitem:a302a1503f84145b3a04425685d1e46c9" id="r_a302a1503f84145b3a04425685d1e46c9"><td class="memItemLeft">quint16&#160;</td><td class="memItemRight"><a class="el" href="#a302a1503f84145b3a04425685d1e46c9">m_nTurnPort</a></td></tr>
+<tr class="memitem:a7136853df94b57949de97672cf0f2d14" id="r_a7136853df94b57949de97672cf0f2d14"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a7136853df94b57949de97672cf0f2d14">m_szTurnUser</a></td></tr>
+<tr class="memitem:aa750da07363366a4edb1fb60801a8819" id="r_aa750da07363366a4edb1fb60801a8819"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#aa750da07363366a4edb1fb60801a8819">m_szTurnPassword</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCParameterDesktop"><td colspan="2">信号 继承自 <a class="el" href="classCParameterDesktop.html">CParameterDesktop</a></td></tr>
+<tr class="memitem:ae4149c986bbb6f72a2cd754e15df22ab signals_classCParameterDesktop" id="r_ae4149c986bbb6f72a2cd754e15df22ab"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigShowServerNameChanged</b> ()</td></tr>
+<tr class="memitem:ab72eb85edebafae916b7f66bbedc9853 signals_classCParameterDesktop" id="r_ab72eb85edebafae916b7f66bbedc9853"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigEnableInputMethod</b> (bool bEnable)</td></tr>
+<tr class="memitem:a5b2ca6517c962fc8aa94487543ae7be8 signals_classCParameterDesktop" id="r_a5b2ca6517c962fc8aa94487543ae7be8"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigAdaptWindowsChanged</b> (<a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw)</td></tr>
+<tr class="memitem:a7c9b3d90e744e4a3cd6426cca218cb1a signals_classCParameterDesktop" id="r_a7c9b3d90e744e4a3cd6426cca218cb1a"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigZoomFactorChanged</b> (double newZoomFactor)</td></tr>
+<tr class="inherit_header signals_classCParameterOperate"><td colspan="2">信号 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a2e5750454b66d5ac60140f38c9e9a1ab signals_classCParameterOperate" id="r_a2e5750454b66d5ac60140f38c9e9a1ab"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a2e5750454b66d5ac60140f38c9e9a1ab">sigSetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a2e5750454b66d5ac60140f38c9e9a1ab signals_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468 signals_classCParameterOperate" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2">信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="inherit_header pub_attribs_classCParameterDesktop"><td colspan="2">Public 属性 继承自 <a class="el" href="classCParameterDesktop.html">CParameterDesktop</a></td></tr>
+<tr class="memitem:a335f2a85bc9f021333daffbd8f7ff1b2 pub_attribs_classCParameterDesktop" id="r_a335f2a85bc9f021333daffbd8f7ff1b2"><td class="memItemLeft"><a class="el" href="classCParameterNet.html">CParameterNet</a>&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a335f2a85bc9f021333daffbd8f7ff1b2">m_Net</a></td></tr>
+<tr class="memitem:af0da168c8902b47c5a1eb7581023b507 pub_attribs_classCParameterDesktop" id="r_af0da168c8902b47c5a1eb7581023b507"><td class="memItemLeft"><a class="el" href="classCParameterProxy.html">CParameterProxy</a>&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#af0da168c8902b47c5a1eb7581023b507">m_Proxy</a></td></tr>
+<tr class="memitem:a970e90e80541f2a90759d7102077398f pub_attribs_classCParameterDesktop" id="r_a970e90e80541f2a90759d7102077398f"><td class="memItemLeft"><a class="el" href="classCParameterRecord.html">CParameterRecord</a>&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a970e90e80541f2a90759d7102077398f">m_Record</a></td></tr>
+<tr class="inherit_header properties_classCParameterDesktop"><td colspan="2">属性 继承自 <a class="el" href="classCParameterDesktop.html">CParameterDesktop</a></td></tr>
+<tr class="memitem:a50f8899a926f7d3536124e325a54d236 properties_classCParameterDesktop" id="r_a50f8899a926f7d3536124e325a54d236"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a50f8899a926f7d3536124e325a54d236">Name</a></td></tr>
+<tr class="memitem:a6de7b00969edeb18de1109edce159f26 properties_classCParameterDesktop" id="r_a6de7b00969edeb18de1109edce159f26"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a6de7b00969edeb18de1109edce159f26">ServerName</a></td></tr>
+<tr class="memitem:aa76c2649cc37ddb47f172992a167beba properties_classCParameterDesktop" id="r_aa76c2649cc37ddb47f172992a167beba"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#aa76c2649cc37ddb47f172992a167beba">ShowServerName</a></td></tr>
+<tr class="memitem:a721fe1b692b8c217378aa30023a79831 properties_classCParameterDesktop" id="r_a721fe1b692b8c217378aa30023a79831"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a721fe1b692b8c217378aa30023a79831">OnlyView</a></td></tr>
+<tr class="memitem:a7df400ecf03edfbff009a45d505b08c8 properties_classCParameterDesktop" id="r_a7df400ecf03edfbff009a45d505b08c8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a7df400ecf03edfbff009a45d505b08c8">LocalCursor</a></td></tr>
+<tr class="memitem:a672c14c3404ff743c277b9539dd17c83 properties_classCParameterDesktop" id="r_a672c14c3404ff743c277b9539dd17c83"><td class="memItemLeft"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#a672c14c3404ff743c277b9539dd17c83">AdaptWindows</a></td></tr>
+<tr class="memitem:ad55d08b1a6b33ebc839e25d885501fb7 properties_classCParameterDesktop" id="r_ad55d08b1a6b33ebc839e25d885501fb7"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classCParameterDesktop.html#ad55d08b1a6b33ebc839e25d885501fb7">ZoomFactor</a></td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2">属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00007">7</a> 行定义.</p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">成员枚举类型说明</h2>
+<a id="a8d38b87d644131e541ad85405971164e" name="a8d38b87d644131e541ad85405971164e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d38b87d644131e541ad85405971164e">&#9670;&#160;</a></span>COLOR_LEVEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum CParameterVnc::COLOR_LEVEL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="af421aa965db508e2218fb15ebafe8051" name="af421aa965db508e2218fb15ebafe8051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af421aa965db508e2218fb15ebafe8051">&#9670;&#160;</a></span>CParameterVnc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterVnc::CParameterVnc </td>
+          <td>(</td>
+          <td class="paramtype">QObject *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00004">4</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a53d71ee5674cb048788afd76e92f108b" name="a53d71ee5674cb048788afd76e92f108b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53d71ee5674cb048788afd76e92f108b">&#9670;&#160;</a></span>GetAutoSelect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::GetAutoSelect </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac886cc095c25c3afb14eb4a4964b7a0a" name="ac886cc095c25c3afb14eb4a4964b7a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac886cc095c25c3afb14eb4a4964b7a0a">&#9670;&#160;</a></span>GetBufferEndRefresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::GetBufferEndRefresh </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00166">166</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1cf91f546d22a58e1aaf4152cf1b2f74" name="a1cf91f546d22a58e1aaf4152cf1b2f74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf91f546d22a58e1aaf4152cf1b2f74">&#9670;&#160;</a></span>GetColorLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterVnc::COLOR_LEVEL CParameterVnc::GetColorLevel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00192">192</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acb090eace5db21696dae3410a945eb61" name="acb090eace5db21696dae3410a945eb61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb090eace5db21696dae3410a945eb61">&#9670;&#160;</a></span>GetCompressLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::GetCompressLevel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00231">231</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a74ef8402449023844007c93d9a6eead5" name="a74ef8402449023844007c93d9a6eead5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74ef8402449023844007c93d9a6eead5">&#9670;&#160;</a></span>GetEnableCompressLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::GetEnableCompressLevel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00218">218</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abdbd3e54282793b4d9b2c823a7fdacfe" name="abdbd3e54282793b4d9b2c823a7fdacfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdbd3e54282793b4d9b2c823a7fdacfe">&#9670;&#160;</a></span>GetIce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::GetIce </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00270">270</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af5f77658a8d76ac4d5e3444703360111" name="af5f77658a8d76ac4d5e3444703360111"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5f77658a8d76ac4d5e3444703360111">&#9670;&#160;</a></span>GetNoJpeg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::GetNoJpeg </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16464e5453f84329222a1d4595928cca" name="a16464e5453f84329222a1d4595928cca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16464e5453f84329222a1d4595928cca">&#9670;&#160;</a></span>GetPeerUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetPeerUser </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00335">335</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9413af118a309ccb34202ae2664bc3d7" name="a9413af118a309ccb34202ae2664bc3d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9413af118a309ccb34202ae2664bc3d7">&#9670;&#160;</a></span>GetPreferredEncoding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::GetPreferredEncoding </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00205">205</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acbbb939bdac70dac65d903479b02b157" name="acbbb939bdac70dac65d903479b02b157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbbb939bdac70dac65d903479b02b157">&#9670;&#160;</a></span>GetQualityLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::GetQualityLevel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00257">257</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abd5c159413c65b3412ac046ed8afd135" name="abd5c159413c65b3412ac046ed8afd135"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd5c159413c65b3412ac046ed8afd135">&#9670;&#160;</a></span>GetShared()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::GetShared </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00153">153</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa4e85c579173792c05a0499cddf84649" name="aa4e85c579173792c05a0499cddf84649"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4e85c579173792c05a0499cddf84649">&#9670;&#160;</a></span>GetSignalPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetSignalPassword </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00322">322</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a4367fa93d51fd6d13174881dfa54f2" name="a9a4367fa93d51fd6d13174881dfa54f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a4367fa93d51fd6d13174881dfa54f2">&#9670;&#160;</a></span>GetSignalPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CParameterVnc::GetSignalPort </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00296">296</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa212b0695d1500f30ec6abebbccbce2d" name="aa212b0695d1500f30ec6abebbccbce2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa212b0695d1500f30ec6abebbccbce2d">&#9670;&#160;</a></span>GetSignalServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetSignalServer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00283">283</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad5f46d1ff4a99099f8b46a2fedbb8f58" name="ad5f46d1ff4a99099f8b46a2fedbb8f58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f46d1ff4a99099f8b46a2fedbb8f58">&#9670;&#160;</a></span>GetSignalUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetSignalUser </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00309">309</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af66533b3de7f1b82176d8df4da3adfa9" name="af66533b3de7f1b82176d8df4da3adfa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66533b3de7f1b82176d8df4da3adfa9">&#9670;&#160;</a></span>GetStunPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CParameterVnc::GetStunPort </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00361">361</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac87b33ff4e5914c4fb921cd6c35f3dff" name="ac87b33ff4e5914c4fb921cd6c35f3dff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac87b33ff4e5914c4fb921cd6c35f3dff">&#9670;&#160;</a></span>GetStunServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetStunServer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00348">348</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1e3003b5f5a286e44081a7982a388069" name="a1e3003b5f5a286e44081a7982a388069"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e3003b5f5a286e44081a7982a388069">&#9670;&#160;</a></span>GetTurnPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetTurnPassword </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00413">413</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a895b4540c3a991d4da5017583740cbf6" name="a895b4540c3a991d4da5017583740cbf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a895b4540c3a991d4da5017583740cbf6">&#9670;&#160;</a></span>GetTurnPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CParameterVnc::GetTurnPort </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00387">387</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a03129edaef4c290806bb1af5490c27e3" name="a03129edaef4c290806bb1af5490c27e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03129edaef4c290806bb1af5490c27e3">&#9670;&#160;</a></span>GetTurnServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetTurnServer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00374">374</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a6fc1a3a780f499fc5d8a33613eef0a" name="a9a6fc1a3a780f499fc5d8a33613eef0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a6fc1a3a780f499fc5d8a33613eef0a">&#9670;&#160;</a></span>GetTurnUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterVnc::GetTurnUser </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00400">400</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3487773b88a76bb40e24d69c8323a381" name="a3487773b88a76bb40e24d69c8323a381"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3487773b88a76bb40e24d69c8323a381">&#9670;&#160;</a></span>OnCheckValidity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::OnCheckValidity </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check whether the parameters are complete to decide whether to open the parameter dialog </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p>重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">CParameter</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00135">135</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada4aae3a245fba3090727b825ce9cae1" name="ada4aae3a245fba3090727b825ce9cae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada4aae3a245fba3090727b825ce9cae1">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterDesktop.html">CParameterDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8387a3f5c57e0d95141ea38cd26c4295" name="a8387a3f5c57e0d95141ea38cd26c4295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8387a3f5c57e0d95141ea38cd26c4295">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterDesktop.html">CParameterDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9fe423f9d1a891cf40cc8102181f55e4" name="a9fe423f9d1a891cf40cc8102181f55e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe423f9d1a891cf40cc8102181f55e4">&#9670;&#160;</a></span>SetAutoSelect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetAutoSelect </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newAutoSelect</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00184">184</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8a4cbb2017d66df424cc1393028ae371" name="a8a4cbb2017d66df424cc1393028ae371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a4cbb2017d66df424cc1393028ae371">&#9670;&#160;</a></span>SetBufferEndRefresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetBufferEndRefresh </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newBufferEndRefresh</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00171">171</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a726a7a209a0ef7a3ade10112eb3c7cdb" name="a726a7a209a0ef7a3ade10112eb3c7cdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a726a7a209a0ef7a3ade10112eb3c7cdb">&#9670;&#160;</a></span>SetColorLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetColorLevel </td>
+          <td>(</td>
+          <td class="paramtype">COLOR_LEVEL</td>          <td class="paramname"><span class="paramname"><em>newColorLevel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00197">197</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aca97a6053f651db2cfc2063e317b1879" name="aca97a6053f651db2cfc2063e317b1879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca97a6053f651db2cfc2063e317b1879">&#9670;&#160;</a></span>SetCompressLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetCompressLevel </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newCompressLevel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00236">236</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acec8c0dd9c0f7aed2d0921d14a99dec0" name="acec8c0dd9c0f7aed2d0921d14a99dec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acec8c0dd9c0f7aed2d0921d14a99dec0">&#9670;&#160;</a></span>SetEnableCompressLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetEnableCompressLevel </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newCompressLevel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00223">223</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0e8696724361747f38b0fd59102b9432" name="a0e8696724361747f38b0fd59102b9432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e8696724361747f38b0fd59102b9432">&#9670;&#160;</a></span>SetIce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetIce </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newIce</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00275">275</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1d9b0c2ec9da349057cbe4bb3a7aa3ae" name="a1d9b0c2ec9da349057cbe4bb3a7aa3ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d9b0c2ec9da349057cbe4bb3a7aa3ae">&#9670;&#160;</a></span>SetNoJpeg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetNoJpeg </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newNoJpeg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00249">249</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac033054b454daf58e6d6fe8b7cff1106" name="ac033054b454daf58e6d6fe8b7cff1106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac033054b454daf58e6d6fe8b7cff1106">&#9670;&#160;</a></span>SetPeerUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetPeerUser </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newPeerUser</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00340">340</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add990dd1894394b5dffe28399a4591f2" name="add990dd1894394b5dffe28399a4591f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add990dd1894394b5dffe28399a4591f2">&#9670;&#160;</a></span>SetPreferredEncoding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetPreferredEncoding </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newEncoding</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00210">210</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af5765562cd965e6dbf3e2e3f9988cbda" name="af5765562cd965e6dbf3e2e3f9988cbda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5765562cd965e6dbf3e2e3f9988cbda">&#9670;&#160;</a></span>SetQualityLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetQualityLevel </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newQualityLevel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00262">262</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4953861a97d2056c45a7984195ca5859" name="a4953861a97d2056c45a7984195ca5859"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4953861a97d2056c45a7984195ca5859">&#9670;&#160;</a></span>SetShared()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetShared </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newShared</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00158">158</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac2e43da3039c9d3a5e9b0ecc2e2a8e26" name="ac2e43da3039c9d3a5e9b0ecc2e2a8e26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2e43da3039c9d3a5e9b0ecc2e2a8e26">&#9670;&#160;</a></span>SetSignalPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetSignalPassword </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newSignalPassword</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00327">327</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e43b2c9d9d5a84e945ca8c935e28339" name="a7e43b2c9d9d5a84e945ca8c935e28339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e43b2c9d9d5a84e945ca8c935e28339">&#9670;&#160;</a></span>SetSignalPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetSignalPort </td>
+          <td>(</td>
+          <td class="paramtype">quint16</td>          <td class="paramname"><span class="paramname"><em>newSignalPort</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00301">301</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a66a1258d55b4934279adbc58b2dd0626" name="a66a1258d55b4934279adbc58b2dd0626"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66a1258d55b4934279adbc58b2dd0626">&#9670;&#160;</a></span>SetSignalServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetSignalServer </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newSignalServer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00288">288</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aebbf40969b3e87c7deb2a883aaf629fa" name="aebbf40969b3e87c7deb2a883aaf629fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebbf40969b3e87c7deb2a883aaf629fa">&#9670;&#160;</a></span>SetSignalUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetSignalUser </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newSignalUser</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00314">314</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af471fdf30183bb04076721f7b858f9ed" name="af471fdf30183bb04076721f7b858f9ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af471fdf30183bb04076721f7b858f9ed">&#9670;&#160;</a></span>SetStunPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetStunPort </td>
+          <td>(</td>
+          <td class="paramtype">quint16</td>          <td class="paramname"><span class="paramname"><em>newStunPort</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00366">366</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a95e671ac4b3b6f94b69246a654cf8efc" name="a95e671ac4b3b6f94b69246a654cf8efc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95e671ac4b3b6f94b69246a654cf8efc">&#9670;&#160;</a></span>SetStunServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetStunServer </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newStunServer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00353">353</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7df1b4e79013048b9ac5ac48f775c4b9" name="a7df1b4e79013048b9ac5ac48f775c4b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df1b4e79013048b9ac5ac48f775c4b9">&#9670;&#160;</a></span>SetTurnPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetTurnPassword </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newTurnPassword</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00418">418</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adfc5544ee6ec0c918883fc77357e0772" name="adfc5544ee6ec0c918883fc77357e0772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfc5544ee6ec0c918883fc77357e0772">&#9670;&#160;</a></span>SetTurnPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetTurnPort </td>
+          <td>(</td>
+          <td class="paramtype">quint16</td>          <td class="paramname"><span class="paramname"><em>newTurnPort</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00392">392</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4dd4c4907e392e5f899ac1a987f13ae8" name="a4dd4c4907e392e5f899ac1a987f13ae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dd4c4907e392e5f899ac1a987f13ae8">&#9670;&#160;</a></span>SetTurnServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetTurnServer </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newTurnServer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00379">379</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaa5889d5a4d00c8a72f812fa60adba3e" name="aaa5889d5a4d00c8a72f812fa60adba3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa5889d5a4d00c8a72f812fa60adba3e">&#9670;&#160;</a></span>SetTurnUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterVnc::SetTurnUser </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newTurnUser</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a> 第 <a class="el" href="ParameterVnc_8cpp_source.html#l00405">405</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a1c7403a86af670cd59f4f22709560d0f" name="a1c7403a86af670cd59f4f22709560d0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c7403a86af670cd59f4f22709560d0f">&#9670;&#160;</a></span>m_bAutoSelect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::m_bAutoSelect</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a769dcbfd91e02f6ffc8e36cdaa95d868" name="a769dcbfd91e02f6ffc8e36cdaa95d868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a769dcbfd91e02f6ffc8e36cdaa95d868">&#9670;&#160;</a></span>m_bBufferEndRefresh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::m_bBufferEndRefresh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af24a16221ddb98c2053543c25cbcaab0" name="af24a16221ddb98c2053543c25cbcaab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af24a16221ddb98c2053543c25cbcaab0">&#9670;&#160;</a></span>m_bCompressLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::m_bCompressLevel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00106">106</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a58799a58a428b2ba6618ed363d2056a4" name="a58799a58a428b2ba6618ed363d2056a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58799a58a428b2ba6618ed363d2056a4">&#9670;&#160;</a></span>m_bIce</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::m_bIce</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a171009fbd0996f31babf1c3746a1c703" name="a171009fbd0996f31babf1c3746a1c703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a171009fbd0996f31babf1c3746a1c703">&#9670;&#160;</a></span>m_bNoJpeg</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::m_bNoJpeg</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab3bb9af93ed8c54be534f107c9230236" name="ab3bb9af93ed8c54be534f107c9230236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3bb9af93ed8c54be534f107c9230236">&#9670;&#160;</a></span>m_bShared</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterVnc::m_bShared</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a94ce711f4f1208110d31008a4cafdd53" name="a94ce711f4f1208110d31008a4cafdd53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94ce711f4f1208110d31008a4cafdd53">&#9670;&#160;</a></span>m_nColorLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">COLOR_LEVEL CParameterVnc::m_nColorLevel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af1ae0081a660567f63ba610bdffa0ca7" name="af1ae0081a660567f63ba610bdffa0ca7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1ae0081a660567f63ba610bdffa0ca7">&#9670;&#160;</a></span>m_nCompressLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::m_nCompressLevel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adfab499d68941a51b49409ecf56701d4" name="adfab499d68941a51b49409ecf56701d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfab499d68941a51b49409ecf56701d4">&#9670;&#160;</a></span>m_nPreferredEncoding</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::m_nPreferredEncoding</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00105">105</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5e2b7d8769df5bd1060fcb253a9227a6" name="a5e2b7d8769df5bd1060fcb253a9227a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e2b7d8769df5bd1060fcb253a9227a6">&#9670;&#160;</a></span>m_nQualityLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterVnc::m_nQualityLevel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d6ad6c8ad58965c0ad4927d60394114" name="a7d6ad6c8ad58965c0ad4927d60394114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d6ad6c8ad58965c0ad4927d60394114">&#9670;&#160;</a></span>m_nSignalPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CParameterVnc::m_nSignalPort</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaa1f3bb5dbc5442f07a97d90f82028bd" name="aaa1f3bb5dbc5442f07a97d90f82028bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa1f3bb5dbc5442f07a97d90f82028bd">&#9670;&#160;</a></span>m_nStunPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CParameterVnc::m_nStunPort</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00116">116</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a302a1503f84145b3a04425685d1e46c9" name="a302a1503f84145b3a04425685d1e46c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a302a1503f84145b3a04425685d1e46c9">&#9670;&#160;</a></span>m_nTurnPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CParameterVnc::m_nTurnPort</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00118">118</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad934adc6b1c2431562b41663b9e1b2d4" name="ad934adc6b1c2431562b41663b9e1b2d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad934adc6b1c2431562b41663b9e1b2d4">&#9670;&#160;</a></span>m_szPeerUser</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szPeerUser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab57a4ead0df251fb3fb178ba6dffad37" name="ab57a4ead0df251fb3fb178ba6dffad37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57a4ead0df251fb3fb178ba6dffad37">&#9670;&#160;</a></span>m_szSignalPassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szSignalPassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9052c71202d19e911321bb7c293475c8" name="a9052c71202d19e911321bb7c293475c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9052c71202d19e911321bb7c293475c8">&#9670;&#160;</a></span>m_szSignalServer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szSignalServer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00112">112</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8255ce6f60acbfd8f7410f3ab2927485" name="a8255ce6f60acbfd8f7410f3ab2927485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8255ce6f60acbfd8f7410f3ab2927485">&#9670;&#160;</a></span>m_szSignalUser</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szSignalUser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abb53005713ede9c1c93e95a41c9d636f" name="abb53005713ede9c1c93e95a41c9d636f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb53005713ede9c1c93e95a41c9d636f">&#9670;&#160;</a></span>m_szStunServer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szStunServer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa750da07363366a4edb1fb60801a8819" name="aa750da07363366a4edb1fb60801a8819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa750da07363366a4edb1fb60801a8819">&#9670;&#160;</a></span>m_szTurnPassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szTurnPassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98fc96d6451e1925b0911bdaae86ddc0" name="a98fc96d6451e1925b0911bdaae86ddc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98fc96d6451e1925b0911bdaae86ddc0">&#9670;&#160;</a></span>m_szTurnServer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szTurnServer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7136853df94b57949de97672cf0f2d14" name="a7136853df94b57949de97672cf0f2d14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7136853df94b57949de97672cf0f2d14">&#9670;&#160;</a></span>m_szTurnUser</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::m_szTurnUser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3c79dbe002c74ae667c73e118e9c066a" name="a3c79dbe002c74ae667c73e118e9c066a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c79dbe002c74ae667c73e118e9c066a">&#9670;&#160;</a></span>szServerName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterVnc::szServerName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a> 第 <a class="el" href="ParameterVnc_8h_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Client/<a class="el" href="ParameterVnc_8h_source.html">ParameterVnc.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Client/<a class="el" href="ParameterVnc_8cpp_source.html">ParameterVnc.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

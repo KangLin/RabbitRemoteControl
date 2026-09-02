@@ -1,0 +1,861 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CChannelSFTP类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-types">Private 类型</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCChannelSFTP-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CChannelSFTP类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CChannelSFTP 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannelSFTP__inherit__graph.png" border="0" usemap="#aCChannelSFTP_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCChannelSFTP_inherit__map" id="aCChannelSFTP_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,225,120,251"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="7,152,118,177"/>
+<area shape="poly" title=" " alt="" coords="65,191,65,225,60,225,60,191"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="21,79,105,104"/>
+<area shape="poly" title=" " alt="" coords="65,118,65,152,60,152,60,118"/>
+<area shape="rect" title=" " alt="" coords="17,5,108,31"/>
+<area shape="poly" title=" " alt="" coords="65,44,65,79,60,79,60,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CChannelSFTP 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannelSFTP__coll__graph.png" border="0" usemap="#aCChannelSFTP_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCChannelSFTP_coll__map" id="aCChannelSFTP_coll__map">
+<area shape="rect" title=" " alt="" coords="133,687,248,712"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="135,571,246,596"/>
+<area shape="poly" title=" " alt="" coords="193,610,193,686,188,686,188,610"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="107,475,191,500"/>
+<area shape="poly" title=" " alt="" coords="162,512,188,569,183,572,158,514"/>
+<area shape="rect" title=" " alt="" coords="103,376,193,401"/>
+<area shape="poly" title=" " alt="" coords="151,415,152,475,147,475,146,415"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="223,129,310,155"/>
+<area shape="poly" title=" " alt="" coords="255,168,240,202,233,240,233,489,230,513,222,536,201,572,197,569,217,534,225,512,228,488,228,239,235,200,250,166"/>
+<area shape="rect" title=" " alt="" coords="617,5,692,31"/>
+<area shape="poly" title=" " alt="" coords="606,37,304,132,303,127,604,32"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="825,80,924,105"/>
+<area shape="poly" title=" " alt="" coords="703,32,841,77,839,83,701,37"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1043,571,1136,596"/>
+<area shape="poly" title=" " alt="" coords="706,17,863,21,1059,31,1151,40,1227,53,1279,69,1294,79,1300,91,1300,440,1295,468,1283,492,1264,513,1241,531,1188,558,1137,574,1135,569,1186,553,1238,526,1261,509,1279,489,1290,466,1295,439,1295,92,1290,82,1277,74,1226,58,1150,46,1058,37,862,26,706,22"/>
+<area shape="rect" href="classChannel_1_1CEvent.html" title=" " alt="" coords="11,228,141,253"/>
+<area shape="poly" title=" " alt="" coords="604,27,525,37,425,57,317,87,264,108,213,132,175,155,140,183,89,230,85,226,136,179,172,151,211,127,262,103,315,82,424,52,524,32,603,21"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="269,475,393,500"/>
+<area shape="poly" title=" " alt="" coords="306,510,251,549,212,573,209,568,248,544,303,506"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="510,179,661,204"/>
+<area shape="poly" title=" " alt="" coords="497,206,451,216,420,230,395,258,375,291,360,326,349,362,337,429,333,475,328,474,332,428,344,361,355,324,370,288,391,255,417,226,449,211,496,201"/>
+<area shape="poly" title=" " alt="" coords="675,182,687,191,679,199,661,203,660,197,677,195,682,192,673,187"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="533,475,693,500"/>
+<area shape="poly" title=" " alt="" coords="617,211,632,227,643,251,647,277,667,366,668,405,654,452,645,466,633,476,630,473,641,462,650,450,663,404,662,366,641,278,637,252,627,229,613,214"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="505,376,626,401"/>
+<area shape="poly" title=" " alt="" coords="602,215,616,244,627,279,631,317,628,335,621,353,609,368,595,378,592,374,606,364,616,351,623,334,626,317,622,280,611,246,597,217"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="475,277,603,303"/>
+<area shape="poly" title=" " alt="" coords="576,217,547,278,542,276,572,215"/>
+<area shape="poly" title=" " alt="" coords="828,112,620,181,619,176,827,107"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="793,899,932,924"/>
+<area shape="poly" title=" " alt="" coords="938,95,1031,103,1133,120,1178,132,1215,148,1240,166,1247,178,1249,190,1249,439,1252,479,1257,510,1263,541,1265,582,1265,797,1262,819,1254,835,1240,847,1224,855,1183,865,1137,877,1085,892,1031,902,933,912,932,906,1030,897,1083,887,1135,872,1181,860,1222,850,1238,842,1250,832,1257,817,1260,796,1260,582,1258,542,1252,511,1247,480,1244,439,1244,190,1242,180,1236,170,1212,152,1176,137,1131,125,1030,109,937,100"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="873,687,1013,712"/>
+<area shape="poly" title=" " alt="" coords="914,110,935,124,955,142,970,164,976,190,976,585,973,614,967,643,951,687,946,685,961,642,968,613,971,585,971,190,965,166,951,145,932,128,911,114"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1063,783,1193,808"/>
+<area shape="poly" title=" " alt="" coords="938,97,1018,108,1103,126,1140,138,1170,153,1191,170,1199,190,1199,489,1201,530,1207,567,1221,630,1224,660,1223,690,1214,723,1196,760,1182,775,1166,785,1163,780,1179,771,1191,757,1209,722,1217,690,1219,660,1215,631,1202,568,1196,531,1193,489,1193,190,1187,173,1167,157,1138,143,1101,132,1017,114,938,103"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="711,327,854,352"/>
+<area shape="poly" title=" " alt="" coords="864,118,858,130,815,244,789,327,784,326,810,242,854,128,859,116"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="762,425,953,451"/>
+<area shape="poly" title=" " alt="" coords="877,119,877,190,877,341,872,388,863,426,858,424,867,387,872,341,872,190,872,119"/>
+<area shape="poly" title=" " alt="" coords="779,907,674,896,562,876,513,861,473,844,446,823,439,810,436,797,436,387,438,329,445,304,460,276,482,251,507,230,557,202,559,207,510,235,485,255,465,279,450,306,443,330,441,387,441,796,444,808,450,819,476,839,515,856,563,870,675,891,780,902"/>
+<area shape="poly" title=" " alt="" coords="934,725,908,784,869,899,864,898,903,782,929,723"/>
+<area shape="poly" title=" " alt="" coords="611,513,609,554,614,576,624,594,648,620,676,642,708,659,741,672,810,688,873,695,872,700,809,693,740,677,705,663,673,646,644,624,619,598,609,577,604,555,605,513"/>
+<area shape="poly" title=" " alt="" coords="685,500,1043,570,1042,575,684,505"/>
+<area shape="poly" title=" " alt="" coords="526,409,359,477,357,472,524,404"/>
+<area shape="poly" title=" " alt="" coords="579,412,610,473,605,476,575,415"/>
+<area shape="poly" title=" " alt="" coords="548,315,565,375,560,377,543,317"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="268,179,452,204"/>
+<area shape="poly" title=" " alt="" coords="394,208,519,275,516,280,392,213"/>
+<area shape="poly" title=" " alt="" coords="1043,604,1015,622,1007,632,1002,642,990,664,962,689,959,685,986,661,998,639,1002,629,1012,618,1040,599"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="1041,687,1167,712"/>
+<area shape="poly" title=" " alt="" coords="1144,601,1162,619,1170,641,1162,664,1150,678,1135,689,1132,684,1147,674,1158,661,1165,641,1158,621,1141,605"/>
+<area shape="poly" title=" " alt="" coords="1090,816,890,901,888,896,1088,811"/>
+<area shape="poly" title=" " alt="" coords="1097,726,1095,742,1097,758,1105,770,1115,781,1111,784,1100,773,1092,760,1089,742,1092,725"/>
+<area shape="poly" title=" " alt="" coords="769,365,752,398,746,417,744,437,744,796,746,814,753,830,776,858,806,881,836,896,833,901,803,885,773,862,749,833,741,816,739,797,739,437,741,416,747,396,764,363"/>
+<area shape="poly" title=" " alt="" coords="856,464,845,534,836,620,836,704,844,785,863,898,857,899,838,786,831,704,831,620,840,534,850,464"/>
+<area shape="poly" title=" " alt="" coords="51,264,22,297,12,317,8,338,8,488,11,508,20,525,34,538,51,550,93,566,136,575,135,580,91,571,49,554,30,542,16,528,6,510,3,489,3,338,7,315,18,294,47,261"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:DIR_5FREADER" id="r_DIR_5FREADER"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structCChannelSFTP_1_1DIR__READER.html">DIR_READER</a></td></tr>
+<tr class="memitem:_5FAIO" id="r__5FAIO"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structCChannelSFTP_1_1__AIO.html">_AIO</a></td></tr>
+<tr class="memitem:_5FAFILE" id="r__5FAFILE"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structCChannelSFTP_1_1__AFILE.html">_AFILE</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-slots" class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:af4f6e43ac1b244650b64c2067f69d56d" id="r_af4f6e43ac1b244650b64c2067f69d56d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af4f6e43ac1b244650b64c2067f69d56d">slotGetDir</a> (const QString &amp;szPath, <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *p)</td></tr>
+<tr class="memdesc:af4f6e43ac1b244650b64c2067f69d56d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the directory asynchronously  <br /></td></tr>
+<tr class="memitem:a4fb1c26bba87e1b5a41ea571f119272a" id="r_a4fb1c26bba87e1b5a41ea571f119272a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4fb1c26bba87e1b5a41ea571f119272a">slotStartFileTransfer</a> (QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt; f)</td></tr>
+<tr class="memitem:a62487729276d2a482e22501c6dcf9db1" id="r_a62487729276d2a482e22501c6dcf9db1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a62487729276d2a482e22501c6dcf9db1">slotStopFileTransfer</a> (QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt; f)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a537d3348ba16f37cc156c484a8dad562" id="r_a537d3348ba16f37cc156c484a8dad562"><td class="memItemLeft"><a id="a537d3348ba16f37cc156c484a8dad562" name="a537d3348ba16f37cc156c484a8dad562"></a>
+void&#160;</td><td class="memItemRight"><b>sigGetDir</b> (<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *p, QVector&lt; QSharedPointer&lt; <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> &gt; &gt; contents, bool bEnd)</td></tr>
+<tr class="memitem:abe77996ea7a918f2f35a0c60bb9323e7" id="r_abe77996ea7a918f2f35a0c60bb9323e7"><td class="memItemLeft"><a id="abe77996ea7a918f2f35a0c60bb9323e7" name="abe77996ea7a918f2f35a0c60bb9323e7"></a>
+void&#160;</td><td class="memItemRight"><b>sigFileTransferUpdate</b> (QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt; f)</td></tr>
+<tr class="inherit_header signals_classCChannel"><td colspan="2">信号 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:a270a6dcabcec7d72426e29d0df2001c8 signals_classCChannel" id="r_a270a6dcabcec7d72426e29d0df2001c8"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigConnected</b> ()</td></tr>
+<tr class="memdesc:a270a6dcabcec7d72426e29d0df2001c8 signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is connected. <br /></td></tr>
+<tr class="memitem:a40535811d4d70f5dbbe0b473f0c9e5fa signals_classCChannel" id="r_a40535811d4d70f5dbbe0b473f0c9e5fa"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigDisconnected</b> ()</td></tr>
+<tr class="memdesc:a40535811d4d70f5dbbe0b473f0c9e5fa signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is disconnected <br /></td></tr>
+<tr class="memitem:a50a0547de2864a9b95db7ad4ccf6ffa2 signals_classCChannel" id="r_a50a0547de2864a9b95db7ad4ccf6ffa2"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigError</b> (int nErr, const QString &amp;szErr)</td></tr>
+<tr class="memdesc:a50a0547de2864a9b95db7ad4ccf6ffa2 signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is error <br /></td></tr>
+<tr class="memitem:ab7840f2a8a828740dbba3b8bdba272a2 signals_classCChannel" id="r_ab7840f2a8a828740dbba3b8bdba272a2"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigSecurityLevel</b> (CSecurityLevel::Levels level)</td></tr>
+<tr class="memdesc:ab7840f2a8a828740dbba3b8bdba272a2 signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">当安全级别改变时触发 <br /></td></tr>
+<tr class="memitem:a20c5841016efcd5b17a5159ad68c0094 signals_classCChannel" id="r_a20c5841016efcd5b17a5159ad68c0094"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCChannel.html#a20c5841016efcd5b17a5159ad68c0094">sigSend</a> (quint64 counts)</td></tr>
+<tr class="memdesc:a20c5841016efcd5b17a5159ad68c0094 signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send data counts  <br /></td></tr>
+<tr class="memitem:a2dbbcdcf5706cee6a1877065969d6a16 signals_classCChannel" id="r_a2dbbcdcf5706cee6a1877065969d6a16"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCChannel.html#a2dbbcdcf5706cee6a1877065969d6a16">sigReceive</a> (quint64 counts)</td></tr>
+<tr class="memdesc:a2dbbcdcf5706cee6a1877065969d6a16 signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data counts  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a275c5628698a5e5046f562eae5baebd6" id="r_a275c5628698a5e5046f562eae5baebd6"><td class="memItemLeft"><a id="a275c5628698a5e5046f562eae5baebd6" name="a275c5628698a5e5046f562eae5baebd6"></a>
+&#160;</td><td class="memItemRight"><b>CChannelSFTP</b> (<a class="el" href="classCBackend.html">CBackend</a> *pBackend, <a class="el" href="classCParameterSSH.html">CParameterSSH</a> *pPara, bool bWakeUp=true, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:a00d444b1661ab6975b6df2d352e3a193" id="r_a00d444b1661ab6975b6df2d352e3a193"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a00d444b1661ab6975b6df2d352e3a193">GetDir</a> (<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *p)</td></tr>
+<tr class="memdesc:a00d444b1661ab6975b6df2d352e3a193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronize to get the directory  <br /></td></tr>
+<tr class="memitem:affff736b9c82c6289470f8625136f46b" id="r_affff736b9c82c6289470f8625136f46b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#affff736b9c82c6289470f8625136f46b">MakeDir</a> (const QString &amp;dir)</td></tr>
+<tr class="memitem:a1fe6e5a07e5beae3623cf668ada883a1" id="r_a1fe6e5a07e5beae3623cf668ada883a1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1fe6e5a07e5beae3623cf668ada883a1">RemoveDir</a> (const QString &amp;dir)</td></tr>
+<tr class="memitem:aa9cb2469153446ca091dd682fc0b3878" id="r_aa9cb2469153446ca091dd682fc0b3878"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa9cb2469153446ca091dd682fc0b3878">RemoveFile</a> (const QString &amp;file)</td></tr>
+<tr class="memitem:ad7736ae0e73a846ac457657982faa242" id="r_ad7736ae0e73a846ac457657982faa242"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad7736ae0e73a846ac457657982faa242">Rename</a> (const QString &amp;oldPath, const QString &amp;newPath)</td></tr>
+<tr class="memitem:afed8e84486f761aa8db28f7fcabe8b62" id="r_afed8e84486f761aa8db28f7fcabe8b62"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#afed8e84486f761aa8db28f7fcabe8b62">Process</a> ()</td></tr>
+<tr class="inherit_header pub_methods_classCChannelSSH"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCChannelSSH.html">CChannelSSH</a></td></tr>
+<tr class="memitem:a43dd80909cfe1a1d5c20166aa517ffcf pub_methods_classCChannelSSH" id="r_a43dd80909cfe1a1d5c20166aa517ffcf"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#a43dd80909cfe1a1d5c20166aa517ffcf">CChannelSSH</a> (<a class="el" href="classCBackend.html">CBackend</a> *pBackend, <a class="el" href="classCParameterSSH.html">CParameterSSH</a> *pPara, bool bWakeUp=true, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:ab7059859f5ea9058734f2573525b9962 pub_methods_classCChannelSSH" id="r_ab7059859f5ea9058734f2573525b9962"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#ab7059859f5ea9058734f2573525b9962">open</a> (OpenMode mode) override</td></tr>
+<tr class="memitem:a9e0b4409fbde59c643c170a392abb517 pub_methods_classCChannelSSH" id="r_a9e0b4409fbde59c643c170a392abb517"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#a9e0b4409fbde59c643c170a392abb517">close</a> () override</td></tr>
+<tr class="memitem:a49980ac9095ed939c3448e7369e03d93 pub_methods_classCChannelSSH" id="r_a49980ac9095ed939c3448e7369e03d93"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#a49980ac9095ed939c3448e7369e03d93">WakeUp</a> ()</td></tr>
+<tr class="memitem:a6fe7142304957fe259665f685cc4a794 pub_methods_classCChannelSSH" id="r_a6fe7142304957fe259665f685cc4a794"><td class="memItemLeft">virtual QString&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#a6fe7142304957fe259665f685cc4a794">GetDetails</a> () override</td></tr>
+<tr class="memdesc:a6fe7142304957fe259665f685cc4a794 pub_methods_classCChannelSSH"><td class="mdescLeft">&#160;</td><td class="mdescRight">依赖信息  <br /></td></tr>
+<tr class="inherit_header pub_methods_classCChannel"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:af80ab8220269cccf1cd9fd5fb74271cc pub_methods_classCChannel" id="r_af80ab8220269cccf1cd9fd5fb74271cc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCChannel.html#af80ab8220269cccf1cd9fd5fb74271cc">CChannel</a> (QTcpSocket *pSocket, QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:af80ab8220269cccf1cd9fd5fb74271cc pub_methods_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。">CChannel</a>  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a9be68129f861306c6dc7e4d62a1c415a" id="r_a9be68129f861306c6dc7e4d62a1c415a"><td class="memItemLeft">virtual qint64&#160;</td><td class="memItemRight"><a class="el" href="#a9be68129f861306c6dc7e4d62a1c415a">readData</a> (char *data, qint64 maxlen) override</td></tr>
+<tr class="memitem:ac0b7bfd48b2a51f3e32a2317e044cbcf" id="r_ac0b7bfd48b2a51f3e32a2317e044cbcf"><td class="memItemLeft">virtual qint64&#160;</td><td class="memItemRight"><a class="el" href="#ac0b7bfd48b2a51f3e32a2317e044cbcf">writeData</a> (const char *data, qint64 len) override</td></tr>
+<tr class="inherit_header pro_methods_classCChannel"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:a5522bb72d841222126cfcecf77d56971 pro_methods_classCChannel" id="r_a5522bb72d841222126cfcecf77d56971"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCChannel.html#a5522bb72d841222126cfcecf77d56971">CChannel</a> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:ad9aa220e3dde85bbe4b6caaece778c3d pro_methods_classCChannel" id="r_ad9aa220e3dde85bbe4b6caaece778c3d"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCChannel.html#ad9aa220e3dde85bbe4b6caaece778c3d">isSequential</a> () const override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 类型</h2></td></tr>
+<tr class="memitem:a6e4ecb3304258233f3d81545ddb10a4e" id="r_a6e4ecb3304258233f3d81545ddb10a4e"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><b>STATE</b> { <br />
+&#160;&#160;<b>OPEN</b>
+, <b>READ</b>
+, <b>CLOSE</b>
+, <b>FINISH</b>
+, <br />
+&#160;&#160;<b>ERR</b>
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a6830c19f67e2f6e94f5ae5fe98e3018a" id="r_a6830c19f67e2f6e94f5ae5fe98e3018a"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a6830c19f67e2f6e94f5ae5fe98e3018a">OnOpen</a> (ssh_session session) override</td></tr>
+<tr class="memitem:ac2c3ec4d44d97fa057aa5959749968e4" id="r_ac2c3ec4d44d97fa057aa5959749968e4"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ac2c3ec4d44d97fa057aa5959749968e4">OnClose</a> () override</td></tr>
+<tr class="memitem:ad1c91a474df6f28533d88ce9f950a1ff" id="r_ad1c91a474df6f28533d88ce9f950a1ff"><td class="memItemLeft">QSharedPointer&lt; <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad1c91a474df6f28533d88ce9f950a1ff">GetFileNode</a> (const QString &amp;szPath, sftp_attributes attributes)</td></tr>
+<tr class="memitem:ad5df168492c0fff686319da0f75115fb" id="r_ad5df168492c0fff686319da0f75115fb"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad5df168492c0fff686319da0f75115fb">AsyncReadDir</a> ()</td></tr>
+<tr class="memitem:abf3d73a1f57020fa1808bd625eb579a9" id="r_abf3d73a1f57020fa1808bd625eb579a9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#abf3d73a1f57020fa1808bd625eb579a9">AsyncFile</a> ()</td></tr>
+<tr class="memitem:ad397ed94517f51ea2c1423444aa97d41" id="r_ad397ed94517f51ea2c1423444aa97d41"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad397ed94517f51ea2c1423444aa97d41">CleanFileAIO</a> (QSharedPointer&lt; <a class="el" href="structCChannelSFTP_1_1__AFILE.html">_AFILE</a> &gt; aio)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a969f2c11b0bb057affcc7f3fec35f352" id="r_a969f2c11b0bb057affcc7f3fec35f352"><td class="memItemLeft">sftp_session&#160;</td><td class="memItemRight"><a class="el" href="#a969f2c11b0bb057affcc7f3fec35f352">m_SessionSftp</a></td></tr>
+<tr class="memitem:ad507e04670654c698774ec969f6ff8fa" id="r_ad507e04670654c698774ec969f6ff8fa"><td class="memItemLeft">QVector&lt; QSharedPointer&lt; <a class="el" href="structCChannelSFTP_1_1DIR__READER.html">DIR_READER</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad507e04670654c698774ec969f6ff8fa">m_vDirs</a></td></tr>
+<tr class="memitem:a7140507fa43bb9403756d050020224e9" id="r_a7140507fa43bb9403756d050020224e9"><td class="memItemLeft">QVector&lt; QSharedPointer&lt; <a class="el" href="structCChannelSFTP_1_1__AFILE.html">_AFILE</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7140507fa43bb9403756d050020224e9">m_vFiles</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classCChannel"><td colspan="2">静态 Public 成员函数 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:a17424001491e79f13e3080ba40f7d422 pub_static_methods_classCChannel" id="r_a17424001491e79f13e3080ba40f7d422"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="classCChannel.html#a17424001491e79f13e3080ba40f7d422">InitTranslation</a> ()</td></tr>
+<tr class="memdesc:a17424001491e79f13e3080ba40f7d422 pub_static_methods_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial translation  <br /></td></tr>
+<tr class="memitem:a049af7801157d4bade669f37769aa48a pub_static_methods_classCChannel" id="r_a049af7801157d4bade669f37769aa48a"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="classCChannel.html#a049af7801157d4bade669f37769aa48a">RemoveTranslation</a> ()</td></tr>
+<tr class="memdesc:a049af7801157d4bade669f37769aa48a pub_static_methods_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove translation  <br /></td></tr>
+<tr class="inherit_header pro_attribs_classCChannelSSH"><td colspan="2">Protected 属性 继承自 <a class="el" href="classCChannelSSH.html">CChannelSSH</a></td></tr>
+<tr class="memitem:af62e16ff60357ecb1332d6687dea16ed pro_attribs_classCChannelSSH" id="r_af62e16ff60357ecb1332d6687dea16ed"><td class="memItemLeft">ssh_session&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#af62e16ff60357ecb1332d6687dea16ed">m_Session</a></td></tr>
+<tr class="memitem:a2d643a078927bd779f24c6bca7e8bafd pro_attribs_classCChannelSSH" id="r_a2d643a078927bd779f24c6bca7e8bafd"><td class="memItemLeft">ssh_channel&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#a2d643a078927bd779f24c6bca7e8bafd">m_Channel</a></td></tr>
+<tr class="memitem:afe1cb2d070814c2d296757424cf8404e pro_attribs_classCChannelSSH" id="r_afe1cb2d070814c2d296757424cf8404e"><td class="memItemLeft"><a class="el" href="classCBackend.html">CBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#afe1cb2d070814c2d296757424cf8404e">m_pBackend</a></td></tr>
+<tr class="memitem:adaa43d3abe4665bd5f8fe8de941ca09f pro_attribs_classCChannelSSH" id="r_adaa43d3abe4665bd5f8fe8de941ca09f"><td class="memItemLeft"><a class="el" href="classCParameterSSH.html">CParameterSSH</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#adaa43d3abe4665bd5f8fe8de941ca09f">m_pParameter</a></td></tr>
+<tr class="memitem:ae26b0c72364fadc84c3c8f56217f818e pro_attribs_classCChannelSSH" id="r_ae26b0c72364fadc84c3c8f56217f818e"><td class="memItemLeft"><a class="el" href="classChannel_1_1CEvent.html">Channel::CEvent</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCChannelSSH.html#ae26b0c72364fadc84c3c8f56217f818e">m_pEvent</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8h_source.html">ChannelSFTP.h</a> 第 <a class="el" href="ChannelSFTP_8h_source.html#l00013">13</a> 行定义.</p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">成员枚举类型说明</h2>
+<a id="a6e4ecb3304258233f3d81545ddb10a4e" name="a6e4ecb3304258233f3d81545ddb10a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e4ecb3304258233f3d81545ddb10a4e">&#9670;&#160;</a></span>STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CChannelSFTP::STATE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8h_source.html">ChannelSFTP.h</a> 第 <a class="el" href="ChannelSFTP_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="abf3d73a1f57020fa1808bd625eb579a9" name="abf3d73a1f57020fa1808bd625eb579a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf3d73a1f57020fa1808bd625eb579a9">&#9670;&#160;</a></span>AsyncFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::AsyncFile </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00535">535</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad5df168492c0fff686319da0f75115fb" name="ad5df168492c0fff686319da0f75115fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5df168492c0fff686319da0f75115fb">&#9670;&#160;</a></span>AsyncReadDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::AsyncReadDir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00404">404</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad397ed94517f51ea2c1423444aa97d41" name="ad397ed94517f51ea2c1423444aa97d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad397ed94517f51ea2c1423444aa97d41">&#9670;&#160;</a></span>CleanFileAIO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::CleanFileAIO </td>
+          <td>(</td>
+          <td class="paramtype">QSharedPointer&lt; <a class="el" href="structCChannelSFTP_1_1__AFILE.html">_AFILE</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>aio</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00888">888</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a00d444b1661ab6975b6df2d352e3a193" name="a00d444b1661ab6975b6df2d352e3a193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00d444b1661ab6975b6df2d352e3a193">&#9670;&#160;</a></span>GetDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::GetDir </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Synchronize to get the directory </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">szPath</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00142">142</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad1c91a474df6f28533d88ce9f950a1ff" name="ad1c91a474df6f28533d88ce9f950a1ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c91a474df6f28533d88ce9f950a1ff">&#9670;&#160;</a></span>GetFileNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt; <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> &gt; CChannelSFTP::GetFileNode </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szPath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sftp_attributes</td>          <td class="paramname"><span class="paramname"><em>attributes</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="affff736b9c82c6289470f8625136f46b" name="affff736b9c82c6289470f8625136f46b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affff736b9c82c6289470f8625136f46b">&#9670;&#160;</a></span>MakeDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::MakeDir </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00195">195</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac2c3ec4d44d97fa057aa5959749968e4" name="ac2c3ec4d44d97fa057aa5959749968e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2c3ec4d44d97fa057aa5959749968e4">&#9670;&#160;</a></span>OnClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannelSFTP::OnClose </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannelSSH.html">CChannelSSH</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00354">354</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6830c19f67e2f6e94f5ae5fe98e3018a" name="a6830c19f67e2f6e94f5ae5fe98e3018a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6830c19f67e2f6e94f5ae5fe98e3018a">&#9670;&#160;</a></span>OnOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::OnOpen </td>
+          <td>(</td>
+          <td class="paramtype">ssh_session</td>          <td class="paramname"><span class="paramname"><em>session</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannelSSH.html">CChannelSSH</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00326">326</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afed8e84486f761aa8db28f7fcabe8b62" name="afed8e84486f761aa8db28f7fcabe8b62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afed8e84486f761aa8db28f7fcabe8b62">&#9670;&#160;</a></span>Process()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::Process </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9be68129f861306c6dc7e4d62a1c415a" name="a9be68129f861306c6dc7e4d62a1c415a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9be68129f861306c6dc7e4d62a1c415a">&#9670;&#160;</a></span>readData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannelSFTP::readData </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qint64</td>          <td class="paramname"><span class="paramname"><em>maxlen</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannel.html">CChannel</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00312">312</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1fe6e5a07e5beae3623cf668ada883a1" name="a1fe6e5a07e5beae3623cf668ada883a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fe6e5a07e5beae3623cf668ada883a1">&#9670;&#160;</a></span>RemoveDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::RemoveDir </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa9cb2469153446ca091dd682fc0b3878" name="aa9cb2469153446ca091dd682fc0b3878"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9cb2469153446ca091dd682fc0b3878">&#9670;&#160;</a></span>RemoveFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::RemoveFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00278">278</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad7736ae0e73a846ac457657982faa242" name="ad7736ae0e73a846ac457657982faa242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7736ae0e73a846ac457657982faa242">&#9670;&#160;</a></span>Rename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSFTP::Rename </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>oldPath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>newPath</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00292">292</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af4f6e43ac1b244650b64c2067f69d56d" name="af4f6e43ac1b244650b64c2067f69d56d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4f6e43ac1b244650b64c2067f69d56d">&#9670;&#160;</a></span>slotGetDir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannelSFTP::slotGetDir </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szPath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *</td>          <td class="paramname"><span class="paramname"><em>p</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the directory asynchronously </p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00380">380</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4fb1c26bba87e1b5a41ea571f119272a" name="a4fb1c26bba87e1b5a41ea571f119272a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fb1c26bba87e1b5a41ea571f119272a">&#9670;&#160;</a></span>slotStartFileTransfer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannelSFTP::slotStartFileTransfer </td>
+          <td>(</td>
+          <td class="paramtype">QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>f</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00497">497</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a62487729276d2a482e22501c6dcf9db1" name="a62487729276d2a482e22501c6dcf9db1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62487729276d2a482e22501c6dcf9db1">&#9670;&#160;</a></span>slotStopFileTransfer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannelSFTP::slotStopFileTransfer </td>
+          <td>(</td>
+          <td class="paramtype">QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>f</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00515">515</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac0b7bfd48b2a51f3e32a2317e044cbcf" name="ac0b7bfd48b2a51f3e32a2317e044cbcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b7bfd48b2a51f3e32a2317e044cbcf">&#9670;&#160;</a></span>writeData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannelSFTP::writeData </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qint64</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannel.html">CChannel</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a> 第 <a class="el" href="ChannelSFTP_8cpp_source.html#l00319">319</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a969f2c11b0bb057affcc7f3fec35f352" name="a969f2c11b0bb057affcc7f3fec35f352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a969f2c11b0bb057affcc7f3fec35f352">&#9670;&#160;</a></span>m_SessionSftp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sftp_session CChannelSFTP::m_SessionSftp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8h_source.html">ChannelSFTP.h</a> 第 <a class="el" href="ChannelSFTP_8h_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad507e04670654c698774ec969f6ff8fa" name="ad507e04670654c698774ec969f6ff8fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad507e04670654c698774ec969f6ff8fa">&#9670;&#160;</a></span>m_vDirs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;QSharedPointer&lt;<a class="el" href="structCChannelSFTP_1_1DIR__READER.html">DIR_READER</a>&gt; &gt; CChannelSFTP::m_vDirs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8h_source.html">ChannelSFTP.h</a> 第 <a class="el" href="ChannelSFTP_8h_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7140507fa43bb9403756d050020224e9" name="a7140507fa43bb9403756d050020224e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7140507fa43bb9403756d050020224e9">&#9670;&#160;</a></span>m_vFiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;QSharedPointer&lt;<a class="el" href="structCChannelSFTP_1_1__AFILE.html">_AFILE</a>&gt; &gt; CChannelSFTP::m_vFiles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSFTP_8h_source.html">ChannelSFTP.h</a> 第 <a class="el" href="ChannelSFTP_8h_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="ChannelSFTP_8h_source.html">ChannelSFTP.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="ChannelSFTP_8cpp_source.html">ChannelSFTP.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

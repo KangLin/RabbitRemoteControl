@@ -1,0 +1,15 @@
+<map id="CBackendServer" name="CBackendServer">
+<area shape="rect" id="Node000001" title="Server interface." alt="" coords="311,152,439,177"/>
+<area shape="rect" id="Node000004" href="$classCBackendFreeRDPServer.html" title=" " alt="" coords="5,225,188,251"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="318,183,142,228,141,223,317,178"/>
+<area shape="rect" id="Node000005" href="$classCBackendFtpServer.html" title=" " alt="" coords="213,225,362,251"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="352,188,303,227,300,223,349,184"/>
+<area shape="rect" id="Node000006" href="$classCBackendSftpServer.html" title="The CBackendSftpServer class." alt="" coords="387,225,540,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="402,184,451,223,447,227,398,188"/>
+<area shape="rect" id="Node000007" href="$classCBackendTemplateServer.html" title=" " alt="" coords="564,225,752,251"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="435,178,613,223,612,228,433,183"/>
+<area shape="rect" id="Node000002" href="$classCBackend.html" title="Backend interface." alt="" coords="332,79,419,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="378,118,378,152,373,152,373,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="338,5,413,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="378,44,378,79,373,79,373,44"/>
+</map>

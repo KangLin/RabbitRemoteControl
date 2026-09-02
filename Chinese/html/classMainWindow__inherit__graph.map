@@ -1,0 +1,8 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="Node000001" title="The MainWindow class" alt="" coords="10,79,117,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,121,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,44,59,78,54,79,52,45"/>
+<area shape="poly" id="edge3_Node000001_Node000002" title=" " alt="" coords="75,45,73,79,68,78,69,44"/>
+<area shape="rect" id="Node000003" href="$classCManager_1_1Handle.html" title="处理连接者。用于客户端得到连接者信号" alt="" coords="145,5,288,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,39,90,81,87,76,179,34"/>
+</map>

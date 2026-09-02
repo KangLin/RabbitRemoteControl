@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackendThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classCBackendThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackendThread类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__LIBAPI__THREAD.html">线程模型</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The backend thread  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="BackendThread_8h_source.html">BackendThread.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CBackendThread 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendThread__inherit__graph.png" border="0" usemap="#aCBackendThread_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCBackendThread_inherit__map" id="aCBackendThread_inherit__map">
+<area shape="rect" title="The backend thread" alt="" coords="5,79,136,104"/>
+<area shape="rect" title=" " alt="" coords="32,5,109,31"/>
+<area shape="poly" title=" " alt="" coords="73,44,73,79,68,79,68,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CBackendThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendThread__coll__graph.png" border="0" usemap="#aCBackendThread_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCBackendThread_coll__map" id="aCBackendThread_coll__map">
+<area shape="rect" title="The backend thread" alt="" coords="83,275,213,300"/>
+<area shape="rect" title=" " alt="" coords="5,179,83,204"/>
+<area shape="poly" title=" " alt="" coords="69,211,137,272,133,276,65,215"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="107,179,189,204"/>
+<area shape="poly" title=" " alt="" coords="151,218,151,274,145,274,145,218"/>
+<area shape="rect" title=" " alt="" coords="140,5,215,31"/>
+<area shape="poly" title=" " alt="" coords="157,42,143,60,132,81,128,107,130,134,145,177,140,179,125,135,122,107,127,79,138,57,153,39"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="142,80,213,105"/>
+<area shape="poly" title=" " alt="" coords="180,45,180,80,175,80,175,45"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="233,129,319,155"/>
+<area shape="poly" title=" " alt="" coords="198,40,269,128,265,131,193,43"/>
+<area shape="poly" title=" " alt="" coords="154,117,145,130,142,155,147,178,141,179,137,155,140,128,149,114"/>
+<area shape="poly" title=" " alt="" coords="277,169,268,211,259,233,245,253,226,267,205,277,202,272,223,263,241,249,254,230,263,209,272,168"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ac314ef1da7217d069b70cca5b99e38ca" id="r_ac314ef1da7217d069b70cca5b99e38ca"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac314ef1da7217d069b70cca5b99e38ca">CBackendThread</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate, QObject *pParent=nullptr)</td></tr>
+<tr class="memdesc:ac314ef1da7217d069b70cca5b99e38ca"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCBackendThread.html" title="The backend thread">CBackendThread</a>  <br /></td></tr>
+<tr class="memitem:a792a99fd747e772cc229b0fbfe84d697" id="r_a792a99fd747e772cc229b0fbfe84d697"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a792a99fd747e772cc229b0fbfe84d697">quit</a> ()</td></tr>
+<tr class="memdesc:a792a99fd747e772cc229b0fbfe84d697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quit  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a11a578aa1e333e4efc70804619f31f4c" id="r_a11a578aa1e333e4efc70804619f31f4c"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a11a578aa1e333e4efc70804619f31f4c">run</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:ab64ffc35716779a8946e218488a34241" id="r_ab64ffc35716779a8946e218488a34241"><td class="memItemLeft"><a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ab64ffc35716779a8946e218488a34241">m_pOperate</a></td></tr>
+<tr class="memitem:a3101c3fcadab9b75aa9aac3d67160b7e" id="r_a3101c3fcadab9b75aa9aac3d67160b7e"><td class="memItemLeft"><a class="el" href="classCBackend.html">CBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a3101c3fcadab9b75aa9aac3d67160b7e">m_pBackend</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>The backend thread </p>
+
+<p class="definition">在文件 <a class="el" href="BackendThread_8h_source.html">BackendThread.h</a> 第 <a class="el" href="BackendThread_8h_source.html#l00014">14</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="ac314ef1da7217d069b70cca5b99e38ca" name="ac314ef1da7217d069b70cca5b99e38ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac314ef1da7217d069b70cca5b99e38ca">&#9670;&#160;</a></span>CBackendThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendThread::CBackendThread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCOperate.html">COperate</a> *</td>          <td class="paramname"><span class="paramname"><em>pOperate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *</td>          <td class="paramname"><span class="paramname"><em>pParent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classCBackendThread.html" title="The backend thread">CBackendThread</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pOperate</td><td></td></tr>
+    <tr><td class="paramname">pParent</td><td>if is nullptr, then the thread is deleted when it is finished. other, the thread is deleted by the parent when the parent is deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2a8790a5a0c966e4c9b06080acc22d8b" name="a2a8790a5a0c966e4c9b06080acc22d8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a8790a5a0c966e4c9b06080acc22d8b">&#9670;&#160;</a></span>~CBackendThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendThread::~CBackendThread </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendThread_8cpp_source.html">BackendThread.cpp</a> 第 <a class="el" href="BackendThread_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a792a99fd747e772cc229b0fbfe84d697" name="a792a99fd747e772cc229b0fbfe84d697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a792a99fd747e772cc229b0fbfe84d697">&#9670;&#160;</a></span>quit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendThread::quit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Quit </p>
+<dl class="section note"><dt>注解</dt><dd>Use this replace QThread::quit, QThread::exit, QThread::terminate </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="BackendThread_8cpp_source.html">BackendThread.cpp</a> 第 <a class="el" href="BackendThread_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a11a578aa1e333e4efc70804619f31f4c" name="a11a578aa1e333e4efc70804619f31f4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11a578aa1e333e4efc70804619f31f4c">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendThread::run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<ul>
+<li>调用 <a class="el" href="classCOperateDesktop.html#ab186c3253704d7bd09cb4aa0dfb99bdc" title="新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。">COperateDesktop::InstanceBackend</a> 实例化 <a class="el" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...">CBackend</a></li>
+<li>调用 <a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">CBackend::Start()</a> 开始</li>
+<li>进入事件循环 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="BackendThread_8cpp_source.html">BackendThread.cpp</a> 第 <a class="el" href="BackendThread_8cpp_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a3101c3fcadab9b75aa9aac3d67160b7e" name="a3101c3fcadab9b75aa9aac3d67160b7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3101c3fcadab9b75aa9aac3d67160b7e">&#9670;&#160;</a></span>m_pBackend</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBackend.html">CBackend</a>* CBackendThread::m_pBackend</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendThread_8h_source.html">BackendThread.h</a> 第 <a class="el" href="BackendThread_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab64ffc35716779a8946e218488a34241" name="ab64ffc35716779a8946e218488a34241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64ffc35716779a8946e218488a34241">&#9670;&#160;</a></span>m_pOperate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperate.html">COperate</a>* CBackendThread::m_pOperate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendThread_8h_source.html">BackendThread.h</a> 第 <a class="el" href="BackendThread_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="BackendThread_8h_source.html">BackendThread.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="BackendThread_8cpp_source.html">BackendThread.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

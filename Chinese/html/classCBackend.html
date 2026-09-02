@@ -1,0 +1,883 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackend类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-types">Protected 类型</a> &#124;
+<a href="#pro-slots">Protected 槽</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCBackend-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackend类 参考<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__PLUGIN__API.html">插件接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： <a class="el" href="#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a>、 <a class="el" href="#ab74a6b0f25f34ff763dc0f7080f229f6" title="一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 OnInit() 返回值 OnInit...">slotTimeOut()</a>、 <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a> 。 当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Backend_8h_source.html">Backend.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CBackend 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackend__inherit__graph.png" border="0" usemap="#aCBackend_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCBackend_inherit__map" id="aCBackend_inherit__map">
+<area shape="rect" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="128,277,215,303"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="292,129,432,155"/>
+<area shape="poly" title=" " alt="" coords="188,264,220,226,261,188,293,168,326,152,328,157,296,172,264,192,224,230,192,268"/>
+<area shape="rect" href="classCBackendFileTransfer.html" title=" " alt="" coords="281,203,443,228"/>
+<area shape="poly" title=" " alt="" coords="202,268,262,237,297,226,298,231,264,242,205,272"/>
+<area shape="rect" href="classCBackendSSH.html" title=" " alt="" coords="306,252,418,277"/>
+<area shape="poly" title=" " alt="" coords="228,280,305,269,306,275,229,285"/>
+<area shape="rect" href="classCBackendServer.html" title="服务接口。它由协议插件实现。" alt="" coords="298,301,426,327"/>
+<area shape="poly" title=" " alt="" coords="229,295,298,303,298,309,228,300"/>
+<area shape="rect" href="classCBackendTemplateBase.html" title=" " alt="" coords="273,351,451,376"/>
+<area shape="poly" title=" " alt="" coords="205,307,264,337,299,348,297,353,262,342,203,312"/>
+<area shape="rect" href="classCBackendTemplateQtEvent.html" title=" " alt="" coords="263,400,461,425"/>
+<area shape="poly" title=" " alt="" coords="190,313,222,351,242,370,264,386,289,397,286,402,261,391,238,374,218,355,186,316"/>
+<area shape="rect" title=" " alt="" coords="5,277,80,303"/>
+<area shape="poly" title=" " alt="" coords="93,287,128,287,128,293,93,293"/>
+<area shape="rect" href="classCBackendFreeRDP.html" title=" " alt="" coords="539,5,680,31"/>
+<area shape="poly" title=" " alt="" coords="387,119,441,78,508,40,540,28,542,33,510,44,443,83,390,123"/>
+<area shape="rect" href="classCBackendLibVNCServer.html" title=" " alt="" coords="522,55,697,80"/>
+<area shape="poly" title=" " alt="" coords="409,122,509,89,551,78,552,83,510,94,411,127"/>
+<area shape="rect" href="classCBackendPlayer.html" title=" " alt="" coords="546,104,673,129"/>
+<area shape="poly" title=" " alt="" coords="445,131,546,120,546,126,446,136"/>
+<area shape="rect" href="classCBackendTemplateDesktop.html" title=" " alt="" coords="509,153,709,179"/>
+<area shape="poly" title=" " alt="" coords="446,147,509,154,509,159,446,153"/>
+<area shape="rect" href="classCBackendVnc.html" title=" " alt="" coords="554,203,665,228"/>
+<area shape="poly" title=" " alt="" coords="413,157,510,187,556,200,555,205,509,193,412,162"/>
+<area shape="rect" href="classCBackendFreeRDPServer.html" title=" " alt="" coords="518,252,701,277"/>
+<area shape="poly" title=" " alt="" coords="439,296,544,275,545,280,440,301"/>
+<area shape="rect" href="classCBackendFtpServer.html" title=" " alt="" coords="535,301,684,327"/>
+<area shape="poly" title=" " alt="" coords="440,311,534,311,534,317,440,317"/>
+<area shape="rect" href="classCBackendSftpServer.html" title="The CBackendSftpServer class" alt="" coords="533,351,686,376"/>
+<area shape="poly" title=" " alt="" coords="440,327,545,348,544,353,439,332"/>
+<area shape="rect" href="classCBackendTemplateServer.html" title=" " alt="" coords="515,400,703,425"/>
+<area shape="poly" title=" " alt="" coords="441,327,463,337,478,350,487,363,496,375,511,386,536,397,534,402,508,391,492,379,483,366,474,353,460,342,438,332"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CBackend 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackend__coll__graph.png" border="0" usemap="#aCBackend_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCBackend_coll__map" id="aCBackend_coll__map">
+<area shape="rect" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="5,79,92,104"/>
+<area shape="rect" title=" " alt="" coords="11,5,86,31"/>
+<area shape="poly" title=" " alt="" coords="51,44,51,79,46,79,46,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a995a76442b28b067ab34dbe0fdffbbb5" id="r_a995a76442b28b067ab34dbe0fdffbbb5"><td class="memItemLeft"><a id="a995a76442b28b067ab34dbe0fdffbbb5" name="a995a76442b28b067ab34dbe0fdffbbb5"></a>
+void&#160;</td><td class="memItemRight"><b>sigRunning</b> ()</td></tr>
+<tr class="memdesc:a995a76442b28b067ab34dbe0fdffbbb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">当插件开始成功后触发。仅由插件触发 <br /></td></tr>
+<tr class="memitem:a465330ec1de890111932a2458d37d0be" id="r_a465330ec1de890111932a2458d37d0be"><td class="memItemLeft"><a id="a465330ec1de890111932a2458d37d0be" name="a465330ec1de890111932a2458d37d0be"></a>
+void&#160;</td><td class="memItemRight"><b>sigStop</b> ()</td></tr>
+<tr class="memdesc:a465330ec1de890111932a2458d37d0be"><td class="mdescLeft">&#160;</td><td class="mdescRight">需要通知用户停止时触发。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 <br /></td></tr>
+<tr class="memitem:ab2055a97b4c856982eedd6ce37f70940" id="r_ab2055a97b4c856982eedd6ce37f70940"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab2055a97b4c856982eedd6ce37f70940">sigFinished</a> ()</td></tr>
+<tr class="memdesc:ab2055a97b4c856982eedd6ce37f70940"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止成功信号。仅由插件触发  <br /></td></tr>
+<tr class="memitem:a67bf8156353fc085dbe5b5afaf3425cc" id="r_a67bf8156353fc085dbe5b5afaf3425cc"><td class="memItemLeft"><a id="a67bf8156353fc085dbe5b5afaf3425cc" name="a67bf8156353fc085dbe5b5afaf3425cc"></a>
+void&#160;</td><td class="memItemRight"><b>sigError</b> (const int nError, const QString &amp;szError=QString())</td></tr>
+<tr class="memdesc:a67bf8156353fc085dbe5b5afaf3425cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发 <br /></td></tr>
+<tr class="memitem:a003c4cf2cd63795187289df16b639e5a" id="r_a003c4cf2cd63795187289df16b639e5a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a003c4cf2cd63795187289df16b639e5a">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:a003c4cf2cd63795187289df16b639e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示信息，不阻塞后台线程  <br /></td></tr>
+<tr class="memitem:a5e011ebbb8577c03f32fbbba33e759d8" id="r_a5e011ebbb8577c03f32fbbba33e759d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5e011ebbb8577c03f32fbbba33e759d8">sigShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:a5e011ebbb8577c03f32fbbba33e759d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="memitem:a780b35e940bdfae5765e5d3337df7a02" id="r_a780b35e940bdfae5765e5d3337df7a02"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a780b35e940bdfae5765e5d3337df7a02">sigBlockShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton &amp;nRet, bool &amp;checkBox, QString checkBoxContext=QString())</td></tr>
+<tr class="memdesc:a780b35e940bdfae5765e5d3337df7a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)  <br /></td></tr>
+<tr class="memitem:ae8fff211d62448cc622947a43cd0ce45" id="r_ae8fff211d62448cc622947a43cd0ce45"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae8fff211d62448cc622947a43cd0ce45">sigBlockInputDialog</a> (const QString &amp;szTitle, const QString &amp;szLable, const QString &amp;szMessage, QString &amp;szText)</td></tr>
+<tr class="memdesc:ae8fff211d62448cc622947a43cd0ce45"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)  <br /></td></tr>
+<tr class="memitem:ad3aecd97defce14b02d48102a843136e" id="r_ad3aecd97defce14b02d48102a843136e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad3aecd97defce14b02d48102a843136e">sigBlockShowWidget</a> (const QString &amp;className, int &amp;nRet, void *pContext)</td></tr>
+<tr class="memdesc:ad3aecd97defce14b02d48102a843136e"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示窗口。  <br /></td></tr>
+<tr class="memitem:ad3a6fbd7d63cb8da4dd496e684877de7" id="r_ad3a6fbd7d63cb8da4dd496e684877de7"><td class="memItemLeft"><a id="ad3a6fbd7d63cb8da4dd496e684877de7" name="ad3a6fbd7d63cb8da4dd496e684877de7"></a>
+void&#160;</td><td class="memItemRight"><b>sigSecurityLevel</b> (CSecurityLevel::Levels level)</td></tr>
+<tr class="memdesc:ad3a6fbd7d63cb8da4dd496e684877de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">当安全级别改变时触发 <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:afd174412c610e7b2d451801254d99433" id="r_afd174412c610e7b2d451801254d99433"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afd174412c610e7b2d451801254d99433">CBackend</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate=nullptr, bool bStopSignal=true)</td></tr>
+<tr class="memdesc:afd174412c610e7b2d451801254d99433"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...">CBackend</a>  <br /></td></tr>
+<tr class="memitem:a675c80c148c99b81cd5c22c718cccd26" id="r_a675c80c148c99b81cd5c22c718cccd26"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a675c80c148c99b81cd5c22c718cccd26">Start</a> ()</td></tr>
+<tr class="memdesc:a675c80c148c99b81cd5c22c718cccd26"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件  <br /></td></tr>
+<tr class="memitem:a179ed68b6d28f51dd75d900f48eb4a2e" id="r_a179ed68b6d28f51dd75d900f48eb4a2e"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a179ed68b6d28f51dd75d900f48eb4a2e">Stop</a> ()</td></tr>
+<tr class="memdesc:a179ed68b6d28f51dd75d900f48eb4a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止  <br /></td></tr>
+<tr class="memitem:a1c7f2d35b7ebd654f5f24ab680ba8335" id="r_a1c7f2d35b7ebd654f5f24ab680ba8335"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a1c7f2d35b7ebd654f5f24ab680ba8335">WakeUp</a> ()=0</td></tr>
+<tr class="memdesc:a1c7f2d35b7ebd654f5f24ab680ba8335"><td class="mdescLeft">&#160;</td><td class="mdescRight">唤醒后台线程。  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-types" class="groupheader"><a id="pro-types" name="pro-types"></a>
+Protected 类型</h2></td></tr>
+<tr class="memitem:ab255847aef6c0290768b431a7839674f" id="r_ab255847aef6c0290768b431a7839674f"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><b>OnInitReturnValue</b> { <b>Fail</b> = -1
+, <b>Success</b> = 0
+, <b>UseOnProcess</b> = Success
+, <b>NotUseOnProcess</b> = 1
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-slots" class="groupheader"><a id="pro-slots" name="pro-slots"></a>
+Protected 槽</h2></td></tr>
+<tr class="memitem:ab74a6b0f25f34ff763dc0f7080f229f6" id="r_ab74a6b0f25f34ff763dc0f7080f229f6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ab74a6b0f25f34ff763dc0f7080f229f6">slotTimeOut</a> ()</td></tr>
+<tr class="memdesc:ab74a6b0f25f34ff763dc0f7080f229f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">一个非 Qt 事件处理，它调用 <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a>，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 <a class="el" href="#a51bd54e64478fde607734746145d7dda" title="初始化">OnInit()</a> 返回值 OnInitReturnValue::NotUseOnProcess  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a51bd54e64478fde607734746145d7dda" id="r_a51bd54e64478fde607734746145d7dda"><td class="memItemLeft">virtual OnInitReturnValue&#160;</td><td class="memItemRight"><a class="el" href="#a51bd54e64478fde607734746145d7dda">OnInit</a> ()=0</td></tr>
+<tr class="memdesc:a51bd54e64478fde607734746145d7dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化  <br /></td></tr>
+<tr class="memitem:a5421972b8e09d32b62f634360f0f8a31" id="r_a5421972b8e09d32b62f634360f0f8a31"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a5421972b8e09d32b62f634360f0f8a31">OnClean</a> ()=0</td></tr>
+<tr class="memdesc:a5421972b8e09d32b62f634360f0f8a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理  <br /></td></tr>
+<tr class="memitem:a1d972eecb77f46d83487bdcc836c22ba" id="r_a1d972eecb77f46d83487bdcc836c22ba"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba">OnProcess</a> ()</td></tr>
+<tr class="memdesc:a1d972eecb77f46d83487bdcc836c22ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">具体操作处理  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ab12b7ee593ebbef7164d459e97e4bbee" id="r_ab12b7ee593ebbef7164d459e97e4bbee"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab12b7ee593ebbef7164d459e97e4bbee">SetConnect</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ad7c2fcf8bfc4a05e23533910d9950e0e" id="r_ad7c2fcf8bfc4a05e23533910d9950e0e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad7c2fcf8bfc4a05e23533910d9950e0e">m_bStopSignal</a></td></tr>
+<tr class="memdesc:ad7c2fcf8bfc4a05e23533910d9950e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">When an error occurs, emit a <span class="tt"><a class="el" href="classCOperate.html#a6942d314368c7584494222cdc107a69c" title="通知用户停止。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 当应用接收到此信号后，调用 Stop() 关闭连接。">COperate::sigStop()</a></span> signal  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： <a class="el" href="#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a>、 <a class="el" href="#ab74a6b0f25f34ff763dc0f7080f229f6" title="一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 OnInit() 返回值 OnInit...">slotTimeOut()</a>、 <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a> 。 当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。 </p>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>这个接口仅由插件实现。</li>
+<li>如果是异步的（有后台线程），它的实例在后台线程中。</li>
+<li>具体的插件需要实现下面接口：<ul>
+<li><a class="el" href="#a51bd54e64478fde607734746145d7dda" title="初始化">OnInit()</a></li>
+<li><a class="el" href="#a5421972b8e09d32b62f634360f0f8a31" title="清理">OnClean()</a></li>
+<li><a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a></li>
+</ul>
+</li>
+<li>信号：<ul>
+<li>当开始/初始化完成后，必须触发 <a class="el" href="#a995a76442b28b067ab34dbe0fdffbbb5" title="当插件开始成功后触发。仅由插件触发">sigRunning()</a> 信号</li>
+<li>当停止/清理完成后，必须触发 <a class="el" href="#ab2055a97b4c856982eedd6ce37f70940" title="停止成功信号。仅由插件触发">sigFinished()</a> 信号</li>
+<li>如果内部需要停止，则触发 <a class="el" href="#a465330ec1de890111932a2458d37d0be" title="需要通知用户停止时触发。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。">sigStop()</a> 信号</li>
+<li>如果内部出错，则触发 <a class="el" href="#a67bf8156353fc085dbe5b5afaf3425cc" title="当有错误产生时触发">sigError()</a> 信号和 <a class="el" href="#a465330ec1de890111932a2458d37d0be" title="需要通知用户停止时触发。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。">sigStop()</a> 信号</li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackendThread.html#a11a578aa1e333e4efc70804619f31f4c">CBackendThread::run()</a> <a class="el" href="classCFrmViewer.html" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。">CFrmViewer</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Backend_8h_source.html">Backend.h</a> 第 <a class="el" href="Backend_8h_source.html#l00051">51</a> 行定义.</p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">成员枚举类型说明</h2>
+<a id="ab255847aef6c0290768b431a7839674f" name="ab255847aef6c0290768b431a7839674f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab255847aef6c0290768b431a7839674f">&#9670;&#160;</a></span>OnInitReturnValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CBackend::OnInitReturnValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Backend_8h_source.html">Backend.h</a> 第 <a class="el" href="Backend_8h_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="afd174412c610e7b2d451801254d99433" name="afd174412c610e7b2d451801254d99433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd174412c610e7b2d451801254d99433">&#9670;&#160;</a></span>CBackend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackend::CBackend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCOperate.html">COperate</a> *</td>          <td class="paramname"><span class="paramname"><em>pOperate</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>bStopSignal</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...">CBackend</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pOperate</td><td></td></tr>
+    <tr><td class="paramname">bStopSignal</td><td><ul>
+<li>true: When an error occurs, emit a <span class="tt"><a class="el" href="classCOperate.html#a6942d314368c7584494222cdc107a69c" title="通知用户停止。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 当应用接收到此信号后，调用 Stop() 关闭连接。">COperate::sigStop()</a></span> signal</li>
+<li>false: not emit signal </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a637481b5e1b8682f8a2b54dfa961d456" name="a637481b5e1b8682f8a2b54dfa961d456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a637481b5e1b8682f8a2b54dfa961d456">&#9670;&#160;</a></span>~CBackend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackend::~CBackend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Backend_8cpp_source.html">Backend.cpp</a> 第 <a class="el" href="Backend_8cpp_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a5421972b8e09d32b62f634360f0f8a31" name="a5421972b8e09d32b62f634360f0f8a31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5421972b8e09d32b62f634360f0f8a31">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CBackend::OnClean </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a179ed68b6d28f51dd75d900f48eb4a2e" title="停止">Stop()</a> </dd></dl>
+
+<p>在 <a class="el" href="classCBackendFileTransfer.html#a930094f964412f65d2cf658754afa5ae">CBackendFileTransfer</a>, <a class="el" href="classCBackendFreeRDP.html#aecd1edf38859eef1030140104844a803">CBackendFreeRDP</a>, <a class="el" href="classCBackendFreeRDPServer.html#afd528c1c05a0317345730061ef83926a">CBackendFreeRDPServer</a>, <a class="el" href="classCBackendFtpServer.html#a036ac57feed63cb4744febb54b48c24a">CBackendFtpServer</a>, <a class="el" href="classCBackendLibVNCServer.html#a4306125e05eca44e593d876c3e604cc8">CBackendLibVNCServer</a>, <a class="el" href="classCBackendPlayer.html#ac0c4e409475f4327f7ca49f031baa194">CBackendPlayer</a>, <a class="el" href="classCBackendSftpServer.html#a04791f250daa4a40978b109c9020454b">CBackendSftpServer</a>, <a class="el" href="classCBackendSSH.html#aa2b06fa0c7dcd250ea10f528ae68a449">CBackendSSH</a>, <a class="el" href="classCBackendTemplateBase.html#aa4d109bc101fc131580ef6659363e51e">CBackendTemplateBase</a>, <a class="el" href="classCBackendTemplateDesktop.html#a936fcc841780b9ec8699f48f83e9e9d4">CBackendTemplateDesktop</a>, <a class="el" href="classCBackendTemplateQtEvent.html#a8af4efc327dd5b96d7468a45c80507ef">CBackendTemplateQtEvent</a>, <a class="el" href="classCBackendTemplateServer.html#ae2a57fdc5d0a52d83d8521cc348b5423">CBackendTemplateServer</a> , 以及 <a class="el" href="classCBackendVnc.html#ab2fc425485b96085d58e933da9bbb968">CBackendVnc</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a51bd54e64478fde607734746145d7dda" name="a51bd54e64478fde607734746145d7dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51bd54e64478fde607734746145d7dda">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual OnInitReturnValue CBackend::OnInit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel protected">protected</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>OnInitReturnValue::Fail: 错误 </li>
+<li>OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a> (非 Qt 事件循环) </li>
+<li>OnInitReturnValue::NotUseOnProcess: 不使用 <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a> (qt 事件循环)</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> </dd></dl>
+
+<p>在 <a class="el" href="classCBackendFileTransfer.html#a1998a42f44a2f25cda414a5f6e55f3de">CBackendFileTransfer</a>, <a class="el" href="classCBackendFreeRDP.html#ae4bf3a1cd9ba327a82d4ff9a5a349a34">CBackendFreeRDP</a>, <a class="el" href="classCBackendFreeRDPServer.html#a297f822236c0bb68514c50db508bd113">CBackendFreeRDPServer</a>, <a class="el" href="classCBackendFtpServer.html#a9f5151174efcb13c4f9990f02685e8ad">CBackendFtpServer</a>, <a class="el" href="classCBackendLibVNCServer.html#ae850cb0632b5ec3716ec1ebd92cf5863">CBackendLibVNCServer</a>, <a class="el" href="classCBackendPlayer.html#adab5b5f7cd9371e32c745569dbed8230">CBackendPlayer</a>, <a class="el" href="classCBackendSftpServer.html#a656e54f014e9c5236e7e14e428653090">CBackendSftpServer</a>, <a class="el" href="classCBackendSSH.html#a0d611ae300128ea1798a08014f541a38">CBackendSSH</a>, <a class="el" href="classCBackendTemplateBase.html#a1128145fdb94a9128b1404e39ac88af0">CBackendTemplateBase</a>, <a class="el" href="classCBackendTemplateDesktop.html#ae303f902be86851d5af614544d201400">CBackendTemplateDesktop</a>, <a class="el" href="classCBackendTemplateQtEvent.html#a28be06ead57f3c7bc8a5c784bb59f525">CBackendTemplateQtEvent</a>, <a class="el" href="classCBackendTemplateServer.html#a1c5737605d7a20b0ab9011d8e51f70c7">CBackendTemplateServer</a> , 以及 <a class="el" href="classCBackendVnc.html#adc3a2cec2589a61aab71e31919bb4e1b">CBackendVnc</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a1d972eecb77f46d83487bdcc836c22ba" name="a1d972eecb77f46d83487bdcc836c22ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d972eecb77f46d83487bdcc836c22ba">&#9670;&#160;</a></span>OnProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackend::OnProcess </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>具体操作处理 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&gt;= 0: 继续。再次调用间隔时间，单位毫秒 </li>
+<li>= -1: 停止 </li>
+<li>&lt; -1: 错误代码</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> <a class="el" href="#ab74a6b0f25f34ff763dc0f7080f229f6" title="一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 OnInit() 返回值 OnInit...">slotTimeOut()</a> </dd></dl>
+
+<p>被 <a class="el" href="classCBackendFileTransfer.html#ab5e2e62ccfde4f300391eb57a7a7ba2a">CBackendFileTransfer</a>, <a class="el" href="classCBackendFreeRDP.html#af0dcb18abc3d8b6f15c74e9a1cdd560b">CBackendFreeRDP</a>, <a class="el" href="classCBackendFreeRDPServer.html#ad350dc9f0bd96fd9399bd747ade5fc1a">CBackendFreeRDPServer</a>, <a class="el" href="classCBackendLibVNCServer.html#aed4f798bfd17d6546e13847874be72d0">CBackendLibVNCServer</a>, <a class="el" href="classCBackendSftpServer.html#a7caf66f76a7e174ef92ad341061209b3">CBackendSftpServer</a>, <a class="el" href="classCBackendSSH.html#a0d3b32ef5a608f4f616f2fa55c7cc963">CBackendSSH</a>, <a class="el" href="classCBackendTemplateBase.html#aca6e0182aa265200193b2922a176a0a0">CBackendTemplateBase</a>, <a class="el" href="classCBackendTemplateDesktop.html#aafb2d799edf38957f097359026dc58ce">CBackendTemplateDesktop</a>, <a class="el" href="classCBackendTemplateServer.html#aa1a771aedcafaae3ba4baed0d4421393">CBackendTemplateServer</a> , 以及 <a class="el" href="classCBackendVnc.html#ae82f4c48df0086b6510078d8ba7dc7a2">CBackendVnc</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="Backend_8cpp_source.html">Backend.cpp</a> 第 <a class="el" href="Backend_8cpp_source.html#l00143">143</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab12b7ee593ebbef7164d459e97e4bbee" name="ab12b7ee593ebbef7164d459e97e4bbee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab12b7ee593ebbef7164d459e97e4bbee">&#9670;&#160;</a></span>SetConnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackend::SetConnect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCOperate.html">COperate</a> *</td>          <td class="paramname"><span class="paramname"><em>pOperate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Backend_8cpp_source.html">Backend.cpp</a> 第 <a class="el" href="Backend_8cpp_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae8fff211d62448cc622947a43cd0ce45" name="ae8fff211d62448cc622947a43cd0ce45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8fff211d62448cc622947a43cd0ce45">&#9670;&#160;</a></span>sigBlockInputDialog</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackend::sigBlockInputDialog </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szTitle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szLable</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szText</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog) </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperate.html#a9a98b95fafe1b4c5d64e4be96e6177fb" title="Block background threads and display input dialogs in foreground threads (QInputDialog)">COperate::slotBlockInputDialog()</a> SetConnect </dd></dl>
+
+</div>
+</div>
+<a id="a780b35e940bdfae5765e5d3337df7a02" name="a780b35e940bdfae5765e5d3337df7a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a780b35e940bdfae5765e5d3337df7a02">&#9670;&#160;</a></span>sigBlockShowMessageBox</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackend::sigBlockShowMessageBox </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szTitle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QMessageBox::StandardButtons</td>          <td class="paramname"><span class="paramname"><em>buttons</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QMessageBox::StandardButton &amp;</td>          <td class="paramname"><span class="paramname"><em>nRet</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>checkBox</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString</td>          <td class="paramname"><span class="paramname"><em>checkBoxContext</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QString()</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox) </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperate.html#abfc8e8ad12f634a55136e29d80dbd179" title="阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)">COperate::slotBlockShowMessageBox()</a> SetConnect </dd></dl>
+
+</div>
+</div>
+<a id="ad3aecd97defce14b02d48102a843136e" name="ad3aecd97defce14b02d48102a843136e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3aecd97defce14b02d48102a843136e">&#9670;&#160;</a></span>sigBlockShowWidget</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackend::sigBlockShowWidget </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>className</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>nRet</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pContext</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>阻塞后台线程，并在前台线程中显示窗口。 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperate.html#a6765fd9e2a5ee31affe9dc890fd084e7" title="阻塞后台线程，并在前台线程中显示窗口。">COperate::slotBlockShowWidget()</a> SetConnect </dd></dl>
+
+</div>
+</div>
+<a id="ab2055a97b4c856982eedd6ce37f70940" name="ab2055a97b4c856982eedd6ce37f70940"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2055a97b4c856982eedd6ce37f70940">&#9670;&#160;</a></span>sigFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackend::sigFinished </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>停止成功信号。仅由插件触发 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a179ed68b6d28f51dd75d900f48eb4a2e" title="停止">Stop</a> </dd></dl>
+
+</div>
+</div>
+<a id="a003c4cf2cd63795187289df16b639e5a" name="a003c4cf2cd63795187289df16b639e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a003c4cf2cd63795187289df16b639e5a">&#9670;&#160;</a></span>sigInformation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackend::sigInformation </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szInfo</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从后台线程中触发在主线程中显示信息，不阻塞后台线程 </p>
+<dl class="section note"><dt>注解</dt><dd>它与 sigShowMessageBox 的区别是 sigShowMessageBox 用对话框显示</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a5e011ebbb8577c03f32fbbba33e759d8" title="从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程">sigShowMessageBox</a> SetConnect <a class="el" href="classCOperate.html#a14ab2bf2aeb0d7b9ef17402fd25d114b" title="中主窗口中显示信息">COperate::sigInformation()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a5e011ebbb8577c03f32fbbba33e759d8" name="a5e011ebbb8577c03f32fbbba33e759d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e011ebbb8577c03f32fbbba33e759d8">&#9670;&#160;</a></span>sigShowMessageBox</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackend::sigShowMessageBox </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szTitle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QMessageBox::Icon &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QMessageBox::Information</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程 </p>
+<dl class="section note"><dt>注解</dt><dd>它与 sigInformation 区别是，sigInformation 不用对话框显示</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a003c4cf2cd63795187289df16b639e5a" title="从后台线程中触发在主线程中显示信息，不阻塞后台线程">sigInformation</a> SetConnect <a class="el" href="classCOperate.html#adfd742b7a7032cad45fd39263decff3f" title="从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程">COperate::sigShowMessageBox()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ab74a6b0f25f34ff763dc0f7080f229f6" name="ab74a6b0f25f34ff763dc0f7080f229f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab74a6b0f25f34ff763dc0f7080f229f6">&#9670;&#160;</a></span>slotTimeOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackend::slotTimeOut </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>一个非 Qt 事件处理，它调用 <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a>，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 <a class="el" href="#a51bd54e64478fde607734746145d7dda" title="初始化">OnInit()</a> 返回值 OnInitReturnValue::NotUseOnProcess </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Backend_8cpp_source.html">Backend.cpp</a> 第 <a class="el" href="Backend_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a675c80c148c99b81cd5c22c718cccd26" name="a675c80c148c99b81cd5c22c718cccd26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a675c80c148c99b81cd5c22c718cccd26">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackend::Start </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件 </p>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>如果是异步的，开始成功后触发 <a class="el" href="#a995a76442b28b067ab34dbe0fdffbbb5" title="当插件开始成功后触发。仅由插件触发">sigRunning()</a> 。</li>
+<li>如果是同步的，则在此函数成功调用后，触发 <a class="el" href="#a995a76442b28b067ab34dbe0fdffbbb5" title="当插件开始成功后触发。仅由插件触发">sigRunning()</a> 。</li>
+</ul>
+</dd></dl>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>= 0: success</li>
+<li>&lt; 0: error </li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#a995a76442b28b067ab34dbe0fdffbbb5" title="当插件开始成功后触发。仅由插件触发">sigRunning()</a> </dd>
+<dd>
+<a class="el" href="#a51bd54e64478fde607734746145d7dda" title="初始化">OnInit()</a> <a class="el" href="#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a> <a class="el" href="#ab74a6b0f25f34ff763dc0f7080f229f6" title="一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 OnInit() 返回值 OnInit...">slotTimeOut()</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Backend_8cpp_source.html">Backend.cpp</a> 第 <a class="el" href="Backend_8cpp_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a179ed68b6d28f51dd75d900f48eb4a2e" name="a179ed68b6d28f51dd75d900f48eb4a2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a179ed68b6d28f51dd75d900f48eb4a2e">&#9670;&#160;</a></span>Stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackend::Stop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>停止 </p>
+<dl class="section return"><dt>返回</dt><dd>0: success; other error </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="#ab2055a97b4c856982eedd6ce37f70940" title="停止成功信号。仅由插件触发">sigFinished()</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Backend_8cpp_source.html">Backend.cpp</a> 第 <a class="el" href="Backend_8cpp_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1c7f2d35b7ebd654f5f24ab680ba8335" name="a1c7f2d35b7ebd654f5f24ab680ba8335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c7f2d35b7ebd654f5f24ab680ba8335">&#9670;&#160;</a></span>WakeUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CBackend::WakeUp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>唤醒后台线程。 </p>
+<dl class="section note"><dt>注解</dt><dd>调用者是主线程（UI线程）。 </dd></dl>
+
+<p>在 <a class="el" href="classCBackendFileTransfer.html#a7fe428b582bc30a44cfaf8a75b126345">CBackendFileTransfer</a>, <a class="el" href="classCBackendFreeRDP.html#afa754f1e7f79731d329eddd13e01c628">CBackendFreeRDP</a>, <a class="el" href="classCBackendFreeRDPServer.html#a293b735d6358a8e3f0d973b1f6ae30a4">CBackendFreeRDPServer</a>, <a class="el" href="classCBackendFtpServer.html#ac7cea81a9c128f1023f51b71a332e5f5">CBackendFtpServer</a>, <a class="el" href="classCBackendLibVNCServer.html#a9adb6b4e9755e42a51807ec4f9e1bae9">CBackendLibVNCServer</a>, <a class="el" href="classCBackendPlayer.html#ad890f1384864f50cdc3065ebcc010515">CBackendPlayer</a>, <a class="el" href="classCBackendSftpServer.html#ad3eff0b0de52b7fd5a138565a8e8c1a4">CBackendSftpServer</a>, <a class="el" href="classCBackendSSH.html#a49f0b274da496340a74ced136ffb3abf">CBackendSSH</a>, <a class="el" href="classCBackendTemplateBase.html#ae3c2f0b7c0fde7c9df474aac36169396">CBackendTemplateBase</a>, <a class="el" href="classCBackendTemplateDesktop.html#a5c3dc374aa90eeb30eb916da94b52465">CBackendTemplateDesktop</a>, <a class="el" href="classCBackendTemplateQtEvent.html#afa48630a2b1a973b2f4b08339dfb8f29">CBackendTemplateQtEvent</a> , 以及 <a class="el" href="classCBackendVnc.html#acdfa2607298878e57023b8bbda463e48">CBackendVnc</a> 内被实现.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="ad7c2fcf8bfc4a05e23533910d9950e0e" name="ad7c2fcf8bfc4a05e23533910d9950e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7c2fcf8bfc4a05e23533910d9950e0e">&#9670;&#160;</a></span>m_bStopSignal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBackend::m_bStopSignal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>When an error occurs, emit a <span class="tt"><a class="el" href="classCOperate.html#a6942d314368c7584494222cdc107a69c" title="通知用户停止。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 当应用接收到此信号后，调用 Stop() 关闭连接。">COperate::sigStop()</a></span> signal </p>
+
+<p class="definition">在文件 <a class="el" href="Backend_8h_source.html">Backend.h</a> 第 <a class="el" href="Backend_8h_source.html#l00298">298</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Backend_8h_source.html">Backend.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Backend_8cpp_source.html">Backend.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

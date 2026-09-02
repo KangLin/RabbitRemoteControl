@@ -1,0 +1,13 @@
+<map id="CPluginServiceThread" name="CPluginServiceThread">
+<area shape="rect" id="Node000001" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。" alt="" coords="250,152,414,177"/>
+<area shape="rect" id="Node000004" href="$classCPluginServiceLibVNCServer.html" title=" " alt="" coords="5,225,213,251"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,184,146,228,145,223,283,179"/>
+<area shape="rect" id="Node000005" href="$classCPluginServiceRabbitVNC.html" title=" " alt="" coords="237,225,427,251"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="335,191,335,225,329,225,329,191"/>
+<area shape="rect" id="Node000006" href="$classCPluginServiceTigerVNC.html" title=" " alt="" coords="451,225,631,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="380,179,508,223,507,228,378,184"/>
+<area shape="rect" id="Node000002" href="$classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="273,79,391,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="335,118,335,152,329,152,329,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="295,5,369,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,44,335,79,329,79,329,44"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="CManager::SaveOperate" name="CManager::SaveOperate">
+<area shape="rect" id="Node000001" title="保存连接参数到文件" alt="" coords="5,80,185,105"/>
+<area shape="rect" id="Node000002" href="$classCOperate.html#aea757665fa03520c1f93b902bcd2351e" title="标识" alt="" coords="248,5,351,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,77,250,33,252,38,132,82"/>
+<area shape="rect" id="Node000003" href="$classCPlugin.html#ac4747ec15816ab9bec2bc31ce438286e" title="标识。默认： Type() + &quot;:&quot; + Protocol() + &quot;:&quot; + Name()" alt="" coords="254,55,345,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,79,240,72,241,77,186,84"/>
+<area shape="rect" id="Node000004" href="$classCPlugin.html#a946a3be8eed821236c0d894d2a14401f" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。" alt="" coords="240,104,359,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="186,101,227,105,226,111,185,106"/>
+<area shape="rect" id="Node000005" href="$classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c" title="协议" alt="" coords="233,153,365,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="133,103,251,146,249,151,131,108"/>
+</map>

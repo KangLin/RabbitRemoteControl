@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SftpServer/OperateSftpServer.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>Plugins</b></li><li class="navelem"><b>SftpServer</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">OperateSftpServer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;OperateServer.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">class </span><a class="code hl_class" href="classCBackend.html">CBackend</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">class </span><a class="code hl_class" href="classCParameterSftpServer.html">CParameterSftpServer</a>;</div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classCOperateSftpServer.html">    9</a></span><span class="keyword">class </span>COperateSftpServer : <span class="keyword">public</span> COperateServer</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    Q_OBJECT</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">explicit</span> COperateSftpServer(<a class="code hl_class" href="classCPlugin.html">CPlugin</a> *plugin);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">virtual</span> ~COperateSftpServer();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    [[nodiscard]] <span class="keyword">virtual</span> <a class="code hl_class" href="classCParameterSftpServer.html">CParameterSftpServer</a>* <a class="code hl_function" href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">GetParameter</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// COperate interface</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateSftpServer.html#a10274be08ddf43d7f300df4c92ab20b9">Name</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateSftpServer.html#af48062496134c8ed24740f1fb3b218dd">Description</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> qint16 <a class="code hl_function" href="classCOperateSftpServer.html#a34fb3d73de40db9415da808ace922f8f">Version</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateSftpServer.html#a0c10db5fa2331e09f70b2b81e7a4c61e">SetPluginParameters</a>(<a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    Q_INVOKABLE <span class="keyword">virtual</span> <a class="code hl_class" href="classCBackend.html">CBackend</a>* <a class="code hl_function" href="classCOperateSftpServer.html#a8f3da7a9efed1396079ebd681d9d1ab7">InstanceBackend</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateSftpServer.html#a6b3ad96bb0e8d097bbb209cd7a2443c2">Initial</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateSftpServer.html#ad919c04bb3d166f40e3e765294c2eb47">Clean</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateSftpServer.html#a20f3cffd4deb37f2d3393351625311b1">Load</a>(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateSftpServer.html#a681d4902028e39e24fab1341ff58892a">Save</a>(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">virtual</span> QDialog *<a class="code hl_function" href="classCOperateSftpServer.html#a622eaebc65b849655a4df7423238c3ec">OnOpenDialogSettings</a>(QWidget *parent) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="classCParameterSftpServer.html">CParameterSftpServer</a>* m_pPara;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+</div>
+<div class="ttc" id="aclassCBackend_html"><div class="ttname"><a href="classCBackend.html">CBackend</a></div><div class="ttdoc">后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...</div><div class="ttdef"><b>定义</b> <a href="Backend_8h_source.html#l00051">Backend.h:52</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a0c10db5fa2331e09f70b2b81e7a4c61e"><div class="ttname"><a href="classCOperateSftpServer.html#a0c10db5fa2331e09f70b2b81e7a4c61e">COperateSftpServer::SetPluginParameters</a></div><div class="ttdeci">virtual int SetPluginParameters(CParameterPlugin *pPara) override</div><div class="ttdoc">应用插件全局参数</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00101">OperateSftpServer.cpp:101</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a10274be08ddf43d7f300df4c92ab20b9"><div class="ttname"><a href="classCOperateSftpServer.html#a10274be08ddf43d7f300df4c92ab20b9">COperateSftpServer::Name</a></div><div class="ttdeci">virtual const QString Name() override</div><div class="ttdoc">名称</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00035">OperateSftpServer.cpp:35</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a20f3cffd4deb37f2d3393351625311b1"><div class="ttname"><a href="classCOperateSftpServer.html#a20f3cffd4deb37f2d3393351625311b1">COperateSftpServer::Load</a></div><div class="ttdeci">virtual int Load(QSettings &amp;set) override</div><div class="ttdoc">加载参数</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00117">OperateSftpServer.cpp:117</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a34fb3d73de40db9415da808ace922f8f"><div class="ttname"><a href="classCOperateSftpServer.html#a34fb3d73de40db9415da808ace922f8f">COperateSftpServer::Version</a></div><div class="ttdeci">virtual const qint16 Version() const override</div><div class="ttdoc">版本</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00091">OperateSftpServer.cpp:91</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a4e54d3e5a41006b5506939f6862160b2"><div class="ttname"><a href="classCOperateSftpServer.html#a4e54d3e5a41006b5506939f6862160b2">COperateSftpServer::GetParameter</a></div><div class="ttdeci">virtual CParameterSftpServer * GetParameter() const</div><div class="ttdoc">Get parameter</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00030">OperateSftpServer.cpp:30</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a622eaebc65b849655a4df7423238c3ec"><div class="ttname"><a href="classCOperateSftpServer.html#a622eaebc65b849655a4df7423238c3ec">COperateSftpServer::OnOpenDialogSettings</a></div><div class="ttdeci">virtual QDialog * OnOpenDialogSettings(QWidget *parent) override</div><div class="ttdoc">得到设置对话框</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00112">OperateSftpServer.cpp:112</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a681d4902028e39e24fab1341ff58892a"><div class="ttname"><a href="classCOperateSftpServer.html#a681d4902028e39e24fab1341ff58892a">COperateSftpServer::Save</a></div><div class="ttdeci">virtual int Save(QSettings &amp;set) override</div><div class="ttdoc">保存参数</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00125">OperateSftpServer.cpp:125</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a6b3ad96bb0e8d097bbb209cd7a2443c2"><div class="ttname"><a href="classCOperateSftpServer.html#a6b3ad96bb0e8d097bbb209cd7a2443c2">COperateSftpServer::Initial</a></div><div class="ttdeci">virtual int Initial() override</div><div class="ttdoc">Initial parameters and resource</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00133">OperateSftpServer.cpp:133</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_a8f3da7a9efed1396079ebd681d9d1ab7"><div class="ttname"><a href="classCOperateSftpServer.html#a8f3da7a9efed1396079ebd681d9d1ab7">COperateSftpServer::InstanceBackend</a></div><div class="ttdeci">virtual Q_INVOKABLE CBackend * InstanceBackend()</div><div class="ttdoc">新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00096">OperateSftpServer.cpp:96</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_ad919c04bb3d166f40e3e765294c2eb47"><div class="ttname"><a href="classCOperateSftpServer.html#ad919c04bb3d166f40e3e765294c2eb47">COperateSftpServer::Clean</a></div><div class="ttdeci">virtual int Clean() override</div><div class="ttdoc">Clean parameters and resource</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00144">OperateSftpServer.cpp:144</a></div></div>
+<div class="ttc" id="aclassCOperateSftpServer_html_af48062496134c8ed24740f1fb3b218dd"><div class="ttname"><a href="classCOperateSftpServer.html#af48062496134c8ed24740f1fb3b218dd">COperateSftpServer::Description</a></div><div class="ttdeci">virtual const QString Description() override</div><div class="ttdoc">描述</div><div class="ttdef"><b>定义</b> <a href="OperateSftpServer_8cpp_source.html#l00059">OperateSftpServer.cpp:59</a></div></div>
+<div class="ttc" id="aclassCParameterPlugin_html"><div class="ttname"><a href="classCParameterPlugin.html">CParameterPlugin</a></div><div class="ttdoc">插件的全局参数。</div><div class="ttdef"><b>定义</b> <a href="ParameterPlugin_8h_source.html#l00035">ParameterPlugin.h:36</a></div></div>
+<div class="ttc" id="aclassCParameterSftpServer_html"><div class="ttname"><a href="classCParameterSftpServer.html">CParameterSftpServer</a></div><div class="ttdef"><b>定义</b> <a href="ParameterSftpServer_8h_source.html#l00007">ParameterSftpServer.h:8</a></div></div>
+<div class="ttc" id="aclassCPlugin_html"><div class="ttname"><a href="classCPlugin.html">CPlugin</a></div><div class="ttdoc">插件接口</div><div class="ttdef"><b>定义</b> <a href="Plugin_8h_source.html#l00014">Plugin.h:15</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

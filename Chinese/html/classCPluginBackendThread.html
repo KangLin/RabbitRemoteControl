@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CPluginBackendThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCPluginBackendThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CPluginBackendThread类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__LIBAPI__THREAD.html">线程模型</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>插件有一个后台线程，所有操作后端运行在此后台线程中  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PluginBackendThread_8h_source.html">PluginBackendThread.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CPluginBackendThread 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginBackendThread__inherit__graph.png" border="0" usemap="#aCPluginBackendThread_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCPluginBackendThread_inherit__map" id="aCPluginBackendThread_inherit__map">
+<area shape="rect" title="插件有一个后台线程，所有操作后端运行在此后台线程中" alt="" coords="11,152,182,177"/>
+<area shape="rect" href="classCPluginTemplateQtEvent.html" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="5,225,188,251"/>
+<area shape="poly" title=" " alt="" coords="99,191,99,225,94,225,94,191"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="61,79,132,104"/>
+<area shape="poly" title=" " alt="" coords="99,118,99,152,94,152,94,118"/>
+<area shape="rect" title=" " alt="" coords="59,5,134,31"/>
+<area shape="poly" title=" " alt="" coords="99,44,99,79,94,79,94,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CPluginBackendThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginBackendThread__coll__graph.png" border="0" usemap="#aCPluginBackendThread_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCPluginBackendThread_coll__map" id="aCPluginBackendThread_coll__map">
+<area shape="rect" title="插件有一个后台线程，所有操作后端运行在此后台线程中" alt="" coords="15,176,185,201"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="7,80,78,105"/>
+<area shape="poly" title=" " alt="" coords="59,116,95,174,91,177,55,118"/>
+<area shape="rect" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" title=" " alt="" coords="45,45,45,80,40,80,40,45"/>
+<area shape="rect" href="classCPluginThread.html" title="一个线程处理多个操作 COperate 。 此类仅用于 CPluginBackendThread 由插件使用。" alt="" coords="102,80,218,105"/>
+<area shape="poly" title=" " alt="" coords="147,118,110,177,105,174,143,116"/>
+<area shape="rect" title=" " alt="" coords="121,5,199,31"/>
+<area shape="poly" title=" " alt="" coords="163,45,163,80,157,80,157,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae11470688978428a98c159fca7b949ea" id="r_ae11470688978428a98c159fca7b949ea"><td class="memItemLeft"><a id="ae11470688978428a98c159fca7b949ea" name="ae11470688978428a98c159fca7b949ea"></a>
+&#160;</td><td class="memItemRight"><b>CPluginBackendThread</b> (QObject *parent=nullptr)</td></tr>
+<tr class="inherit_header pub_methods_classCPlugin"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a17ff51c3ec0301ef927f8b5b8ef0c49e pub_methods_classCPlugin" id="r_a17ff51c3ec0301ef927f8b5b8ef0c49e"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>CPlugin</b> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:af1720137d06f661a195a2b6bdc9f5ed1 pub_methods_classCPlugin" id="r_af1720137d06f661a195a2b6bdc9f5ed1"><td class="memItemLeft">virtual const TYPE&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#af1720137d06f661a195a2b6bdc9f5ed1">Type</a> () const =0</td></tr>
+<tr class="memitem:af62099c6e9224ddf7c94208b8fcc78c9 pub_methods_classCPlugin" id="r_af62099c6e9224ddf7c94208b8fcc78c9"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#af62099c6e9224ddf7c94208b8fcc78c9">TypeName</a> (const TYPE t) const</td></tr>
+<tr class="memitem:ac4747ec15816ab9bec2bc31ce438286e pub_methods_classCPlugin" id="r_ac4747ec15816ab9bec2bc31ce438286e"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#ac4747ec15816ab9bec2bc31ce438286e">Id</a> () const</td></tr>
+<tr class="memdesc:ac4747ec15816ab9bec2bc31ce438286e pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">标识。默认： Type() + ":" + <a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c" title="协议">Protocol()</a> + ":" + <a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a>  <br /></td></tr>
+<tr class="memitem:aad4be4dbc43a29b883701be6192fd46c pub_methods_classCPlugin" id="r_aad4be4dbc43a29b883701be6192fd46c"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c">Protocol</a> () const =0</td></tr>
+<tr class="memdesc:aad4be4dbc43a29b883701be6192fd46c pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议  <br /></td></tr>
+<tr class="memitem:a946a3be8eed821236c0d894d2a14401f pub_methods_classCPlugin" id="r_a946a3be8eed821236c0d894d2a14401f"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f">Name</a> () const =0</td></tr>
+<tr class="memdesc:a946a3be8eed821236c0d894d2a14401f pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。  <br /></td></tr>
+<tr class="memitem:a9f02199b6529be4a51f814c5c3194509 pub_methods_classCPlugin" id="r_a9f02199b6529be4a51f814c5c3194509"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#a9f02199b6529be4a51f814c5c3194509">DisplayName</a> () const</td></tr>
+<tr class="memdesc:a9f02199b6529be4a51f814c5c3194509 pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">在界面上显示的名称  <br /></td></tr>
+<tr class="memitem:aecbb4f2d85cfe4c75ae53c3e050f7813 pub_methods_classCPlugin" id="r_aecbb4f2d85cfe4c75ae53c3e050f7813"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#aecbb4f2d85cfe4c75ae53c3e050f7813">Description</a> () const =0</td></tr>
+<tr class="memdesc:aecbb4f2d85cfe4c75ae53c3e050f7813 pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">描述  <br /></td></tr>
+<tr class="memitem:a3b1052c480954aec5d80e6f91bb93092 pub_methods_classCPlugin" id="r_a3b1052c480954aec5d80e6f91bb93092"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#a3b1052c480954aec5d80e6f91bb93092">Version</a> () const =0</td></tr>
+<tr class="memdesc:a3b1052c480954aec5d80e6f91bb93092 pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version  <br /></td></tr>
+<tr class="memitem:ab2357a29eb6daefc37a74fea667ff6fb pub_methods_classCPlugin" id="r_ab2357a29eb6daefc37a74fea667ff6fb"><td class="memItemLeft">
+virtual const QIcon&#160;</td><td class="memItemRight"><b>Icon</b> () const =0</td></tr>
+<tr class="memitem:a59298783d2121e0a1cc1238d970def91 pub_methods_classCPlugin" id="r_a59298783d2121e0a1cc1238d970def91"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#a59298783d2121e0a1cc1238d970def91">Details</a> () const =0</td></tr>
+<tr class="memdesc:a59298783d2121e0a1cc1238d970def91 pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">显示更多细节。 例如： 在关于对话框或日志中显示。 包括插件的依赖库的版本信息和描述等  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ae0b513fc8b732703da2696e23c62df69" id="r_ae0b513fc8b732703da2696e23c62df69"><td class="memItemLeft">virtual <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ae0b513fc8b732703da2696e23c62df69">CreateOperate</a> (const QString &amp;szId, <a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *para) override</td></tr>
+<tr class="memdesc:ae0b513fc8b732703da2696e23c62df69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create operate and connect signals to <a class="el" href="classCPluginThread.html" title="一个线程处理多个操作 COperate 。 此类仅用于 CPluginBackendThread 由插件使用。">CPluginThread</a>  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ae03f13bdb9ec76fd685aee6a29c15612" id="r_ae03f13bdb9ec76fd685aee6a29c15612"><td class="memItemLeft"><a class="el" href="classCPluginThread.html">CPluginThread</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ae03f13bdb9ec76fd685aee6a29c15612">m_pThread</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_types_classCPlugin"><td colspan="2">Public 类型 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a5d659d10d26bdd085103b2315fc174b7 pub_types_classCPlugin" id="r_a5d659d10d26bdd085103b2315fc174b7"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><b>TYPE</b> { <br />
+&#160;&#160;<b>RemoteDesktop</b>
+, <b>Terminal</b>
+, <b>Client</b>
+, <b>Server</b>
+, <br />
+&#160;&#160;<b>FileTransfers</b>
+, <b>NetworkTools</b>
+, <b>Tools</b>
+, <b>Custom</b> = 1000
+<br />
+ }</td></tr>
+<tr class="inherit_header signals_classCPlugin"><td colspan="2">信号 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a4cd4e7a7124da85468cb1b3ca15944e7 signals_classCPlugin" id="r_a4cd4e7a7124da85468cb1b3ca15944e7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#a4cd4e7a7124da85468cb1b3ca15944e7">sigNewOperate</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate, bool bOpenSettingsDialog)</td></tr>
+<tr class="memdesc:a4cd4e7a7124da85468cb1b3ca15944e7 signals_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">当在插件中新建操作时，触发此信号  <br /></td></tr>
+<tr class="inherit_header pro_methods_classCPlugin"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:aead895018566f1f3416a4b5e5c9f3e48 pro_methods_classCPlugin" id="r_aead895018566f1f3416a4b5e5c9f3e48"><td class="memItemLeft">
+virtual <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight"><b>OnCreateOperate</b> (const QString &amp;szId)=0</td></tr>
+<tr class="memitem:a63a012a7bf038de8006c30ef924e2c34 pro_methods_classCPlugin" id="r_a63a012a7bf038de8006c30ef924e2c34"><td class="memItemLeft">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#a63a012a7bf038de8006c30ef924e2c34">DeleteOperate</a> (<a class="el" href="classCOperate.html">COperate</a> *p)</td></tr>
+<tr class="memdesc:a63a012a7bf038de8006c30ef924e2c34 pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete <a class="el" href="classCOperate.html" title="操作接口。">COperate</a>  <br /></td></tr>
+<tr class="memitem:a3c03eec5e85a8d3cfcf553bcd0abc1b4 pro_methods_classCPlugin" id="r_a3c03eec5e85a8d3cfcf553bcd0abc1b4"><td class="memItemLeft">virtual Q_INVOKABLE QWidget *&#160;</td><td class="memItemRight"><a class="el" href="classCPlugin.html#a3c03eec5e85a8d3cfcf553bcd0abc1b4">GetSettingsWidget</a> (QWidget *parent)</td></tr>
+<tr class="memdesc:a3c03eec5e85a8d3cfcf553bcd0abc1b4 pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到设置此插件全局参数的窗口  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>插件有一个后台线程，所有操作后端运行在此后台线程中 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginThread.html" title="一个线程处理多个操作 COperate 。 此类仅用于 CPluginBackendThread 由插件使用。">CPluginThread</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="PluginBackendThread_8h_source.html">PluginBackendThread.h</a> 第 <a class="el" href="PluginBackendThread_8h_source.html#l00016">16</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="ae83770d98f54d8de80d0bc8ec72fcd7e" name="ae83770d98f54d8de80d0bc8ec72fcd7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae83770d98f54d8de80d0bc8ec72fcd7e">&#9670;&#160;</a></span>~CPluginBackendThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginBackendThread::~CPluginBackendThread </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginBackendThread_8cpp_source.html">PluginBackendThread.cpp</a> 第 <a class="el" href="PluginBackendThread_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="ae0b513fc8b732703da2696e23c62df69" name="ae0b513fc8b732703da2696e23c62df69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0b513fc8b732703da2696e23c62df69">&#9670;&#160;</a></span>CreateOperate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperate.html">COperate</a> * CPluginBackendThread::CreateOperate </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *</td>          <td class="paramname"><span class="paramname"><em>para</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create operate and connect signals to <a class="el" href="classCPluginThread.html" title="一个线程处理多个操作 COperate 。 此类仅用于 CPluginBackendThread 由插件使用。">CPluginThread</a> </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginThread.html" title="一个线程处理多个操作 COperate 。 此类仅用于 CPluginBackendThread 由插件使用。">CPluginThread</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCPlugin.html#ac8cec990249ce5b34f0d43148925079e">CPlugin</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginBackendThread_8cpp_source.html">PluginBackendThread.cpp</a> 第 <a class="el" href="PluginBackendThread_8cpp_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="ae03f13bdb9ec76fd685aee6a29c15612" name="ae03f13bdb9ec76fd685aee6a29c15612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae03f13bdb9ec76fd685aee6a29c15612">&#9670;&#160;</a></span>m_pThread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCPluginThread.html">CPluginThread</a>* CPluginBackendThread::m_pThread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginBackendThread_8h_source.html">PluginBackendThread.h</a> 第 <a class="el" href="PluginBackendThread_8h_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="PluginBackendThread_8h_source.html">PluginBackendThread.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="PluginBackendThread_8cpp_source.html">PluginBackendThread.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

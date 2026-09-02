@@ -1,0 +1,13 @@
+<map id="CPluginTemplateQtEvent" name="CPluginTemplateQtEvent">
+<area shape="rect" id="Node000001" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="9,251,191,276"/>
+<area shape="rect" id="Node000002" href="$classCPluginBackendThread.html" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="15,176,185,201"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,216,103,250,97,250,97,216"/>
+<area shape="rect" id="Node000003" href="$classCPlugin.html" title="Plugin interface." alt="" coords="7,80,78,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="59,116,95,174,91,177,55,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="45,45,45,80,40,80,40,45"/>
+<area shape="rect" id="Node000005" href="$classCPluginThread.html" title="One thread handles multiple operate." alt="" coords="102,80,218,105"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="147,118,110,177,105,174,143,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="121,5,199,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="163,45,163,80,157,80,157,45"/>
+</map>

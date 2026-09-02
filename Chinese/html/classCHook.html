@@ -1,0 +1,588 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CHook类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCHook-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CHook类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The class is the HOOK abstract class.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Hook_8h_source.html">Hook.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CHook 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCHook__inherit__graph.png" border="0" usemap="#aCHook_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCHook_inherit__map" id="aCHook_inherit__map">
+<area shape="rect" title="The class is the HOOK abstract class." alt="" coords="87,79,152,104"/>
+<area shape="rect" href="classCHookUnix.html" title=" " alt="" coords="5,152,100,177"/>
+<area shape="poly" title=" " alt="" coords="101,116,65,154,62,150,97,113"/>
+<area shape="rect" href="classCHookWindows.html" title=" " alt="" coords="124,152,248,177"/>
+<area shape="poly" title=" " alt="" coords="142,113,177,150,173,154,138,116"/>
+<area shape="rect" title=" " alt="" coords="82,5,157,31"/>
+<area shape="poly" title=" " alt="" coords="122,44,122,79,117,79,117,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CHook 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCHook__coll__graph.png" border="0" usemap="#aCHook_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCHook_coll__map" id="aCHook_coll__map">
+<area shape="rect" title="The class is the HOOK abstract class." alt="" coords="240,371,305,396"/>
+<area shape="rect" title=" " alt="" coords="422,5,497,31"/>
+<area shape="poly" title=" " alt="" coords="408,21,364,25,321,36,302,45,288,57,279,72,275,92,275,289,275,371,270,371,270,289,270,91,274,71,284,54,299,41,319,31,363,20,408,16"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="598,80,697,105"/>
+<area shape="poly" title=" " alt="" coords="503,33,619,77,617,82,501,38"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1138,775,1231,800"/>
+<area shape="poly" title=" " alt="" coords="511,18,719,26,994,40,1233,61,1308,74,1330,82,1338,90,1338,693,1335,711,1327,727,1302,752,1267,769,1232,780,1231,775,1265,764,1298,747,1323,724,1330,709,1333,692,1333,92,1327,86,1307,79,1233,66,993,45,719,31,511,24"/>
+<area shape="rect" href="classCDesktopShortcutManager.html" title="Manage desktop shortcut keys" alt="" coords="5,129,201,155"/>
+<area shape="poly" title=" " alt="" coords="409,26,335,36,255,57,216,74,178,94,121,131,118,127,175,90,213,69,253,52,334,31,408,20"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="517,275,655,300"/>
+<area shape="poly" title=" " alt="" coords="510,305,424,327,356,350,300,373,298,368,355,345,423,321,509,300"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="1053,371,1204,396"/>
+<area shape="poly" title=" " alt="" coords="666,300,1063,368,1062,373,665,305"/>
+<area shape="poly" title=" " alt="" coords="585,106,519,118,449,134,388,155,366,167,352,180,343,201,346,218,361,233,384,246,448,265,517,277,516,282,447,271,382,251,358,238,342,221,337,200,348,177,363,163,386,150,447,129,518,112,584,100"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="900,891,1040,916"/>
+<area shape="poly" title=" " alt="" coords="712,98,746,109,777,127,803,154,808,170,810,190,810,337,816,384,830,422,851,454,875,483,900,512,921,544,936,583,942,632,942,789,945,817,951,846,967,889,962,891,946,847,939,818,937,789,937,632,931,585,916,547,895,515,871,486,847,457,826,424,810,385,805,337,805,190,803,171,798,157,774,131,743,114,710,104"/>
+<area shape="poly" title=" " alt="" coords="711,96,768,107,827,127,877,154,925,186,1012,256,1080,323,1121,369,1117,372,1076,326,1008,260,922,190,874,158,825,132,767,112,710,102"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="630,987,761,1012"/>
+<area shape="poly" title=" " alt="" coords="678,112,709,140,723,158,734,178,754,243,761,300,756,351,745,400,714,503,703,563,698,632,698,905,698,987,693,987,693,905,693,632,697,562,709,502,740,399,751,351,756,300,749,244,729,180,719,161,705,143,674,115"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="576,179,719,204"/>
+<area shape="poly" title=" " alt="" coords="650,119,650,179,645,179,645,119"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="361,179,552,204"/>
+<area shape="poly" title=" " alt="" coords="614,114,480,181,478,176,611,109"/>
+<area shape="poly" title=" " alt="" coords="885,894,840,881,798,860,780,847,766,830,757,811,754,789,754,382,752,366,745,352,722,328,690,312,655,301,656,296,692,307,725,324,750,349,757,364,759,382,759,788,762,809,771,827,784,843,800,856,842,876,887,889"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1035,679,1195,704"/>
+<area shape="poly" title=" " alt="" coords="1093,716,1065,743,1038,776,1000,840,977,892,972,889,995,837,1033,773,1061,740,1089,712"/>
+<area shape="poly" title=" " alt="" coords="1134,714,1178,773,1174,776,1130,717"/>
+<area shape="poly" title=" " alt="" coords="1140,409,1142,420,1153,486,1159,539,1157,591,1142,656,1128,680,1123,677,1137,654,1152,590,1154,539,1147,487,1137,420,1134,410"/>
+<area shape="poly" title=" " alt="" coords="1219,374,1231,383,1222,391,1204,395,1204,389,1220,387,1225,384,1216,379"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="999,563,1120,588"/>
+<area shape="poly" title=" " alt="" coords="1128,410,1116,471,1105,506,1091,540,1073,564,1069,561,1086,537,1100,504,1111,469,1123,409"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="942,467,1070,492"/>
+<area shape="poly" title=" " alt="" coords="1104,406,1023,469,1020,464,1101,402"/>
+<area shape="poly" title=" " alt="" coords="1068,600,1090,653,1107,677,1102,680,1085,656,1063,602"/>
+<area shape="poly" title=" " alt="" coords="1017,504,1032,537,1050,561,1046,564,1028,540,1012,506"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="845,371,1029,396"/>
+<area shape="poly" title=" " alt="" coords="947,408,964,441,990,465,986,469,960,444,942,410"/>
+<area shape="poly" title=" " alt="" coords="1125,801,1076,812,1042,826,1034,835,1029,845,1025,856,1017,868,989,893,986,889,1013,865,1021,854,1024,843,1029,832,1039,822,1074,807,1124,796"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="1088,891,1215,916"/>
+<area shape="poly" title=" " alt="" coords="1193,814,1195,840,1190,868,1181,882,1170,892,1166,889,1177,878,1185,866,1190,840,1188,814"/>
+<area shape="poly" title=" " alt="" coords="650,983,627,970,605,953,590,931,583,905,583,382,583,300,589,300,589,382,589,904,594,929,609,949,630,966,653,979"/>
+<area shape="poly" title=" " alt="" coords="1083,921,751,989,750,984,1082,916"/>
+<area shape="poly" title=" " alt="" coords="634,217,596,276,591,273,630,214"/>
+<area shape="poly" title=" " alt="" coords="465,216,472,233,484,249,504,263,526,272,524,277,501,267,480,253,468,236,460,218"/>
+<area shape="poly" title=" " alt="" coords="83,166,68,185,56,206,50,228,55,250,72,274,94,296,144,331,196,356,241,371,239,376,194,361,141,335,90,300,68,277,50,252,45,228,51,204,64,182,79,163"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ac073aafd29c391d0d6c341cce68c61f6" id="r_ac073aafd29c391d0d6c341cce68c61f6"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ac073aafd29c391d0d6c341cce68c61f6">RegisterKeyboard</a> ()</td></tr>
+<tr class="memitem:a7b3915cbb90944e9c898d627d7c73889" id="r_a7b3915cbb90944e9c898d627d7c73889"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a7b3915cbb90944e9c898d627d7c73889">UnRegisterKeyboard</a> ()</td></tr>
+<tr class="memitem:a7b315f6251b0f5cbf91b0da7d2f9bffc" id="r_a7b315f6251b0f5cbf91b0da7d2f9bffc"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a7b315f6251b0f5cbf91b0da7d2f9bffc">eventFilter</a> (QObject *watched, QEvent *event) override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a16e76ae1a3659b7596ecff5beab9432e" id="r_a16e76ae1a3659b7596ecff5beab9432e"><td class="memItemLeft">static <a class="el" href="classCHook.html">CHook</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a16e76ae1a3659b7596ecff5beab9432e">GetHook</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:abbdf115b5564879976ba2ef66156613f" id="r_abbdf115b5564879976ba2ef66156613f"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#abbdf115b5564879976ba2ef66156613f">RunCommand</a> (const QString &amp;program, const QStringList &amp;args=QStringList(), int timeout=5000)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a2ada1a29cc7875d551f0d3c7fa12ed8e" id="r_a2ada1a29cc7875d551f0d3c7fa12ed8e"><td class="memItemLeft"><a id="a2ada1a29cc7875d551f0d3c7fa12ed8e" name="a2ada1a29cc7875d551f0d3c7fa12ed8e"></a>
+&#160;</td><td class="memItemRight"><b>CHook</b> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:ad31cf2fbf0aa372409a8dd9ab6168311" id="r_ad31cf2fbf0aa372409a8dd9ab6168311"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ad31cf2fbf0aa372409a8dd9ab6168311">OnRegisterKeyboard</a> ()</td></tr>
+<tr class="memitem:a8cef98742cd96eed95fda38b97675313" id="r_a8cef98742cd96eed95fda38b97675313"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a8cef98742cd96eed95fda38b97675313">OnUnRegisterKeyboard</a> ()</td></tr>
+<tr class="memitem:a69a2faf0d99d372416e835fac7b2cd9b" id="r_a69a2faf0d99d372416e835fac7b2cd9b"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a69a2faf0d99d372416e835fac7b2cd9b">OnDisableDesktopShortcuts</a> ()</td></tr>
+<tr class="memitem:a06922f3a769a1054c33a27cc009d6fa3" id="r_a06922f3a769a1054c33a27cc009d6fa3"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a06922f3a769a1054c33a27cc009d6fa3">OnRestoreDesktopShortcuts</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:ae3d882b42b339b9aba6ccdc9a7f7e123" id="r_ae3d882b42b339b9aba6ccdc9a7f7e123"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ae3d882b42b339b9aba6ccdc9a7f7e123">m_pParameterPlugin</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a27a0a59f8b39005755674d592b0bdbf6" id="r_a27a0a59f8b39005755674d592b0bdbf6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a27a0a59f8b39005755674d592b0bdbf6">m_bScript</a></td></tr>
+<tr class="memitem:a63c1720269c0757bfbecf3ab1ef86eb1" id="r_a63c1720269c0757bfbecf3ab1ef86eb1"><td class="memItemLeft"><a class="el" href="classCDesktopShortcutManager.html">CDesktopShortcutManager</a>&#160;</td><td class="memItemRight"><a class="el" href="#a63c1720269c0757bfbecf3ab1ef86eb1">m_DesktopShortcutsManager</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>The class is the HOOK abstract class. </p>
+<p>Call CHook::GetHook get a instance of the class. </p><dl class="section note"><dt>注解</dt><dd>The class is only used by Client. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Hook_8h_source.html">Hook.h</a> 第 <a class="el" href="Hook_8h_source.html#l00014">14</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a7c280477378ed14b76b64da19361a988" name="a7c280477378ed14b76b64da19361a988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c280477378ed14b76b64da19361a988">&#9670;&#160;</a></span>~CHook()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CHook::~CHook </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00028">28</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a7b315f6251b0f5cbf91b0da7d2f9bffc" name="a7b315f6251b0f5cbf91b0da7d2f9bffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b315f6251b0f5cbf91b0da7d2f9bffc">&#9670;&#160;</a></span>eventFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHook::eventFilter </td>
+          <td>(</td>
+          <td class="paramtype">QObject *</td>          <td class="paramname"><span class="paramname"><em>watched</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QEvent *</td>          <td class="paramname"><span class="paramname"><em>event</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16e76ae1a3659b7596ecff5beab9432e" name="a16e76ae1a3659b7596ecff5beab9432e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16e76ae1a3659b7596ecff5beab9432e">&#9670;&#160;</a></span>GetHook()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCHook.html">CHook</a> * CHook::GetHook </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *</td>          <td class="paramname"><span class="paramname"><em>pPara</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a69a2faf0d99d372416e835fac7b2cd9b" name="a69a2faf0d99d372416e835fac7b2cd9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69a2faf0d99d372416e835fac7b2cd9b">&#9670;&#160;</a></span>OnDisableDesktopShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHook::OnDisableDesktopShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad31cf2fbf0aa372409a8dd9ab6168311" name="ad31cf2fbf0aa372409a8dd9ab6168311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad31cf2fbf0aa372409a8dd9ab6168311">&#9670;&#160;</a></span>OnRegisterKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHook::OnRegisterKeyboard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00080">80</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a06922f3a769a1054c33a27cc009d6fa3" name="a06922f3a769a1054c33a27cc009d6fa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06922f3a769a1054c33a27cc009d6fa3">&#9670;&#160;</a></span>OnRestoreDesktopShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHook::OnRestoreDesktopShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8cef98742cd96eed95fda38b97675313" name="a8cef98742cd96eed95fda38b97675313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cef98742cd96eed95fda38b97675313">&#9670;&#160;</a></span>OnUnRegisterKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHook::OnUnRegisterKeyboard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00093">93</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac073aafd29c391d0d6c341cce68c61f6" name="ac073aafd29c391d0d6c341cce68c61f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac073aafd29c391d0d6c341cce68c61f6">&#9670;&#160;</a></span>RegisterKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHook::RegisterKeyboard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abbdf115b5564879976ba2ef66156613f" name="abbdf115b5564879976ba2ef66156613f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbdf115b5564879976ba2ef66156613f">&#9670;&#160;</a></span>RunCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHook::RunCommand </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>program</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;</td>          <td class="paramname"><span class="paramname"><em>args</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QStringList()</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5000</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00177">177</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7b3915cbb90944e9c898d627d7c73889" name="a7b3915cbb90944e9c898d627d7c73889"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b3915cbb90944e9c898d627d7c73889">&#9670;&#160;</a></span>UnRegisterKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHook::UnRegisterKeyboard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8cpp_source.html">Hook.cpp</a> 第 <a class="el" href="Hook_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a27a0a59f8b39005755674d592b0bdbf6" name="a27a0a59f8b39005755674d592b0bdbf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a0a59f8b39005755674d592b0bdbf6">&#9670;&#160;</a></span>m_bScript</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHook::m_bScript</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8h_source.html">Hook.h</a> 第 <a class="el" href="Hook_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a63c1720269c0757bfbecf3ab1ef86eb1" name="a63c1720269c0757bfbecf3ab1ef86eb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63c1720269c0757bfbecf3ab1ef86eb1">&#9670;&#160;</a></span>m_DesktopShortcutsManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDesktopShortcutManager.html">CDesktopShortcutManager</a> CHook::m_DesktopShortcutsManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8h_source.html">Hook.h</a> 第 <a class="el" href="Hook_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae3d882b42b339b9aba6ccdc9a7f7e123" name="ae3d882b42b339b9aba6ccdc9a7f7e123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3d882b42b339b9aba6ccdc9a7f7e123">&#9670;&#160;</a></span>m_pParameterPlugin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a>* CHook::m_pParameterPlugin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Hook_8h_source.html">Hook.h</a> 第 <a class="el" href="Hook_8h_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Hook_8h_source.html">Hook.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Hook_8cpp_source.html">Hook.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

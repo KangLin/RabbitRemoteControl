@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CNativeEventFilterUnix类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCNativeEventFilterUnix-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CNativeEventFilterUnix类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CNativeEventFilterUnix 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCNativeEventFilterUnix__inherit__graph.png" border="0" usemap="#aCNativeEventFilterUnix_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCNativeEventFilterUnix_inherit__map" id="aCNativeEventFilterUnix_inherit__map">
+<area shape="rect" title=" " alt="" coords="17,79,192,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,204,31"/>
+<area shape="poly" title=" " alt="" coords="107,44,107,79,102,79,102,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CNativeEventFilterUnix 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCNativeEventFilterUnix__coll__graph.png" border="0" usemap="#aCNativeEventFilterUnix_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCNativeEventFilterUnix_coll__map" id="aCNativeEventFilterUnix_coll__map">
+<area shape="rect" title=" " alt="" coords="153,347,327,372"/>
+<area shape="rect" title=" " alt="" coords="334,251,533,276"/>
+<area shape="poly" title=" " alt="" coords="423,290,409,308,391,325,361,340,328,350,327,345,359,335,388,320,405,305,419,286"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="171,251,309,276"/>
+<area shape="poly" title=" " alt="" coords="243,290,243,346,237,346,237,290"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="561,347,711,372"/>
+<area shape="poly" title=" " alt="" coords="303,277,390,297,478,320,584,344,582,349,477,325,389,303,302,282"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="591,80,689,105"/>
+<area shape="poly" title=" " alt="" coords="577,103,489,121,443,136,399,157,377,174,364,191,351,210,329,229,279,253,277,248,327,224,347,206,360,188,374,170,396,152,441,131,488,115,576,97"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="622,867,762,892"/>
+<area shape="poly" title=" " alt="" coords="704,101,751,112,796,125,831,143,841,154,845,166,845,313,850,447,852,553,847,604,836,656,817,713,786,777,774,791,759,802,703,868,699,865,756,798,770,787,782,775,812,711,831,654,842,603,847,553,844,447,840,313,840,166,837,157,828,147,794,130,749,117,702,107"/>
+<area shape="poly" title=" " alt="" coords="642,119,639,346,634,346,637,119"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="793,963,924,988"/>
+<area shape="poly" title=" " alt="" coords="703,97,765,105,827,118,876,138,890,151,896,166,896,611,898,633,903,651,919,680,939,709,955,750,983,849,985,871,983,893,975,915,961,940,945,956,926,966,923,961,942,951,957,937,971,913,978,891,980,871,978,850,949,752,934,712,915,683,898,653,893,634,891,611,891,166,886,154,873,142,825,123,764,110,703,102"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="182,155,325,180"/>
+<area shape="poly" title=" " alt="" coords="577,100,470,111,351,132,279,157,278,152,350,127,470,105,576,95"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="410,155,601,180"/>
+<area shape="poly" title=" " alt="" coords="608,114,528,157,526,152,605,110"/>
+<area shape="rect" title=" " alt="" coords="755,5,829,31"/>
+<area shape="poly" title=" " alt="" coords="757,39,665,82,663,78,755,34"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="847,751,940,776"/>
+<area shape="poly" title=" " alt="" coords="844,20,878,27,912,40,937,61,944,75,947,91,947,669,942,694,932,717,907,752,902,749,928,714,937,692,941,668,941,92,939,76,932,64,909,45,877,32,843,25"/>
+<area shape="poly" title=" " alt="" coords="608,881,463,877,381,871,301,861,228,847,168,827,145,814,127,800,116,783,112,765,112,358,114,342,121,327,142,304,170,286,199,274,201,278,172,291,145,308,125,330,119,343,117,358,117,764,121,781,131,796,148,810,170,822,229,842,302,856,382,866,464,872,608,876"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="604,655,764,680"/>
+<area shape="poly" title=" " alt="" coords="688,694,694,866,689,866,682,694"/>
+<area shape="poly" title=" " alt="" coords="723,683,869,748,866,753,721,688"/>
+<area shape="poly" title=" " alt="" coords="653,383,657,395,674,471,683,547,687,654,682,654,678,547,669,472,652,397,648,385"/>
+<area shape="poly" title=" " alt="" coords="726,350,738,359,730,367,712,371,711,365,728,363,733,360,723,355"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="526,539,647,564"/>
+<area shape="poly" title=" " alt="" coords="640,386,636,446,630,482,618,516,602,540,597,537,614,513,625,480,631,445,634,385"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="469,443,597,468"/>
+<area shape="poly" title=" " alt="" coords="615,384,548,444,544,440,611,380"/>
+<area shape="poly" title=" " alt="" coords="593,577,602,604,617,629,632,642,651,652,648,657,629,647,613,632,597,606,588,578"/>
+<area shape="poly" title=" " alt="" coords="544,480,560,513,578,537,573,540,555,516,539,482"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="352,347,536,372"/>
+<area shape="poly" title=" " alt="" coords="462,382,491,417,519,440,515,444,487,421,458,385"/>
+<area shape="poly" title=" " alt="" coords="834,782,802,792,780,802,772,812,768,822,764,833,755,845,720,869,717,864,751,841,759,830,763,820,767,809,777,798,800,787,832,777"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="805,867,931,892"/>
+<area shape="poly" title=" " alt="" coords="919,785,928,799,934,822,928,844,915,859,900,869,897,864,912,855,923,841,929,822,923,801,915,788"/>
+<area shape="poly" title=" " alt="" coords="780,976,569,972,313,958,194,946,96,930,58,920,29,909,10,896,3,881,3,358,7,333,19,312,38,296,61,283,115,268,170,262,171,267,116,273,63,288,41,300,23,315,12,334,8,358,8,880,14,893,31,904,59,915,97,925,195,941,313,953,570,966,780,971"/>
+<area shape="poly" title=" " alt="" coords="864,906,863,916,861,962,856,962,857,916,859,905"/>
+<area shape="poly" title=" " alt="" coords="252,194,244,251,239,250,247,193"/>
+<area shape="poly" title=" " alt="" coords="475,189,435,210,389,229,302,253,300,248,387,224,432,205,473,184"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae1136d5c4661869d499aecfa70a6ea13" id="r_ae1136d5c4661869d499aecfa70a6ea13"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae1136d5c4661869d499aecfa70a6ea13">CNativeEventFilterUnix</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara)</td></tr>
+<tr class="memitem:a1c3522a7815712e2cba1d7f8c17997ae" id="r_a1c3522a7815712e2cba1d7f8c17997ae"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a1c3522a7815712e2cba1d7f8c17997ae">nativeEventFilter</a> (const QByteArray &amp;eventType, void *message, qintptr *result) override</td></tr>
+<tr class="memitem:a795b6d538c5e430db4958a8e840e11fd" id="r_a795b6d538c5e430db4958a8e840e11fd"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a795b6d538c5e430db4958a8e840e11fd">GetKeySym</a> (xcb_key_press_event_t *event, xcb_keysym_t &amp;keysym)</td></tr>
+<tr class="memitem:a9ff807ba0ff9d2aef9456fc6f1c05a8d" id="r_a9ff807ba0ff9d2aef9456fc6f1c05a8d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9ff807ba0ff9d2aef9456fc6f1c05a8d">HandleEvent</a> (xcb_generic_event_t *event)</td></tr>
+<tr class="memitem:a6e563fd5ab529d982fe2ce9add1bb960" id="r_a6e563fd5ab529d982fe2ce9add1bb960"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6e563fd5ab529d982fe2ce9add1bb960">HandleKey</a> (xcb_keysym_t keysym, QEvent::Type type, Qt::KeyboardModifiers modifiers)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a1c2fda3bb78ee32c83d8d50639693f1d" id="r_a1c2fda3bb78ee32c83d8d50639693f1d"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a1c2fda3bb78ee32c83d8d50639693f1d">RestoreSuperKeyShortcuts</a> ()</td></tr>
+<tr class="memitem:aa746f1d1c5d6fe27e5584016a8ced88d" id="r_aa746f1d1c5d6fe27e5584016a8ced88d"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aa746f1d1c5d6fe27e5584016a8ced88d">DisableSuperKeyShortcuts</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:aaf1cac318aeb0a09af7b7df580832894" id="r_aaf1cac318aeb0a09af7b7df580832894"><td class="memItemLeft">xcb_key_symbols_t *&#160;</td><td class="memItemRight"><a class="el" href="#aaf1cac318aeb0a09af7b7df580832894">m_pKeySymbols</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a1f89e3434ff8772bea4b922f54ebb9bc" id="r_a1f89e3434ff8772bea4b922f54ebb9bc"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a1f89e3434ff8772bea4b922f54ebb9bc">m_pParameterPlugin</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8h_source.html">NativeEventFilterUnix.h</a> 第 <a class="el" href="NativeEventFilterUnix_8h_source.html#l00015">15</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="ae1136d5c4661869d499aecfa70a6ea13" name="ae1136d5c4661869d499aecfa70a6ea13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1136d5c4661869d499aecfa70a6ea13">&#9670;&#160;</a></span>CNativeEventFilterUnix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CNativeEventFilterUnix::CNativeEventFilterUnix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *</td>          <td class="paramname"><span class="paramname"><em>pPara</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00202">202</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8b29100c89bdda3a131e3a269bc9033e" name="a8b29100c89bdda3a131e3a269bc9033e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b29100c89bdda3a131e3a269bc9033e">&#9670;&#160;</a></span>~CNativeEventFilterUnix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CNativeEventFilterUnix::~CNativeEventFilterUnix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00223">223</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="aa746f1d1c5d6fe27e5584016a8ced88d" name="aa746f1d1c5d6fe27e5584016a8ced88d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa746f1d1c5d6fe27e5584016a8ced88d">&#9670;&#160;</a></span>DisableSuperKeyShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CNativeEventFilterUnix::DisableSuperKeyShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00176">176</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a795b6d538c5e430db4958a8e840e11fd" name="a795b6d538c5e430db4958a8e840e11fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a795b6d538c5e430db4958a8e840e11fd">&#9670;&#160;</a></span>GetKeySym()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CNativeEventFilterUnix::GetKeySym </td>
+          <td>(</td>
+          <td class="paramtype">xcb_key_press_event_t *</td>          <td class="paramname"><span class="paramname"><em>event</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">xcb_keysym_t &amp;</td>          <td class="paramname"><span class="paramname"><em>keysym</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00163">163</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9ff807ba0ff9d2aef9456fc6f1c05a8d" name="a9ff807ba0ff9d2aef9456fc6f1c05a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ff807ba0ff9d2aef9456fc6f1c05a8d">&#9670;&#160;</a></span>HandleEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CNativeEventFilterUnix::HandleEvent </td>
+          <td>(</td>
+          <td class="paramtype">xcb_generic_event_t *</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6e563fd5ab529d982fe2ce9add1bb960" name="a6e563fd5ab529d982fe2ce9add1bb960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e563fd5ab529d982fe2ce9add1bb960">&#9670;&#160;</a></span>HandleKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CNativeEventFilterUnix::HandleKey </td>
+          <td>(</td>
+          <td class="paramtype">xcb_keysym_t</td>          <td class="paramname"><span class="paramname"><em>keysym</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QEvent::Type</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Qt::KeyboardModifiers</td>          <td class="paramname"><span class="paramname"><em>modifiers</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1c3522a7815712e2cba1d7f8c17997ae" name="a1c3522a7815712e2cba1d7f8c17997ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c3522a7815712e2cba1d7f8c17997ae">&#9670;&#160;</a></span>nativeEventFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CNativeEventFilterUnix::nativeEventFilter </td>
+          <td>(</td>
+          <td class="paramtype">const QByteArray &amp;</td>          <td class="paramname"><span class="paramname"><em>eventType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>message</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qintptr *</td>          <td class="paramname"><span class="paramname"><em>result</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00231">231</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1c2fda3bb78ee32c83d8d50639693f1d" name="a1c2fda3bb78ee32c83d8d50639693f1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c2fda3bb78ee32c83d8d50639693f1d">&#9670;&#160;</a></span>RestoreSuperKeyShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CNativeEventFilterUnix::RestoreSuperKeyShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a> 第 <a class="el" href="NativeEventFilterUnix_8cpp_source.html#l00189">189</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="aaf1cac318aeb0a09af7b7df580832894" name="aaf1cac318aeb0a09af7b7df580832894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf1cac318aeb0a09af7b7df580832894">&#9670;&#160;</a></span>m_pKeySymbols</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">xcb_key_symbols_t* CNativeEventFilterUnix::m_pKeySymbols</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8h_source.html">NativeEventFilterUnix.h</a> 第 <a class="el" href="NativeEventFilterUnix_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1f89e3434ff8772bea4b922f54ebb9bc" name="a1f89e3434ff8772bea4b922f54ebb9bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f89e3434ff8772bea4b922f54ebb9bc">&#9670;&#160;</a></span>m_pParameterPlugin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a>* CNativeEventFilterUnix::m_pParameterPlugin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="NativeEventFilterUnix_8h_source.html">NativeEventFilterUnix.h</a> 第 <a class="el" href="NativeEventFilterUnix_8h_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Unix/<a class="el" href="NativeEventFilterUnix_8h_source.html">NativeEventFilterUnix.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Unix/<a class="el" href="NativeEventFilterUnix_8cpp_source.html">NativeEventFilterUnix.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

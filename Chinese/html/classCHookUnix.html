@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CHookUnix类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="classCHookUnix-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CHookUnix类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CHookUnix 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCHookUnix__inherit__graph.png" border="0" usemap="#aCHookUnix_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCHookUnix_inherit__map" id="aCHookUnix_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,100,177"/>
+<area shape="rect" href="classCHook.html" title="The class is the HOOK abstract class." alt="" coords="20,79,85,104"/>
+<area shape="poly" title=" " alt="" coords="55,118,55,152,50,152,50,118"/>
+<area shape="rect" title=" " alt="" coords="15,5,90,31"/>
+<area shape="poly" title=" " alt="" coords="55,44,55,79,50,79,50,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CHookUnix 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCHookUnix__coll__graph.png" border="0" usemap="#aCHookUnix_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCHookUnix_coll__map" id="aCHookUnix_coll__map">
+<area shape="rect" title=" " alt="" coords="225,467,320,492"/>
+<area shape="rect" href="classCHook.html" title="The class is the HOOK abstract class." alt="" coords="240,371,305,396"/>
+<area shape="poly" title=" " alt="" coords="275,410,275,466,270,466,270,410"/>
+<area shape="rect" title=" " alt="" coords="422,5,497,31"/>
+<area shape="poly" title=" " alt="" coords="408,21,364,25,321,36,302,45,288,57,279,72,275,92,275,289,275,371,270,371,270,289,270,91,274,71,284,54,299,41,319,31,363,20,408,16"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="598,80,697,105"/>
+<area shape="poly" title=" " alt="" coords="503,33,619,77,617,82,501,38"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1059,775,1153,800"/>
+<area shape="poly" title=" " alt="" coords="511,18,719,26,994,40,1233,61,1308,74,1330,82,1338,90,1338,693,1333,720,1318,742,1297,759,1270,771,1210,785,1153,789,1153,784,1209,780,1268,766,1294,754,1314,738,1328,718,1333,692,1333,92,1327,86,1307,79,1233,66,993,45,719,31,511,24"/>
+<area shape="rect" href="classCDesktopShortcutManager.html" title="Manage desktop shortcut keys" alt="" coords="5,129,201,155"/>
+<area shape="poly" title=" " alt="" coords="409,26,335,36,255,57,216,74,178,94,121,131,118,127,175,90,213,69,253,52,334,31,408,20"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="421,275,559,300"/>
+<area shape="poly" title=" " alt="" coords="408,299,367,310,329,326,302,348,282,372,278,369,298,344,326,322,366,305,407,294"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="1053,371,1204,396"/>
+<area shape="poly" title=" " alt="" coords="573,298,1054,368,1053,374,572,303"/>
+<area shape="poly" title=" " alt="" coords="585,106,519,118,449,134,388,155,366,167,352,180,345,195,347,209,356,222,370,234,409,256,452,272,450,277,407,261,367,239,352,225,342,211,340,194,348,177,363,163,386,150,447,129,518,112,584,100"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="800,891,940,916"/>
+<area shape="poly" title=" " alt="" coords="712,98,746,109,777,127,803,154,808,170,810,190,810,337,816,420,828,484,840,548,846,632,846,789,848,817,854,845,868,890,863,891,849,847,843,818,841,789,841,632,835,549,823,485,810,420,805,337,805,190,803,171,798,157,774,131,743,114,710,104"/>
+<area shape="poly" title=" " alt="" coords="711,96,769,107,827,127,877,154,925,186,1012,257,1079,323,1121,369,1117,372,1076,327,1008,261,922,191,874,159,825,132,767,112,710,101"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="534,987,665,1012"/>
+<area shape="poly" title=" " alt="" coords="678,112,709,140,723,158,734,178,736,191,734,205,716,268,693,314,668,360,645,421,613,525,605,572,602,632,602,905,602,987,597,987,597,905,597,632,599,571,608,524,639,419,663,358,688,312,711,266,729,203,731,191,729,180,719,161,705,143,674,115"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="576,179,719,204"/>
+<area shape="poly" title=" " alt="" coords="650,119,650,179,645,179,645,119"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="361,179,552,204"/>
+<area shape="poly" title=" " alt="" coords="614,114,480,181,478,176,611,109"/>
+<area shape="poly" title=" " alt="" coords="786,893,741,880,700,859,683,846,670,829,661,811,658,789,658,382,656,366,649,352,626,328,594,312,559,301,560,296,596,307,629,324,654,349,661,364,663,382,663,788,666,809,674,827,687,842,703,855,743,875,787,888"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1005,679,1165,704"/>
+<area shape="poly" title=" " alt="" coords="1050,713,1004,740,958,777,932,806,909,839,878,892,874,889,905,836,928,803,955,773,1001,736,1047,708"/>
+<area shape="poly" title=" " alt="" coords="1093,717,1106,774,1101,775,1088,718"/>
+<area shape="poly" title=" " alt="" coords="1139,409,1150,457,1158,520,1156,590,1148,624,1135,656,1124,670,1110,681,1107,676,1120,666,1130,653,1143,622,1150,589,1153,521,1145,458,1134,410"/>
+<area shape="poly" title=" " alt="" coords="1219,374,1231,383,1222,391,1204,395,1204,389,1220,387,1225,384,1216,379"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="997,563,1119,588"/>
+<area shape="poly" title=" " alt="" coords="1128,410,1115,471,1104,506,1090,540,1072,564,1068,561,1085,537,1099,504,1110,469,1123,409"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="941,467,1069,492"/>
+<area shape="poly" title=" " alt="" coords="1104,406,1022,469,1018,464,1101,402"/>
+<area shape="poly" title=" " alt="" coords="1066,601,1084,678,1079,679,1061,602"/>
+<area shape="poly" title=" " alt="" coords="1015,504,1031,537,1049,561,1045,564,1026,540,1010,506"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="845,371,1029,396"/>
+<area shape="poly" title=" " alt="" coords="946,408,963,441,988,465,985,469,959,444,941,410"/>
+<area shape="poly" title=" " alt="" coords="1046,799,988,811,946,826,937,835,933,845,929,856,921,868,891,893,888,888,917,865,925,854,928,843,933,832,943,822,986,806,1045,794"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="1019,891,1145,916"/>
+<area shape="poly" title=" " alt="" coords="1104,814,1094,867,1088,891,1083,890,1089,866,1099,813"/>
+<area shape="poly" title=" " alt="" coords="554,983,531,970,509,953,494,931,487,905,487,382,487,300,493,300,493,382,493,904,498,929,513,949,534,966,557,979"/>
+<area shape="poly" title=" " alt="" coords="1010,921,659,989,657,984,1009,916"/>
+<area shape="poly" title=" " alt="" coords="637,218,623,236,605,253,579,267,551,277,549,272,577,262,602,249,619,233,632,214"/>
+<area shape="poly" title=" " alt="" coords="468,216,488,274,483,275,463,218"/>
+<area shape="poly" title=" " alt="" coords="83,166,68,185,56,206,50,228,55,250,72,274,94,296,144,331,196,356,241,371,239,376,194,361,141,335,90,300,68,277,50,252,45,228,51,204,64,182,79,163"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:adadd343f215a22e6f2f7f382eb3cad58" id="r_adadd343f215a22e6f2f7f382eb3cad58"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adadd343f215a22e6f2f7f382eb3cad58">CHookUnix</a> (CParameterClient *pParaClient, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:a709d724178ac2b78ba9f06beba680430" id="r_a709d724178ac2b78ba9f06beba680430"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a709d724178ac2b78ba9f06beba680430">RegisterKeyboard</a> () override</td></tr>
+<tr class="memitem:a094a76b952f8b0ecf56eb74bf6ddd26c" id="r_a094a76b952f8b0ecf56eb74bf6ddd26c"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a094a76b952f8b0ecf56eb74bf6ddd26c">UnRegisterKeyboard</a> () override</td></tr>
+<tr class="inherit_header pub_methods_classCHook"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCHook.html">CHook</a></td></tr>
+<tr class="memitem:a7b315f6251b0f5cbf91b0da7d2f9bffc pub_methods_classCHook" id="r_a7b315f6251b0f5cbf91b0da7d2f9bffc"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#a7b315f6251b0f5cbf91b0da7d2f9bffc">eventFilter</a> (QObject *watched, QEvent *event) override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classCHook"><td colspan="2">静态 Public 成员函数 继承自 <a class="el" href="classCHook.html">CHook</a></td></tr>
+<tr class="memitem:a16e76ae1a3659b7596ecff5beab9432e pub_static_methods_classCHook" id="r_a16e76ae1a3659b7596ecff5beab9432e"><td class="memItemLeft">static <a class="el" href="classCHook.html">CHook</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#a16e76ae1a3659b7596ecff5beab9432e">GetHook</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:abbdf115b5564879976ba2ef66156613f pub_static_methods_classCHook" id="r_abbdf115b5564879976ba2ef66156613f"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#abbdf115b5564879976ba2ef66156613f">RunCommand</a> (const QString &amp;program, const QStringList &amp;args=QStringList(), int timeout=5000)</td></tr>
+<tr class="inherit_header pro_methods_classCHook"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCHook.html">CHook</a></td></tr>
+<tr class="memitem:a2ada1a29cc7875d551f0d3c7fa12ed8e pro_methods_classCHook" id="r_a2ada1a29cc7875d551f0d3c7fa12ed8e"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>CHook</b> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:ad31cf2fbf0aa372409a8dd9ab6168311 pro_methods_classCHook" id="r_ad31cf2fbf0aa372409a8dd9ab6168311"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#ad31cf2fbf0aa372409a8dd9ab6168311">OnRegisterKeyboard</a> ()</td></tr>
+<tr class="memitem:a8cef98742cd96eed95fda38b97675313 pro_methods_classCHook" id="r_a8cef98742cd96eed95fda38b97675313"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#a8cef98742cd96eed95fda38b97675313">OnUnRegisterKeyboard</a> ()</td></tr>
+<tr class="memitem:a69a2faf0d99d372416e835fac7b2cd9b pro_methods_classCHook" id="r_a69a2faf0d99d372416e835fac7b2cd9b"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#a69a2faf0d99d372416e835fac7b2cd9b">OnDisableDesktopShortcuts</a> ()</td></tr>
+<tr class="memitem:a06922f3a769a1054c33a27cc009d6fa3 pro_methods_classCHook" id="r_a06922f3a769a1054c33a27cc009d6fa3"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#a06922f3a769a1054c33a27cc009d6fa3">OnRestoreDesktopShortcuts</a> ()</td></tr>
+<tr class="inherit_header pro_attribs_classCHook"><td colspan="2">Protected 属性 继承自 <a class="el" href="classCHook.html">CHook</a></td></tr>
+<tr class="memitem:ae3d882b42b339b9aba6ccdc9a7f7e123 pro_attribs_classCHook" id="r_ae3d882b42b339b9aba6ccdc9a7f7e123"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCHook.html#ae3d882b42b339b9aba6ccdc9a7f7e123">m_pParameterPlugin</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="HookUnix_8h_source.html">HookUnix.h</a> 第 <a class="el" href="HookUnix_8h_source.html#l00008">8</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="adadd343f215a22e6f2f7f382eb3cad58" name="adadd343f215a22e6f2f7f382eb3cad58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adadd343f215a22e6f2f7f382eb3cad58">&#9670;&#160;</a></span>CHookUnix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CHookUnix::CHookUnix </td>
+          <td>(</td>
+          <td class="paramtype">CParameterClient *</td>          <td class="paramname"><span class="paramname"><em>pParaClient</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HookUnix_8cpp_source.html">HookUnix.cpp</a> 第 <a class="el" href="HookUnix_8cpp_source.html#l00011">11</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab294081018d9c78bfc12a2f6bae43b49" name="ab294081018d9c78bfc12a2f6bae43b49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab294081018d9c78bfc12a2f6bae43b49">&#9670;&#160;</a></span>~CHookUnix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CHookUnix::~CHookUnix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HookUnix_8cpp_source.html">HookUnix.cpp</a> 第 <a class="el" href="HookUnix_8cpp_source.html#l00016">16</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a709d724178ac2b78ba9f06beba680430" name="a709d724178ac2b78ba9f06beba680430"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a709d724178ac2b78ba9f06beba680430">&#9670;&#160;</a></span>RegisterKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHookUnix::RegisterKeyboard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCHook.html">CHook</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="HookUnix_8cpp_source.html">HookUnix.cpp</a> 第 <a class="el" href="HookUnix_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a094a76b952f8b0ecf56eb74bf6ddd26c" name="a094a76b952f8b0ecf56eb74bf6ddd26c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a094a76b952f8b0ecf56eb74bf6ddd26c">&#9670;&#160;</a></span>UnRegisterKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHookUnix::UnRegisterKeyboard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCHook.html">CHook</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="HookUnix_8cpp_source.html">HookUnix.cpp</a> 第 <a class="el" href="HookUnix_8cpp_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Unix/<a class="el" href="HookUnix_8h_source.html">HookUnix.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Unix/<a class="el" href="HookUnix_8cpp_source.html">HookUnix.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

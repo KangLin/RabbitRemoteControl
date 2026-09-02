@@ -1,0 +1,1423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterDesktop类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterDesktop-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterDesktop类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html">参数组件</a> &#124; <a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__PLUGIN__API.html">插件接口</a> &raquo; <a class="el" href="group__gOperateDesktop.html">桌面类</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterDesktop 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterDesktop__inherit__graph.png" border="0" usemap="#aCParameterDesktop_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCParameterDesktop_inherit__map" id="aCParameterDesktop_inherit__map">
+<area shape="rect" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="473,104,625,129"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="703,5,856,31"/>
+<area shape="poly" title=" " alt="" coords="578,94,621,66,672,40,708,28,709,33,674,44,624,70,580,98"/>
+<area shape="rect" href="classCParameterLibVNCServer.html" title=" " alt="" coords="686,55,873,80"/>
+<area shape="poly" title=" " alt="" coords="622,99,719,77,720,83,623,104"/>
+<area shape="rect" href="classCParameterPlayer.html" title=" " alt="" coords="710,104,849,129"/>
+<area shape="poly" title=" " alt="" coords="639,114,710,114,710,119,639,119"/>
+<area shape="rect" href="classCParameterTemplateDesktop.html" title=" " alt="" coords="673,153,885,179"/>
+<area shape="poly" title=" " alt="" coords="623,130,720,151,719,156,622,135"/>
+<area shape="rect" href="classCParameterVnc.html" title=" " alt="" coords="718,203,841,228"/>
+<area shape="poly" title=" " alt="" coords="580,135,624,163,674,189,719,202,717,208,672,194,621,168,578,140"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="275,104,425,129"/>
+<area shape="poly" title=" " alt="" coords="439,114,473,114,473,119,439,119"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="128,104,227,129"/>
+<area shape="poly" title=" " alt="" coords="240,114,274,114,274,119,240,119"/>
+<area shape="rect" title=" " alt="" coords="5,104,80,129"/>
+<area shape="poly" title=" " alt="" coords="94,114,128,114,128,119,94,119"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterDesktop 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterDesktop__coll__graph.png" border="0" usemap="#aCParameterDesktop_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCParameterDesktop_coll__map" id="aCParameterDesktop_coll__map">
+<area shape="rect" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="453,773,605,799"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="443,155,594,180"/>
+<area shape="poly" title=" " alt="" coords="549,186,581,220,593,241,597,264,597,517,597,584,594,637,583,688,560,751,543,775,539,772,555,748,578,687,589,636,592,584,592,517,592,265,588,243,577,223,545,190"/>
+<area shape="poly" title=" " alt="" coords="608,160,621,167,612,174,594,177,594,171,610,169,615,167,606,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="632,445,792,471"/>
+<area shape="poly" title=" " alt="" coords="587,183,615,202,640,232,661,265,690,336,706,401,713,445,708,446,701,402,685,338,656,268,636,235,612,206,584,188"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="314,349,435,375"/>
+<area shape="poly" title=" " alt="" coords="492,190,477,206,460,237,452,266,445,295,426,327,398,351,394,347,422,324,440,293,447,264,455,235,473,202,488,186"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="277,253,405,279"/>
+<area shape="poly" title=" " alt="" coords="469,187,425,206,387,231,356,255,353,251,384,227,423,202,467,182"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="379,677,514,703"/>
+<area shape="poly" title=" " alt="" coords="531,192,542,226,547,264,547,575,544,593,538,610,518,639,493,663,468,679,465,675,489,658,514,635,534,607,539,592,541,575,541,265,536,227,526,194"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="361,445,485,471"/>
+<area shape="poly" title=" " alt="" coords="521,194,517,239,508,298,491,362,464,423,441,447,437,444,459,420,486,360,502,297,511,239,515,194"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="909,80,1008,105"/>
+<area shape="poly" title=" " alt="" coords="896,107,588,157,588,152,895,102"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="704,889,843,915"/>
+<area shape="poly" title=" " alt="" coords="895,98,667,105,371,119,231,128,115,139,36,153,14,160,8,167,8,787,11,809,19,824,32,835,49,842,92,852,141,863,189,873,252,881,408,892,704,898,704,904,408,897,252,887,188,878,139,868,90,857,47,847,29,839,15,828,6,811,3,788,3,165,12,156,34,148,114,134,231,123,370,113,666,100,895,93"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="781,677,921,703"/>
+<area shape="poly" title=" " alt="" coords="961,119,961,166,961,459,957,500,942,538,930,561,918,576,892,612,858,678,853,676,887,609,914,573,926,558,938,536,952,499,956,459,956,166,956,119"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1004,773,1135,799"/>
+<area shape="poly" title=" " alt="" coords="974,116,980,128,1023,260,1048,365,1064,473,1081,610,1097,680,1100,711,1093,750,1081,774,1076,772,1088,749,1094,711,1091,681,1076,611,1059,473,1043,366,1018,261,975,130,970,118"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="614,677,757,703"/>
+<area shape="poly" title=" " alt="" coords="897,107,873,116,852,128,837,145,832,166,832,576,829,595,821,613,794,643,759,665,724,680,722,675,757,660,791,639,817,610,824,594,827,575,827,166,833,142,849,124,871,111,895,102"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="1102,204,1293,229"/>
+<area shape="poly" title=" " alt="" coords="1022,100,1062,111,1101,127,1129,144,1154,165,1190,202,1186,206,1150,169,1126,149,1099,132,1060,116,1021,106"/>
+<area shape="rect" title=" " alt="" coords="1103,5,1177,31"/>
+<area shape="poly" title=" " alt="" coords="1099,38,988,82,986,77,1098,33"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="965,561,1059,587"/>
+<area shape="poly" title=" " alt="" coords="1192,17,1233,22,1273,34,1290,44,1304,56,1313,72,1316,91,1316,459,1317,503,1311,521,1296,539,1279,550,1254,558,1191,569,1121,574,1059,576,1059,570,1121,569,1191,564,1253,553,1277,545,1293,535,1306,519,1311,502,1311,459,1311,92,1308,74,1299,60,1287,48,1271,39,1231,28,1191,23"/>
+<area shape="poly" title=" " alt="" coords="690,898,518,885,319,862,229,847,154,831,104,811,89,800,84,788,84,573,87,516,94,468,108,427,127,390,152,356,183,322,264,251,305,223,352,202,398,187,442,176,443,182,400,192,354,207,308,228,267,255,187,326,156,359,131,393,113,429,100,469,92,517,89,573,89,787,94,797,106,807,156,825,230,842,320,857,519,879,690,893"/>
+<area shape="poly" title=" " alt="" coords="844,717,780,890,775,888,839,715"/>
+<area shape="poly" title=" " alt="" coords="729,482,846,676,841,679,724,484"/>
+<area shape="poly" title=" " alt="" coords="756,473,983,559,981,564,754,478"/>
+<area shape="poly" title=" " alt="" coords="353,386,317,423,281,472,268,500,259,528,257,557,264,586,283,622,308,655,338,683,372,708,439,747,497,771,494,776,437,751,369,712,335,687,304,658,278,625,259,588,252,558,254,527,263,498,277,470,313,420,349,382"/>
+<area shape="poly" title=" " alt="" coords="430,376,671,443,670,448,428,381"/>
+<area shape="poly" title=" " alt="" coords="363,388,343,427,326,478,321,505,319,533,322,560,330,586,350,615,375,640,426,675,423,679,371,644,346,618,326,588,317,561,313,533,315,504,321,477,338,425,358,386"/>
+<area shape="poly" title=" " alt="" coords="389,386,419,444,414,446,384,388"/>
+<area shape="poly" title=" " alt="" coords="352,291,373,348,368,350,347,292"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="43,155,227,180"/>
+<area shape="poly" title=" " alt="" coords="172,183,318,251,316,256,170,188"/>
+<area shape="poly" title=" " alt="" coords="953,591,932,600,912,613,904,622,899,632,888,655,865,679,861,675,883,652,894,630,899,619,909,609,929,595,951,586"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="945,677,1071,703"/>
+<area shape="poly" title=" " alt="" coords="1047,593,1060,609,1066,632,1060,655,1049,669,1035,679,1032,675,1045,665,1055,652,1061,632,1055,612,1043,597"/>
+<area shape="poly" title=" " alt="" coords="1028,806,804,892,802,887,1026,801"/>
+<area shape="poly" title=" " alt="" coords="996,715,991,732,994,748,1007,761,1024,771,1021,776,1004,766,990,751,986,732,991,714"/>
+<area shape="poly" title=" " alt="" coords="653,711,623,729,592,752,552,775,549,771,589,747,620,724,650,707"/>
+<area shape="poly" title=" " alt="" coords="698,715,771,888,766,890,693,717"/>
+<area shape="poly" title=" " alt="" coords="1190,243,1180,276,1175,313,1175,787,1172,807,1166,822,1155,834,1141,842,1069,868,1027,879,969,888,843,899,843,894,968,882,1026,874,1067,863,1139,838,1152,830,1161,819,1167,806,1169,787,1169,312,1174,275,1185,241"/>
+<area shape="poly" title=" " alt="" coords="465,712,494,748,518,771,514,775,490,751,461,715"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="339,561,506,587"/>
+<area shape="poly" title=" " alt="" coords="431,600,447,676,442,677,425,601"/>
+<area shape="poly" title=" " alt="" coords="425,485,425,561,420,561,420,485"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:ae4149c986bbb6f72a2cd754e15df22ab" id="r_ae4149c986bbb6f72a2cd754e15df22ab"><td class="memItemLeft"><a id="ae4149c986bbb6f72a2cd754e15df22ab" name="ae4149c986bbb6f72a2cd754e15df22ab"></a>
+void&#160;</td><td class="memItemRight"><b>sigShowServerNameChanged</b> ()</td></tr>
+<tr class="memitem:ab72eb85edebafae916b7f66bbedc9853" id="r_ab72eb85edebafae916b7f66bbedc9853"><td class="memItemLeft"><a id="ab72eb85edebafae916b7f66bbedc9853" name="ab72eb85edebafae916b7f66bbedc9853"></a>
+void&#160;</td><td class="memItemRight"><b>sigEnableInputMethod</b> (bool bEnable)</td></tr>
+<tr class="memitem:a5b2ca6517c962fc8aa94487543ae7be8" id="r_a5b2ca6517c962fc8aa94487543ae7be8"><td class="memItemLeft"><a id="a5b2ca6517c962fc8aa94487543ae7be8" name="a5b2ca6517c962fc8aa94487543ae7be8"></a>
+void&#160;</td><td class="memItemRight"><b>sigAdaptWindowsChanged</b> (<a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw)</td></tr>
+<tr class="memitem:a7c9b3d90e744e4a3cd6426cca218cb1a" id="r_a7c9b3d90e744e4a3cd6426cca218cb1a"><td class="memItemLeft"><a id="a7c9b3d90e744e4a3cd6426cca218cb1a" name="a7c9b3d90e744e4a3cd6426cca218cb1a"></a>
+void&#160;</td><td class="memItemRight"><b>sigZoomFactorChanged</b> (double newZoomFactor)</td></tr>
+<tr class="inherit_header signals_classCParameterOperate"><td colspan="2">信号 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a2e5750454b66d5ac60140f38c9e9a1ab signals_classCParameterOperate" id="r_a2e5750454b66d5ac60140f38c9e9a1ab"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a2e5750454b66d5ac60140f38c9e9a1ab">sigSetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a2e5750454b66d5ac60140f38c9e9a1ab signals_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468 signals_classCParameterOperate" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2">信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a58e1a4e659137241e3e8a10fcd234c90" id="r_a58e1a4e659137241e3e8a10fcd234c90"><td class="memItemLeft"><a id="a58e1a4e659137241e3e8a10fcd234c90" name="a58e1a4e659137241e3e8a10fcd234c90"></a>
+&#160;</td><td class="memItemRight"><b>CParameterDesktop</b> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:aabe69ea923d80b04d33a70a6337e400a" id="r_aabe69ea923d80b04d33a70a6337e400a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aabe69ea923d80b04d33a70a6337e400a">CParameterDesktop</a> (<a class="el" href="classCParameterOperate.html">CParameterOperate</a> *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:ae8fafedfbc344ae4823dc160409637b6" id="r_ae8fafedfbc344ae4823dc160409637b6"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="#ae8fafedfbc344ae4823dc160409637b6">GetServerName</a> () const</td></tr>
+<tr class="memitem:acbddfc3f46e0449c52c78405d95ceb64" id="r_acbddfc3f46e0449c52c78405d95ceb64"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acbddfc3f46e0449c52c78405d95ceb64">SetServerName</a> (const QString &amp;szName)</td></tr>
+<tr class="memitem:a7d9fea06039e111d76b517a6c398d288" id="r_a7d9fea06039e111d76b517a6c398d288"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7d9fea06039e111d76b517a6c398d288">GetShowServerName</a> () const</td></tr>
+<tr class="memitem:a679d7a0d2f8deffb0b5d957ceb54405b" id="r_a679d7a0d2f8deffb0b5d957ceb54405b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a679d7a0d2f8deffb0b5d957ceb54405b">SetShowServerName</a> (bool NewShowServerName)</td></tr>
+<tr class="memitem:a756d1751130ebe8d7138d30d9a1f1c76" id="r_a756d1751130ebe8d7138d30d9a1f1c76"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a756d1751130ebe8d7138d30d9a1f1c76">GetOnlyView</a> () const</td></tr>
+<tr class="memitem:aefb2d2402b1afcefda9bd0b6d70d8ab4" id="r_aefb2d2402b1afcefda9bd0b6d70d8ab4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aefb2d2402b1afcefda9bd0b6d70d8ab4">SetOnlyView</a> (bool only)</td></tr>
+<tr class="memitem:ab5ca028fff5a73971ae41b936bc81d23" id="r_ab5ca028fff5a73971ae41b936bc81d23"><td class="memItemLeft">const bool&#160;</td><td class="memItemRight"><a class="el" href="#ab5ca028fff5a73971ae41b936bc81d23">GetLocalCursor</a> () const</td></tr>
+<tr class="memitem:ab439477bd9d3febca8b52f8ea2ede0d2" id="r_ab439477bd9d3febca8b52f8ea2ede0d2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab439477bd9d3febca8b52f8ea2ede0d2">SetLocalCursor</a> (bool cursor)</td></tr>
+<tr class="memitem:aad317c0cf53b26dbdaabe91de205623a" id="r_aad317c0cf53b26dbdaabe91de205623a"><td class="memItemLeft">const bool&#160;</td><td class="memItemRight"><a class="el" href="#aad317c0cf53b26dbdaabe91de205623a">GetCursorPosition</a> () const</td></tr>
+<tr class="memitem:a2825559c7b641da0349b918c6d2825b5" id="r_a2825559c7b641da0349b918c6d2825b5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2825559c7b641da0349b918c6d2825b5">SetCursorPosition</a> (bool pos)</td></tr>
+<tr class="memitem:a034bc765888f06eb6265cbe564fbeb66" id="r_a034bc765888f06eb6265cbe564fbeb66"><td class="memItemLeft">virtual const bool&#160;</td><td class="memItemRight"><a class="el" href="#a034bc765888f06eb6265cbe564fbeb66">GetClipboard</a> () const</td></tr>
+<tr class="memitem:a7e9af1c328d9447ce6356429ac23f8ab" id="r_a7e9af1c328d9447ce6356429ac23f8ab"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a7e9af1c328d9447ce6356429ac23f8ab">SetClipboard</a> (bool c)</td></tr>
+<tr class="memitem:af292c2b9ff2d0e24bab11e5cf320306c" id="r_af292c2b9ff2d0e24bab11e5cf320306c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af292c2b9ff2d0e24bab11e5cf320306c">GetSupportsDesktopResize</a> () const</td></tr>
+<tr class="memitem:a28033e9d3c7483fa9eff7d0d4e84e6e7" id="r_a28033e9d3c7483fa9eff7d0d4e84e6e7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a28033e9d3c7483fa9eff7d0d4e84e6e7">SetSupportsDesktopResize</a> (bool newSupportsDesktopResize)</td></tr>
+<tr class="memitem:aba2d21f79fb4e917f72fcf754b647078" id="r_aba2d21f79fb4e917f72fcf754b647078"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aba2d21f79fb4e917f72fcf754b647078">GetLedState</a> () const</td></tr>
+<tr class="memitem:aab193f07a9a5162d63a3c0c94507bdaf" id="r_aab193f07a9a5162d63a3c0c94507bdaf"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aab193f07a9a5162d63a3c0c94507bdaf">SetLedState</a> (bool state)</td></tr>
+<tr class="memitem:affa3ade44c6e534d2ed679af9b794ec6" id="r_affa3ade44c6e534d2ed679af9b794ec6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#affa3ade44c6e534d2ed679af9b794ec6">GetEnableLocalInputMethod</a> () const</td></tr>
+<tr class="memitem:a2c176f7a02da341e0785b102f70755b3" id="r_a2c176f7a02da341e0785b102f70755b3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2c176f7a02da341e0785b102f70755b3">SetEnableLocalInputMethod</a> (bool enable)</td></tr>
+<tr class="memitem:abf040934cb47e26f3e0c5ea73d90f1bf" id="r_abf040934cb47e26f3e0c5ea73d90f1bf"><td class="memItemLeft"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight"><a class="el" href="#abf040934cb47e26f3e0c5ea73d90f1bf">GetAdaptWindows</a> ()</td></tr>
+<tr class="memitem:a87c1da14a079e289d166597625615196" id="r_a87c1da14a079e289d166597625615196"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a87c1da14a079e289d166597625615196">SetAdaptWindows</a> (<a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw)</td></tr>
+<tr class="memitem:ac388c04a3209c74fae8ed826de8f573a" id="r_ac388c04a3209c74fae8ed826de8f573a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ac388c04a3209c74fae8ed826de8f573a">GetZoomFactor</a> () const</td></tr>
+<tr class="memitem:a2fb4f9e2662b5f13b37257e572236414" id="r_a2fb4f9e2662b5f13b37257e572236414"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2fb4f9e2662b5f13b37257e572236414">SetZoomFactor</a> (double newZoomFactor)</td></tr>
+<tr class="inherit_header pub_methods_classCParameterOperate"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a58bef92def69a3a3d6e42a68ff27a48e pub_methods_classCParameterOperate" id="r_a58bef92def69a3a3d6e42a68ff27a48e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:a95bd352215f9624f42b27b32bb0ca6db pub_methods_classCParameterOperate" id="r_a95bd352215f9624f42b27b32bb0ca6db"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a95bd352215f9624f42b27b32bb0ca6db pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="memitem:a427a4b41e546d500a5a0e06f344a6453 pub_methods_classCParameterOperate" id="r_a427a4b41e546d500a5a0e06f344a6453"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a427a4b41e546d500a5a0e06f344a6453">SetPluginParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332 pub_methods_classCParameterOperate" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb pub_methods_classCParameterOperate" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406 pub_methods_classCParameterOperate" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406 pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44 pub_methods_classCParameterOperate" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:aa35b6d1854ae3abc4d6341d31977fc68 pub_methods_classCParameter" id="r_aa35b6d1854ae3abc4d6341d31977fc68"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a335f2a85bc9f021333daffbd8f7ff1b2" id="r_a335f2a85bc9f021333daffbd8f7ff1b2"><td class="memItemLeft"><a class="el" href="classCParameterNet.html">CParameterNet</a>&#160;</td><td class="memItemRight"><a class="el" href="#a335f2a85bc9f021333daffbd8f7ff1b2">m_Net</a></td></tr>
+<tr class="memitem:af0da168c8902b47c5a1eb7581023b507" id="r_af0da168c8902b47c5a1eb7581023b507"><td class="memItemLeft"><a class="el" href="classCParameterProxy.html">CParameterProxy</a>&#160;</td><td class="memItemRight"><a class="el" href="#af0da168c8902b47c5a1eb7581023b507">m_Proxy</a></td></tr>
+<tr class="memitem:a970e90e80541f2a90759d7102077398f" id="r_a970e90e80541f2a90759d7102077398f"><td class="memItemLeft"><a class="el" href="classCParameterRecord.html">CParameterRecord</a>&#160;</td><td class="memItemRight"><a class="el" href="#a970e90e80541f2a90759d7102077398f">m_Record</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a904a64d945954a586f0f0555aeeaa4f1" id="r_a904a64d945954a586f0f0555aeeaa4f1"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a904a64d945954a586f0f0555aeeaa4f1">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="memitem:a064f118a0c2cbb074e8e56f5107a746f" id="r_a064f118a0c2cbb074e8e56f5107a746f"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a064f118a0c2cbb074e8e56f5107a746f">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="memitem:a6b583464322c7dfdbe5c91e55465dab6" id="r_a6b583464322c7dfdbe5c91e55465dab6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a6b583464322c7dfdbe5c91e55465dab6">slotSetPluginParameters</a> () override</td></tr>
+<tr class="memdesc:a6b583464322c7dfdbe5c91e55465dab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+<tr class="inherit_header pro_methods_classCParameterOperate"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0 pro_methods_classCParameterOperate" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft">QByteArray&#160;</td><td class="memItemRight"><a class="el" href="classCParameterOperate.html#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a50f8899a926f7d3536124e325a54d236" id="r_a50f8899a926f7d3536124e325a54d236"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a50f8899a926f7d3536124e325a54d236">Name</a></td></tr>
+<tr class="memitem:a6de7b00969edeb18de1109edce159f26" id="r_a6de7b00969edeb18de1109edce159f26"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a6de7b00969edeb18de1109edce159f26">ServerName</a></td></tr>
+<tr class="memitem:aa76c2649cc37ddb47f172992a167beba" id="r_aa76c2649cc37ddb47f172992a167beba"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa76c2649cc37ddb47f172992a167beba">ShowServerName</a></td></tr>
+<tr class="memitem:a721fe1b692b8c217378aa30023a79831" id="r_a721fe1b692b8c217378aa30023a79831"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a721fe1b692b8c217378aa30023a79831">OnlyView</a></td></tr>
+<tr class="memitem:a7df400ecf03edfbff009a45d505b08c8" id="r_a7df400ecf03edfbff009a45d505b08c8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7df400ecf03edfbff009a45d505b08c8">LocalCursor</a></td></tr>
+<tr class="memitem:a672c14c3404ff743c277b9539dd17c83" id="r_a672c14c3404ff743c277b9539dd17c83"><td class="memItemLeft"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight"><a class="el" href="#a672c14c3404ff743c277b9539dd17c83">AdaptWindows</a></td></tr>
+<tr class="memitem:ad55d08b1a6b33ebc839e25d885501fb7" id="r_ad55d08b1a6b33ebc839e25d885501fb7"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ad55d08b1a6b33ebc839e25d885501fb7">ZoomFactor</a></td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2">属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:adcc5760a9a289aa39860e05a83c03599" id="r_adcc5760a9a289aa39860e05a83c03599"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#adcc5760a9a289aa39860e05a83c03599">Init</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a4fecce3a8210aff9e84c02379c1cccfa" id="r_a4fecce3a8210aff9e84c02379c1cccfa"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a4fecce3a8210aff9e84c02379c1cccfa">m_szServerName</a></td></tr>
+<tr class="memitem:a578945bdb14e8ecd51eb9e5a0bf9e280" id="r_a578945bdb14e8ecd51eb9e5a0bf9e280"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a578945bdb14e8ecd51eb9e5a0bf9e280">m_bShowServerName</a></td></tr>
+<tr class="memitem:a64e8547a503b8bb1ec327ff0c6875a8b" id="r_a64e8547a503b8bb1ec327ff0c6875a8b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a64e8547a503b8bb1ec327ff0c6875a8b">m_bOnlyView</a></td></tr>
+<tr class="memitem:a7e29c0fcfc492041113c89afe4a3d5a3" id="r_a7e29c0fcfc492041113c89afe4a3d5a3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7e29c0fcfc492041113c89afe4a3d5a3">m_bLocalCursor</a></td></tr>
+<tr class="memitem:a059c08cf58f04ce811b8af3d26fa2549" id="r_a059c08cf58f04ce811b8af3d26fa2549"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a059c08cf58f04ce811b8af3d26fa2549">m_bCursorPosition</a></td></tr>
+<tr class="memitem:a34c0c5f48e3e181aeb60795c513c085f" id="r_a34c0c5f48e3e181aeb60795c513c085f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a34c0c5f48e3e181aeb60795c513c085f">m_bClipboard</a></td></tr>
+<tr class="memitem:a80b2aa8ec8168d5cb860ef73cdaf23f5" id="r_a80b2aa8ec8168d5cb860ef73cdaf23f5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a80b2aa8ec8168d5cb860ef73cdaf23f5">m_bSupportsDesktopResize</a></td></tr>
+<tr class="memitem:adacc2b6eafcb63c228c13e91d98283c6" id="r_adacc2b6eafcb63c228c13e91d98283c6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#adacc2b6eafcb63c228c13e91d98283c6">m_bLedState</a></td></tr>
+<tr class="memitem:aff61e792e078f083a02758a5c83d6059" id="r_aff61e792e078f083a02758a5c83d6059"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aff61e792e078f083a02758a5c83d6059">m_bEnableLocalInputMethod</a></td></tr>
+<tr class="memitem:a9b0ed826dada3505e9702339bd9774f0" id="r_a9b0ed826dada3505e9702339bd9774f0"><td class="memItemLeft"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9b0ed826dada3505e9702339bd9774f0">m_AdaptWindows</a></td></tr>
+<tr class="memitem:ae99e5ed7d8a6116b5fd744c1f34976e6" id="r_ae99e5ed7d8a6116b5fd744c1f34976e6"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ae99e5ed7d8a6116b5fd744c1f34976e6">m_dbZoomFactor</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。 </p>
+<h1 class="doxsection"><a class="anchor" id="section_Use_CParameterDesktop"></a>
+使用远程桌面基础参数</h1>
+<ul>
+<li>因为插件都有一些公共参数（例如：网络地址等），所以插件参数请从 <a class="el" href="classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。">CParameterDesktop</a> 派生。 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classCParameterFreeRDP.html">CParameterFreeRDP</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCParameterDesktop.html">CParameterDesktop</a></div>
+</div><!-- fragment --></li>
+<li>请在 <a class="el" href="classCOperate.html" title="操作接口。">COperate</a> 派生类的构造函数中实例化参数。 <div class="fragment"><div class="line">    CParameterFreeRDP <a class="code hl_variable" href="classCOperateFreeRDP.html#a15698eda29b25344d80c1a36f98b1a86">m_ParameterFreeRdp</a>;</div>
+</div><!-- fragment --></li>
+<li>调用 COperate::SetParameter 设置参数指针。 <div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFreeRDP.html#a8111a314bfe66f729692d0ac9075cf51">COperateFreeRDP::Initial</a>()</div>
+<div class="line">{</div>
+<div class="line">    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line">    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line">    nRet = <a class="code hl_function" href="classCOperateDesktop.html#aa9fa0ee13f9c1ee206aaaa72d3a4bfa0">COperateDesktop::Initial</a>();</div>
+<div class="line">    <span class="keywordflow">if</span>(nRet) <span class="keywordflow">return</span> nRet;</div>
+<div class="line">    nRet = <a class="code hl_function" href="classCOperateDesktop.html#a8945da8d59ad1f252ea8cc22b1b307e7">SetParameter</a>(&amp;<a class="code hl_variable" href="classCOperateFreeRDP.html#a15698eda29b25344d80c1a36f98b1a86">m_ParameterFreeRdp</a>);</div>
+<div class="line">    <span class="keywordflow">return</span> nRet;</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li>因为 <a class="el" href="classCOperate.html" title="操作接口。">COperate</a> 实例运行在主线程中（UI线程），所以插件参数实例也在主线程中。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00045">45</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="aabe69ea923d80b04d33a70a6337e400a" name="aabe69ea923d80b04d33a70a6337e400a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabe69ea923d80b04d33a70a6337e400a">&#9670;&#160;</a></span>CParameterDesktop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterDesktop::CParameterDesktop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterOperate.html">CParameterOperate</a> *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szPrefix</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QString()</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="abf040934cb47e26f3e0c5ea73d90f1bf" name="abf040934cb47e26f3e0c5ea73d90f1bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf040934cb47e26f3e0c5ea73d90f1bf">&#9670;&#160;</a></span>GetAdaptWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> CParameterDesktop::GetAdaptWindows </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a034bc765888f06eb6265cbe564fbeb66" name="a034bc765888f06eb6265cbe564fbeb66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a034bc765888f06eb6265cbe564fbeb66">&#9670;&#160;</a></span>GetClipboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool CParameterDesktop::GetClipboard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00149">149</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aad317c0cf53b26dbdaabe91de205623a" name="aad317c0cf53b26dbdaabe91de205623a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad317c0cf53b26dbdaabe91de205623a">&#9670;&#160;</a></span>GetCursorPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool CParameterDesktop::GetCursorPosition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00136">136</a> 行定义.</p>
+
+</div>
+</div>
+<a id="affa3ade44c6e534d2ed679af9b794ec6" name="affa3ade44c6e534d2ed679af9b794ec6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa3ade44c6e534d2ed679af9b794ec6">&#9670;&#160;</a></span>GetEnableLocalInputMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::GetEnableLocalInputMethod </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00236">236</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba2d21f79fb4e917f72fcf754b647078" name="aba2d21f79fb4e917f72fcf754b647078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba2d21f79fb4e917f72fcf754b647078">&#9670;&#160;</a></span>GetLedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::GetLedState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00175">175</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab5ca028fff5a73971ae41b936bc81d23" name="ab5ca028fff5a73971ae41b936bc81d23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5ca028fff5a73971ae41b936bc81d23">&#9670;&#160;</a></span>GetLocalCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool CParameterDesktop::GetLocalCursor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a756d1751130ebe8d7138d30d9a1f1c76" name="a756d1751130ebe8d7138d30d9a1f1c76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a756d1751130ebe8d7138d30d9a1f1c76">&#9670;&#160;</a></span>GetOnlyView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::GetOnlyView </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae8fafedfbc344ae4823dc160409637b6" name="ae8fafedfbc344ae4823dc160409637b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8fafedfbc344ae4823dc160409637b6">&#9670;&#160;</a></span>GetServerName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterDesktop::GetServerName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d9fea06039e111d76b517a6c398d288" name="a7d9fea06039e111d76b517a6c398d288"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d9fea06039e111d76b517a6c398d288">&#9670;&#160;</a></span>GetShowServerName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::GetShowServerName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af292c2b9ff2d0e24bab11e5cf320306c" name="af292c2b9ff2d0e24bab11e5cf320306c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af292c2b9ff2d0e24bab11e5cf320306c">&#9670;&#160;</a></span>GetSupportsDesktopResize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::GetSupportsDesktopResize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00162">162</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac388c04a3209c74fae8ed826de8f573a" name="ac388c04a3209c74fae8ed826de8f573a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac388c04a3209c74fae8ed826de8f573a">&#9670;&#160;</a></span>GetZoomFactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CParameterDesktop::GetZoomFactor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00202">202</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adcc5760a9a289aa39860e05a83c03599" name="adcc5760a9a289aa39860e05a83c03599"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcc5760a9a289aa39860e05a83c03599">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterDesktop::Init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a904a64d945954a586f0f0555aeeaa4f1" name="a904a64d945954a586f0f0555aeeaa4f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a904a64d945954a586f0f0555aeeaa4f1">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterDesktop::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a064f118a0c2cbb074e8e56f5107a746f" name="a064f118a0c2cbb074e8e56f5107a746f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a064f118a0c2cbb074e8e56f5107a746f">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterDesktop::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00067">67</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a87c1da14a079e289d166597625615196" name="a87c1da14a079e289d166597625615196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87c1da14a079e289d166597625615196">&#9670;&#160;</a></span>SetAdaptWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetAdaptWindows </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a></td>          <td class="paramname"><span class="paramname"><em>aw</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00193">193</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e9af1c328d9447ce6356429ac23f8ab" name="a7e9af1c328d9447ce6356429ac23f8ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e9af1c328d9447ce6356429ac23f8ab">&#9670;&#160;</a></span>SetClipboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetClipboard </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>c</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00154">154</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2825559c7b641da0349b918c6d2825b5" name="a2825559c7b641da0349b918c6d2825b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2825559c7b641da0349b918c6d2825b5">&#9670;&#160;</a></span>SetCursorPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetCursorPosition </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00141">141</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2c176f7a02da341e0785b102f70755b3" name="a2c176f7a02da341e0785b102f70755b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c176f7a02da341e0785b102f70755b3">&#9670;&#160;</a></span>SetEnableLocalInputMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetEnableLocalInputMethod </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00241">241</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aab193f07a9a5162d63a3c0c94507bdaf" name="aab193f07a9a5162d63a3c0c94507bdaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab193f07a9a5162d63a3c0c94507bdaf">&#9670;&#160;</a></span>SetLedState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetLedState </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00180">180</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab439477bd9d3febca8b52f8ea2ede0d2" name="ab439477bd9d3febca8b52f8ea2ede0d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab439477bd9d3febca8b52f8ea2ede0d2">&#9670;&#160;</a></span>SetLocalCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetLocalCursor </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>cursor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aefb2d2402b1afcefda9bd0b6d70d8ab4" name="aefb2d2402b1afcefda9bd0b6d70d8ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb2d2402b1afcefda9bd0b6d70d8ab4">&#9670;&#160;</a></span>SetOnlyView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetOnlyView </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>only</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acbddfc3f46e0449c52c78405d95ceb64" name="acbddfc3f46e0449c52c78405d95ceb64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbddfc3f46e0449c52c78405d95ceb64">&#9670;&#160;</a></span>SetServerName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetServerName </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>szName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a679d7a0d2f8deffb0b5d957ceb54405b" name="a679d7a0d2f8deffb0b5d957ceb54405b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a679d7a0d2f8deffb0b5d957ceb54405b">&#9670;&#160;</a></span>SetShowServerName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetShowServerName </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>NewShowServerName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a28033e9d3c7483fa9eff7d0d4e84e6e7" name="a28033e9d3c7483fa9eff7d0d4e84e6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28033e9d3c7483fa9eff7d0d4e84e6e7">&#9670;&#160;</a></span>SetSupportsDesktopResize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetSupportsDesktopResize </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newSupportsDesktopResize</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00167">167</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2fb4f9e2662b5f13b37257e572236414" name="a2fb4f9e2662b5f13b37257e572236414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fb4f9e2662b5f13b37257e572236414">&#9670;&#160;</a></span>SetZoomFactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::SetZoomFactor </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>newZoomFactor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00207">207</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b583464322c7dfdbe5c91e55465dab6" name="a6b583464322c7dfdbe5c91e55465dab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b583464322c7dfdbe5c91e55465dab6">&#9670;&#160;</a></span>slotSetPluginParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterDesktop::slotSetPluginParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。 </p>
+<p><a class="el" href="classCParameterOperate.html#sub_Use_CParameterPlugin_in_CParameterOperate" title="在操作参数 ( CParameterOperate 或其派生类 ) 中使用全局参数 (CParameterPlugin)">在操作参数 ( CParameterOperate 或其派生类 ) 中使用全局参数 (CParameterPlugin)</a> </p>
+
+<p>重载 <a class="el" href="classCParameterOperate.html#a8728b70dd9f3c081c7c2bf24ac261c4e">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a> 第 <a class="el" href="ParameterDesktop_8cpp_source.html#l00217">217</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a9b0ed826dada3505e9702339bd9774f0" name="a9b0ed826dada3505e9702339bd9774f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b0ed826dada3505e9702339bd9774f0">&#9670;&#160;</a></span>m_AdaptWindows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> CParameterDesktop::m_AdaptWindows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a34c0c5f48e3e181aeb60795c513c085f" name="a34c0c5f48e3e181aeb60795c513c085f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34c0c5f48e3e181aeb60795c513c085f">&#9670;&#160;</a></span>m_bClipboard</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bClipboard</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00102">102</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a059c08cf58f04ce811b8af3d26fa2549" name="a059c08cf58f04ce811b8af3d26fa2549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a059c08cf58f04ce811b8af3d26fa2549">&#9670;&#160;</a></span>m_bCursorPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bCursorPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff61e792e078f083a02758a5c83d6059" name="aff61e792e078f083a02758a5c83d6059"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff61e792e078f083a02758a5c83d6059">&#9670;&#160;</a></span>m_bEnableLocalInputMethod</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bEnableLocalInputMethod</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00105">105</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adacc2b6eafcb63c228c13e91d98283c6" name="adacc2b6eafcb63c228c13e91d98283c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adacc2b6eafcb63c228c13e91d98283c6">&#9670;&#160;</a></span>m_bLedState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bLedState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e29c0fcfc492041113c89afe4a3d5a3" name="a7e29c0fcfc492041113c89afe4a3d5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e29c0fcfc492041113c89afe4a3d5a3">&#9670;&#160;</a></span>m_bLocalCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bLocalCursor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a64e8547a503b8bb1ec327ff0c6875a8b" name="a64e8547a503b8bb1ec327ff0c6875a8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e8547a503b8bb1ec327ff0c6875a8b">&#9670;&#160;</a></span>m_bOnlyView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bOnlyView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a578945bdb14e8ecd51eb9e5a0bf9e280" name="a578945bdb14e8ecd51eb9e5a0bf9e280"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a578945bdb14e8ecd51eb9e5a0bf9e280">&#9670;&#160;</a></span>m_bShowServerName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bShowServerName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80b2aa8ec8168d5cb860ef73cdaf23f5" name="a80b2aa8ec8168d5cb860ef73cdaf23f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80b2aa8ec8168d5cb860ef73cdaf23f5">&#9670;&#160;</a></span>m_bSupportsDesktopResize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::m_bSupportsDesktopResize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae99e5ed7d8a6116b5fd744c1f34976e6" name="ae99e5ed7d8a6116b5fd744c1f34976e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99e5ed7d8a6116b5fd744c1f34976e6">&#9670;&#160;</a></span>m_dbZoomFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CParameterDesktop::m_dbZoomFactor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a335f2a85bc9f021333daffbd8f7ff1b2" name="a335f2a85bc9f021333daffbd8f7ff1b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335f2a85bc9f021333daffbd8f7ff1b2">&#9670;&#160;</a></span>m_Net</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterNet.html">CParameterNet</a> CParameterDesktop::m_Net</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af0da168c8902b47c5a1eb7581023b507" name="af0da168c8902b47c5a1eb7581023b507"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0da168c8902b47c5a1eb7581023b507">&#9670;&#160;</a></span>m_Proxy</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterProxy.html">CParameterProxy</a> CParameterDesktop::m_Proxy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00066">66</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a970e90e80541f2a90759d7102077398f" name="a970e90e80541f2a90759d7102077398f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a970e90e80541f2a90759d7102077398f">&#9670;&#160;</a></span>m_Record</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterRecord.html">CParameterRecord</a> CParameterDesktop::m_Record</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00067">67</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4fecce3a8210aff9e84c02379c1cccfa" name="a4fecce3a8210aff9e84c02379c1cccfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fecce3a8210aff9e84c02379c1cccfa">&#9670;&#160;</a></span>m_szServerName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterDesktop::m_szServerName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00097">97</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-property-members" id="doc-property-members"></a><h2 id="header-doc-property-members" class="groupheader">属性说明</h2>
+<a id="a672c14c3404ff743c277b9539dd17c83" name="a672c14c3404ff743c277b9539dd17c83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a672c14c3404ff743c277b9539dd17c83">&#9670;&#160;</a></span>AdaptWindows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> CParameterDesktop::AdaptWindows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel read">read</span><span class="mlabel write">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7df400ecf03edfbff009a45d505b08c8" name="a7df400ecf03edfbff009a45d505b08c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df400ecf03edfbff009a45d505b08c8">&#9670;&#160;</a></span>LocalCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::LocalCursor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel read">read</span><span class="mlabel write">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a50f8899a926f7d3536124e325a54d236" name="a50f8899a926f7d3536124e325a54d236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f8899a926f7d3536124e325a54d236">&#9670;&#160;</a></span>Name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterDesktop::Name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel read">read</span><span class="mlabel write">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a721fe1b692b8c217378aa30023a79831" name="a721fe1b692b8c217378aa30023a79831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a721fe1b692b8c217378aa30023a79831">&#9670;&#160;</a></span>OnlyView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::OnlyView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel read">read</span><span class="mlabel write">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6de7b00969edeb18de1109edce159f26" name="a6de7b00969edeb18de1109edce159f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6de7b00969edeb18de1109edce159f26">&#9670;&#160;</a></span>ServerName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterDesktop::ServerName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel read">read</span><span class="mlabel write">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa76c2649cc37ddb47f172992a167beba" name="aa76c2649cc37ddb47f172992a167beba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa76c2649cc37ddb47f172992a167beba">&#9670;&#160;</a></span>ShowServerName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterDesktop::ShowServerName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel read">read</span><span class="mlabel write">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad55d08b1a6b33ebc839e25d885501fb7" name="ad55d08b1a6b33ebc839e25d885501fb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad55d08b1a6b33ebc839e25d885501fb7">&#9670;&#160;</a></span>ZoomFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CParameterDesktop::ZoomFactor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel read">read</span><span class="mlabel write">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a> 第 <a class="el" href="ParameterDesktop_8h_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterDesktop_8h_source.html">ParameterDesktop.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterDesktop_8cpp_source.html">ParameterDesktop.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

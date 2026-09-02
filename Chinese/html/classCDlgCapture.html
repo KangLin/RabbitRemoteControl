@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDlgCapture类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDlgCapture-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDlgCapture类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDlgCapture 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgCapture__inherit__graph.png" border="0" usemap="#aCDlgCapture_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCDlgCapture_inherit__map" id="aCDlgCapture_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,109,104"/>
+<area shape="rect" title=" " alt="" coords="20,5,95,31"/>
+<area shape="poly" title=" " alt="" coords="60,44,60,79,55,79,55,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDlgCapture 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgCapture__coll__graph.png" border="0" usemap="#aCDlgCapture_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCDlgCapture_coll__map" id="aCDlgCapture_coll__map">
+<area shape="rect" title=" " alt="" coords="409,349,513,375"/>
+<area shape="rect" title=" " alt="" coords="583,253,657,279"/>
+<area shape="poly" title=" " alt="" coords="610,292,596,311,579,327,547,344,514,355,513,350,545,339,576,323,592,307,605,289"/>
+<area shape="rect" href="classCParameterScreenCapture.html" title=" " alt="" coords="365,253,558,279"/>
+<area shape="poly" title=" " alt="" coords="464,293,464,349,459,349,459,293"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="619,155,770,180"/>
+<area shape="poly" title=" " alt="" coords="656,188,490,256,488,251,653,183"/>
+<area shape="poly" title=" " alt="" coords="784,160,797,167,788,174,770,177,770,171,786,169,791,167,782,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="771,445,931,471"/>
+<area shape="poly" title=" " alt="" coords="710,191,716,203,734,251,745,290,757,328,780,373,810,413,840,443,836,447,806,417,775,376,752,330,740,292,729,253,711,205,705,193"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="790,349,911,375"/>
+<area shape="poly" title=" " alt="" coords="784,174,823,184,861,199,897,221,925,252,928,270,925,294,916,327,901,341,884,351,881,347,898,337,911,324,920,293,923,270,920,255,893,226,859,204,821,189,783,179"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="783,253,911,279"/>
+<area shape="poly" title=" " alt="" coords="733,184,765,202,834,251,831,255,763,206,730,188"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="1060,80,1159,105"/>
+<area shape="poly" title=" " alt="" coords="1047,108,760,157,760,152,1046,102"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="909,869,1048,895"/>
+<area shape="poly" title=" " alt="" coords="1112,119,1112,166,1112,671,1108,704,1098,736,1084,766,1066,794,1027,840,994,871,991,867,1023,836,1061,790,1079,763,1093,734,1103,703,1107,671,1107,166,1107,119"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="781,657,921,683"/>
+<area shape="poly" title=" " alt="" coords="1047,99,879,111,774,122,666,138,563,158,471,184,432,199,399,216,373,235,354,255,348,268,345,281,352,309,372,340,399,373,451,426,509,474,570,518,631,557,743,618,824,655,822,660,741,622,628,561,567,522,506,478,448,430,395,376,367,343,347,311,340,281,342,266,350,252,369,231,396,212,430,194,469,179,562,153,666,132,774,117,878,106,1046,94"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1109,753,1240,779"/>
+<area shape="poly" title=" " alt="" coords="1126,117,1131,129,1153,223,1168,320,1178,417,1182,508,1183,663,1178,753,1173,753,1177,663,1177,509,1172,417,1163,321,1148,224,1125,130,1121,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="167,155,310,180"/>
+<area shape="poly" title=" " alt="" coords="1046,98,691,107,497,117,355,132,309,143,269,157,267,152,308,138,354,127,496,112,691,102,1046,92"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="1181,204,1371,229"/>
+<area shape="poly" title=" " alt="" coords="1149,109,1180,127,1230,167,1267,202,1263,206,1226,171,1177,132,1147,114"/>
+<area shape="rect" title=" " alt="" coords="1213,5,1288,31"/>
+<area shape="poly" title=" " alt="" coords="1217,39,1133,82,1131,77,1215,35"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="972,541,1065,567"/>
+<area shape="poly" title=" " alt="" coords="1279,37,1316,72,1354,118,1368,145,1378,172,1381,201,1376,230,1348,290,1309,345,1263,394,1214,436,1164,473,1117,504,1044,544,1041,539,1114,499,1161,469,1211,432,1260,390,1305,341,1343,287,1371,229,1376,201,1373,174,1363,147,1349,121,1312,76,1275,41"/>
+<area shape="poly" title=" " alt="" coords="901,869,831,852,761,830,731,817,706,802,690,786,684,768,684,553,687,329,692,181,697,181,692,329,689,553,689,767,695,783,710,798,733,812,763,825,832,847,902,864"/>
+<area shape="poly" title=" " alt="" coords="865,694,910,777,972,868,968,871,906,780,860,696"/>
+<area shape="poly" title=" " alt="" coords="853,485,853,657,848,657,848,485"/>
+<area shape="poly" title=" " alt="" coords="885,475,999,539,997,543,882,480"/>
+<area shape="poly" title=" " alt="" coords="853,389,853,445,848,445,848,389"/>
+<area shape="poly" title=" " alt="" coords="850,292,853,349,848,349,845,293"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="888,155,1072,180"/>
+<area shape="poly" title=" " alt="" coords="955,190,864,255,861,251,952,186"/>
+<area shape="poly" title=" " alt="" coords="959,570,919,581,892,593,874,621,858,658,853,656,869,619,889,589,917,576,957,565"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="945,657,1071,683"/>
+<area shape="poly" title=" " alt="" coords="1036,578,1040,590,1044,612,1040,634,1023,658,1019,655,1035,632,1039,612,1035,591,1031,580"/>
+<area shape="poly" title=" " alt="" coords="1158,791,1129,820,1092,848,1063,862,1032,872,1031,867,1061,857,1089,843,1125,816,1154,788"/>
+<area shape="poly" title=" " alt="" coords="1025,692,1041,711,1060,727,1087,741,1116,751,1114,756,1085,746,1057,732,1037,715,1021,696"/>
+<area shape="poly" title=" " alt="" coords="279,183,436,251,434,256,277,188"/>
+<area shape="poly" title=" " alt="" coords="167,187,132,206,106,231,99,245,97,265,97,767,104,780,122,793,153,805,193,816,298,835,424,849,694,868,909,876,909,882,694,873,424,854,297,840,192,821,151,810,120,798,99,784,92,768,92,265,94,244,101,228,129,202,164,182"/>
+<area shape="rect" href="classCParameterRecordUI.html" title=" " alt="" coords="132,253,289,279"/>
+<area shape="poly" title=" " alt="" coords="161,188,142,205,138,217,142,228,155,241,171,251,168,256,151,246,138,231,133,217,138,203,158,184"/>
+<area shape="poly" title=" " alt="" coords="1279,243,1280,313,1280,767,1278,793,1272,814,1259,831,1239,848,1205,861,1157,871,1048,881,1048,876,1156,866,1204,856,1236,843,1255,827,1267,811,1273,792,1275,767,1275,313,1274,243"/>
+<area shape="poly" title=" " alt="" coords="253,281,361,323,428,347,427,352,359,328,251,286"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="5,155,117,180"/>
+<area shape="poly" title=" " alt="" coords="84,188,132,227,180,251,178,256,129,232,80,192"/>
+<area shape="rect" title=" " alt="" coords="22,80,101,105"/>
+<area shape="poly" title=" " alt="" coords="64,120,64,154,59,154,59,120"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-slots" class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:ae595c3800436e7d263dee3e2da55778d" id="r_ae595c3800436e7d263dee3e2da55778d"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ae595c3800436e7d263dee3e2da55778d">accept</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a3e45b4a9b98dac5c8dc1707d83467ea4" id="r_a3e45b4a9b98dac5c8dc1707d83467ea4"><td class="memItemLeft"><a id="a3e45b4a9b98dac5c8dc1707d83467ea4" name="a3e45b4a9b98dac5c8dc1707d83467ea4"></a>
+&#160;</td><td class="memItemRight"><b>CDlgCapture</b> (<a class="el" href="classCParameterScreenCapture.html">CParameterScreenCapture</a> *pPara, QWidget *parent=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a22b45fb3f11a1cc8e711a96e4294ef31" id="r_a22b45fb3f11a1cc8e711a96e4294ef31"><td class="memItemLeft">Ui::CDlgCapture *&#160;</td><td class="memItemRight"><a class="el" href="#a22b45fb3f11a1cc8e711a96e4294ef31">ui</a></td></tr>
+<tr class="memitem:a29a2420cfa695cf5d0c859924fe3d429" id="r_a29a2420cfa695cf5d0c859924fe3d429"><td class="memItemLeft"><a class="el" href="classCParameterScreenCapture.html">CParameterScreenCapture</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a29a2420cfa695cf5d0c859924fe3d429">m_pParameters</a></td></tr>
+<tr class="memitem:a6a52c8d9715132843f1afa17cc6c6b36" id="r_a6a52c8d9715132843f1afa17cc6c6b36"><td class="memItemLeft">QList&lt; QCapturableWindow &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6a52c8d9715132843f1afa17cc6c6b36">m_Windows</a></td></tr>
+<tr class="memitem:afb4eea49f1d6c228b94c41cedfc2bd70" id="r_afb4eea49f1d6c228b94c41cedfc2bd70"><td class="memItemLeft"><a class="el" href="classCParameterRecordUI.html">CParameterRecordUI</a> *&#160;</td><td class="memItemRight"><a class="el" href="#afb4eea49f1d6c228b94c41cedfc2bd70">m_pRecordUI</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DlgCapture_8h_source.html">DlgCapture.h</a> 第 <a class="el" href="DlgCapture_8h_source.html#l00013">13</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="ab24a9a857f8f4ed8691523d4d077467f" name="ab24a9a857f8f4ed8691523d4d077467f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab24a9a857f8f4ed8691523d4d077467f">&#9670;&#160;</a></span>~CDlgCapture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgCapture::~CDlgCapture </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgCapture_8cpp_source.html">DlgCapture.cpp</a> 第 <a class="el" href="DlgCapture_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="ae595c3800436e7d263dee3e2da55778d" name="ae595c3800436e7d263dee3e2da55778d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae595c3800436e7d263dee3e2da55778d">&#9670;&#160;</a></span>accept</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgCapture::accept </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgCapture_8cpp_source.html">DlgCapture.cpp</a> 第 <a class="el" href="DlgCapture_8cpp_source.html#l00069">69</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a29a2420cfa695cf5d0c859924fe3d429" name="a29a2420cfa695cf5d0c859924fe3d429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29a2420cfa695cf5d0c859924fe3d429">&#9670;&#160;</a></span>m_pParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterScreenCapture.html">CParameterScreenCapture</a>* CDlgCapture::m_pParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgCapture_8h_source.html">DlgCapture.h</a> 第 <a class="el" href="DlgCapture_8h_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afb4eea49f1d6c228b94c41cedfc2bd70" name="afb4eea49f1d6c228b94c41cedfc2bd70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb4eea49f1d6c228b94c41cedfc2bd70">&#9670;&#160;</a></span>m_pRecordUI</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterRecordUI.html">CParameterRecordUI</a>* CDlgCapture::m_pRecordUI</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgCapture_8h_source.html">DlgCapture.h</a> 第 <a class="el" href="DlgCapture_8h_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6a52c8d9715132843f1afa17cc6c6b36" name="a6a52c8d9715132843f1afa17cc6c6b36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a52c8d9715132843f1afa17cc6c6b36">&#9670;&#160;</a></span>m_Windows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;QCapturableWindow&gt; CDlgCapture::m_Windows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgCapture_8h_source.html">DlgCapture.h</a> 第 <a class="el" href="DlgCapture_8h_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a22b45fb3f11a1cc8e711a96e4294ef31" name="a22b45fb3f11a1cc8e711a96e4294ef31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b45fb3f11a1cc8e711a96e4294ef31">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CDlgCapture* CDlgCapture::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgCapture_8h_source.html">DlgCapture.h</a> 第 <a class="el" href="DlgCapture_8h_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/ScreenCapture/<a class="el" href="DlgCapture_8h_source.html">DlgCapture.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/ScreenCapture/<a class="el" href="DlgCapture_8cpp_source.html">DlgCapture.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

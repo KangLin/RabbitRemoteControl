@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CSSHTunnelThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCSSHTunnelThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CSSHTunnelThread类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CHANNEL.html">通道</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="SSHTunnelThread_8h_source.html">SSHTunnelThread.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CSSHTunnelThread 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCSSHTunnelThread__inherit__graph.png" border="0" usemap="#aCSSHTunnelThread_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCSSHTunnelThread_inherit__map" id="aCSSHTunnelThread_inherit__map">
+<area shape="rect" title="实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="" coords="5,79,149,104"/>
+<area shape="rect" title=" " alt="" coords="39,5,116,31"/>
+<area shape="poly" title=" " alt="" coords="80,44,80,79,75,79,75,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CSSHTunnelThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCSSHTunnelThread__coll__graph.png" border="0" usemap="#aCSSHTunnelThread_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCSSHTunnelThread_coll__map" id="aCSSHTunnelThread_coll__map">
+<area shape="rect" title="实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="" coords="47,684,191,709"/>
+<area shape="rect" title=" " alt="" coords="43,568,120,593"/>
+<area shape="poly" title=" " alt="" coords="92,606,117,683,112,684,87,607"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="294,129,381,155"/>
+<area shape="poly" title=" " alt="" coords="281,151,198,161,108,179,68,191,36,205,15,221,8,240,8,582,10,599,17,615,39,643,67,666,95,682,92,686,64,670,35,647,12,618,5,601,3,582,3,239,11,218,34,200,66,186,107,173,197,156,280,145"/>
+<area shape="rect" title=" " alt="" coords="764,5,839,31"/>
+<area shape="poly" title=" " alt="" coords="751,35,382,132,380,127,750,30"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="853,80,952,105"/>
+<area shape="poly" title=" " alt="" coords="830,37,888,77,885,82,827,41"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="695,568,788,593"/>
+<area shape="poly" title=" " alt="" coords="804,45,804,91,804,486,800,518,785,546,761,570,757,566,781,542,795,516,799,486,799,91,799,45"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="197,568,363,593"/>
+<area shape="poly" title=" " alt="" coords="256,604,178,662,139,686,137,682,174,658,253,600"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="195,472,319,497"/>
+<area shape="poly" title=" " alt="" coords="269,510,272,521,281,567,276,568,267,522,264,511"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="362,179,513,204"/>
+<area shape="poly" title=" " alt="" coords="433,218,418,265,394,325,360,390,317,450,284,474,281,470,313,446,356,387,389,323,413,263,428,216"/>
+<area shape="poly" title=" " alt="" coords="527,182,539,191,531,199,513,203,512,197,529,195,534,192,525,187"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="344,472,504,497"/>
+<area shape="poly" title=" " alt="" coords="439,218,427,472,422,472,434,217"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="197,376,318,401"/>
+<area shape="poly" title=" " alt="" coords="376,212,348,230,336,245,328,259,321,288,315,319,298,354,275,378,271,374,294,350,310,317,316,287,323,257,332,242,345,226,373,207"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="149,277,277,303"/>
+<area shape="poly" title=" " alt="" coords="362,210,301,230,231,279,228,275,299,226,360,205"/>
+<area shape="poly" title=" " alt="" coords="840,110,493,181,492,176,839,104"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="847,896,985,921"/>
+<area shape="poly" title=" " alt="" coords="966,97,1046,109,1130,127,1167,139,1197,153,1218,170,1225,190,1225,794,1218,814,1200,831,1173,846,1139,860,1061,883,986,899,985,893,1060,877,1137,855,1170,842,1197,827,1214,811,1220,794,1220,190,1213,173,1194,157,1165,144,1129,132,1045,114,966,103"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="569,684,709,709"/>
+<area shape="poly" title=" " alt="" coords="885,117,865,151,857,170,855,190,855,582,849,612,833,632,781,662,746,678,710,689,708,684,744,673,779,658,829,628,844,610,849,582,849,190,852,169,860,148,881,115"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="803,780,933,805"/>
+<area shape="poly" title=" " alt="" coords="905,119,905,190,905,698,902,722,895,745,878,781,873,779,890,743,897,721,900,698,900,190,900,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="923,228,1066,253"/>
+<area shape="poly" title=" " alt="" coords="919,116,990,227,985,229,915,118"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="991,327,1182,352"/>
+<area shape="poly" title=" " alt="" coords="939,110,972,129,1008,156,1042,189,1070,227,1081,253,1087,281,1090,326,1085,327,1082,282,1076,255,1066,229,1038,192,1004,160,969,134,936,114"/>
+<area shape="poly" title=" " alt="" coords="833,906,734,895,691,886,661,874,617,841,584,807,561,771,547,732,539,689,535,642,535,534,539,289,531,261,513,238,489,220,464,206,466,202,492,215,517,234,536,259,544,288,540,534,541,642,544,688,552,730,566,768,588,804,620,837,664,870,693,881,735,890,833,901"/>
+<area shape="poly" title=" " alt="" coords="636,723,634,764,638,785,648,804,667,825,689,844,741,871,795,889,847,899,846,904,794,894,738,876,686,848,663,829,643,807,633,787,629,764,630,722"/>
+<area shape="poly" title=" " alt="" coords="448,505,629,682,625,686,444,509"/>
+<area shape="poly" title=" " alt="" coords="518,489,615,500,658,509,688,519,717,542,736,566,732,569,713,545,685,524,656,514,615,506,517,495"/>
+<area shape="poly" title=" " alt="" coords="238,413,186,474,169,497,156,522,141,568,131,614,122,684,117,684,126,613,136,567,151,520,164,494,182,470,234,410"/>
+<area shape="poly" title=" " alt="" coords="260,415,260,472,255,472,255,415"/>
+<area shape="poly" title=" " alt="" coords="291,406,405,469,402,474,288,410"/>
+<area shape="poly" title=" " alt="" coords="224,314,240,351,253,374,248,377,235,353,220,317"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="109,179,293,204"/>
+<area shape="poly" title=" " alt="" coords="203,218,205,253,212,276,206,278,200,254,198,218"/>
+<area shape="poly" title=" " alt="" coords="682,590,656,601,635,619,629,634,628,651,636,683,631,684,623,652,624,633,631,616,653,596,680,585"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="734,684,861,709"/>
+<area shape="poly" title=" " alt="" coords="771,601,782,616,795,652,800,684,794,684,790,653,778,619,766,604"/>
+<area shape="poly" title=" " alt="" coords="862,819,859,845,865,871,876,884,890,894,887,898,872,888,860,873,854,845,857,818"/>
+<area shape="poly" title=" " alt="" coords="787,723,784,739,788,755,801,768,818,778,815,782,797,772,783,757,778,739,782,721"/>
+<area shape="poly" title=" " alt="" coords="988,267,978,301,973,338,973,794,971,835,954,873,933,898,929,894,950,871,965,834,968,794,968,338,973,300,982,266"/>
+<area shape="poly" title=" " alt="" coords="1080,366,1071,398,1067,435,1067,794,1064,814,1055,832,1028,862,992,884,957,898,955,893,990,879,1025,858,1051,829,1059,813,1061,794,1061,435,1066,397,1075,364"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:af7331934e10cb9d1d89226f4f25cb5f0" id="r_af7331934e10cb9d1d89226f4f25cb5f0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af7331934e10cb9d1d89226f4f25cb5f0">sigServer</a> (QString szHost, quint16 nPort)</td></tr>
+<tr class="memdesc:af7331934e10cb9d1d89226f4f25cb5f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">当 SOCKET 服务建立监听后触发，用于通知其它本地 SOCKET 可以连接它  <br /></td></tr>
+<tr class="memitem:aba1b7169d72be7d8a4711ab2ff901e4f" id="r_aba1b7169d72be7d8a4711ab2ff901e4f"><td class="memItemLeft"><a id="aba1b7169d72be7d8a4711ab2ff901e4f" name="aba1b7169d72be7d8a4711ab2ff901e4f"></a>
+void&#160;</td><td class="memItemRight"><b>sigServer</b> (QString szUnixDomainSocket)</td></tr>
+<tr class="memitem:a5b243fe219590b7d7f4cf025a8b89efa" id="r_a5b243fe219590b7d7f4cf025a8b89efa"><td class="memItemLeft"><a id="a5b243fe219590b7d7f4cf025a8b89efa" name="a5b243fe219590b7d7f4cf025a8b89efa"></a>
+void&#160;</td><td class="memItemRight"><b>sigError</b> (const int nError, const QString &amp;szError=QString())</td></tr>
+<tr class="memitem:af564edc8c16eb59f84fc76cc2cb5b1d3" id="r_af564edc8c16eb59f84fc76cc2cb5b1d3"><td class="memItemLeft"><a id="af564edc8c16eb59f84fc76cc2cb5b1d3" name="af564edc8c16eb59f84fc76cc2cb5b1d3"></a>
+void&#160;</td><td class="memItemRight"><b>sigStop</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a760f183dd3df3ddbb9742d251fa0f0e5" id="r_a760f183dd3df3ddbb9742d251fa0f0e5"><td class="memItemLeft"><a id="a760f183dd3df3ddbb9742d251fa0f0e5" name="a760f183dd3df3ddbb9742d251fa0f0e5"></a>
+&#160;</td><td class="memItemRight"><b>CSSHTunnelThread</b> (<a class="el" href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a> *parameter, <a class="el" href="classCParameterNet.html">CParameterNet</a> *remote, <a class="el" href="classCBackend.html">CBackend</a> *pBackend)</td></tr>
+<tr class="memitem:a8aca85e6e2df576b8c4b54033caf0a5b" id="r_a8aca85e6e2df576b8c4b54033caf0a5b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8aca85e6e2df576b8c4b54033caf0a5b">run</a> () override</td></tr>
+<tr class="memitem:aa9e46ffcdedf4cdea5dc868dc3480940" id="r_aa9e46ffcdedf4cdea5dc868dc3480940"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa9e46ffcdedf4cdea5dc868dc3480940">Exit</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ad63d9e34017cb8eceb644f66893d925e" id="r_ad63d9e34017cb8eceb644f66893d925e"><td class="memItemLeft"><a class="el" href="classCBackend.html">CBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ad63d9e34017cb8eceb644f66893d925e">m_pBackend</a></td></tr>
+<tr class="memitem:ab3ad38c10aceb237e0ff6ca19077aac9" id="r_ab3ad38c10aceb237e0ff6ca19077aac9"><td class="memItemLeft"><a class="el" href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ab3ad38c10aceb237e0ff6ca19077aac9">m_pParameter</a></td></tr>
+<tr class="memitem:adf341b55086b79731275a57a5a6be5c2" id="r_adf341b55086b79731275a57a5a6be5c2"><td class="memItemLeft"><a class="el" href="classCParameterNet.html">CParameterNet</a> *&#160;</td><td class="memItemRight"><a class="el" href="#adf341b55086b79731275a57a5a6be5c2">m_pRemoteNet</a></td></tr>
+<tr class="memitem:a2db75dde7a245eae198254591a568759" id="r_a2db75dde7a245eae198254591a568759"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2db75dde7a245eae198254591a568759">m_bExit</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。 </p>
+<dl class="section note"><dt>注解</dt><dd>当线程完成后，会自动删除实例对象。</dd></dl>
+<div class="fragment"></div><!-- fragment --> <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCChannelSSHTunnelForward.html" title="包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。">CChannelSSHTunnelForward</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8h_source.html">SSHTunnelThread.h</a> 第 <a class="el" href="SSHTunnelThread_8h_source.html#l00025">25</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a1d6c7fbce8c6bad43506c22a1820306c" name="a1d6c7fbce8c6bad43506c22a1820306c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d6c7fbce8c6bad43506c22a1820306c">&#9670;&#160;</a></span>~CSSHTunnelThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSSHTunnelThread::~CSSHTunnelThread </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8cpp_source.html">SSHTunnelThread.cpp</a> 第 <a class="el" href="SSHTunnelThread_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="aa9e46ffcdedf4cdea5dc868dc3480940" name="aa9e46ffcdedf4cdea5dc868dc3480940"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9e46ffcdedf4cdea5dc868dc3480940">&#9670;&#160;</a></span>Exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CSSHTunnelThread::Exit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8cpp_source.html">SSHTunnelThread.cpp</a> 第 <a class="el" href="SSHTunnelThread_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8aca85e6e2df576b8c4b54033caf0a5b" name="a8aca85e6e2df576b8c4b54033caf0a5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aca85e6e2df576b8c4b54033caf0a5b">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CSSHTunnelThread::run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8cpp_source.html">SSHTunnelThread.cpp</a> 第 <a class="el" href="SSHTunnelThread_8cpp_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af7331934e10cb9d1d89226f4f25cb5f0" name="af7331934e10cb9d1d89226f4f25cb5f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7331934e10cb9d1d89226f4f25cb5f0">&#9670;&#160;</a></span>sigServer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CSSHTunnelThread::sigServer </td>
+          <td>(</td>
+          <td class="paramtype">QString</td>          <td class="paramname"><span class="paramname"><em>szHost</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">quint16</td>          <td class="paramname"><span class="paramname"><em>nPort</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>当 SOCKET 服务建立监听后触发，用于通知其它本地 SOCKET 可以连接它 </p>
+<div class="fragment"></div><!-- fragment --> 
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a2db75dde7a245eae198254591a568759" name="a2db75dde7a245eae198254591a568759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db75dde7a245eae198254591a568759">&#9670;&#160;</a></span>m_bExit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CSSHTunnelThread::m_bExit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8h_source.html">SSHTunnelThread.h</a> 第 <a class="el" href="SSHTunnelThread_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad63d9e34017cb8eceb644f66893d925e" name="ad63d9e34017cb8eceb644f66893d925e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad63d9e34017cb8eceb644f66893d925e">&#9670;&#160;</a></span>m_pBackend</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBackend.html">CBackend</a>* CSSHTunnelThread::m_pBackend</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8h_source.html">SSHTunnelThread.h</a> 第 <a class="el" href="SSHTunnelThread_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab3ad38c10aceb237e0ff6ca19077aac9" name="ab3ad38c10aceb237e0ff6ca19077aac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3ad38c10aceb237e0ff6ca19077aac9">&#9670;&#160;</a></span>m_pParameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a>* CSSHTunnelThread::m_pParameter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8h_source.html">SSHTunnelThread.h</a> 第 <a class="el" href="SSHTunnelThread_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adf341b55086b79731275a57a5a6be5c2" name="adf341b55086b79731275a57a5a6be5c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf341b55086b79731275a57a5a6be5c2">&#9670;&#160;</a></span>m_pRemoteNet</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterNet.html">CParameterNet</a>* CSSHTunnelThread::m_pRemoteNet</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="SSHTunnelThread_8h_source.html">SSHTunnelThread.h</a> 第 <a class="el" href="SSHTunnelThread_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/SSH/<a class="el" href="SSHTunnelThread_8h_source.html">SSHTunnelThread.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/SSH/<a class="el" href="SSHTunnelThread_8cpp_source.html">SSHTunnelThread.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDlgFileTransfer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate13</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDlgFileTransfer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDlgFileTransfer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDlgFileTransfer 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgFileTransfer__inherit__graph.png" border="0" usemap="#aCDlgFileTransfer_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCDlgFileTransfer_inherit__map" id="aCDlgFileTransfer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,133,104"/>
+<area shape="rect" title=" " alt="" coords="32,5,107,31"/>
+<area shape="poly" title=" " alt="" coords="72,44,72,79,67,79,67,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDlgFileTransfer 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgFileTransfer__coll__graph.png" border="0" usemap="#aCDlgFileTransfer_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCDlgFileTransfer_coll__map" id="aCDlgFileTransfer_coll__map">
+<area shape="rect" title=" " alt="" coords="237,660,365,685"/>
+<area shape="rect" title=" " alt="" coords="348,544,423,569"/>
+<area shape="poly" title=" " alt="" coords="381,583,371,611,354,638,325,662,321,658,350,634,366,608,376,582"/>
+<area shape="rect" href="classCParameterFileTransfer.html" title=" " alt="" coords="151,544,324,569"/>
+<area shape="poly" title=" " alt="" coords="253,580,297,658,292,661,248,583"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="175,155,326,180"/>
+<area shape="poly" title=" " alt="" coords="221,190,188,222,176,242,172,265,172,462,177,486,190,508,223,542,219,546,186,512,172,488,167,462,167,264,171,241,184,219,218,186"/>
+<area shape="poly" title=" " alt="" coords="340,160,353,167,344,174,326,177,326,171,342,169,347,167,338,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="456,448,616,473"/>
+<area shape="poly" title=" " alt="" coords="340,170,421,180,455,189,478,202,502,231,519,263,531,299,538,335,542,402,540,448,535,447,537,402,533,336,526,300,514,266,497,233,474,206,453,194,420,186,339,175"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="319,352,441,377"/>
+<area shape="poly" title=" " alt="" coords="340,171,407,181,434,190,451,202,465,219,473,242,473,258,469,277,442,330,429,344,413,354,410,350,425,340,438,326,464,276,468,257,468,243,460,222,448,206,431,195,406,187,339,176"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="303,253,431,279"/>
+<area shape="poly" title=" " alt="" coords="277,187,355,251,351,255,273,191"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="207,448,331,473"/>
+<area shape="poly" title=" " alt="" coords="255,193,271,448,266,448,250,194"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="717,80,816,105"/>
+<area shape="poly" title=" " alt="" coords="704,105,326,158,326,153,703,100"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="711,872,849,897"/>
+<area shape="poly" title=" " alt="" coords="830,93,910,98,994,110,1031,119,1061,131,1082,147,1089,165,1089,770,1082,790,1064,807,1037,822,1003,836,925,859,850,875,849,869,924,853,1001,831,1034,818,1061,803,1078,787,1084,770,1084,167,1077,150,1058,136,1029,124,993,115,909,104,830,98"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="430,660,570,685"/>
+<area shape="poly" title=" " alt="" coords="744,117,726,139,721,152,719,166,719,510,719,549,717,581,707,609,683,638,641,651,571,664,570,659,640,646,680,634,702,607,712,579,714,549,713,510,713,166,716,151,722,137,740,113"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="667,756,797,781"/>
+<area shape="poly" title=" " alt="" coords="769,119,769,166,769,674,766,698,759,721,742,757,737,755,754,719,761,697,764,674,764,166,764,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="787,204,930,229"/>
+<area shape="poly" title=" " alt="" coords="786,115,852,202,848,206,781,118"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="855,303,1046,328"/>
+<area shape="poly" title=" " alt="" coords="811,108,842,124,876,145,908,171,934,203,946,229,952,257,954,303,949,303,947,257,941,230,930,205,904,175,873,149,840,129,808,113"/>
+<area shape="rect" title=" " alt="" coords="644,5,719,31"/>
+<area shape="poly" title=" " alt="" coords="707,38,754,78,751,82,704,42"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="585,544,679,569"/>
+<area shape="poly" title=" " alt="" coords="676,44,668,92,668,462,665,486,658,509,641,545,637,543,653,507,660,485,663,462,663,91,671,43"/>
+<area shape="poly" title=" " alt="" coords="697,882,504,871,276,850,171,835,84,818,26,797,9,784,3,771,3,264,8,249,22,235,69,211,129,192,189,177,190,183,131,197,71,216,25,239,13,252,8,265,8,769,13,781,28,792,86,812,172,830,276,845,504,866,697,877"/>
+<area shape="poly" title=" " alt="" coords="498,699,497,740,502,761,512,780,531,801,553,819,605,847,660,865,711,875,710,880,659,870,603,852,550,824,527,805,507,783,497,763,492,740,493,699"/>
+<area shape="poly" title=" " alt="" coords="519,486,500,513,485,545,481,576,484,609,498,659,493,661,479,609,476,576,480,543,495,510,514,483"/>
+<area shape="poly" title=" " alt="" coords="553,483,583,518,614,542,611,546,580,522,549,486"/>
+<area shape="poly" title=" " alt="" coords="379,392,373,421,361,456,344,491,319,522,299,536,278,546,275,542,297,532,316,518,339,489,356,454,367,420,374,391"/>
+<area shape="poly" title=" " alt="" coords="407,383,465,422,512,446,509,450,463,426,404,388"/>
+<area shape="poly" title=" " alt="" coords="338,385,311,403,291,426,277,449,273,446,287,423,308,399,336,381"/>
+<area shape="poly" title=" " alt="" coords="373,292,381,352,376,352,368,293"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="444,155,628,180"/>
+<area shape="poly" title=" " alt="" coords="505,189,388,256,385,251,503,184"/>
+<area shape="poly" title=" " alt="" coords="574,576,542,595,529,611,518,628,506,661,501,659,513,626,524,607,538,591,571,571"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="599,660,726,685"/>
+<area shape="poly" title=" " alt="" coords="664,577,676,592,680,610,680,629,671,660,666,659,674,628,675,611,671,594,660,580"/>
+<area shape="poly" title=" " alt="" coords="726,795,723,821,729,847,740,860,754,870,751,874,736,864,724,849,718,821,721,794"/>
+<area shape="poly" title=" " alt="" coords="652,699,648,715,652,731,665,744,682,754,679,758,661,748,647,733,642,715,647,697"/>
+<area shape="poly" title=" " alt="" coords="852,243,842,277,837,314,837,770,835,811,818,849,797,874,793,870,814,847,829,810,832,770,832,314,837,276,846,242"/>
+<area shape="poly" title=" " alt="" coords="944,342,935,374,931,411,931,770,928,790,919,808,892,838,856,860,821,874,819,869,854,855,889,834,915,805,923,789,925,770,925,411,930,373,939,340"/>
+<area shape="poly" title=" " alt="" coords="264,487,244,545,239,543,259,485"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-slots" class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:a3b8c798efbe9fbaca2ab2a2dfcdce796" id="r_a3b8c798efbe9fbaca2ab2a2dfcdce796"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3b8c798efbe9fbaca2ab2a2dfcdce796">accept</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a031698ed6250c416e68fef9dea9f3bde" id="r_a031698ed6250c416e68fef9dea9f3bde"><td class="memItemLeft"><a id="a031698ed6250c416e68fef9dea9f3bde" name="a031698ed6250c416e68fef9dea9f3bde"></a>
+&#160;</td><td class="memItemRight"><b>CDlgFileTransfer</b> (<a class="el" href="classCParameterFileTransfer.html">CParameterFileTransfer</a> *pPara, QWidget *parent=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-slots" class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:abbfb9cc1ee15c013e125f066199bff3a" id="r_abbfb9cc1ee15c013e125f066199bff3a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abbfb9cc1ee15c013e125f066199bff3a">on_cbProtocol_currentIndexChanged</a> (int index)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a2711aafe9656c47ad8ff367f389cc6f8" id="r_a2711aafe9656c47ad8ff367f389cc6f8"><td class="memItemLeft">Ui::CDlgFileTransfer *&#160;</td><td class="memItemRight"><a class="el" href="#a2711aafe9656c47ad8ff367f389cc6f8">ui</a></td></tr>
+<tr class="memitem:a8b751f72fa0d2d8b4ed9b218e32b6b2f" id="r_a8b751f72fa0d2d8b4ed9b218e32b6b2f"><td class="memItemLeft"><a class="el" href="classCParameterFileTransfer.html">CParameterFileTransfer</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a8b751f72fa0d2d8b4ed9b218e32b6b2f">m_pPara</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DlgFileTransfer_8h_source.html">DlgFileTransfer.h</a> 第 <a class="el" href="DlgFileTransfer_8h_source.html#l00014">14</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="af2014db74321e8728d2d29ee325523e3" name="af2014db74321e8728d2d29ee325523e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2014db74321e8728d2d29ee325523e3">&#9670;&#160;</a></span>~CDlgFileTransfer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgFileTransfer::~CDlgFileTransfer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgFileTransfer_8cpp_source.html">DlgFileTransfer.cpp</a> 第 <a class="el" href="DlgFileTransfer_8cpp_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a3b8c798efbe9fbaca2ab2a2dfcdce796" name="a3b8c798efbe9fbaca2ab2a2dfcdce796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8c798efbe9fbaca2ab2a2dfcdce796">&#9670;&#160;</a></span>accept</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgFileTransfer::accept </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgFileTransfer_8cpp_source.html">DlgFileTransfer.cpp</a> 第 <a class="el" href="DlgFileTransfer_8cpp_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abbfb9cc1ee15c013e125f066199bff3a" name="abbfb9cc1ee15c013e125f066199bff3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbfb9cc1ee15c013e125f066199bff3a">&#9670;&#160;</a></span>on_cbProtocol_currentIndexChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgFileTransfer::on_cbProtocol_currentIndexChanged </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgFileTransfer_8cpp_source.html">DlgFileTransfer.cpp</a> 第 <a class="el" href="DlgFileTransfer_8cpp_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a8b751f72fa0d2d8b4ed9b218e32b6b2f" name="a8b751f72fa0d2d8b4ed9b218e32b6b2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b751f72fa0d2d8b4ed9b218e32b6b2f">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterFileTransfer.html">CParameterFileTransfer</a>* CDlgFileTransfer::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgFileTransfer_8h_source.html">DlgFileTransfer.h</a> 第 <a class="el" href="DlgFileTransfer_8h_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2711aafe9656c47ad8ff367f389cc6f8" name="a2711aafe9656c47ad8ff367f389cc6f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2711aafe9656c47ad8ff367f389cc6f8">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CDlgFileTransfer* CDlgFileTransfer::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgFileTransfer_8h_source.html">DlgFileTransfer.h</a> 第 <a class="el" href="DlgFileTransfer_8h_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="DlgFileTransfer_8h_source.html">DlgFileTransfer.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="DlgFileTransfer_8cpp_source.html">DlgFileTransfer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
