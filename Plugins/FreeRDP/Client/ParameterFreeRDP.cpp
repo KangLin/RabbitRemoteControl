@@ -12,8 +12,13 @@
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Parameter")
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     : CParameterDesktop(parent),
+#if defined(Q_OS_ANDROID)
+    m_nWidth(1280),
+    m_nHeight(720),
+#else
     m_nWidth(GetScreenGeometry().width()),
     m_nHeight(GetScreenGeometry().height()),
+#endif
     m_nColorDepth(32),
     m_bUseMultimon(false),
     m_nReconnectInterval(0),
