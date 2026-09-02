@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCLIPBOARDFREERDP_H
-#define CCLIPBOARDFREERDP_H
+#pragma once
 
 #include <QObject>
 #include <QVector>
@@ -109,5 +108,3 @@ private:
     bool m_bFileSupported; // Whether is server support file
     BOOL m_bFileFormatsRegistered;
 };
-
-#endif // CCLIPBOARDFREERDP_H

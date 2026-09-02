@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCURSOR_H
-#define CCURSOR_H
+#pragma once
 
 #include <QImage>
 #include <QRect>
@@ -47,5 +46,3 @@ private:
     
     QImage m_Cursor;
 };
-
-#endif // CCURSOR_H

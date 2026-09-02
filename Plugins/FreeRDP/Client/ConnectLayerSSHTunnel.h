@@ -1,8 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CONNECTLAYERSSHTUNNEL_H
-#define CONNECTLAYERSSHTUNNEL_H
-
 #pragma once
 #include "ConnectLayer.h"
 
@@ -25,5 +22,3 @@ private:
     CChannelSSHTunnel* m_pChannelSSH;
     HANDLE m_hSshSocket;
 };
-
-#endif // CONNECTLAYERSSHTUNNEL_H

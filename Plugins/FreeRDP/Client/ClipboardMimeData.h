@@ -1,7 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
-
-#ifndef CMIMEDATA_H
-#define CMIMEDATA_H
+#pragma once
 
 #include <QMimeData>
 #include <QMultiMap>
@@ -98,5 +96,3 @@ private:
     };
     QMap<UINT32, QSharedPointer<_CliprdrFileStream> > m_Stream;
 };
-
-#endif // CMIMEDATA_H
