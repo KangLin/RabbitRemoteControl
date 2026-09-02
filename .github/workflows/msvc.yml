@@ -15,7 +15,28 @@ jobs:
     strategy:
       matrix:
         include:
-          - CMAKE_GENERATOR_PLATFORM: x64
+          # - CMAKE_GENERATOR: "Visual Studio 18 2026"
+          #   CMAKE_GENERATOR_PLATFORM: x64
+          #   VCPKG_TARGET_TRIPLET: x64-windows
+          #   VCPKG_PLATFORM_TOOLSET: v143
+          #   BUILD_TYPE: Release
+          #   qt_version: 6.12.0
+          #   qt_arch: win64_msvc2022_64
+          #   qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtpdf qtspeech qtvirtualkeyboard
+          #   os: windows-2025
+
+          # - CMAKE_GENERATOR: "Visual Studio 18 2026"
+          #   CMAKE_GENERATOR_PLATFORM: arm64
+          #   VCPKG_TARGET_TRIPLET: arm64-windows
+          #   VCPKG_PLATFORM_TOOLSET: v143
+          #   BUILD_TYPE: Release
+          #   qt_version: 6.12.0
+          #   qt_arch: win64_msvc2022_arm64
+          #   qt_modules: qt5compat qtimageformats qtmultimedia qtpositioning qtscxml qtserialport qtwebchannel qtwebsockets qtspeech qtvirtualkeyboard
+          #   os: windows-11-vs2026-arm
+
+          - CMAKE_GENERATOR: "Visual Studio 17 2022"
+            CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             BUILD_TYPE: Release
@@ -24,7 +45,8 @@ jobs:
             qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtpdf qtspeech qtvirtualkeyboard
             os: windows-2022
 
-          - CMAKE_GENERATOR_PLATFORM: arm64
+          - CMAKE_GENERATOR: "Visual Studio 17 2022"
+            CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             BUILD_TYPE: Release
@@ -33,7 +55,8 @@ jobs:
             qt_modules: qt5compat qtimageformats qtmultimedia qtpositioning qtscxml qtserialport qtwebchannel qtwebsockets qtspeech qtvirtualkeyboard
             os: windows-11-arm
 
-          - CMAKE_GENERATOR_PLATFORM: Win32
+          - CMAKE_GENERATOR: "Visual Studio 17 2022"
+            CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
             VCPKG_OVERLAY_PORTS: "vcpkg/ports"
@@ -61,7 +84,7 @@ jobs:
       VCPKG_OVERLAY_PORTS: "${{github.workspace}}/${{matrix.VCPKG_OVERLAY_PORTS}}"
       VCPKG_MANIFEST_FEATURES: "freerdp;freerdp-server;vnc;terminal;filetransfer;database;${{matrix.VCPKG_MANIFEST_FEATURES}}"
       VCPKG_INSTALLED_DIR: ${{github.workspace}}\.cache\install
-      CMAKE_GENERATOR: "Visual Studio 17 2022"
+      CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: "${{matrix.qt_modules}}"
       artifact_name: build_msvc
