@@ -172,7 +172,8 @@ int main(int argc, char *argv[])
         app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
         app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
-        ShowMessageInSplashScreen(QObject::tr("Start") + " ......");
+        ShowMessageInSplashScreen(app.applicationDisplayName() + "\n\n"
+                                  + QObject::tr("Start") + " ......");
 
 #ifdef HAVE_UPDATE
         // Check update version
@@ -187,7 +188,7 @@ int main(int argc, char *argv[])
         {
             if(pUpdater) {
                 pUpdater->setAttribute(Qt::WA_DeleteOnClose, false);
-                QIcon icon = QIcon::fromTheme("app");
+                QIcon icon(":/app");
                 if(!icon.isNull()) {
                     auto sizeList = icon.availableSizes();
                     if(!sizeList.isEmpty()) {
