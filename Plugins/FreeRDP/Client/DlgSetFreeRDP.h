@@ -1,7 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
-
-#ifndef DLGSETFREERDP_H
-#define DLGSETFREERDP_H
+#pragma once
 
 #include <QFileSystemModel>
 #include <QItemSelection>
@@ -69,5 +67,3 @@ private:
 
     UINT32 m_vPerformanceFlags[CONNECTION_TYPE_AUTODETECT];
 };
-
-#endif // DLGSETFREERDP_H

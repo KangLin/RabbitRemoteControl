@@ -1,8 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CONNECTLAYER_H
-#define CONNECTLAYER_H
-
 #pragma once
 
 #include <QObject>
@@ -53,5 +50,3 @@ private:
         CConnectLayer* pThis;
     };
 };
-
-#endif // CONNECTLAYER_H

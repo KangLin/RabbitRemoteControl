@@ -1,6 +1,5 @@
-#ifndef DLGGETUSERPASSWORD_H
-#define DLGGETUSERPASSWORD_H
-
+// Author: Kang Lin <kl222@126.com>
+#pragma once
 #include <QDialog>
 
 #include "OperateFreeRDP.h"
@@ -32,5 +31,3 @@ private:
 };
 
 Q_DECLARE_METATYPE(CDlgGetUserPasswordFreeRDP)
-
-#endif // DLGGETUSERPASSWORD_H

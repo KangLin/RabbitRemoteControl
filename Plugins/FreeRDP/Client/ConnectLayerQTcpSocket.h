@@ -1,5 +1,6 @@
-#ifndef CONNECTLAYERQTCPSOCKET_H
-#define CONNECTLAYERQTCPSOCKET_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include <QObject>
 #include <QTcpSocket>
@@ -29,5 +30,3 @@ private:
     QTcpSocket m_TcpSocket;
     HANDLE m_hSocket;
 };
-
-#endif // CONNECTLAYERQTCPSOCKET_H

@@ -1,6 +1,5 @@
-#ifndef DLGDESKTOPSIZE_H
-#define DLGDESKTOPSIZE_H
-
+// Author: Kang Lin <kl222@126.com>
+#pragma once
 #include <QDialog>
 #include <QStandardItemModel>
 
@@ -33,5 +32,3 @@ private:
     QStringList m_lstDesktopSize;
     QStandardItemModel* m_pModel;
 };
-
-#endif // DLGDESKTOPSIZE_H
