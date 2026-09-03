@@ -62,7 +62,8 @@ void ShowMessageInSplashScreen(const QString &szMsg)
         pSplashScreen = nullptr;
         return;
     }
-    QString szTitle = qApp->applicationDisplayName() + "\n\n";
+    QString szTitle = qApp->applicationDisplayName()
+                      + "\n" + qApp->applicationVersion() + "\n\n";
     pSplashScreen->showMessage(szTitle + szMsg, Qt::AlignCenter,
                                pSplashScreen->palette().color(QPalette::WindowText));
     QCoreApplication::processEvents();

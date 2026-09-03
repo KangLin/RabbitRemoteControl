@@ -172,8 +172,7 @@ int main(int argc, char *argv[])
         app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
         app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
-        ShowMessageInSplashScreen(app.applicationDisplayName() + "\n\n"
-                                  + QObject::tr("Start") + " ......");
+        ShowMessageInSplashScreen(QObject::tr("Start") + " ......");
 
 #ifdef HAVE_UPDATE
         // Check update version
