@@ -61,22 +61,22 @@ jobs:
           #   lable: "latest"
           #   os: ubuntu-24.04-arm
 
-          # - PACKAGE: appimage
-          #   image: ubuntu
-          #   lable: "26.04"
-          #   os: ubuntu-24.04
-          # - PACKAGE: appimage
-          #   image: ubuntu
-          #   lable: "26.04"
-          #   os: ubuntu-24.04-arm
           - PACKAGE: appimage
-            image: debian
-            lable: "13"
+            image: ubuntu
+            lable: "26.04"
             os: ubuntu-24.04
           - PACKAGE: appimage
-            image: debian
-            lable: "13"
+            image: ubuntu
+            lable: "26.04"
             os: ubuntu-24.04-arm
+          # - PACKAGE: appimage
+          #   image: debian
+          #   lable: "13"
+          #   os: ubuntu-24.04
+          # - PACKAGE: appimage
+          #   image: debian
+          #   lable: "13"
+          #   os: ubuntu-24.04-arm
 
           - PACKAGE: rpm
             image: fedora

@@ -249,9 +249,9 @@ elseif(UNIX AND NOT ANDROID)
         DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
             COMPONENT Application
         PERMISSIONS OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-    # INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
-    #         DESTINATION ${CMAKE_INSTALL_BINDIR}
-    #             COMPONENT Application)
+    install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/mime/packages/
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/mime/packages
+            COMPONENT Application)
 
     # Icon path: https://www.freedesktop.org/wiki/Specifications/icon-theme-spec/
     # The freedesktop.org standard specifies in which order and directories programs should look for icons:

@@ -461,6 +461,10 @@ if [ $DOCKER -eq 1 ]; then
             cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
             cp \${RabbitCommon_ROOT}/Script/install_appimage.sh install.sh
             chmod a+rx install.sh
+            mkdir -p mime/packages
+            pushd mime/packages
+            cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/build_appimage/AppDir/usr/share/mime/packages/* .
+            popd
             popd
             "
     fi
