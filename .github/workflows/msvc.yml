@@ -192,7 +192,6 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -221,7 +220,6 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -251,7 +249,6 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -290,7 +287,6 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/qxmpp/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=OFF ^
                 -DVCPKG_APPLOCAL_DEPS=OFF ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -317,7 +313,6 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/QtService/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=OFF ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -353,7 +348,6 @@ jobs:
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}\share\cmake\lxqt2-build-tools ^
                   -DVCPKG_VERBOSE=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
@@ -373,7 +367,6 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DVCPKG_VERBOSE=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON ^
                   -DBUILD_WITH_QT6:BOOL=ON
@@ -394,7 +387,6 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DVCPKG_VERBOSE=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
@@ -413,7 +405,6 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DVCPKG_VERBOSE=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON ^
                   -DWITH_APP=OFF
@@ -426,7 +417,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl with cmake preset
-        if: false #${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.3' && startsWith(github.ref, 'refs/heads/master')}}
+        if: false #${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.15.2' && startsWith(github.ref, 'refs/heads/master')}}
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -456,8 +447,7 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
             -DVCPKG_VERBOSE=ON ^
             -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
-            -DVCPKG_APPLOCAL_DEPS=ON ^
+            -DVCPKG_APPLOCAL_DEPS=OFF ^
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
             -DENABLE_UPDATE_TRANSLATIONS=ON ^
             -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
@@ -469,16 +459,16 @@ jobs:
             -DBUILD_SFTP_SERVER=OFF
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
+            echo "cmake install config ${{matrix.BUILD_TYPE}} component Runtime"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
+            echo "cmake install config ${{matrix.BUILD_TYPE}} component Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"
+            echo "cmake install config ${{matrix.BUILD_TYPE}} component DependLibraries"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
+            echo "cmake install config ${{matrix.BUILD_TYPE}} component Application"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
           ) else (
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
+            echo "cmake install config ${{matrix.BUILD_TYPE}} component Runtime Application Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries
@@ -506,6 +496,7 @@ jobs:
           )
           ;7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip .\install\*
           makensis Windows.nsi
+          echo "Rename exe file"
           copy /Y RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe
 
       - name: Update configure file
@@ -531,7 +522,7 @@ jobs:
             #${{env.BUILD_DIR}}\RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip
 
       - name: Update artifact update_windows.xml
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.3' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.10.3' }}
         uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_xml
