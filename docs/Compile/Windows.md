@@ -385,7 +385,7 @@ See: [msvc.yml](.github\workflows\msvc.yml)
 - If using vcpkg, please set the CMake parameters:
   + Because of using vcpkg manifest mode, so the depend libraries in `vcpkg.json`
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-  + X_VCPKG_APPLOCAL_DEPS_INSTALL: ON #When installing, copy the dependent libraries to the installation directory
+  + VCPKG_APPLOCAL_DEPS: ON #When installing, copy the dependent libraries to the installation directory
   + VCPKG_MANIFEST_FEATURES: This variable can be set to a list of features to activate when installing from your manifest.
       Note: All vcpkg-affecting variables must be defined before the first project() directive such as in a CMakePresets.json's "cacheVariables" map, via the command line, or set() statements.
       So don't place it in CMakeLists.txt of the project.
@@ -398,7 +398,8 @@ See: [msvc.yml](.github\workflows\msvc.yml)
           cmake .. -DCMAKE_BUILD_TYPE=Release ^
               -DCMAKE_INSTALL_PREFIX=%CD%/install ^
               -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake ^
-              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+              -DVCPKG_APPLOCAL_DEPS=ON ^
+              -DＳ=ON ^
               -DBUILD_FREERDP=ON [options libraries]
           cmake --build . --config Release --target install
 
@@ -412,7 +413,7 @@ See: [msvc.yml](.github\workflows\msvc.yml)
   + Using an IDE (Qt Creator)
     - Set vcpkg: Menu→Edit→Preferences→Kits→Cmake Configuration:
       + Add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-      + Set X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+      + Set VCPKG_APPLOCAL_DEPS=ON
     - Open project: Menu→File→Open File or project, Select the CMakeLists.txt of the project
     - Configure: Click Project→"Build & Run" in the toolbar on the left to configure CMake parameters
       - If need install: select install in target

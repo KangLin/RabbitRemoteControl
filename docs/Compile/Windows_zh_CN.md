@@ -388,7 +388,7 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
 - 如果使用 vcpkg，增加下面参数
   + 因为使用了 vcpkg 清单模式，所以依赖库在 `vcpkg.json` 中。
   + CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-  + X_VCPKG_APPLOCAL_DEPS_INSTALL: ON  #安装时，把把依赖库的复制到安装目录中
+  + VCPKG_APPLOCAL_DEPS: ON  #安装时，把把依赖库的复制到安装目录中
   + VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能。
         如果它要放到CMakeLists.txt文件中，则必须入在最顶端 project 之前才能生效。
         所以本项目中从环境变量或 CMake 参数传入。
@@ -401,7 +401,7 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
           cmake .. -DCMAKE_BUILD_TYPE=Release ^
               -DCMAKE_INSTALL_PREFIX=%CD%/install ^
               -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake ^
-              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+              -DVCPKG_APPLOCAL_DEPS=ON ^
               -DBUILD_FREERDP=ON [可选依赖库]
           cmake --build . --config Release --target
 
@@ -415,7 +415,7 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
   + IDE (Qt Creator) 编译
     - 设置 vcpkg: 编辑→Preferences(Options)→构建套件(Kits)→Cmake Configureration:
       + 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-      + 设置 X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+      + 设置 VCPKG_APPLOCAL_DEPS=ON
     - 打开项目: “菜单→文件→打开文件或项目”，选择项目根目录中的 CMakeLists.txt 
     - 配置：点左侧工具栏上的 “项目→构建与运行”，配置 CMake 参数
       - 如果要安装，还需要　“项目→构建与运行→构建步骤→目标”　中，选中　install
