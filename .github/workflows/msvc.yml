@@ -192,6 +192,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -220,6 +221,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -249,6 +251,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -287,6 +290,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/qxmpp/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=OFF ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -313,6 +317,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/QtService/vcpkg_installed ^
                 -DVCPKG_VERBOSE=ON ^
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_APPLOCAL_DEPS=OFF ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -348,6 +353,7 @@ jobs:
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}\share\cmake\lxqt2-build-tools ^
                   -DVCPKG_VERBOSE=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
@@ -367,6 +373,7 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DVCPKG_VERBOSE=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON ^
                   -DBUILD_WITH_QT6:BOOL=ON
@@ -386,6 +393,7 @@ jobs:
               cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DVCPKG_VERBOSE=ON ^
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON
@@ -405,6 +413,7 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DVCPKG_VERBOSE=ON ^
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                   -DVCPKG_APPLOCAL_DEPS=ON ^
                   -DVCPKG_TRACE_FIND_PACKAGE=ON ^
                   -DWITH_APP=OFF
@@ -447,7 +456,8 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
             -DVCPKG_VERBOSE=ON ^
             -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-            -DVCPKG_APPLOCAL_DEPS=OFF ^
+            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+            -DVCPKG_APPLOCAL_DEPS=ON ^
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
             -DENABLE_UPDATE_TRANSLATIONS=ON ^
             -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
@@ -496,7 +506,7 @@ jobs:
           )
           ;7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip .\install\*
           makensis Windows.nsi
-          echo "Rename exe file"
+          echo "Copy exe file: copy /Y RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe"
           copy /Y RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe
 
       - name: Update configure file
@@ -506,7 +516,7 @@ jobs:
           install\bin\RabbitRemoteControlApp.exe ^
                 -f "update_msvc_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" ^
                 --foc 1 ^
-                -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe;https://master.dl.sourceforge.net/project/rabbitremotecontrol/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe?viasf=1 ^
+                -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe;https://master.dl.sourceforge.net/project/rabbitremotecontrol/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe?viasf=1" ^
                 --pf RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
           RENAME update_msvc_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json.xml update_windows.xml
