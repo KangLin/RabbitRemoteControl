@@ -24,11 +24,20 @@ case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
         rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png
+        rm -fr /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop
         rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
         rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
         rm -fr /usr/bin/rabbitremotecontrol
         ldconfig
+        if command -v update-mime-database >/dev/null 2>&1; then
+            if [ ! -d /usr/share/mime ]; then
+                update-mime-database /usr/share/mime/
+            fi
+        fi
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database
+        fi
     ;;
 
     *)

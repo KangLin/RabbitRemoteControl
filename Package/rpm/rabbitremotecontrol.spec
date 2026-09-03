@@ -144,6 +144,14 @@ if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop 
         chmod a+rx /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
     fi
 fi
+if [ ! -f /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
+    if [ -f $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
+        if [ ! -d /usr/share/mime/packages ]; then
+            mkdir -p /usr/share/mime/packages
+        fi
+        ln -s $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
+    fi
+fi
 if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
     if [ -f $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
         if [ ! -d /usr/share/pixmaps ]; then
@@ -159,15 +167,32 @@ fi
 if [ -d $INSTALL_PREFIX/etc ]; then
     chmod -R a+rw $INSTALL_PREFIX/etc
 fi
+if command -v update-mime-database >/dev/null 2>&1; then
+    if [ ! -d /usr/share/mime ]; then
+        update-mime-database /usr/share/mime/
+    fi
+fi
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database
+fi
 
 # 卸载前需要做的任务 如：停止任务
 %preun
-rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
-rm -fr /usr/bin/rabbitremotecontrol
 
 # 卸载后需要做的任务 如：删除用户，删除/备份业务数据
 %postun
+rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+rm -fr /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
+rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+rm -fr /usr/bin/rabbitremotecontrol
+if command -v update-mime-database >/dev/null 2>&1; then
+    if [ ! -d /usr/share/mime ]; then
+        update-mime-database /usr/share/mime/
+    fi
+fi
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database
+fi
 
 # 清除上次编译生成的临时文件
 %clean

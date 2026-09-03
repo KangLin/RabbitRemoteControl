@@ -27,6 +27,14 @@ case "$1" in
                 chmod a+rx /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
             fi
         fi
+        if [ ! -f /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
+            if [ -f $INSTALL_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
+                if [ ! -d /usr/share/mime/packages ]; then
+                    mkdir -p /usr/share/mime/packages
+                fi
+                ln -s $INSTALL_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
+            fi
+        fi
         if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png ]; then
             if [ -f $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png ]; then
                 if [ ! -d /usr/share/pixmaps ]; then
@@ -59,6 +67,15 @@ case "$1" in
             chmod -R a+rw $INSTALL_ROOT/etc
         fi
 
+        if command -v update-mime-database >/dev/null 2>&1; then
+            if [ ! -d /usr/share/mime ]; then
+                update-mime-database /usr/share/mime/
+            fi
+        fi
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database
+        fi
+
         #echo "$INSTALL_ROOT/lib" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
         #echo "$INSTALL_ROOT/lib/`uname -m`-linux-gnu" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
         #echo "$INSTALL_ROOT/bin" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
@@ -72,10 +89,19 @@ case "$1" in
     abort-upgrade|abort-remove|abort-deconfigure)
         #rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+        rm -fr /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
         rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop
         rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
         ldconfig
+        if command -v update-mime-database >/dev/null 2>&1; then
+            if [ ! -d /usr/share/mime ]; then
+                update-mime-database /usr/share/mime/
+            fi
+        fi
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database
+        fi
     ;;
 
     *)

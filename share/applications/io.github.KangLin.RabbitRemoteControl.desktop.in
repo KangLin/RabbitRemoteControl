@@ -1,30 +1,72 @@
-# https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
-# The desktop directory:
-# ~/.local/share/applications/
-# /usr/share/applications/
-# /usr/local/share/applications/
+# Author: Kang Lin <kl222@126.com>
 #
-# Use follow order to update desktop database
-# `sudo update-desktop-database`
+# - Desktop file: https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
+#   - The desktop file directory:
+#     - Current user
+#       - ~/.local/share/applications/
+#     - Global user
+#       - /usr/share/applications/
+#       - /usr/local/share/applications/
+#
+#   - Use follow order to update desktop database
+#     `update-desktop-database ~/.local/share/applications`
+#
+# - Icon: http://freedesktop.org/wiki/Standards/icon-theme-spec
+#   - The icon file directories:
+#     - Current user
+#       - $HOME/.icons (for backwards compatibility)
+#       - $XDG_DATA_DIRS/icons/
+#       - $XDG_DATA_DIRS/icons/[Icon theme]
+#         - scalable (Scalable icon)
+#         - other directories (Fix icon)
+#     - Global user
+#       - /usr/share/pixmaps (Fix icon) (for backwards compatibility)
+#       - /usr/share/icons/
+#       - /usr/share/icons/[Icon theme]
+#         - scalable (Scalable icon)
+#         - Other subdirectories (Fix icon)
+#
+# - MimeType: https://www.freedesktop.org/wiki/Specifications/mime-apps-spec/
+#   - The mime type file directory:
+#     - Current user
+#       - ~/.local/share/mime
+#     - Global user
+#       - /usr/share/mime/
+#       - /usr/local/share/mime/
+#   - The custom mime type file directory:
+#     - Current user
+#       - ~/.local/share/mime/packages
+#     - Global user
+#       - /usr/share/mime/packages
+#     - Copy the custom mime type file to the upper directory, then use follow order to update MimeType
+#       `update-mime-database ~/.local/share/mime/`
+#   - Command
+#     - Check the default app associated with a MIME type
+#       `xdg-mime query default application/rrc`
+#     - Test file association
+#       `xdg-open test.rrc`  # You should open it with your app
 
 [Desktop Entry]
 Type=Application
+
 # Icon path: http://freedesktop.org/wiki/Standards/icon-theme-spec
 # The freedesktop.org standard specifies in which order and directories programs should look for icons:
-#
 #    $HOME/.icons (for backwards compatibility)
 #    $XDG_DATA_DIRS/icons
 #    /usr/share/pixmaps
 Icon=@APP_ID@
+
 #TryExec=RabbitRemoteControlApp
 Exec=RabbitRemoteControlApp
 Path=@CMAKE_INSTALL_PREFIX@/bin
+
 Terminal=false
 StartupNotify=true
 
 # Find WM_CLASS:
 # Open terminal, run `xprop WM_CLASS` .
 # Your mouse cursor will change to a crosshair. Click on any window of RabbitRemoteControl.
+# 取第二个字符串（通常为资源类名）填入 StartupWMClass。
 StartupWMClass=RabbitRemoteControl
 
 X-Flatpak=@APP_ID@
@@ -36,7 +78,10 @@ Categories=Network;Utility;P2P;Qt;RemoteAccess;AudioVideo;Video;Audio;Player
 
 # https://www.freedesktop.org/wiki/Specifications/mime-apps-spec/
 # https://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec/
-MimeType=application/rrc
+# 添加 URL 协议支持（如果需要从浏览器打开 rrc:// 链接）: x-scheme-handler/rrc
+MimeType=application/rrc;x-scheme-handler/rrc;application/x-shellscript;text/html;video/webm;
+# 添加文件扩展名关联（辅助信息）
+X-MultipleArgs=false
 
 X-KDE-Protocols=rdp,rfb,vnc,ftp,http,https,sftp,smb
 
