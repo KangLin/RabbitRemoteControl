@@ -44,7 +44,7 @@
 #include "StatsAppUsage.h"
 #include "mainwindow.h"
 
-static Q_LOGGING_CATEGORY(log, "App.Main")
+static Q_LOGGING_CATEGORY(log, "App")
 
 // Android平台的专用初始化函数（必须在QGuiApplication之前）
 void InitAndroidVirtualKeyboard()
@@ -195,17 +195,20 @@ int main(int argc, char *argv[])
                         pUpdater->SetTitle(p.toImage());
                     }
                 }
-                if(app.arguments().length() > 1) {
-                    try {
-                        pUpdater->GenerateUpdateJson();
-                        pUpdater->GenerateUpdateXml();
-                    } catch(...) {
-                        qCritical(log) << "Generate update fail";
-                    }
-                    qInfo(log) << app.applicationName() + " " + app.applicationVersion()
-                                      + " " + QObject::tr("Generate update json file End");
-                    return 0;
+
+                CFrmUpdater::ErrCode err = CFrmUpdater::ErrCode::Success;
+                try {
+                    ShowMessageInSplashScreen(QObject::tr("Generate update json file ......"));
+                    err = pUpdater->GenerateUpdateJson();
+                    pUpdater->GenerateUpdateXml();
+                } catch(...) {
+                    qCritical(log) << "Generate update fail";
                 }
+                qInfo(log) << app.applicationName() + " " + app.applicationVersion()
+                                  + " " + QObject::tr("Generate update json file End");
+                if(CFrmUpdater::ErrCode::Arguments == err)
+                    return 0;
+
             } else {
                 qCritical(log) << "new CFrmUpdater() fail";
             }

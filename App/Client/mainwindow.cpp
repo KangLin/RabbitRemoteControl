@@ -531,6 +531,20 @@ int MainWindow::Initial()
             break;
         }
 
+        ShowMessageInSplashScreen(tr("Process command line parameters ......"));
+        QCommandLineParser parser;
+        parser.parse(qApp->arguments());
+        if(!parser.positionalArguments().isEmpty())
+            foreach(auto file, parser.positionalArguments()) {
+                QFileInfo fi(file);
+                if(fi.suffix() == "rrc") {
+                    ShowMessageInSplashScreen(
+                        tr("Process command line parameters ......") + "\n"
+                        + tr("Open rrc file %1 ......").arg(fi.filePath()));
+                    slotOpenFile(file);
+                }
+            }
+
         slotInformation(tr("Ready"));
 
         return nRet;
