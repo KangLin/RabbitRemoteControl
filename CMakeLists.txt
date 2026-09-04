@@ -169,8 +169,10 @@ endif()
 
 iF(WIN32)
     # 替换 Windows.nsi 中的 CMAKE_INSTALL_PREFIX 等
-    configure_file(${CMAKE_SOURCE_DIR}/Package/Windows.nsi
+    configure_file(${CMAKE_SOURCE_DIR}/Package/NSIS/Windows.nsi
         ${CMAKE_BINARY_DIR}/Windows.nsi @ONLY)
+    configure_file(${CMAKE_SOURCE_DIR}/Package/NSIS/FileAssociation.nsh
+        ${CMAKE_BINARY_DIR}/FileAssociation.nsh @ONLY)
 endif()
 
 option(BUILD_DOCS "Generating API documentation" OFF)

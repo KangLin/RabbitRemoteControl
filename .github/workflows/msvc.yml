@@ -138,7 +138,7 @@ jobs:
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/npcap (
               C:\msys64\usr\bin\pacman.exe -S --noconfirm unzip
-              ; NOTE: 如何要修改版本号，需要同时修改后面打包部分和 Package\Windows.nsi 中相应的版本
+              ; NOTE: 如何要修改版本号，需要同时修改后面打包部分和 Package\NSIS\Windows.nsi 中相应的版本
               C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-sdk-1.16.zip
               C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}}\npcap npcap-sdk-1.16.zip
               C:\msys64\usr\bin\wget -P ${{env.INSTALL_DIR}} https://npcap.com/dist/npcap-1.87.exe
@@ -499,7 +499,7 @@ jobs:
           xcopy /Y /S /I %QT_ROOT_DIR%\resources install\bin\resources
           xcopy /Y /S /I %QT_ROOT_DIR%\translations install\bin\translations
           xcopy /Y /S /I %QT_ROOT_DIR%\plugins\sqldrivers install\bin\sqldrivers
-          ; NOTE: 如何要修改版本号，需要同时修改 Package\Windows.nsi 中相应的版本
+          ; NOTE: 如何要修改版本号，需要同时修改 Package\NSIS\Windows.nsi 中相应的版本
           ; C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-1.87.exe
           IF EXIST "${{env.INSTALL_DIR}}\npcap-1.87.exe" (
             copy /Y "${{env.INSTALL_DIR}}\npcap-1.87.exe" install\bin
