@@ -11,6 +11,12 @@
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKCU"
 
+!define PROGID "${PRODUCT_NAME}.RRCFile.1"
+!define APP_EXE "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+!define APP_ICON "$INSTDIR\app.ico"
+
+!include "FileAssociation.nsh"
+
 SetCompressor lzma
 
 ;InstType "Full"
@@ -235,6 +241,20 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+
+  DetailPrint "Register file association ......"
+  ; 注册文件关联
+  !insertmacro RegisterFileAssociation "rrc" "${PROGID}" \
+    "Rabbit Remote Control Session File" \
+    "${PRODUCT_NAME}" \
+    "${APP_ICON}" \
+    "${APP_EXE}"
+  DetailPrint "Register URL protocol ......"
+  ; 注册 URL 协议
+  !insertmacro RegisterURLProtocol "rrc" \
+    "${APP_ICON}" \
+    "${APP_EXE}"
+
 SectionEnd
 
 ; Section descriptions
@@ -270,6 +290,9 @@ Section Uninstall
   ;DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}"
   DeleteRegValue  ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\Run" "${PRODUCT_NAME}"
+
+  !insertmacro UnregisterFileAssociation rrc "${PROGID}"
+  !insertmacro UnregisterURLProtocol rrc
 
   ;SendMessage ${HWND_BROADCAST} ${WM_WININICHANGE} 0 "STR:Environment"
   ;SetAutoClose true
