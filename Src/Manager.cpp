@@ -327,7 +327,7 @@ int CManager::LoadPlugin(const QString &szPath)
     int nRet = -1;
     QPluginLoader* pLoader = new QPluginLoader(szPath, this);
     do{
-        QString szTitle = tr("Load plugins ......") + "\n\n";
+        QString szTitle = tr("Load plugins ......") + "\n";
         QObject *plugin = pLoader->instance();
         if (plugin) {
             CPlugin* p = qobject_cast<CPlugin*>(plugin);

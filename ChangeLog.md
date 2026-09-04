@@ -53,7 +53,7 @@
     - Add main menu in toolbaar
     - Add activity menu
     - Add splash screen
-    - Add mime type, file assocition: Linux, Windows
+    - Add mime type, file association: Linux, Windows
   - Add build_mscos.sh. add App bundle
   - Add run the program directly without installation for windows install package
   - [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
