@@ -637,7 +637,13 @@ void CFrmRecent::dragEnterEvent(QDragEnterEvent *event)
     auto urls = event->mimeData()->urls();
     if(event->mimeData()->hasUrls() && urls.length() == 1) {
         //qDebug(log) << event->mimeData()->urls();
-        event->acceptProposedAction();
+        foreach(auto url, urls) {
+            if(url.isLocalFile()
+                && QFileInfo(url.toLocalFile()).suffix().toLower() == "json") {
+                event->acceptProposedAction();
+                return;
+            }
+        }
         return;
     }
 }
@@ -654,7 +660,9 @@ void CFrmRecent::dropEvent(QDropEvent *event)
     auto urls = event->mimeData()->urls();
     foreach(auto url, urls)
     {
-        if(url.isLocalFile()) {
+        if(url.isLocalFile()
+            && QFileInfo(url.toLocalFile()).suffix().toLower() == "json") {
+            bRet = true;
             QString filename = url.toLocalFile();
             if (m_Database.ImportFromJsonFile(filename)) {
                 slotRefresh();

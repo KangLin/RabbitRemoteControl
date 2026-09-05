@@ -547,6 +547,7 @@ int MainWindow::Initial()
                     ShowMessageInSplashScreen(
                         tr("Process command line parameters ......") + "\n"
                         + tr("Open rrc file %1 ......").arg(fi.filePath()));
+                    qDebug(log) << tr("Open rrc file %1 ......").arg(fi.filePath());
                     slotOpenFile(file);
                 }
             }
@@ -1827,7 +1828,8 @@ void MainWindow::dropEvent(QDropEvent *event)
     auto urls = event->mimeData()->urls();
     foreach(auto url, urls)
     {
-        if(url.isLocalFile())
+        if(url.isLocalFile()
+            && QFileInfo(url.toLocalFile()).suffix().toLower() == "rrc")
             slotOpenFile(url.toLocalFile());
         bRet = true;
     }
