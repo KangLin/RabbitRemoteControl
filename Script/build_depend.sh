@@ -532,7 +532,6 @@ fedora)
     ;;
 esac
 
-
 if [ $SYSTEM_UPDATE -eq 1 ]; then
     echo_status "System update ......"
     case "$PACKAGE_TOOL" in
