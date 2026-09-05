@@ -83,7 +83,7 @@ MimeType=application/rrc;x-scheme-handler/rrc;application/x-shellscript;text/htm
 # 添加文件扩展名关联（辅助信息）
 X-MultipleArgs=false
 
-X-KDE-Protocols=rdp,rfb,vnc,ftp,http,https,sftp,smb
+X-KDE-Protocols=rdp,rfb,vnc,ftp,sftp,smb,http,https
 
 Keywords=remote desktop;remote control;rabbit remote control;rdp;vnc;ssh;player;terminal;file transfer;file download;玉兔远程控制;远程桌面;远程控制;播放器;文件传输;文件下载;终端
 

@@ -536,8 +536,14 @@ int MainWindow::Initial()
         parser.parse(qApp->arguments());
         if(!parser.positionalArguments().isEmpty())
             foreach(auto file, parser.positionalArguments()) {
+                QUrl url(file);
+                if(url.scheme() == "rrc") {
+                    // TODO: parse the rrc protocol
+                    qDebug(log) << "parse the rrc protocol";
+                    continue;
+                }
                 QFileInfo fi(file);
-                if(fi.suffix() == "rrc") {
+                if(fi.exists() && fi.suffix() == "rrc") {
                     ShowMessageInSplashScreen(
                         tr("Process command line parameters ......") + "\n"
                         + tr("Open rrc file %1 ......").arg(fi.filePath()));
