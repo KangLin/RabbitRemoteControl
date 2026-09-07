@@ -31,7 +31,7 @@ case "$1" in
         rm -fr /usr/bin/rabbitremotecontrol
         ldconfig
         if command -v update-mime-database >/dev/null 2>&1; then
-            if [ ! -d /usr/share/mime ]; then
+            if [ -d /usr/share/mime ]; then
                 update-mime-database /usr/share/mime/
             fi
         fi
