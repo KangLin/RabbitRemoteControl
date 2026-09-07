@@ -94,6 +94,7 @@ MainWindow::MainWindow(QWidget *parent)
     bool bVisible = (nullptr != QGuiApplication::inputMethod());
     ui->actionKeyboard->setVisible(bVisible);
     ui->actionKeyboard->setEnabled(bVisible);
+    ui->toolBar->insertAction(ui->actionSettings, ui->actionKeyboard);
 #endif
 
     check = connect(&m_Manager, &CManager::sigNewOperate,
