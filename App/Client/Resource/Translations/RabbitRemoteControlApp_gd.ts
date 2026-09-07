@@ -116,27 +116,27 @@
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="468"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="496"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="582"/>
         <source>Success</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="469"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="582"/>
         <source>Successfully imported favorite from JSON file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="471"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="499"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="576"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="584"/>
         <source>Failed to import favorite from JSON file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="473"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="501"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="578"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="586"/>
         <source>Error: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -144,7 +144,7 @@
         <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="502"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="506"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="579"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="587"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
@@ -369,33 +369,33 @@ File: %1</source>
     <message>
         <location filename="../../Recent/FrmRecent.cpp" line="584"/>
         <location filename="../../Recent/FrmRecent.cpp" line="609"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="661"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="669"/>
         <source>Success</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Recent/FrmRecent.cpp" line="585"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="662"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="670"/>
         <source>Successfully imported recent from json file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Recent/FrmRecent.cpp" line="587"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="665"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="673"/>
         <source>Failed to import recent from json file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Recent/FrmRecent.cpp" line="589"/>
         <location filename="../../Recent/FrmRecent.cpp" line="614"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="667"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="675"/>
         <source>Error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Recent/FrmRecent.cpp" line="590"/>
         <location filename="../../Recent/FrmRecent.cpp" line="615"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="668"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="676"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
@@ -870,7 +870,7 @@ File: %1</source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="568"/>
-        <location filename="../../mainwindow.cpp" line="854"/>
+        <location filename="../../mainwindow.cpp" line="875"/>
         <source>Stop other</source>
         <translation type="unfinished"></translation>
     </message>
@@ -899,10 +899,10 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="232"/>
         <location filename="../../mainwindow.ui" line="235"/>
         <location filename="../../mainwindow.ui" line="238"/>
-        <location filename="../../mainwindow.cpp" line="697"/>
-        <location filename="../../mainwindow.cpp" line="698"/>
-        <location filename="../../mainwindow.cpp" line="699"/>
-        <location filename="../../mainwindow.cpp" line="700"/>
+        <location filename="../../mainwindow.cpp" line="718"/>
+        <location filename="../../mainwindow.cpp" line="719"/>
+        <location filename="../../mainwindow.cpp" line="720"/>
+        <location filename="../../mainwindow.cpp" line="721"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -943,16 +943,16 @@ File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="738"/>
-        <location filename="../../mainwindow.cpp" line="739"/>
-        <location filename="../../mainwindow.cpp" line="740"/>
-        <location filename="../../mainwindow.cpp" line="741"/>
+        <location filename="../../mainwindow.cpp" line="759"/>
+        <location filename="../../mainwindow.cpp" line="760"/>
+        <location filename="../../mainwindow.cpp" line="761"/>
+        <location filename="../../mainwindow.cpp" line="762"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="990"/>
-        <location filename="../../mainwindow.cpp" line="1009"/>
+        <location filename="../../mainwindow.cpp" line="1011"/>
+        <location filename="../../mainwindow.cpp" line="1030"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -961,7 +961,7 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="295"/>
         <location filename="../../mainwindow.ui" line="298"/>
         <location filename="../../mainwindow.ui" line="301"/>
-        <location filename="../../mainwindow.cpp" line="1001"/>
+        <location filename="../../mainwindow.cpp" line="1022"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1059,61 +1059,73 @@ File: %1</source>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="534"/>
+        <location filename="../../mainwindow.cpp" line="548"/>
+        <source>Process command line parameters ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="549"/>
+        <location filename="../../mainwindow.cpp" line="550"/>
+        <source>Open rrc file %1 ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="555"/>
         <source>Ready</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="831"/>
+        <location filename="../../mainwindow.cpp" line="852"/>
         <source>Stop other except the current &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1003"/>
+        <location filename="../../mainwindow.cpp" line="1024"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1125"/>
+        <location filename="../../mainwindow.cpp" line="1146"/>
         <source>Starting: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1218"/>
+        <location filename="../../mainwindow.cpp" line="1239"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1352"/>
+        <location filename="../../mainwindow.cpp" line="1373"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1361"/>
+        <location filename="../../mainwindow.cpp" line="1382"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1400"/>
+        <location filename="../../mainwindow.cpp" line="1421"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1646"/>
+        <location filename="../../mainwindow.cpp" line="1667"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1647"/>
+        <location filename="../../mainwindow.cpp" line="1668"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1678"/>
+        <location filename="../../mainwindow.cpp" line="1699"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1679"/>
+        <location filename="../../mainwindow.cpp" line="1700"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1137,22 +1149,27 @@ File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="206"/>
+        <location filename="../../main.cpp" line="201"/>
+        <source>Generate update json file ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="208"/>
         <source>Generate update json file End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="222"/>
+        <location filename="../../main.cpp" line="225"/>
         <source>Create main window ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="541"/>
+        <location filename="../../mainwindow.cpp" line="562"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="542"/>
+        <location filename="../../mainwindow.cpp" line="563"/>
         <source>Initial error:</source>
         <translation type="unfinished"></translation>
     </message>

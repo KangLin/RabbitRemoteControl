@@ -436,104 +436,104 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
         <translation>TLS 1.3</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="290"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="390"/>
         <location filename="../../DlgSetFreeRDP.cpp" line="381"/>
         <location filename="../../DlgSetFreeRDP.cpp" line="441"/>
         <source>Local screen</source>
         <translation>Tela local</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="321"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="421"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="364"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="282"/>
         <source>Performance</source>
         <translation>Performance</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="370"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="288"/>
         <source>Choose your connection speed to optimize performance</source>
         <translation>Escolha a velocidade da sua conexão para otimizar o desempenho</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="380"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="298"/>
         <source>Features related to connection quality:</source>
         <translation>Recursos que dependem da qualidade da conexão:</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="389"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="307"/>
         <source>Desktop background</source>
         <translation>Tela de fundo da área de trabalho</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="396"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="314"/>
         <source>Font smoothing</source>
         <translation>Fonte suavizada</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="407"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="325"/>
         <source>Desktop compositing</source>
         <translation>Composição da área de trabalho</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="423"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="341"/>
         <source>Displays the contents of the window when dragging</source>
         <translation>Mostrar conteúdo da janela ao arrastar</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="430"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="348"/>
         <source>Visual theme</source>
         <translation>Estilos visuais</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="445"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="458"/>
         <source>Local resource</source>
         <translation>Recursos Locais</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="552"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="565"/>
         <source>Enable local input method(Takes effect after reboot)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="598"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="611"/>
         <source>Selected:</source>
         <translation>Selecionado:</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="605"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="618"/>
         <source>Clear all</source>
         <translation>Desmarcar tudo</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="466"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="479"/>
         <source>Audio</source>
         <translation>Áudio</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="472"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="485"/>
         <source>Play remote audio</source>
         <translation>Reprodução de áudo remoto</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="478"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="491"/>
         <source>On this computer</source>
         <translation>Reproduzir neste computador</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="488"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="501"/>
         <source>On remote computer</source>
         <translation>Reproduzir no computador remoto</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="498"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="511"/>
         <source>Disable</source>
         <translation>Não reproduzir</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="511"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="524"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>Usar o microfone deste computador no computador remoto</translation>
     </message>
@@ -542,35 +542,35 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
         <translation type="vanished">Ativar método de entrada local</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="533"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="536"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="539"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="542"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="546"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="549"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="552"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="555"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
         <translation>Impressoras: Redirecionar as impressoras locais</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="414"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="332"/>
         <source>Menus and window animations</source>
         <translation>Animação de menus e janelas</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="559"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="562"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="565"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="568"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="572"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="575"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="578"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="581"/>
         <source>Clipboard: Redirection the clipboard</source>
         <translation>Área de transferência: Redirecionar a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="575"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="578"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="581"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="588"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="591"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="594"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation>Redirecione as seguintes unidades selecionadas para o computador remoto</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="584"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="597"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation>Unidades: Redirecionar as unidades selecionadas para o computador remoto</translation>
     </message>
@@ -607,22 +607,22 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
         <translation>Exibição</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="282"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="382"/>
         <source>Remote desktop size:</source>
         <translation>Configuração de vídeo:</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="301"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="401"/>
         <source>Select size:</source>
         <translation>Tamanho da área de trabalho:</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="330"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="430"/>
         <source>Use all local monitors for remote sessions</source>
         <translation>Usar todos os meus monitores para a sessão remota</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="342"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="360"/>
         <source>Remote color depth:</source>
         <translation>Cores:</translation>
     </message>
@@ -765,14 +765,12 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation>O servidor está vazio, insira-o</translation>
+        <translation type="vanished">O servidor está vazio, insira-o</translation>
     </message>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation type="vanished">Erro</translation>
     </message>
 </context>
 <context>

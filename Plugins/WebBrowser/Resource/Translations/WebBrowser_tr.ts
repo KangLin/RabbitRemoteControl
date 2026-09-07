@@ -1527,250 +1527,250 @@
 <context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="100"/>
+        <location filename="../../FrmWebBrowser.cpp" line="101"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="110"/>
+        <location filename="../../FrmWebBrowser.cpp" line="111"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="120"/>
+        <location filename="../../FrmWebBrowser.cpp" line="121"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="134"/>
+        <location filename="../../FrmWebBrowser.cpp" line="135"/>
         <source>go</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="193"/>
+        <location filename="../../FrmWebBrowser.cpp" line="194"/>
         <source>Add tab page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="205"/>
+        <location filename="../../FrmWebBrowser.cpp" line="206"/>
         <source>Download Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="266"/>
+        <location filename="../../FrmWebBrowser.cpp" line="267"/>
         <source>Operate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="311"/>
-        <location filename="../../FrmWebBrowser.cpp" line="320"/>
+        <location filename="../../FrmWebBrowser.cpp" line="312"/>
+        <location filename="../../FrmWebBrowser.cpp" line="321"/>
         <source>New page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="614"/>
+        <location filename="../../FrmWebBrowser.cpp" line="617"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="785"/>
+        <location filename="../../FrmWebBrowser.cpp" line="788"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="626"/>
+        <location filename="../../FrmWebBrowser.cpp" line="629"/>
         <source>Add incognito tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="191"/>
+        <location filename="../../FrmWebBrowser.cpp" line="192"/>
         <source>Add bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="636"/>
+        <location filename="../../FrmWebBrowser.cpp" line="639"/>
         <source>Add window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="643"/>
+        <location filename="../../FrmWebBrowser.cpp" line="646"/>
         <source>Add Incognito Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="652"/>
+        <location filename="../../FrmWebBrowser.cpp" line="655"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="665"/>
+        <location filename="../../FrmWebBrowser.cpp" line="668"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="666"/>
+        <location filename="../../FrmWebBrowser.cpp" line="669"/>
         <source>Find:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="674"/>
-        <location filename="../../FrmWebBrowser.cpp" line="682"/>
+        <location filename="../../FrmWebBrowser.cpp" line="677"/>
+        <location filename="../../FrmWebBrowser.cpp" line="685"/>
         <source>&quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="676"/>
+        <location filename="../../FrmWebBrowser.cpp" line="679"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="692"/>
+        <location filename="../../FrmWebBrowser.cpp" line="695"/>
         <source>Find &amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="703"/>
+        <location filename="../../FrmWebBrowser.cpp" line="706"/>
         <source>Find &amp;Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="715"/>
-        <location filename="../../FrmWebBrowser.cpp" line="717"/>
         <location filename="../../FrmWebBrowser.cpp" line="718"/>
+        <location filename="../../FrmWebBrowser.cpp" line="720"/>
+        <location filename="../../FrmWebBrowser.cpp" line="721"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="726"/>
-        <location filename="../../FrmWebBrowser.cpp" line="728"/>
         <location filename="../../FrmWebBrowser.cpp" line="729"/>
+        <location filename="../../FrmWebBrowser.cpp" line="731"/>
+        <location filename="../../FrmWebBrowser.cpp" line="732"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="739"/>
-        <location filename="../../FrmWebBrowser.cpp" line="741"/>
         <location filename="../../FrmWebBrowser.cpp" line="742"/>
+        <location filename="../../FrmWebBrowser.cpp" line="744"/>
+        <location filename="../../FrmWebBrowser.cpp" line="745"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="755"/>
+        <location filename="../../FrmWebBrowser.cpp" line="758"/>
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="760"/>
+        <location filename="../../FrmWebBrowser.cpp" line="763"/>
         <source>Print to PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="780"/>
+        <location filename="../../FrmWebBrowser.cpp" line="783"/>
         <source>Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="784"/>
+        <location filename="../../FrmWebBrowser.cpp" line="787"/>
         <source>Manage Bookmark </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="789"/>
-        <location filename="../../FrmWebBrowser.cpp" line="791"/>
+        <location filename="../../FrmWebBrowser.cpp" line="792"/>
+        <location filename="../../FrmWebBrowser.cpp" line="794"/>
         <source>Capture page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="793"/>
-        <location filename="../../FrmWebBrowser.cpp" line="795"/>
+        <location filename="../../FrmWebBrowser.cpp" line="796"/>
+        <location filename="../../FrmWebBrowser.cpp" line="798"/>
         <source>Capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="796"/>
         <location filename="../../FrmWebBrowser.cpp" line="799"/>
-        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
+        <location filename="../../FrmWebBrowser.cpp" line="802"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1239"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="877"/>
+        <location filename="../../FrmWebBrowser.cpp" line="880"/>
         <source>Web browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1091"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1094"/>
         <source>Print to PDF finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1131"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1134"/>
         <source>Fail: Save capture page to the file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1136"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1139"/>
         <source>Save capture page to the file：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1173"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1176"/>
         <source>Fail: capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1177"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1180"/>
         <source>Capture full page to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1203"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1206"/>
         <source>Start capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1209"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1212"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1222"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1225"/>
         <source>Fail record web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1233"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
         <source>Start record web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1243"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1246"/>
         <source>Record web page is stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="766"/>
-        <location filename="../../FrmWebBrowser.cpp" line="770"/>
+        <location filename="../../FrmWebBrowser.cpp" line="769"/>
+        <location filename="../../FrmWebBrowser.cpp" line="773"/>
         <source>Inspector</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1066"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1069"/>
         <source>Print finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1067"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1070"/>
         <source>Successfully printed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1092"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1095"/>
         <source>Successfully printed to PDF.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1093"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1096"/>
         <source>PDF file: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1929,52 +1929,68 @@ Visit Time: %3</source>
     </message>
 </context>
 <context>
+    <name>COperateWebBrowser</name>
+    <message>
+        <location filename="../../OperateWebBrowser.cpp" line="85"/>
+        <source>&quot;%1&quot; operations</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CPluginWebBrowser</name>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="37"/>
+        <location filename="../../PluginWebBrowser.cpp" line="62"/>
         <source>Web browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="37"/>
-        <location filename="../../PluginWebBrowser.cpp" line="42"/>
+        <location filename="../../PluginWebBrowser.cpp" line="62"/>
+        <location filename="../../PluginWebBrowser.cpp" line="67"/>
         <source>(Experimental)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="42"/>
+        <location filename="../../PluginWebBrowser.cpp" line="67"/>
         <source>Web browser: Browsing the web</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="65"/>
+        <location filename="../../PluginWebBrowser.cpp" line="90"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="68"/>
-        <location filename="../../PluginWebBrowser.cpp" line="73"/>
+        <location filename="../../PluginWebBrowser.cpp" line="93"/>
+        <location filename="../../PluginWebBrowser.cpp" line="98"/>
         <source>version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="70"/>
+        <location filename="../../PluginWebBrowser.cpp" line="95"/>
         <source>Process name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="72"/>
+        <location filename="../../PluginWebBrowser.cpp" line="97"/>
         <source>Chromium:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="76"/>
+        <location filename="../../PluginWebBrowser.cpp" line="101"/>
         <source>Security patch version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="87"/>
+        <location filename="../../PluginWebBrowser.cpp" line="112"/>
         <source>Set Web Wrowser</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CSystemProtocolHandler</name>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="35"/>
+        <source>Use the %1 to open %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

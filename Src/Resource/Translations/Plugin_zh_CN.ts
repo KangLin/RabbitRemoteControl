@@ -4,203 +4,158 @@
 <context>
     <name>CChannelSSH</name>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation>libssh 版本：</translation>
+        <translation type="vanished">libssh 版本：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation>libssh 协议版本：</translation>
+        <translation type="vanished">libssh 协议版本：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation>OpenSSH 服务器：</translation>
+        <translation type="vanished">OpenSSH 服务器：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation>SSH 失败：ssh_new</translation>
+        <translation type="vanished">SSH 失败：ssh_new</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation>SSH 失败：服务器为空</translation>
+        <translation type="vanished">SSH 失败：服务器为空</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation>SSH 失败：设置主机失败。主机：</translation>
+        <translation type="vanished">SSH 失败：设置主机失败。主机：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation>SSH 失败：设置端口失败。端口：</translation>
+        <translation type="vanished">SSH 失败：设置端口失败。端口：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation>SSH 失败：ssh_pcap_file_new: </translation>
+        <translation type="vanished">SSH 失败：ssh_pcap_file_new: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation>SSH 连接失败</translation>
+        <translation type="vanished">SSH 连接失败</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation>用户取消</translation>
+        <translation type="vanished">用户取消</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="258"/>
         <source>SSH failed: Get server public key.</source>
-        <translation>SSH 失败：得到服务器公钥失败</translation>
+        <translation type="vanished">SSH 失败：得到服务器公钥失败</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="273"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation>SSH 失败：得到公钥哈希值失败。</translation>
+        <translation type="vanished">SSH 失败：得到公钥哈希值失败。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
         <source>the host key for server changed. it is now:</source>
-        <translation>服务器主机密钥改变。它现在是：</translation>
+        <translation type="vanished">服务器主机密钥改变。它现在是：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="293"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="304"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation>因为安全原因，连接将停止。</translation>
+        <translation type="vanished">因为安全原因，连接将停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="294"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="305"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation>请查看 OpenSSL 文档，关于如何增加私有证书到存储。</translation>
+        <translation type="vanished">请查看 OpenSSL 文档，关于如何增加私有证书到存储。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="301"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation>服务端主机密钥未发现，但是另一个健已存在。</translation>
+        <translation type="vanished">服务端主机密钥未发现，但是另一个健已存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation>攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在。</translation>
+        <translation type="vanished">攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
         <source>is not find in known host file.</source>
-        <translation>未能发现主机。</translation>
+        <translation type="vanished">未能发现主机。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation>如果您在此处接受主机密钥，则将自动创建文件。</translation>
+        <translation type="vanished">如果您在此处接受主机密钥，则将自动创建文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Host key hash:</source>
-        <translation>主机密钥哈希值：</translation>
+        <translation type="vanished">主机密钥哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="319"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="344"/>
         <source>Error</source>
-        <translation>错误</translation>
+        <translation type="vanished">错误</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Reject the host key</source>
-        <translation>拒绝主机密钥</translation>
+        <translation type="vanished">拒绝主机密钥</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation>服务器未知。您信任主机密钥吗？</translation>
+        <translation type="vanished">服务器未知。您信任主机密钥吗？</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Error:</source>
-        <translation>错误：</translation>
+        <translation type="vanished">错误：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="364"/>
         <source>the host key hash:</source>
-        <translation>公钥哈希值：</translation>
+        <translation type="vanished">公钥哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="365"/>
         <source>Will be stopped.</source>
-        <translation>将停止。</translation>
+        <translation type="vanished">将停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="416"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation>SSH 失败：使用公钥进行身份验证失败：</translation>
+        <translation type="vanished">SSH 失败：使用公钥进行身份验证失败：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="440"/>
         <source>Failed authenticating with password. User: </source>
-        <translation>用户密码进行身份验证失败。用户：</translation>
+        <translation type="vanished">用户密码进行身份验证失败。用户：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation>SSH失败：未设置公钥文件。</translation>
+        <translation type="vanished">SSH失败：未设置公钥文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation>SSH失败：导入公钥失败。</translation>
+        <translation type="vanished">SSH失败：导入公钥失败。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="478"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="511"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation>文件不存在或权限被拒绝：</translation>
+        <translation type="vanished">文件不存在或权限被拒绝：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="522"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation>SSH 失败：身份验证失败。用户：</translation>
+        <translation type="vanished">SSH 失败：身份验证失败。用户：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="499"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation>SSH 失败：未设置私钥文件。</translation>
+        <translation type="vanished">SSH 失败：未设置私钥文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="509"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation>SSH 失败：导入私钥失败。</translation>
+        <translation type="vanished">SSH 失败：导入私钥失败。</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation>SSH 失败：打开转发。</translation>
+        <translation type="vanished">SSH 失败：打开转发。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="376"/>
         <source>The channel is eof</source>
-        <translation>通道已结束</translation>
+        <translation type="vanished">通道已结束</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation>通道已结束</translation>
+        <translation type="vanished">通道已结束</translation>
     </message>
 </context>
 <context>
@@ -405,17 +360,17 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="125"/>
+        <location filename="../../Manager.cpp" line="126"/>
         <source>Load manager translations ......</source>
         <translation>加载管理者翻译资源 ……</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="133"/>
+        <location filename="../../Manager.cpp" line="134"/>
         <source>Load manager parameters and database ......</source>
         <translation>加载管理者参数和数据库 ……</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="172"/>
+        <location filename="../../Manager.cpp" line="173"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -423,89 +378,89 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="175"/>
+        <location filename="../../Manager.cpp" line="176"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系统快捷键（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="177"/>
+        <location filename="../../Manager.cpp" line="178"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域网内唤醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="179"/>
+        <location filename="../../Manager.cpp" line="180"/>
         <source>Restart program by administrator?</source>
         <translation>用管理员权限重启程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="180"/>
+        <location filename="../../Manager.cpp" line="181"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="182"/>
+        <location filename="../../Manager.cpp" line="183"/>
         <source>Always shown</source>
         <translation>总是显示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="211"/>
-        <location filename="../../Manager.cpp" line="329"/>
+        <location filename="../../Manager.cpp" line="212"/>
+        <location filename="../../Manager.cpp" line="330"/>
         <source>Load plugins ......</source>
         <translation>加载插件 ……</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="274"/>
+        <location filename="../../Manager.cpp" line="275"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="336"/>
+        <location filename="../../Manager.cpp" line="337"/>
         <source>Success: Load plugin %1</source>
         <translation>成功：加载插件 %1</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="349"/>
+        <location filename="../../Manager.cpp" line="350"/>
         <source>Failed: Load plugin from %1</source>
         <translation>失败：加载插件 %1</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="351"/>
+        <location filename="../../Manager.cpp" line="352"/>
         <source>Error:</source>
         <translation>错误：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="378"/>
-        <location filename="../../Manager.cpp" line="708"/>
+        <location filename="../../Manager.cpp" line="379"/>
+        <location filename="../../Manager.cpp" line="709"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="379"/>
+        <location filename="../../Manager.cpp" line="380"/>
         <source>Type:</source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="381"/>
+        <location filename="../../Manager.cpp" line="382"/>
         <source>Protocol:</source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="382"/>
+        <location filename="../../Manager.cpp" line="383"/>
         <source>ID:</source>
         <translation>标识：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="384"/>
+        <location filename="../../Manager.cpp" line="385"/>
         <source>Description:</source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="627"/>
+        <location filename="../../Manager.cpp" line="628"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="713"/>
+        <location filename="../../Manager.cpp" line="714"/>
         <source>Dependency libraries</source>
         <translation>依赖库</translation>
     </message>
@@ -1276,80 +1231,80 @@ Some features are limited.
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="52"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="73"/>
         <source>File format:</source>
         <translation>文件格式：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="73"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="145"/>
         <source>Encoding Mode:</source>
         <translation>编码模式：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="94"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="52"/>
         <source>Quality:</source>
         <translation>质量：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="115"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="166"/>
         <source>Video</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="126"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="183"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="177"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="234"/>
         <source>Encode:</source>
         <translation>编码：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="147"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="198"/>
         <source>frame rate:</source>
         <translation>帧率：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="211"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation>值为 0 表示录制器应根据视频源中可用的内容和编解码器的限制做出最佳选择。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="172"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="223"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="204"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="255"/>
         <source>Sample rate:</source>
         <translation>采样率：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="217"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="268"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
         <translation>值为 -1 表示录制器应根据音频源中可用的内容和编解码器的限制做出最佳选择。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="230"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="281"/>
         <source>HZ</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="92"/>
         <source>After the end of the action</source>
         <translation>结束之后的动作</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="256"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="104"/>
         <source>No action</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="272"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="120"/>
         <source>Open folder</source>
         <translation>打开文件夹</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="285"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="133"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
@@ -2002,9 +1957,8 @@ Some features are limited.
 <context>
     <name>CSSHTunnelThread</name>
     <message>
-        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation>错误</translation>
+        <translation type="vanished">错误</translation>
     </message>
 </context>
 <context>

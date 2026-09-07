@@ -34,7 +34,7 @@
     <message>
         <location filename="../../DlgSettingsFtpServer.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsFtpServer.ui" line="21"/>
