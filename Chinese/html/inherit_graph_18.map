@@ -1,0 +1,7 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="Node000000" href="$classCInputDevice.html" title=" " alt="" coords="5,31,115,56"/>
+<area shape="rect" id="Node000001" href="$classCInputDeviceWindows.html" title=" " alt="" coords="163,5,331,31"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="128,31,162,27,163,32,129,37"/>
+<area shape="rect" id="Node000002" href="$classCInputDeviceXLib.html" title=" " alt="" coords="178,55,315,80"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="129,49,178,56,177,61,128,55"/>
+</map>

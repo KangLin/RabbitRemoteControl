@@ -1,0 +1,17 @@
+<map id="CParameterServer" name="CParameterServer">
+<area shape="rect" id="Node000001" title="The server base parameters." alt="" coords="473,80,613,105"/>
+<area shape="rect" id="Node000005" href="$classCParameterFreeRDPServer.html" title=" " alt="" coords="664,5,859,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="582,72,660,39,700,28,701,33,662,45,584,77"/>
+<area shape="rect" id="Node000006" href="$classCParameterFtpServer.html" title=" " alt="" coords="681,55,842,80"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="627,80,680,74,681,79,627,86"/>
+<area shape="rect" id="Node000007" href="$classCParameterSftpServer.html" title=" " alt="" coords="679,104,844,129"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="627,99,679,105,678,110,626,104"/>
+<area shape="rect" id="Node000008" href="$classCParameterTemplateServer.html" title=" " alt="" coords="661,153,861,179"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="585,109,662,139,702,151,700,156,660,145,583,114"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="275,80,425,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="439,90,473,90,473,95,439,95"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="128,80,227,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="240,90,274,90,274,95,240,95"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,80,80,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,90,128,90,128,95,94,95"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="CBackendPlayer" name="CBackendPlayer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="12,225,139,251"/>
+<area shape="rect" id="Node000002" href="$classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="5,152,145,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,191,78,225,73,225,73,191"/>
+<area shape="rect" id="Node000003" href="$classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="32,79,119,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,118,78,152,73,152,73,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="38,5,113,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="78,44,78,79,73,79,73,44"/>
+</map>

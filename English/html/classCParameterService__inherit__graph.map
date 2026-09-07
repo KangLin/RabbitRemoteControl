@@ -1,0 +1,13 @@
+<map id="CParameterService" name="CParameterService">
+<area shape="rect" id="Node000001" title=" " alt="" coords="128,80,275,105"/>
+<area shape="rect" id="Node000003" href="$classCParameterServiceFreeRDP.html" title=" " alt="" coords="330,5,531,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,71,322,39,363,28,365,33,324,45,243,76"/>
+<area shape="rect" id="Node000004" href="$classCParameterServiceLibVNC.html" title=" " alt="" coords="334,55,527,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,80,333,75,334,81,289,86"/>
+<area shape="rect" id="Node000005" href="$classCParameterServiceRabbitVNC.html" title=" " alt="" coords="323,104,539,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="289,99,323,103,322,108,288,104"/>
+<area shape="rect" id="Node000006" href="$classCParameterServiceTigerVNC.html" title=" " alt="" coords="327,153,534,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="244,109,323,139,365,151,364,156,322,145,242,114"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,80,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,90,128,90,128,95,94,95"/>
+</map>

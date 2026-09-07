@@ -1,0 +1,9 @@
+<map id="CPluginTemplateQtEvent" name="CPluginTemplateQtEvent">
+<area shape="rect" id="Node000001" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="5,225,188,251"/>
+<area shape="rect" id="Node000002" href="$classCPluginBackendThread.html" title="插件有一个后台线程，所有操作后端运行在此后台线程中" alt="" coords="11,152,182,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,191,99,225,94,225,94,191"/>
+<area shape="rect" id="Node000003" href="$classCPlugin.html" title="插件接口" alt="" coords="61,79,132,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,118,99,152,94,152,94,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="59,5,134,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="99,44,99,79,94,79,94,44"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="CService" name="CService">
+<area shape="rect" id="Node000001" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="55,176,133,201"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="57,5,131,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,39,36,52,19,68,10,85,11,105,24,126,41,145,77,174,74,178,37,149,20,129,6,106,4,84,15,65,33,48,53,35"/>
+<area shape="rect" id="Node000003" href="$classCParameterService.html" title=" " alt="" coords="21,80,167,105"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="97,45,97,80,91,80,91,45"/>
+<area shape="rect" id="Node000004" href="$classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="192,80,311,105"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="132,34,228,78,226,82,130,39"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,119,97,176,91,176,91,119"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="225,116,166,154,120,178,117,174,163,150,223,111"/>
+</map>

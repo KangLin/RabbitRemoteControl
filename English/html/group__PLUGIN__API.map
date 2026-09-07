@@ -1,0 +1,9 @@
+<map id="Plugin interfaces" name="Plugin interfaces">
+<area shape="rect" id="Node000006" href="$group__APP__API.html" title="Application interface." alt="" coords="419,5,576,31"/>
+<area shape="rect" id="Node000007" href="$group__CLIENT__PARAMETER.html" title="Parameter interface." alt="" coords="422,55,573,80"/>
+<area shape="rect" id="Node000002" href="$group__LIBAPI__PLUGIN.html" title="Plugin library." alt="" coords="5,104,113,129"/>
+<area shape="rect" id="Node000001" title="Plugin interfaces." alt="" coords="163,104,293,129"/>
+<area shape="rect" id="Node000003" href="$group__gOperateDesktop.html" title=" " alt="" coords="441,104,554,129"/>
+<area shape="rect" id="Node000004" href="$group__gOperateServer.html" title=" " alt="" coords="447,153,548,179"/>
+<area shape="rect" id="Node000005" href="$group__gOperateTerminal.html" title=" " alt="" coords="440,203,555,228"/>
+</map>

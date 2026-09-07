@@ -1,0 +1,7 @@
+<map id="CPluginServiceThread" name="CPluginServiceThread">
+<area shape="rect" id="Node000001" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。" alt="" coords="5,152,169,177"/>
+<area shape="rect" id="Node000002" href="$classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="28,79,147,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,118,90,152,85,152,85,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="50,5,125,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,44,90,79,85,79,85,44"/>
+</map>

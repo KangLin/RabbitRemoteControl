@@ -1,0 +1,498 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CProtocolManager类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate14</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="classCProtocolManager-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CProtocolManager类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CProtocolManager 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCProtocolManager__inherit__graph.png" border="0" usemap="#aCProtocolManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCProtocolManager_inherit__map" id="aCProtocolManager_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,147,104"/>
+<area shape="rect" title=" " alt="" coords="39,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="79,44,79,79,73,79,73,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CProtocolManager 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCProtocolManager__coll__graph.png" border="0" usemap="#aCProtocolManager_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCProtocolManager_coll__map" id="aCProtocolManager_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,147,104"/>
+<area shape="rect" title=" " alt="" coords="39,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="79,44,79,79,73,79,73,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae1dd5801d769ee9b1c3a301d81836b99" id="r_ae1dd5801d769ee9b1c3a301d81836b99"><td class="memItemLeft"><a id="ae1dd5801d769ee9b1c3a301d81836b99" name="ae1dd5801d769ee9b1c3a301d81836b99"></a>
+&#160;</td><td class="memItemRight"><b>CProtocolManager</b> (QObject *parent=nullptr)</td></tr>
+<tr class="memitem:a1033a27421816ad2bf904500efb13ddd" id="r_a1033a27421816ad2bf904500efb13ddd"><td class="memItemLeft">QStringList&#160;</td><td class="memItemRight"><a class="el" href="#a1033a27421816ad2bf904500efb13ddd">getAllRegisteredProtocols</a> ()</td></tr>
+<tr class="memitem:a12094cc4a99f907014881b37c91879e4" id="r_a12094cc4a99f907014881b37c91879e4"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a12094cc4a99f907014881b37c91879e4">getDefaultHandlerForProtocol</a> (const QString &amp;protocol)</td></tr>
+<tr class="memitem:a11bdcb3ad7aed0b398c30210628d9096" id="r_a11bdcb3ad7aed0b398c30210628d9096"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a11bdcb3ad7aed0b398c30210628d9096">isProtocolRegistered</a> (const QString &amp;protocol)</td></tr>
+<tr class="memitem:a42c68873dcf404a8a42a69afaf3fb58b" id="r_a42c68873dcf404a8a42a69afaf3fb58b"><td class="memItemLeft">QStringList&#160;</td><td class="memItemRight"><a class="el" href="#a42c68873dcf404a8a42a69afaf3fb58b">getApplicationsForProtocol</a> (const QString &amp;protocol)</td></tr>
+<tr class="memitem:ab9803e87b2b71aa341f57076cb7eec25" id="r_ab9803e87b2b71aa341f57076cb7eec25"><td class="memItemLeft">QMap&lt; QString, QStringList &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab9803e87b2b71aa341f57076cb7eec25">getAllProtocolsWithApps</a> ()</td></tr>
+<tr class="memitem:adf1fe4c6cfbc8841809cb94215511033" id="r_adf1fe4c6cfbc8841809cb94215511033"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adf1fe4c6cfbc8841809cb94215511033">registerAllProcotol</a> (QWebEngineProfile *profile=QWebEngineProfile::defaultProfile())</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ae37818adcf4f6ff7c23bc8dab2fe8675" id="r_ae37818adcf4f6ff7c23bc8dab2fe8675"><td class="memItemLeft">QStringList&#160;</td><td class="memItemRight"><a class="el" href="#ae37818adcf4f6ff7c23bc8dab2fe8675">getRegisteredProtocolsLinux</a> ()</td></tr>
+<tr class="memitem:ad2230386633a6928a0c93fa4dde0b23f" id="r_ad2230386633a6928a0c93fa4dde0b23f"><td class="memItemLeft">QStringList&#160;</td><td class="memItemRight"><a class="el" href="#ad2230386633a6928a0c93fa4dde0b23f">getRegisteredProtocolsWindows</a> ()</td></tr>
+<tr class="memitem:a5de52acbf127bf04356ddfd8b3337a9c" id="r_a5de52acbf127bf04356ddfd8b3337a9c"><td class="memItemLeft">QStringList&#160;</td><td class="memItemRight"><a class="el" href="#a5de52acbf127bf04356ddfd8b3337a9c">getRegisteredProtocolsMacOS</a> ()</td></tr>
+<tr class="memitem:a7d18fe6c151b040363f277521e2bde86" id="r_a7d18fe6c151b040363f277521e2bde86"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7d18fe6c151b040363f277521e2bde86">scanDesktopFilesForProtocols</a> (QStringList &amp;protocols)</td></tr>
+<tr class="memitem:ad60af3dbc8149b904bf11bb21e0dad48" id="r_ad60af3dbc8149b904bf11bb21e0dad48"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad60af3dbc8149b904bf11bb21e0dad48">parseDesktopFile</a> (const QString &amp;filePath, QStringList &amp;protocols)</td></tr>
+<tr class="memitem:a04b7e28b51ff0a7f7a3c99aebd67776f" id="r_a04b7e28b51ff0a7f7a3c99aebd67776f"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a04b7e28b51ff0a7f7a3c99aebd67776f">getDefaultHandlerLinux</a> (const QString &amp;protocol)</td></tr>
+<tr class="memitem:aad2452e36e6f7b17e8c6c02126b47804" id="r_aad2452e36e6f7b17e8c6c02126b47804"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#aad2452e36e6f7b17e8c6c02126b47804">getDefaultHandlerWindows</a> (const QString &amp;protocol)</td></tr>
+<tr class="memitem:af3a4066812c0c1b4201526d257187e88" id="r_af3a4066812c0c1b4201526d257187e88"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#af3a4066812c0c1b4201526d257187e88">getDefaultHandlerMacOS</a> (const QString &amp;protocol)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8h_source.html">ProtocolManager.h</a> 第 <a class="el" href="ProtocolManager_8h_source.html#l00009">9</a> 行定义.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="ab9803e87b2b71aa341f57076cb7eec25" name="ab9803e87b2b71aa341f57076cb7eec25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9803e87b2b71aa341f57076cb7eec25">&#9670;&#160;</a></span>getAllProtocolsWithApps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt; QString, QStringList &gt; CProtocolManager::getAllProtocolsWithApps </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00443">443</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1033a27421816ad2bf904500efb13ddd" name="a1033a27421816ad2bf904500efb13ddd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1033a27421816ad2bf904500efb13ddd">&#9670;&#160;</a></span>getAllRegisteredProtocols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CProtocolManager::getAllRegisteredProtocols </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a42c68873dcf404a8a42a69afaf3fb58b" name="a42c68873dcf404a8a42a69afaf3fb58b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42c68873dcf404a8a42a69afaf3fb58b">&#9670;&#160;</a></span>getApplicationsForProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CProtocolManager::getApplicationsForProtocol </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00404">404</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a12094cc4a99f907014881b37c91879e4" name="a12094cc4a99f907014881b37c91879e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12094cc4a99f907014881b37c91879e4">&#9670;&#160;</a></span>getDefaultHandlerForProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CProtocolManager::getDefaultHandlerForProtocol </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00298">298</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a04b7e28b51ff0a7f7a3c99aebd67776f" name="a04b7e28b51ff0a7f7a3c99aebd67776f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04b7e28b51ff0a7f7a3c99aebd67776f">&#9670;&#160;</a></span>getDefaultHandlerLinux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CProtocolManager::getDefaultHandlerLinux </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00311">311</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af3a4066812c0c1b4201526d257187e88" name="af3a4066812c0c1b4201526d257187e88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3a4066812c0c1b4201526d257187e88">&#9670;&#160;</a></span>getDefaultHandlerMacOS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CProtocolManager::getDefaultHandlerMacOS </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00382">382</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aad2452e36e6f7b17e8c6c02126b47804" name="aad2452e36e6f7b17e8c6c02126b47804"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad2452e36e6f7b17e8c6c02126b47804">&#9670;&#160;</a></span>getDefaultHandlerWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CProtocolManager::getDefaultHandlerWindows </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00358">358</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae37818adcf4f6ff7c23bc8dab2fe8675" name="ae37818adcf4f6ff7c23bc8dab2fe8675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae37818adcf4f6ff7c23bc8dab2fe8675">&#9670;&#160;</a></span>getRegisteredProtocolsLinux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CProtocolManager::getRegisteredProtocolsLinux </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5de52acbf127bf04356ddfd8b3337a9c" name="a5de52acbf127bf04356ddfd8b3337a9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de52acbf127bf04356ddfd8b3337a9c">&#9670;&#160;</a></span>getRegisteredProtocolsMacOS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CProtocolManager::getRegisteredProtocolsMacOS </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00248">248</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad2230386633a6928a0c93fa4dde0b23f" name="ad2230386633a6928a0c93fa4dde0b23f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2230386633a6928a0c93fa4dde0b23f">&#9670;&#160;</a></span>getRegisteredProtocolsWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CProtocolManager::getRegisteredProtocolsWindows </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00202">202</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a11bdcb3ad7aed0b398c30210628d9096" name="a11bdcb3ad7aed0b398c30210628d9096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11bdcb3ad7aed0b398c30210628d9096">&#9670;&#160;</a></span>isProtocolRegistered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProtocolManager::isProtocolRegistered </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00398">398</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad60af3dbc8149b904bf11bb21e0dad48" name="ad60af3dbc8149b904bf11bb21e0dad48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad60af3dbc8149b904bf11bb21e0dad48">&#9670;&#160;</a></span>parseDesktopFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CProtocolManager::parseDesktopFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>filePath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QStringList &amp;</td>          <td class="paramname"><span class="paramname"><em>protocols</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00162">162</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adf1fe4c6cfbc8841809cb94215511033" name="adf1fe4c6cfbc8841809cb94215511033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf1fe4c6cfbc8841809cb94215511033">&#9670;&#160;</a></span>registerAllProcotol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CProtocolManager::registerAllProcotol </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineProfile *</td>          <td class="paramname"><span class="paramname"><em>profile</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QWebEngineProfile::defaultProfile()</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00458">458</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d18fe6c151b040363f277521e2bde86" name="a7d18fe6c151b040363f277521e2bde86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d18fe6c151b040363f277521e2bde86">&#9670;&#160;</a></span>scanDesktopFilesForProtocols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CProtocolManager::scanDesktopFilesForProtocols </td>
+          <td>(</td>
+          <td class="paramtype">QStringList &amp;</td>          <td class="paramname"><span class="paramname"><em>protocols</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a> 第 <a class="el" href="ProtocolManager_8cpp_source.html#l00141">141</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/ProtocolManager/<a class="el" href="ProtocolManager_8h_source.html">ProtocolManager.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/ProtocolManager/<a class="el" href="ProtocolManager_8cpp_source.html">ProtocolManager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

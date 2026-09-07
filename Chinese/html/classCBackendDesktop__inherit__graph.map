@@ -1,0 +1,17 @@
+<map id="CBackendDesktop" name="CBackendDesktop">
+<area shape="rect" id="Node000001" title="远程桌面接口。它由协议插件实现。" alt="" coords="263,104,403,129"/>
+<area shape="rect" id="Node000004" href="$classCBackendFreeRDP.html" title=" " alt="" coords="480,5,621,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="359,94,401,66,450,40,483,28,484,33,452,44,403,70,362,98"/>
+<area shape="rect" id="Node000005" href="$classCBackendLibVNCServer.html" title=" " alt="" coords="463,55,638,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="402,98,493,77,494,83,403,104"/>
+<area shape="rect" id="Node000006" href="$classCBackendPlayer.html" title=" " alt="" coords="487,104,614,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="416,114,487,114,487,119,416,119"/>
+<area shape="rect" id="Node000007" href="$classCBackendTemplateDesktop.html" title=" " alt="" coords="451,153,651,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="403,130,494,151,493,156,402,135"/>
+<area shape="rect" id="Node000008" href="$classCBackendVnc.html" title=" " alt="" coords="495,203,606,228"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="362,135,403,163,452,189,496,203,494,208,450,194,401,168,359,140"/>
+<area shape="rect" id="Node000002" href="$classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="128,104,215,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,114,263,114,263,119,228,119"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,104,80,129"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,114,128,114,128,119,93,119"/>
+</map>

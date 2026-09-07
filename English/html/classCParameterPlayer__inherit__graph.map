@@ -1,0 +1,11 @@
+<map id="CParameterPlayer" name="CParameterPlayer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="12,299,151,324"/>
+<area shape="rect" id="Node000002" href="$classCParameterDesktop.html" title="The interface of remote desktop base parameters." alt="" coords="5,225,157,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,264,84,299,79,299,79,264"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="6,152,157,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,191,84,225,79,225,79,191"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="32,79,131,104"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="84,118,84,152,79,152,79,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="44,5,119,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="84,44,84,79,79,79,79,44"/>
+</map>

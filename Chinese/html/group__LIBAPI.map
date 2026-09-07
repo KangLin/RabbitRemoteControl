@@ -1,0 +1,7 @@
+<map id="库" name="库">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,44,105"/>
+<area shape="rect" id="Node000004" href="$group__LIBAPI__CHANNEL.html" title="流式数据通道" alt="" coords="131,5,187,31"/>
+<area shape="rect" id="Node000005" href="$group__LIBAPI__DATABASE.html" title="数据库" alt="" coords="123,55,196,80"/>
+<area shape="rect" id="Node000003" href="$group__LIBAPI__PLUGIN.html" title="插件库" alt="" coords="123,104,196,129"/>
+<area shape="rect" id="Node000002" href="$group__LIBAPI__SERVICE.html" title="服务端库" alt="" coords="92,153,227,179"/>
+</map>

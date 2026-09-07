@@ -1,0 +1,9 @@
+<map id="CChannelSSHTerminal" name="CChannelSSHTerminal">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,225,172,251"/>
+<area shape="rect" id="Node000002" href="$classCChannelSSH.html" title=" " alt="" coords="33,152,144,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,191,91,225,86,225,86,191"/>
+<area shape="rect" id="Node000003" href="$classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="47,79,131,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,118,91,152,86,152,86,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="43,5,134,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,44,91,79,86,79,86,44"/>
+</map>

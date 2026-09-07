@@ -1,0 +1,19 @@
+<map id="CParameterTerminalBase" name="CParameterTerminalBase">
+<area shape="rect" id="Node000001" title="终端基本参数" alt="" coords="473,104,660,129"/>
+<area shape="rect" id="Node000005" href="$classCParameterRawStream.html" title=" " alt="" coords="711,5,885,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="599,94,649,67,707,40,741,28,743,33,709,44,651,71,602,99"/>
+<area shape="rect" id="Node000006" href="$classCParameterSerialPort.html" title=" " alt="" coords="717,55,879,80"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="639,99,737,77,738,83,641,104"/>
+<area shape="rect" id="Node000007" href="$classCParameterTelnet.html" title=" " alt="" coords="729,104,867,129"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="674,114,729,114,729,119,674,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterTerminalSSH.html" title=" " alt="" coords="708,153,888,179"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="641,130,738,151,737,156,639,135"/>
+<area shape="rect" id="Node000009" href="$classCTerminalParameter.html" title=" " alt="" coords="721,203,875,228"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="602,134,651,162,709,189,743,200,741,205,707,194,649,167,599,139"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="275,104,425,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="439,114,473,114,473,119,439,119"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="参数接口" alt="" coords="128,104,227,129"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="240,114,274,114,274,119,240,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,104,80,129"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,114,128,114,128,119,94,119"/>
+</map>
