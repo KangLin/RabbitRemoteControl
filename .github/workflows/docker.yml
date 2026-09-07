@@ -188,7 +188,7 @@ jobs:
           popd
           pushd ${{env.BUILD_DIR}}/build_linux
           mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
-          zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup/*
+          zip -r RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
           popd
 
       - name: update configure file
