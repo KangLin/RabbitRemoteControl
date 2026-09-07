@@ -38,8 +38,9 @@
 #include "FrmBookmark.h"
 #include "FrmAddBookmark.h"
 #include "DlgSettings.h"
-#include "FrmWebBrowser.h"
 #include "ParameterGlobal.h"
+#include "ProtocolManager.h"
+#include "FrmWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
@@ -524,6 +525,8 @@ CFrmWebView *CFrmWebBrowser::CreateWebView(bool offTheRecord)
     auto pView = new CFrmWebView(this);
     if(pView) {
         auto profile = GetProfile(offTheRecord);
+        CProtocolManager manager;
+        manager.registerAllProcotol(profile);
 // #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 //         profile->setPersistentPermissionsPolicy(QWebEngineProfile::PersistentPermissionsPolicy::AskEveryTime);
 // #endif

@@ -56,8 +56,8 @@ Type=Application
 #    /usr/share/pixmaps
 Icon=@APP_ID@
 
-#TryExec=RabbitRemoteControlApp
-Exec=RabbitRemoteControlApp
+#TryExec=RabbitRemoteControlApp %u
+Exec=RabbitRemoteControlApp %u
 Path=@CMAKE_INSTALL_PREFIX@/bin
 
 Terminal=false

@@ -239,7 +239,7 @@ parts:
   #     echo "override-pull ......"
   #   override-build: |
   #     echo "override-build ......"
-  #     cd $SNAPCRAFT_PART_INSTALL
+  #     cd $CRAFT_PART_INSTALL
   #     if [ ! -d qt ]; then
   #         #pip install -U pip
   #         pip install aqtinstall

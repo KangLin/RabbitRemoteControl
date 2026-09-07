@@ -380,3 +380,9 @@ modules:
     post-install:
       - desktop-file-edit --set-key=Path --set-value=/bin /app/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
       - install -Dm0644 io.github.KangLin.RabbitRemoteControl.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo/
+      # 【关键】导出 .desktop 文件到 Flatpak 导出目录
+      # 这会在 /var/lib/flatpak/exports/share/applications/ 创建符号链接
+      - mkdir -p /app/export/share/applications
+      - ln -sf /app/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /app/export/share/applications/
+      # 更新桌面数据库（在安装时由 Flatpak 系统处理）
+      - update-desktop-database /app/share/applications

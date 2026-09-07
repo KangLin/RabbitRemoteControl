@@ -2,14 +2,39 @@
 #include <QWebEngineProfile>
 #include <QLoggingCategory>
 
+#include "ProtocolManager.h"
 #include "PluginWebBrowser.h"
 #include "OperateWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Plugin")
+
 CPluginWebBrowser::CPluginWebBrowser(QObject *parent)
     : CPlugin(parent)
 {
     qDebug(log) << Q_FUNC_INFO;
+
+    /*
+    CProtocolManager manager;
+    // 获取所有注册的协议
+    QStringList protocols = manager.getAllRegisteredProtocols();
+    qDebug(log) << "All registered protocols:" << protocols;
+
+    // 检查特定协议
+    if (manager.isProtocolRegistered("rrc")) {
+        QString handler = manager.getDefaultHandlerForProtocol("rrc");
+        qDebug(log) << "rrc protocol handler:" << handler;
+    }
+
+    // 获取协议关联的应用
+    QStringList apps = manager.getApplicationsForProtocol("mailto");
+    qDebug(log) << "Apps handling mailto:" << apps;
+
+    // 获取所有协议及其应用
+    QMap<QString, QStringList> allProtocols = manager.getAllProtocolsWithApps();
+    for (auto it = allProtocols.begin(); it != allProtocols.end(); ++it) {
+        qDebug(log) << "Protocol:" << it.key() << "Apps:" << it.value();
+    }
+    //*/
 }
 
 CPluginWebBrowser::~CPluginWebBrowser()

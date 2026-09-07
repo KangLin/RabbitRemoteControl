@@ -44,6 +44,8 @@ set(WebBrowser_SOURCE_FILES
     Bookmark/BookmarkDatabase.cpp
     Bookmark/FrmBookmark.cpp
     Bookmark/FrmAddBookmark.cpp
+    ProtocolManager/ProtocolManager.cpp
+    ProtocolManager/SystemProtocolHandler.cpp
     )
 set(WebBrowser_HEADER_FILES
     PluginWebBrowser.h
@@ -67,6 +69,8 @@ set(WebBrowser_HEADER_FILES
     Bookmark/BookmarkDatabase.h
     Bookmark/FrmBookmark.h
     Bookmark/FrmAddBookmark.h
+    ProtocolManager/ProtocolManager.h
+    ProtocolManager/SystemProtocolHandler.h
     )
 set(WebBrowser_UI_FILES
     FrmDownload.ui
@@ -79,7 +83,8 @@ set(WebBrowser_UI_FILES
 
 list(APPEND WebBrowser_INCLUDE_DIR
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/History>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Bookmark>)
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Bookmark>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/ProtocolManager>)
 
 if(QT_VERSION VERSION_GREATER_EQUAL "6.7.0")
     list(APPEND WebBrowser_SOURCE_FILES
