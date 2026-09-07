@@ -5,7 +5,7 @@ set -e
 
 update_version() {
 
-    $SED_CMD "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Package/Windows.nsi
+    $SED_CMD "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Package/NSIS/Windows.nsi
     #$SED_CMD "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
     #$SED_CMD "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
     #$SED_CMD "s/RabbitRemoteControlVersion:.*/RabbitRemoteControlVersion: ${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
