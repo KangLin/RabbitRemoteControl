@@ -488,7 +488,7 @@ void CProtocolManager::registerAllProcotol(QWebEngineProfile *profile)
             if(QWebEngineUrlScheme::schemeByName(schemeName).name().isEmpty())
                 QWebEngineUrlScheme::registerScheme(scheme);
             else {
-                qDebug(log) << schemeName << "is registed";
+                qDebug(log) << schemeName << "is registered";
                 continue;
             }
 
