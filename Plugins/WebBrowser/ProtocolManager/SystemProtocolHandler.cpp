@@ -29,11 +29,16 @@ void CSystemProtocolHandler::requestStarted(QWebEngineUrlRequestJob *request)
     }
 
     CProtocolManager mgr;
-
+    QString szHandler = mgr.getDefaultHandlerForProtocol(url.scheme());
+    if(szHandler.isEmpty()) {
+        qCritical(log) << "Don't find handler" << url.scheme();
+        return;
+    }
+    szHandler = szHandler.section(' ', 0, 0).trimmed();
     int nRet = QMessageBox::question(
         nullptr, url.scheme(),
         tr("Use the %1 to open %2")
-            .arg(mgr.getDefaultHandlerForProtocol(url.scheme()))
+            .arg(szHandler)
             .arg(url.toString()),
         QMessageBox::Yes|QMessageBox::No,
         QMessageBox::No);
