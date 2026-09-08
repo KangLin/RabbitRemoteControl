@@ -71,7 +71,7 @@
 ;                └── (Default) = "\"C:\Program Files\RabbitRemote\YourApp.exe\" \"%1\""
 ;URL Protocol：这个空字符串值是必须的，它是 Windows 识别这是一个自定义协议处理程序的标志。
 ;%1： 当用户点击形如 rrc://open/session 的链接时，整个链接字符串会被作为参数传递给 YourApp.exe，你的程序需要自行解析这个参数来执行相应操作。
-!macro RegisterURLProtocol PROTOCOL ICON_PATH EXE_PATH
+!macro RegisterURLProtocol PROTOCOL ICON_PATH EXE_PATH PRODUCT_NAME
   ; 1. 注册协议
   WriteRegStr HKCU "Software\Classes\${PROTOCOL}" "" "URL:${PROTOCOL} Protocol"
   WriteRegStr HKCU "Software\Classes\${PROTOCOL}" "URL Protocol" ""

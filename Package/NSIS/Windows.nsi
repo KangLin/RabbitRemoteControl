@@ -245,7 +245,7 @@ Section -Post
   DetailPrint "Register file association ......"
   ; 注册文件关联
   !insertmacro RegisterFileAssociation "rrc" "${PROGID}" \
-    "Rabbit Remote Control Session File" \
+    "${LANG_PRODUCT_NAME}" \
     "${PRODUCT_NAME}" \
     "${APP_ICON}" \
     "${APP_EXE}"
@@ -253,7 +253,8 @@ Section -Post
   ; 注册 URL 协议
   !insertmacro RegisterURLProtocol "rrc" \
     "${APP_ICON}" \
-    "${APP_EXE}"
+    "${APP_EXE}" \
+    "${LANG_PRODUCT_NAME}"
 
 SectionEnd
 
