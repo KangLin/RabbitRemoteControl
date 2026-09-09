@@ -98,21 +98,23 @@ QByteArray CSystemProtocolHandler::generateResponsePage(const QUrl &url, bool op
                     </style>
                 </head>
                 <body>
-                    <h2>协议处理</h2>
-                    <p>协议: %1</p>
-                    <p>URL: %2</p>
-                    <p class="%3">%4: %5</p>
-                    <p><a href='javascript:history.back()'>%6</a></p>
+                    <h2>%1</h2>
+                    <p>%2: %3</p>
+                    <p>URL: %4</p>
+                    <p class="%5">%6: %7</p>
+                    <p><a href='javascript:history.back()'>%8</a></p>
                 </body>
             </html>
         )";
 
-    html = html.arg(url.scheme())
+    html = html.arg(tr("Process protocol"))
+               .arg(tr("Protocol"))
+               .arg(url.scheme())
                .arg(url.toString().toHtmlEscaped())
-               .arg(opened ? "success" : "error")
-               .arg("Status")
-               .arg(opened ? "External application opened" : "Cancel Open")
-               .arg("Go back");
+               .arg(opened ? tr("success") : tr("error"))
+               .arg(tr("Status"))
+               .arg(opened ? tr("External application opened") : tr("Cancel Open"))
+               .arg(tr("Go back"));
 
     return html.toUtf8();
 }
