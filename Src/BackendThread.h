@@ -34,4 +34,6 @@ protected:
     virtual void run() override;
     COperate* m_pOperate;
     CBackend* m_pBackend;
+private:
+    QString m_szClassName;
 };

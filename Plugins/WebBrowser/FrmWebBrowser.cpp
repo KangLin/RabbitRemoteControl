@@ -43,7 +43,8 @@
 #include "FrmWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
-CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
+CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara,
+                               bool bMenuBar, QWidget *parent)
     : QWidget{parent}
     , m_pPara(pPara)
     , m_pMenuBar(nullptr)

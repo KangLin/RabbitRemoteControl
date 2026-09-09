@@ -12,7 +12,10 @@ CBackendThread::CBackendThread(COperate *pOperate, QObject *pParent)
     , m_pOperate(pOperate)
     , m_pBackend(nullptr)
 {
-    qDebug(log) << Q_FUNC_INFO;
+    if(pOperate) {
+        m_szClassName = pOperate->metaObject()->className();
+    }
+    qDebug(log) << Q_FUNC_INFO << m_szClassName;
     bool check = false;
     if(nullptr == pParent) {
         // It is deleted when it is finished.
@@ -23,7 +26,7 @@ CBackendThread::CBackendThread(COperate *pOperate, QObject *pParent)
 
 CBackendThread::~CBackendThread()
 {
-    qDebug(log) << Q_FUNC_INFO;
+    qDebug(log) << Q_FUNC_INFO << m_szClassName;
 }
 
 void CBackendThread::quit()

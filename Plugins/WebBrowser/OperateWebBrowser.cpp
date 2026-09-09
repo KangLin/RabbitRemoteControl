@@ -124,8 +124,7 @@ int COperateWebBrowser::Start()
     int nRet = 0;
     if(m_pWeb)
         nRet = m_pWeb->Start();
-    if(!nRet)
-        emit sigRunning();
+    emit sigRunning();
     return nRet;
 }
 

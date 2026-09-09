@@ -22,7 +22,8 @@ class CFrmWebBrowser : public QWidget
     Q_OBJECT
 
 public:
-    explicit CFrmWebBrowser(CParameterWebBrowser* pPara, bool bMenuBar = false, QWidget *parent = nullptr);
+    explicit CFrmWebBrowser(CParameterWebBrowser* pPara, bool bMenuBar = false,
+                            QWidget *parent = nullptr);
     virtual ~CFrmWebBrowser();
 
     enum RV{
@@ -38,7 +39,8 @@ public:
     int Save(QSettings &set);
     int Start();
     int Stop();
-    QWebEngineView *CreateWindow(QWebEnginePage::WebWindowType type, bool offTheRecord = false);
+    QWebEngineView *CreateWindow(QWebEnginePage::WebWindowType type,
+                                 bool offTheRecord = false);
     [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
     [[nodiscard]] QWebEngineProfile* GetProfile(bool offTheRecord = false);
@@ -80,7 +82,8 @@ private:
     void EnableAction(bool enable);
     void SetConnect(CFrmWebView* pWeb);
     [[nodiscard]] CFrmWebView *CreateWebView(bool offTheRecord = false);
-    [[nodiscard]] QWidget* CreateTab(/*[in/out]*/CFrmWebView **view = nullptr, bool offTheRecord = false);
+    [[nodiscard]] QWidget* CreateTab(/*[in/out]*/CFrmWebView **view = nullptr,
+                                     bool offTheRecord = false);
     enum class ViewType{
         Web = 0,
         DevTools = 1
