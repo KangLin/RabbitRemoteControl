@@ -111,7 +111,7 @@ QByteArray CSystemProtocolHandler::generateResponsePage(const QUrl &url, bool op
                .arg(tr("Protocol"))
                .arg(url.scheme())
                .arg(url.toString().toHtmlEscaped())
-               .arg(opened ? tr("success") : tr("error"))
+               .arg(opened ? "success" : "error")
                .arg(tr("Status"))
                .arg(opened ? tr("External application opened") : tr("Cancel Open"))
                .arg(tr("Go back"));

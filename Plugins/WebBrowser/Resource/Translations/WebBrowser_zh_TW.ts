@@ -1992,9 +1992,39 @@ Visit Time: %3</source>
 <context>
     <name>CSystemProtocolHandler</name>
     <message>
-        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="35"/>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="40"/>
         <source>Use the %1 to open %2</source>
         <translation>使用 %1 打開 %2</translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="110"/>
+        <source>Process protocol</source>
+        <translation>協議處理</translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="111"/>
+        <source>Protocol</source>
+        <translation>協議</translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="115"/>
+        <source>Status</source>
+        <translation>狀態</translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="116"/>
+        <source>External application opened</source>
+        <translation>使用外部程序打開</translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="116"/>
+        <source>Cancel Open</source>
+        <translation>取消打開</translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="117"/>
+        <source>Go back</source>
+        <translation>返回</translation>
     </message>
 </context>
 <context>

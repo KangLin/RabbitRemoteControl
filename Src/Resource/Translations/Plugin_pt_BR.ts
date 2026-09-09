@@ -4,158 +4,203 @@
 <context>
     <name>CChannelSSH</name>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation type="vanished">Versão do libssh:</translation>
+        <translation>Versão do libssh:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation type="vanished">Versão de protocolo do libssh:</translation>
+        <translation>Versão de protocolo do libssh:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation type="vanished">Servidor OpenSSH:</translation>
+        <translation>Servidor OpenSSH:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation type="vanished">Falha no SSH: ssh_new.</translation>
+        <translation>Falha no SSH: ssh_new.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation type="vanished">Falha no SSH: o servidor está vazio</translation>
+        <translation>Falha no SSH: o servidor está vazio</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation type="vanished">Falha no SSH: falha na definição de host. Host:</translation>
+        <translation>Falha no SSH: falha na definição de host. Host:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation type="vanished">Falha no SSH: falha na definição de porta. Porta:</translation>
+        <translation>Falha no SSH: falha na definição de porta. Porta:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation type="vanished">Falha no SSH: ssh_pcap_file_new: </translation>
+        <translation>Falha no SSH: ssh_pcap_file_new: </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation type="vanished">Falha no SSH: ssh connect </translation>
+        <translation>Falha no SSH: ssh connect </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation type="vanished">Cancelado pelo usuário</translation>
+        <translation>Cancelado pelo usuário</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="258"/>
         <source>SSH failed: Get server public key.</source>
-        <translation type="vanished">Falha no SSH: obtenção da chave pública do servidor.</translation>
+        <translation>Falha no SSH: obtenção da chave pública do servidor.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="273"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation type="vanished">Falha no SSH: falha na obtenção do valor de hash da chave pública.</translation>
+        <translation>Falha no SSH: falha na obtenção do valor de hash da chave pública.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
         <source>the host key for server changed. it is now:</source>
-        <translation type="vanished">a chave do host para o servidor foi alterada. Agora é:</translation>
+        <translation>a chave do host para o servidor foi alterada. Agora é:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="293"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="304"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation type="vanished">Por motivos de segurança, a conexão será interrompida.</translation>
+        <translation>Por motivos de segurança, a conexão será interrompida.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="294"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="305"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation type="vanished">Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
+        <translation>Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="301"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation type="vanished">a chave de host para este servidor não foi encontrada, mas existe outro tipo de chave.</translation>
+        <translation>a chave de host para este servidor não foi encontrada, mas existe outro tipo de chave.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation type="vanished">Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
+        <translation>Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
         <source>is not find in known host file.</source>
-        <translation type="vanished">não foi encontrado no arquivo known_hosts.</translation>
+        <translation>não foi encontrado no arquivo known_hosts.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation type="vanished">Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
+        <translation>Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Host key hash:</source>
-        <translation type="vanished">Hash da chave do host:</translation>
+        <translation>Hash da chave do host:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="319"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="344"/>
         <source>Error</source>
-        <translation type="vanished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Reject the host key</source>
-        <translation type="vanished">Chave de host rejeitada</translation>
+        <translation>Chave de host rejeitada</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation type="vanished">é desconhecida. Você confia na chave do host?</translation>
+        <translation>é desconhecida. Você confia na chave do host?</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Error:</source>
-        <translation type="vanished">Erro:</translation>
+        <translation>Erro:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="364"/>
         <source>the host key hash:</source>
-        <translation type="vanished">o hash da chave do host:</translation>
+        <translation>o hash da chave do host:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="365"/>
         <source>Will be stopped.</source>
-        <translation type="vanished">Será interrompido.</translation>
+        <translation>Será interrompido.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="416"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation type="vanished">Falha no SSH: Falha na autenticação com a chave pública:</translation>
+        <translation>Falha no SSH: Falha na autenticação com a chave pública:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="440"/>
         <source>Failed authenticating with password. User: </source>
-        <translation type="vanished">Falha na autenticação com senha. Usuário: </translation>
+        <translation>Falha na autenticação com senha. Usuário: </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation type="vanished">Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
+        <translation>Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation type="vanished">Falha no SSH: importação do arquivo de chave pública.</translation>
+        <translation>Falha no SSH: importação do arquivo de chave pública.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="478"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="511"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation type="vanished">O arquivo não existe ou a permissão foi negada:</translation>
+        <translation>O arquivo não existe ou a permissão foi negada:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="522"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation type="vanished">Falha no SSH: falha na autenticação. Usuário:</translation>
+        <translation>Falha no SSH: falha na autenticação. Usuário:</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="499"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation type="vanished">SSH failed: There is no private key file defined.</translation>
+        <translation>SSH failed: There is no private key file defined.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="509"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation type="vanished">Falha no SSH: importação do arquivo de chave privada.</translation>
+        <translation>Falha no SSH: importação do arquivo de chave privada.</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation type="vanished">Falha no SSH: open forward.</translation>
+        <translation>Falha no SSH: open forward.</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="376"/>
         <source>The channel is eof</source>
-        <translation type="vanished">O canal é EOF</translation>
+        <translation>O canal é EOF</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation type="vanished">O canal é EOF</translation>
+        <translation>O canal é EOF</translation>
     </message>
 </context>
 <context>
@@ -2041,8 +2086,9 @@ Some features are limited.
 <context>
     <name>CSSHTunnelThread</name>
     <message>
+        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation type="vanished">Erro</translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>

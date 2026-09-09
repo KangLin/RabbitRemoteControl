@@ -1989,8 +1989,38 @@ Visit Time: %3</source>
 <context>
     <name>CSystemProtocolHandler</name>
     <message>
-        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="35"/>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="40"/>
         <source>Use the %1 to open %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="110"/>
+        <source>Process protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="111"/>
+        <source>Protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="115"/>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="116"/>
+        <source>External application opened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="116"/>
+        <source>Cancel Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ProtocolManager/SystemProtocolHandler.cpp" line="117"/>
+        <source>Go back</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
