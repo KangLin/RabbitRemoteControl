@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 
-//* // TODO: Wayland下设置中的音频设置窗口有问题
+/* // TODO: Wayland下视频(QVideoWidget*)覆盖全屏工具条
 #if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) \
     && (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)))
     // https://doc.qt.io/qt-6/zh/wayland-and-qt.html

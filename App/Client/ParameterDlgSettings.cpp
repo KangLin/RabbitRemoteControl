@@ -97,24 +97,14 @@ CParameterDlgSettings::~CParameterDlgSettings()
 
 void CParameterDlgSettings::AddViewers(const QList<QWidget *> &wViewer)
 {
-    int nWidth = 0;
-    int nHeigth = 0;
-    foreach(auto p, wViewer) {
-        if(!p) continue;
-        nWidth = qMax(nWidth, p->frameSize().width());
-        nHeigth = qMax(nHeigth, p->frameSize().height());
-    }
-    bool bScroll = false;
-    QScreen* pScreen = QApplication::primaryScreen();
-    QSize size = this->size();
-    if(nWidth > size.width() || nHeigth > size.height())
-        bScroll = true;
     // [connect accepted to slotAccept of widget]
     foreach(auto p, wViewer)
     {
         QString szMsg;
         QWidget* pView = p;
-        if(bScroll)
+        QSize size = this->size();
+        if(p->frameSize().width() > size.width()
+            || p->frameSize().height() > size.height())
         {
             QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
             if(!pScroll) continue;
