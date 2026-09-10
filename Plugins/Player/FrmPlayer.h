@@ -47,7 +47,6 @@ Q_SIGNALS:
     void sigViewerFocusIn(QWidget* pView);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void focusInEvent(QFocusEvent *event) override;
     virtual void focusOutEvent(QFocusEvent *event) override;
 
@@ -57,15 +56,13 @@ private Q_SLOTS:
     void slotStart(bool bStart);
 
 private:
-    QVideoWidget m_VideoWidget;
-    QToolBar m_ToolBar;
+    QVideoWidget* m_pVideoWidget;
+    QToolBar* m_pToolBar;
     QSlider m_pbVideo;
     bool m_bMoveVideo;
     QSlider m_pbVolume;
     CParameterPlayer* m_pParameter;
     QLabel* m_pLabel;
-
-    int AdjustCompone(const QSize &s);
 };
 
 #endif // FRMPLAYER_H

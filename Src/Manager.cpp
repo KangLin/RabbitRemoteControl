@@ -612,7 +612,7 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
             lstWidget.push_back(pClient);
     }
 
-    auto pDatabase = new CParameterDatabaseUI(parent);
+    CParameterDatabaseUI* pDatabase = new CParameterDatabaseUI(parent);
     if(pDatabase) {
         if(GetGlobalParameters()) {
             int nRet = pDatabase->SetParameter(GetGlobalParameters());

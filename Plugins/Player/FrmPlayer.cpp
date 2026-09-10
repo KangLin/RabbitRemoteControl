@@ -5,6 +5,7 @@
 #include <QLoggingCategory>
 #include <QToolButton>
 #include <QTime>
+#include <QVBoxLayout>
 
 #include "FrmPlayer.h"
 
@@ -19,8 +20,8 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 #endif
     , m_paMuted(nullptr)
     , m_paVolume(nullptr)
-    , m_VideoWidget(this)
-    , m_ToolBar(this)
+    , m_pVideoWidget(nullptr)
+    , m_pToolBar(nullptr)
     , m_pbVideo(Qt::Horizontal, this)
     , m_pbVolume(Qt::Horizontal, this)
     , m_bMoveVideo(false)
@@ -32,23 +33,30 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     qDebug(log) << Q_FUNC_INFO;
 
     setFocusPolicy(Qt::WheelFocus);
-    m_VideoWidget.setFocusPolicy(Qt::WheelFocus);
-    m_VideoWidget.installEventFilter(this);
 
-    m_paStart = m_ToolBar.addAction(
+    QVBoxLayout* pLayout = new QVBoxLayout(this);
+    setLayout(pLayout);
+
+    m_pVideoWidget = new QVideoWidget(this);
+    m_pVideoWidget->setFocusPolicy(Qt::WheelFocus);
+    m_pVideoWidget->installEventFilter(this);
+    pLayout->addWidget(m_pVideoWidget);
+
+    m_pToolBar = new QToolBar(this);
+    m_paStart = m_pToolBar->addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start"));
     m_paStart->setCheckable(true);
     check = connect(m_paStart, SIGNAL(toggled(bool)),
                     this, SLOT(slotStart(bool)));
     Q_ASSERT(check);
 
-    m_paPause = m_ToolBar.addAction(
+    m_paPause = m_pToolBar->addAction(
         QIcon::fromTheme("media-playback-pause"), tr("pause"));
     m_paPause->setCheckable(true);
     m_paPause->setEnabled(false);
 
-    m_ToolBar.addSeparator();
-    m_ToolBar.addAction(QIcon::fromTheme("media-seek-backward"), tr("Backward"),
+    m_pToolBar->addSeparator();
+    m_pToolBar->addAction(QIcon::fromTheme("media-seek-backward"), tr("Backward"),
                         this, [&](){
                             qDebug(log) << "Backward action";
                             emit sigChangePosition(m_pbVideo.value() - 1000);
@@ -68,31 +76,31 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
                         emit sigChangePosition(m_pbVideo.value());
                     });
     Q_ASSERT(check);
-    m_ToolBar.addWidget(&m_pbVideo);
+    m_pToolBar->addWidget(&m_pbVideo);
 
-    m_ToolBar.addAction(QIcon::fromTheme("media-seek-forward"), tr("Forward"),
+    m_pToolBar->addAction(QIcon::fromTheme("media-seek-forward"), tr("Forward"),
                         this, [&](){
                             qDebug(log) << "Forward action";
                             emit sigChangePosition(m_pbVideo.value() + 1000);
                         });
 
-    m_ToolBar.addSeparator();
-    m_pLabel = new QLabel(&m_ToolBar);
+    m_pToolBar->addSeparator();
+    m_pLabel = new QLabel(m_pToolBar);
     m_pLabel->setText("00:00:00 / 00:00:00");
-    m_ToolBar.addWidget(m_pLabel);
-    m_ToolBar.addSeparator();
+    m_pToolBar->addWidget(m_pLabel);
+    m_pToolBar->addSeparator();
 
-    m_paScreenShot = m_ToolBar.addAction(
+    m_paScreenShot = m_pToolBar->addAction(
         QIcon::fromTheme("camera-photo"), tr("ScreenShot"));
     m_paScreenShot->setEnabled(false);
 
 #if HAVE_QT6_RECORD
-    m_paRecordPause = m_ToolBar.addAction(
+    m_paRecordPause = m_pToolBar->addAction(
         QIcon::fromTheme("media-playback-pause"), tr("Record pause"));
     m_paRecordPause->setCheckable(true);
     m_paRecordPause->setEnabled(false);
 
-    m_paRecord = m_ToolBar.addAction(
+    m_paRecord = m_pToolBar->addAction(
         QIcon::fromTheme("media-record"), tr("Record"));
     m_paRecord->setCheckable(true);
     m_paRecord->setEnabled(false);
@@ -103,10 +111,10 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     Q_ASSERT(check);
 #endif
 
-    m_paSettings = m_ToolBar.addAction(
+    m_paSettings = m_pToolBar->addAction(
         QIcon::fromTheme("system-settings"), tr("Settings"));
 
-    m_paMuted = m_ToolBar.addAction(
+    m_paMuted = m_pToolBar->addAction(
         QIcon::fromTheme("audio-volume-medium"), tr("Audio"));
     m_paMuted->setCheckable(true);
     check = connect(m_paMuted, SIGNAL(toggled(bool)),
@@ -116,10 +124,12 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     m_pbVolume.setRange(0, 100);
     m_pbVolume.setValue(0);
     m_pbVolume.setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    m_paVolume = m_ToolBar.addWidget(&m_pbVolume);
+    m_paVolume = m_pToolBar->addWidget(&m_pbVolume);
     check = connect(&m_pbVolume, SIGNAL(sliderMoved(int)),
                     this, SLOT(slotAduioVolume(int)));
     Q_ASSERT(check);
+
+    pLayout->addWidget(m_pToolBar);
 }
 
 CFrmPlayer::~CFrmPlayer()
@@ -129,7 +139,7 @@ CFrmPlayer::~CFrmPlayer()
 
 QVideoSink *CFrmPlayer::videoSink()
 {
-    return m_VideoWidget.videoSink();
+    return m_pVideoWidget->videoSink();
 }
 
 int CFrmPlayer::SetParameter(CParameterPlayer* pParameter)
@@ -195,14 +205,6 @@ void CFrmPlayer::slotPositionChanged(qint64 pos, qint64 duration)
     }
 }
 
-void CFrmPlayer::resizeEvent(QResizeEvent *event)
-{
-    qDebug(log) << "CFrmPlayer::resizeEvent()" << event;
-    QSize s = event->size();
-    AdjustCompone(s);
-    QWidget::resizeEvent(event);
-}
-
 void CFrmPlayer::focusInEvent(QFocusEvent *event)
 {
     qDebug(log) << Q_FUNC_INFO << event << this;
@@ -212,18 +214,6 @@ void CFrmPlayer::focusInEvent(QFocusEvent *event)
 void CFrmPlayer::focusOutEvent(QFocusEvent *event)
 {
     qDebug(log) << Q_FUNC_INFO << event << this;
-}
-
-int CFrmPlayer::AdjustCompone(const QSize &s)
-{
-    m_VideoWidget.move(0, 0);
-    QRect rect(0, 0, s.width(), s.height() - m_ToolBar.frameGeometry().height());
-    m_VideoWidget.setGeometry(rect);
-    int left = 0;
-    int top = s.height() - m_ToolBar.frameGeometry().height();
-    m_ToolBar.move(left, top);
-    m_ToolBar.resize(s.width(), m_ToolBar.height());
-    return 0;
 }
 
 void CFrmPlayer::slotStart(bool bStart)
@@ -260,7 +250,7 @@ void CFrmPlayer::slotStart(bool bStart)
 bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
 {
     //qDebug(log) << Q_FUNC_INFO << event;
-    if(&m_VideoWidget == watched)
+    if(m_pVideoWidget == watched)
     {
         switch(event->type()){
         case QEvent::MouseMove:
@@ -270,11 +260,7 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
             m_paPause->trigger();
             break;
         case QEvent::MouseButtonDblClick: {
-            m_VideoWidget.setFullScreen(!m_VideoWidget.isFullScreen());
-            if(!m_VideoWidget.isFullScreen()) {
-                QSize s = size();
-                AdjustCompone(s);
-            }
+            m_pVideoWidget->setFullScreen(!m_pVideoWidget->isFullScreen());
             break;
         }
         case QEvent::KeyRelease:
@@ -283,10 +269,8 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
             switch(k->key())
             {
             case Qt::Key_Escape:
-                if(m_VideoWidget.isFullScreen()) {
-                    m_VideoWidget.setFullScreen(false);
-                    QSize s = size();
-                    AdjustCompone(s);
+                if(m_pVideoWidget->isFullScreen()) {
+                    m_pVideoWidget->setFullScreen(false);
                 }
                 break;
             case Qt::Key_Enter:
