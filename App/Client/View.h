@@ -37,7 +37,7 @@ public:
     virtual int SetCurrentView(QWidget* pView) = 0;
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle,
                                 const QIcon& icon, const QString& szToolTip) = 0;
-    virtual int SetFullScreen(bool bFull) = 0;
+    virtual int SetFullScreen(bool bFull);
     virtual int SetVisibleTab(bool bVisible) = 0;
 
 Q_SIGNALS:
@@ -46,6 +46,7 @@ Q_SIGNALS:
     void sigCurrentChanged(const QWidget* pView);
     
 protected:
+    virtual int OnFullScreen(bool bFull) = 0;
     CParameterApp* m_pParameterApp;
 };
 

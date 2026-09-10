@@ -26,4 +26,10 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void slotMouseMoveEvent(QMouseEvent *event);
+
+private:
+    //! Full Screen
+    Q_INVOKABLE int OnFullScreen(bool bFull);
+private:
+    QFrame::Shape m_Shap;
 };

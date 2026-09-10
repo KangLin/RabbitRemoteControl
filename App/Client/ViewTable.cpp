@@ -142,7 +142,7 @@ void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle,
         m_pTab->setTabIcon(nIndex, QIcon());
 }
 
-int CViewTable::SetFullScreen(bool bFull)
+int CViewTable::OnFullScreen(bool bFull)
 {
     if(!m_pTab) return -1;
     if(bFull) {

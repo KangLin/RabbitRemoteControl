@@ -675,3 +675,8 @@ void COperateDesktop::slotSetServerName(const QString& szName)
     } while(0);
     slotUpdateName();
 }
+
+QAction* COperateDesktop::GetActionSettings()
+{
+    return m_pActionSettings;
+}

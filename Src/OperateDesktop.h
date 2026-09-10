@@ -137,6 +137,8 @@ protected:
      */
     virtual int SetPluginParameters(CParameterPlugin *pPara) override;
 
+    QAction* GetActionSettings();
+
 private Q_SLOTS:
     //! emit by zoom menu in the class
     void slotValueChanged(int v);

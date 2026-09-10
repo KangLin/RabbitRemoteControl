@@ -138,6 +138,9 @@ public Q_SLOTS:
      */
     void slotEnableInputMethod(bool bEnable);
 
+    //! Full Screen
+    Q_INVOKABLE int OnFullScreen(bool bFull);
+
 Q_SIGNALS:
     void sigMousePressEvent(QMouseEvent* event, QPoint pos);
     void sigMouseReleaseEvent(QMouseEvent* event, QPoint pos);

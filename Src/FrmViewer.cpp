@@ -658,3 +658,12 @@ void CFrmViewer::focusOutEvent(QFocusEvent *event)
 {
     qDebug(log) << Q_FUNC_INFO << event << this;
 }
+
+//! [Full Screen]
+int CFrmViewer::OnFullScreen(bool bFull)
+{
+    int nRet = 0;
+
+    return nRet;
+}
+//! [Full Screen]

@@ -86,3 +86,20 @@ void CFrmScroll::slotMouseMoveEvent(QMouseEvent *event)
             && pVBar->value() < pVBar->maximum())
         pVBar->setValue(pVBar->value() + pVBar->singleStep());
 }
+
+//! [Full Screen]
+int CFrmScroll::OnFullScreen(bool bFull)
+{
+    int nRet = 0;
+    if(bFull) {
+        m_Shap = frameShape();
+        setFrameShape(QFrame::NoFrame);
+    } else {
+        setFrameShape(m_Shap);
+    }
+    CFrmViewer* pFrmView = GetViewer();
+    if(pFrmView)
+        nRet = pFrmView->OnFullScreen(bFull);
+    return nRet;
+}
+//! [Full Screen]

@@ -246,7 +246,7 @@ void CViewSplitter::SetWidowsTitle(
     SetSizes();
 }
 
-int CViewSplitter::SetFullScreen(bool bFull)
+int CViewSplitter::OnFullScreen(bool bFull)
 {
     int nRet = 0;
     if(0 >= m_nCount) return 0;
