@@ -9,7 +9,7 @@
 #include <QResizeEvent>
 
 #include "FrmPlayer.h"
-#ifndef WITH_QVideoWidget
+#ifndef HAVE_QVideoWidget
 #include <QGraphicsVideoItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -17,7 +17,7 @@
 
 static Q_LOGGING_CATEGORY(log, "FrmPlayer")
 
-#ifndef WITH_QVideoWidget
+#ifndef HAVE_QVideoWidget
 class CVideoGraphicsView : public QGraphicsView {
 public:
     using QGraphicsView::QGraphicsView;
@@ -41,7 +41,7 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 #endif
     , m_paMuted(nullptr)
     , m_paVolume(nullptr)
-#ifdef WITH_QVideoWidget
+#ifdef HAVE_QVideoWidget
     , m_pVideoWidget(nullptr)
 #else
     , m_pGraphicsView(nullptr)
@@ -65,7 +65,7 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     QVBoxLayout* pLayout = new QVBoxLayout(this);
     setLayout(pLayout);
 
-#ifdef WITH_QVideoWidget
+#ifdef HAVE_QVideoWidget
     m_pVideoWidget = new QVideoWidget(this);
     m_pVideoWidget->setFocusPolicy(Qt::WheelFocus);
     m_pVideoWidget->installEventFilter(this);
@@ -203,7 +203,7 @@ CFrmPlayer::~CFrmPlayer()
 
 QVideoSink *CFrmPlayer::videoSink()
 {
-#ifdef WITH_QVideoWidget
+#ifdef HAVE_QVideoWidget
     return m_pVideoWidget->videoSink();
 #else
     return m_pVideoItem->videoSink();
@@ -369,7 +369,7 @@ void CFrmPlayer::StartTimer()
 bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
 {
 //qDebug(log) << Q_FUNC_INFO << event;
-#ifdef WITH_QVideoWidget
+#ifdef HAVE_QVideoWidget
     if(m_pVideoWidget == watched
         || m_pVideoWidget->isAncestorOf(qobject_cast<QWidget*>(watched)))
     {
@@ -434,7 +434,7 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
     return false; // 让 widget 自己继续处理
 }
 
-#ifndef WITH_QVideoWidget
+#ifndef HAVE_QVideoWidget
 void CFrmPlayer::UpdateGraphicsVideoGeometry()
 {
     if (!m_pGraphicsView || !m_pVideoItem)

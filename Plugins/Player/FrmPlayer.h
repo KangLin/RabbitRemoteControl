@@ -12,11 +12,11 @@
 #include <QMargins>
 #include "ParameterPlayer.h"
 
-#if !defined(Q_OS_LINUX) || defined(Q_OS_ANDROID)
+#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
     // 在　wayland 下，QVideoWidget 会覆盖顶层窗口（例如：全屏工具条）
-    #define WITH_QVideoWidget
+    #undef HAVE_QVideoWidget
 #endif
-#ifndef WITH_QVideoWidget
+#ifndef HAVE_QVideoWidget
     class QGraphicsVideoItem;
     class CVideoGraphicsView;
 #endif
@@ -74,7 +74,7 @@ private Q_SLOTS:
     void StartTimer();
 
 private:
-#ifdef WITH_QVideoWidget
+#ifdef HAVE_QVideoWidget
     QVideoWidget* m_pVideoWidget;
 #else
     CVideoGraphicsView *m_pGraphicsView;
