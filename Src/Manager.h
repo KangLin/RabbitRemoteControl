@@ -108,7 +108,7 @@ public:
     
     /*!
      * \~chinese 得到设置参数窗口
-     * \return 设置参数窗口。此窗口的所有者为调用者。
+     * \return 设置参数窗口。此窗口的所有者为调用者。**注意**调用者使用完后，必须负责删除。
      * \note 此窗口一般从 CParameterUI 派生。
      *       例如: CParameterPluginUI
      *       如果不是从 CParameterUI 派生，则需要实现接口：
@@ -123,6 +123,7 @@ public:
      * 
      * \~english Get parameter settings widget
      * \return Parameter widget. The QWidget owner is caller.
+     *         After using it, the caller must delete it.
      * \note This window is generally derived from CParameterUI.
      *       For example: CParameterPluginUI
      *       If it is not derived from CParameterUI, then you need to implement the following interfaces:

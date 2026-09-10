@@ -638,7 +638,11 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 
     CFrmMediaDevices* pMediaDevices = new CFrmMediaDevices(true, parent);
     if(pMediaDevices) {
+#if defined(Q_OS_ANDROID)
+        pMediaDevices->resize(620, 400);
+#else
         pMediaDevices->resize(550, 400);
+#endif
         int nRet = pMediaDevices->SetParameter(&m_pParameterPlugin->m_MediaDevices.m_Para);
         if(!nRet)
             lstWidget.push_back(pMediaDevices);

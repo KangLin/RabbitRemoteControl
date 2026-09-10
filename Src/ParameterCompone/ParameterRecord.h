@@ -122,5 +122,4 @@ protected:
 };
 
 PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
-PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
 PLUGIN_EXPORT CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder);
