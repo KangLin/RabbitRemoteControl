@@ -25,34 +25,44 @@
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="165"/>
+        <location filename="../../DlgPlayer.ui" line="78"/>
         <source>Browse</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="187"/>
+        <location filename="../../DlgPlayer.ui" line="95"/>
+        <source>Hide play toolbar when full Screen(0: disable)</source>
+        <translation>当全屏时，隐藏播放工具栏（0：禁止）</translation>
+    </message>
+    <message>
+        <location filename="../../DlgPlayer.ui" line="108"/>
+        <source>S</source>
+        <translation>秒</translation>
+    </message>
+    <message>
+        <location filename="../../DlgPlayer.ui" line="129"/>
         <source>Enable subtitle</source>
         <translation>允许字幕</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="62"/>
+        <location filename="../../DlgPlayer.ui" line="138"/>
         <source>Audio input</source>
         <translation>音频输入</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="76"/>
-        <location filename="../../DlgPlayer.ui" line="116"/>
+        <location filename="../../DlgPlayer.ui" line="152"/>
+        <location filename="../../DlgPlayer.ui" line="192"/>
         <source>Muted</source>
         <translation>静音</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="83"/>
-        <location filename="../../DlgPlayer.ui" line="123"/>
+        <location filename="../../DlgPlayer.ui" line="159"/>
+        <location filename="../../DlgPlayer.ui" line="199"/>
         <source>Volume:</source>
         <translation>音量：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="102"/>
+        <location filename="../../DlgPlayer.ui" line="178"/>
         <source>Audio output</source>
         <translation>音频输出：</translation>
     </message>
@@ -67,32 +77,32 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="103"/>
+        <location filename="../../DlgPlayer.cpp" line="109"/>
         <source>The url is empty. please set!</source>
         <translation>Url 是空，请设置!</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="104"/>
+        <location filename="../../DlgPlayer.cpp" line="110"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="124"/>
+        <location filename="../../DlgPlayer.cpp" line="130"/>
         <source>Camera: </source>
         <translation>摄像头：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="131"/>
+        <location filename="../../DlgPlayer.cpp" line="137"/>
         <source>Url: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="186"/>
+        <location filename="../../DlgPlayer.cpp" line="194"/>
         <source>Media files(* wmv *.aac *.WebM *.mtk *.ogg *.mp4 *.mov *.avi);;All files(*.*)</source>
         <translation>多媒体文件(* wmv *.aac *.WebM *.mtk *.ogg *.mp4 *.mov *.avi);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="188"/>
+        <location filename="../../DlgPlayer.cpp" line="196"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
@@ -100,59 +110,59 @@
 <context>
     <name>CFrmPlayer</name>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="39"/>
-        <location filename="../../FrmPlayer.cpp" line="247"/>
+        <location filename="../../FrmPlayer.cpp" line="111"/>
+        <location filename="../../FrmPlayer.cpp" line="335"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="46"/>
+        <location filename="../../FrmPlayer.cpp" line="118"/>
         <source>pause</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="51"/>
+        <location filename="../../FrmPlayer.cpp" line="123"/>
         <source>Backward</source>
         <translation>向后</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="73"/>
+        <location filename="../../FrmPlayer.cpp" line="145"/>
         <source>Forward</source>
         <translation>向前</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="86"/>
+        <location filename="../../FrmPlayer.cpp" line="158"/>
         <source>ScreenShot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="91"/>
+        <location filename="../../FrmPlayer.cpp" line="163"/>
         <source>Record pause</source>
         <translation>录制暂停</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="96"/>
+        <location filename="../../FrmPlayer.cpp" line="168"/>
         <source>Record</source>
         <translation>录制</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="107"/>
+        <location filename="../../FrmPlayer.cpp" line="179"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="110"/>
-        <location filename="../../FrmPlayer.cpp" line="157"/>
+        <location filename="../../FrmPlayer.cpp" line="182"/>
+        <location filename="../../FrmPlayer.cpp" line="235"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="154"/>
+        <location filename="../../FrmPlayer.cpp" line="232"/>
         <source>Muted</source>
         <translation>静音</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="235"/>
+        <location filename="../../FrmPlayer.cpp" line="322"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
@@ -160,33 +170,33 @@
 <context>
     <name>COperatePlayer</name>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="53"/>
+        <location filename="../../OperatePlayer.cpp" line="54"/>
         <source>Record</source>
         <translation>录制</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="60"/>
+        <location filename="../../OperatePlayer.cpp" line="61"/>
         <source>Record pause</source>
         <translation>录制暂停</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="69"/>
+        <location filename="../../OperatePlayer.cpp" line="70"/>
         <source>ScreenShot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="122"/>
-        <location filename="../../OperatePlayer.cpp" line="145"/>
+        <location filename="../../OperatePlayer.cpp" line="123"/>
+        <location filename="../../OperatePlayer.cpp" line="146"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="133"/>
+        <location filename="../../OperatePlayer.cpp" line="134"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="160"/>
+        <location filename="../../OperatePlayer.cpp" line="161"/>
         <source>pause</source>
         <translation>暂停</translation>
     </message>

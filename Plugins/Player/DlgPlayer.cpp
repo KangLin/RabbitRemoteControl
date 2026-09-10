@@ -83,6 +83,12 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     m_pRecordUI = new CParameterRecordUI(ui->tabWidget);
     m_pRecordUI->SetParameter(&m_pParameters->m_Record);
     ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), m_pRecordUI->windowTitle());
+
+#ifndef HAVE_QVideoWidget
+    ui->lbHideToolBar->hide();
+    ui->spHideToolBar->hide();
+#endif
+    ui->spHideToolBar->setValue(m_pParameters->GetHideToolBar());
 }
 
 CDlgPlayer::~CDlgPlayer()
@@ -132,6 +138,8 @@ void CDlgPlayer::accept()
         break;
     }
     
+    m_pParameters->SetHideToolBar(ui->spHideToolBar->value());
+
     m_pParameters->SetSubtitle(ui->cbEnableSubtitle->isChecked());
     m_pParameters->SetEnableAudioInput(ui->gbAudioInput->isChecked());
     m_pParameters->SetAudioInput(ui->cmbAudioInput->currentIndex());

@@ -8,6 +8,8 @@
 #include <QSlider>
 #include <QProgressBar>
 #include <QLabel>
+#include <QTimer>
+#include <QMargins>
 #include "ParameterPlayer.h"
 
 #if !defined(Q_OS_LINUX) || defined(Q_OS_ANDROID)
@@ -46,6 +48,7 @@ public:
 
 public Q_SLOTS:
     void slotPositionChanged(qint64 pos, qint64 duration);
+
 Q_SIGNALS:
     void sigChangePosition(qint64 pos);
     /*!
@@ -58,11 +61,17 @@ Q_SIGNALS:
 protected:
     virtual void focusInEvent(QFocusEvent *event) override;
     virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+
+    //! Full Screen
+    Q_INVOKABLE int OnFullScreen(bool bFull);
 
 private Q_SLOTS:
     void slotAudioMuted(bool bMuted);
     void slotAduioVolume(int volume);
     void slotStart(bool bStart);
+    void slotTimeOut();
+    void StartTimer();
 
 private:
 #ifdef WITH_QVideoWidget
@@ -73,11 +82,14 @@ private:
     void UpdateGraphicsVideoGeometry();
 #endif
     QToolBar* m_pToolBar;
+    QTimer tm_ToolBar;
     QSlider m_pbVideo;
     bool m_bMoveVideo;
     QSlider m_pbVolume;
     CParameterPlayer* m_pParameter;
     QLabel* m_pLabel;
+    bool m_bFullScreen;
+    QMargins m_Margins;
 };
 
 #endif // FRMPLAYER_H

@@ -34,6 +34,7 @@ int COperatePlayer::Initial()
 
     bool check = false;
 #if HAVE_QVideoWidget
+    m_Player.SetParameter(&m_Parameters);
     check = connect(&m_Player, SIGNAL(sigViewerFocusIn(QWidget*)),
                     this, SIGNAL(sigViewerFocusIn(QWidget*)));
     Q_ASSERT(check);
@@ -168,7 +169,7 @@ int COperatePlayer::InitialMenu()
 #endif
     m_Menu.addAction(m_pScreenShot);
     m_Menu.addSeparator();
-    m_Menu.addAction(m_pActiveSettings);
+    m_Menu.addAction(GetActionSettings());
 #endif
     return nRet;
 }

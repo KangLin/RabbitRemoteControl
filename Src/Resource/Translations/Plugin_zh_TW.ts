@@ -475,7 +475,7 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Manager.cpp" line="379"/>
-        <location filename="../../Manager.cpp" line="709"/>
+        <location filename="../../Manager.cpp" line="710"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
@@ -505,7 +505,7 @@ Some features are limited.
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="714"/>
+        <location filename="../../Manager.cpp" line="715"/>
         <source>Dependency libraries</source>
         <translation>依賴庫</translation>
     </message>

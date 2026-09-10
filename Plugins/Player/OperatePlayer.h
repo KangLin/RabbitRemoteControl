@@ -31,6 +31,7 @@ public:
     // CConnecter interface
 public:
     [[nodiscard]] virtual const qint16 Version() const override;
+    [[nodiscard]] virtual const QString Description() override;
 
 protected:
     // CConnecterConnect interface
@@ -60,7 +61,6 @@ private:
 public:
     virtual QWidget *GetViewer() override;
     QVideoSink *GetVideoSink();
-    virtual const QString Description() override;
 public Q_SLOTS:
     void slotPositionChanged(qint64 pos, qint64 duration);
     void slotPlaybackStateChanged(QMediaPlayer::PlaybackState state);

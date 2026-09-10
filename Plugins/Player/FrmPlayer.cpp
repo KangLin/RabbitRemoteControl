@@ -48,11 +48,13 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     , m_pVideoItem(nullptr)
 #endif
     , m_pToolBar(nullptr)
+    , tm_ToolBar(this)
     , m_pbVideo(Qt::Horizontal, this)
     , m_pbVolume(Qt::Horizontal, this)
     , m_bMoveVideo(false)
     , m_pParameter(nullptr)
     , m_pLabel(nullptr)
+    , m_bFullScreen(false)
 {
     bool check = false;
 
@@ -67,11 +69,17 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     m_pVideoWidget = new QVideoWidget(this);
     m_pVideoWidget->setFocusPolicy(Qt::WheelFocus);
     m_pVideoWidget->installEventFilter(this);
+    m_pVideoWidget->setMouseTracking(true);
+    // ← 遍历内部子对象也装过滤器 + 开 tracking
+    for (QObject *o : m_pVideoWidget->findChildren<QObject*>()) {
+        o->installEventFilter(this);
+        if (auto *w = qobject_cast<QWidget*>(o))
+            w->setMouseTracking(true);
+    }
     pLayout->addWidget(m_pVideoWidget);
 #else
     // 创建场景和视频项
     QGraphicsScene *pScene = new QGraphicsScene(this);
-    pScene->installEventFilter(this);
     m_pVideoItem = new QGraphicsVideoItem;
     pScene->addItem(m_pVideoItem);
     // 创建视图并添加到布局
@@ -81,6 +89,9 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     m_pGraphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pGraphicsView->setFrameStyle(0);
     m_pGraphicsView->setBackgroundBrush(Qt::black);
+    m_pGraphicsView->setMouseTracking(true);
+    m_pGraphicsView->viewport()->setMouseTracking(true);
+    m_pGraphicsView->viewport()->installEventFilter(this);
     // 关视频尺寸变化时，重新 fitInView
     connect(m_pVideoItem, &QGraphicsVideoItem::nativeSizeChanged,
             this, [this](const QSizeF &size) {
@@ -262,15 +273,44 @@ void CFrmPlayer::slotPositionChanged(qint64 pos, qint64 duration)
     }
 }
 
+//! [Full Screen]
+int CFrmPlayer::OnFullScreen(bool bFull)
+{
+    int nRet = 0;
+    m_bFullScreen = bFull;
+    if(bFull) {
+        m_Margins = layout()->contentsMargins();
+        layout()->setContentsMargins(QMargins());
+    } else {
+        layout()->setContentsMargins(m_Margins);
+    }
+    if(m_pToolBar && m_bFullScreen)
+        m_pToolBar->hide();
+    return nRet;
+}
+//! [Full Screen]
+
 void CFrmPlayer::focusInEvent(QFocusEvent *event)
 {
     qDebug(log) << Q_FUNC_INFO << event << this;
+    Q_UNUSED(event)
     emit sigViewerFocusIn(this);
 }
 
 void CFrmPlayer::focusOutEvent(QFocusEvent *event)
 {
     qDebug(log) << Q_FUNC_INFO << event << this;
+    Q_UNUSED(event)
+}
+
+void CFrmPlayer::mouseMoveEvent(QMouseEvent *event)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    Q_UNUSED(event)
+    if(m_pToolBar && m_pToolBar->isHidden()) {
+        m_pToolBar->show();
+        StartTimer();
+    }
 }
 
 void CFrmPlayer::slotStart(bool bStart)
@@ -289,6 +329,7 @@ void CFrmPlayer::slotStart(bool bStart)
         m_paRecordPause->setEnabled(true);
         m_paRecordPause->setChecked(false);
 #endif
+        StartTimer();
     } else {
         p->setIcon(QIcon::fromTheme("media-playback-start"));
         p->setText(tr("Start"));
@@ -301,6 +342,27 @@ void CFrmPlayer::slotStart(bool bStart)
         m_paRecordPause->setEnabled(false);
         m_paRecordPause->setChecked(false);
 #endif
+        tm_ToolBar.stop();
+        m_pToolBar->show();
+    }
+}
+
+void CFrmPlayer::slotTimeOut()
+{
+    if(!m_pToolBar)
+        return;
+    m_pToolBar->hide();
+}
+
+void CFrmPlayer::StartTimer()
+{
+    if(m_pParameter && m_pParameter->GetHideToolBar() <= 0
+        || !m_bFullScreen)
+        return;
+    if(m_paStart->isChecked()) {
+        tm_ToolBar.stop();
+        tm_ToolBar.singleShot(m_pParameter->GetHideToolBar() * 1000,
+                              this, SLOT(slotTimeOut()));
     }
 }
 
@@ -308,12 +370,16 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
 {
 //qDebug(log) << Q_FUNC_INFO << event;
 #ifdef WITH_QVideoWidget
-    if(m_pVideoWidget == watched)
+    if(m_pVideoWidget == watched
+        || m_pVideoWidget->isAncestorOf(qobject_cast<QWidget*>(watched)))
     {
         switch(event->type()){
-        case QEvent::MouseMove:
+        case QEvent::MouseMove: {
             qDebug(log) << "Mouse move";
-            break;
+            QMouseEvent* e = (QMouseEvent*)event;
+            mouseMoveEvent(e);
+            return true;
+        }
         case QEvent::MouseButtonRelease:
             m_paPause->trigger();
             break;
@@ -350,6 +416,19 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
             return false;
         }
         return true;
+    }
+#else
+    if(m_pGraphicsView->viewport() == watched) {
+        switch(event->type()){
+        case QEvent::MouseMove: {
+            qDebug(log) << "Mouse move";
+            QMouseEvent* e = (QMouseEvent*)event;
+            mouseMoveEvent(e);
+            return true;
+        }
+        default:
+            break;
+        }
     }
 #endif
     return false; // 让 widget 自己继续处理

@@ -14,6 +14,7 @@ CParameterPlayer::CParameterPlayer(QObject *parent)
     , m_bEnableAudioOutput(true)
     , m_bAudioOutputMuted(false)
     , m_fAudioOutputVolume(100)
+    , m_nHideToolBar(60)
     , m_nScreen(-1)
     , m_bSubtitle(false)
 {}
@@ -180,6 +181,21 @@ int CParameterPlayer::SetAudioOutputVolume(float fVolume)
     return 0;
 }
 
+const int CParameterPlayer::GetHideToolBar() const
+{
+    return m_nHideToolBar;
+}
+
+int CParameterPlayer::SetHideToolBar(int nTime)
+{
+    if(m_nHideToolBar == nTime)
+        return m_nHideToolBar;
+    int old = m_nHideToolBar;
+    m_nHideToolBar = nTime;
+    SetModified(true);
+    return old;
+}
+
 int CParameterPlayer::OnLoad(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
@@ -206,6 +222,8 @@ int CParameterPlayer::OnLoad(QSettings &set)
     SetAudioOutputMuted(set.value("Muted", GetAudioOutputMuted()).toBool());
     SetAudioOutputVolume(set.value("Volume", GetAudioOutputVolume()).toFloat());
     set.endGroup();
+
+    SetHideToolBar(set.value("HideToolBar", GetHideToolBar()).toInt());
 
     set.endGroup();
     return 0;
@@ -237,11 +255,13 @@ int CParameterPlayer::OnSave(QSettings &set)
     set.setValue("Volume", GetAudioOutputVolume());
     set.endGroup();
 
+    set.setValue("HideToolBar", GetHideToolBar());
+
     set.endGroup();
     return 0;
 }
 
-const int CParameterPlayer::GetScreen() const
+int CParameterPlayer::GetScreen() const
 {
     return m_nScreen;
 }

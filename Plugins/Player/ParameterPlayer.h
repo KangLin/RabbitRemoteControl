@@ -16,58 +16,58 @@ public:
         Url
     };
     Q_ENUM(TYPE)
-    const TYPE GetType() const;
+    [[nodiscard]] const TYPE GetType() const;
     int SetType(TYPE type);
 
-    const QString GetUrl() const;
+    [[nodiscard]] const QString GetUrl() const;
     int SetUrl(const QString &szUrl);
 
-    const int GetCamera() const;
+    [[nodiscard]] const int GetCamera() const;
     int SetCamera(int nIndex);
 
-    const int GetAudioInput() const;
+    [[nodiscard]] const int GetAudioInput() const;
     int SetAudioInput(int nIndex);
 Q_SIGNALS:
     void sigAudioInput(int nIndex);
 
 public:
-    const bool GetEnableAudioInput() const;
+    [[nodiscard]] const bool GetEnableAudioInput() const;
     int SetEnableAudioInput(bool bEnable);
 Q_SIGNALS:
     void sigEnableAudioInput(bool bEnable);
 
 public:
-    const bool GetAudioInputMuted() const;
+    [[nodiscard]] const bool GetAudioInputMuted() const;
     int SetAudioInputMuted(bool bMuted);
 Q_SIGNALS:
     void sigAudioInputMuted(bool bMuted);
 
 public:
-    const float GetAudioInputVolume() const;
+    [[nodiscard]] const float GetAudioInputVolume() const;
     int SetAudioInputVolume(float fVolume);
 Q_SIGNALS:
     void sigAudioInputVolume(float fVolume);
 
 public:
-    const int GetAudioOutput() const;
+    [[nodiscard]] const int GetAudioOutput() const;
     int SetAudioOutput(int nIndex);
 Q_SIGNALS:
     void sigAudioOutput(int nIndex);
 
 public:
-    const bool GetEnableAudioOutput() const;
+    [[nodiscard]] const bool GetEnableAudioOutput() const;
     int SetEnableAudioOutput(bool bEnable);
 Q_SIGNALS:
     void sigEnableAudioOutput(bool bEnable);
 
 public:
-    const bool GetAudioOutputMuted() const;
+    [[nodiscard]] const bool GetAudioOutputMuted() const;
     int SetAudioOutputMuted(bool bMuted);
 Q_SIGNALS:
     void sigAudioOutputMuted(bool bMuted);
 
 public:
-    const float GetAudioOutputVolume() const;
+    [[nodiscard]] const float GetAudioOutputVolume() const;
     int SetAudioOutputVolume(float fVolume);
 Q_SIGNALS:
     void sigAudioOutputVolume(float fVolume);
@@ -84,18 +84,24 @@ private:
     bool m_bEnableAudioOutput;
     bool m_bAudioOutputMuted;
     float m_fAudioOutputVolume;
-    
+
 public:
-    bool GetSubtitle() const;
+    [[nodiscard]] bool GetSubtitle() const;
     void SetSubtitle(bool subtitle);
 private:
     bool m_bSubtitle;
 
 public:
-    const int GetScreen() const;
+    [[nodiscard]] int GetScreen() const;
     int SetScreen(int nIndex);
 private:
     int m_nScreen;
+
+public:
+    [[nodiscard]] const int GetHideToolBar() const;
+    int SetHideToolBar(int nTime);
+private:
+    int m_nHideToolBar;
 
     // CParameter interface
 protected:
