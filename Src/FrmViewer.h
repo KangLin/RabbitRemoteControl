@@ -21,6 +21,8 @@
 #else
 
 class CRecordVideoThread;
+class QTouchEvent;
+class QGestureEvent;
 
 /**
  * \~chinese
@@ -163,6 +165,7 @@ Q_SIGNALS:
 
     // QWidget interface
 protected:
+    virtual bool event(QEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
 
     virtual void focusInEvent(QFocusEvent *event) override;
@@ -176,6 +179,9 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void inputMethodEvent(QInputMethodEvent *event) override;
     virtual QVariant inputMethodQuery( Qt::InputMethodQuery query ) const override;
+
+    virtual bool touchEvent(QTouchEvent* event);
+    virtual bool gestureEvent(QGestureEvent* event);
 
 private:
     QImage m_Desktop;

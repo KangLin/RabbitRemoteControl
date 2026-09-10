@@ -4,7 +4,13 @@
 
 #include <QPainter>
 #include <QKeyEvent>
+#include <QTouchEvent>
+
 #include <QResizeEvent>
+#include <QGestureRecognizer>
+#include <QGestureEvent>
+#include <QPanGesture>
+#include <QPinchGesture>
 #include <QCursor>
 #include <QLoggingCategory>
 
@@ -23,6 +29,7 @@ static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 static Q_LOGGING_CATEGORY(logKey, "Client.FrmViewer.Key")
 static Q_LOGGING_CATEGORY(logMouse, "Client.FrmViewer.Mouse")
 static Q_LOGGING_CATEGORY(logInputMethod, "Client.FrmViewer.InputMethod")
+static Q_LOGGING_CATEGORY(logTouch, "Client.FrmViewer.Touch")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
@@ -30,6 +37,7 @@ CFrmViewer::CFrmViewer(QWidget *parent)
 {
     qDebug(log) << Q_FUNC_INFO;
     setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_AcceptTouchEvents);
 
     //qDebug(log) << "autoFillBackground:" << autoFillBackground();
     //setAutoFillBackground(true);
@@ -667,3 +675,86 @@ int CFrmViewer::OnFullScreen(bool bFull)
     return nRet;
 }
 //! [Full Screen]
+
+bool CFrmViewer::event(QEvent *event)
+{
+    switch (event->type())
+    {
+    case QEvent::TouchBegin:
+    case QEvent::TouchUpdate:
+    case QEvent::TouchEnd:
+    {
+        QTouchEvent* e = (QTouchEvent*)event;
+        qDebug(logTouch) << "QEvent::TouchBegin";
+        touchEvent(e);
+        break;
+    }
+    case QEvent::Gesture:
+    {
+        gestureEvent(static_cast<QGestureEvent*>(event));
+        break;
+    }
+    default:
+        break;
+    }
+    return QWidget::event(event);
+}
+
+bool CFrmViewer::touchEvent(QTouchEvent* event)
+{
+    const QList<QTouchEvent::TouchPoint> touchPoints = event->touchPoints();
+
+    for (const QTouchEvent::TouchPoint &touchPoint : touchPoints) {
+        qDebug(logTouch) << "Touch Point ID:" << touchPoint.id()
+        << "State:" << touchPoint.state()
+        << "Position:" << touchPoint.pos();
+        switch (touchPoint.state()) {
+        case Qt::TouchPointPressed: {
+            qDebug(logTouch) << "手指按下！ID:" << touchPoint.id() << "Pos:" << touchPoint.pos();
+
+            break;
+        }
+        case Qt::TouchPointMoved:
+            qDebug(logTouch) << "手指移动... ID:" << touchPoint.id() << "Current Pos:" << touchPoint.pos();
+
+            break;
+        case Qt::TouchPointReleased:
+            qDebug(logTouch) << "手指抬起。 ID:" << touchPoint.id() << "Final Pos:" << touchPoint.pos();
+
+            break;
+        default:
+            break;
+        }
+    }
+
+    //  注意：在这里设置事件状态是可选的，如果你希望事件继续传播，就不要设置为 Accepted
+    // event->accept();
+    return false;
+}
+
+bool CFrmViewer::gestureEvent(QGestureEvent* event)
+{
+    if (QGesture *pinch = event->gesture(Qt::PinchGesture)) {
+        QPinchGesture *pinchGesture = static_cast<QPinchGesture *>(pinch);
+
+        // 处理缩放
+        if (pinchGesture->state() == Qt::GestureUpdated) {
+            // scaleFactor() 会告诉你缩放了多少
+            qreal scale = pinchGesture->scaleFactor();
+            qDebug() << "正在缩放! 缩放因子:" << scale;
+            // 在这里应用缩放逻辑
+        }
+    }
+
+    if (QGesture *pan = event->gesture(Qt::PanGesture)) {
+        QPanGesture *panGesture = static_cast<QPanGesture *>(pan);
+        // 处理平移/拖动
+        if (panGesture->state() == Qt::GestureUpdated) {
+            QPointF delta = panGesture->delta();
+            qDebug() << "正在平移! 偏移量:" << delta;
+            // 在这里应用平移逻辑
+        }
+    }
+
+    return false; // 表示手势事件已处理
+}
