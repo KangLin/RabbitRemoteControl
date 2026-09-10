@@ -10,6 +10,15 @@
 #include <QLabel>
 #include "ParameterPlayer.h"
 
+#if !defined(Q_OS_LINUX) || defined(Q_OS_ANDROID)
+    // 在　wayland 下，QVideoWidget 会覆盖顶层窗口（例如：全屏工具条）
+    #define WITH_QVideoWidget
+#endif
+#ifndef WITH_QVideoWidget
+    class QGraphicsVideoItem;
+    class CVideoGraphicsView;
+#endif
+
 class CFrmPlayer : public QWidget
 {
     Q_OBJECT
@@ -56,7 +65,13 @@ private Q_SLOTS:
     void slotStart(bool bStart);
 
 private:
+#ifdef WITH_QVideoWidget
     QVideoWidget* m_pVideoWidget;
+#else
+    CVideoGraphicsView *m_pGraphicsView;
+    QGraphicsVideoItem* m_pVideoItem;
+    void UpdateGraphicsVideoGeometry();
+#endif
     QToolBar* m_pToolBar;
     QSlider m_pbVideo;
     bool m_bMoveVideo;

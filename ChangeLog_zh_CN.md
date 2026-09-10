@@ -53,6 +53,7 @@
     - 增加活动菜单
     - 增加启动画面
     - 增加文件关联、元数据类型(Linux、 Windows)
+    - 增加支持 wayland
   - 增加 macOS 编译脚本。生成　App 捆绑包
   - 为 windows 安装包增加“不安装执行功能”。
   - [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)

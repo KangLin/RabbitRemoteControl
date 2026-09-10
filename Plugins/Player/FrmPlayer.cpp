@@ -6,10 +6,31 @@
 #include <QToolButton>
 #include <QTime>
 #include <QVBoxLayout>
+#include <QResizeEvent>
 
 #include "FrmPlayer.h"
+#ifndef WITH_QVideoWidget
+#include <QGraphicsVideoItem>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#endif
 
 static Q_LOGGING_CATEGORY(log, "FrmPlayer")
+
+#ifndef WITH_QVideoWidget
+class CVideoGraphicsView : public QGraphicsView {
+public:
+    using QGraphicsView::QGraphicsView;
+protected:
+    void resizeEvent(QResizeEvent *e) override {
+        QGraphicsView::resizeEvent(e);
+        if (scene() && !scene()->items().isEmpty()) {
+            auto *item = scene()->items().first();
+            fitInView(item, Qt::KeepAspectRatio);
+        }
+    }
+};
+#endif
 
 CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     , m_paStart(nullptr)
@@ -20,7 +41,12 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 #endif
     , m_paMuted(nullptr)
     , m_paVolume(nullptr)
+#ifdef WITH_QVideoWidget
     , m_pVideoWidget(nullptr)
+#else
+    , m_pGraphicsView(nullptr)
+    , m_pVideoItem(nullptr)
+#endif
     , m_pToolBar(nullptr)
     , m_pbVideo(Qt::Horizontal, this)
     , m_pbVolume(Qt::Horizontal, this)
@@ -37,10 +63,37 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     QVBoxLayout* pLayout = new QVBoxLayout(this);
     setLayout(pLayout);
 
+#ifdef WITH_QVideoWidget
     m_pVideoWidget = new QVideoWidget(this);
     m_pVideoWidget->setFocusPolicy(Qt::WheelFocus);
     m_pVideoWidget->installEventFilter(this);
     pLayout->addWidget(m_pVideoWidget);
+#else
+    // 创建场景和视频项
+    QGraphicsScene *pScene = new QGraphicsScene(this);
+    pScene->installEventFilter(this);
+    m_pVideoItem = new QGraphicsVideoItem;
+    pScene->addItem(m_pVideoItem);
+    // 创建视图并添加到布局
+    m_pGraphicsView = new CVideoGraphicsView(pScene, this);
+    m_pGraphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
+    m_pGraphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_pGraphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_pGraphicsView->setFrameStyle(0);
+    m_pGraphicsView->setBackgroundBrush(Qt::black);
+    // 关视频尺寸变化时，重新 fitInView
+    connect(m_pVideoItem, &QGraphicsVideoItem::nativeSizeChanged,
+            this, [this](const QSizeF &size) {
+                if (size.isEmpty())
+                    return;
+                if(!m_pGraphicsView || !m_pVideoItem)
+                    return;
+                // 让 videoItem 的矩形匹配视频原始尺寸
+                m_pVideoItem->setSize(size);
+                UpdateGraphicsVideoGeometry();
+            });
+    pLayout->addWidget((m_pGraphicsView));
+#endif
 
     m_pToolBar = new QToolBar(this);
     m_paStart = m_pToolBar->addAction(
@@ -57,10 +110,10 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 
     m_pToolBar->addSeparator();
     m_pToolBar->addAction(QIcon::fromTheme("media-seek-backward"), tr("Backward"),
-                        this, [&](){
-                            qDebug(log) << "Backward action";
-                            emit sigChangePosition(m_pbVideo.value() - 1000);
-                        });
+                          this, [&](){
+                              qDebug(log) << "Backward action";
+                              emit sigChangePosition(m_pbVideo.value() - 1000);
+                          });
 
     m_pbVideo.setRange(0, 0);
     m_pbVideo.setValue(0);
@@ -79,10 +132,10 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     m_pToolBar->addWidget(&m_pbVideo);
 
     m_pToolBar->addAction(QIcon::fromTheme("media-seek-forward"), tr("Forward"),
-                        this, [&](){
-                            qDebug(log) << "Forward action";
-                            emit sigChangePosition(m_pbVideo.value() + 1000);
-                        });
+                          this, [&](){
+                              qDebug(log) << "Forward action";
+                              emit sigChangePosition(m_pbVideo.value() + 1000);
+                          });
 
     m_pToolBar->addSeparator();
     m_pLabel = new QLabel(m_pToolBar);
@@ -139,7 +192,11 @@ CFrmPlayer::~CFrmPlayer()
 
 QVideoSink *CFrmPlayer::videoSink()
 {
+#ifdef WITH_QVideoWidget
     return m_pVideoWidget->videoSink();
+#else
+    return m_pVideoItem->videoSink();
+#endif
 }
 
 int CFrmPlayer::SetParameter(CParameterPlayer* pParameter)
@@ -249,7 +306,8 @@ void CFrmPlayer::slotStart(bool bStart)
 
 bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
 {
-    //qDebug(log) << Q_FUNC_INFO << event;
+//qDebug(log) << Q_FUNC_INFO << event;
+#ifdef WITH_QVideoWidget
     if(m_pVideoWidget == watched)
     {
         switch(event->type()){
@@ -293,5 +351,20 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
         }
         return true;
     }
-    return false;
+#endif
+    return false; // 让 widget 自己继续处理
 }
+
+#ifndef WITH_QVideoWidget
+void CFrmPlayer::UpdateGraphicsVideoGeometry()
+{
+    if (!m_pGraphicsView || !m_pVideoItem)
+        return;
+    if (m_pVideoItem->boundingRect().isEmpty())
+        return;
+
+    // 保证场景矩形和 item 一致，避免偏移
+    m_pGraphicsView->setSceneRect(m_pVideoItem->boundingRect());
+    m_pGraphicsView->fitInView(m_pVideoItem, Qt::KeepAspectRatio);
+}
+#endif
