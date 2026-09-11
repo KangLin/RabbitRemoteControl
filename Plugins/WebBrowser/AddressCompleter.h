@@ -41,7 +41,7 @@ class CAddressCompleter : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CAddressCompleter(CHistoryDatabase* db, QWidget *parent = nullptr);
+    explicit CAddressCompleter(CHistoryDatabase* db, QWidget *parent);
     ~CAddressCompleter();
 
     void attachToLineEdit(QLineEdit *lineEdit);
@@ -96,4 +96,5 @@ private:
     bool m_isCompleterVisible;
 
     CHistoryDatabase* m_pDatabase;
+    bool m_bIsWayland;
 };
