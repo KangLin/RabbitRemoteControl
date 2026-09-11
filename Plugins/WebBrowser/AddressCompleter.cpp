@@ -61,6 +61,7 @@ CAddressCompleter::CAddressCompleter(CHistoryDatabase *db, QWidget *parent)
     , m_maxVisibleItems(8)
     , m_isCompleterVisible(false)
     , m_pDatabase(db)
+    , m_bIsWayland(false)
 {
     m_szEnter = tr("Enter '@' show commands") + "; "
                 + tr("Enter a website URL or search content ......");
@@ -76,6 +77,13 @@ CAddressCompleter::CAddressCompleter(CHistoryDatabase *db, QWidget *parent)
 
     m_szLineEditToolTipShow = m_szEnter + "\n\n" + m_szListWidgetToolTip;
     setToolTip(m_szListWidgetToolTip);
+
+#if defined(Q_OS_LINUX)
+    if(-1 == QGuiApplication::platformName().indexOf(QRegularExpression("wayland.*")))
+        m_bIsWayland = false;
+    else
+        m_bIsWayland = true;
+#endif
 
     setupUI();
 
@@ -103,7 +111,12 @@ CAddressCompleter::~CAddressCompleter()
 
 void CAddressCompleter::setupUI()
 {
-    setWindowFlags(Qt::Tool /*Qt::ToolTip*/ | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    Qt::WindowFlags flags;
+    flags = Qt::FramelessWindowHint | Qt::CustomizeWindowHint;
+    if(!m_bIsWayland) {
+        flags |= Qt::Tool;
+    }
+    setWindowFlags(flags);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -508,11 +521,15 @@ void CAddressCompleter::showCompleter()
         m_pShowAnimation->setEndValue(endRect);
         m_pShowAnimation->setEasingCurve(QEasingCurve::OutCubic);
         connect(m_pShowAnimation, &QPropertyAnimation::finished,
-                this, &CAddressCompleter::show);
+                this, [this]() {
+            show();
+            raise();
+        });
         m_pShowAnimation->start();
     } else {
         setGeometry(endRect);
         show();
+        raise();
     }
 }
 
@@ -573,6 +590,15 @@ void CAddressCompleter::updateCompleterPosition()
         // 确保不超出屏幕右侧
         if (globalPos.x() + width > screenRect.right()) {
             globalPos.setX(screenRect.right() - width);
+        }
+    }
+
+    if(m_bIsWayland) {
+        QWidget* pWin = qobject_cast<QWidget*>(parent());
+        if(pWin) {
+            globalPos = pWin->mapFromGlobal(globalPos);
+        } else {
+            qCritical(log) << "Current platform plugin is wayland. the parent must be setted.";
         }
     }
 
