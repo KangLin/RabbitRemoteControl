@@ -44,9 +44,9 @@ It includes remote desktop, remote control, file transfer (FTP, SFTP), terminal,
 
 ### Screenshot
 
-|Main window|Recent list menu|Connect|Work|
-|--|--|--|--|
-|![Main window](docs/Image/Screenshot/MainWindows_en.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu_en.png)|![Connect](docs/Image/Screenshot/Connect_en.png)|![Work](docs/Image/Screenshot/Work_en.png)|
+|Main window|Recent list menu|Connect|Work|Termux|
+|--|--|--|--|--|
+|![Main window](docs/Image/Screenshot/MainWindows_en.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu_en.png)|![Connect](docs/Image/Screenshot/Connect_en.png)|![Work](docs/Image/Screenshot/Work_en.png)|![Termux](docs/Image/Screenshot/Termux.jpg)|
 
 #### Multiple style
 
@@ -75,6 +75,7 @@ https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25
 - [x] Windows 7 SP1 and later
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
+- [x] [termux](https://github.com/termux)
 - [x] macOS
 
 See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html),
@@ -306,6 +307,7 @@ Contact me:
 - [Compiling for Windows](docs/Compile/Windows.md)
 - [Compiling for macOS](docs/Compile/macOS.md)
 - [Compiling for Android](docs/Compile/Android_zh_CN.md)
+- [Compiling for termux](docs/Compile/Termux.md)
 
 ## [License Agreement](License.md "License.md")
 

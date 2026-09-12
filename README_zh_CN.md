@@ -43,9 +43,9 @@
 
 ### 截屏
 
-|主窗口|最近列表窗口|连接窗口|工作窗口|
-|--|--|--|--|
-|![主窗口](docs/Image/Screenshot/MainWindows.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu.png)|![连接窗口](docs/Image/Screenshot/Connect.png)|![Work](docs/Image/Screenshot/Work.png)|
+|主窗口|最近列表窗口|连接窗口|工作窗口|Termux|
+|--|--|--|--|--|
+|![主窗口](docs/Image/Screenshot/MainWindows.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu.png)|![连接窗口](docs/Image/Screenshot/Connect.png)|![Work](docs/Image/Screenshot/Work.png)||![Termux](docs/Image/Screenshot/Termux.jpg)|
 
 #### 多样式
 
@@ -74,6 +74,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 - [x] Windows 7 SP1 及以后
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
+- [x] [termux](https://github.com/termux)
 - [x] macOS
 
 详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、
@@ -86,12 +87,12 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 - 远程桌面
 
-|        |Windows|Unix/Linux|Android|macOS|
-|--------|-------|----------|-------|-----|
-|vnc     |✓      |✓         |✓      |✓    |
-|RDP     |✓      |✓         |✓      |✓    |
-|Spice   |       |          |       |     |
-|Scrcpy  |       |          |       |     |
+|        |Windows|Unix/Linux|Android|termux|macOS|
+|--------|-------|----------|-------|------|-----|
+|vnc     |✓      |✓         |✓      |✓     |✓    |
+|RDP     |✓      |✓         |✓      |✓     |✓    |
+|Spice   |       |          |       |      |     |
+|Scrcpy  |       |          |       |      |     |
 
 - 终端
 
@@ -304,6 +305,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 - [为 Windows 编译](docs/Compile/Windows_zh_CN.md)
 - [为 macOS 编译 (English)](docs/Compile/macOS.md)
 - [为 Android 编译](docs/Compile/Android_zh_CN.md)
+- [为 termux 编译](docs/Compile/Termux_zh_CN.md)
 
 ## [许可协议](License.md "License.md")
 

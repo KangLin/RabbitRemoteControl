@@ -556,8 +556,16 @@ if [ -n "$PACKAGE" ]; then
     package_install $PACKAGE
 fi
 
-if [ $BASE_LIBS -eq 1 ]; then
+install_base() {
     echo_status "Install base libraries ......"
+    if is_termux; then
+        package_install wget curl git cmake build-essential freerdp libvncserver libcurl
+	#package_install mesa-dev glu glew glfw libglvnd-dev libglvnd
+        package_install qt6-qttools qt6-qtbase qt6-qttranslations qt6-qt5compat qt6-qtimageformats qt6-qtmultimedia \
+            qt6-qtscxml qt6-qtsvg qt6-qtwayland qt6-qtwebchannel qt6-qtwebengine qt6-qtwebsockets qt6-qtpositioning qt6-qtbase-gtk-platformtheme qt6ct
+        return 0
+    fi
+
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         # Build tools
         package_install build-essential devscripts equivs debhelper \
@@ -655,6 +663,10 @@ if [ $BASE_LIBS -eq 1 ]; then
     if [ $MACOS -eq 1 ]; then
         package_install nasm autoconf automake libtool pkg-config doxygen zstd curl
     fi
+}
+
+if [ $BASE_LIBS -eq 1 ]; then
+    install_base
 fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then
@@ -718,6 +730,9 @@ if [ $RabbitCommon -eq 1 ]; then
     fi
 fi
 
+if [ is_termux ]; then
+	CMAKE_PARA="-DCMAKE_SYSTEM_NAME=Linux"
+fi
 if [ $LIBSSH -eq 1 ]; then
     echo_status "Install libssh ......"
     pushd "$SOURCE_DIR"
@@ -732,7 +747,7 @@ if [ $LIBSSH -eq 1 ]; then
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/libssh
         pushd $BUILD_DEPEND_DIR/libssh
-        cmake -S $SOURCE_DIR/libssh -DCMAKE_BUILD_TYPE=Release \
+        cmake -S $SOURCE_DIR/libssh -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DWITH_EXAMPLES=OFF
@@ -752,7 +767,7 @@ if [ $FREERDP -eq 1 ]; then
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/FreeRDP
         pushd $BUILD_DEPEND_DIR/FreeRDP
-        cmake -S $SOURCE_DIR/FreeRDP \
+        cmake -S $SOURCE_DIR/FreeRDP $CMAKE_PARA \
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
@@ -781,7 +796,7 @@ if [ $TIGERVNC -eq 1 ]; then
       fi
       cmake -E make_directory $BUILD_DEPEND_DIR/tigervnc
       pushd $BUILD_DEPEND_DIR/tigervnc
-      cmake -S $SOURCE_DIR/tigervnc -DCMAKE_BUILD_TYPE=Release \
+      cmake -S $SOURCE_DIR/tigervnc -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF \
@@ -802,7 +817,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/PcapPlusPlus
         pushd $BUILD_DEPEND_DIR/PcapPlusPlus
-        cmake -S $SOURCE_DIR/PcapPlusPlus -DCMAKE_BUILD_TYPE=Release \
+        cmake -S $SOURCE_DIR/PcapPlusPlus -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
         -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DPCAPPP_BUILD_EXAMPLES=OFF \
@@ -826,7 +841,7 @@ if [ $libdatachannel -eq 1 ]; then
       git submodule update --init --recursive
       cmake -E make_directory $BUILD_DEPEND_DIR/libdatachannel
       pushd $BUILD_DEPEND_DIR/libdatachannel
-      cmake -S $SOURCE_DIR/libdatachannel -DCMAKE_BUILD_TYPE=Release \
+      cmake -S $SOURCE_DIR/libdatachannel -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
       cmake --build . --config Release --parallel $(nproc)
@@ -847,7 +862,7 @@ if [ $QtService -eq 1 ]; then
       git submodule update --init --recursive
       cmake -E make_directory $BUILD_DEPEND_DIR/qtservice
       pushd $BUILD_DEPEND_DIR/qtservice
-      cmake -S $SOURCE_DIR/qtservice -DCMAKE_BUILD_TYPE=Release \
+      cmake -S $SOURCE_DIR/qtservice -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
       cmake --build . --config Release --parallel $(nproc)
@@ -874,7 +889,7 @@ if [ $QTERMWIDGET -eq 1 ]; then
         popd
         cmake -E make_directory $BUILD_DEPEND_DIR/lxqt-build-tools
         pushd $BUILD_DEPEND_DIR/lxqt-build-tools
-        cmake -S $SOURCE_DIR/lxqt-build-tools -DCMAKE_BUILD_TYPE=Release \
+        cmake -S $SOURCE_DIR/lxqt-build-tools -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
         cmake --build . --config Release --parallel $(nproc)
@@ -909,7 +924,7 @@ if [ $QTKEYCHAIN -eq 1 ]; then
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/qtkeychain
         pushd $BUILD_DEPEND_DIR/qtkeychain
-        cmake -S $SOURCE_DIR/qtkeychain -DCMAKE_BUILD_TYPE=Release \
+        cmake -S $SOURCE_DIR/qtkeychain -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DBUILD_WITH_QT6:BOOL=ON
@@ -929,7 +944,7 @@ if [ $QFtpServer -eq 1 ]; then
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/QFtpServer
         pushd $BUILD_DEPEND_DIR/QFtpServer
-        cmake -S $SOURCE_DIR/QFtpServer -DCMAKE_BUILD_TYPE=Release \
+        cmake -S $SOURCE_DIR/QFtpServer -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DWITH_APP=OFF
