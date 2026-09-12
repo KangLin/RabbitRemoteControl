@@ -556,8 +556,15 @@ if [ -n "$PACKAGE" ]; then
     package_install $PACKAGE
 fi
 
-if [ $BASE_LIBS -eq 1 ]; then
+install_base() {
     echo_status "Install base libraries ......"
+    if is_termux; then
+        package_install wget curl git cmake build-essential freerdp libvncserver libcurl
+        package_install qt6-qttools qt6-qtbase qt6-qttranslations qt6-qt5compat qt6-qtimageformats qt6-qtmultimedia \
+            qt6-qtscxml qt6-qtsvg qt6-qtwayland qt6-qtwebchannel qt6-qtwebengine qt6-qtwebsockets qt6-qtpositioning
+        return 0
+    fi
+
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         # Build tools
         package_install build-essential devscripts equivs debhelper \
@@ -655,6 +662,10 @@ if [ $BASE_LIBS -eq 1 ]; then
     if [ $MACOS -eq 1 ]; then
         package_install nasm autoconf automake libtool pkg-config doxygen zstd curl
     fi
+}
+
+if [ $BASE_LIBS -eq 1 ]; then
+    install_base
 fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then

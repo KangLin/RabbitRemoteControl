@@ -91,6 +91,8 @@ Environment variables:
   BUILD_VERBOSE     Set verbose mode (ON/OFF, default: $BUILD_VERBOSE)
   QT_VERSION        Set Qt version (default: $QT_VERSION)
 EOF
+    echo ""
+    detect_os_info
     exit 0
 }
 
@@ -692,6 +694,37 @@ if [ $LINT -eq 1 ]; then
         --verbose=${BUILD_VERBOSE}
 
     ./build_lint_check.sh
+fi
+
+if is_termux; then
+    echo_status "build in termux ......"
+
+    ./build_depend.sh --system_update --base \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
+    # Disable ci warn
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
+    fi
+
+    ./build_depend.sh ${depend_para} \
+        --rabbitcommon --tigervnc --pcapplusplus --qtermwidget --qftpserver --libssh \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    ./build_termux.sh --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 fi
 
 popd
