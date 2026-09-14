@@ -59,13 +59,19 @@ if(MINGW)
     set(FreeRDP_OPTIONS -fpermissive)
 endif()
 
-set(FreeRDP_QT_COMPONENTS Widgets Multimedia PrintSupport SerialPort)
+set(FreeRDP_QT_COMPONENTS Widgets Multimedia PrintSupport)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${FreeRDP_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${FreeRDP_QT_COMPONENTS})
         list(APPEND FreeRDP_LIBS Qt${QT_VERSION_MAJOR}::${_COMPONENT})
     ENDFOREACH()
 endif()
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS SerialPort)
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    list(APPEND FreeRDP_DEFINITIONS HAVE_SerialPort)
+    list(APPEND FreeRDP_LIBS Qt${QT_VERSION_MAJOR}::SerialPort)
+endif()
+
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${FreeRDP_SOURCE_FILES} ${FreeRDP_HEADER_FILES} ${FreeRDP_UI_FILES}

@@ -34,8 +34,10 @@
 #include <QMutexLocker>
 #include <QPainter>
 #include <QPrinterInfo>
-#include <QSerialPort>
-#include <QSerialPortInfo>
+#ifdef HAVE_SerialPort
+    #include <QSerialPort>
+    #include <QSerialPortInfo>
+#endif
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QSoundEffect>
 #else
@@ -2498,6 +2500,7 @@ int CBackendFreeRDP::RedirectionPrinter()
 
 int CBackendFreeRDP::RedirectionSerial()
 {
+#if HAVE_SerialPort
     //TODO: FreeRDP don't support
     return 0;
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
@@ -2532,6 +2535,7 @@ int CBackendFreeRDP::RedirectionSerial()
             return -1;
         }
     }
+#endif
 
     return 0;
 }
