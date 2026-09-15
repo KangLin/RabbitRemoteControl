@@ -69,6 +69,7 @@ CDlgSettingsVnc::CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent) :
     ui->cbCursorPosition->setChecked(m_pPara->GetCursorPosition());
     ui->cbResizeWindows->setChecked(m_pPara->GetSupportsDesktopResize());
     ui->cbLedState->setChecked(m_pPara->GetLedState());
+    ui->cbInputMethod->setChecked(m_pPara->GetEnableLocalInputMethod());
     ui->cbClipboard->setChecked(m_pPara->GetClipboard());
     
     // Compress
@@ -193,6 +194,7 @@ void CDlgSettingsVnc::on_pbOK_clicked()
     m_pPara->SetCursorPosition(ui->cbCursorPosition->isChecked());
     m_pPara->SetSupportsDesktopResize(ui->cbResizeWindows->isChecked());
     m_pPara->SetLedState(ui->cbLedState->isChecked());
+    m_pPara->SetEnableLocalInputMethod(ui->cbInputMethod->isChecked());
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
     m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
     

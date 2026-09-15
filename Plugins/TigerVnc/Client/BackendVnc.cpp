@@ -25,7 +25,6 @@
 #include <rfb/keysymdef.h>
 #endif
 
-
 #include "FramePixelBuffer.h"
 
 #include <QDir>
@@ -33,7 +32,6 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QLoggingCategory>
-#include <QThread>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QNetworkProxy>
@@ -959,6 +957,26 @@ void CBackendVnc::keyReleaseEvent(QKeyEvent *event)
 
 void CBackendVnc::InputMethodEvent(QInputMethodEvent *event)
 {
+    qDebug(logInputMethod) << Q_FUNC_INFO << event;
+    if (m_pPara && m_pPara->GetOnlyView()) return;
+    if (!writer()) return;
+
+    QString szText = event->commitString();
+    if (szText.isEmpty())
+        return;
+
+    qDebug(logInputMethod) << Q_FUNC_INFO << szText;
+
+    QVector<uint32_t> ucs4 = szText.toUcs4();
+    foreach (uint32_t cp, ucs4) {
+        quint32 keysym = static_cast<quint32>(cp); // 直接用 Unicode code point 作为 keysym
+        try {
+            writer()->writeKeyEvent(keysym, 0, true);
+            writer()->writeKeyEvent(keysym, 0, false);
+        } catch (rdr::Exception &e) {
+            emit sigError(-1, e.str());
+        }
+    }
 }
 
 QString CBackendVnc::ConnectInformation()
