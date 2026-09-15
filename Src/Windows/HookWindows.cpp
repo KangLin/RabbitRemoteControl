@@ -32,8 +32,8 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
         KBDLLHOOKSTRUCT* hook = reinterpret_cast<KBDLLHOOKSTRUCT*>(lparam);
         /*
         qDebug(log) << "process vkCode:" << hook->vkCode
-                                  << "scanCode:" << hook->scanCode
-                                  << "flags:" << hook->flags;//*/
+                    << "scanCode:" << hook->scanCode
+                    << "flags:" << hook->flags;//*/
         int key = 0;
         Qt::KeyboardModifiers keyMdf = Qt::NoModifier;
         // See: [virtual-key-codes](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/virtual-key-codes)
@@ -99,10 +99,10 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
                 if(wparam == WM_KEYUP || wparam == WM_SYSKEYUP)
                     emit self->sigKeyReleaseEvent(new QKeyEvent(QKeyEvent::KeyRelease, key, Qt::NoModifier));
                     //QApplication::postEvent(self, new QKeyEvent(QKeyEvent::KeyRelease, key, Qt::NoModifier));
-                //*
+                /*
                 qDebug(log) << "process vkCode:" << hook->vkCode
-                                          << "scanCode:" << hook->scanCode
-                                          << "flags:" << hook->flags;//*/
+                            << "scanCode:" << hook->scanCode
+                            << "flags:" << hook->flags;//*/
                 /* the hook procedure did not process the message,
                  * it is highly recommended that you call CallNextHookEx
                  * and return the value it returns; otherwise,
@@ -338,4 +338,3 @@ bool CHookWindows::EnableTaskManager()
 
     return false;
 }
-
