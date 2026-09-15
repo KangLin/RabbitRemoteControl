@@ -11,7 +11,11 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_pGlobalParameter(new CParameterGlobal(this, "Global"))
     , m_bCaptureAllKeyboard(true)
     , m_bDesktopShortcutsScript(false)
+#if defined(Q_OS_ANDROID)
+    , m_bEnableLocalInputMethod(true)
+#else
     , m_bEnableLocalInputMethod(false)
+#endif
     , m_bPromptAdministratorPrivilege(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege())
     , m_bEnableSystemUserToUser(true)
     , m_bSavePassword(false)

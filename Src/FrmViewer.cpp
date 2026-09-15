@@ -73,7 +73,7 @@ QRectF CFrmViewer::GetAspectRationRect()
     qreal newH = dstRect.height();
     qreal newT = 0;
     qreal newL = 0;
-    
+
     qreal rateW = static_cast<qreal>(rect().width())
             / static_cast<qreal>(m_DesktopSize.width());
     qreal rateH = static_cast<qreal>(rect().height())
@@ -97,7 +97,7 @@ QRectF CFrmViewer::GetAspectRationRect()
 void CFrmViewer::paintDesktop()
 {
     QRectF dstRect = rect();
-    
+
     switch (m_AdaptWindows) {
     case ADAPT_WINDOWS::Disable:
     case ADAPT_WINDOWS::Auto:
