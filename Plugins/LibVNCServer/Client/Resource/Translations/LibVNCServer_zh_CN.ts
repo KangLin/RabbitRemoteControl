@@ -12,8 +12,8 @@
         <location filename="../../BackendLibVNCServer.cpp" line="84"/>
         <location filename="../../BackendLibVNCServer.cpp" line="164"/>
         <location filename="../../BackendLibVNCServer.cpp" line="179"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="967"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="1003"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="983"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="1019"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -28,22 +28,22 @@
         <translation>失败：连接到 %1:%2</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="951"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="967"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation>将连接到本地服务器：%1:%2</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="960"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="976"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation>失败：连接到  %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="991"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="1007"/>
         <source>Will connect to local socket server: </source>
         <translation>将连接到本地 socket 服务器：</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="998"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="1014"/>
         <source>Fail: Connect to %1:%2 with %3</source>
         <translation>失败：通过 %3 连接到  %1:%2</translation>
     </message>
@@ -93,27 +93,27 @@
         <translation>允许剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="127"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="129"/>
         <source>Show server name</source>
         <translation>显示服务名</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="148"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="159"/>
         <source>Compress</source>
         <translation>压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="173"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="184"/>
         <source>0=fast, 9=best</source>
         <translation>0=最快，9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="184"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="195"/>
         <source>Enable JPEG compress</source>
         <translation>允许 JPEG 压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="198"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="209"/>
         <source>0=Worst, 9=best</source>
         <translation>0=最差,9=最好</translation>
     </message>
@@ -123,12 +123,17 @@
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="154"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="136"/>
+        <source>Local input method(Takes effect after reboot)</source>
+        <translation>本地输入法（重启生效）</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="165"/>
         <source>Compress level:</source>
         <translation>压缩级别：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.cpp" line="31"/>
+        <location filename="../../DlgSettingsLibVnc.cpp" line="32"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>

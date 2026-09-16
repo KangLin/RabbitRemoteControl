@@ -397,7 +397,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="609"/>
+        <location filename="../../FrmViewer.cpp" line="617"/>
         <source>Failed to update keyboard LED state</source>
         <translation type="unfinished"></translation>
     </message>
@@ -474,7 +474,7 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Manager.cpp" line="379"/>
-        <location filename="../../Manager.cpp" line="709"/>
+        <location filename="../../Manager.cpp" line="714"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -504,7 +504,7 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="714"/>
+        <location filename="../../Manager.cpp" line="719"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>

@@ -139,7 +139,7 @@
          <item>
           <widget class="QCheckBox" name="cbInputMethod">
            <property name="text">
-            <string>Local input method</string>
+            <string>Local input method(Takes effect after reboot)</string>
            </property>
           </widget>
          </item>

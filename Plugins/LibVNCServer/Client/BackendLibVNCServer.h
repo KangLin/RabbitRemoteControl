@@ -21,7 +21,7 @@ class CBackendLibVNCServer : public CBackendDesktop
 public:
     explicit CBackendLibVNCServer(COperateLibVNCServer* pOperate);
     virtual ~CBackendLibVNCServer() override;
-    
+
     static rfbBool cb_resize(rfbClient* client);
     static void cb_update (rfbClient *client, int x, int y, int w, int h);
     static void cb_kbd_leds(rfbClient* client, int value, int pad);
@@ -32,7 +32,7 @@ public:
     static char* cb_get_password(rfbClient* client);
     static rfbBool cb_cursor_pos(rfbClient* client, int x, int y);
     static void cb_got_cursor_shape(rfbClient* client, int xhot, int yhot, int width, int height, int bytesPerPixel);
-    
+
 protected:
     virtual void slotClipBoardChanged() override;
     virtual void mousePressEvent(QMouseEvent* event) override;
@@ -66,7 +66,7 @@ private:
     QTcpSocket m_tcpSocket;
     QTcpServer m_Server;
     QTcpSocket* m_pConnect;
-    
+
     Channel::CEvent m_Event;
 #ifdef HAVE_LIBSSH
     CSSHTunnelThread* m_pThread;

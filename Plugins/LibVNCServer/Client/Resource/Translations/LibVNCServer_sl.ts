@@ -4,46 +4,46 @@
 <context>
     <name>CBackendLibVNCServer</name>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="82"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="83"/>
         <source>Protocol version error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="83"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="163"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="178"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="960"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="996"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="84"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="164"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="179"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="983"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="1019"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="161"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="162"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="175"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="176"/>
         <source>Fail: Connect to %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="944"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="967"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="953"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="976"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="984"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="1007"/>
         <source>Will connect to local socket server: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="991"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="1014"/>
         <source>Fail: Connect to %1:%2 with %3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -93,37 +93,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="127"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="129"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="148"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="136"/>
+        <source>Local input method(Takes effect after reboot)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="159"/>
         <source>Compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="154"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="165"/>
         <source>Compress level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="173"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="184"/>
         <source>0=fast, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="184"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="195"/>
         <source>Enable JPEG compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="198"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="209"/>
         <source>0=Worst, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.cpp" line="31"/>
+        <location filename="../../DlgSettingsLibVnc.cpp" line="32"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>

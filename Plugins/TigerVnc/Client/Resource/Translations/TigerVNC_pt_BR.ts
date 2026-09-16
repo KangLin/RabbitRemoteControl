@@ -4,26 +4,26 @@
 <context>
     <name>CBackendVnc</name>
     <message>
-        <location filename="../../BackendVnc.cpp" line="320"/>
+        <location filename="../../BackendVnc.cpp" line="319"/>
         <source>The proxy server is empty, please input it</source>
         <translation>O servidor proxy está vazio, insira-o</translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="322"/>
-        <location filename="../../BackendVnc.cpp" line="354"/>
-        <location filename="../../BackendVnc.cpp" line="396"/>
+        <location filename="../../BackendVnc.cpp" line="321"/>
+        <location filename="../../BackendVnc.cpp" line="353"/>
+        <location filename="../../BackendVnc.cpp" line="395"/>
         <location filename="../../BackendVnc.cpp" line="554"/>
         <location filename="../../BackendVnc.cpp" line="569"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="352"/>
+        <location filename="../../BackendVnc.cpp" line="351"/>
         <source>The server is empty, please input it</source>
         <translation>O servidor está vazio, insira-o</translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="387"/>
+        <location filename="../../BackendVnc.cpp" line="386"/>
         <source>Failed to open SSH tunnel:</source>
         <translation>Falha ao abrir o túnel SSH:</translation>
     </message>
@@ -62,181 +62,186 @@
         <translation>Servidor</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="88"/>
+        <location filename="../../DlgSettingsVnc.ui" line="36"/>
         <source>Name:</source>
         <translation>Nome:</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="95"/>
-        <location filename="../../DlgSettingsVnc.ui" line="98"/>
-        <location filename="../../DlgSettingsVnc.ui" line="101"/>
+        <location filename="../../DlgSettingsVnc.ui" line="43"/>
+        <location filename="../../DlgSettingsVnc.ui" line="46"/>
+        <location filename="../../DlgSettingsVnc.ui" line="49"/>
         <source>Connecter name</source>
         <translation>Nome do servidor</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="112"/>
+        <location filename="../../DlgSettingsVnc.ui" line="63"/>
         <source>Shared</source>
         <translation>Compartilhado</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="119"/>
+        <location filename="../../DlgSettingsVnc.ui" line="70"/>
         <source>Only view</source>
         <translation>Apenas visualizar</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="130"/>
+        <location filename="../../DlgSettingsVnc.ui" line="81"/>
         <source>Show local cursor</source>
         <translation>Exibir cursor local</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="77"/>
+        <location filename="../../DlgSettingsVnc.ui" line="124"/>
         <source>Enable clipboard</source>
         <translation>Habilitar Ctrl+C/V</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="52"/>
+        <location filename="../../DlgSettingsVnc.ui" line="99"/>
         <source>Support windows resize</source>
         <translation>Redimens. de janelas</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="59"/>
+        <location filename="../../DlgSettingsVnc.ui" line="106"/>
         <source>Real time update</source>
         <translation>Atual. em tempo real</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="70"/>
+        <location filename="../../DlgSettingsVnc.ui" line="117"/>
         <source>Show server name</source>
         <translation>Exibir nome do servidor</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="146"/>
+        <location filename="../../DlgSettingsVnc.ui" line="151"/>
         <source>Ice:</source>
         <translation>ICE:</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="160"/>
+        <location filename="../../DlgSettingsVnc.ui" line="165"/>
         <source>Peer user:</source>
         <translation>Usuário peer:</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="189"/>
+        <location filename="../../DlgSettingsVnc.ui" line="276"/>
         <source>Color level</source>
         <translation>Nível de cor</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="195"/>
+        <location filename="../../DlgSettingsVnc.ui" line="282"/>
         <source>Full</source>
         <translation>Completo</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="202"/>
+        <location filename="../../DlgSettingsVnc.ui" line="289"/>
         <source>Low</source>
         <translation>Baixo</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="216"/>
+        <location filename="../../DlgSettingsVnc.ui" line="303"/>
         <source>Very low</source>
         <translation>Muito baixo</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="238"/>
+        <location filename="../../DlgSettingsVnc.ui" line="353"/>
         <source>0=fast, 9=best</source>
         <translation>0=rápido,
 9=melhor</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="249"/>
+        <location filename="../../DlgSettingsVnc.ui" line="370"/>
         <source>Enable JPEG compress</source>
         <translation>Ativar compressão JPEG</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="263"/>
+        <location filename="../../DlgSettingsVnc.ui" line="390"/>
         <source>0=Worst, 9=best</source>
         <translation>0=pior,
 9=melhor</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="272"/>
+        <location filename="../../DlgSettingsVnc.ui" line="209"/>
         <source>preferred Encoding</source>
         <translation>Codificação preferencial</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="313"/>
+        <location filename="../../DlgSettingsVnc.ui" line="250"/>
         <source>Tight</source>
         <translation>Tight</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="306"/>
+        <location filename="../../DlgSettingsVnc.ui" line="243"/>
         <source>Hextile</source>
         <translation>Hextile</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="320"/>
+        <location filename="../../DlgSettingsVnc.ui" line="257"/>
         <source>Raw</source>
         <translation>Raw</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="285"/>
+        <location filename="../../DlgSettingsVnc.ui" line="222"/>
         <source>ZRLE</source>
         <translation>ZRLE</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="137"/>
+        <location filename="../../DlgSettingsVnc.ui" line="88"/>
         <source>Cursor position</source>
         <translation>Posição do cursor</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="175"/>
+        <location filename="../../DlgSettingsVnc.ui" line="135"/>
         <source>Led state</source>
         <translation>LED do teclado (Caps, Num e Scroll lock)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="183"/>
+        <location filename="../../DlgSettingsVnc.ui" line="142"/>
+        <source>Local input method(Takes effect after reboot)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="194"/>
         <source>Compression</source>
         <translation>Compressão</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="209"/>
+        <location filename="../../DlgSettingsVnc.ui" line="296"/>
         <source>Medium</source>
         <translation>Médio</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="278"/>
+        <location filename="../../DlgSettingsVnc.ui" line="215"/>
         <source>CoRRE</source>
         <translation>CoRRE</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="292"/>
+        <location filename="../../DlgSettingsVnc.ui" line="229"/>
         <source>RRE</source>
         <translation>RRE</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="299"/>
+        <location filename="../../DlgSettingsVnc.ui" line="236"/>
         <source>copyRect</source>
         <translation>copyRect</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="327"/>
+        <location filename="../../DlgSettingsVnc.ui" line="264"/>
         <source>H.264</source>
         <translation>H.264</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="337"/>
+        <location filename="../../DlgSettingsVnc.ui" line="328"/>
         <source>Compress level:</source>
         <translation>Nível de compressão:</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="344"/>
+        <location filename="../../DlgSettingsVnc.ui" line="200"/>
         <source>Auto select</source>
         <translation>Auto selecionar</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="370"/>
+        <location filename="../../DlgSettingsVnc.ui" line="431"/>
         <source>Ok(&amp;O)</source>
         <translation>OK(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="380"/>
+        <location filename="../../DlgSettingsVnc.ui" line="441"/>
         <source>Cancel(&amp;C)</source>
         <translation>Cancelar(&amp;C)</translation>
     </message>

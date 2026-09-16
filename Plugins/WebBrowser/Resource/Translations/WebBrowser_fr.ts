@@ -4,82 +4,82 @@
 <context>
     <name>CAddressCompleter</name>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="65"/>
+        <location filename="../../AddressCompleter.cpp" line="66"/>
         <source>Enter &apos;@&apos; show commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="66"/>
+        <location filename="../../AddressCompleter.cpp" line="67"/>
         <source>Enter a website URL or search content ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="68"/>
+        <location filename="../../AddressCompleter.cpp" line="69"/>
         <source>Enter ↲ key: Apply current url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="70"/>
+        <location filename="../../AddressCompleter.cpp" line="71"/>
         <source>Enter ↲ key: Apply current item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="71"/>
+        <location filename="../../AddressCompleter.cpp" line="72"/>
         <source>Tab ⇆ key: Apply current item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="72"/>
+        <location filename="../../AddressCompleter.cpp" line="73"/>
         <source>Esc Key: Exit address completer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="73"/>
+        <location filename="../../AddressCompleter.cpp" line="74"/>
         <source>Space Key: Exit address completer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="74"/>
+        <location filename="../../AddressCompleter.cpp" line="75"/>
         <source>↑ (Upper arrow) key: Select previous item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="75"/>
+        <location filename="../../AddressCompleter.cpp" line="76"/>
         <source>↓ (Down arrow) key: Select next item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="273"/>
+        <location filename="../../AddressCompleter.cpp" line="286"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="274"/>
+        <location filename="../../AddressCompleter.cpp" line="287"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="275"/>
+        <location filename="../../AddressCompleter.cpp" line="288"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="276"/>
+        <location filename="../../AddressCompleter.cpp" line="289"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="377"/>
+        <location filename="../../AddressCompleter.cpp" line="390"/>
         <source>Search &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="386"/>
+        <location filename="../../AddressCompleter.cpp" line="399"/>
         <source>Use default search engine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="411"/>
+        <location filename="../../AddressCompleter.cpp" line="424"/>
         <source>Search in %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -109,24 +109,6 @@
     <message>
         <location filename="../../Bookmark/BookmarkDatabase.cpp" line="256"/>
         <source>The file format is error. Json without &quot;browser_bookmark&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CDlgScreenCapture</name>
-    <message>
-        <location filename="../../DlgScreenCapture.ui" line="14"/>
-        <source>Capture</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgScreenCapture.ui" line="22"/>
-        <source>Screens:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgScreenCapture.ui" line="43"/>
-        <source>Windows:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -237,210 +219,6 @@
     <message>
         <location filename="../../DlgSettings.cpp" line="115"/>
         <source>Download folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CDlgWebAuth</name>
-    <message>
-        <location filename="../../DlgWebAuth.ui" line="14"/>
-        <source>Authenticate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.ui" line="42"/>
-        <source>Heading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.ui" line="58"/>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.ui" line="95"/>
-        <source>PIN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.ui" line="118"/>
-        <source>Confirm PIN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.ui" line="141"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="97"/>
-        <source>Choose a Passkey</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="98"/>
-        <source>Which passkey do you want to use for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="99"/>
-        <source>? </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="115"/>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="124"/>
-        <source>Use your security key with</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="127"/>
-        <source>Touch your security key again to complete the request.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="140"/>
-        <source>Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="149"/>
-        <source>PIN Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="150"/>
-        <source>Enter the PIN for your security key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="155"/>
-        <source>New PIN Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="156"/>
-        <source>Set new PIN for your security key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="158"/>
-        <source>Change PIN Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="159"/>
-        <source>Change PIN for your security key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="170"/>
-        <source>Internal User Verification Locked </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="173"/>
-        <source>Wrong PIN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="176"/>
-        <source>Too Short</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="179"/>
-        <source>Invalid Characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="182"/>
-        <source>Same as current PIN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="186"/>
-        <source> </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="187"/>
-        <source> attempts remaining</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="217"/>
-        <source>Something went wrong</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="221"/>
-        <source>Request Timeout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="224"/>
-        <source>Key not registered</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="227"/>
-        <source>You already registered this device.Try again with device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="233"/>
-        <source>The security key is locked because the wrong PIN was entered too many times.To unlock it, remove and reinsert it.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="239"/>
-        <source>The security key is locked because the wrong PIN was entered too many times. You&apos;ll need to reset the security key.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="244"/>
-        <source>Authenticator removed during verification. Please reinsert and try again</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="247"/>
-        <source>Authenticator doesn&apos;t have resident key support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="250"/>
-        <source>Authenticator missing user verification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="253"/>
-        <location filename="../../DlgWebAuth.cpp" line="256"/>
-        <source>Authenticator missing Large Blob support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="259"/>
-        <source>Storage Full</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="262"/>
-        <source>User consent denied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="265"/>
-        <source>User Cancelled Request</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgWebAuth.cpp" line="278"/>
-        <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -822,474 +600,6 @@
     </message>
 </context>
 <context>
-    <name>CFrmExtensionManager</name>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.ui" line="14"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="50"/>
-        <source>Chrome Extension Manager</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.ui" line="20"/>
-        <source>toolBar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="69"/>
-        <source>Install Extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="72"/>
-        <source>Load Extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="75"/>
-        <source>Uninstall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="77"/>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="79"/>
-        <source>Copy popup url to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="81"/>
-        <source>Copy path to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="83"/>
-        <source>Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="85"/>
-        <source>Open Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="93"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="93"/>
-        <source>Enabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="93"/>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="94"/>
-        <source>Popup url</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="94"/>
-        <source>ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="94"/>
-        <source>Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="307"/>
-        <source>Chrome Extension (*.crx);;All Files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="309"/>
-        <source>Install Chrome Extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="319"/>
-        <source>Load Chrome Extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="331"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="332"/>
-        <source>Please select an extension to uninstall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="342"/>
-        <source>Confirm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="343"/>
-        <source>Do you want to uninstall &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="370"/>
-        <source>Extension Details:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="371"/>
-        <source>Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="372"/>
-        <source>Description:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="373"/>
-        <source>Enable:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="373"/>
-        <source>TRUE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="373"/>
-        <source>FALSE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="374"/>
-        <source>ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="375"/>
-        <source>Popup url:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="376"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="454"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="460"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="474"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="484"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="490"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="504"/>
-        <source>Path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="378"/>
-        <source>Extension Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="385"/>
-        <source>Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="386"/>
-        <source>Developer tools for extensions not yet implemented</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="452"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="467"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="482"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="497"/>
-        <source>Successful</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="453"/>
-        <source>Successfully installed extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="458"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="472"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="488"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="502"/>
-        <source>Failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="459"/>
-        <source>Failed to install extension.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="461"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="475"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="491"/>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="505"/>
-        <source>Error:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="468"/>
-        <source>Successfully uninstalled extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="473"/>
-        <source>Failed to uninstall extension.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="483"/>
-        <source>Successfully loaded extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="489"/>
-        <source>Failed to load extension.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="498"/>
-        <source>Successfully unloaded extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionManager.cpp" line="503"/>
-        <source>Failed to unload extension.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CFrmExtensionStore</name>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="14"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="51"/>
-        <source>Chrome Extension Store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="22"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="101"/>
-        <source>Search extensions...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="29"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="104"/>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="36"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="105"/>
-        <source>Popular</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="43"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="106"/>
-        <source>Recommended</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="76"/>
-        <source>Extension Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="86"/>
-        <source>Select an extension to view details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="122"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="107"/>
-        <source>Download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="129"/>
-        <source>Install from File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="136"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="109"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="143"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="110"/>
-        <source>Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="150"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="111"/>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.ui" line="157"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="112"/>
-        <source>Clear Cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
-        <source>Icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
-        <source>Version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
-        <source>Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
-        <source>Downloads</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
-        <source>ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
-        <source>Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="108"/>
-        <source>Install</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="115"/>
-        <source>Extension Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
-        <source>Please enter a search keyword</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
-        <source>Please select an extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="398"/>
-        <source>Confirm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="399"/>
-        <source>Do you want to download &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="416"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="417"/>
-        <source>Extension manager not set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="422"/>
-        <source>Chrome Extension (*.crx);;Extension Folder;;All Files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="424"/>
-        <source>Select Downloaded Extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
-        <source>Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
-        <source>All downloads cancelled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
-        <source>Success</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
-        <source>Cache cleared</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="525"/>
-        <source>Network Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="526"/>
-        <source>Failed to connect to extension store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="581"/>
-        <source>Not Installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="586"/>
-        <source>Installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="637"/>
-        <source>Install Now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Extension/FrmExtensionStore.cpp" line="638"/>
-        <source>Do you want to install this extension now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CFrmHistory</name>
     <message>
         <location filename="../../History/FrmHistory.ui" line="14"/>
@@ -1527,250 +837,250 @@
 <context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="101"/>
+        <location filename="../../FrmWebBrowser.cpp" line="102"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="111"/>
+        <location filename="../../FrmWebBrowser.cpp" line="112"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="121"/>
+        <location filename="../../FrmWebBrowser.cpp" line="122"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="135"/>
+        <location filename="../../FrmWebBrowser.cpp" line="136"/>
         <source>go</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="194"/>
+        <location filename="../../FrmWebBrowser.cpp" line="195"/>
         <source>Add tab page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="206"/>
+        <location filename="../../FrmWebBrowser.cpp" line="207"/>
         <source>Download Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="267"/>
+        <location filename="../../FrmWebBrowser.cpp" line="268"/>
         <source>Operate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="312"/>
-        <location filename="../../FrmWebBrowser.cpp" line="321"/>
+        <location filename="../../FrmWebBrowser.cpp" line="313"/>
+        <location filename="../../FrmWebBrowser.cpp" line="322"/>
         <source>New page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="617"/>
+        <location filename="../../FrmWebBrowser.cpp" line="618"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="788"/>
+        <location filename="../../FrmWebBrowser.cpp" line="789"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="629"/>
+        <location filename="../../FrmWebBrowser.cpp" line="630"/>
         <source>Add incognito tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="192"/>
+        <location filename="../../FrmWebBrowser.cpp" line="193"/>
         <source>Add bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="639"/>
+        <location filename="../../FrmWebBrowser.cpp" line="640"/>
         <source>Add window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="646"/>
+        <location filename="../../FrmWebBrowser.cpp" line="647"/>
         <source>Add Incognito Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="655"/>
+        <location filename="../../FrmWebBrowser.cpp" line="656"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="668"/>
+        <location filename="../../FrmWebBrowser.cpp" line="669"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="669"/>
+        <location filename="../../FrmWebBrowser.cpp" line="670"/>
         <source>Find:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="677"/>
-        <location filename="../../FrmWebBrowser.cpp" line="685"/>
+        <location filename="../../FrmWebBrowser.cpp" line="678"/>
+        <location filename="../../FrmWebBrowser.cpp" line="686"/>
         <source>&quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="679"/>
+        <location filename="../../FrmWebBrowser.cpp" line="680"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="695"/>
+        <location filename="../../FrmWebBrowser.cpp" line="696"/>
         <source>Find &amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="706"/>
+        <location filename="../../FrmWebBrowser.cpp" line="707"/>
         <source>Find &amp;Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="718"/>
-        <location filename="../../FrmWebBrowser.cpp" line="720"/>
+        <location filename="../../FrmWebBrowser.cpp" line="719"/>
         <location filename="../../FrmWebBrowser.cpp" line="721"/>
+        <location filename="../../FrmWebBrowser.cpp" line="722"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="729"/>
-        <location filename="../../FrmWebBrowser.cpp" line="731"/>
+        <location filename="../../FrmWebBrowser.cpp" line="730"/>
         <location filename="../../FrmWebBrowser.cpp" line="732"/>
+        <location filename="../../FrmWebBrowser.cpp" line="733"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="742"/>
-        <location filename="../../FrmWebBrowser.cpp" line="744"/>
+        <location filename="../../FrmWebBrowser.cpp" line="743"/>
         <location filename="../../FrmWebBrowser.cpp" line="745"/>
+        <location filename="../../FrmWebBrowser.cpp" line="746"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="758"/>
+        <location filename="../../FrmWebBrowser.cpp" line="759"/>
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="763"/>
+        <location filename="../../FrmWebBrowser.cpp" line="764"/>
         <source>Print to PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="783"/>
+        <location filename="../../FrmWebBrowser.cpp" line="784"/>
         <source>Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="787"/>
+        <location filename="../../FrmWebBrowser.cpp" line="788"/>
         <source>Manage Bookmark </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="792"/>
-        <location filename="../../FrmWebBrowser.cpp" line="794"/>
+        <location filename="../../FrmWebBrowser.cpp" line="793"/>
+        <location filename="../../FrmWebBrowser.cpp" line="795"/>
         <source>Capture page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="796"/>
-        <location filename="../../FrmWebBrowser.cpp" line="798"/>
+        <location filename="../../FrmWebBrowser.cpp" line="797"/>
+        <location filename="../../FrmWebBrowser.cpp" line="799"/>
         <source>Capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="799"/>
-        <location filename="../../FrmWebBrowser.cpp" line="802"/>
-        <location filename="../../FrmWebBrowser.cpp" line="1239"/>
+        <location filename="../../FrmWebBrowser.cpp" line="800"/>
+        <location filename="../../FrmWebBrowser.cpp" line="803"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1240"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="880"/>
+        <location filename="../../FrmWebBrowser.cpp" line="881"/>
         <source>Web browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1094"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1095"/>
         <source>Print to PDF finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1134"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1135"/>
         <source>Fail: Save capture page to the file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1139"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1140"/>
         <source>Save capture page to the file：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1176"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1177"/>
         <source>Fail: capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1180"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1181"/>
         <source>Capture full page to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1206"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1207"/>
         <source>Start capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1212"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1213"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1225"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1226"/>
         <source>Fail record web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1237"/>
         <source>Start record web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1246"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1247"/>
         <source>Record web page is stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="769"/>
-        <location filename="../../FrmWebBrowser.cpp" line="773"/>
+        <location filename="../../FrmWebBrowser.cpp" line="770"/>
+        <location filename="../../FrmWebBrowser.cpp" line="774"/>
         <source>Inspector</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1069"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1070"/>
         <source>Print finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1070"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1071"/>
         <source>Successfully printed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1095"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1096"/>
         <source>Successfully printed to PDF.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1096"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1097"/>
         <source>PDF file: </source>
         <translation type="unfinished"></translation>
     </message>
