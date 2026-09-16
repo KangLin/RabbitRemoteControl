@@ -56,7 +56,13 @@ It includes remote desktop, remote control, file transfer (FTP, SFTP), terminal,
 
 ### Video
 
+User maunal:
+
 https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25
+
+|Termux|Android|
+|:----:|:-----:|
+|https://github.com/user-attachments/assets/dbb40e00-f5a7-45e5-966b-49f171ab56f8|https://github.com/user-attachments/assets/3d087297-7abf-4ced-9f70-5bd6e7a9278c|
 
 ### Project repository position
 
@@ -75,7 +81,7 @@ https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25
 - [x] Windows 7 SP1 and later
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
-- [x] [termux](https://github.com/termux)
+- [x] [Termux](https://github.com/termux)
 - [x] macOS
 
 See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html),
@@ -88,12 +94,12 @@ If you want to donate the development devices to me, please contact: (email: kl2
 
 - Remote desktop
 
-|        |Windows|Unix/Linux|Android|macOS|
-|--------|:-----:|:--------:|:-----:|:---:|
-|vnc     |✓      |✓         |✓      |✓    |
-|RDP     |✓      |✓         |✓      |✓    |
-|Spice   |       |          |       |     |
-|Scrcpy  |       |          |       |     |
+|        |Windows|Unix/Linux|Android|Termux|macOS |
+|--------|:-----:|:--------:|:-----:|:----:|:----:|
+|vnc     |✓      |✓         |✓      |✓     |✓     |
+|RDP     |✓      |✓         |✓      |✓     |✓     |
+|Spice   |       |          |       |      |      |
+|Scrcpy  |       |          |       |      |      |
 
 - Terminal
 

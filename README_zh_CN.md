@@ -55,7 +55,13 @@
 
 ### 视频
 
+用户手册：
+
 https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
+
+|Termux|Android|
+|:----:|:-----:|
+|https://github.com/user-attachments/assets/dbb40e00-f5a7-45e5-966b-49f171ab56f8|https://github.com/user-attachments/assets/3d087297-7abf-4ced-9f70-5bd6e7a9278c|
 
 ### 项目位置
 
@@ -74,7 +80,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 - [x] Windows 7 SP1 及以后
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
-- [x] [termux](https://github.com/termux)
+- [x] [Termux](https://github.com/termux)
 - [x] macOS
 
 详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、
@@ -87,7 +93,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 - 远程桌面
 
-|        |Windows|Unix/Linux|Android|termux|macOS|
+|        |Windows|Unix/Linux|Android|Termux|macOS|
 |--------|-------|----------|-------|------|-----|
 |vnc     |✓      |✓         |✓      |✓     |✓    |
 |RDP     |✓      |✓         |✓      |✓     |✓    |
