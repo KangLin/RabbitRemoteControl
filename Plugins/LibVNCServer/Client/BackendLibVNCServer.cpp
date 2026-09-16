@@ -394,7 +394,7 @@ void CBackendLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int
 {
     if(0 == w || 0 == h)
         return;
-    //qDebug(LibVNCServer, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
+    //qDebug(log, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
     CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     QRect rect(x, y, w, h);
     QImage img = pThis->m_Image.copy(rect);
@@ -403,7 +403,7 @@ void CBackendLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int
 
 void CBackendLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)
 {
-    //qDebug(LibVNCServer, "CConnectLibVnc::cb_got_selection:%s", text);
+    //qDebug(log, "CConnectLibVnc::cb_got_selection:%s", text);
     CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(!pThis->m_pParameter->GetClipboard()) return;
     QClipboard* pClipboard = QApplication::clipboard();
@@ -498,7 +498,7 @@ int CBackendLibVNCServer::OnSize()
 
 rfbBool CBackendLibVNCServer::cb_cursor_pos(rfbClient *client, int x, int y)
 {
-    //qDebug(LibVNCServer, "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
+    //qDebug(log, "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
     rfbBool bRet = true;
     
     return bRet;
@@ -510,7 +510,7 @@ void CBackendLibVNCServer::cb_got_cursor_shape(rfbClient *client,
                                          int bytesPerPixel)
 {
     /*
-    qDebug(LibVNCServer, "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
+    qDebug(log, "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
                     xhot, yhot, width, height, bytesPerPixel);//*/
     if(!client->rcSource)
     {
@@ -937,6 +937,22 @@ void CBackendLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 
 void CBackendLibVNCServer::InputMethodEvent(QInputMethodEvent *event)
 {
+    qDebug(logInputMethod) << Q_FUNC_INFO << event;
+    if(!m_pClient) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
+
+    QString szText = event->commitString();
+    if (szText.isEmpty())
+        return;
+
+    qDebug(logInputMethod) << Q_FUNC_INFO << szText;
+
+    QVector<uint32_t> ucs4 = szText.toUcs4();
+    foreach (uint32_t cp, ucs4) {
+        quint32 keysym = static_cast<quint32>(cp); // 直接用 Unicode code point 作为 keysym
+        SendKeyEvent(m_pClient, keysym, TRUE);
+        SendKeyEvent(m_pClient, keysym, FALSE);
+    }
 }
 
 //! [connect local socket server]

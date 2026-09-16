@@ -25,7 +25,8 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CParameterLibVNCServer *pPara, QWidget *p
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
     ui->cbLocalCursor->setChecked(m_pPara->GetLocalCursor());
     ui->cbClipboard->setChecked(m_pPara->GetClipboard());
-    
+    ui->cbInputMethod->setChecked(m_pPara->GetEnableLocalInputMethod());
+
     m_pProxyUI = new CParameterProxyUI(ui->tabWidget);
     m_pProxyUI->SetParameter(&m_pPara->m_Proxy);
     ui->tabWidget->insertTab(1, m_pProxyUI, tr("Proxy"));
@@ -100,6 +101,7 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
+    m_pPara->SetEnableLocalInputMethod(ui->cbInputMethod->isChecked());
     
     nRet = m_pProxyUI->Accept();
     if(nRet)

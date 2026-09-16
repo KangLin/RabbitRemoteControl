@@ -18,7 +18,6 @@ COperateFreeRDP::COperateFreeRDP(CPlugin *plugin)
     //m_ParameterFreeRdp.m_pSettings = freerdp_settings_new(0);
 }
 
-
 COperateFreeRDP::~COperateFreeRDP()
 {
     qDebug(log) << Q_FUNC_INFO;

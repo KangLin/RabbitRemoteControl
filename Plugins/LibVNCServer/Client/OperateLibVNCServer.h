@@ -13,7 +13,7 @@ public:
     virtual ~COperateLibVNCServer() override;
 
 public:
-    virtual const qint16 Version() const override;
+    [[nodiscard]] virtual const qint16 Version() const override;
 
 protected:
     [[nodiscard]] virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;

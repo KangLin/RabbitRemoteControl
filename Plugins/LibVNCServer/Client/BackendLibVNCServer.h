@@ -43,6 +43,7 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void InputMethodEvent(QInputMethodEvent *event) override;
 
+protected Q_SLOTS:
     void slotConnectProxyServer(QString szHost, quint16 nPort);
 #if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
     void slotConnectProxyServer(QString szFile);
