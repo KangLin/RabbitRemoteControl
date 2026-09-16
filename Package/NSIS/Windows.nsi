@@ -143,17 +143,29 @@ FunctionEnd
 
 Function InstallNpcap
     ; NOTE: 如果要修改版本号，需要同时修改 .github\workflows\msvc.yml 中相应的版本
-    IfFileExists "$OUTDIR\bin\npcap-1.87.exe" ExecNpcap
+    ; 优先使用随包携带的安装程序
+    IfFileExists "$OUTDIR\bin\npcap-1.87.exe" 0 checkSilent
+    IfSilent SilentExecNpcap ExecNpcap
+
+checkSilent:
+    ; 静默模式下没有现成安装包：直接跳过，不下载、不弹窗
+    IfSilent ExitNpcap
+
     MessageBox MB_YESNO|MB_ICONQUESTION "$(LANG_DOWNLOAD_NPCAP)" IDYES Download IDNO ExitNpcap
     Download:
     NSISdl::download "https://npcap.com/dist/npcap-1.87.exe" "$OUTDIR\bin\npcap-1.87.exe"
     Pop $R0 ;Get the return value
       StrCmp $R0 "success" ExecNpcap
+        IfSilent ExitNpcap
         ExecShell "open" "https://npcap.com/#download"
         MessageBox MB_OK "Download npcap-1.87.exe failed: $R0. Please install npcap manually from https://npcap.com/#download"
         Goto ExitNpcap
 ExecNpcap:
     ExecShell "" '"$OUTDIR\bin\npcap-1.87.exe"' "/winpcap_mode=enforced /dot11_support=yes /loopback_support=no /admin_only=no" SW_SHOWMAXIMIZED
+    Goto ExitNpcap
+SilentExecNpcap:
+    ExecWait '"$OUTDIR\bin\npcap-1.87.exe" /S /winpcap_mode=enforced /dot11_support=yes /loopback_support=no /admin_only=no' $0
+    DetailPrint "npcap install returned $0"
 ExitNpcap:
 FunctionEnd
 
@@ -166,6 +178,9 @@ FunctionEnd
 Var UNINSTALL_PROG
 Var OLD_PATH
 Function .onInit
+  ; 静默模式：直接安装
+  IfSilent InstallProgram 0
+
   !insertmacro MUI_LANGDLL_DISPLAY
   ClearErrors
 
@@ -268,14 +283,18 @@ Function OpenReadme
 FunctionEnd
 
 Function un.onUninstSuccess
+  IfSilent unSilent 0
   ;HideWindow
   MessageBox MB_ICONINFORMATION|MB_OK "$(LANG_UNINSTALL_CONFIRM)"
+unSilent:
 FunctionEnd
 
 Function un.onInit
+  IfSilent unSilent 0
   !insertmacro MUI_UNGETLANGUAGE
   MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "$(LANG_REMOVE_COMPONENT)" IDYES +2
   Abort
+unSilent:
 FunctionEnd
 
 Section Uninstall
