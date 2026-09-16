@@ -937,6 +937,22 @@ void CBackendLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 
 void CBackendLibVNCServer::InputMethodEvent(QInputMethodEvent *event)
 {
+    qDebug(logInputMethod) << Q_FUNC_INFO << event;
+    if(!m_pClient) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
+
+    QString szText = event->commitString();
+    if (szText.isEmpty())
+        return;
+
+    qDebug(logInputMethod) << Q_FUNC_INFO << szText;
+
+    QVector<uint32_t> ucs4 = szText.toUcs4();
+    foreach (uint32_t cp, ucs4) {
+        quint32 keysym = static_cast<quint32>(cp); // 直接用 Unicode code point 作为 keysym
+        SendKeyEvent(m_pClient, keysym, TRUE);
+        SendKeyEvent(m_pClient, keysym, FALSE);
+    }
 }
 
 //! [connect local socket server]
