@@ -80,10 +80,13 @@ int CHook::UnRegisterKeyboard()
 int CHook::OnRegisterKeyboard()
 {
 #if defined(Q_OS_LINUX) && !defined(Q_OS_MACOS) && !defined(Q_OS_ANDROID)
-    if(!g_pNativeEventFilter)
-        g_pNativeEventFilter = new CNativeEventFilterUnix(m_pParameterPlugin);
-    if(g_pNativeEventFilter)
-        qApp->installNativeEventFilter(g_pNativeEventFilter);
+    if(-1 == QGuiApplication::platformName().indexOf(QRegularExpression("wayland.*"))) {
+        if(!g_pNativeEventFilter)
+            g_pNativeEventFilter = new CNativeEventFilterUnix(m_pParameterPlugin);
+        if(g_pNativeEventFilter)
+            qApp->installNativeEventFilter(g_pNativeEventFilter);
+    } else
+        qApp->installEventFilter(this);
 #else
     qApp->installEventFilter(this);
 #endif
@@ -122,32 +125,18 @@ int CHook::OnRestoreDesktopShortcuts()
 
 bool CHook::eventFilter(QObject *watched, QEvent *event)
 {
+    bool bRet = false;
     if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
     {
         if(m_pParameterPlugin && m_pParameterPlugin->GetCaptureAllKeyboard()) {
-            
-            bool bProcess = false;
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-            int key = keyEvent->key();
-            switch (key) {
-            case Qt::Key_Meta:
-            case Qt::Key_Alt:
-            case Qt::Key_Super_L:
-            case Qt::Key_Super_R:
-                bProcess = true;
-                break;
-            default:
-                bProcess = false;
-                break;
-            }
-            
+
             CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
             qDebug(log) << "eventFilter:" << keyEvent
-                        << watched << focus << bProcess;
+                        << watched << focus;
             if(focus) {
                 if(focus == watched) {
-                    if(bProcess)
-                        return false;
+                    return false;
                 }
 
                 /*
@@ -160,18 +149,19 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
                 {
                 case QKeyEvent::KeyPress:
                     emit focus->sigKeyPressEvent(keyEvent);
+                    bRet = true;
                     break;
                 case QKeyEvent::KeyRelease:
                     emit focus->sigKeyReleaseEvent(keyEvent);
+                    bRet = true;
                     break;
                 default:
                     break;
                 }
-                return true;
             }
         }
     }
-    return false;
+    return bRet;
 }
 
 bool CHook::RunCommand(const QString &program, const QStringList &args, int timeout)

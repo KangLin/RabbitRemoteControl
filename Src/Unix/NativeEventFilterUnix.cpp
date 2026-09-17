@@ -212,11 +212,13 @@ CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
 #else
     connection = QX11Info::connection();
 #endif
-    // 初始化 Key Symbols
-    m_pKeySymbols = xcb_key_symbols_alloc(connection);
-    if (!m_pKeySymbols) {
-        qCritical(log) << "Unable to allocate symbol table";
-        return;
+    if(connection) {
+        // 初始化 Key Symbols
+        m_pKeySymbols = xcb_key_symbols_alloc(connection);
+        if (!m_pKeySymbols) {
+            qCritical(log) << "Unable to allocate symbol table";
+            return;
+        }
     }
 }
 
