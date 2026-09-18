@@ -66,7 +66,7 @@ jobs:
             mingw-w64-x86_64-libpng ^
             mingw-w64-x86_64-yasm ^
             mingw-w64-x86_64-openh264 ^
-            mingw-w64-x86_64-qxmpp ^
+            mingw-w64-clang-x86_64-qxmpp ^
             mingw-w64-x86_64-freerdp ^
             git base-devel
 
@@ -127,7 +127,8 @@ jobs:
             cd RabbitVNC
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -G"MinGW Makefiles" -DCMAKE_MAKE_PROGRAM=make ^
+                  -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -146,7 +147,8 @@ jobs:
             cd tigervnc
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -G"MinGW Makefiles" -DCMAKE_MAKE_PROGRAM=make ^
+                  -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
                   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
@@ -167,7 +169,8 @@ jobs:
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -G"MinGW Makefiles" -DCMAKE_MAKE_PROGRAM=make ^
+                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -186,7 +189,8 @@ jobs:
             cd qt-solutions/qtservice
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -G"MinGW Makefiles" -DCMAKE_MAKE_PROGRAM=make ^
+                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
@@ -200,6 +204,7 @@ jobs:
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
           cmake .. -G"MinGW Makefiles" ^
+            -DCMAKE_MAKE_PROGRAM=make ^
             -DCMARK_SHARED=OFF ^
             -DCMARK_TESTS=OFF ^
             -DCMARK_STATIC=ON ^
