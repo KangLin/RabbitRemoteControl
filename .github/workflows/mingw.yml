@@ -19,7 +19,7 @@ jobs:
     defaults:
       run:
         shell: cmd
-        
+
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
@@ -33,6 +33,9 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}\.cache\install
       RabbitRemoteControl_VERSION: v0.1.0-dev
       artifact_name: build_mingw
+      MSYSTEM: MINGW64
+      MSYSTEM_CHOST: x86_64-w64-mingw32
+      MSYSTEM_PREFIX: C:\msys64\mingw64
 
     # Map the job outputs to step outputs
     outputs:
@@ -44,21 +47,19 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-            
+
       - name: pacman
-        env:
-          PATH: C:\msys64\usr\bin
-        run: | 
+        run: |
           C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
           C:\msys64\usr\bin\pacman.exe -S --noconfirm ^
             mingw-w64-x86_64-cmake ^
+            mingw-w64-x86_64-ninja ^
             mingw-w64-x86_64-make ^
             mingw-w64-x86_64-nsis ^
             mingw-w64-x86_64-gcc ^
             mingw-w64-x86_64-qt6 ^
             mingw-w64-x86_64-zlib ^
             mingw-w64-x86_64-openssl ^
-            mingw-w64-x86_64-cmark ^
             mingw-w64-x86_64-libvncserver ^
             mingw-w64-x86_64-cyrus-sasl ^
             mingw-w64-x86_64-pixman ^
@@ -66,9 +67,8 @@ jobs:
             mingw-w64-x86_64-libpng ^
             mingw-w64-x86_64-yasm ^
             mingw-w64-x86_64-openh264 ^
-            mingw-w64-x86_64-qxmpp ^
             mingw-w64-x86_64-freerdp ^
-            git base-devel
+            mingw-w64-x86_64-git base-devel
 
       - name: make_directory
         run: |
@@ -76,7 +76,7 @@ jobs:
           cmake -E make_directory ${{env.SOURCE_DIR}}
           cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-    
+
       - name: Cache installed
         uses: actions/cache@v5
         id: cache-installed
@@ -84,12 +84,11 @@ jobs:
           path: |
             ${{env.INSTALL_DIR}}
           key: install_mingw_${{matrix.BUILD_TYPE}}
-        
+
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           git clone https://github.com/KangLin/RabbitCommon.git
-          
 
 #    - name: Build FreeRDP
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -117,36 +116,34 @@ jobs:
 
       - name: build RabbitVNC
         if: false
-        working-directory: ${{env.SOURCE_DIR}}
         env:
-          MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+        working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\RabbitVNC (
             git clone --depth=1 https://github.com/KangLin/RabbitVNC.git
             cd RabbitVNC
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
-        
+
       - name: build tigervnc
         working-directory: ${{env.SOURCE_DIR}}
-        if: false
         env:
-          MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+        if: false
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
             git clone --depth=1 https://github.com/KangLin/tigervnc.git
             cd tigervnc
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
                   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
@@ -156,10 +153,9 @@ jobs:
 
       - name: build libdatachannel
         if: false
-        working-directory: ${{env.SOURCE_DIR}}
         env:
-          MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+        working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
             git clone -b v0.21.1 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
@@ -167,26 +163,25 @@ jobs:
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
-        
+
       - name: build QtService
         if: false
-        working-directory: ${{env.SOURCE_DIR}}
         env:
-          MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+        working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/QtService (
             git clone --depth=1 "https://github.com/KangLin/qt-solutions.git"
             cd qt-solutions/qtservice
             cmake -E make_directory build
             cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
@@ -196,10 +191,9 @@ jobs:
         working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-          MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
-          cmake .. -G"MinGW Makefiles" ^
+          cmake ${{github.workspace}} ^
             -DCMARK_SHARED=OFF ^
             -DCMARK_TESTS=OFF ^
             -DCMARK_STATIC=ON ^
@@ -210,9 +204,7 @@ jobs:
             -DBUILD_RABBITVNC=OFF ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
-            -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel ^
             -DBUILD_SERVICE=OFF ^
-            -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
           cmake --build . --config ${{ matrix.BUILD_TYPE }}
 
