@@ -13,15 +13,60 @@
 #include <QFileInfo>
 #include <QDateTime>
 
+const QString& CClipboardMimeData::MimeTextPlain = "text/plain";
+const QString& CClipboardMimeData::MimeTextUtf8 = CClipboardMimeData::MimeTextPlain + ";charset=utf-8";
+
+const QString& CClipboardMimeData::MimeBmp = "image/bmp";
+const QString& CClipboardMimeData::MimeXBmp = "image/x-bmp";
+const QString& CClipboardMimeData::MimeXMsBmp = "image/x-MS-bmp";
+const QString& CClipboardMimeData::MimeXWinBitmap = "image/x-win-bitmap";
+
+const QString& CClipboardMimeData::MimeJxl = "image/jxl";
+const QString& CClipboardMimeData::MimeAvif = "image/avif";
+const QString& CClipboardMimeData::MimePng = "image/png";
+const QString& CClipboardMimeData::MimeWebp = "image/webp";
+const QString& CClipboardMimeData::MimeJpeg = "image/jpeg";
+const QString& CClipboardMimeData::MimeTiff = "image/tiff";
+
+const QString& CClipboardMimeData::MimeHtml = "text/html";
+const QString& CClipboardMimeData::TypeHtmlFormat = "HTML Format";
+
+// See: register_file_formats_and_synthesizers()[FreeRDP/winpr/libwinpr/clipboard/synthetic_file.c]
+/*	    1. Gnome Nautilus based file manager (Nautilus only with version >= 3.30 AND < 40):
+            TARGET: UTF8_STRING
+            format: x-special/nautilus-clipboard\copy\n\file://path\n\0
+*/
+/* 	    2. Kde Dolpin and Qt:
+            TARGET: text/uri-list
+            format: file:path\r\n\0
+            See:
+              GTK: https://docs.gtk.org/glib/struct.Uri.html
+              uri syntax: https://www.rfc-editor.org/rfc/rfc3986#section-3
+              uri-lists format: https://www.rfc-editor.org/rfc/rfc2483#section-5
+*/
+const QString& CClipboardMimeData::MimeUriList = "text/uri-list";
+/*	    3. Gnome and others (Unity/XFCE/Nautilus < 3.30/Nautilus >= 40):
+            TARGET: x-special/gnome-copied-files
+            format: copy\nfile://path\n\0
+*/
+const QString& CClipboardMimeData::MimeGnomeCopyiedFiles = "x-special/gnome-copied-files";
+/*	    4. Mate Caja:
+            TARGET: x-special/mate-copied-files
+            format: copy\nfile://path\n
+*/
+const QString& CClipboardMimeData::MimeMateCopyiedFiles = "x-special/mate-copied-files";
+const QString& CClipboardMimeData::TypeFileGroupDescriptorW = "FileGroupDescriptorW";
+const QString& CClipboardMimeData::TypeFileGroupDescriptor = "FileGroupDescriptor";
+
 #if !(defined (Q_OS_WINDOWS) || defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WINRT))
-    //
-    // format of CF_FILEGROUPDESCRIPTOR
-    //
-    typedef struct _FILEGROUPDESCRIPTORW { // fgd
-         UINT cItems;
-         FILEDESCRIPTORW fgd[1];
-    } FILEGROUPDESCRIPTORW, * LPFILEGROUPDESCRIPTORW;
-    
+//
+// format of CF_FILEGROUPDESCRIPTOR
+//
+typedef struct _FILEGROUPDESCRIPTORW { // fgd
+    UINT cItems;
+    FILEDESCRIPTORW fgd[1];
+} FILEGROUPDESCRIPTORW, * LPFILEGROUPDESCRIPTORW;
+
 #endif
 
 QAtomicInteger<qint32> CClipboardMimeData::m_nId(1);
@@ -31,16 +76,16 @@ static Q_LOGGING_CATEGORY(log, "FreeRDP.Clipboard.MimeData")
 
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
-      m_pContext(pContext),
-      m_pClipboard(nullptr),
-      m_bExit(false)
+    m_pContext(pContext),
+    m_pClipboard(nullptr),
+    m_bExit(false)
 {
     m_Id = m_nId++;
     while(0 == m_Id)
         m_Id = m_nId++;
     qDebug(log) << "CClipboardMimeData::CClipboardMimeData:" << GetId();
- 
-    CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
+
+    CClipboardFreeRDP* pThis = CClipboardFreeRDP::GetThis(pContext);
     m_pClipboard = pThis->m_pClipboard;
     bool check = false;
     check = connect(this, SIGNAL(sigRequestFileFromServer(const QString&,
@@ -48,9 +93,9 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
                                                           const void*,
                                                           const UINT32)),
                     this, SLOT(slotRequestFileFromServer(const QString&,
-                                                         const QString&,
-                                                         const void*,
-                                                         const UINT32)),
+                                                   const QString&,
+                                                   const void*,
+                                                   const UINT32)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
 }
@@ -77,8 +122,8 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
     }
     m_Formats.clear();
     for (UINT32 i = 0; i < pList->numFormats; i++)
-	{
-		CLIPRDR_FORMAT* pFormat = &pList->formats[i];
+    {
+        CLIPRDR_FORMAT* pFormat = &pList->formats[i];
         /*
         qDebug(log) << "Format Id:" << pFormat->formatId
                         << "name:" << pFormat->formatName;//*/
@@ -94,7 +139,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         //*
         szFormats += QString::number(it->id) + "[";
         szFormats += it->name;
-        szFormats += "]; "; //*/
+        szFormats += "]" + QString::number(it->localId) + "; "; //*/
 
         m_indexId.insert(it->id, *it);
         if(it->name.isEmpty())
@@ -105,19 +150,20 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
             case CF_UNICODETEXT:
             case CF_LOCALE:
             {
-                m_indexString.insert("text/plain", *it);
+                m_indexString.insert(MimeTextPlain, *it);
                 break;
             }
             case CF_DIB:
             //case CF_BITMAP:
             case CF_DIBV5:
+            case CF_TIFF:
             {
-                m_indexString.insert("image/bmp", *it);
+                m_indexString.insert(MimeBmp, *it);
                 break;
             }
             case CF_HDROP:
             {
-                m_indexString.insert("text/uri-list", *it);
+                m_indexString.insert(MimeUriList, *it);
                 break;
             }
             default:
@@ -129,69 +175,68 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
             }
         } else {
             m_indexString.insert(it->name, *it);
-            if("FileGroupDescriptorW" == it->name) {
-#ifdef Q_OS_WINDOWS
-                m_indexString.insert("text/uri-list", *it);
-#else
-                m_indexString.insert("x-special/gnome-copied-files", *it);
+            if(TypeFileGroupDescriptorW == it->name) {
+                m_indexString.insert(MimeUriList, *it);
+#if defined(Q_OS_LINUX)
+                m_indexString.insert(MimeGnomeCopyiedFiles, *it);
+                m_indexString.insert(MimeMateCopyiedFiles, *it);
 #endif
-            } else if("FileGroupDescriptor" == it->name) {
-#ifdef Q_OS_WINDOWS
-                m_indexString.insert("text/uri-list", *it);
-#else
-                m_indexString.insert("x-special/gnome-copied-files", *it);
+            } else if(TypeFileGroupDescriptor == it->name) {
+                m_indexString.insert(MimeUriList, *it);
+#if defined(Q_OS_LINUX)
+                m_indexString.insert(MimeGnomeCopyiedFiles, *it);
+                m_indexString.insert(MimeMateCopyiedFiles, *it);
 #endif
             } else if("UniformResourceLocatorW" == it->name) {
-                m_indexString.insert("text/uri-list", *it);
+                m_indexString.insert(MimeUriList, *it);
             } else if("UniformResourceLocator" == it->name) {
-                m_indexString.insert("text/uri-list", *it);
-            } else if("x-special/gnome-copied-files" == it->name) {
-                m_indexString.insert("text/uri-list", *it);
-            } else if("text/html" != it->name && isHtml(it->name, false)) {
-                m_indexString.insert("text/html", *it);
-            } else if("text/plain" != it->name && isText(it->name, false)) {
-                m_indexString.insert("text/plain", *it);
-            } else if("image/bmp" != it->name && isImage(it->name)) {
-                m_indexString.insert("image/bmp", *it);
+                m_indexString.insert(MimeUriList, *it);
+            } else if(MimeGnomeCopyiedFiles == it->name) {
+                m_indexString.insert(MimeUriList, *it);
+            } else if(MimeHtml != it->name && isHtml(it->name, false)) {
+                m_indexString.insert(MimeHtml, *it);
+            } else if(MimeTextPlain != it->name && isText(it->name, false)) {
+                m_indexString.insert(MimeTextPlain, *it);
+            } else if(MimeBmp != it->name && isImage(it->name)) {
+                m_indexString.insert(MimeBmp, *it);
+                m_indexString.insert("application/x-qt-image", *it);
             }
         }
     }
 
     m_lstFormats.clear();
-    for(auto it = m_indexString.begin(); m_indexString.end() != it; it++)
-    {
+    for(auto it = m_indexString.begin(); m_indexString.end() != it; it++) {
         if(!m_lstFormats.contains(it.key()))
             m_lstFormats << (it.key());
     }
-    if(m_lstFormats.contains("image/bmp")
-            && !m_lstFormats.contains("application/x-qt-image"))
-    {
+    if(m_lstFormats.contains(MimeBmp)
+        && !m_lstFormats.contains("application/x-qt-image")) {
         m_lstFormats << ("application/x-qt-image");
     }
 
     // Only used by linux or unix
-    if(m_lstFormats.contains("text/uri-list")
-            && !m_lstFormats.contains("x-special/gnome-copied-files"))
+    if(m_lstFormats.contains(MimeUriList)
+        && !m_lstFormats.contains(MimeGnomeCopyiedFiles))
     {
-        m_lstFormats.push_front("x-special/gnome-copied-files");
-        m_lstFormats.removeOne("text/uri-list");
-        m_lstFormats.push_front("text/uri-list");
+        m_lstFormats.push_front(MimeGnomeCopyiedFiles);
+        m_lstFormats.removeOne(MimeUriList);
+        m_lstFormats.push_front(MimeUriList);
     }
 
     // Only used by windows
-    if(m_lstFormats.contains("text/uri-list")
-            && !m_lstFormats.contains("FileGroupDescriptorW"))
+    if(m_lstFormats.contains(MimeUriList)
+        && !m_lstFormats.contains(TypeFileGroupDescriptorW))
     {
-        m_lstFormats.push_front("FileGroupDescriptorW");
-        m_lstFormats.removeOne("text/uri-list");
-        m_lstFormats.push_front("text/uri-list");
+        m_lstFormats.push_front(TypeFileGroupDescriptorW);
+        m_lstFormats.removeOne(MimeUriList);
+        m_lstFormats.push_front(MimeUriList);
     }
 
     // Used to identify oneself
     m_lstFormats << MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP;
 
     qDebug(log) << "CClipboardMimeData::SetFormat: input formats:" << szFormats
-                  << "Formats:" << m_lstFormats;
+                << "Formats:" << m_lstFormats;
 
     return 0;
 }
@@ -207,9 +252,7 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
             qWarning(log) << "Repeat format id:" << id;
             return -1;
         }
-
-        if(name)
-        {
+        if(name) {
             if(name == it.name)
             {
                 qWarning(log) << "Repeat format name:" << name;
@@ -219,8 +262,7 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
     }
 
     _FORMAT f = {id, name, id};
-    if(name)
-    {
+    if(name) {
         f.localId = ClipboardRegisterFormat(m_pClipboard, name);
     }
 
@@ -233,11 +275,11 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 {
     //*
     qDebug(log) << "CClipboardMimeData::hasFormat:"
-                    << mimetype.toStdString().c_str();//*/
+                << mimetype.toStdString().c_str();//*/
 
-    if(isImage(mimetype) && m_lstFormats.contains("image/bmp"))
+    if(isImage(mimetype) && m_lstFormats.contains(MimeBmp))
         return true;
-    if(isUrls(mimetype) && m_lstFormats.contains("text/uri-list"))
+    if(isUrls(mimetype) && m_lstFormats.contains(MimeUriList))
         return true;
     return m_lstFormats.contains(mimetype);
 }
@@ -250,22 +292,22 @@ QStringList CClipboardMimeData::formats() const
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
-                                          QMetaType preferredType) const
+QVariant CClipboardMimeData::retrieveData(
+    const QString &mimeType, QMetaType preferredType) const
 
 #else
-QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
-                                          QVariant::Type preferredType) const
+QVariant CClipboardMimeData::retrieveData(
+    const QString &mimeType, QVariant::Type preferredType) const
 #endif
 {
     //*
     qDebug(log) << "CClipboardMimeData::retrieveData:" << GetId() << mimeType
-                     << "Variant:" << m_Variant; //*/
+                << "Variant:" << m_Variant; //*/
     if(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP == mimeType)
         return GetId();
 
     QString mt = mimeType;
-    if(isImage(mt)) mt = "image/bmp";
+    if(isImage(mt)) mt = MimeBmp;
     if(m_indexString.find(mt) == m_indexString.end())
         return QVariant();
 
@@ -276,19 +318,21 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
     value = *lstValue.crbegin();
     //*
     qDebug(log) << "CClipboardMimeData::retrieveData: format id:" << value.id
-         << "name:" << value.name << "mimeData:" << mimeType; //*/
+                << "name:" << value.name << "mimeData:" << mimeType; //*/
 
     if(m_Variant.isValid() && !m_Variant.isNull()) {
         if(isUrls(mimeType))
         {
+#ifndef HAVE_FILE_INTERFACE
             QByteArray data = m_Variant.toByteArray();
             emit sigRequestFileFromServer(mimeType, value.name, data.data(), data.size());
+#endif
         }
         return m_Variant;
     }
     if(!m_pContext) return QVariant();
 
-    emit sigSendDataRequest(m_pContext, value.id);
+    emit sigSendDataRequest(m_pContext, value.id, mimeType);
 
     // add wait response event
     QEventLoop loop;
@@ -299,20 +343,24 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
     if(m_bExit)
         return QVariant();
 
-    if(isUrls(mimeType) && !m_Variant.isNull())
-    {
-        QByteArray data = m_Variant.toByteArray();
-        emit sigRequestFileFromServer(mimeType, value.name, data.data(), data.size());
+    if(m_Variant.isValid() && !m_Variant.isNull()) {
+        if(isUrls(mimeType))
+        {
+#ifndef HAVE_FILE_INTERFACE
+            QByteArray data = m_Variant.toByteArray();
+            emit sigRequestFileFromServer(mimeType, value.name, data.data(), data.size());
+#endif
+        }
     }
     return m_Variant;
 }
 
 //! if(pData == nullptr && nLen == 0) is Notify clipboard program has exited
 void CClipboardMimeData::slotServerFormatData(
-    const BYTE* pData, UINT32 nLen, UINT32 id)
+    const BYTE* pData, UINT32 nLen, UINT32 id, QString szMimeType)
 {
     //*
-    qDebug(log) << "CClipboardMimeData::slotServerFormatData: id:" << id;//*/
+    qDebug(log) << Q_FUNC_INFO << id << szMimeType;//*/
 
     UINT32 srcId = 0;
     UINT32 dstId = 0;
@@ -332,7 +380,7 @@ void CClipboardMimeData::slotServerFormatData(
         case CF_DIBV5:
         {
             srcId = it.localId;
-            dstId = ClipboardGetFormatId(m_pClipboard, "image/bmp");
+            dstId = ClipboardGetFormatId(m_pClipboard, MimeBmp.toStdString().c_str());
             break;
         }
         default:
@@ -342,7 +390,8 @@ void CClipboardMimeData::slotServerFormatData(
                 dstId = it.localId;
             else {
                 if(isHtml(it.name, false))
-                    dstId = ClipboardGetFormatId(m_pClipboard, "text/html");
+                    dstId = ClipboardGetFormatId(
+                        m_pClipboard, MimeHtml.toStdString().c_str());
                 else
                     dstId = it.localId;
             }
@@ -350,13 +399,12 @@ void CClipboardMimeData::slotServerFormatData(
         }
         bool bSuccess = ClipboardSetData(m_pClipboard, srcId, pData, nLen);
         if(!bSuccess) break;
-
         UINT32 size = 0;
         void* data = ClipboardGetData(m_pClipboard, dstId, &size);
         if(!data)
         {
             qDebug(log) << "ClipboardGetData fail: dstId:" << dstId
-                           << "srcId:" << srcId;
+                        << "srcId:" << srcId;
             break;
         }
 
@@ -388,10 +436,32 @@ void CClipboardMimeData::slotServerFormatData(
                 m_Variant = QString::fromUtf8(d);
             } else if(isHtml(it.name)) {
                 m_Variant = QString(d);
-            } else if(ClipboardGetFormatId(m_pClipboard, "image/bmp") == dstId) {
+            } else if(ClipboardGetFormatId(m_pClipboard, MimeBmp.toStdString().c_str()) == dstId) {
                 QImage img;
                 if(img.loadFromData(d, "BMP"))
                     m_Variant = img;
+            } else if(isUrls(it.name)) {
+
+#if HAVE_FILE_INTERFACE
+                    CClipboardFreeRDP* pThis = CClipboardFreeRDP::GetThis(m_pContext);
+                    if (cliprdr_file_context_has_local_support(pThis->m_pFileContext))
+                    {
+                        if (!cliprdr_file_context_update_server_data(
+                                pThis->m_pFileContext, m_pClipboard, data, size))
+                        {
+                            qCritical(log) << "File clipboard failed to update";
+                        }
+                    }
+
+                    auto dstId = ClipboardGetFormatId(m_pClipboard, szMimeType.toStdString().c_str());
+                    UINT32 size = 0;
+                    void* pData = ClipboardGetData(m_pClipboard, dstId, &size);
+                    if(pData && size > 0) {
+                        QByteArray d((char*)pData, size);
+                        m_Variant = d;
+                    }
+#endif
+
             } else
                 m_Variant = QVariant(d);
         }
@@ -406,7 +476,8 @@ bool CClipboardMimeData::isText(QString mimeType, bool bRegular) const
     if("UTF8_STRING" == mimeType) return true;
     if("TEXT" == mimeType) return true;
     if("STRING" == mimeType) return true;
-    if("text/plain" == mimeType) return true;
+    if(MimeTextPlain == mimeType) return true;
+    if(MimeTextUtf8 == mimeType) return true;
     if(bRegular)
     {
         QRegularExpression re("text/plain[;]*.*",
@@ -422,7 +493,7 @@ bool CClipboardMimeData::isHtml(QString mimeType, bool bRegular) const
 {
     //qDebug(log) << "CClipboardMimeData::isHtml:" << mimeType;
     
-    if("text/html" == mimeType || "HTML Format" == mimeType)
+    if(MimeHtml == mimeType || TypeHtmlFormat == mimeType)
         return true;
     
     return false;
@@ -431,13 +502,14 @@ bool CClipboardMimeData::isHtml(QString mimeType, bool bRegular) const
 bool CClipboardMimeData::isUrls(QString mimeType, bool bRegular) const
 {
     //qDebug(log) << "CClipboardMimeData::isUrls:" << mimeType;
-    
-    if("FileGroupDescriptorW" == mimeType
-            || "FileGroupDescriptor" == mimeType
-            || "UniformResourceLocatorW" == mimeType
-            || "UniformResourceLocator" == mimeType
-            || "text/uri-list" == mimeType
-            || "x-special/gnome-copied-files" == mimeType)
+
+    if(TypeFileGroupDescriptorW == mimeType
+        || TypeFileGroupDescriptor == mimeType
+        || "UniformResourceLocatorW" == mimeType
+        || "UniformResourceLocator" == mimeType
+        || MimeUriList == mimeType
+        || MimeGnomeCopyiedFiles == mimeType
+        || MimeMateCopyiedFiles == mimeType)
         return true;
 
     return false;
@@ -447,7 +519,17 @@ bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
 {
     //qDebug(log) << "CClipboardMimeData::isImage:" << mimeType;
 
-    if("image/bmp" == mimeType) return true;
+    if(MimeBmp == mimeType
+        || MimeXBmp == mimeType
+        || MimeXMsBmp == mimeType
+        || MimeXWinBitmap == mimeType
+        || MimeJxl == mimeType
+        || MimeAvif == mimeType
+        || MimePng == mimeType
+        || MimeWebp == mimeType
+        || MimeJpeg == mimeType
+        || MimeTiff == mimeType
+        ) return true;
     // QClipboard return QImage mimeType is "application/x-qt-image"
     if("application/x-qt-image" == mimeType) return true;
     if(bRegular)
@@ -469,10 +551,10 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     return; //TODO:  delete it!!!
     //*
     qDebug(log) << "CClipboardMimeData::slotRequestFileFromServer:"
-                  << valueName << mimeType << pData;//*/
-    if(!("FileGroupDescriptorW" == valueName
-         || "FileGroupDescriptor" == valueName))
-            return;
+                << valueName << mimeType << pData;//*/
+    if(!(TypeFileGroupDescriptorW == valueName
+          || TypeFileGroupDescriptor == valueName))
+        return;
 
     int srcId = ClipboardGetFormatId(m_pClipboard, valueName.toStdString().c_str());
     int dstId = ClipboardGetFormatId(m_pClipboard, mimeType.toStdString().c_str());
@@ -505,7 +587,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
             d.mkpath(fileInfo.absolutePath());
 
         QSharedPointer<_CliprdrFileStream> stream
-                = QSharedPointer<_CliprdrFileStream>(new _CliprdrFileStream());
+            = QSharedPointer<_CliprdrFileStream>(new _CliprdrFileStream());
         stream->m_Success = false;
         stream->m_File.setFileName(szFile) ;
         m_Stream.insert(i, stream);
@@ -527,12 +609,12 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
             continue;
 
         qDebug(log) << "File" << szFile
-                       << ";Length:" << size.u.HighPart << size.u.LowPart;
+                    << ";Length:" << size.u.HighPart << size.u.LowPart;
         // Open local file
         if(!stream->m_File.open(QFile::WriteOnly))
         {
             qCritical(log) << "Open file fail:" << szFile
-                              << stream->m_File.errorString();
+                           << stream->m_File.errorString();
             return;
         }
         bool bSuccess = true;
@@ -568,7 +650,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     
     // Convert file list
     // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
-    if("x-special/gnome-copied-files" == mimeType)
+    if(MimeGnomeCopyiedFiles == mimeType)
     {
         QByteArray gnomeFormat;
         gnomeFormat.append("copy\n");
@@ -594,7 +676,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     //   URI is specified by RFC 8089: https://datatracker.ietf.org/doc/html/rfc8089
     //   uri syntax: https://www.rfc-editor.org/rfc/rfc3986#section-3
     //   uri-lists format: https://www.rfc-editor.org/rfc/rfc2483#section-5
-    if("text/uri-list" == mimeType || "FileGroupDescriptorW" == mimeType)
+    if(MimeUriList == mimeType || TypeFileGroupDescriptorW == mimeType)
     {
         QByteArray uriFormat;
         foreach(auto s, m_Stream)
@@ -616,20 +698,20 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
 }
 
 UINT CClipboardMimeData::sendRequestFilecontents(UINT32 listIndex,
-        UINT32 dwFlags,
-        DWORD nPositionHigh,
-        DWORD nPositionLow,
-        UINT32 cbRequested)
+                                                 UINT32 dwFlags,
+                                                 DWORD nPositionHigh,
+                                                 DWORD nPositionLow,
+                                                 UINT32 cbRequested)
 {
     //*
     qDebug(log) << "CClipboardMimeData::sendRequestFilecontents";//*/
-	UINT rc = ERROR_INTERNAL_ERROR;
+    UINT rc = ERROR_INTERNAL_ERROR;
     if(!m_pContext) return rc;
 
     CLIPRDR_FILE_CONTENTS_REQUEST fileContentsRequest = {0};
-	fileContentsRequest.streamId = listIndex;
-	fileContentsRequest.listIndex = listIndex;
-	fileContentsRequest.dwFlags = dwFlags;
+    fileContentsRequest.streamId = listIndex;
+    fileContentsRequest.listIndex = listIndex;
+    fileContentsRequest.dwFlags = dwFlags;
     switch (dwFlags)
     {
     /*
@@ -662,7 +744,7 @@ UINT CClipboardMimeData::sendRequestFilecontents(UINT32 listIndex,
     if(m_bExit)
         return CHANNEL_RC_NULL_DATA;
 
-	return rc;
+    return rc;
 }
 
 void CClipboardMimeData::slotServerFileContentsRespose(UINT32 streamId,
@@ -670,7 +752,7 @@ void CClipboardMimeData::slotServerFileContentsRespose(UINT32 streamId,
 {
     //*
     qDebug(log) << "CClipboardMimeData::slotServerFileContentsRespose: index:"
-                   << streamId << ";Data length:" << data.size();//*/
+                << streamId << ";Data length:" << data.size();//*/
     auto stream = m_Stream.find(streamId);
     do{
         if(m_Stream.end() == stream || data.isNull())
