@@ -45,7 +45,7 @@ jobs:
             qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtpdf qtspeech qtvirtualkeyboard
             os: windows-2022
 
-          - CMAKE_GENERATOR: "Visual Studio 17 2022"
+          - CMAKE_GENERATOR: "Visual Studio 18 2026"
             CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
