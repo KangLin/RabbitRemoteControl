@@ -354,7 +354,7 @@ bool CParameterPlugin::GetOnlyLoadInWhitelist() const
 
 void CParameterPlugin::SetOnlyLoadInWhitelist(bool newOnlyLoadInWhitelist)
 {
-    if(m_bOnlyLoadInWhitelist = newOnlyLoadInWhitelist)
+    if(m_bOnlyLoadInWhitelist == newOnlyLoadInWhitelist)
         return;
     m_bOnlyLoadInWhitelist = newOnlyLoadInWhitelist;
     SetModified(true);
