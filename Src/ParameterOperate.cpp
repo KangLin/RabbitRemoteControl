@@ -129,7 +129,7 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
         }
 
         CDlgInputPassword d(GetPluginParameters()->GetViewPassowrd(), false);
-        if(QDialog::Accepted != d.exec())
+        if(QDialog::Accepted != RC_SHOW_WINDOW(&d))
             return -1;
 
         key = d.GetPassword().toStdString();
@@ -169,7 +169,7 @@ int CParameterOperate::SavePassword(const QString &szKey,
                 GetPluginParameters()->SetPromptCount(nCount + 1);
                 QString szKey;
                 CDlgInputPassword dlg(GetPluginParameters()->GetViewPassowrd(), true);
-                if(QDialog::Accepted != dlg.exec())
+                if(QDialog::Accepted != RC_SHOW_WINDOW(&dlg))
                     break;
                 szKey = dlg.GetPassword();
                 GetPluginParameters()->SetEncryptKey(szKey);
