@@ -172,7 +172,7 @@ public:
     };
     Q_ENUM(NameStyle)
     Q_DECLARE_FLAGS(NameStyles, NameStyle)
-    Q_FLAG(NameStyles);
+    Q_FLAG(NameStyles)
     NameStyles GetNameStyles() const;
     void SetNameStyles(const NameStyles &newNameStyles);
 Q_SIGNALS:

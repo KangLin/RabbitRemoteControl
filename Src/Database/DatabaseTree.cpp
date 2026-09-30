@@ -342,7 +342,7 @@ bool CDatabaseNode::OnDeleteLeafs(int id)
 bool CDatabaseNode::MoveNode(int id, int newParentId)
 {
     if(id == newParentId) {
-        SetError("Failed to move node. The same node: " + id);
+        SetError("Failed to move node. The same node: " + QString::number(id));
         qWarning(log) << GetError();
         return false;
     }
