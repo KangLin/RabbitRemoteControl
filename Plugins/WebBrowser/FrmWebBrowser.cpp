@@ -6,7 +6,9 @@
 #include <QMenu>
 #include <QFile>
 #include <QDir>
-#include <QPrinter>
+#if HAVE_Printer
+    #include <QPrinter>
+#endif
 #include <QInputDialog>
 #include <QSplitter>
 #include <QVBoxLayout>
@@ -1057,7 +1059,7 @@ void CFrmWebBrowser::slotPrint()
 {
     CFrmWebView* pWeb = CurrentView();
     if(pWeb) {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0) && defined(HAVE_Printer)
         QPrinter printer;
         pWeb->print(&printer);
 #endif
