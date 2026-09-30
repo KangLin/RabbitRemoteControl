@@ -28,7 +28,7 @@ public:
     virtual const QIcon Icon() const override;
     virtual const QString Details() const override;
     Q_INVOKABLE virtual COperate* CreateOperate(
-        const QString& szId, CParameterPlugin* para);
+        const QString& szId, CParameterPlugin* para) override;
 
 protected:
     virtual COperate *OnCreateOperate(const QString &szId) override;

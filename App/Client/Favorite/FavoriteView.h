@@ -50,7 +50,7 @@ Q_SIGNALS:
      * \~
      * \see COperate::sigShowMessageBox()
      */
-    virtual void sigShowMessageBox(const QString& title, const QString& message,
+    void sigShowMessageBox(const QString& title, const QString& message,
                                     const QMessageBox::Icon& icon);
 private:
     void InitialDragDrop();
