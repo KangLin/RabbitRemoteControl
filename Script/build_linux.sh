@@ -46,6 +46,7 @@ DEB=0
 RPM=0
 APPIMAGE=0
 LINT=0
+TERMUX=0
 
 if [ -z "$QT_VERSION" ]; then
     QT_VERSION=6.10.3
@@ -78,6 +79,7 @@ Target options:
   --rpm:                Build rpm package
   --appimage:           Build AppImage
   --macos:              Build macOS
+  --termux:             Build termux
   --lint:               Check with lint
 
 Other options:
@@ -107,7 +109,7 @@ parse_with_getopt() {
         # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
         # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
         # -n 选项后接选项解析错误时提示的脚本名字
-        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:,lint::
+        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,termux::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:,lint::
         ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
         if [ $? != 0 ]; then
             echo_error "exec getopt fail: $?"
@@ -208,6 +210,15 @@ parse_with_getopt() {
                         MACOS=1;;
                     *)
                         MACOS=$2;;
+                esac
+                shift 2
+                ;;
+            --termux)
+                case $2 in
+                    "")
+                        TERMUX=1;;
+                    *)
+                        TERMUX=$2;;
                 esac
                 shift 2
                 ;;
@@ -696,35 +707,39 @@ if [ $LINT -eq 1 ]; then
     ./build_lint_check.sh
 fi
 
-if is_termux; then
-    echo_status "build in termux ......"
+if [ $TERMUX -eq 1 ]; then
+    if is_termux; then
+        echo_status "build in termux ......"
 
-    ./build_depend.sh --system_update --base \
-        --install=${INSTALL_DIR} \
-        --source=${SOURCE_DIR} \
-        --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE}
+        ./build_depend.sh --system_update --base \
+            --install=${INSTALL_DIR} \
+            --source=${SOURCE_DIR} \
+            --tools=${TOOLS_DIR} \
+            --verbose=${BUILD_VERBOSE}
 
-    if [ -z "$RabbitCommon_ROOT" ]; then
-        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+        if [ -z "$RabbitCommon_ROOT" ]; then
+            export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+        fi
+        # Disable ci warn
+        if [ $CI ]; then
+            git config --global --add safe.directory $REPO_ROOT
+            git config --global --add safe.directory $RabbitCommon_ROOT
+        fi
+
+        ./build_depend.sh ${depend_para} \
+            --rabbitcommon \
+            --install=${INSTALL_DIR} \
+            --source=${SOURCE_DIR} \
+            --tools=${TOOLS_DIR} \
+            --verbose=${BUILD_VERBOSE}
+
+        ./build_termux.sh --install=${INSTALL_DIR} \
+            --source=${SOURCE_DIR} \
+            --tools=${TOOLS_DIR} \
+            --verbose=${BUILD_VERBOSE}
+    else
+        echo_error "There are not termux"
     fi
-    # Disable ci warn
-    if [ $CI ]; then
-        git config --global --add safe.directory $REPO_ROOT
-        git config --global --add safe.directory $RabbitCommon_ROOT
-    fi
-
-    ./build_depend.sh ${depend_para} \
-        --rabbitcommon \
-        --install=${INSTALL_DIR} \
-        --source=${SOURCE_DIR} \
-        --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE}
-
-    ./build_termux.sh --install=${INSTALL_DIR} \
-        --source=${SOURCE_DIR} \
-        --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE}
 fi
 
 popd
