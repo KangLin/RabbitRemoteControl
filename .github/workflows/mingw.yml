@@ -33,9 +33,8 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}\.cache\install
       RabbitRemoteControl_VERSION: v0.1.0-dev
       artifact_name: build_mingw
-      MSYSTEM: MINGW64
-      MSYSTEM_CHOST: x86_64-w64-mingw32
-      MSYSTEM_PREFIX: C:\msys64\mingw64
+      MSYSTEM: CLANG64
+      MSYSTEM_PREFIX: C:\msys64\clang64
 
     # Map the job outputs to step outputs
     outputs:
@@ -52,23 +51,24 @@ jobs:
         run: |
           C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
           C:\msys64\usr\bin\pacman.exe -S --noconfirm ^
-            mingw-w64-x86_64-cmake ^
-            mingw-w64-x86_64-ninja ^
-            mingw-w64-x86_64-make ^
-            mingw-w64-x86_64-nsis ^
-            mingw-w64-x86_64-gcc ^
-            mingw-w64-x86_64-qt6 ^
-            mingw-w64-x86_64-zlib ^
-            mingw-w64-x86_64-openssl ^
-            mingw-w64-x86_64-libvncserver ^
-            mingw-w64-x86_64-cyrus-sasl ^
-            mingw-w64-x86_64-pixman ^
-            mingw-w64-x86_64-libjpeg-turbo ^
-            mingw-w64-x86_64-libpng ^
-            mingw-w64-x86_64-yasm ^
-            mingw-w64-x86_64-openh264 ^
-            mingw-w64-x86_64-freerdp ^
-            mingw-w64-x86_64-git base-devel
+            mingw-w64-clang-x86_64-cmake ^
+            mingw-w64-clang-x86_64-ninja ^
+            mingw-w64-clang-x86_64-nsis ^
+            mingw-w64-clang-x86_64-gcc ^
+            mingw-w64-clang-x86_64-qt6 ^
+            mingw-w64-clang-x86_64-zlib ^
+            mingw-w64-clang-x86_64-openssl ^
+            mingw-w64-clang-x86_64-libvncserver ^
+            mingw-w64-clang-x86_64-cyrus-sasl ^
+            mingw-w64-clang-x86_64-pixman ^
+            mingw-w64-clang-x86_64-libjpeg-turbo ^
+            mingw-w64-clang-x86_64-libpng ^
+            mingw-w64-clang-x86_64-yasm ^
+            mingw-w64-clang-x86_64-openh264 ^
+            mingw-w64-clang-x86_64-freerdp ^
+            mingw-w64-clang-x86_64-qxmpp ^
+            mingw-w64-clang-x86_64-cmark ^
+            mingw-w64-clang-x86_64-git base-devel
 
       - name: make_directory
         run: |
@@ -94,7 +94,7 @@ jobs:
 #      working-directory: ${{env.SOURCE_DIR}}
 #      env:
 #        MSYSTEM: MINGW64
-#        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+#        PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
 #      run: |
 #       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
 #            git clone https://github.com/FreeRDP/FreeRDP.git
@@ -117,7 +117,7 @@ jobs:
       - name: build RabbitVNC
         if: false
         env:
-          PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\RabbitVNC (
@@ -135,7 +135,7 @@ jobs:
       - name: build tigervnc
         working-directory: ${{env.SOURCE_DIR}}
         env:
-          PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
         if: false
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
@@ -154,7 +154,7 @@ jobs:
       - name: build libdatachannel
         if: false
         env:
-          PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
@@ -173,7 +173,7 @@ jobs:
       - name: build QtService
         if: false
         env:
-          PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/QtService (
@@ -191,7 +191,7 @@ jobs:
         working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-          PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
         run: |
           cmake ${{github.workspace}} ^
             -DCMARK_SHARED=OFF ^
@@ -215,7 +215,7 @@ jobs:
           cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           move /Y install\plugins\*crypto*.dll install\bin
           move /Y install\plugins\*ssl*.dll install\bin
-          copy /Y C:\msys64\mingw64\bin\*.dll install\bin
+          copy /Y C:\msys64\clang64\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           makensis ${{env.BUILD_DIR}}/Windows.nsi
