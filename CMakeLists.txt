@@ -10,14 +10,13 @@ project(RabbitRemoteControl
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_CXX_STANDARD 17)
 # 确保编译器支持 C++17
+#set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # 避免使用编译器特定的扩展语法，从而提高跨平台一致性。
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-set(CMAKE_C_STANDARD 17)
 # 确保编译器支持 C17
+#set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 # 避免使用编译器特定的扩展语法，从而提高跨平台一致性。
 set(CMAKE_C_EXTENSIONS OFF)
@@ -103,6 +102,14 @@ message("Qt${QT_VERSION_MAJOR}_ROOT:${Qt${QT_VERSION_MAJOR}_ROOT}")
 message("Qt${QT_VERSION_MAJOR}_DIR:${Qt${QT_VERSION_MAJOR}_DIR}")
 message("QT_INSTALL_DIR:${QT_INSTALL_DIR}")
 message("${PROJECT_NAME} QT_LIBRARIES:${QT_LIBRARIES}")
+
+if(QT_VERSION_MAJOR VERSION_GREATER_EQUAL 6)
+    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_C_STANDARD 17)
+else()
+    set(CMAKE_CXX_STANDARD 11)
+    set(CMAKE_C_STANDARD 11)
+endif()
 
 if(NOT RabbitCommon_ROOT)
     set(RabbitCommon_ROOT $ENV{RabbitCommon_ROOT})
