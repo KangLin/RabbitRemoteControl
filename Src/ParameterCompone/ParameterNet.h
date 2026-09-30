@@ -38,7 +38,7 @@ Q_SIGNALS:
     void sigHostChanged(const QString& szHost);
 
 public:
-    virtual const quint16 GetPort() const;
+    virtual quint16 GetPort() const;
     virtual void SetPort(quint16 port);
 
     //! [Instance user]
