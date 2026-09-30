@@ -3,7 +3,7 @@
 #include <QFileDialog>
 #include <QLoggingCategory>
 
-#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0)
+#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0) && defined(HAVE_EXTENSION)
     #include "FrmExtensionManager.h"
     #include "FrmExtensionStore.h"
 #endif
@@ -57,7 +57,7 @@ CDlgSettings::CDlgSettings(QWebEngineProfile *pProfile,
     m_pMediaDevices->SetParameter(&m_pPara->m_MediaDevices.m_Para);
     ui->tabWidget->addTab(m_pMediaDevices, m_pMediaDevices->windowIcon(), m_pMediaDevices->windowTitle());
 
-#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0)
+#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0) && defined(HAVE_EXTENSION)
     CFrmExtensionManager* pExtension = new CFrmExtensionManager(pProfile);
     ui->tabWidget->addTab(pExtension, pExtension->windowIcon(), pExtension->windowTitle());
     CFrmExtensionStore* pStore = new CFrmExtensionStore();

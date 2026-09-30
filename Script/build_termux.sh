@@ -180,7 +180,7 @@ cmake "$REPO_ROOT" \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_APP=ON \
   -DBUILD_FREERDP=ON \
-  -DBUILD_WEB_BROWSER=OFF \
+  -DWITH_EXTENSION=OFF \
   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 cmake --build . --config Release --parallel $(nproc)
 cmake --install . --config Release --strip --component DependLibraries

@@ -510,7 +510,7 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
                 << "Cookie:" << m_profile->cookieStore()
                 << "Is off the Record:" << m_profile->isOffTheRecord()
                 << "Download:" << m_profile->downloadPath()
-#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0)
+#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0) && defined(HAVE_EXTENSION)
                 << "Extension path:" << m_profile->extensionManager()->installPath()
 #endif
 #if QT_VERSION > QT_VERSION_CHECK(6, 8, 0)

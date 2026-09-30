@@ -107,19 +107,23 @@ if(QT_VERSION VERSION_GREATER_EQUAL "6.7.0")
 endif()
 
 if(QT_VERSION VERSION_GREATER_EQUAL "6.10.0")
-    list(APPEND WebBrowser_SOURCE_FILES
-        Extension/FrmExtensionManager.cpp
-        Extension/FrmExtensionStore.cpp
-        )
-    list(APPEND WebBrowser_HEADER_FILES
-        Extension/FrmExtensionManager.h
-        Extension/FrmExtensionStore.h
-        )
-    list(APPEND WebBrowser_UI_FILES
-        Extension/FrmExtensionManager.ui
-        Extension/FrmExtensionStore.ui
-        )
-    list(APPEND WebBrowser_INCLUDE_DIR $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Extension>)
+    option(WITH_EXTENSION "With Extension" ON)
+    if(WITH_EXTENSION)
+        list(APPEND WebBrowser_PRIVATE_DEFINITIONS HAVE_EXTENSION)
+        list(APPEND WebBrowser_SOURCE_FILES
+            Extension/FrmExtensionManager.cpp
+            Extension/FrmExtensionStore.cpp
+            )
+        list(APPEND WebBrowser_HEADER_FILES
+            Extension/FrmExtensionManager.h
+            Extension/FrmExtensionStore.h
+            )
+        list(APPEND WebBrowser_UI_FILES
+            Extension/FrmExtensionManager.ui
+            Extension/FrmExtensionStore.ui
+            )
+        list(APPEND WebBrowser_INCLUDE_DIR $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Extension>)
+    endif()
 endif()
 
 option(WITH_QtKEYCHAIN "With qtkeychain" ON)
