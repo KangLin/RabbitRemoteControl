@@ -169,7 +169,7 @@ fi
 echo_status "Compile RabbitRemoteControl ......"
 cmake "$REPO_ROOT" \
   -DCMAKE_SYSTEM_NAME=Linux \
-  -DCMAKE_INSTALL_PREFIX=install \
+  -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
   -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
   -DCMARK_SHARED=OFF \
   -DCMARK_TESTS=OFF \

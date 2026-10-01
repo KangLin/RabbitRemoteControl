@@ -727,7 +727,7 @@ if [ $TERMUX -eq 1 ]; then
         fi
 
         ./build_depend.sh ${depend_para} \
-            --rabbitcommon \
+            --rabbitcommon --pcapplusplus --qftpserver \
             --install=${INSTALL_DIR} \
             --source=${SOURCE_DIR} \
             --tools=${TOOLS_DIR} \

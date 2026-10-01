@@ -559,7 +559,7 @@ fi
 install_base() {
     echo_status "Install base libraries ......"
     if is_termux; then
-        package_install wget curl git cmake build-essential freerdp libvncserver libcurl
+        package_install wget curl git cmake build-essential freerdp libvncserver libcurl libpcap
 	#package_install mesa-dev glu glew glfw libglvnd-dev libglvnd
         package_install qt6-qttools qt6-qtbase qt6-qttranslations qt6-qt5compat qt6-qtimageformats qt6-qtmultimedia \
             qt6-qtscxml qt6-qtsvg qt6-qtwayland qt6-qtwebchannel qt6-qtwebengine qt6-qtwebsockets qt6-qtpositioning qt6-qtbase-gtk-platformtheme
