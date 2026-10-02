@@ -20,7 +20,9 @@ update_version() {
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/flatpak.yml
     $SED_CMD "s/${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
     $SED_CMD "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
-    $SED_CMD "s/          \"version\":[[:blank:]]*\"${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
+    if [[ "$VERSION" =~ ^${TAG_RELEASE_PATTERN}$ ]]; then
+        $SED_CMD "s/          \"version\":[[:blank:]]*\"${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
+    fi
 
     $SED_CMD "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
     $SED_CMD "s/SET(RabbitRemoteControlTag .*)/SET(RabbitRemoteControlTag \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
