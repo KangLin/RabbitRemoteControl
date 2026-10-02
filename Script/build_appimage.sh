@@ -179,7 +179,7 @@ if [ "$CI" != "" ]; then
     trap cleanup EXIT
 fi
 
-echo_status "download linuxdeploy ......"
+echo_status "Download linuxdeploy ......"
 pushd "${TOOLS_DIR}"
 if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
     wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-`uname -m`.AppImage

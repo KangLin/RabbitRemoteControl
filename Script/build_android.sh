@@ -37,7 +37,7 @@ fi
 source $(dirname $(safe_readlink -f ${BASH_SOURCE[0]}))/common.sh
 
 # modify follow value
-Qt6_DIR=/opt/Qt/6.6.3/android_x86_64
+Qt6_DIR=/opt/Qt/6.10.3/android_x86_64
 DEPENDENT_INSTALL_DIR=/data/tigervnc/build_android/install
 BUILD_TYPE=Debug
 VCPKG_TARGET_TRIPLET=x64-android

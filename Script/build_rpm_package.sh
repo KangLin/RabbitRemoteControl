@@ -156,9 +156,15 @@ if [ ! -f ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz ]; then
     if [ -d $REPO_ROOT/.git ]; then
         git archive --format=tar.gz --prefix=RabbitRemoteControl/ -o ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz HEAD
     fi
+else
+    echo_warn "~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz is existed. If you are in development, please delete it!"
 fi
 if [ -z "$RabbitCommon_ROOT" ]; then
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    if [ -d ${SOURCE_DIR}/RabbitCommon ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    elif [ -d ${REPO_ROOT}/../RabbitCommon ]; then
+        export RabbitCommon_ROOT=${REPO_ROOT}/../RabbitCommon
+    fi
 fi
 export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 export INSTALL_DIR=${INSTALL_DIR}
