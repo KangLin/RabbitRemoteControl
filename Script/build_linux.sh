@@ -555,7 +555,7 @@ if [ $APPIMAGE -eq 1 ]; then
 #                ;;
 #        esac
         LIB_PATH="lib"
-        depend_para="$depend_para --freerdp --libssh --qtermwidget --qtkeychain --qftpserver"
+        depend_para="$depend_para --libssh --qtermwidget --qftpserver" #--freerdp --qtkeychain
         ;;
     fedora)
         LIB_PATH="lib64"

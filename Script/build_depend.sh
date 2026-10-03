@@ -661,7 +661,7 @@ install_base() {
     fi
 
     if [ $MACOS -eq 1 ]; then
-        package_install nasm autoconf automake libtool pkg-config doxygen zstd curl
+        package_install nasm autoconf automake libtool pkg-config doxygen zstd curl zlib gnutls
     fi
 }
 
@@ -763,7 +763,7 @@ if [ $FREERDP -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
         if [ ! -d FreeRDP ]; then
-            git clone -b 3.31.1 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+            git clone -b 3.32.1 --depth=1 https://github.com/FreeRDP/FreeRDP.git
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/FreeRDP
         pushd $BUILD_DEPEND_DIR/FreeRDP
