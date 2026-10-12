@@ -1,4 +1,4 @@
-// Author: Kang Lin <kl222@126.com>
+//! Author: Kang Lin <kl222@126.com>
 
 #ifndef CCONNECTVNC_H
 #define CCONNECTVNC_H
@@ -87,8 +87,7 @@ private:
     QSharedPointer<CChannel> m_DataChannel;
     QSharedPointer<rdr::InStream> m_InStream;
     QSharedPointer<rdr::OutStream> m_OutStream;
-    
-    quint32 TranslateRfbKey(quint32 inkey,bool modifier);
+
     QString ConnectInformation();
 
 private:

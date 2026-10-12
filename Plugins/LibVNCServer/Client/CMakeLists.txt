@@ -36,7 +36,7 @@ else()
         set(BUILD_LibVNCServer OFF PARENT_SCOPE)
         return()
     endif()
-    set(_LibvncIncludeDir ${LibvncIncludeDir})
+    list(APPEND _LibvncIncludeDir ${LibvncIncludeDir})
     list(APPEND _libvncLibs ${libvncLibs})
     mark_as_advanced(LibVNCServer_DIR)
     message("libvnc found: ${_libvncLibs}")
@@ -48,6 +48,7 @@ SET(SOURCE_FILES
     OperateLibVNCServer.cpp
     BackendLibVNCServer.cpp
     DlgSettingsLibVnc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/ConvertKeyCode.cpp
     )
 
 SET(HEADER_FILES
@@ -56,11 +57,14 @@ SET(HEADER_FILES
     OperateLibVNCServer.h
     BackendLibVNCServer.h
     DlgSettingsLibVnc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/ConvertKeyCode.h
     )
 
 SET(UI_FILES
     DlgSettingsLibVnc.ui
     )
+
+list(APPEND _LibvncIncludeDir $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc>)
 
 if(MSVC)
     # for std::min
@@ -68,7 +72,9 @@ if(MSVC)
 endif()
 
 list(APPEND LIBVNCSERVER_PRIVATE_DEFINITIONS
-    PluginLibVNCServer_VERSION="${RabbitRemoteControl_VERSION}")
+    PluginLibVNCServer_VERSION="${RabbitRemoteControl_VERSION}"
+    HAVE_LIBVNCSERVER
+    )
 
 if(_LibvncIncludeDir)
     ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}

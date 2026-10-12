@@ -18,7 +18,7 @@ SET(TigerVNC_SOURCE_FILES
     BackendVnc.cpp
     FramePixelBuffer.cpp
     DlgSettingsVnc.cpp
-    
+    ${CMAKE_CURRENT_SOURCE_DIR}/../ConvertKeyCode.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     )
@@ -29,17 +29,18 @@ SET(TigerVNC_HEADER_FILES
     BackendVnc.h
     FramePixelBuffer.h   
     DlgSettingsVnc.h
-    
+    ${CMAKE_CURRENT_SOURCE_DIR}/../ConvertKeyCode.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
     )
 SET(TigerVNC_UI_FILES
     DlgSettingsVnc.ui
-    
     )
 
 list(APPEND TIGERVNC_DEFINITIONS
-    PluginTigerVNC_VERSION="${RabbitRemoteControl_VERSION}")
+    PluginTigerVNC_VERSION="${RabbitRemoteControl_VERSION}"
+    HAVE_TigerVNC
+    )
 
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
