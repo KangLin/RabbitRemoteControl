@@ -162,34 +162,6 @@ Legend:
   + [ ] http
   + [x] Peer-to-Peer (P2P) proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
-#### Function list
-
-|            |Server|Client|Desktop  |Clipboard|File|Audio|Redirection|P2P|Proxy|Terminal|
-|:---------:|:-----:|:---:|:-------:|:-------:|:--:|:---:|:---------:|:-:|:---:|:------:|
-|  RDP      |  ✓    |  ✓  |     ✓   |✓        | …… |  ✓  | ……        |   | ✓   | ❌     |
-|  RFB      | ……    |  ✓  |     ✓   |✓        |    | ❌  | ❌         |✓ |  ✓   |       |
-|Spice      |       |     |         |         |    |     | ❌        |   |      |       |
-|Scrcpy     |       |     |         |         |    |     | ❌        |   |      |       |
-|Terminal   |       |  ✓  | ❌      |✓        | ❌ | ❌  | ❌        |   |      |       |
-|TELNET     |       |  ✓  | ❌      |✓        | ❌ | ❌  |  ❌       |   |      |       |
-|  SSH      |       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
-|Serial port|       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
-|  FTP      | ✓     |……   | ❌      |         |……  |      |  ❌       |   |      |       |
-| SFTP      |       |……   | ❌      |         |……  |      |  ❌       |   |      |       |
-
-Legend:  
- ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
-
-|             | Proxy | P2P  |
-|-------------|-------|------|
-|RabbitVNC    |✓      | ✓    |
-|TigerVNC     |✓      | ✓    |
-|LibVNC       |       |      |
-|FreeRDP      |…      |      |
-
-Legend:  
- ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
-
 #### Plugins
 
 - [FreeRDP](Plugins/FreeRDP/README.md)

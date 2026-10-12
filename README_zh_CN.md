@@ -160,34 +160,6 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
   + [ ] http
   + [x] 端到端（P2P）代理协议： [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
-#### 功能列表
-
-|       |服务器|客户端|远程桌面|剪切板|文件传输|音频传输|资源重定向|P2P|代理|终端|
-|:-----:|:---:|:---:|:----:|:--:|:-----:|:------:|:-----:|:-:|:--:|:-:|
-|  RDP  |  ✓  |  ✓  |  ✓   |✓   | ……    |  ✓     | ……    |   | ✓  | ❌ |
-|  RFB  | ……  |  ✓  |  ✓   |✓   |       | ❌     | ❌     |✓  | ✓ |    |
-|Spice  |     |     |      |    |       |        | ❌   |   |    |   |
-|Scrcpy |     |     |      |    |       |        | ❌   |   |    |   |
-|终端    |     | ✓   | ❌   |✓   | ❌    | ❌     | ❌  |    |   |    |
-|TELNET |     | ✓   | ❌   |✓   | ❌    | ❌    |  ❌  |   |   |    |
-|  SSH  |     | ✓   | ❌   |✓   |       | ❌     | ❌  |   |    |   |
-|  串口  |     | ✓   | ❌   |    |       | ❌     | ❌  |   |    |   |
-|  FTP  |  ✓  | ……   | ❌   |    | ……   | ❌     | ❌  |   |   |    |
-| SFTP  |     | ……   | ❌   |    | ……   | ❌     | ❌  |   |   |    |
-
-图例：  
- ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
-
-|             | 代理              | P2P              |
-|-------------|------------------|------------------|
-|RabbitVNC    |✓                 |✓                 |
-|TigerVNC     |✓                 |✓                 |
-|LibVNC       |                  |                  |
-|FreeRDP      |……                |                  |
-
-图例：  
- ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
-
 #### 插件
 
 - [FreeRDP](Plugins/FreeRDP/README_zh_CN.md)
