@@ -17,9 +17,9 @@ public:
     virtual int WakeUp() override;
 
 protected:
-    virtual OnInitReturnValue OnInit() override;
+    virtual OnStartReturnValue OnStart() override;
     virtual int OnProcess() override;
-    virtual int OnClean() override;
+    virtual int OnStop() override;
 
 private:
     COperateSSH* m_pOperate;

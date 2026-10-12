@@ -29,20 +29,20 @@ int CBackendFreeRDPServer::WakeUp()
 /*!
  * \~chinese 初始化
  * \return
- * \li OnInitReturnValue::Fail: 错误
- * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
- * \li OnInitReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
+ * \li OnStartReturnValue::Fail: 错误
+ * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
+ * \li OnStartReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
  *
  * \~english Initialization
- * \return CBackend::OnInitReturnValue
- * \li OnInitReturnValue::Fail: error
- * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
- * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
+ * \return CBackend::OnStartReturnValue
+ * \li OnStartReturnValue::Fail: error
+ * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
+ * \li OnStartReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
  *
  * \~
  * \see Start()
  */
-CBackend::OnInitReturnValue CBackendFreeRDPServer::OnInit()
+CBackend::OnStartReturnValue CBackendFreeRDPServer::OnStart()
 {
     shadow_subsystem_set_entry_builtin(NULL);
 
@@ -50,7 +50,7 @@ CBackend::OnInitReturnValue CBackendFreeRDPServer::OnInit()
     if (!m_pServer)
     {
         qCritical(log) << "Server new failed";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     SetParameters();
@@ -59,22 +59,22 @@ CBackend::OnInitReturnValue CBackendFreeRDPServer::OnInit()
     if(nRet < 0)
     {
         qCritical(log) << "Server initialization failed:" << nRet;
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
     m_bServerInit = true;
 
     if ((nRet = shadow_server_start(m_pServer)) < 0)
     {
         qCritical(log) << "Failed to start server:" << nRet;
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     // Don't use OnProcess (qt event loop)
     // Because freerdp has new thread process loop
-    return OnInitReturnValue::NotUseOnProcess;
+    return OnStartReturnValue::NotUseOnProcess;
 }
 
-int CBackendFreeRDPServer::OnClean()
+int CBackendFreeRDPServer::OnStop()
 {
     int nRet = 0;
     if(m_pServer)

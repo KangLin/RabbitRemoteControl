@@ -50,8 +50,8 @@ protected Q_SLOTS:
 #endif
 
 private:
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
     virtual int OnProcess() override;
     virtual int WakeUp() override;
 

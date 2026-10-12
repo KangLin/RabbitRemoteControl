@@ -23,8 +23,8 @@ public Q_SLOTS:
 
     // CBackend interface
 protected:
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
 
 private Q_SLOTS:
     void slotDisconnected();

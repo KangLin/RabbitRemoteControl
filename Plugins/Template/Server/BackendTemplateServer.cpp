@@ -31,28 +31,28 @@ int CBackendTemplateServer::WakeUp()
 /*!
  * \~chinese 初始化
  * \return
- * \li OnInitReturnValue::Fail: 错误
- * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
- * \li OnInitReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
+ * \li OnStartReturnValue::Fail: 错误
+ * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
+ * \li OnStartReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
  *
  * \~english Initialization
- * \return CBackend::OnInitReturnValue
- * \li OnInitReturnValue::Fail: error
- * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
- * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
+ * \return CBackend::OnStartReturnValue
+ * \li OnStartReturnValue::Fail: error
+ * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
+ * \li OnStartReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
  *
  * \~
  * \see Start()
  */
-CBackend::OnInitReturnValue CBackendTemplateServer::OnInit()
+CBackend::OnStartReturnValue CBackendTemplateServer::OnStart()
 {
-    OnInitReturnValue ret = OnInitReturnValue::NotUseOnProcess;
+    OnStartReturnValue ret = OnStartReturnValue::NotUseOnProcess;
     // TODO: Modify Initialization
 
     return ret;
 }
 
-int CBackendTemplateServer::OnClean()
+int CBackendTemplateServer::OnStop()
 {
     int nRet = 0;
     // TODO: Modify clean

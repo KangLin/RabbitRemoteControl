@@ -15,8 +15,8 @@
  *  - 这个接口仅由插件实现。
  *  - 如果是异步的（有后台线程），它的实例在后台线程中。
  *  - 具体的插件需要实现下面接口：
- *     - OnInit()
- *     - OnClean()
+ *     - OnStart()
+ *     - OnStop()
  *     - OnProcess()
  *  - 信号：
  *    - 当开始/初始化完成后，必须触发 sigRunning() 信号
@@ -35,8 +35,8 @@
  *  - If it's asynchronous (with a background thread),
  *    its instance is in a background thread.
  *  - The plug-in needs to implement the following interface.
- *     - OnInit()
- *     - OnClean()
+ *     - OnStart()
+ *     - OnStop()
  *     - OnProcess()
  *  - Signals:
  *    - Once started/initialized, the sigRunning() signal must be triggered
@@ -65,12 +65,12 @@ public:
 
 public:
     /*!
-     * \~chinese 开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件
+     * \~chinese 开始。根据　OnStart()　返回值来决定是否开始定时器来支持非 qt 事件
      * \note
      * - 如果是异步的，开始成功后触发 sigRunning() 。
      * - 如果是同步的，则在此函数成功调用后，触发 sigRunning() 。
      *
-     * \~english Start. Based on the OnInit() return value,
+     * \~english Start. Based on the OnStart() return value,
      *           decide whether to start the timer to support no-qt event
      * \note
      * - If it is asynchronous,
@@ -83,7 +83,7 @@ public:
      *   - = 0: success
      *   - < 0: error
      * \see sigRunning()
-     * \see OnInit() OnProcess() slotTimeOut()
+     * \see OnStart() OnProcess() slotTimeOut()
      */
     virtual int Start();
     /*!
@@ -104,37 +104,37 @@ public:
     virtual int WakeUp() = 0;
 
 protected:
-    enum class OnInitReturnValue {
+    enum class OnStartReturnValue {
         Fail = -1,
         Success = 0,
         UseOnProcess = Success,
         NotUseOnProcess = 1,
     };
-    //Q_ENUM(OnInitReturnValue)
+    //Q_ENUM(OnStartReturnValue)
     /*!
      * \~chinese 初始化
      * \return
-     * \li OnInitReturnValue::Fail: 错误
-     * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
-     * \li OnInitReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
+     * \li OnStartReturnValue::Fail: 错误
+     * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
+     * \li OnStartReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
      *
      * \~english Initialization
-     * \return CBackend::OnInitReturnValue
-     * \li OnInitReturnValue::Fail: error
-     * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
-     * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
+     * \return CBackend::OnStartReturnValue
+     * \li OnStartReturnValue::Fail: error
+     * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
+     * \li OnStartReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
      *
      * \~
      * \see Start()
      */
-    [[nodiscard]] virtual OnInitReturnValue OnInit() = 0;
+    [[nodiscard]] virtual OnStartReturnValue OnStart() = 0;
     /*!
      * \~chinese 清理
      * \~english Clean
      * \~
      * \see Stop()
      */
-    virtual int OnClean() = 0;
+    virtual int OnStop() = 0;
     /*!
      * \~chinese 具体操作处理
      * \return 
@@ -156,12 +156,12 @@ protected Q_SLOTS:
     /*!
      * \~chinese 一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。
      *   如果是不是一个非 Qt 事件循环（就是普通的循环处理），
-     *   可以重载它，或者 OnInit() 返回值 OnInitReturnValue::NotUseOnProcess
+     *   可以重载它，或者 OnStart() 返回值 OnStartReturnValue::NotUseOnProcess
      *
      * \~english a non-Qt event loop (that is, normal loop processing)，
      *   It call OnProcess(), and start timer.
      *   If it is not have a non-Qt event loop,
-     *   can override it, or OnInit() return OnInitReturnValue::NotUseOnProcess
+     *   can override it, or OnStart() return OnStartReturnValue::NotUseOnProcess
      *
      * \~
      * \see Start() OnProcess()

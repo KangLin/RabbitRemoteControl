@@ -30,25 +30,25 @@ int CBackendFtpServer::WakeUp()
 /*!
  * \~chinese 初始化
  * \return
- * \li OnInitReturnValue::Fail: 错误
- * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
- * \li OnInitReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
+ * \li OnStartReturnValue::Fail: 错误
+ * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: 使用 OnProcess() (非 Qt 事件循环)
+ * \li OnStartReturnValue::NotUseOnProcess: 不使用 OnProcess() (qt 事件循环)
  *
  * \~english Initialization
- * \return CBackend::OnInitReturnValue
- * \li OnInitReturnValue::Fail: error
- * \li OnInitReturnValue::Success/OnInitReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
- * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
+ * \return CBackend::OnStartReturnValue
+ * \li OnStartReturnValue::Fail: error
+ * \li OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: Use OnProcess() (non-Qt event loop)
+ * \li OnStartReturnValue::NotUseOnProcess: Don't use OnProcess() (qt event loop)
  *
  * \~
  * \see Start()
  */
-CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
+CBackend::OnStartReturnValue CBackendFtpServer::OnStart()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(m_pServer) {
         qCritical(log) << "Server is exist";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     m_Sockets.clear();
@@ -70,7 +70,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
                                m_pPara->GetReadOnly());
     if(!m_pServer) {
         qCritical(log) << "Failed to new CFtpServer";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     m_pServer->SetFilter(this);
@@ -87,7 +87,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
             .arg(net.GetPort());
             qCritical(log) << szErr;
             emit sigError(-1, szErr);
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
     } else {
         QString szErr;
@@ -95,7 +95,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
             szErr = tr("Failed: Ftp server is not set to listen on any address");
             qCritical(log) << szErr;
             emit sigError(-1, szErr);
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
         foreach (auto a, m_pPara->GetListen()) {
             QHostAddress addr(a);
@@ -105,7 +105,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
                 .arg(addr.toString()).arg(net.GetPort());
                 qCritical(log) << szErr;
                 emit sigError(-1, szErr);
-                return OnInitReturnValue::Fail;
+                return OnStartReturnValue::Fail;
             }
             if(!szErr.isEmpty())
                 szErr += "; ";
@@ -119,10 +119,10 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
     }
 
     emit sigSecurityLevel(securityLevel);
-    return OnInitReturnValue::NotUseOnProcess;
+    return OnStartReturnValue::NotUseOnProcess;
 }
 
-int CBackendFtpServer::OnClean()
+int CBackendFtpServer::OnStop()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(m_pServer) {

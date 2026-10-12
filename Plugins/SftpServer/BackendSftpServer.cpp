@@ -96,9 +96,9 @@ CBackendSftpServer::~CBackendSftpServer()
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
+CBackend::OnStartReturnValue CBackendSftpServer::OnStart()
 {
-    OnInitReturnValue ret = OnInitReturnValue::Fail;
+    OnStartReturnValue ret = OnStartReturnValue::Fail;
     if(!m_pPara) return ret;
 
     m_event = ssh_event_new();
@@ -133,10 +133,10 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
         emit sigSecurityLevel(CSecurityLevel::Level::SecureChannel
                               | CSecurityLevel::Level::Authentication);
 
-    return OnInitReturnValue::UseOnProcess;
+    return OnStartReturnValue::UseOnProcess;
 }
 
-int CBackendSftpServer::OnClean()
+int CBackendSftpServer::OnStop()
 {
     int nRet = 0;
 

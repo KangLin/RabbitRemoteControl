@@ -23,8 +23,8 @@ public:
     virtual bool event(QEvent *event) override;
 
 protected:
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
     virtual int OnProcess() override;
 
 private Q_SLOTS:
@@ -45,7 +45,7 @@ Q_SIGNALS:
 
 private:
     int SetConnect(COperateFileTransfer *pOperate);
-    OnInitReturnValue InitSFTP();
+    OnStartReturnValue InitSFTP();
 
 private:
     COperateFileTransfer* m_pOperate;

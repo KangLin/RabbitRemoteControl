@@ -67,13 +67,13 @@ CBackendLibVNCServer::~CBackendLibVNCServer()
 
 /*!
  * \return
- * \li OnInitReturnValue::Fail: error
- * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
- * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
+ * \li OnStartReturnValue::Fail: error
+ * \li OnStartReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
+ * \li OnStartReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
  */
-CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
+CBackendLibVNCServer::OnStartReturnValue CBackendLibVNCServer::OnStart()
 {
-    qDebug(log) << "CConnectLibVNCServer::OnInit()";
+    qDebug(log) << "CConnectLibVNCServer::OnStart()";
     if(m_pClient) Q_ASSERT(false);
 
     m_pClient = rfbGetClient(8, 3, 4);
@@ -83,7 +83,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         szErr = tr("Protocol version error");
         emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         qCritical(log) << "rfbGetClient fail";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     // Set parameters
@@ -162,7 +162,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
             szErr = tr("The server is empty, please input it");
             qCritical(log) << szErr;
             emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
         auto &net = m_pParameter->m_Net;
         m_pClient->serverHost = strdup(net.GetHost().toStdString().c_str());
@@ -177,7 +177,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
                                                     QString::number(m_pParameter->m_Net.GetPort()));
             qCritical(log) <<  szErr;
             emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
 
         QString szInfo = QString("Connected to ") + m_pClient->desktopName;
@@ -188,7 +188,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         emit sigInformation(szInfo);
         emit sigSecurityLevel(m_SecurityLevel);
         emit sigRunning();
-        return OnInitReturnValue::UseOnProcess;
+        return OnStartReturnValue::UseOnProcess;
     }
     /*case CParameterProxy::TYPE::SockesV5:
     {
@@ -202,7 +202,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
             szErr = tr("The proxy server is empty, please input it");
             qCritical(log) << szErr;
             emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
         proxy.setPort(net.GetPort());
         auto &user = net.m_User;
@@ -211,7 +211,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         m_tcpSocket.setProxy(proxy);
         m_tcpSocket.connectToHost(m_pClient->serverHost, m_pClient->serverPort);
         if (!m_tcpSocket.waitForConnected(3000))
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         //TODO: The is fail
         m_pClient->sock = m_tcpSocket.socketDescriptor();
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
@@ -223,7 +223,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
                                                     QString::number(m_pParameter->m_Net.GetPort()));
             qCritical(log) <<  szErr;
             emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
         break;
     }//*/
@@ -243,7 +243,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
                 &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, this);
         }
         if(!m_pThread)
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),
                              this, SLOT(slotConnectProxyServer(QString, quint16)));
         Q_ASSERT(check);
@@ -260,7 +260,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         Q_ASSERT(check);
         m_pThread->start();
 
-        return OnInitReturnValue::NotUseOnProcess;
+        return OnStartReturnValue::NotUseOnProcess;
     }
 #endif // #ifdef HAVE_LIBSSH
     //! [Use SSH Tunnel]
@@ -268,12 +268,12 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         break;
     }
 
-    return OnInitReturnValue::UseOnProcess;
+    return OnStartReturnValue::UseOnProcess;
 }
 
-int CBackendLibVNCServer::OnClean()
+int CBackendLibVNCServer::OnStop()
 {
-    qDebug(log) << "CConnectLibVNCServer::OnClean()";
+    qDebug(log) << "CConnectLibVNCServer::OnStop()";
 #ifdef HAVE_LIBSSH
     if(m_pThread)
     {

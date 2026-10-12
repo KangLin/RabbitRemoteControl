@@ -84,15 +84,15 @@ int CBackend::SetConnect(COperate *pOperate)
 int CBackend::Start()
 {
     qDebug(log) << Q_FUNC_INFO;
-    OnInitReturnValue nRet = OnInitReturnValue::Fail;
-    nRet = OnInit();
+    OnStartReturnValue nRet = OnStartReturnValue::Fail;
+    nRet = OnStart();
     switch(nRet) {
-    case OnInitReturnValue::Fail:
+    case OnStartReturnValue::Fail:
         return -1;
-    case OnInitReturnValue::Success:
+    case OnStartReturnValue::Success:
         QTimer::singleShot(0, this, SLOT(slotTimeOut()));
         break;
-    case OnInitReturnValue::NotUseOnProcess:
+    case OnStartReturnValue::NotUseOnProcess:
         break;
     default:
         qWarning(log) << "Unknown return value:" << (int)nRet;
@@ -104,7 +104,7 @@ int CBackend::Stop()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    nRet = OnClean();
+    nRet = OnStop();
     return nRet;
 }
 

@@ -28,8 +28,8 @@ public Q_SLOTS:
     virtual void slotDisconnect(const QString& szIp, const quint16 port) override;
 
 protected:
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
     virtual int OnProcess() override;
     virtual int WakeUp() override;
 

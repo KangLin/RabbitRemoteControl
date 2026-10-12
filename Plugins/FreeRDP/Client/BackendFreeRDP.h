@@ -153,8 +153,8 @@ protected:
 
 private:
     // CConnect interface
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
     virtual int OnProcess() override;
     int OnProcess(int nTimeout);
 
@@ -187,7 +187,7 @@ private:
     friend class CConnectLayerQTcpSocket;
 #endif
 #ifdef HAVE_LIBSSH
-    OnInitReturnValue InitSSHTunnelPipe();
+    OnStartReturnValue InitSSHTunnelPipe();
     int CleanSSHTunnelPipe();
     CSSHTunnelThread* m_pThreadSSH;
 #endif // HAVE_LIBSSH

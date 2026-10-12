@@ -36,8 +36,8 @@ public Q_SLOTS:
     virtual void slotClipBoardChanged() override;
 
 protected:
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
     virtual int WakeUp() override;
 
     virtual void mousePressEvent(QMouseEvent *event) override;

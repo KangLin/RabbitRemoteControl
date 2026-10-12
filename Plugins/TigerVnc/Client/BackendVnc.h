@@ -77,8 +77,8 @@ protected:
     // CConnect interface
 protected:
     // Please call SetParamter before call Connect
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
     virtual int OnProcess() override;
     // CBackendDesktop interface
     virtual int WakeUp() override;

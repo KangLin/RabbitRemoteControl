@@ -125,15 +125,15 @@ bool CBackendFileTransfer::event(QEvent *event)
     return CBackend::event(event);
 }
 
-CBackend::OnInitReturnValue CBackendFileTransfer::OnInit()
+CBackend::OnStartReturnValue CBackendFileTransfer::OnStart()
 {
-    OnInitReturnValue nRet = OnInitReturnValue::Fail;
+    OnStartReturnValue nRet = OnStartReturnValue::Fail;
     if(m_pPara->GetProtocol() == CParameterFileTransfer::Protocol::SFTP)
         nRet = InitSFTP();
     return nRet;
 }
 
-int CBackendFileTransfer::OnClean()
+int CBackendFileTransfer::OnStop()
 {
     int nRet = 0;
 #if HAVE_LIBSSH
@@ -193,13 +193,13 @@ int CBackendFileTransfer::SetConnect(COperateFileTransfer *pOperate)
     return nRet;
 }
 
-CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP()
+CBackendFileTransfer::OnStartReturnValue CBackendFileTransfer::InitSFTP()
 {
     CParameterSSH* ssh = &m_pOperate->GetParameter()->m_SSH;
 #if HAVE_LIBSSH
     m_pSFTP = new CChannelSFTP(this, ssh);
     if(!m_pSFTP) {
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
     bool bRet = m_pSFTP->open(QIODevice::ReadWrite);
     if(!bRet) {
@@ -207,11 +207,11 @@ CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP()
         szErr = tr("Open SFTP fail.") + m_pSFTP->errorString();
         qCritical(log) << szErr;
         emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 #endif
     emit sigRunning();
-    return OnInitReturnValue::UseOnProcess;
+    return OnStartReturnValue::UseOnProcess;
 }
 
 void CBackendFileTransfer::slotMakeDir(const QString &szDir)

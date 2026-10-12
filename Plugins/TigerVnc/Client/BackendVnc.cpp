@@ -189,13 +189,13 @@ int CBackendVnc::SetPara()
 
 /*
  * \return
- * \li OnInitReturnValue::Fail: error
- * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
- * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
+ * \li OnStartReturnValue::Fail: error
+ * \li OnStartReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
+ * \li OnStartReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
  */
-CBackendVnc::OnInitReturnValue CBackendVnc::OnInit()
+CBackendVnc::OnStartReturnValue CBackendVnc::OnStart()
 {
-    qDebug(log) << "CConnectVnc::OnInit()";
+    qDebug(log) << "CConnectVnc::OnStart()";
     int nRet = 0;
     
     if(m_pPara->GetIce())
@@ -204,15 +204,15 @@ CBackendVnc::OnInitReturnValue CBackendVnc::OnInit()
 #ifdef HAVE_LIBSSH
         if(m_pPara->m_Proxy.GetUsedType() == CParameterProxy::TYPE::SSHTunnel) {
             nRet = SSHInit();
-            if(nRet) return OnInitReturnValue::Fail; // error
-            return OnInitReturnValue::UseOnProcess;
+            if(nRet) return OnStartReturnValue::Fail; // error
+            return OnStartReturnValue::UseOnProcess;
         }
 #endif
         nRet = SocketInit();
     }
-    if(nRet) return OnInitReturnValue::Fail; // error
+    if(nRet) return OnStartReturnValue::Fail; // error
     // Don't use OnProcess (qt event loop)
-    return OnInitReturnValue::NotUseOnProcess;
+    return OnStartReturnValue::NotUseOnProcess;
 }
 
 int CBackendVnc::IceInit()
@@ -426,9 +426,9 @@ int CBackendVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
     return 0;
 }
 
-int CBackendVnc::OnClean()
+int CBackendVnc::OnStop()
 {
-    qDebug(log) << "CConnectVnc::OnClean()";
+    qDebug(log) << "CConnectVnc::OnStop()";
     close();
     setStreams(nullptr, nullptr);
     if(m_DataChannel) {

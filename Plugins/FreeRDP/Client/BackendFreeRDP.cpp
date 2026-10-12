@@ -94,12 +94,12 @@ CBackendFreeRDP::~CBackendFreeRDP()
 }
 
 /*
- * \return 
- * \li OnInitReturnValue::Fail: error
- * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
- * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
+ * \return
+ * \li OnStartReturnValue::Fail: error
+ * \li OnStartReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
+ * \li OnStartReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
  */
-CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
+CBackendFreeRDP::OnStartReturnValue CBackendFreeRDP::OnStart()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
@@ -107,7 +107,7 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
     m_writeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
     if(!m_writeEvent) {
         qCritical(log) << "CreateEvent failed";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
@@ -128,13 +128,13 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
         m_pContext->pThis = this;
     } else {
         qCritical(log) << "freerdp_client_context_new fail";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     rdpSettings* settings = pRdpContext->settings;
     if(!settings) {
         qCritical(log) << "settings is null";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     //*
@@ -153,14 +153,14 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
     if (nRet)
     {
         freerdp_client_settings_command_line_status_print(settings, nRet, argc, argv);
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     } //*/
 
 #if FREERDP_VERSION_MAJOR >= 3
     if (!stream_dump_register_handlers(pRdpContext,
                                        CONNECTION_STATE_MCS_CREATE_REQUEST,
                                        FALSE))
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
 #endif
     
     auto &user = m_pParameter->m_Net.m_User;
@@ -226,18 +226,18 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
     {
         CParameterNet* net = &m_pParameter->m_Proxy.m_SockesV5;
         if (!freerdp_settings_set_uint32(settings, FreeRDP_ProxyType, PROXY_TYPE_SOCKS))
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         if(CParameterProxy::TYPE::Http == m_pParameter->m_Proxy.GetUsedType()) {
             net = &m_pParameter->m_Proxy.m_Http;
             if (!freerdp_settings_set_uint32(settings, FreeRDP_ProxyType, PROXY_TYPE_HTTP))
-                return OnInitReturnValue::Fail;
+                return OnStartReturnValue::Fail;
         }
         auto &user = net->m_User;
         if (!freerdp_settings_set_string(settings, FreeRDP_ProxyHostname,
                                          net->GetHost().toStdString().c_str()))
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         if (!freerdp_settings_set_uint16(settings, FreeRDP_ProxyPort, net->GetPort()))
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
 
         if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword)
              && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
@@ -247,22 +247,22 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
             emit sigBlockShowWidget("CDlgUserPassword", nRet, net);
             if(QDialog::Accepted != nRet)
             {
-                return OnInitReturnValue::Fail;
+                return OnStartReturnValue::Fail;
             }
         }
         if (!freerdp_settings_set_string(settings, FreeRDP_ProxyUsername,
                                          user.GetUser().toStdString().c_str()))
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         if (!freerdp_settings_set_string(settings, FreeRDP_ProxyPassword,
                                          user.GetPassword().toStdString().c_str()))
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         /*
 #if FREERDP_VERSION_MAJOR >= 3
         m_pConnectLayer = new CConnectLayerQTcpSocket(this);
-        if(!m_pConnectLayer) return OnInitReturnValue::Fail;
+        if(!m_pConnectLayer) return OnStartReturnValue::Fail;
         nRet = m_pConnectLayer->Initialize(pRdpContext);
-        if(nRet) return OnInitReturnValue::Fail;
-        return OnInitReturnValue::NotUseOnProcess;
+        if(nRet) return OnStartReturnValue::Fail;
+        return OnStartReturnValue::NotUseOnProcess;
 #endif
 */
     }
@@ -279,7 +279,7 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
             qCritical(log) << szErr;
             emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             emit sigError(-1, szErr.toStdString().c_str());
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
         auto &net = m_pParameter->m_Net;
         freerdp_settings_set_string(
@@ -293,7 +293,7 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
         if(nRet)
         {
             qCritical(log) << "freerdp_client_start fail";
-            return OnInitReturnValue::Fail;
+            return OnStartReturnValue::Fail;
         }
         break;
     }
@@ -302,9 +302,9 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
     {
 #if FREERDP_VERSION_MAJOR >= 3
         m_pConnectLayer = new ConnectLayerSSHTunnel(this);
-        if(!m_pConnectLayer) return OnInitReturnValue::Fail;
+        if(!m_pConnectLayer) return OnStartReturnValue::Fail;
         nRet = m_pConnectLayer->Initialize(pRdpContext);
-        if(nRet) return OnInitReturnValue::Fail;
+        if(nRet) return OnStartReturnValue::Fail;
         break;
 #endif
         return InitSSHTunnelPipe();
@@ -316,10 +316,10 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
         break;
     };
 
-    return OnInitReturnValue::UseOnProcess;
+    return OnStartReturnValue::UseOnProcess;
 }
 
-int CBackendFreeRDP::OnClean()
+int CBackendFreeRDP::OnStop()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
@@ -2570,14 +2570,14 @@ void CBackendFreeRDP::slotConnectProxyServer(QString szHost, quint16 nPort)
 }
 
 #if HAVE_LIBSSH
-CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::InitSSHTunnelPipe()
+CBackendFreeRDP::OnStartReturnValue CBackendFreeRDP::InitSSHTunnelPipe()
 {
     // Start ssh thread
     if(!m_pThreadSSH)
         m_pThreadSSH = new CSSHTunnelThread(
             &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, this);
     if(!m_pThreadSSH)
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     bool check = connect(m_pThreadSSH, SIGNAL(sigServer(QString, quint16)),
                          this, SLOT(slotConnectProxyServer(QString, quint16)));
     Q_ASSERT(check);
@@ -2588,7 +2588,7 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::InitSSHTunnelPipe()
                     this, SIGNAL(sigStop()));
     Q_ASSERT(check);
     m_pThreadSSH->start();
-    return OnInitReturnValue::UseOnProcess;
+    return OnStartReturnValue::UseOnProcess;
 }
 
 int CBackendFreeRDP::CleanSSHTunnelPipe()

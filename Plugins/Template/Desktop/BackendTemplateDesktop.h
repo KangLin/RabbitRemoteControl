@@ -15,8 +15,8 @@ public:
     virtual int WakeUp() override;
 
 protected:
-    virtual OnInitReturnValue OnInit() override;
-    virtual int OnClean() override;
+    virtual OnStartReturnValue OnStart() override;
+    virtual int OnStop() override;
     virtual int OnProcess() override;
 
 public slots:

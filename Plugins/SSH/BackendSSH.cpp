@@ -37,19 +37,19 @@ CBackendSSH::~CBackendSSH()
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
+CBackendSSH::OnStartReturnValue CBackendSSH::OnStart()
 {
     bool check = false;
     if(!m_pTerminal)
     {
         Q_ASSERT(m_pTerminal);
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     m_pChannelSSH = new CChannelSSHTerminal(this, &m_pPara->m_SSH);
     if(!m_pChannelSSH) {
         qCritical(log) << "new CChannelSSH fail";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     check = connect(m_pChannelSSH, &CChannelSSHTerminal::sigSecurityLevel,
@@ -110,12 +110,12 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
 
     if(!m_pChannelSSH->open(QIODevice::ReadWrite)) {
         qCritical(log) << "Open ssh channel fail";
-        return OnInitReturnValue::Fail;
+        return OnStartReturnValue::Fail;
     }
 
     m_pTerminal->startTerminalTeletype();
 
-    return OnInitReturnValue::UseOnProcess;
+    return OnStartReturnValue::UseOnProcess;
 }
 
 int CBackendSSH::OnProcess()
@@ -126,7 +126,7 @@ int CBackendSSH::OnProcess()
     return nRet;
 }
 
-int CBackendSSH::OnClean()
+int CBackendSSH::OnStop()
 {
     int nRet = 0;
 

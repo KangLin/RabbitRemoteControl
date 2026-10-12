@@ -185,14 +185,14 @@ CBackendPlayer::~CBackendPlayer()
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CBackend::OnInitReturnValue CBackendPlayer::OnInit()
+CBackend::OnStartReturnValue CBackendPlayer::OnStart()
 {
     qDebug(log) << Q_FUNC_INFO;
     emit sigRunning();
-    return OnInitReturnValue::NotUseOnProcess;
+    return OnStartReturnValue::NotUseOnProcess;
 }
 
-int CBackendPlayer::OnClean()
+int CBackendPlayer::OnStop()
 {
     qDebug(log) << Q_FUNC_INFO;
     slotStop();
