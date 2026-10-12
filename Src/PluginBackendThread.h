@@ -21,7 +21,7 @@ public:
     virtual ~CPluginBackendThread();
 
 private:
-    virtual COperate* CreateOperate(const QString &szId, CParameterPlugin *para) override;
+    [[nodiscard]] virtual COperate* CreateOperate(const QString &szId, CParameterPlugin *para) override;
 
     CPluginThread* m_pThread;
 };
