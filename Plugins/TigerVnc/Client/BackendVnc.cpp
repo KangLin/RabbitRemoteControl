@@ -1176,10 +1176,10 @@ quint32 CBackendVnc::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_CapsLock: k = XK_Caps_Lock; break;
     case Qt::Key_ScrollLock: k = XK_Scroll_Lock; break;
         
-    case Qt::Key_Shift: k = XK_Shift_R; break; //k = XK_Shift_L; break;
-    case Qt::Key_Control: k = XK_Control_R; break;// k = XK_Control_L; break;
-    case Qt::Key_Alt: k = XK_Alt_R; break;//k = XK_Alt_L; break;
-    case Qt::Key_Meta: k = XK_Meta_R; break;//k = XK_Meta_L; break;*/
+    case Qt::Key_Shift: k = XK_Shift_L; break; //k = XK_Shift_R; break;
+    case Qt::Key_Control: k = XK_Control_L; break;// k = XK_Control_R; break;
+    case Qt::Key_Alt: k = XK_Alt_L; break;//k = XK_Alt_R; break;
+    case Qt::Key_Meta: k = XK_Meta_L; break;//k = XK_Meta_R; break;*/
         
     case Qt::Key_Super_L: k = XK_Super_L; break;		/* left "windows" key */
     case Qt::Key_Super_R: k = XK_Super_R; break;		/* right "windows" key */
