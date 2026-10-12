@@ -1,5 +1,6 @@
-// Author: Kang Lin <kl222@126.com>
-//! 
+//! Author: Kang Lin <kl222@126.com>
+
+#include "freerdp/scancode.h"
 #include "ConvertKeyCode.h"
 
 CConvertKeyCode::CConvertKeyCode()
@@ -14,7 +15,7 @@ CConvertKeyCode::CConvertKeyCode()
  *           2.2.8.1.1.3.1.1.1
  *       https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/7acaec9f-c8a6-4ee9-87d6-d9b89cf56489
  */
-UINT32 CConvertKeyCode::QtToScanCode(int key, Qt::KeyboardModifiers modifiers)
+quint32 CConvertKeyCode::QtToScanCode(int key, Qt::KeyboardModifiers modifiers)
 {
     UINT32 k = RDP_SCANCODE_UNKNOWN;
     switch (key)
