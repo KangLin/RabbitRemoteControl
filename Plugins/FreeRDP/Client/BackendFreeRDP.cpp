@@ -152,7 +152,7 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
     nRet = freerdp_client_settings_parse_command_line(settings, argc, argv, TRUE);
     if (nRet)
     {
-        nRet = freerdp_client_settings_command_line_status_print(settings, nRet, argc, argv);
+        freerdp_client_settings_command_line_status_print(settings, nRet, argc, argv);
         return OnInitReturnValue::Fail;
     } //*/
 
@@ -174,6 +174,8 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
             user.GetPassword().toStdString().c_str());
         m_SecurityLevel |= CSecurityLevel::Level::Authentication;
     }
+    //TODO: remove password log
+    qDebug(log) << "User:" << user.GetUser() << "Password:" << user.GetPassword();
 
     freerdp_settings_set_bool(
         settings, FreeRDP_RedirectClipboard, m_pParameter->GetClipboard());
@@ -828,10 +830,13 @@ BOOL CBackendFreeRDP::cb_pre_connect(freerdp* instance)
                     settings, FreeRDP_Password,
                     user.GetPassword().toStdString().c_str());
         }
-#if FREERDP_VERSION_MAJOR >= 3
-        if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
-            return FALSE;
-#endif
+        //TODO: remove password log
+        //qDebug(log) << "User:" << user.GetUser() << "Password:" << user.GetPassword();
+
+// #if FREERDP_VERSION_MAJOR >= 3
+//         if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
+//             return FALSE;
+// #endif
     } else if(freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)){
         // Because the pragram is GUI. so don't process it.
     } else if(freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon)) {
