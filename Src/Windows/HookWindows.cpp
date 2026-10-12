@@ -66,7 +66,7 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
         case VK_RMENU:
         {
             key = Qt::Key_Alt;
-            //keyMdf = Qt::KeyboardModifier::AltModifier;
+            keyMdf = Qt::KeyboardModifier::AltModifier;
             break;
         }
         case VK_CONTROL:
@@ -74,17 +74,19 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
         case VK_RCONTROL:
         {
             key = Qt::Key_Control;
-            //keyMdf = Qt::KeyboardModifier::ControlModifier;
+            keyMdf = Qt::KeyboardModifier::ControlModifier;
             break;
         }
+        /*
+        //直接发送给应用窗口，跳过了qt的事件队列。所以会导到 CFrmViewer 得不到组合键。例如大写字母
         case VK_SHIFT:
         case VK_LSHIFT:
         case VK_RSHIFT:
         {
             key = Qt::Key_Shift;
-            //keyMdf = Qt::KeyboardModifier::ShiftModifier;
+            keyMdf = Qt::KeyboardModifier::ShiftModifier;
             break;
-        }
+        }//*/
         default:
             break;
         }
@@ -94,13 +96,15 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
             if (self && self->parentWidget()->window()->winId() == foreground_window)
             {
                 if(wparam == WM_KEYDOWN || wparam == WM_SYSKEYDOWN)
-                    emit self->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, key, keyMdf));
-                    //QApplication::postEvent(self, new QKeyEvent(QKeyEvent::KeyPress, key, keyMdf));
+                    //emit self->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, key, keyMdf));
+                    QApplication::postEvent(self, new QKeyEvent(QKeyEvent::KeyPress, key, keyMdf));
                 if(wparam == WM_KEYUP || wparam == WM_SYSKEYUP)
-                    emit self->sigKeyReleaseEvent(new QKeyEvent(QKeyEvent::KeyRelease, key, Qt::NoModifier));
-                    //QApplication::postEvent(self, new QKeyEvent(QKeyEvent::KeyRelease, key, Qt::NoModifier));
+                    //emit self->sigKeyReleaseEvent(new QKeyEvent(QKeyEvent::KeyRelease, key, keyMdf));
+                    QApplication::postEvent(self, new QKeyEvent(QKeyEvent::KeyRelease, key, keyMdf));
                 /*
-                qDebug(log) << "process vkCode:" << hook->vkCode
+                qDebug(log) << (wparam == WM_KEYDOWN || wparam == WM_SYSKEYDOWN ? "KEYDOWN" : "KEYUP")
+                            << "key:" << key << "keymdf:" << keyMdf
+                            << "process vkCode:" << hook->vkCode
                             << "scanCode:" << hook->scanCode
                             << "flags:" << hook->flags;//*/
                 /* the hook procedure did not process the message,
