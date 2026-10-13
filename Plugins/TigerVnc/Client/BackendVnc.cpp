@@ -816,7 +816,7 @@ void CBackendVnc::mousePressEvent(QMouseEvent *event)
     QPoint pos = event->pos();
     rfb::Point p(pos.x(), pos.y());
 
-    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+    //qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
 
     try{
         writer()->writePointerEvent(p, mask);
@@ -832,7 +832,7 @@ void CBackendVnc::mouseReleaseEvent(QMouseEvent *event)
     uint8_t mask = 0;
     QPoint pos = event->pos();
     rfb::Point p(pos.x(), pos.y());
-    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+    //qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
     try{
         writer()->writePointerEvent(p, mask);
     } catch (rdr::Exception& e) {
@@ -857,7 +857,7 @@ void CBackendVnc::mouseMoveEvent(QMouseEvent *event)
     if(event->buttons() & Qt::MouseButton::BackButton)
         mask |= 0x80;
 
-    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+    //qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
 
     try{
         writer()->writePointerEvent(p, mask);
@@ -899,7 +899,7 @@ void CBackendVnc::wheelEvent(QWheelEvent *event)
 #endif
 
     rfb::Point p(pos.x(), pos.y());
-    //*
+    /*
     qDebug(logMouse) << Q_FUNC_INFO << event->buttons()
 #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
                      << event->button()
@@ -922,7 +922,7 @@ void CBackendVnc::keyPressEvent(QKeyEvent *event)
         modifier = true;
 
     uint32_t k = CConvertKeyCode::QtToRfbKey(event->key(), modifier);
-    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
+    //qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
 
     try{
         writer()->writeKeyEvent(k, 0, true);
@@ -940,7 +940,7 @@ void CBackendVnc::keyReleaseEvent(QKeyEvent *event)
         modifier = true;
 
     uint32_t k = CConvertKeyCode::QtToRfbKey(event->key(), modifier);
-    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
+    //qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
 
     try{
         writer()->writeKeyEvent(k, 0, false);
@@ -951,7 +951,7 @@ void CBackendVnc::keyReleaseEvent(QKeyEvent *event)
 
 void CBackendVnc::InputMethodEvent(QInputMethodEvent *event)
 {
-    qDebug(logInputMethod) << Q_FUNC_INFO << event;
+    //qDebug(logInputMethod) << Q_FUNC_INFO << event;
     if (m_pPara && m_pPara->GetOnlyView()) return;
     if (!writer()) return;
 
@@ -959,7 +959,7 @@ void CBackendVnc::InputMethodEvent(QInputMethodEvent *event)
     if (szText.isEmpty())
         return;
 
-    qDebug(logInputMethod) << Q_FUNC_INFO << szText;
+    //qDebug(logInputMethod) << Q_FUNC_INFO << szText;
 
     QVector<uint32_t> ucs4 = szText.toUcs4();
     foreach (uint32_t cp, ucs4) {

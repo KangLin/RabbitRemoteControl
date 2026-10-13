@@ -579,7 +579,7 @@ void CBackendLibVNCServer::mousePressEvent(QMouseEvent *event)
         mask |= 0x80;
     QPoint pos = event->pos();
 
-    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+    //qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
 
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
@@ -590,7 +590,7 @@ void CBackendLibVNCServer::mouseReleaseEvent(QMouseEvent *event)
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     int mask = 0;
     QPoint pos = event->pos();
-    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+    //qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
@@ -608,7 +608,7 @@ void CBackendLibVNCServer::mouseMoveEvent(QMouseEvent *event)
     if(event->buttons() & Qt::MouseButton::BackButton)
         mask |= 0x80;
     QPoint pos = event->pos();
-    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+    //qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
@@ -644,7 +644,7 @@ void CBackendLibVNCServer::wheelEvent(QWheelEvent *event)
     pos = event->pos();
 #endif
     
-    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->angleDelta() << pos;
+    //qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->angleDelta() << pos;
 
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
@@ -657,7 +657,7 @@ void CBackendLibVNCServer::keyPressEvent(QKeyEvent *event)
     if (event->modifiers() & Qt::ShiftModifier)
         modifier = true;
     uint32_t k = CConvertKeyCode::QtToRfbKey(event->key(), modifier);
-    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
+    //qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
     SendKeyEvent(m_pClient, k, TRUE);
 }
 
@@ -669,13 +669,13 @@ void CBackendLibVNCServer::keyReleaseEvent(QKeyEvent *event)
     if (event->modifiers() & Qt::ShiftModifier)
         modifier = true;
     uint32_t k = CConvertKeyCode::QtToRfbKey(event->key(), modifier);
-    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
+    //qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
     SendKeyEvent(m_pClient, k, FALSE);
 }
 
 void CBackendLibVNCServer::InputMethodEvent(QInputMethodEvent *event)
 {
-    qDebug(logInputMethod) << Q_FUNC_INFO << event;
+    //qDebug(logInputMethod) << Q_FUNC_INFO << event;
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
 
@@ -683,7 +683,7 @@ void CBackendLibVNCServer::InputMethodEvent(QInputMethodEvent *event)
     if (szText.isEmpty())
         return;
 
-    qDebug(logInputMethod) << Q_FUNC_INFO << szText;
+    //qDebug(logInputMethod) << Q_FUNC_INFO << szText;
 
     QVector<uint32_t> ucs4 = szText.toUcs4();
     foreach (uint32_t cp, ucs4) {

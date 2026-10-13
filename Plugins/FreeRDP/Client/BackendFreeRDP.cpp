@@ -2133,7 +2133,7 @@ bool CBackendFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
 
 void CBackendFreeRDP::wheelEvent(QWheelEvent *event)
 {
-    qDebug(logMouse) << Q_FUNC_INFO << event;
+    //qDebug(logMouse) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
