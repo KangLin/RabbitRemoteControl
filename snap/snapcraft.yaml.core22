@@ -4,7 +4,7 @@
 
 name: rabbitremotecontrol
 base: core22 # the base snap is the execution environment for this snap
-version: '0.0.34'
+version: '0.1.0-bate16'
 type: app
 license: GPL-3.0+
 contact: kl222@126.com

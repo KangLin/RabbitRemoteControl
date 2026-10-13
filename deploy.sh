@@ -441,7 +441,7 @@ push_remote_repository() {
         git tag -a "$VERSION" -m "$MESSAGE"
 
         # Push commits and tags
-        git push origin HEAD
+        #git push origin HEAD
         git push origin "$VERSION"
 
         echo_success "Push to remote repository successfully!"
