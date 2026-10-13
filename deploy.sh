@@ -30,6 +30,7 @@ update_version() {
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
     $SED_CMD "s/RabbitRemoteControl_VERSION_PRE:.*/RabbitRemoteControl_VERSION_PRE: ${PRE_TAG}/g" ${SOURCE_DIR}/.github/workflows/build.yml
     $SED_CMD "s/version:.*'${VERSION_PATTERN}'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
+    $SED_CMD "s/version:.*'${VERSION_PATTERN}'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml.core22
 
     $SED_CMD "s/Version:.*${VERSION_PATTERN}/Version:        ${RPM_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
 

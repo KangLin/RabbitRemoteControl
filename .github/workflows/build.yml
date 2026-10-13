@@ -34,12 +34,12 @@ jobs:
     secrets: inherit
 
   flatpak:
-    if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+    #if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
     uses: ./.github/workflows/flatpak.yml
     secrets: inherit
 
   snap:
-    if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+    #if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
     uses: ./.github/workflows/snap.yml
     secrets: inherit
 
@@ -267,13 +267,14 @@ jobs:
           echo "|Fedora 41|[RPM](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol-${RPM_VERSION}-1.fc41.x86_64.rpm)| |[RPM](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol-${RPM_VERSION}-1.fc41.aarch64.rpm)| |Run \`sudo dnf install \"rpm file\"\` to install it. |执行命令  \`sudo dnf install \"rpm file\"\`  进行安装。 |" >> ${{github.workspace}}/Release.md
 
       - name: Add download for test
-        if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+        #if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         run: |
           export BRANCH_NAME=${{ github.ref_name }}
           if [ "${{ github.ref_name }}" = "master" ]; then
               export BRANCH_NAME=test_${{ github.ref_name }}
           fi
-          echo "|Flatpak|[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.flatpak)| |[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_Linux_aarch64.flatpak)| |Run \`flatpak install \"flatpak File\" [--user]\` to install it.|执行命令  \`flatpak install \"flatpak File\" [--user]\`  进行安装。|" >> ${{github.workspace}}/Release.md
+          echo "|Flatpak|[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_x86_64.flatpak)| |[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_aarch64.flatpak)| |Run \`flatpak install \"flatpak File\" [--user]\` to install it.|执行命令  \`flatpak install \"flatpak File\" [--user]\`  进行安装。|" >> ${{github.workspace}}/Release.md
+          echo "|Snap|[Snap](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.snap)| |[snap](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_arm64.snap)| |Run \`snap install \"snap File\"\` to install it.|执行命令  \`snap install \"snap File\"\`  进行安装。|" >> ${{github.workspace}}/Release.md
 
       - name: Add snap and flathub donwload in Release.md file
         run: |

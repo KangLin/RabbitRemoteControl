@@ -1,6 +1,7 @@
 # https://snapcraft.io/docs/the-snap-format
 # How Snapcraft builds snaps: https://snapcraft.io/docs/how-snapcraft-builds
 # Snapcraft.yaml schema: https://snapcraft.io/docs/snapcraft-yaml-schema
+
 name: rabbitremotecontrol
 base: core22 # the base snap is the execution environment for this snap
 version: '0.0.34'
