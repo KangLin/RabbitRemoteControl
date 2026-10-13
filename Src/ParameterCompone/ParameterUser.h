@@ -129,4 +129,6 @@ private:
         QMap<TYPE, QString> m_TypeName;
     };
     strData m_Data;
+
+    bool m_bFinished;
 };

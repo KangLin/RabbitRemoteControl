@@ -1,5 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QCoreApplication>
+#include <QLoggingCategory>
+#include <QElapsedTimer>
 #if HAVE_QTKEYCHAIN
     #include "keychain.h"
 #endif
@@ -7,7 +10,6 @@
 #include "ParameterUser.h"
 #include "ParameterNet.h"
 #include "RabbitCommonTools.h"
-#include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
 static QString ServiceName()
@@ -18,6 +20,7 @@ static QString ServiceName()
 
 CParameterUser::CParameterUser(CParameterOperate *parent, const QString &szPrefix)
     : CParameterOperate(parent, szPrefix)
+    , m_bFinished(false)
 {
     m_Data.m_Type << TYPE::UserPassword;
     m_Data.m_UsedType = TYPE::UserPassword;
@@ -70,6 +73,12 @@ int CParameterUser::OnLoad(QSettings &set)
             connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassword);
             pReadJob->setKey(key);
             pReadJob->start();
+            m_bFinished = false;
+            QElapsedTimer timer;
+            timer.start();
+            while(!m_bFinished && timer.elapsed() < 3000) {
+                QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+            }
         } else
 #endif
         {
@@ -100,6 +109,11 @@ int CParameterUser::OnLoad(QSettings &set)
             connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassPhrase);
             pReadJob->setKey(key);
             pReadJob->start();
+            m_bFinished = false;
+            QElapsedTimer timer;
+            timer.start();
+            while(!m_bFinished && timer.elapsed() < 3000)
+                QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
         } else
 #endif
         {
@@ -414,6 +428,7 @@ void CParameterUser::slotLoadPassword()
 {
 #if HAVE_QTKEYCHAIN
     qDebug(log) << Q_FUNC_INFO;
+    m_bFinished = true;
     QKeychain::ReadPasswordJob* pReadJob = qobject_cast<QKeychain::ReadPasswordJob*>(sender());
     if(!pReadJob) return;
     QString key = pReadJob->key();
@@ -429,6 +444,7 @@ void CParameterUser::slotLoadPassword()
 void CParameterUser::slotLoadPassPhrase()
 {
 #if HAVE_QTKEYCHAIN
+    m_bFinished = true;
     qDebug(log) << Q_FUNC_INFO;
     QKeychain::ReadPasswordJob* pReadJob = qobject_cast<QKeychain::ReadPasswordJob*>(sender());
     if(!pReadJob) return;
