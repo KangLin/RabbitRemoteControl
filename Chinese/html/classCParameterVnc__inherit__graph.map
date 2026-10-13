@@ -1,0 +1,11 @@
+<map id="CParameterVnc" name="CParameterVnc">
+<area shape="rect" id="Node000001" title=" " alt="" coords="20,299,143,324"/>
+<area shape="rect" id="Node000002" href="$classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="5,225,157,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,264,84,299,79,299,79,264"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="6,152,157,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,191,84,225,79,225,79,191"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="参数接口" alt="" coords="32,79,131,104"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="84,118,84,152,79,152,79,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="44,5,119,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="84,44,84,79,79,79,79,44"/>
+</map>

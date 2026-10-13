@@ -1,0 +1,5 @@
+<map id="CFrmViewer" name="CFrmViewer">
+<area shape="rect" id="Node000001" title="A widget which displays output image from a CConnectDesktop and sends input keypresses and mouse acti..." alt="" coords="5,79,107,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="17,5,95,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,44,59,79,53,79,53,44"/>
+</map>

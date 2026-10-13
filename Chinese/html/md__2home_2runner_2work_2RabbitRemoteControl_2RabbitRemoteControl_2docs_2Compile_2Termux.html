@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: Termux</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate16</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Termux </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md214"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md215"></a>
+<a href="https://github.com/termux">termux</a></h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md216"></a>
+Install the termux applications</h2>
+<ul>
+<li><a href="https://github.com/termux/termux-app">termux-app</a>: Termux - a terminal emulator application for Android OS extendible by variety of packages.</li>
+<li><a href="https://github.com/termux/termux-x11">termux-x11</a>: Termux X-server add-on.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md217"></a>
+Open termux application</h2>
+<ul>
+<li>Update repose <pre class="fragment">pkg install root-repo
+pkg install x11-repo
+</pre></li>
+</ul>
+<ul>
+<li>Update packages <pre class="fragment">pkg update
+pkg upgrade
+</pre></li>
+</ul>
+<ul>
+<li><p class="startli">Install packages</p><ul>
+<li>Base software <pre class="fragment">  pkg install vim git curl wget unrar zip unzip
+</pre></li>
+</ul>
+<ul>
+<li><p class="startli">Desktop</p><ul>
+<li>Install desktop(xfce) <pre class="fragment">pkg i xfce # from x11-repo
+</pre></li>
+</ul>
+<ul>
+<li><p class="startli">[OPTIONS] Running graphical applications <a href="https://github.com/termux/termux-x11#running-graphical-applications">termux-x11</a></p><ul>
+<li>Install termux-x11 <pre class="fragment">pkg i termux-x11-nightly
+</pre></li>
+</ul>
+<ul>
+<li>Open termux-x11 session <pre class="fragment">termux-x11 :1 -xstartup "xfce4-session"
+</pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p class="startli">[OPTIONS] vnc</p><ul>
+<li>Install tigvervnc <pre class="fragment">pkg install tigervnc
+</pre></li>
+</ul>
+<ul>
+<li><p class="startli">Start tigervnc service </p><pre class="fragment">vncserver :1
+</pre><ul>
+<li>The first time you start it, it will show the setup. You can set a password and choose whether it's read-only. <pre class="fragment">You will require a password to access your desktops.
+
+Password:
+Verify:
+
+Would you like to enter a view-only password (y/n)?
+</pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Stop tigervnc <pre class="fragment">vncserver -kill :1
+</pre></li>
+</ul>
+<ul>
+<li>Modify ~/.vnc/xstartup <pre class="fragment">vim ~/.vnc/xstartup
+
+# Change the last line to `xfce4-session` &amp; from `twm &amp;`
+xfce4-session &amp;
+</pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p class="startli">[OPTIONS] Install ssh service</p><ul>
+<li>Install OpenSSH <pre class="fragment">pkg install openssh
+</pre></li>
+</ul>
+<ul>
+<li>Check the current username <pre class="fragment">whoami
+</pre></li>
+</ul>
+<ul>
+<li>Set the current user password <pre class="fragment">passwd
+</pre></li>
+</ul>
+<ul>
+<li>Manually start the SSH service <pre class="fragment">sshd
+</pre></li>
+</ul>
+<ul>
+<li><p class="startli">Set the service to start automatically</p><ul>
+<li>Install termux-services： <pre class="fragment">pkg install termux-services
+</pre></li>
+</ul>
+<ul>
+<li>Exit, then restart termux application. Otherwise, sv-enable will give an error. <pre class="fragment">exit
+</pre></li>
+</ul>
+<ul>
+<li>Enable sshd service <pre class="fragment">sv-enable sshd
+</pre></li>
+</ul>
+<ul>
+<li>Exit, then restart termux application. start automatically ssh service <pre class="fragment">exit
+</pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Check the port: the default port is usually 8022 <pre class="fragment">pkg install iproute2
+ss -tnlp | grep sshd
+</pre></li>
+</ul>
+<ul>
+<li>Visit <pre class="fragment">ssh -p 8022 UserName@IP
+</pre></li>
+</ul>
+</li>
+<li>Option software <pre class="fragment">pkg i qt-creator qt6
+</pre></li>
+</ul>
+</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md218"></a>
+Compile</h2>
+<ul>
+<li>Script<ul>
+<li><p class="startli">build_linux.sh</p>
+<p class="startli">build_linux.sh &ndash;termux</p>
+</li>
+<li>build_termux.sh</li>
+</ul>
+</li>
+<li>Manual build<ul>
+<li><p class="startli">Set the CMake parameters: <span class="tt">-DCMAKE_SYSTEM_NAME=Linux</span></p>
+<div class="fragment"><div class="line"># Download source code</div>
+<div class="line">git clone https://github.com/KangLin/RabbitRemoteControl.git</div>
+<div class="line"># Download RabbitComm</div>
+<div class="line">git clone https://github.com/KangLin/RabbitCommon.git</div>
+<div class="line"># Entry project source code</div>
+<div class="line">cd RabbitRemoteControl</div>
+<div class="line">mkdir build</div>
+<div class="line">cmake .. \</div>
+<div class="line">    -DCMAKE_SYSTEM_NAME=Linux \</div>
+<div class="line">    -DCMAKE_INSTALL_PREFIX=install \</div>
+<div class="line">    -DCMARK_SHARED=OFF \</div>
+<div class="line">    -DCMARK_TESTS=OFF \</div>
+<div class="line">    -DCMARK_STATIC=ON \</div>
+<div class="line">    -DWITH_CMARK=OFF \</div>
+<div class="line">    -DWITH_CMARK_GFM=ON \</div>
+<div class="line">    -DENABLE_UPDATE_TRANSLATIONS=ON \</div>
+<div class="line">    -DCMAKE_BUILD_TYPE=Release</div>
+</div><!-- fragment --></li>
+</ul>
+</li>
+<li>Build with qtcreator<ul>
+<li><p class="startli">Install qtcreator</p>
+<p class="startli">pkg i qtcreator</p>
+</li>
+<li>Open the project and build with qtcreator<ul>
+<li>Set the CMake parameters: <span class="tt">-DCMAKE_SYSTEM_NAME=Linux</span> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<map id="CHook" name="CHook">
+<area shape="rect" id="Node000001" title="The class is the HOOK abstract class." alt="" coords="87,79,152,104"/>
+<area shape="rect" id="Node000003" href="$classCHookUnix.html" title=" " alt="" coords="5,152,100,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,116,65,154,62,150,97,113"/>
+<area shape="rect" id="Node000004" href="$classCHookWindows.html" title=" " alt="" coords="124,152,248,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,113,177,150,173,154,138,116"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="82,5,157,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,44,122,79,117,79,117,44"/>
+</map>

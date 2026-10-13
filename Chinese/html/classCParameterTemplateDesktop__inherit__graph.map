@@ -1,0 +1,11 @@
+<map id="CParameterTemplateDesktop" name="CParameterTemplateDesktop">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,299,217,324"/>
+<area shape="rect" id="Node000002" href="$classCParameterDesktop.html" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="35,225,187,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,264,114,299,109,299,109,264"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="36,152,187,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,191,114,225,109,225,109,191"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="参数接口" alt="" coords="62,79,161,104"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="114,118,114,152,109,152,109,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="74,5,149,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="114,44,114,79,109,79,109,44"/>
+</map>

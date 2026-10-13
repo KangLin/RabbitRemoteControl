@@ -1,0 +1,49 @@
+<map id="CPlugin" name="CPlugin">
+<area shape="rect" id="Node000001" title="插件接口" alt="" coords="128,499,199,524"/>
+<area shape="rect" id="Node000003" href="$classCPluginBackendThread.html" title="插件有一个后台线程，所有操作后端运行在此后台线程中" alt="" coords="254,5,425,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,485,169,387,183,255,193,188,207,127,224,76,245,42,261,29,265,33,249,45,229,79,212,128,198,189,188,256,174,388,168,485"/>
+<area shape="rect" id="Node000005" href="$classCPluginFileTransfer.html" title=" " alt="" coords="266,55,413,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="164,485,171,397,186,279,210,166,226,122,245,91,264,77,267,81,249,94,230,124,215,168,191,280,176,397,169,485"/>
+<area shape="rect" id="Node000006" href="$classCPluginFreeRDP.html" title=" " alt="" coords="276,104,403,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="164,484,173,406,189,303,213,205,228,167,245,140,259,129,275,122,277,127,262,134,249,144,232,169,218,207,194,304,179,406,170,485"/>
+<area shape="rect" id="Node000007" href="$classCPluginFreeRDPServer.html" title=" " alt="" coords="255,153,423,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="165,484,176,415,193,327,216,244,229,212,245,189,263,177,266,181,249,193,234,215,221,246,198,329,181,416,171,485"/>
+<area shape="rect" id="Node000008" href="$classCPluginFtpServer.html" title=" " alt="" coords="272,203,407,228"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="162,485,166,433,178,367,188,332,203,298,221,267,245,239,270,223,273,227,248,243,226,270,207,301,193,334,183,368,171,434,167,485"/>
+<area shape="rect" id="Node000009" href="$classCPluginLibSSH.html" title=" " alt="" coords="281,252,397,277"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="164,485,171,442,185,389,208,335,225,310,245,288,262,277,280,269,282,274,264,281,248,292,229,313,213,337,190,391,176,443,169,485"/>
+<area shape="rect" id="Node000010" href="$classCPluginLibVNCServer.html" title=" " alt="" coords="259,301,419,327"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="167,484,177,451,192,411,215,371,245,337,266,324,269,329,248,341,219,374,197,413,182,453,173,486"/>
+<area shape="rect" id="Node000011" href="$classCPluginPlayer.html" title=" " alt="" coords="283,351,395,376"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="173,485,200,435,221,409,245,386,282,369,284,374,248,391,225,412,205,438,177,487"/>
+<area shape="rect" id="Node000012" href="$classCPluginRabbitVNC.html" title=" " alt="" coords="269,400,410,425"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="183,487,211,460,245,436,276,423,278,428,248,440,214,464,186,491"/>
+<area shape="rect" id="Node000013" href="$classCPluginRawStream.html" title=" " alt="" coords="266,449,413,475"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="211,495,246,485,291,472,292,477,247,490,213,500"/>
+<area shape="rect" id="Node000014" href="$classCPluginScreenCapture.html" title=" " alt="" coords="256,499,423,524"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="212,509,256,509,256,514,212,514"/>
+<area shape="rect" id="Node000015" href="$classCPluginSerialPort.html" title=" " alt="" coords="272,548,407,573"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="213,524,247,534,289,545,287,551,246,539,211,529"/>
+<area shape="rect" id="Node000016" href="$classCPluginSftpServer.html" title=" " alt="" coords="270,597,409,623"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="186,533,214,560,248,584,275,595,273,600,245,588,211,564,183,536"/>
+<area shape="rect" id="Node000017" href="$classCPluginTelnet.html" title=" " alt="" coords="284,647,395,672"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="177,535,204,586,224,611,248,633,266,643,285,649,283,655,263,648,245,637,220,615,200,589,172,538"/>
+<area shape="rect" id="Node000018" href="$classCPluginTemplateBase.html" title=" " alt="" coords="258,696,421,721"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="172,537,181,570,197,610,218,649,248,683,266,694,263,698,245,687,214,652,192,612,176,572,167,538"/>
+<area shape="rect" id="Node000019" href="$classCPluginTemplateDesktop.html" title=" " alt="" coords="247,745,432,771"/>
+<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="169,538,176,580,189,633,213,687,229,711,248,732,265,743,262,747,245,736,225,714,208,689,184,635,171,581,164,538"/>
+<area shape="rect" id="Node000020" href="$classCPluginTemplateServer.html" title=" " alt="" coords="253,795,426,820"/>
+<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="167,538,171,589,183,655,193,690,207,723,225,754,248,781,264,792,261,797,245,785,221,757,202,726,188,691,177,656,166,590,162,538"/>
+<area shape="rect" id="Node000021" href="$classCPluginTerminal.html" title=" " alt="" coords="276,844,403,869"/>
+<area shape="poly" id="edge20_Node000001_Node000021" title=" " alt="" coords="171,537,181,606,198,695,220,778,234,809,249,831,262,841,277,847,275,852,259,845,245,835,229,812,215,779,192,696,176,607,165,538"/>
+<area shape="rect" id="Node000022" href="$classCPluginTigerVnc.html" title=" " alt="" coords="275,893,403,919"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="170,538,178,617,194,720,218,817,232,855,249,880,261,890,276,897,274,902,258,895,245,884,227,857,212,819,189,721,173,617,164,538"/>
+<area shape="rect" id="Node000023" href="$classCPluginWakeOnLan.html" title=" " alt="" coords="266,943,413,968"/>
+<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="169,538,176,626,191,744,215,856,230,900,249,930,267,943,264,947,245,933,225,902,209,858,186,744,171,626,164,538"/>
+<area shape="rect" id="Node000024" href="$classCPluginWebBrowser.html" title=" " alt="" coords="263,992,415,1017"/>
+<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="168,538,174,635,188,768,198,835,212,896,228,945,249,979,265,991,261,995,245,982,224,948,207,897,193,836,182,768,169,636,163,538"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,499,80,524"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,509,128,509,128,514,94,514"/>
+<area shape="rect" id="Node000004" href="$classCPluginTemplateQtEvent.html" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="480,5,663,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="438,15,480,15,480,21,438,21"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="CBackendFtpServer" name="CBackendFtpServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="71,225,220,251"/>
+<area shape="rect" id="Node000002" href="$classCBackendServer.html" title="Server interface." alt="" coords="5,152,133,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,185,135,223,131,227,90,189"/>
+<area shape="rect" id="Node000003" href="$classCBackend.html" title="Backend interface." alt="" coords="26,79,113,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="72,118,72,152,67,152,67,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="32,5,107,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="72,44,72,79,67,79,67,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="158,152,285,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="201,189,160,227,156,223,197,185"/>
+</map>

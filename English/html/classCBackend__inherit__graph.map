@@ -1,0 +1,35 @@
+<map id="CBackend" name="CBackend">
+<area shape="rect" id="Node000001" title="Backend interface." alt="" coords="128,277,215,303"/>
+<area shape="rect" id="Node000003" href="$classCBackendDesktop.html" title="Remote desktop interface." alt="" coords="292,129,432,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,264,220,226,261,188,293,168,326,152,328,157,296,172,264,192,224,230,192,268"/>
+<area shape="rect" id="Node000009" href="$classCBackendFileTransfer.html" title=" " alt="" coords="281,203,443,228"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="202,268,262,237,297,226,298,231,264,242,205,272"/>
+<area shape="rect" id="Node000010" href="$classCBackendSSH.html" title=" " alt="" coords="306,252,418,277"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="228,280,305,269,306,275,229,285"/>
+<area shape="rect" id="Node000011" href="$classCBackendServer.html" title="Server interface." alt="" coords="298,301,426,327"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="229,295,298,303,298,309,228,300"/>
+<area shape="rect" id="Node000016" href="$classCBackendTemplateBase.html" title=" " alt="" coords="273,351,451,376"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="205,307,264,337,299,348,297,353,262,342,203,312"/>
+<area shape="rect" id="Node000017" href="$classCBackendTemplateQtEvent.html" title=" " alt="" coords="263,400,461,425"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="190,313,222,351,242,370,264,386,289,397,286,402,261,391,238,374,218,355,186,316"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,277,80,303"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,287,128,287,128,293,93,293"/>
+<area shape="rect" id="Node000004" href="$classCBackendFreeRDP.html" title=" " alt="" coords="539,5,680,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="387,119,441,78,508,40,540,28,542,33,510,44,443,83,390,123"/>
+<area shape="rect" id="Node000005" href="$classCBackendLibVNCServer.html" title=" " alt="" coords="522,55,697,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="409,122,509,89,551,78,552,83,510,94,411,127"/>
+<area shape="rect" id="Node000006" href="$classCBackendPlayer.html" title=" " alt="" coords="546,104,673,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="445,131,546,120,546,126,446,136"/>
+<area shape="rect" id="Node000007" href="$classCBackendTemplateDesktop.html" title=" " alt="" coords="509,153,709,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="446,147,509,154,509,159,446,153"/>
+<area shape="rect" id="Node000008" href="$classCBackendVnc.html" title=" " alt="" coords="554,203,665,228"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="413,157,510,187,556,200,555,205,509,193,412,162"/>
+<area shape="rect" id="Node000012" href="$classCBackendFreeRDPServer.html" title=" " alt="" coords="518,252,701,277"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="439,296,544,275,545,280,440,301"/>
+<area shape="rect" id="Node000013" href="$classCBackendFtpServer.html" title=" " alt="" coords="535,301,684,327"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="440,311,534,311,534,317,440,317"/>
+<area shape="rect" id="Node000014" href="$classCBackendSftpServer.html" title="The CBackendSftpServer class." alt="" coords="533,351,686,376"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="440,327,545,348,544,353,439,332"/>
+<area shape="rect" id="Node000015" href="$classCBackendTemplateServer.html" title=" " alt="" coords="515,400,703,425"/>
+<area shape="poly" id="edge14_Node000011_Node000015" title=" " alt="" coords="441,327,463,337,478,350,487,363,496,375,511,386,536,397,534,402,508,391,492,379,483,366,474,353,460,342,438,332"/>
+</map>
