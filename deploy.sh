@@ -18,11 +18,12 @@ update_version() {
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos_script.yml
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
     $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/flatpak.yml
-    $SED_CMD "s/${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
-    $SED_CMD "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
-    if [[ "$VERSION" =~ ^${TAG_RELEASE_PATTERN}$ ]]; then
+
+    #if [[ "$VERSION" =~ ^${TAG_RELEASE_PATTERN}$ ]]; then
+        $SED_CMD "s/${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
+        $SED_CMD "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
         $SED_CMD "s/          \"version\":[[:blank:]]*\"${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
-    fi
+    #fi
 
     $SED_CMD "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
     $SED_CMD "s/SET(RabbitRemoteControlTag .*)/SET(RabbitRemoteControlTag \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
@@ -441,8 +442,8 @@ push_remote_repository() {
         git tag -a "$VERSION" -m "$MESSAGE"
 
         # Push commits and tags
-        git push origin HEAD
         git push origin "$VERSION"
+        git push origin HEAD
 
         echo_success "Push to remote repository successfully!"
     fi
@@ -458,7 +459,9 @@ show_value
 
 check_version
 
-create_tag
+if [ "$DEPLOY" = "ON" ]; then
+    create_tag
+fi
 
 echo "= Update version to $VERSION ......"
 
@@ -472,4 +475,6 @@ if [ "$COMMIT" = "ON" ]; then
     commit_code
 fi
 
-push_remote_repository
+if [ "$DEPLOY" = "ON" ]; then
+    push_remote_repository
+fi
