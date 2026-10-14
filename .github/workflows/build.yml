@@ -82,11 +82,21 @@ jobs:
           submodules: false
           fetch-depth: 1
 
-      - name: clean test tag
+      - name: Clean test tag
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
         continue-on-error: true
         run: |
           gh release delete test_${{ github.ref_name }} -y --cleanup-tag
+
+      - name: Delete Gitee Release
+        if: false #${{ startsWith(github.ref, 'refs/tags/') }}
+        uses: nicennnnnnnlee/action-gitee-release@master
+        with:
+          gitee_action: delete_release
+          gitee_owner: kl222
+          gitee_repo: RabbitRemoteControl
+          gitee_token: ${{ secrets.gitee_token }}
+          gitee_tag_name: ${{ github.ref_name }}
 
       - name: Download ubuntu
         uses: actions/download-artifact@v7
@@ -339,6 +349,33 @@ jobs:
         run: |
           gh release create test_${{ github.ref_name }} --prerelease --latest=false --title "Recently developed build - test_${{ github.ref_name }}" --notes-file ${{github.workspace}}/Release.md
           gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md ${{github.workspace}}/CheckSum.md
+
+      - name: Read release notes
+        id: read_notes
+        run: |
+          # 把文件整体写到 step 输出 body（保留多行）
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          cat ${{github.workspace}}/Release.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Gitee Release with Multiple Files
+        if: false #${{ startsWith(github.ref, 'refs/tags/') }}
+        uses: nicennnnnnnlee/action-gitee-release@master
+        with:
+          gitee_action: create_release
+          gitee_owner: kl222
+          gitee_repo: RabbitRemoteControl
+          gitee_token: ${{ secrets.gitee_token }}
+          gitee_tag_name: ${{ github.ref_name }}
+          gitee_release_name: ${{ github.ref_name }}
+          gitee_release_body: ${{ steps.read_notes.outputs.body }}
+          gitee_target_commitish: ${{ github.ref_name }}
+          gitee_upload_retry_times: 3
+          gitee_files: |
+            ${{github.workspace}}/${{ env.artifact_path }}/*
+            ${{github.workspace}}/update.json
+            ${{github.workspace}}/Release.md
+            ${{github.workspace}}/CheckSum.md
 
       - name: Update artifact
         if: false
