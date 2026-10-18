@@ -47,6 +47,7 @@
 #       `xdg-open test.rrc`  # You should open it with your app
 
 [Desktop Entry]
+Encoding=UTF-8
 Type=Application
 
 # Icon path: http://freedesktop.org/wiki/Standards/icon-theme-spec
@@ -57,8 +58,8 @@ Type=Application
 Icon=@APP_ID@
 
 #TryExec=RabbitRemoteControlApp %u
-Exec=RabbitRemoteControlApp %u
-Path=@CMAKE_INSTALL_PREFIX@/bin
+Exec=@CMAKE_INSTALL_PREFIX@/bin/RabbitRemoteControlApp %u
+#Path=@CMAKE_INSTALL_PREFIX@/bin
 
 Terminal=false
 StartupNotify=true

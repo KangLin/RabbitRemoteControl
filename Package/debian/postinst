@@ -77,6 +77,10 @@ case "$1" in
         if command -v update-desktop-database >/dev/null 2>&1; then
             update-desktop-database $USR_ROOT/share/applications/
         fi
+        # antiX
+        #if command -v desktop-menu > /dev/null 2>&1; then
+        #    desktop-menu --write-out-global
+        #fi
 
         #echo "$INSTALL_ROOT/lib" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
         #echo "$INSTALL_ROOT/lib/`uname -m`-linux-gnu" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
@@ -104,6 +108,10 @@ case "$1" in
         if command -v update-desktop-database >/dev/null 2>&1; then
             update-desktop-database $USR_ROOT/share/applications/
         fi
+        # antiX
+        #if command -v desktop-menu > /dev/null 2>&1; then
+        #    desktop-menu --write-out-global
+        #fi
     ;;
 
     *)

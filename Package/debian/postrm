@@ -39,6 +39,10 @@ case "$1" in
         if command -v update-desktop-database >/dev/null 2>&1; then
             update-desktop-database $USR_ROOT/share/applications/
         fi
+        # antiX
+        #if command -v desktop-menu > /dev/null 2>&1; then
+        #    desktop-menu --write-out-global
+        #fi
     ;;
 
     *)
