@@ -52,6 +52,10 @@ if(FreeRDP_VERSION_MAJOR VERSION_GREATER_EQUAL 3)
     endif()
 endif()
 
+if(FreeRDP_VERSION GREATER_EQUAL "3.16.0")
+    list(APPEND FreeRDP_DEFINITIONS HAVE_FILE_INTERFACE)
+endif()
+
 if(WIN32)
     list(APPEND FreeRDP_LIBS Credui.dll)
 endif()
