@@ -518,7 +518,7 @@ if [ $DEB -eq 1 ]; then
         export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DINSTALL_QTKEYCHAIN=ON"
     fi
 
-    if [ -z "$RabbitCommon_ROOT" ]; then
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
     # Disable ci warn
@@ -576,7 +576,7 @@ if [ $APPIMAGE -eq 1 ]; then
     export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 
-    if [ -z "$RabbitCommon_ROOT" ]; then
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
     # Disable ci warn
@@ -608,7 +608,7 @@ if [ $RPM -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    if [ -z "$RabbitCommon_ROOT" ]; then
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
 
