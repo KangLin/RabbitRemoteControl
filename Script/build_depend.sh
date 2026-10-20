@@ -618,13 +618,13 @@ install_base() {
             ubuntu)
                 case "$DISTRO_VERSION" in
                     24.*)
-                        package_install libfuse-dev fuse
+                        package_install fuse
                         ;;
                     26.*|25.*)
                         package_install libfuse3-dev fuse3
                         ;;
                 esac
-                package_install libmysqlclient-dev
+                package_install libmysqlclient-dev libfuse-dev
                 ;;
             linuxmint)
                 package_install libfuse3-dev libmysqlclient-dev fuse3
