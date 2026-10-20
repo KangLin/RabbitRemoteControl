@@ -955,5 +955,5 @@ if [ $QFtpServer -eq 1 ]; then
     popd
 fi
 
-popd
-popd
+popd #pushd "$BUILD_DEPEND_DIR"
+popd #pushd "$REPO_ROOT"

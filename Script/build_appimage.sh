@@ -273,6 +273,9 @@ fedora)
     ;;
 esac
 
+# 因为在 .desktop 中的 Exec 中使用了绝对路径，所以需要 AppRun
+make_apprun AppDir
+
 # [linuxdeploy user guide](https://docs.appimage.org/packaging-guide/from-source/linuxdeploy-user-guide.html)
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir ${DEPLOY_PARA} \
     --plugin qt \

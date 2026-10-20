@@ -94,7 +94,7 @@ jobs:
 #      working-directory: ${{env.SOURCE_DIR}}
 #      env:
 #        MSYSTEM: MINGW64
-#        PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
+#        PATH: ${{env.MSYSTEM_PREFIX}}\bin;C:\msys64\usr\bin
 #      run: |
 #       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
 #            git clone https://github.com/FreeRDP/FreeRDP.git
@@ -117,7 +117,7 @@ jobs:
       - name: build RabbitVNC
         if: false
         env:
-          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
+          PATH: ${{env.MSYSTEM_PREFIX}}\bin;C:\msys64\usr\bin
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\RabbitVNC (
@@ -135,7 +135,7 @@ jobs:
       - name: build tigervnc
         working-directory: ${{env.SOURCE_DIR}}
         env:
-          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
+          PATH: ${{env.MSYSTEM_PREFIX}}\bin;C:\msys64\usr\bin
         if: false
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
@@ -154,7 +154,7 @@ jobs:
       - name: build libdatachannel
         if: false
         env:
-          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
+          PATH: ${{env.MSYSTEM_PREFIX}}\bin;C:\msys64\usr\bin
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
@@ -173,7 +173,7 @@ jobs:
       - name: build QtService
         if: false
         env:
-          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
+          PATH: ${{env.MSYSTEM_PREFIX}}\bin;C:\msys64\usr\bin
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/QtService (
@@ -191,7 +191,7 @@ jobs:
         working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-          PATH: C:\msys64\clang64\bin;C:\msys64\usr\bin
+          PATH: ${{env.MSYSTEM_PREFIX}}\bin;C:\msys64\usr\bin
         run: |
           cmake ${{github.workspace}} ^
             -DCMARK_SHARED=OFF ^
@@ -215,7 +215,7 @@ jobs:
           cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           move /Y install\plugins\*crypto*.dll install\bin
           move /Y install\plugins\*ssl*.dll install\bin
-          copy /Y C:\msys64\clang64\bin\*.dll install\bin
+          copy /Y ${{env.MSYSTEM_PREFIX}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           makensis ${{env.BUILD_DIR}}/Windows.nsi
