@@ -18,6 +18,18 @@ jobs:
       matrix:
         include:
           - VCPKG_TARGET_TRIPLET: x64-osx
+            os: macos-26-intel
+            qt_version: 6.9.3
+            qt_arch: clang_64
+            WITH_MACOSX_BUNDLE: false
+
+          - VCPKG_TARGET_TRIPLET: arm64-osx
+            os: macos-26
+            qt_version: 6.9.3
+            qt_arch: clang_64
+            WITH_MACOSX_BUNDLE: false
+
+          - VCPKG_TARGET_TRIPLET: x64-osx
             os: macos-15-intel
             qt_version: 6.9.3
             qt_arch: clang_64

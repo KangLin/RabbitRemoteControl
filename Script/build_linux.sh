@@ -641,14 +641,15 @@ if [ $MACOS -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    if [ -z "$RabbitCommon_ROOT" ]; then
-        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-    fi
     # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
         git config --global --add safe.directory $RabbitCommon_ROOT
     fi
+
+    export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
+    export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
+    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 
     ./build_depend.sh --macos \
         --rabbitcommon --tigervnc --qtermwidget --qftpserver \
@@ -656,6 +657,10 @@ if [ $MACOS -eq 1 ]; then
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
 
     ./build_macos.sh --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
@@ -692,7 +697,6 @@ if [ $LINT -eq 1 ]; then
         git config --global --add safe.directory $RabbitCommon_ROOT
     fi
 
-    export BUILD_FREERDP=ON
     export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
     export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}

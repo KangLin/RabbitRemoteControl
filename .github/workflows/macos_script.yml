@@ -18,13 +18,16 @@ jobs:
       matrix:
         include:
           - VCPKG_TARGET_TRIPLET: x64-osx
+            os: macos-26-intel
+
+          - VCPKG_TARGET_TRIPLET: arm64-osx
+            os: macos-26
+
+          - VCPKG_TARGET_TRIPLET: x64-osx
             os: macos-15-intel
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-15
-
-          - VCPKG_TARGET_TRIPLET: arm64-osx
-            os: macos-14
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
@@ -75,27 +78,24 @@ jobs:
           key: install_${{matrix.os}}
 
       - name: run-vcpkg
-        if: false
         uses: lukka/run-vcpkg@v11
+        if: false
         with:
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
           vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg          
 
       - name: git clone RabbitCommon
-        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
       
       - name: Run build_macos.sh
+        env:
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
           # 安装 GNU getopt
           brew install gnu-getopt
           export PATH="/opt/homebrew/opt/gnu-getopt/bin:/usr/local/opt/gnu-getopt/bin:$PATH"
-          #export RabbitCommon_ROOT=${{env.SOURCE_DIR}}/RabbitCommon
-          # See: https://formulae.brew.sh/
-          #brew install -y autoconf automake libtool pkg-config freerdp libvncserver libssh zstd libpcap qt qtkeychain pcapplusplus
-          #./Script/build_macos.sh --build=${{env.BUILD_DIR}} --install=${{env.INSTALL_DIR}} --source=${{env.SOURCE_DIR}}
-          ./Script/build_linux.sh --build=${{env.BUILD_DIR}} --install=${{env.INSTALL_DIR}} --source=${{env.SOURCE_DIR}}
+          ./Script/build_linux.sh --mac --build=${{env.BUILD_DIR}} --install=${{env.INSTALL_DIR}} --source=${{env.SOURCE_DIR}}
           if [ -f RabbitRemoteControl.zip ]; then
             mv RabbitRemoteControl.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip
           fi
