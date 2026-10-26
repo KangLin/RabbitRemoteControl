@@ -347,7 +347,7 @@ jobs:
       - name: Upload test tag To Github Release
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
         run: |
-          gh release create test_${{ github.ref_name }} --prerelease --latest=false --title "Recently developed build - test_${{ github.ref_name }}" --notes-file ${{github.workspace}}/Release.md
+          gh release create test_${{ github.ref_name }} --prerelease=false --draft --latest=false --title "Recently developed build - test_${{ github.ref_name }}" --notes-file ${{github.workspace}}/Release.md
           gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md ${{github.workspace}}/CheckSum.md
 
       - name: Read release notes
