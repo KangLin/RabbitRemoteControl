@@ -64,7 +64,7 @@ jobs:
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}
       qt_modules: "qtscxml qtmultimedia qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtspeech qtvirtualkeyboard"
-      VCPKGGITCOMMITID: c72a20fe8c964763f33e833e6d9f6cc058fc5936
+      VCPKGGITCOMMITID: 577638204658463ae65eb73a1b05d81b021f35d3
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_MANIFEST_FEATURES: "freerdp-server;vnc;terminal;filetransfer"
@@ -366,11 +366,6 @@ jobs:
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
-          if [ "Release" == "Release" ]; then
-              export BUILD_SERVICE=OFF
-          else
-              export BUILD_SERVICE=ON
-          fi
           cmake ${{github.workspace}} \
               -DCMARK_SHARED=OFF \
               -DCMARK_TESTS=OFF \
