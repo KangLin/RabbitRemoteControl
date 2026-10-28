@@ -17,39 +17,27 @@ jobs:
     strategy:
       matrix:
         include:
-          - VCPKG_TARGET_TRIPLET: x64-osx
-            os: macos-26-intel
-            qt_version: 6.9.3
-            qt_arch: clang_64
-            WITH_MACOSX_BUNDLE: false
+          # - VCPKG_TARGET_TRIPLET: x64-osx
+          #   os: macos-26-intel
+          #   qt_version: 6.12.0
+          #   qt_arch: clang_64
+          #   WITH_MACOSX_BUNDLE: false
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-26
-            qt_version: 6.9.3
+            qt_version: 6.12.0
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: false
 
-          - VCPKG_TARGET_TRIPLET: x64-osx
-            os: macos-15-intel
-            qt_version: 6.9.3
-            qt_arch: clang_64
-            WITH_MACOSX_BUNDLE: false
+          # - VCPKG_TARGET_TRIPLET: x64-osx
+          #   os: macos-15-intel
+          #   qt_version: 6.12.0
+          #   qt_arch: clang_64
+          #   WITH_MACOSX_BUNDLE: false
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-15
-            qt_version: 6.9.3
-            qt_arch: clang_64
-            WITH_MACOSX_BUNDLE: false
-
-          - VCPKG_TARGET_TRIPLET: arm64-osx
-            os: macos-14
-            qt_version: 6.9.3
-            qt_arch: clang_64
-            WITH_MACOSX_BUNDLE: true
-
-          - VCPKG_TARGET_TRIPLET: arm64-osx
-            os: macos-14
-            qt_version: 6.9.3
+            qt_version: 6.12.0
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: false
 
@@ -64,7 +52,7 @@ jobs:
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}
       qt_modules: "qtscxml qtmultimedia qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtspeech qtvirtualkeyboard"
-      VCPKGGITCOMMITID: 577638204658463ae65eb73a1b05d81b021f35d3
+      VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_MANIFEST_FEATURES: "freerdp-server;vnc;terminal;filetransfer"
@@ -139,7 +127,7 @@ jobs:
             cd ${{env.SOURCE_DIR}}/tigervnc
             cmake -E make_directory build
             cd build
-            cmake .. -DCMAKE_BUILD_TYPE=Release \
+            cmake .. -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
@@ -161,7 +149,7 @@ jobs:
               cd PcapPlusPlus
               cmake -E make_directory build
               cd build
-              cmake .. -DCMAKE_BUILD_TYPE=Release \
+              cmake .. -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE=Release \
                   -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
                   -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                   -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
@@ -194,7 +182,7 @@ jobs:
             cd qxmpp
             cmake -E make_directory build
             cd build
-            cmake .. \
+            cmake .. -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja \
                 -DCMAKE_BUILD_TYPE=Release \
                 -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF \
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
@@ -217,7 +205,7 @@ jobs:
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
-            cmake .. -DCMAKE_BUILD_TYPE=Release \
+            cmake .. -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/QtService/vcpkg_installed \
@@ -236,7 +224,7 @@ jobs:
               cd lxqt-build-tools
               cmake -E make_directory build
               cd build
-              cmake .. -DCMAKE_BUILD_TYPE=Release \
+              cmake .. -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE=Release \
                   -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                   -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
                   -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
@@ -254,7 +242,7 @@ jobs:
               cd qtermwidget
               cmake -E make_directory build
               cd build
-              cmake .. -DCMAKE_BUILD_TYPE=Release \
+              cmake .. -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE=Release \
                   -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                   -Dlxqt2-build-tools_DIR=${{ env.INSTALL_DIR }}/share/cmake/lxqt2-build-tools \
                   -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
@@ -274,7 +262,7 @@ jobs:
                 cd qtkeychain
                 cmake -E make_directory build
                 cd build
-                cmake .. -DCMAKE_BUILD_TYPE=Release \
+                cmake .. -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                     -DBUILD_WITH_QT6:BOOL=ON \
                     -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
@@ -300,7 +288,7 @@ jobs:
           else
               export BUILD_SERVICE=ON
           fi
-          cmake ${{github.workspace}} \
+          cmake ${{github.workspace}} -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja \
               -DCMARK_SHARED=OFF \
               -DCMARK_TESTS=OFF \
               -DCMARK_STATIC=ON \
@@ -366,7 +354,7 @@ jobs:
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
-          cmake ${{github.workspace}} \
+          cmake ${{github.workspace}} -G"Ninja" -DCMAKE_MAKE_PROGRAM=ninja \
               -DCMARK_SHARED=OFF \
               -DCMARK_TESTS=OFF \
               -DCMARK_STATIC=ON \
