@@ -564,15 +564,15 @@ It is depended by PcapPlusPlus
     - If need install: select install in target
   - If using vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
-- Use script [build_debpackage.sh](../../Script/build_debpackage.sh)
+- Use script [build_package_deb.sh](../../Script/build_package_deb.sh)
   - Set [CMake parameters or environment variable](#CMake-parameters-or-environment-variable) as environment variable. eg:
 
         export RabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/RabbitVNC
         export tigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 
-  - Use [build_debpackage.sh](../../Script/build_debpackage.sh)
+  - Use [build_package_deb.sh](../../Script/build_package_deb.sh)
 
-        ./Script/build_debpackage.sh $QT_ROOT $RabbitCommon_ROOT
+        ./Script/build_package_deb.sh $QT_ROOT $RabbitCommon_ROOT
 
 #### Run
 
@@ -861,15 +861,18 @@ After install sdk and runtime, Run again:
 
 - Build script
   - [build_linux.sh](../../Script/build_linux.sh): Build the project.
-  - [common.sh](../../Script/common.sh): Common functions.
-  - [build_depend.sh](../../Script/build_depend.sh): Build, Install the dependency libraries.
-  - [build_debpackage.sh](../../Script/build_debpackage.sh): Build deb package.
-    Before executing, set environment variables.
-    See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
-  - [build_appimage.sh](../../Script/build_appimage.sh): Build AppImage package.
-    Before executing, set environment variables.
-    See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
-  - [build_linux.sh](../../Script/build_linux.sh): Build for linux.
+    - [common.sh](../../Script/common.sh): Common functions.
+    - [build_depend.sh](../../Script/build_depend.sh): Build, Install the dependency libraries.
+    - [build_package_deb.sh](../../Script/build_package_deb.sh): Build deb package.
+      Before executing, set environment variables.
+      See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
+    - [build_package_rpm.sh](../../Script/build_package_rpm.sh): Build rpm package.
+      Before executing, set environment variables.
+      See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
+    - [build_appimage.sh](../../Script/build_appimage.sh): Build AppImage package.
+      Before executing, set environment variables.
+      See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
+    - [build_termux.sh](../../Script/build_termun.sh): build for termux
   - example
     - Use build_linux.sh
     
@@ -911,7 +914,7 @@ After install sdk and runtime, Run again:
           export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
 
           # Compile deb package
-          ./Script/build_debpackage.sh
+          ./Script/build_package_deb.sh
 
           # Compile AppImage
           ./Script/build_appimage.sh

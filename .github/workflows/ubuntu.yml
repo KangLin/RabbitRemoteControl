@@ -111,7 +111,7 @@ jobs:
               --tools ${{env.TOOLS_DIR}} \
               --build ${{env.BUILD_DIR}}
 
-      - name: build_debpackage.sh
+      - name: build_package_deb.sh
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -124,7 +124,7 @@ jobs:
           export CMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
           #apt install devscripts
           #mk-build-deps -i
-          ./Script/build_debpackage.sh
+          ./Script/build_package_deb.sh
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}

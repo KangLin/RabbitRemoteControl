@@ -121,7 +121,7 @@ jobs:
             export PcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
             export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
 
-            ${{github.workspace}}/Script/build_debpackage.sh
+            ${{github.workspace}}/Script/build_package_deb.sh
 
       - uses: uraimo/run-on-arch-action@v2
         name: Build AppImag

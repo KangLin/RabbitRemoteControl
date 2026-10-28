@@ -556,16 +556,16 @@ PcapPlusPlus 依赖此库。
   - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 “F5”
   - 如果用 vcpkg: 选项→Kits→Cmake Configureration: 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
-- 使用脚本 [build_debpackage.sh](../../Script/build_debpackage.sh)
+- 使用脚本 [build_package_deb.sh](../../Script/build_package_deb.sh)
   - 设置 [CMake 参数或者环境变量](#CMake-参数或者环境变量)为环境变量。例如：
   
         export RabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
         export tigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
         export QtService_DIR=[QtService 安装目录]/lib/cmake/QtService
         
-  - 使用脚本 [build_debpackage.sh](../../Script/build_debpackage.sh)
+  - 使用脚本 [build_package_deb.sh](../../Script/build_package_deb.sh)
 
-        ./Script/build_debpackage.sh [$QT_ROOT] [$RabbitCommon_ROOT]
+        ./Script/build_package_deb.sh [$QT_ROOT] [$RabbitCommon_ROOT]
 
 #### 运行
 
@@ -1044,14 +1044,15 @@ CMake 使用参数 -DENABLE_UPDATE_TRANSLATIONS=ON 会自行产生资源文件�
 
 - 构建脚本
   - [build_linux.sh](../../Script/build_linux.sh): 构建本项目。
-  - [common.sh](../../Script/common.sh): 公共函数。
-  - [build_depend.sh](../../Script/build_depend.sh): 构建、安装依赖库。
-  - [build_debpackage.sh](../../Script/build_debpackage.sh): 构建 deb 安装包。
-    执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
-　- [build_rpm_package.sh](../../Script/build_rpm_package.sh): 构建 deb 安装包。
-    执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
-  - [build_appimage.sh](../../Script/build_appimage.sh): 构建 AppImage 包。
-    执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
+    - [common.sh](../../Script/common.sh): 公共函数。
+    - [build_depend.sh](../../Script/build_depend.sh): 构建、安装依赖库。
+    - [build_package_deb.sh](../../Script/build_package_deb.sh): 构建 deb 安装包。
+      执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
+  　- [build_package_rpm.sh](../../Script/build_package_rpm.sh): 构建 rpm 安装包。
+      执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
+    - [build_appimage.sh](../../Script/build_appimage.sh): 构建 AppImage 包。
+      执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
+    - [build_termux.sh](../../Script/build_termun.sh): 在 termux 中构建
   - 示例
     - 使用 build_linux.sh
 
@@ -1093,7 +1094,7 @@ CMake 使用参数 -DENABLE_UPDATE_TRANSLATIONS=ON 会自行产生资源文件�
           export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
 
           # 构建 deb 包
-          ./Script/build_debpackage.sh
+          ./Script/build_package_deb.sh
 
           # 构建 AppImage
           ./Script/build_appimage.sh
