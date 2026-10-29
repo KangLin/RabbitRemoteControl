@@ -59,6 +59,7 @@
 + 镜像：
   - 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
   - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
+  - codebreg: https://codeberg.org/KangLin/RabbitRemoteControl
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol
   - bitbucket: https://bitbucket.org/kl222/rabbitremotecontrol

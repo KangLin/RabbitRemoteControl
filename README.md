@@ -59,6 +59,7 @@ It includes remote desktop, remote control, file transfer (FTP, SFTP), terminal,
 - Main repository: https://github.com/KangLin/RabbitRemoteControl
 - Mirror repository:
   - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol/
+  - codeberg: https://codeberg.org/KangLin/RabbitRemoteControl
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol
   - gitee: https://gitee.com/kl222/RabbitRemoteControl
