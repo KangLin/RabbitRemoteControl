@@ -53,16 +53,6 @@
 |:-------:|:------:|:-------:|:------:|
 |![默认样式](docs/Image/Screenshot/DefaultStyle.png)|![黑绿样式](docs/Image/Screenshot/Green.png)|![黑色样式](docs/Image/Screenshot/black.png)|![白色样式](docs/Image/Screenshot/white.png)|
 
-### 视频
-
-用户手册：
-
-https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
-
-|Termux|Android|
-|:----:|:-----:|
-|https://github.com/user-attachments/assets/dbb40e00-f5a7-45e5-966b-49f171ab56f8|https://github.com/user-attachments/assets/3d087297-7abf-4ced-9f70-5bd6e7a9278c|
-
 ### 项目位置
 
 + 主库：https://github.com/KangLin/RabbitRemoteControl

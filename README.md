@@ -54,16 +54,6 @@ It includes remote desktop, remote control, file transfer (FTP, SFTP), terminal,
 |:-------:|:------:|:-------:|:------:|
 |![Default style](docs/Image/Screenshot/DefaultStyle.png)|![Black-Green style](docs/Image/Screenshot/Green.png)|![Black](docs/Image/Screenshot/black.png)|![White](docs/Image/Screenshot/white.png)|
 
-### Video
-
-User maunal:
-
-https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25
-
-|Termux|Android|
-|:----:|:-----:|
-|https://github.com/user-attachments/assets/dbb40e00-f5a7-45e5-966b-49f171ab56f8|https://github.com/user-attachments/assets/3d087297-7abf-4ced-9f70-5bd6e7a9278c|
-
 ### Project repository position
 
 - Main repository: https://github.com/KangLin/RabbitRemoteControl
