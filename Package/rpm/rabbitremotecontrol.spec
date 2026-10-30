@@ -138,42 +138,43 @@ cmake --install $RPM_BUILD_DIR --config Release --strip \
 # 安装后需要做的任务 如：自动启动的任务
 %post
 INSTALL_PREFIX=/opt/RabbitRemoteControl
-if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
+USR_ROOT=/usr
+if [ ! -f $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
     if [ -f $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
-        ln -s $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-        chmod a+rx /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+        ln -s $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+        chmod a+rx $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
     fi
 fi
-if [ ! -f /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
+if [ ! -f $USR_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
     if [ -f $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
-        if [ ! -d /usr/share/mime/packages ]; then
-            mkdir -p /usr/share/mime/packages
+        if [ ! -d $USR_ROOT/share/mime/packages ]; then
+            mkdir -p $USR_ROOT/share/mime/packages
         fi
-        ln -s $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
+        ln -s $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml $USR_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
     fi
 fi
-if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
+if [ ! -f $USR_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
     if [ -f $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
-        if [ ! -d /usr/share/pixmaps ]; then
-            mkdir -p /usr/share/pixmaps
+        if [ ! -d $USR_ROOT/share/pixmaps ]; then
+            mkdir -p $USR_ROOT/share/pixmaps
         fi
-        ln -s $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+        ln -s $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg $USR_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
     fi
 fi
-if [ ! -f /usr/bin/rabbitremotecontrol ]; then
-    ln -s $INSTALL_PREFIX/bin/RabbitRemoteControlApp /usr/bin/rabbitremotecontrol
+if [ ! -f $USR_ROOT/bin/rabbitremotecontrol ]; then
+    ln -s $INSTALL_PREFIX/bin/RabbitRemoteControlApp $USR_ROOT/bin/rabbitremotecontrol
 fi
 
 if [ -d $INSTALL_PREFIX/etc ]; then
     chmod -R a+rw $INSTALL_PREFIX/etc
 fi
 if command -v update-mime-database >/dev/null 2>&1; then
-    if [ ! -d /usr/share/mime ]; then
-        update-mime-database /usr/share/mime/
+    if [ -d $USR_ROOT/share/mime ]; then
+        update-mime-database $USR_ROOT/share/mime/
     fi
 fi
 if command -v update-desktop-database >/dev/null 2>&1; then
-    update-desktop-database
+    update-desktop-database $USR_ROOT/share/applications/
 fi
 
 # 卸载前需要做的任务 如：停止任务
@@ -181,17 +182,18 @@ fi
 
 # 卸载后需要做的任务 如：删除用户，删除/备份业务数据
 %postun
-rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-rm -fr /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
-rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
-rm -fr /usr/bin/rabbitremotecontrol
+USR_ROOT=/usr
+rm -fr $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+rm -fr $USR_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
+rm -fr $USR_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+rm -fr $USR_ROOT/bin/rabbitremotecontrol
 if command -v update-mime-database >/dev/null 2>&1; then
-    if [ ! -d /usr/share/mime ]; then
-        update-mime-database /usr/share/mime/
+    if [ -d $USR_ROOT/share/mime ]; then
+        update-mime-database $USR_ROOT/share/mime/
     fi
 fi
 if command -v update-desktop-database >/dev/null 2>&1; then
-    update-desktop-database
+    update-desktop-database $USR_ROOT/share/applications/
 fi
 
 # 清除上次编译生成的临时文件
