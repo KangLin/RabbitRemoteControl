@@ -413,6 +413,7 @@ parts:
       - -DCMARK_STATIC=ON
       - -DWITH_CMARK=OFF
       - -DWITH_CMARK_GFM=ON
+      - -DWITH_UPDATE=OFF
       - -DBUILD_FREERDP=ON
       - -DWITH_WebEngineWidgets=ON
     # build-environment:

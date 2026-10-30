@@ -368,6 +368,12 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DENABLE_UPDATE_TRANSLATIONS=ON
+      - -DWITH_UPDATE=OFF
+      - -DCMARK_SHARED=OFF
+      - -DCMARK_TESTS=OFF
+      - -DCMARK_STATIC=ON
+      - -DWITH_CMARK=OFF
+      - -DWITH_CMARK_GFM=ON
     cleanup:
       - -usr/bin/cmark
       - -usr/bin/cmark-gfm
