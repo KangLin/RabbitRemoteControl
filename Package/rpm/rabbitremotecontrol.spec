@@ -1,6 +1,7 @@
 # See: https://rpm-software-management.github.io/rpm/manual/spec.html
 
 %define   INSTALL_PREFIX /opt/RabbitRemoteControl
+%define   USR_ROOT /usr
 
 Name:           rabbitremotecontrol
 Version:        0.1.0_dev
@@ -182,6 +183,7 @@ fi
 
 # 卸载后需要做的任务 如：删除用户，删除/备份业务数据
 %postun
+INSTALL_PREFIX=/opt/RabbitRemoteControl
 USR_ROOT=/usr
 rm -fr $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
 rm -fr $USR_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
