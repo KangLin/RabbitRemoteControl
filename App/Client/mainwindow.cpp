@@ -22,6 +22,7 @@
 #include <QThread>
 #include <QInputMethod>
 #include <QGuiApplication>
+#include <QCommandLineParser>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
