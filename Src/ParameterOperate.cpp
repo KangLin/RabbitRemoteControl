@@ -4,6 +4,7 @@
 #include <QCryptographicHash>
 #include <QInputDialog>
 
+#include "ParameterGlobal.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
@@ -94,16 +95,10 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
     if(GetPluginParameters())
         key = GetPluginParameters()->GetEncryptKey().toStdString();
     if(key.empty()) {
-        // Load readom password from config file
-        QSettings s(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
-        QByteArray baRandom = s.value("Plugin/Password/Random").toByteArray();
-        QString szRandom;
-        if(!baRandom.isEmpty()) {
-            RabbitCommon::CEncrypt eRandom;
-            eRandom.Dencode(baRandom, szRandom);
-        }
-        if(!szRandom.isEmpty())
-            e.SetPassword(szRandom.toStdString().c_str());
+        // Load readom password
+        if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters()
+            && !GetPluginParameters()->GetGlobalParameters()->GetRandom().empty())
+            e.SetPassword(GetPluginParameters()->GetGlobalParameters()->GetRandom().c_str());
     } else {
         e.SetPassword(key.c_str());
     }
@@ -183,21 +178,9 @@ int CParameterOperate::SavePassword(const QString &szKey,
     }
     if(key.empty()) {
         // Use random password
-        QSettings s(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
-        QByteArray baRandom = s.value("Plugin/Password/Random").toByteArray();
-        QString szRandom;
-        if(baRandom.isEmpty()) {
-            // Generate a random password of a specified length
-            szRandom = RabbitCommon::CPasswordGenerator::GeneratePassword().c_str();
-            RabbitCommon::CEncrypt eRandom;
-            QByteArray baRandom;
-            eRandom.Encode(szRandom, baRandom);
-            s.setValue("Plugin/Password/Random", baRandom);
-        } else {
-            RabbitCommon::CEncrypt eRandom;
-            eRandom.Dencode(baRandom, szRandom);
-        }
-        e.SetPassword(szRandom.toStdString().c_str());
+        if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters()
+            && !GetPluginParameters()->GetGlobalParameters()->GetRandom().empty())
+            e.SetPassword(GetPluginParameters()->GetGlobalParameters()->GetRandom().c_str());
     } else {
         e.SetPassword(key.c_str());
     }

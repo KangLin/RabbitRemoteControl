@@ -220,6 +220,7 @@ public:
 
     //! Get CParameterPlugin
     CParameterPlugin* GetPluginParameters();
+    //! Set CParameterPlugin. it is called before Load().
     int SetPluginParameters(CParameterPlugin *p);
 
     const QString GetName() const;
@@ -239,9 +240,11 @@ Q_SIGNALS:
 protected Q_SLOTS:
     /*!
      * \~chinese 设置 CParameterPlugin 后调用，用于初始化与 CParameterPlugin 有关的操作。
+     *           它在 OnLoad 之前调用。
      *
      * \~english Call after set CParameterPlugin.
-     * Used to initialize operations related to CParameterPlugin.
+     *           Used to initialize operations related to CParameterPlugin.
+     *           It is called before OnLoad.
      *
      * \~
      * \ref sub_Use_CParameterPlugin_in_CParameterOperate

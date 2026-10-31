@@ -52,6 +52,11 @@ Q_SIGNALS:
 private:
     SaveSettingsType m_SaveSettingsType;
 
+public:
+    [[nodiscard]] std::string GetRandom();
+private:
+    std::string m_szRandom;
+
     // CParameter interface
 protected:
     virtual int OnLoad(QSettings &set) override;
