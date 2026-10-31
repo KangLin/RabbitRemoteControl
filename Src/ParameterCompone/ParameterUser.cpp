@@ -4,11 +4,13 @@
 #include <QLoggingCategory>
 #include <QElapsedTimer>
 #if HAVE_QTKEYCHAIN
-    #include "keychain.h"
+#include "keychain.h"
 #endif
 
+#include "RabbitCommonEncrypt.h"
 #include "ParameterUser.h"
 #include "ParameterNet.h"
+#include "ParameterGlobal.h"
 #include "RabbitCommonTools.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
@@ -67,10 +69,12 @@ int CParameterUser::OnLoad(QSettings &set)
             QString key("Password");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost()
+                + ":" + QString::number(net->GetPort()) + "/" + key;
             }
             auto pReadJob = new QKeychain::ReadPasswordJob(ServiceName());
-            connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassword);
+            connect(pReadJob, &QKeychain::ReadPasswordJob::finished,
+                    this, &CParameterUser::slotLoadPassword);
             pReadJob->setKey(key);
             pReadJob->start();
             m_bFinished = false;
@@ -103,10 +107,13 @@ int CParameterUser::OnLoad(QSettings &set)
             QString key("Passphrase");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost()
+                + ":" + QString::number(net->GetPort()) + "/" + key;
             }
-            auto pReadJob = new QKeychain::ReadPasswordJob("io.github.KangLin/RabbitRemoteControl");
-            connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassPhrase);
+            auto pReadJob = new QKeychain::ReadPasswordJob(
+                "io.github.KangLin/RabbitRemoteControl");
+            connect(pReadJob, &QKeychain::ReadPasswordJob::finished,
+                    this, &CParameterUser::slotLoadPassPhrase);
             pReadJob->setKey(key);
             pReadJob->start();
             m_bFinished = false;
@@ -155,18 +162,35 @@ int CParameterUser::OnSave(QSettings &set)
             QString key("Password");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost()
+                + ":" + QString::number(net->GetPort()) + "/" + key;
             }
             auto pWriteJob = new QKeychain::WritePasswordJob(ServiceName());
-            connect(pWriteJob, &QKeychain::WritePasswordJob::finished, [this, pWriteJob, key]() {
-                if (pWriteJob->error()) {
-                    qCritical(log) << "Fail: write key" << key << ";" << pWriteJob->errorString();
-                    return;
-                }
-                qDebug(log) << "Write key" << key << "succeeded.";
-            });
+            connect(pWriteJob, &QKeychain::WritePasswordJob::finished,
+                    [this, pWriteJob, key]() {
+                        if (pWriteJob->error()) {
+                            qCritical(log) << "Failed: write key" << key << ";"
+                                           << pWriteJob->errorString();
+                            return;
+                        }
+                        qDebug(log) << "Write key" << key << "succeeded.";
+                    });
             pWriteJob->setKey(key);
-            pWriteJob->setTextData(GetPassword());
+            // Encrypt the password with a random code
+            QByteArray baPassword;
+            std::string szRandom;
+            if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
+                szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
+            RabbitCommon::CEncrypt e;
+            if(!szRandom.empty())
+                e.SetPassword(szRandom.c_str());
+            e.Encode(GetPassword().toStdString().c_str(), baPassword);
+            QString szPassword = QString::fromStdString(baPassword.toHex().toStdString());
+            pWriteJob->setTextData(szPassword);
+            /*
+            qDebug(log) << "Password:" << GetPassword()
+                        << "Random:" << szRandom
+                        << "Encode:" << szPassword;//*/
             pWriteJob->start();
         } else
 #endif
@@ -188,18 +212,31 @@ int CParameterUser::OnSave(QSettings &set)
             QString key("Passphrase");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost()
+                + ":" + QString::number(net->GetPort()) + "/" + key;
             }
             auto pWriteJob = new QKeychain::WritePasswordJob(ServiceName());
-            connect(pWriteJob, &QKeychain::WritePasswordJob::finished, [this, pWriteJob, key]() {
-                if (pWriteJob->error()) {
-                    qCritical(log) << "Fail: write pass phrase key" << key << ";" << pWriteJob->errorString();
-                    return;
-                }
-                qDebug(log) << "Writepass phrase  key" << key << "succeeded.";
-            });
+            connect(pWriteJob, &QKeychain::WritePasswordJob::finished,
+                    [this, pWriteJob, key]() {
+                        if (pWriteJob->error()) {
+                            qCritical(log) << "Failed: write pass phrase key" << key
+                                           << ";" << pWriteJob->errorString();
+                            return;
+                        }
+                        qDebug(log) << "Writepass phrase  key" << key << "succeeded.";
+                    });
             pWriteJob->setKey(key);
-            pWriteJob->setTextData(GetPassphrase());
+            // Encrypt the password with a random code
+            QByteArray baPassword;
+            std::string szRandom;
+            if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
+                szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
+            RabbitCommon::CEncrypt e;
+            if(!szRandom.empty())
+                e.SetPassword(szRandom.c_str());
+            e.Encode(GetPassphrase().toStdString().c_str(), baPassword);
+            QString szPassword = QString::fromStdString(baPassword.toHex().toStdString());
+            pWriteJob->setTextData(szPassword);
             pWriteJob->start();
         } else
 #endif
@@ -433,11 +470,28 @@ void CParameterUser::slotLoadPassword()
     if(!pReadJob) return;
     QString key = pReadJob->key();
     if (pReadJob->error()) {
-        qCritical(log) << "Fail: read key" << key << ";" << pReadJob->errorString();
+        qCritical(log) << "Failed: read key" << key << ";"
+                       << pReadJob->errorString();
         return;
     }
     qDebug(log) << "Read key" << key << "succeeded.";
-    SetPassword(pReadJob->textData());
+    // Decrypt the password with a random code
+    QByteArray baPassword = QByteArray::fromHex(QByteArray::fromStdString(pReadJob->textData().toStdString()));
+    QString szPassword;
+    std::string szRandom;
+    if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
+        szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
+    RabbitCommon::CEncrypt e;
+    if(!szRandom.empty())
+        e.SetPassword(szRandom.c_str());
+    int nRet = e.Dencode(baPassword, szPassword);
+    if(nRet)
+        qCritical(log) << "Failed: Dencode key:" << key;
+    /*
+    qDebug(log) << "Key:" << key << "Password:" << szPassword
+                << "Random:" << szRandom
+                << "baPassword:" << baPassword;//*/
+    SetPassword(szPassword);
 #endif
 }
 
@@ -450,10 +504,21 @@ void CParameterUser::slotLoadPassPhrase()
     if(!pReadJob) return;
     QString key = pReadJob->key();   
     if (pReadJob->error()) {
-        qCritical(log) << "Fail: read pass phrase key" << key << ";" << pReadJob->errorString();
+        qCritical(log) << "Failed: read pass phrase key" << key << ";"
+                       << pReadJob->errorString();
         return;
     }
     qDebug(log) << "Read pass phrase key" << key << "succeeded.";
-    SetPassphrase(pReadJob->textData());
+    // Decrypt the password with a random code
+    QByteArray baPassword = QByteArray::fromHex(QByteArray::fromStdString(pReadJob->textData().toStdString()));
+    QString szPassword;
+    std::string szRandom;
+    if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
+        szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
+    RabbitCommon::CEncrypt e;
+    if(!szRandom.empty())
+        e.SetPassword(szRandom.c_str());
+    e.Dencode(baPassword, szPassword);
+    SetPassphrase(szPassword);
 #endif
 }
