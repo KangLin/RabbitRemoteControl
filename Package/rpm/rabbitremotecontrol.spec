@@ -1,18 +1,17 @@
 # See: https://rpm-software-management.github.io/rpm/manual/spec.html
 
-%define   INSTALL_PREFIX /opt/RabbitRemoteControl
-%define   USR_ROOT /usr
+%define        INSTALL_PREFIX /opt/RabbitRemoteControl
 
-Name:           rabbitremotecontrol
-Version:        0.1.0_dev
-Release:        1%{?dist}
-Summary:        Rabbit remote control is is a cross-platform, multi-protocol remote control software.
+Name:          rabbitremotecontrol
+Version:       0.1.0_dev
+Release:       1%{?dist}
+Summary:       Rabbit remote control is is a cross-platform, multi-protocol remote control software.
 
-License:        GPL-3.0
-URL:            https://github.com/KangLin/RabbitRemoteControl
-Source0:        RabbitRemoteControl.tar.gz
+License:       GPL-3.0
+URL:           https://github.com/KangLin/RabbitRemoteControl
+Source0:       RabbitRemoteControl.tar.gz
 
-Vendor:         Kang Lin <kl222@126.com>
+Vendor:        Kang Lin <kl222@126.com>
 
 BuildRequires: make git rpm-build rpmdevtools 
 BuildRequires: gcc-c++
@@ -139,43 +138,42 @@ cmake --install $RPM_BUILD_DIR --config Release --strip \
 # 安装后需要做的任务 如：自动启动的任务
 %post
 INSTALL_PREFIX=/opt/RabbitRemoteControl
-USR_ROOT=/usr
-if [ ! -f $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
+if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
     if [ -f $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
-        ln -s $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-        chmod a+rx $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+        ln -s $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+        chmod a+rx /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
     fi
 fi
-if [ ! -f $USR_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
+if [ ! -f /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
     if [ -f $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml ]; then
-        if [ ! -d $USR_ROOT/share/mime/packages ]; then
-            mkdir -p $USR_ROOT/share/mime/packages
+        if [ ! -d /usr/share/mime/packages ]; then
+            mkdir -p /usr/share/mime/packages
         fi
-        ln -s $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml $USR_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
+        ln -s $INSTALL_PREFIX/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
     fi
 fi
-if [ ! -f $USR_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
+if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
     if [ -f $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
-        if [ ! -d $USR_ROOT/share/pixmaps ]; then
-            mkdir -p $USR_ROOT/share/pixmaps
+        if [ ! -d /usr/share/pixmaps ]; then
+            mkdir -p /usr/share/pixmaps
         fi
-        ln -s $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg $USR_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+        ln -s $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
     fi
 fi
-if [ ! -f $USR_ROOT/bin/rabbitremotecontrol ]; then
-    ln -s $INSTALL_PREFIX/bin/RabbitRemoteControlApp $USR_ROOT/bin/rabbitremotecontrol
+if [ ! -f /usr/bin/rabbitremotecontrol ]; then
+    ln -s $INSTALL_PREFIX/bin/RabbitRemoteControlApp /usr/bin/rabbitremotecontrol
 fi
 
-if [ -d $INSTALL_PREFIX/etc ]; then
+if [ -n "$INSTALL_PREFIX" -a -d $INSTALL_PREFIX/etc ]; then
     chmod -R a+rw $INSTALL_PREFIX/etc
 fi
 if command -v update-mime-database >/dev/null 2>&1; then
-    if [ -d $USR_ROOT/share/mime ]; then
-        update-mime-database $USR_ROOT/share/mime/
+    if [ -d /usr/share/mime ]; then
+        update-mime-database /usr/share/mime/
     fi
 fi
 if command -v update-desktop-database >/dev/null 2>&1; then
-    update-desktop-database $USR_ROOT/share/applications/
+    update-desktop-database /usr/share/applications/
 fi
 
 # 卸载前需要做的任务 如：停止任务
@@ -184,18 +182,17 @@ fi
 # 卸载后需要做的任务 如：删除用户，删除/备份业务数据
 %postun
 INSTALL_PREFIX=/opt/RabbitRemoteControl
-USR_ROOT=/usr
-rm -fr $USR_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-rm -fr $USR_ROOT/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
-rm -fr $USR_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
-rm -fr $USR_ROOT/bin/rabbitremotecontrol
+rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+rm -fr /usr/share/mime/packages/io.github.KangLin.RabbitRemoteControl.xml
+rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+rm -fr /usr/bin/rabbitremotecontrol
 if command -v update-mime-database >/dev/null 2>&1; then
-    if [ -d $USR_ROOT/share/mime ]; then
-        update-mime-database $USR_ROOT/share/mime/
+    if [ -d /usr/share/mime ]; then
+        update-mime-database /usr/share/mime/
     fi
 fi
 if command -v update-desktop-database >/dev/null 2>&1; then
-    update-desktop-database $USR_ROOT/share/applications/
+    update-desktop-database /usr/share/applications/
 fi
 
 # 清除上次编译生成的临时文件
