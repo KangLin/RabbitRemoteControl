@@ -177,20 +177,9 @@ int CParameterUser::OnSave(QSettings &set)
                     });
             pWriteJob->setKey(key);
             // Encrypt the password with a random code
-            QByteArray baPassword;
-            std::string szRandom;
-            if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
-                szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
-            RabbitCommon::CEncrypt e;
-            if(!szRandom.empty())
-                e.SetPassword(szRandom.c_str());
-            e.Encode(GetPassword().toStdString().c_str(), baPassword);
-            QString szPassword = QString::fromStdString(baPassword.toHex().toStdString());
+            QString szPassword;
+            EncodePassword(GetPassword(), szPassword);
             pWriteJob->setTextData(szPassword);
-            /*
-            qDebug(log) << "Password:" << GetPassword()
-                        << "Random:" << szRandom
-                        << "Encode:" << szPassword;//*/
             pWriteJob->start();
         } else
 #endif
@@ -227,15 +216,8 @@ int CParameterUser::OnSave(QSettings &set)
                     });
             pWriteJob->setKey(key);
             // Encrypt the password with a random code
-            QByteArray baPassword;
-            std::string szRandom;
-            if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
-                szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
-            RabbitCommon::CEncrypt e;
-            if(!szRandom.empty())
-                e.SetPassword(szRandom.c_str());
-            e.Encode(GetPassphrase().toStdString().c_str(), baPassword);
-            QString szPassword = QString::fromStdString(baPassword.toHex().toStdString());
+            QString szPassword;
+            EncodePassword(GetPassphrase(), szPassword);
             pWriteJob->setTextData(szPassword);
             pWriteJob->start();
         } else
@@ -476,21 +458,8 @@ void CParameterUser::slotLoadPassword()
     }
     qDebug(log) << "Read key" << key << "succeeded.";
     // Decrypt the password with a random code
-    QByteArray baPassword = QByteArray::fromHex(QByteArray::fromStdString(pReadJob->textData().toStdString()));
     QString szPassword;
-    std::string szRandom;
-    if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
-        szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
-    RabbitCommon::CEncrypt e;
-    if(!szRandom.empty())
-        e.SetPassword(szRandom.c_str());
-    int nRet = e.Dencode(baPassword, szPassword);
-    if(nRet)
-        qCritical(log) << "Failed: Dencode key:" << key;
-    /*
-    qDebug(log) << "Key:" << key << "Password:" << szPassword
-                << "Random:" << szRandom
-                << "baPassword:" << baPassword;//*/
+    DecodePassword(pReadJob->textData(), szPassword);
     SetPassword(szPassword);
 #endif
 }
@@ -510,15 +479,43 @@ void CParameterUser::slotLoadPassPhrase()
     }
     qDebug(log) << "Read pass phrase key" << key << "succeeded.";
     // Decrypt the password with a random code
-    QByteArray baPassword = QByteArray::fromHex(QByteArray::fromStdString(pReadJob->textData().toStdString()));
     QString szPassword;
+    DecodePassword(pReadJob->textData(), szPassword);
+    SetPassphrase(szPassword);
+#endif
+}
+
+int CParameterUser::EncodePassword(const QString &szIn, QString &szOut)
+{
+    int nRet = 0;
     std::string szRandom;
     if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
         szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
     RabbitCommon::CEncrypt e;
     if(!szRandom.empty())
         e.SetPassword(szRandom.c_str());
-    e.Dencode(baPassword, szPassword);
-    SetPassphrase(szPassword);
-#endif
+    QByteArray baPassword;
+    nRet = e.Encode(szIn.toStdString().c_str(), baPassword);
+    if(nRet)
+        qCritical(log) << "Failed: encode password";
+    else {
+        szOut = QString::fromStdString(baPassword.toHex().toStdString());
+        //qDebug(log) << "EncodePassword In:" << szIn << "Out:" << szOut;
+    }
+    return nRet;
+}
+
+int CParameterUser::DecodePassword(const QString &szIn, QString &szOut)
+{
+    int nRet = 0;
+    std::string szRandom;
+    if(GetPluginParameters() && GetPluginParameters()->GetGlobalParameters())
+        szRandom = GetPluginParameters()->GetGlobalParameters()->GetRandom();
+    RabbitCommon::CEncrypt e;
+    if(!szRandom.empty())
+        e.SetPassword(szRandom.c_str());
+    QByteArray baPassword = QByteArray::fromHex(QByteArray::fromStdString(szIn.toStdString()));
+    nRet = e.Decode(baPassword, szOut);
+    //qDebug(log) << "DecodePassword In:" << szIn << "Out:" << szOut;
+    return nRet;
 }

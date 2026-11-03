@@ -103,11 +103,11 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
         e.SetPassword(key.c_str());
     }
     
-    if(!e.Dencode(pwByte, password)
+    if(!e.Decode(pwByte, password)
         && PasswordSum(password.toStdString(), key) == sum)
         return 0;
 
-    qDebug(log) << "Password don't dencode or sum is error";
+    qDebug(log) << "Password don't decode or sum is error";
     if(key.empty() && GetPluginParameters()) {
         switch (GetPluginParameters()->GetPromptType()) {
         case CParameterPlugin::PromptType::First:

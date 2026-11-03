@@ -105,6 +105,11 @@ protected Q_SLOTS:
 private Q_SLOTS:
     void slotLoadPassword();
     void slotLoadPassPhrase();
+
+private:
+    int EncodePassword(const QString &szIn, QString &szOut);
+    int DecodePassword(const QString &szIn, QString &szOut);
+
 private:
     struct strData {
         QList<TYPE> m_Type;

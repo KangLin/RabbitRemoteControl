@@ -21,7 +21,7 @@ int CParameterGlobal::OnLoad(QSettings &set)
     QString szRandom;
     if(!baRandom.isEmpty()) {
         RabbitCommon::CEncrypt e;
-        e.Dencode(baRandom, szRandom);
+        e.Decode(baRandom, szRandom);
         m_szRandom = szRandom.toStdString().c_str();
     }
 
