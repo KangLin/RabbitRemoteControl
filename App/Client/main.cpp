@@ -35,7 +35,7 @@
 #include "RabbitCommonTools.h"
 
 #ifdef HAVE_UPDATE
-#include "FrmUpdater.h"
+    #include "FrmUpdater.h"
 #endif
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
