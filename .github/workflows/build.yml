@@ -14,24 +14,15 @@ on:
   pull_request:
 
 jobs:
-  ubuntu:
-    uses: ./.github/workflows/ubuntu.yml
-    secrets: inherit
-    if: false
-
   aarch64:
     uses: ./.github/workflows/aarch64.yml
-    secrets: inherit
-    if: false
-
-  appimage:
-    uses: ./.github/workflows/appimage.yml
     secrets: inherit
     if: false
 
   linux:
     uses: ./.github/workflows/linux.yml
     secrets: inherit
+    if: false
 
   flatpak:
     #if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
@@ -74,7 +65,7 @@ jobs:
   deploy:
     #if: ${{ startsWith(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
-    needs: [linux, docker, msvc, doxygen, android, macos]
+    needs: [docker, msvc, doxygen, android, macos]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
@@ -98,24 +89,9 @@ jobs:
           gitee_token: ${{ secrets.gitee_token }}
           gitee_tag_name: ${{ github.ref_name }}
 
-      - name: Download ubuntu
-        uses: actions/download-artifact@v7
-        if: false
-        with:
-          pattern: ${{ needs.ubuntu.outputs.name }}*
-          path: ${{ env.artifact_path }}
-          merge-multiple: true
-
-      - name: Download appimage
-        uses: actions/download-artifact@v7
-        if: false
-        with:
-          pattern: ${{ needs.appimage.outputs.name }}*
-          path: ${{ env.artifact_path }}
-          merge-multiple: true
-
       - name: Download linux
         uses: actions/download-artifact@v7
+        if: false
         with:
           pattern: ${{ needs.linux.outputs.name }}*
           path: ${{ env.artifact_path }}
@@ -267,8 +243,8 @@ jobs:
 
           echo "|Ubuntu 26.04 (resolute)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu26.04_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu26.04_aarch64.deb)| | Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it. | 运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           #echo "|Ubuntu 25.04 (questing)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu25.04_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu25.04_aarch64.deb)| | Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it. | 运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
-          echo "|Ubuntu 24.04 (noble)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-24.04.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-24.04-arm.deb)| |Because the system library version is too low, some features are restricted.<br> Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it.|因为系统库版本太低，所以部分功能受限。<br>运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
-          echo "|Ubuntu 22.04 (jammy)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-22.04.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-22.04-arm.deb)| |Because the system library version is too low, some features are restricted.<br> Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it.|因为系统库版本太低，所以部分功能受限。<br>运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
+          echo "|Ubuntu 24.04 (noble)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu24.04_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu24.04_aarch64.deb)| |Because the system library version is too low, some features are restricted.<br> Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it.|因为系统库版本太低，所以部分功能受限。<br>运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
+          echo "|Ubuntu 22.04 (jammy)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu22.04_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu22.04_aarch64.deb)| |Because the system library version is too low, some features are restricted.<br> Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it.|因为系统库版本太低，所以部分功能受限。<br>运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
 
           echo "|Debian 13 (trixie)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian13_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian13_aarch64.deb)| |Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it. | 运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           echo "|Debian 12 (Bookworm)|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian12_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian12_aarch64.deb)| |Because the system library version is too low, some features are restricted.<br> Run \`sudo apt install ./rabbitremotecontrol_*.deb\` to install it.|因为系统库版本太低，所以部分功能受限。<br>运行命令 \`sudo apt install ./rabbitremotecontrol_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
