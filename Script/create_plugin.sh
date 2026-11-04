@@ -29,7 +29,7 @@ Options:
   -v, --verbose[=LEVEL] Set verbose mode. [LEVEL: ON, OFF]
 
 Directory options:
-  -i, --install=DIR         Set installation directory
+  -i, --install=DIR         Set installation directory(Absolute path). The default is "${REPO_ROOT}/Plugins"
 
 Other options:
   -n, --name=NAME           Plugin name
@@ -37,7 +37,7 @@ Other options:
 
 Examples:
   $0 --name=Test --template=Base
-  $0 -n Test -t Base
+  $0 -n Test -t Base -v -i `pwd`/Plugins/Test
 
 EOF
     exit 0
