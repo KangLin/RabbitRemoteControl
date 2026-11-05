@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.21)
 MESSAGE(STATUS "Found CMake ${CMAKE_VERSION}")
 
 project(RabbitRemoteControl
