@@ -70,11 +70,17 @@ protected:
 
 private:
     int AddFormat(UINT32 id, const char *name);
+    [[nodiscard]] UINT32 GetIDFromMime(const QString &szMime) const;
 
     bool isText(QString mimeType, bool bRegular = true) const;
     bool isHtml(QString mimeType, bool bRegular = true) const;
     bool isImage(QString mimeType, bool bRegular = true) const;
+    bool isBitmap(QString mimeType, bool bRegular = true) const;
     bool isUrls(QString mimeType, bool bRegular = true) const;
+    const QStringList GetMimeImage();
+    const QStringList GetMimeText();
+    const QStringList GetMimeHtml();
+    const QStringList GetMimeFile();
 
 #ifndef HAVE_FILE_INTERFACE
 public Q_SLOTS:
@@ -108,8 +114,6 @@ private:
         UINT32 localId; // ID in wClipboard
     };
     QVector<_FORMAT> m_Formats; // Save server format
-    QMultiMap<QString, _FORMAT> m_indexString;
-    QMap<UINT32, _FORMAT> m_indexId;
     QStringList m_lstFormats; // Clipboard return farmat
 
     QVariant m_Variant;
