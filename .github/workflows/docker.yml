@@ -33,14 +33,14 @@ jobs:
             image: ubuntu
             lable: "24.04"
             os: ubuntu-24.04-arm
-          - PACKAGE: deb
-            image: ubuntu
-            lable: "22.04"
-            os: ubuntu-24.04
-          - PACKAGE: deb
-            image: ubuntu
-            lable: "22.04"
-            os: ubuntu-24.04-arm
+          # - PACKAGE: deb
+          #   image: ubuntu
+          #   lable: "22.04"
+          #   os: ubuntu-24.04
+          # - PACKAGE: deb
+          #   image: ubuntu
+          #   lable: "22.04"
+          #   os: ubuntu-24.04-arm
 
           - PACKAGE: deb
             image: debian
