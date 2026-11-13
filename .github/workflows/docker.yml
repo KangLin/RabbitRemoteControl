@@ -17,14 +17,6 @@ jobs:
     strategy:
       matrix:
         variant:
-          # - PACKAGE: deb
-          #   image: ubuntu
-          #   lable: "25.04"
-          #   os: ubuntu-24.04
-          # - PACKAGE: deb
-          #   image: ubuntu
-          #   lable: "25.04"
-          #   os: ubuntu-24.04-arm
           - PACKAGE: deb
             image: ubuntu
             lable: "26.04"
@@ -32,6 +24,14 @@ jobs:
           - PACKAGE: deb
             image: ubuntu
             lable: "26.04"
+            os: ubuntu-24.04-arm
+          - PACKAGE: deb
+            image: ubuntu
+            lable: "24.04"
+            os: ubuntu-24.04
+          - PACKAGE: deb
+            image: ubuntu
+            lable: "24.04"
             os: ubuntu-24.04-arm
 
           - PACKAGE: deb
@@ -42,6 +42,13 @@ jobs:
             image: debian
             lable: "12"
             os: ubuntu-24.04-arm
+
+          - PACKAGE: deb
+            image: debian
+            lable: "12"
+            os: ubuntu-24.04
+            platform: linux/386
+
           - PACKAGE: deb
             image: debian
             lable: "13"
@@ -114,7 +121,7 @@ jobs:
       BUILD_DIR:     ${{github.workspace}}/build
       SOURCE_DIR:    ${{github.workspace}}/.cache/source
       TOOLS_DIR:     ${{github.workspace}}/.cache/tools_${{matrix.variant.os}}
-      INSTALL_DIR:   ${{github.workspace}}/.cache/install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
+      INSTALL_DIR:   ${{github.workspace}}/.cache/install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.platform}}_${{matrix.variant.os}}
       BUILD_VERBOSE: ${{matrix.variant.BUILD_VERBOSE}}
 
     # Map the job outputs to step outputs
@@ -135,6 +142,9 @@ jobs:
           cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
 
+      - uses: qoomon/actions--context@v4
+        id: ctx
+
       - name: Cache installed
         uses: actions/cache@v5
         id: cache-installed
@@ -143,7 +153,7 @@ jobs:
             ${{env.INSTALL_DIR}}
             ${{env.TOOLS_DIR}}/linuxdeploy-*
             ${{env.TOOLS_DIR}}/qt_*
-          key: install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}${{matrix.variant.lable}}_${{matrix.variant.os}}
+          key: install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}${{matrix.variant.lable}}_${{matrix.variant.os}}_${{matrix.variant.platform}}
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
@@ -234,7 +244,7 @@ jobs:
         #if: ${{matrix.variant.PACKAGE != 'deb'}}
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
+          name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}_${{ github.job }}_${{ RUNNER_ID }}
           path: |
             ${{env.BUILD_DIR}}/build_linux/rabbitremotecontrol*.rpm
             ${{env.BUILD_DIR}}/build_linux/rabbitremotecontrol_*.deb
