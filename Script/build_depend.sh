@@ -560,7 +560,7 @@ install_base() {
     echo_status "Install base libraries ......"
     if is_termux; then
         package_install wget curl git cmake build-essential freerdp libvncserver libcurl libpcap
-	#package_install mesa-dev glu glew glfw libglvnd-dev libglvnd
+        #package_install mesa-dev glu glew glfw libglvnd-dev libglvnd
         package_install qt6-qttools qt6-qtbase qt6-qttranslations qt6-qt5compat qt6-qtimageformats qt6-qtmultimedia \
             qt6-qtscxml qt6-qtsvg qt6-qtwayland qt6-qtwebchannel qt6-qtwebengine qt6-qtwebsockets qt6-qtpositioning qt6-qtbase-gtk-platformtheme
         return 0
@@ -570,7 +570,7 @@ install_base() {
         # Build tools
         package_install build-essential devscripts equivs debhelper \
             fakeroot graphviz gettext wget curl git cmake ninja-build doxygen \
-            dh-make lintian quilt git-buildpackage dctrl-tools
+            lintian quilt git-buildpackage dctrl-tools
             #pbuilder
 
         # OpenGL
@@ -617,14 +617,14 @@ install_base() {
         case "$DISTRO" in
             ubuntu)
                 case "$DISTRO_VERSION" in
-                    24.*)
-                        package_install fuse
+                    22.*|24.*)
+                        package_install libfuse-dev fuse
                         ;;
                     26.*|25.*)
                         package_install libfuse3-dev fuse3
                         ;;
                 esac
-                package_install libmysqlclient-dev libfuse-dev
+                package_install libmysqlclient-dev
                 ;;
             linuxmint)
                 package_install libfuse3-dev libmysqlclient-dev fuse3

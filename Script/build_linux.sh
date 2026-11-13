@@ -387,7 +387,7 @@ validate_parameters
 show_configuration
 
 if [ $DOCKER -eq 1 ]; then
-    echo_status "Start docker ${DOCKER_IMAGE} ......"
+    echo_status "Start docker ${DOCKER_IMAGE} $DOCKER_PLATFORM ......"
     ARCH=`dpkg --print-architecture`
     echo "The host arch: $ARCH"
     if [ -z "$DOCKER_IMAGE" ]; then
