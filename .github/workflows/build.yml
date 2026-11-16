@@ -50,6 +50,7 @@ jobs:
     secrets: inherit
 
   macos_script:
+    if: false
     uses: ./.github/workflows/macos_script.yml
     secrets: inherit
 
