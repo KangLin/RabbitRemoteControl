@@ -60,9 +60,15 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetDisableDesktopShortcutsScript(
         set.value("DesktopShortcutsScript/Disable",
                   GetDisableDesktopShortcutsScript()).toString());
+    SetDisableDesktopShortcutsScriptParameters(
+        set.value("DesktopShortcutsScript/Disable/Parameters",
+                  GetDisableDesktopShortcutsScriptParameters()).toString());
     SetRestoreDesktopShortcutsScript(
         set.value("DesktopShortcutsScript/Restore",
                   GetRestoreDesktopShortcutsScript()).toString());
+    SetRestoreDesktopShortcutsScriptParameters(
+        set.value("DesktopShortcutsScript/Restore/Parameters",
+                  GetRestoreDesktopShortcutsScriptParameters()).toString());
     SetEnableLocalInputMethod(
         set.value("InputMethod", GetEnableLocalInputMethod()).toBool());
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
@@ -101,7 +107,11 @@ int CParameterPlugin::OnSave(QSettings& set)
     set.setValue("CaptureAllKeyboard", GetCaptureAllKeyboard());
     set.setValue("DesktopShortcutsScript/Enable", GetDesktopShortcutsScript());
     set.setValue("DesktopShortcutsScript/Disable", GetDisableDesktopShortcutsScript());
+    set.setValue("DesktopShortcutsScript/Disable/Parameters",
+                 GetDisableDesktopShortcutsScriptParameters());
     set.setValue("DesktopShortcutsScript/Restore", GetRestoreDesktopShortcutsScript());
+    set.value("DesktopShortcutsScript/Restore/Parameters",
+              GetRestoreDesktopShortcutsScriptParameters());
     set.setValue("InputMethod", GetEnableLocalInputMethod());
     set.setValue("AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
     set.setValue("UserName/Enable", GetEnableSystemUserToUser());
@@ -160,6 +170,19 @@ void CParameterPlugin::SetRestoreDesktopShortcutsScript(const QString &newRestor
     SetModified(true);
 }
 
+QString CParameterPlugin::GetRestoreDesktopShortcutsScriptParameters() const
+{
+    return m_szRestoreDesktopShortcutsScriptParameters;
+}
+
+void CParameterPlugin::SetRestoreDesktopShortcutsScriptParameters(const QString &szParameters)
+{
+    if(m_szRestoreDesktopShortcutsScriptParameters == szParameters)
+        return;
+    m_szRestoreDesktopShortcutsScriptParameters = szParameters;
+    SetModified(true);
+}
+
 QString CParameterPlugin::GetDisableDesktopShortcutsScript() const
 {
     return m_szDisableDesktopShortcutsScript;
@@ -170,6 +193,19 @@ void CParameterPlugin::SetDisableDesktopShortcutsScript(const QString &newDisabl
     if(m_szDisableDesktopShortcutsScript == newDisableDesktopShortcutsScript)
         return;
     m_szDisableDesktopShortcutsScript = newDisableDesktopShortcutsScript;
+    SetModified(true);
+}
+
+QString CParameterPlugin::GetDisableDesktopShortcutsScriptParameters() const
+{
+    return m_szDisableDesktopShortcutsScriptParameters;
+}
+
+void CParameterPlugin::SetDisableDesktopShortcutsScriptParameters(const QString &szParameters)
+{
+    if(m_szDisableDesktopShortcutsScriptParameters == szParameters)
+        return;
+    m_szDisableDesktopShortcutsScriptParameters = szParameters;
     SetModified(true);
 }
 

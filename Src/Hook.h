@@ -4,7 +4,7 @@
 
 #include <QObject>
 #include "ParameterPlugin.h"
-#include "Unix/DesktopShortcuts.h"
+#include "DesktopManagerThread.h"
 
 /*!
  * \brief The class is the HOOK abstract class.
@@ -19,8 +19,6 @@ public:
 
     virtual int RegisterKeyboard();
     virtual int UnRegisterKeyboard();
-
-    static bool RunCommand(const QString &program, const QStringList &args = QStringList(), int timeout = 5000);
 
 public:
     // QObject interface
@@ -39,7 +37,5 @@ protected:
     virtual int OnRestoreDesktopShortcuts();
 
 private:
-    bool m_bScript;
-    CDesktopShortcutManager m_DesktopShortcutsManager;
+    CDesktopManagerThread* m_pDesktopManagerThread;
 };
-

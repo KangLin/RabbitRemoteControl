@@ -7,9 +7,10 @@
 #include <QWidget>
 #include <QAbstractEventDispatcher>
 #include <QLoggingCategory>
+#include "ParameterPlugin.h"
 
-CHookUnix::CHookUnix(CParameterClient *pParaClient, QObject *parent)
-    : CHook(pParaClient, parent)
+CHookUnix::CHookUnix(CParameterPlugin *para, QObject *parent)
+    : CHook(para, parent)
 {
 }
 

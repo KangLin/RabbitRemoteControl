@@ -4,6 +4,8 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QDir>
+#include <QFile>
 #include <QLoggingCategory>
 #include "ParameterGlobal.h"
 #include "ParameterPluginUI.h"
@@ -65,7 +67,9 @@ int CParameterPluginUI::Accept()
     m_pPara->SetCaptureAllKeyboard(ui->gbCaptureAllKeyboard->isChecked());
     m_pPara->SetDesktopShortcutsScript(ui->gpDesktopShortcutsSctipt->isChecked());
     m_pPara->SetDisableDesktopShortcutsScript(ui->leDesktopShortcutsDisableScript->text());
+    m_pPara->SetDisableDesktopShortcutsScriptParameters(ui->leDesktopShortcutsDisableScriptParameters->text());
     m_pPara->SetRestoreDesktopShortcutsScript(ui->leDesktopShortcutsRestoreScript->text());
+    m_pPara->SetRestoreDesktopShortcutsScriptParameters(ui->leDesktopShortcutsRestoreScriptParameters->text());
     m_pPara->SetEnableLocalInputMethod(ui->cbEnableLocalInputMethod->isChecked());
     m_pPara->SetPromptAdministratorPrivilege(
         ui->cbPromptAdminPrivilege->isChecked());
@@ -125,7 +129,9 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
     ui->gpDesktopShortcutsSctipt->setEnabled(ui->gbCaptureAllKeyboard->isChecked());
     ui->gpDesktopShortcutsSctipt->setChecked(m_pPara->GetDesktopShortcutsScript());
     ui->leDesktopShortcutsDisableScript->setText(m_pPara->GetDisableDesktopShortcutsScript());
+    ui->leDesktopShortcutsDisableScriptParameters->setText(m_pPara->GetDisableDesktopShortcutsScriptParameters());
     ui->leDesktopShortcutsRestoreScript->setText(m_pPara->GetRestoreDesktopShortcutsScript());
+    ui->leDesktopShortcutsRestoreScriptParameters->setText(m_pPara->GetRestoreDesktopShortcutsScriptParameters());
     ui->cbEnableLocalInputMethod->setChecked(m_pPara->GetEnableLocalInputMethod());
     ui->cbPromptAdminPrivilege->setChecked(
         m_pPara->GetPromptAdministratorPrivilege());
@@ -184,8 +190,11 @@ void CParameterPluginUI::on_cbSystemCredential_checkStateChanged(const Qt::Check
 void CParameterPluginUI::on_pbDesktopShortcutsDisable_clicked()
 {
     QString szDir = ui->leDesktopShortcutsDisableScript->text();
-    if(szDir.isEmpty())
+    if(szDir.isEmpty()) {
         szDir = RabbitCommon::CDir::Instance()->GetDirData() + QDir::separator() + "Script";
+        if(QFile::exists(szDir + QDir::separator() + "DisableDesktopShortcuts.sh"))
+            szDir += QString(QDir::separator()) + "DisableDesktopShortcuts.sh";
+    }
     QString szFile = QFileDialog::getOpenFileName(
         nullptr, tr("Open disable desktop shortcuts script"), szDir);
     if(szFile.isEmpty()) return;
@@ -195,8 +204,11 @@ void CParameterPluginUI::on_pbDesktopShortcutsDisable_clicked()
 void CParameterPluginUI::on_pbDesktopShortcutsRestore_clicked()
 {
     QString szDir = ui->leDesktopShortcutsRestoreScript->text();
-    if(szDir.isEmpty())
+    if(szDir.isEmpty()) {
         szDir = RabbitCommon::CDir::Instance()->GetDirData() + QDir::separator() + "Script";
+        if(QFile::exists(szDir + QDir::separator() + "RestoreDesktopShortcuts.sh"))
+            szDir += QString(QDir::separator()) + "RestoreDesktopShortcuts.sh";
+    }
     QString szFile = QFileDialog::getOpenFileName(
         nullptr, tr("Open restore desktop shortcuts script"), szDir);
     if(szFile.isEmpty()) return;

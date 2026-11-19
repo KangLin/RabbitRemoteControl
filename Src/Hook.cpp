@@ -1,9 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include <QDesktopServices>
 #include <QLoggingCategory>
 #include <QApplication>
 #include <QKeyEvent>
+
 #include "Hook.h"
 #if defined(Q_OS_WIN)
     #include "Windows/HookWindows.h"
@@ -11,6 +11,7 @@
 #elif defined(Q_OS_MACOS)
 #elif defined(Q_OS_LINUX)
     #include "Unix/NativeEventFilterUnix.h"
+    #include "Unix/DesktopManagerUnix.h"
 #endif
 #include "RabbitCommonTools.h"
 
@@ -20,14 +21,27 @@ static Q_LOGGING_CATEGORY(log, "Plugin.Hook")
 CHook::CHook(CParameterPlugin *pPara, QObject *parent)
     : QObject(parent)
     , m_pParameterPlugin(pPara)
-    , m_bScript(false)
+    , m_pDesktopManagerThread(nullptr)
 {
-    qDebug(log) << "CHook::~CHook()";
+    qDebug(log) << "CHook::CHook()";
+
+    m_pDesktopManagerThread = new CDesktopManagerThread(pPara);
+    if(m_pDesktopManagerThread) {
+        m_pDesktopManagerThread->start();
+        while(!m_pDesktopManagerThread->IsStart())
+            QApplication::processEvents();
+    }
 }
 
 CHook::~CHook()
 {
     qDebug(log) << "CHook::~CHook()";
+    if(m_pDesktopManagerThread) {
+        m_pDesktopManagerThread->quit();
+        int n = 0;
+        while(!m_pDesktopManagerThread->isFinished() && 10 >= n++)
+            QThread::msleep(500);
+    }
 }
 
 CHook* CHook::GetHook(CParameterPlugin *pPara, QObject *parent)
@@ -44,35 +58,13 @@ CHook* CHook::GetHook(CParameterPlugin *pPara, QObject *parent)
 int CHook::RegisterKeyboard()
 {
     OnRegisterKeyboard();
-
-    if(m_pParameterPlugin->GetDesktopShortcutsScript()
-        && !m_pParameterPlugin->GetRestoreDesktopShortcutsScript().isEmpty()
-        && !m_pParameterPlugin->GetDisableDesktopShortcutsScript().isEmpty()) {
-#if defined(Q_OS_WIN32)
-        QDesktopServices::openUrl(m_pParameterPlugin->GetDisableDesktopShortcutsScript());
-#else
-        RunCommand(m_pParameterPlugin->GetDisableDesktopShortcutsScript());
-#endif
-        m_bScript = true;
-    } else {
-        OnDisableDesktopShortcuts();
-        m_bScript = false;
-    }
+    OnDisableDesktopShortcuts();
     return 0;
 }
 
 int CHook::UnRegisterKeyboard()
 {
-    if(m_bScript) {
-#if defined(Q_OS_WIN32)
-        QDesktopServices::openUrl(m_pParameterPlugin->GetRestoreDesktopShortcutsScript());
-#else
-        RunCommand(m_pParameterPlugin->GetRestoreDesktopShortcutsScript());
-#endif
-    } else {
-        OnRestoreDesktopShortcuts();
-    }
-
+    OnRestoreDesktopShortcuts();
     OnUnRegisterKeyboard();
     return 0;
 }
@@ -109,17 +101,17 @@ int CHook::OnUnRegisterKeyboard()
 
 int CHook::OnDisableDesktopShortcuts()
 {
-#if defined(Q_OS_LINUX) && !defined(Q_OS_MACOS) && !defined(Q_OS_ANDROID)
-    m_DesktopShortcutsManager.disableAllShortcuts();
-#endif
+    qDebug(log) << Q_FUNC_INFO;
+    if(m_pDesktopManagerThread)
+        emit m_pDesktopManagerThread->sigDisableShortcuts();
     return 0;
 }
 
 int CHook::OnRestoreDesktopShortcuts()
 {
-#if defined(Q_OS_LINUX) && !defined(Q_OS_MACOS) && !defined(Q_OS_ANDROID)
-    m_DesktopShortcutsManager.restoreAllShortcuts();
-#endif
+    qDebug(log) << Q_FUNC_INFO;
+    if(m_pDesktopManagerThread)
+        emit m_pDesktopManagerThread->sigRestoreShortcuts();
     return 0;
 }
 
@@ -162,36 +154,4 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
         }
     }
     return bRet;
-}
-
-bool CHook::RunCommand(const QString &program, const QStringList &args, int timeout)
-{
-    QProcess process;
-    process.setProgram(program);
-    if(!args.isEmpty())
-        process.setArguments(args);
-    
-    //qDebug(log) << "Command:" << program << args;
-    
-    process.start();
-    
-    if (!process.waitForFinished(timeout)) {
-        qWarning(log) << "Command timeout:" << program << args;
-        return false;
-    }
-    
-    if (process.exitCode() != 0) {
-        QString errorOutput = process.readAllStandardError();
-        qWarning(log) << "Command failed:" << program << args 
-                      << "exit code:" << process.exitCode()
-                      << "failed:" << errorOutput;
-        return false;
-    }
-    
-    QString standardOutput = process.readAllStandardOutput();
-    if (!standardOutput.isEmpty()) {
-        qDebug(log) << "Command output:" << standardOutput.trimmed();
-    }
-    
-    return true;
 }

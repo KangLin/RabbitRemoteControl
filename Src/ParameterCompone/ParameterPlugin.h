@@ -75,13 +75,19 @@ private:
 public:
     QString GetDisableDesktopShortcutsScript() const;
     void SetDisableDesktopShortcutsScript(const QString &newDisableDesktopShortcutsScript);
+    QString GetDisableDesktopShortcutsScriptParameters() const;
+    void SetDisableDesktopShortcutsScriptParameters(const QString &szParameters);
 private:
     QString m_szDisableDesktopShortcutsScript;
+    QString m_szDisableDesktopShortcutsScriptParameters;
 public:
     QString GetRestoreDesktopShortcutsScript() const;
     void SetRestoreDesktopShortcutsScript(const QString &newRestoreDesktopShortcutsScript);
+    QString GetRestoreDesktopShortcutsScriptParameters() const;
+    void SetRestoreDesktopShortcutsScriptParameters(const QString &szParameters);
 private:
     QString m_szRestoreDesktopShortcutsScript;
+    QString m_szRestoreDesktopShortcutsScriptParameters;
 
 public:
     bool GetEnableLocalInputMethod() const;
