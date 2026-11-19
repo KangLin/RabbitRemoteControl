@@ -1,0 +1,17 @@
+<map id="COperateTerminal" name="COperateTerminal">
+<area shape="rect" id="Node000001" title="Terminal operate interface." alt="" coords="323,157,461,184"/>
+<area shape="rect" id="Node000004" href="$classCOperateRawStream.html" title=" " alt="" coords="5,232,163,260"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="323,191,140,234,139,229,321,186"/>
+<area shape="rect" id="Node000005" href="$classCOperateSSH.html" title=" " alt="" coords="187,232,296,260"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="354,191,269,234,267,229,349,192"/>
+<area shape="rect" id="Node000006" href="$classCOperateSerialPort.html" title=" " alt="" coords="319,232,465,260"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="394,198,394,234,390,230,390,202"/>
+<area shape="rect" id="Node000007" href="$classCOperateTelnet.html" title=" " alt="" coords="489,232,610,260"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="434,189,524,232,519,232,433,194"/>
+<area shape="rect" id="Node000008" href="$classCTerminal.html" title=" " alt="" coords="634,232,720,260"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="458,186,636,233,631,234,457,191"/>
+<area shape="rect" id="Node000002" href="$classCOperate.html" title="Operate interface." alt="" coords="351,81,433,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="394,122,394,158,390,155,390,127"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="355,5,429,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="394,47,394,82,390,79,390,51"/>
+</map>

@@ -1,0 +1,867 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: COperateFtpServer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCOperateFtpServer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">COperateFtpServer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 COperateFtpServer 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCOperateFtpServer__inherit__graph.png" border="0" usemap="#aCOperateFtpServer_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCOperateFtpServer_inherit__map" id="aCOperateFtpServer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,232,151,260"/>
+<area shape="rect" href="classCOperateServer.html" title="服务操作接口" alt="" coords="16,157,140,184"/>
+<area shape="poly" title=" " alt="" coords="80,198,81,233,75,231,76,202"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="37,81,119,109"/>
+<area shape="poly" title=" " alt="" coords="79,122,81,157,75,156,77,127"/>
+<area shape="rect" title=" " alt="" coords="41,5,115,33"/>
+<area shape="poly" title=" " alt="" coords="79,46,81,81,75,80,77,51"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+COperateFtpServer 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCOperateFtpServer__coll__graph.png" border="0" usemap="#aCOperateFtpServer_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCOperateFtpServer_coll__map" id="aCOperateFtpServer_coll__map">
+<area shape="rect" title=" " alt="" coords="3051,237,3197,265"/>
+<area shape="rect" href="classCOperateServer.html" title="服务操作接口" alt="" coords="1700,181,1824,209"/>
+<area shape="poly" title=" " alt="" coords="1839,203,1954,215,2081,221,2861,221,2961,226,3054,239,3048,240,2960,231,2860,226,2081,226,1953,220,1840,208"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="409,157,492,185"/>
+<area shape="poly" title=" " alt="" coords="506,169,796,168,1430,169,1575,174,1702,188,1697,189,1575,180,1430,174,796,174,508,174"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="732,77,863,105"/>
+<area shape="poly" title=" " alt="" coords="506,162,601,147,708,123,766,104,762,107,709,128,602,152,508,167"/>
+<area shape="rect" title=" " alt="" coords="5,208,79,236"/>
+<area shape="poly" title=" " alt="" coords="93,213,410,174,407,178,95,218"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="142,157,212,185"/>
+<area shape="poly" title=" " alt="" coords="91,201,143,182,139,187,95,204"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="128,667,225,694"/>
+<area shape="poly" title=" " alt="" coords="44,248,50,340,59,458,76,571,89,616,105,647,115,657,130,667,125,668,112,662,101,650,84,618,71,572,53,459,44,341,44,254"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1716,535,1808,562"/>
+<area shape="poly" title=" " alt="" coords="46,248,62,349,87,475,105,534,125,582,149,615,162,624,176,627,1430,627,1487,620,1564,602,1713,563,1718,562,1566,607,1488,625,1431,632,175,632,160,629,145,619,121,585,100,535,82,476,57,350,46,254"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="249,79,335,106"/>
+<area shape="poly" title=" " alt="" coords="64,195,93,168,127,144,189,116,251,99,247,103,191,121,129,148,96,172,68,198"/>
+<area shape="poly" title=" " alt="" coords="226,169,411,169,407,173,229,174"/>
+<area shape="rect" href="classCFrmViewServer.html" title="The CFrmViewServer class" alt="" coords="1364,208,1494,236"/>
+<area shape="poly" title=" " alt="" coords="1509,221,1590,219,1675,212,1708,209,1703,210,1676,217,1590,225,1510,226"/>
+<area shape="rect" title=" " alt="" coords="1122,208,1199,236"/>
+<area shape="poly" title=" " alt="" coords="1214,219,1367,221,1362,223,1215,224"/>
+<area shape="rect" href="classCStatsSever.html" title=" " alt="" coords="1110,260,1210,288"/>
+<area shape="poly" title=" " alt="" coords="1225,265,1325,250,1387,235,1382,237,1326,255,1227,270"/>
+<area shape="rect" href="classCStats.html" title=" " alt="" coords="766,260,829,288"/>
+<area shape="poly" title=" " alt="" coords="844,271,1112,273,1107,275,845,276"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="376,409,525,437"/>
+<area shape="poly" title=" " alt="" coords="467,395,508,347,534,323,565,303,617,284,672,273,724,269,768,271,763,273,724,275,673,279,619,289,567,308,538,327,511,351,471,399"/>
+<area shape="poly" title=" " alt="" coords="421,392,431,385,450,383,468,385,479,391,483,400,478,410,474,407,477,400,475,394,466,390,450,388,433,390,424,396"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1349,535,1509,562"/>
+<area shape="poly" title=" " alt="" coords="499,441,567,465,649,486,733,499,905,519,1076,532,1352,546,1346,547,1075,537,904,524,732,504,648,491,565,470,499,446"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1100,435,1220,462"/>
+<area shape="poly" title=" " alt="" coords="540,423,1076,442,1102,445,1097,446,1076,447,541,428"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="734,463,861,490"/>
+<area shape="poly" title=" " alt="" coords="540,434,736,466,731,468,541,440"/>
+<area shape="rect" href="classCParameterServer.html" title="The server base parameters" alt="" coords="2590,332,2730,360"/>
+<area shape="poly" title=" " alt="" coords="482,398,520,374,565,354,628,335,679,325,730,322,796,322,2372,322,2487,326,2593,338,2587,338,2487,332,2372,327,796,327,730,327,679,330,629,340,567,359,523,379,485,402"/>
+<area shape="poly" title=" " alt="" coords="188,651,212,606,247,559,290,519,337,484,423,436,419,439,340,489,294,523,251,562,217,609,192,654"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2591,699,2729,726"/>
+<area shape="poly" title=" " alt="" coords="209,701,255,730,313,760,380,784,414,791,449,794,2372,794,2446,786,2518,768,2581,745,2627,728,2632,726,2583,750,2519,773,2447,792,2372,799,449,799,413,797,378,789,311,765,252,735,209,706"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="2013,641,2152,669"/>
+<area shape="poly" title=" " alt="" coords="241,678,449,678,1286,678,1494,675,1699,670,2015,659,2010,659,1699,675,1494,681,1286,683,449,683,241,683"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="2306,488,2436,516"/>
+<area shape="poly" title=" " alt="" coords="239,661,249,659,407,630,566,609,956,556,1128,538,1349,521,1441,516,1533,515,2308,502,2303,503,1533,520,1441,522,1349,526,1129,543,957,561,566,614,407,635,250,664,242,666"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="566,833,708,861"/>
+<area shape="poly" title=" " alt="" coords="186,707,209,764,227,791,251,813,288,833,328,848,370,857,412,863,494,864,563,860,568,860,495,870,412,868,369,863,326,853,286,838,248,817,223,795,204,767,183,712"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="887,720,1076,748"/>
+<area shape="poly" title=" " alt="" coords="240,695,250,697,425,717,601,728,760,733,889,735,884,736,760,738,601,734,425,722,249,702,241,700"/>
+<area shape="poly" title=" " alt="" coords="2650,682,2638,648,2621,606,2596,563,2565,525,2536,504,2509,493,2443,479,2354,459,2278,446,2148,432,2016,424,1848,408,1727,388,1674,381,1605,378,796,378,721,381,645,389,517,411,515,406,645,384,720,376,796,373,1606,373,1674,375,1727,383,1848,403,2016,419,2148,427,2279,441,2355,454,2444,474,2511,488,2538,499,2568,521,2601,560,2625,603,2643,647,2654,685"/>
+<area shape="poly" title=" " alt="" coords="2168,661,2593,706,2588,706,2168,666"/>
+<area shape="poly" title=" " alt="" coords="1518,563,1700,596,2015,646,2010,646,1699,601,1518,568"/>
+<area shape="poly" title=" " alt="" coords="1524,546,1718,548,1713,549,1524,551"/>
+<area shape="poly" title=" " alt="" coords="1214,465,1392,534,1387,534,1213,471"/>
+<area shape="poly" title=" " alt="" coords="1235,441,2591,348,2589,353,1236,446"/>
+<area shape="poly" title=" " alt="" coords="876,477,972,475,1076,467,1112,462,1107,464,1076,472,972,481,877,482"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="359,515,542,542"/>
+<area shape="poly" title=" " alt="" coords="557,518,708,498,750,490,745,492,709,503,558,523"/>
+<area shape="poly" title=" " alt="" coords="1806,567,1826,578,1837,588,1849,596,1887,609,1918,612,1949,615,1990,622,2045,641,2039,641,1988,627,1949,620,1917,618,1885,614,1847,601,1834,592,1822,583,1805,573"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="2020,531,2145,558"/>
+<area shape="poly" title=" " alt="" coords="1823,544,1848,543,2022,544,2017,545,1848,548,1823,549"/>
+<area shape="poly" title=" " alt="" coords="2405,523,2642,699,2637,698,2403,528"/>
+<area shape="poly" title=" " alt="" coords="2447,481,2506,460,2565,431,2611,394,2645,361,2649,359,2615,398,2568,435,2508,465,2448,486"/>
+<area shape="poly" title=" " alt="" coords="2161,545,2217,542,2274,535,2307,526,2336,517,2342,515,2309,531,2275,540,2217,548,2161,550"/>
+<area shape="poly" title=" " alt="" coords="724,845,980,844,2372,845,2429,845,2473,844,2515,835,2565,813,2592,794,2616,770,2648,728,2653,726,2620,773,2596,798,2568,817,2517,840,2474,850,2429,851,2372,850,980,850,724,850"/>
+<area shape="poly" title=" " alt="" coords="1092,732,1284,733,2372,733,2488,728,2588,721,2594,721,2488,733,2372,738,1283,738,1092,737"/>
+<area shape="poly" title=" " alt="" coords="877,84,1028,80,1228,85,1339,93,1453,105,1566,124,1676,150,1710,163,1741,181,1735,181,1708,168,1675,155,1565,129,1452,111,1339,98,1228,90,1028,85,879,89"/>
+<area shape="rect" title=" " alt="" coords="412,5,488,33"/>
+<area shape="poly" title=" " alt="" coords="503,23,600,38,709,61,757,76,752,78,708,66,599,44,505,28"/>
+<area shape="poly" title=" " alt="" coords="349,90,734,89,730,93,351,95"/>
+<area shape="rect" href="classCParameterFtpServer.html" title=" " alt="" coords="2779,277,2939,305"/>
+<area shape="poly" title=" " alt="" coords="2954,275,3027,264,3053,263,3048,264,3028,269,2955,280"/>
+<area shape="poly" title=" " alt="" coords="2727,325,2803,306,2808,305,2728,330"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a25807d9ec9d57b6629385159d1566210" id="r_a25807d9ec9d57b6629385159d1566210"><td class="memItemLeft"><a id="a25807d9ec9d57b6629385159d1566210" name="a25807d9ec9d57b6629385159d1566210"></a>
+&#160;</td><td class="memItemRight"><b>COperateFtpServer</b> (<a class="el" href="classCPlugin.html">CPlugin</a> *plugin)</td></tr>
+<tr class="memitem:af63675b622472821049c4f03eebaf1f3" id="r_af63675b622472821049c4f03eebaf1f3"><td class="memItemLeft">virtual <a class="el" href="classCParameterFtpServer.html">CParameterFtpServer</a> *&#160;</td><td class="memItemRight"><a class="el" href="#af63675b622472821049c4f03eebaf1f3">GetParameter</a> () const</td></tr>
+<tr class="memdesc:af63675b622472821049c4f03eebaf1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get parameter  <br /></td></tr>
+<tr class="memitem:a04e173b2e25357afd790c4c01afb46f7" id="r_a04e173b2e25357afd790c4c01afb46f7"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="#a04e173b2e25357afd790c4c01afb46f7">Name</a> () override</td></tr>
+<tr class="memdesc:a04e173b2e25357afd790c4c01afb46f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">名称  <br /></td></tr>
+<tr class="memitem:ac23fac3033638e6ba8db64f5389fff37" id="r_ac23fac3033638e6ba8db64f5389fff37"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="#ac23fac3033638e6ba8db64f5389fff37">Description</a> () override</td></tr>
+<tr class="memdesc:ac23fac3033638e6ba8db64f5389fff37"><td class="mdescLeft">&#160;</td><td class="mdescRight">描述  <br /></td></tr>
+<tr class="memitem:a2d0c2766502575c1643de26357d12ced" id="r_a2d0c2766502575c1643de26357d12ced"><td class="memItemLeft">virtual const qint16&#160;</td><td class="memItemRight"><a class="el" href="#a2d0c2766502575c1643de26357d12ced">Version</a> () const override</td></tr>
+<tr class="memdesc:a2d0c2766502575c1643de26357d12ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">版本  <br /></td></tr>
+<tr class="inherit_header pub_methods_classCOperateServer"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCOperateServer.html">COperateServer</a></td></tr>
+<tr class="memitem:a127434e9d35429c4e760b30f1d164b25 pub_methods_classCOperateServer" id="r_a127434e9d35429c4e760b30f1d164b25"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>COperateServer</b> (<a class="el" href="classCPlugin.html">CPlugin</a> *plugin)</td></tr>
+<tr class="memitem:a3b038a90307371ac8633a2cde4a6342a pub_methods_classCOperateServer" id="r_a3b038a90307371ac8633a2cde4a6342a"><td class="memItemLeft">virtual QWidget *&#160;</td><td class="memItemRight"><a class="el" href="classCOperateServer.html#a3b038a90307371ac8633a2cde4a6342a">GetViewer</a> () override</td></tr>
+<tr class="memdesc:a3b038a90307371ac8633a2cde4a6342a pub_methods_classCOperateServer"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到显示视图  <br /></td></tr>
+<tr class="memitem:a5dc901ed2b7568f9b5deff94bf1ff3ce pub_methods_classCOperateServer" id="r_a5dc901ed2b7568f9b5deff94bf1ff3ce"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCOperateServer.html#a5dc901ed2b7568f9b5deff94bf1ff3ce">Start</a> () override</td></tr>
+<tr class="memdesc:a5dc901ed2b7568f9b5deff94bf1ff3ce pub_methods_classCOperateServer"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始  <br /></td></tr>
+<tr class="memitem:a4c443f4b6cda154da4f4f5f60a676de2 pub_methods_classCOperateServer" id="r_a4c443f4b6cda154da4f4f5f60a676de2"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCOperateServer.html#a4c443f4b6cda154da4f4f5f60a676de2">Stop</a> () override</td></tr>
+<tr class="memdesc:a4c443f4b6cda154da4f4f5f60a676de2 pub_methods_classCOperateServer"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭  <br /></td></tr>
+<tr class="inherit_header pub_methods_classCOperate"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a4fe89e9c49d70d29a1a7243f07101f30 pub_methods_classCOperate" id="r_a4fe89e9c49d70d29a1a7243f07101f30"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>COperate</b> (<a class="el" href="classCPlugin.html">CPlugin</a> *plugin)</td></tr>
+<tr class="memitem:a064b7e2e81cfc551114c64c562840143 pub_methods_classCOperate" id="r_a064b7e2e81cfc551114c64c562840143"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a064b7e2e81cfc551114c64c562840143">OpenDialogSettings</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:a064b7e2e81cfc551114c64c562840143 pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">打开设置对话框  <br /></td></tr>
+<tr class="memitem:afd6ece9b69fbe38ab1282a41028ed46b pub_methods_classCOperate" id="r_afd6ece9b69fbe38ab1282a41028ed46b"><td class="memItemLeft">virtual QMenu *&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#afd6ece9b69fbe38ab1282a41028ed46b">GetMenu</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:afd6ece9b69fbe38ab1282a41028ed46b pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get menu  <br /></td></tr>
+<tr class="memitem:aea757665fa03520c1f93b902bcd2351e pub_methods_classCOperate" id="r_aea757665fa03520c1f93b902bcd2351e"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#aea757665fa03520c1f93b902bcd2351e">Id</a> ()</td></tr>
+<tr class="memdesc:aea757665fa03520c1f93b902bcd2351e pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">标识  <br /></td></tr>
+<tr class="memitem:a6a934697b05c0e4ac12b936570ed9e74 pub_methods_classCOperate" id="r_a6a934697b05c0e4ac12b936570ed9e74"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a> () const</td></tr>
+<tr class="memdesc:a6a934697b05c0e4ac12b936570ed9e74 pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议  <br /></td></tr>
+<tr class="memitem:a186714ec49c6deec8defe524a9caf43d pub_methods_classCOperate" id="r_a186714ec49c6deec8defe524a9caf43d"><td class="memItemLeft">virtual const QIcon&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a186714ec49c6deec8defe524a9caf43d">Icon</a> () const</td></tr>
+<tr class="memdesc:a186714ec49c6deec8defe524a9caf43d pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">图标  <br /></td></tr>
+<tr class="memitem:afc05d8435e47d32420e74cac0f580153 pub_methods_classCOperate" id="r_afc05d8435e47d32420e74cac0f580153"><td class="memItemLeft">virtual const QString&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#afc05d8435e47d32420e74cac0f580153">GetTypeName</a> () const</td></tr>
+<tr class="memdesc:afc05d8435e47d32420e74cac0f580153 pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">类型名  <br /></td></tr>
+<tr class="memitem:aecf088d4236d28e15fd82bfc454b03d0 pub_methods_classCOperate" id="r_aecf088d4236d28e15fd82bfc454b03d0"><td class="memItemLeft">virtual QString&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#aecf088d4236d28e15fd82bfc454b03d0">GetSettingsFile</a> ()</td></tr>
+<tr class="memitem:aea0bed4e220beeff11f0d14b0ccaa3d3 pub_methods_classCOperate" id="r_aea0bed4e220beeff11f0d14b0ccaa3d3"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#aea0bed4e220beeff11f0d14b0ccaa3d3">SetSettingsFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="memitem:a19710604825ae865b0e2a39c4f10824f pub_methods_classCOperate" id="r_a19710604825ae865b0e2a39c4f10824f"><td class="memItemLeft">virtual <a class="el" href="classCStats.html">CStats</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a19710604825ae865b0e2a39c4f10824f">GetStats</a> ()</td></tr>
+<tr class="memdesc:a19710604825ae865b0e2a39c4f10824f pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到统计信息。如果有，其派生类则需要重载此函数提供统计信息。  <br /></td></tr>
+<tr class="memitem:a0b279f9a0df86cca2caa6f444b79830c pub_methods_classCOperate" id="r_a0b279f9a0df86cca2caa6f444b79830c"><td class="memItemLeft">virtual CSecurityLevel::Levels&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a> () const</td></tr>
+<tr class="memdesc:a0b279f9a0df86cca2caa6f444b79830c pub_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Security Level  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a94485c259362baf58adb901d417e9f3f" id="r_a94485c259362baf58adb901d417e9f3f"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a94485c259362baf58adb901d417e9f3f">SetPluginParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara) override</td></tr>
+<tr class="memdesc:a94485c259362baf58adb901d417e9f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">应用插件全局参数  <br /></td></tr>
+<tr class="memitem:aa92337e67cc500cd594886547a5ba418" id="r_aa92337e67cc500cd594886547a5ba418"><td class="memItemLeft">virtual Q_INVOKABLE <a class="el" href="classCBackend.html">CBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#aa92337e67cc500cd594886547a5ba418">InstanceBackend</a> () override</td></tr>
+<tr class="memdesc:aa92337e67cc500cd594886547a5ba418"><td class="mdescLeft">&#160;</td><td class="mdescRight">新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。  <br /></td></tr>
+<tr class="memitem:aba791f25add3ee8a23dec8c3243cf2d7" id="r_aba791f25add3ee8a23dec8c3243cf2d7"><td class="memItemLeft">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight"><a class="el" href="#aba791f25add3ee8a23dec8c3243cf2d7">Initial</a> () override</td></tr>
+<tr class="memdesc:aba791f25add3ee8a23dec8c3243cf2d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial parameters and resource  <br /></td></tr>
+<tr class="memitem:abf46b66c0a3ea4d48c20069725130ed3" id="r_abf46b66c0a3ea4d48c20069725130ed3"><td class="memItemLeft">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight"><a class="el" href="#abf46b66c0a3ea4d48c20069725130ed3">Clean</a> () override</td></tr>
+<tr class="memdesc:abf46b66c0a3ea4d48c20069725130ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean parameters and resource  <br /></td></tr>
+<tr class="memitem:ad7f7a28fa7323887b7daca63b470da8d" id="r_ad7f7a28fa7323887b7daca63b470da8d"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ad7f7a28fa7323887b7daca63b470da8d">Load</a> (QSettings &amp;set) override</td></tr>
+<tr class="memdesc:ad7f7a28fa7323887b7daca63b470da8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载参数  <br /></td></tr>
+<tr class="memitem:ad5003f8db5db8452b3cc475235df2069" id="r_ad5003f8db5db8452b3cc475235df2069"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ad5003f8db5db8452b3cc475235df2069">Save</a> (QSettings &amp;set) override</td></tr>
+<tr class="memdesc:ad5003f8db5db8452b3cc475235df2069"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存参数  <br /></td></tr>
+<tr class="inherit_header pro_methods_classCOperate"><td colspan="2">Protected 成员函数 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a8c9a54a1786a6a974e342e88c92055ef pro_methods_classCOperate" id="r_a8c9a54a1786a6a974e342e88c92055ef"><td class="memItemLeft">Q_INVOKABLE <a class="el" href="classCPlugin.html">CPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a> () const</td></tr>
+<tr class="memdesc:a8c9a54a1786a6a974e342e88c92055ef pro_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get plugin  <br /></td></tr>
+<tr class="memitem:a79cdead4fe3515eabf47c0f88684aeb6 pro_methods_classCOperate" id="r_a79cdead4fe3515eabf47c0f88684aeb6"><td class="memItemLeft">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a79cdead4fe3515eabf47c0f88684aeb6">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:a79cdead4fe3515eabf47c0f88684aeb6 pro_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件中加载参数  <br /></td></tr>
+<tr class="memitem:ac4c0a9bd8531f562d60530d62aebb057 pro_methods_classCOperate" id="r_ac4c0a9bd8531f562d60530d62aebb057"><td class="memItemLeft">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#ac4c0a9bd8531f562d60530d62aebb057">Save</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ac4c0a9bd8531f562d60530d62aebb057 pro_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存参数到文件中  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a1a58053ca417b10a4ac84e061a0275f9" id="r_a1a58053ca417b10a4ac84e061a0275f9"><td class="memItemLeft">virtual QDialog *&#160;</td><td class="memItemRight"><a class="el" href="#a1a58053ca417b10a4ac84e061a0275f9">OnOpenDialogSettings</a> (QWidget *parent) override</td></tr>
+<tr class="memdesc:a1a58053ca417b10a4ac84e061a0275f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到设置对话框  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aa8d0e67a2a7fd2557cb699bfdc6cf1f6" id="r_aa8d0e67a2a7fd2557cb699bfdc6cf1f6"><td class="memItemLeft"><a class="el" href="classCParameterFtpServer.html">CParameterFtpServer</a> *&#160;</td><td class="memItemRight"><a class="el" href="#aa8d0e67a2a7fd2557cb699bfdc6cf1f6">m_pPara</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCOperate"><td colspan="2">信号 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a890148e63236cc433c278d0baf2b4716 signals_classCOperate" id="r_a890148e63236cc433c278d0baf2b4716"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a890148e63236cc433c278d0baf2b4716">sigViewerFocusIn</a> (QWidget *pView)</td></tr>
+<tr class="memdesc:a890148e63236cc433c278d0baf2b4716 signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">视图获得焦点  <br /></td></tr>
+<tr class="memitem:a4246d9f74e9b4c178d2ad692f906e703 signals_classCOperate" id="r_a4246d9f74e9b4c178d2ad692f906e703"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a4246d9f74e9b4c178d2ad692f906e703">sigFullScreen</a> (bool bFullScreen)</td></tr>
+<tr class="memdesc:a4246d9f74e9b4c178d2ad692f906e703 signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">全屏。由操作触发  <br /></td></tr>
+<tr class="memitem:af678e062e6e19ff4b2b6ff5b57459245 signals_classCOperate" id="r_af678e062e6e19ff4b2b6ff5b57459245"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#af678e062e6e19ff4b2b6ff5b57459245">sigUpdateName</a> (const QString &amp;szName)</td></tr>
+<tr class="memitem:ad4d9a96a357aac505e11ca49e0a52ef3 signals_classCOperate" id="r_ad4d9a96a357aac505e11ca49e0a52ef3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#ad4d9a96a357aac505e11ca49e0a52ef3">sigUpdateParameters</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate)</td></tr>
+<tr class="memdesc:ad4d9a96a357aac505e11ca49e0a52ef3 signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新参数，通知应用程序保存或显示参数  <br /></td></tr>
+<tr class="memitem:a4359400858718fa9e46e598f519bbe6d signals_classCOperate" id="r_a4359400858718fa9e46e598f519bbe6d"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigError</b> (const int nError, const QString &amp;szError)</td></tr>
+<tr class="memdesc:a4359400858718fa9e46e598f519bbe6d signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发。 <br /></td></tr>
+<tr class="memitem:a14ab2bf2aeb0d7b9ef17402fd25d114b signals_classCOperate" id="r_a14ab2bf2aeb0d7b9ef17402fd25d114b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a14ab2bf2aeb0d7b9ef17402fd25d114b">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:a14ab2bf2aeb0d7b9ef17402fd25d114b signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">中主窗口中显示信息  <br /></td></tr>
+<tr class="memitem:adfd742b7a7032cad45fd39263decff3f signals_classCOperate" id="r_adfd742b7a7032cad45fd39263decff3f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#adfd742b7a7032cad45fd39263decff3f">sigShowMessageBox</a> (const QString &amp;title, const QString &amp;message, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:adfd742b7a7032cad45fd39263decff3f signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="memitem:ae25e874fdb05097d12aaff788b5cc51f signals_classCOperate" id="r_ae25e874fdb05097d12aaff788b5cc51f"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigClipBoardChanged</b> ()</td></tr>
+<tr class="memitem:af76bdbff5533a359705e213d71b30f26 signals_classCOperate" id="r_af76bdbff5533a359705e213d71b30f26"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigSecurityLevel</b> ()</td></tr>
+<tr class="memdesc:af76bdbff5533a359705e213d71b30f26 signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">当安全级别改变时触发。其派生类不要直接触发，需要使用 slotSetSecurityLevel 触发 <br /></td></tr>
+<tr class="memitem:a2452dc9b1667645e4c38692329a46ea2 signals_classCOperate" id="r_a2452dc9b1667645e4c38692329a46ea2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a2452dc9b1667645e4c38692329a46ea2">sigRunning</a> ()</td></tr>
+<tr class="memdesc:a2452dc9b1667645e4c38692329a46ea2 signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始成功信号。仅由插件触发。  <br /></td></tr>
+<tr class="memitem:a6942d314368c7584494222cdc107a69c signals_classCOperate" id="r_a6942d314368c7584494222cdc107a69c"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigStop</b> ()</td></tr>
+<tr class="memdesc:a6942d314368c7584494222cdc107a69c signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">通知用户停止。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 当应用接收到此信号后，调用 <a class="el" href="classCOperate.html#ab3f69dd4cd02c5dae9414e9dfe2d9eb4" title="关闭">Stop()</a> 关闭连接。 <br /></td></tr>
+<tr class="memitem:a172ed2a87941c21dd2fd98c4bdd2145d signals_classCOperate" id="r_a172ed2a87941c21dd2fd98c4bdd2145d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a172ed2a87941c21dd2fd98c4bdd2145d">sigFinished</a> ()</td></tr>
+<tr class="memdesc:a172ed2a87941c21dd2fd98c4bdd2145d signals_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">断开连接成功信号。仅由插件触发  <br /></td></tr>
+<tr class="inherit_header pro_slots_classCOperate"><td colspan="2">Protected 槽 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:ad50c8e544fda7613c0b9260b9c6782bc pro_slots_classCOperate" id="r_ad50c8e544fda7613c0b9260b9c6782bc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#ad50c8e544fda7613c0b9260b9c6782bc">slotUpdateName</a> ()</td></tr>
+<tr class="memitem:ab8660f99cde7622b297936156c815ad1 pro_slots_classCOperate" id="r_ab8660f99cde7622b297936156c815ad1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#ab8660f99cde7622b297936156c815ad1">slotSetSecurityLevel</a> (CSecurityLevel::Levels level)</td></tr>
+<tr class="inherit_header pro_static_methods_classCOperate"><td colspan="2">静态 Protected 成员函数 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a2998c743fa276f8f489b3520bc78ab32 pro_static_methods_classCOperate" id="r_a2998c743fa276f8f489b3520bc78ab32"><td class="memItemLeft">static QObject *&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a2998c743fa276f8f489b3520bc78ab32">createObject</a> (const QString &amp;className, QObject *parent=NULL)</td></tr>
+<tr class="memdesc:a2998c743fa276f8f489b3520bc78ab32 pro_static_methods_classCOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create Object  <br /></td></tr>
+<tr class="inherit_header pro_attribs_classCOperate"><td colspan="2">Protected 属性 继承自 <a class="el" href="classCOperate.html">COperate</a></td></tr>
+<tr class="memitem:a40fefa0033ac9fe0cb637e87275e4f14 pro_attribs_classCOperate" id="r_a40fefa0033ac9fe0cb637e87275e4f14"><td class="memItemLeft">QMenu&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a40fefa0033ac9fe0cb637e87275e4f14">m_Menu</a></td></tr>
+<tr class="memitem:a9464c390a69ad3af54fd7151c15d681b pro_attribs_classCOperate" id="r_a9464c390a69ad3af54fd7151c15d681b"><td class="memItemLeft">QAction *&#160;</td><td class="memItemRight"><a class="el" href="classCOperate.html#a9464c390a69ad3af54fd7151c15d681b">m_pActionSettings</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8h_source.html">OperateFtpServer.h</a> 第 <a class="el" href="OperateFtpServer_8h_source.html#l00008">8</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="af7e869c1381b00f202c819026d95d2b0" name="af7e869c1381b00f202c819026d95d2b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e869c1381b00f202c819026d95d2b0">&#9670;&#160;</a></span>~COperateFtpServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">COperateFtpServer::~COperateFtpServer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="abf46b66c0a3ea4d48c20069725130ed3" name="abf46b66c0a3ea4d48c20069725130ed3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf46b66c0a3ea4d48c20069725130ed3">&#9670;&#160;</a></span>Clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateFtpServer::Clean </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clean parameters and resource </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCManager.html#a706d4e1645fe0fe7b35731ac8b4ee9bd" title="Delete COperate">CManager::DeleteOperate</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperateServer.html#ac40b1d510a8883ef4660bd2853f292f2">COperateServer</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac23fac3033638e6ba8db64f5389fff37" name="ac23fac3033638e6ba8db64f5389fff37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac23fac3033638e6ba8db64f5389fff37">&#9670;&#160;</a></span>Description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString COperateFtpServer::Description </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描述 </p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateDesktop.html#adf085b90c58d30f98b69c7a757df29e2">COperateDesktop::Description</a>()</div>
+<div class="line">{</div>
+<div class="line">    QString szDescription;</div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperateDesktop.html#a656dd93f948c23fd0029d01c47fc6a2d">Name</a>().isEmpty())</div>
+<div class="line">        szDescription = tr(<span class="stringliteral">&quot;Name: &quot;</span>) + <a class="code hl_function" href="classCOperateDesktop.html#a656dd93f948c23fd0029d01c47fc6a2d">Name</a>() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#afc05d8435e47d32420e74cac0f580153">GetTypeName</a>().isEmpty())</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Type: &quot;</span>) + <a class="code hl_function" href="classCOperate.html#afc05d8435e47d32420e74cac0f580153">GetTypeName</a>() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>().isEmpty()) {</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Protocol: &quot;</span>) + <a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>();</div>
+<div class="line"><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line">        <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;DisplayName().isEmpty())</div>
+<div class="line">            szDescription += <span class="stringliteral">&quot; - &quot;</span> + <a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCPlugin.html#a9f02199b6529be4a51f814c5c3194509">DisplayName</a>();</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line">        szDescription += <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperateDesktop.html#a135e903ca4ec2ea84e54d1ae3f1f7374">ServerName</a>().isEmpty())</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Server name: &quot;</span>) + <a class="code hl_function" href="classCOperateDesktop.html#a135e903ca4ec2ea84e54d1ae3f1f7374">ServerName</a>() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()) {</div>
+<div class="line">        <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;m_Net.GetHost().isEmpty())</div>
+<div class="line">            szDescription += tr(<span class="stringliteral">&quot;Server address: &quot;</span>) + <a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;m_Net.GetHost() + <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line">                             + QString::number(<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;m_Net.GetPort()) + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">        </div>
+<div class="line">        QString szProxy(tr(<span class="stringliteral">&quot;Proxy&quot;</span>) + <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line">        <span class="keyword">auto</span> &amp;proxy = <a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;m_Proxy;</div>
+<div class="line">        <span class="keywordflow">switch</span>(proxy.GetUsedType()) {</div>
+<div class="line">        <span class="keywordflow">case</span> CParameterProxy::TYPE::SSHTunnel:</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keyword">auto</span> &amp;sshNet = proxy.m_SSH.m_Net;</div>
+<div class="line">            szProxy += <span class="stringliteral">&quot;(&quot;</span> + tr(<span class="stringliteral">&quot;SSH tunnel&quot;</span>) + <span class="stringliteral">&quot;): &quot;</span> + sshNet.GetHost() + <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line">                       + QString::number(sshNet.GetPort());</div>
+<div class="line">            <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">case</span> CParameterProxy::TYPE::SockesV5:</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keyword">auto</span> &amp;sockesV5 = proxy.m_SockesV5;</div>
+<div class="line">            szProxy += <span class="stringliteral">&quot;(&quot;</span> + tr(<span class="stringliteral">&quot;Sockes v5&quot;</span>) + <span class="stringliteral">&quot;): &quot;</span> + sockesV5.GetHost() + <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line">                       + QString::number(sockesV5.GetPort());</div>
+<div class="line">            <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">default</span>:</div>
+<div class="line">            szProxy.clear();</div>
+<div class="line">            <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line">        </div>
+<div class="line">        <span class="keywordflow">if</span>(!szProxy.isEmpty())</div>
+<div class="line">            szDescription += szProxy + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    CSecurityLevel sl(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>());</div>
+<div class="line">    <span class="keywordflow">if</span>(!(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>() &amp; CSecurityLevel::Level::No)) {</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Security level: &quot;</span>);</div>
+<div class="line">        <span class="keywordflow">if</span>(!sl.GetUnicodeIcon().isEmpty())</div>
+<div class="line">            szDescription += sl.GetUnicodeIcon() + <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">        szDescription += sl.GetString() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCOperateDesktop.html#adf085b90c58d30f98b69c7a757df29e2">Description</a>().isEmpty())</div>
+<div class="line">        szDescription += tr(<span class="stringliteral">&quot;Description: &quot;</span>) + <a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCPlugin.html#aecbb4f2d85cfe4c75ae53c3e050f7813">Description</a>();</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">return</span> szDescription;</div>
+<div class="line">}</div>
+</div><!-- fragment --> <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperateDesktop.html#adf085b90c58d30f98b69c7a757df29e2" title="[The name of the desktop operate]">COperateDesktop::Description()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperate.html#ad409710c69a36d5cd22ab261a8bdf509">COperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af63675b622472821049c4f03eebaf1f3" name="af63675b622472821049c4f03eebaf1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af63675b622472821049c4f03eebaf1f3">&#9670;&#160;</a></span>GetParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterFtpServer.html">CParameterFtpServer</a> * COperateFtpServer::GetParameter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get parameter </p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba791f25add3ee8a23dec8c3243cf2d7" name="aba791f25add3ee8a23dec8c3243cf2d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba791f25add3ee8a23dec8c3243cf2d7">&#9670;&#160;</a></span>Initial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateFtpServer::Initial </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial parameters and resource </p>
+<dl class="section note"><dt>注解</dt><dd>Call before <a class="el" href="#ad7f7a28fa7323887b7daca63b470da8d" title="加载参数">Load()</a></dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCManager.html#a37bfb18878dd6fbdc05280a960912464" title="新建 COperate 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleOperate()　须释放指针。 调用者必须连接信号 COperate::sigFinished 。 释放指针 (...">CManager::CreateOperate</a> <a class="el" href="#ad7f7a28fa7323887b7daca63b470da8d" title="加载参数">Load</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperateServer.html#a118ac940832bca7dfa8c7c677d21b5fc">COperateServer</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00134">134</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa92337e67cc500cd594886547a5ba418" name="aa92337e67cc500cd594886547a5ba418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92337e67cc500cd594886547a5ba418">&#9670;&#160;</a></span>InstanceBackend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBackend.html">CBackend</a> * COperateFtpServer::InstanceBackend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。 </p>
+
+<p>实现了 <a class="el" href="classCOperateServer.html#a8fb396b1707c8c9b7d4c31434bc83320">COperateServer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad7f7a28fa7323887b7daca63b470da8d" name="ad7f7a28fa7323887b7daca63b470da8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7f7a28fa7323887b7daca63b470da8d">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateFtpServer::Load </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>加载参数 </p>
+
+<p>实现了 <a class="el" href="classCOperate.html#a67a5952d8064b359cf35cfe8cdd01d75">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00116">116</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a04e173b2e25357afd790c4c01afb46f7" name="a04e173b2e25357afd790c4c01afb46f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e173b2e25357afd790c4c01afb46f7">&#9670;&#160;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString COperateFtpServer::Name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>名称 </p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateDesktop.html#a656dd93f948c23fd0029d01c47fc6a2d">COperateDesktop::Name</a>()</div>
+<div class="line">{</div>
+<div class="line">    QString szName;</div>
+<div class="line">    <span class="comment">// Show the name of parameter</span></div>
+<div class="line">    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>() &amp;&amp; !(<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;GetName().isEmpty()))</div>
+<div class="line">        szName += <a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;GetName();</div>
+<div class="line">    <span class="keywordflow">else</span> {</div>
+<div class="line">        <span class="comment">// Show the prefix of protocol</span></div>
+<div class="line">        <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>() &amp;&amp; <a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;GetPluginParameters()</div>
+<div class="line">            &amp;&amp; (<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;GetPluginParameters()-&gt;GetNameStyles()</div>
+<div class="line">                &amp; CParameterPlugin::NameStyle::Protocol)</div>
+<div class="line">            &amp;&amp; !<a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>().isEmpty())</div>
+<div class="line">            szName = <a class="code hl_function" href="classCOperate.html#a6a934697b05c0e4ac12b936570ed9e74">Protocol</a>() + <span class="stringliteral">&quot;: &quot;</span>;</div>
+<div class="line">        <span class="comment">// Show the server name</span></div>
+<div class="line">        szName += <a class="code hl_function" href="classCOperateDesktop.html#a135e903ca4ec2ea84e54d1ae3f1f7374">ServerName</a>();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span>(szName.isEmpty())</div>
+<div class="line">        szName = <a class="code hl_function" href="classCOperate.html#a8c9a54a1786a6a974e342e88c92055ef">GetPlugin</a>()-&gt;<a class="code hl_function" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f">Name</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Show the prefix of security level</span></div>
+<div class="line">    QString szSecurityLevel;</div>
+<div class="line">    CSecurityLevel sl(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>());</div>
+<div class="line">    <span class="keywordflow">if</span>((<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;GetPluginParameters()-&gt;GetNameStyles()</div>
+<div class="line">         &amp; CParameterPlugin::NameStyle::SecurityLevel)</div>
+<div class="line">        &amp;&amp; !(<a class="code hl_function" href="classCOperate.html#a0b279f9a0df86cca2caa6f444b79830c">GetSecurityLevel</a>() &amp; CSecurityLevel::Level::No)</div>
+<div class="line">        &amp;&amp; !sl.GetUnicodeIcon().isEmpty())</div>
+<div class="line">        szSecurityLevel = sl.GetUnicodeIcon().left(2);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> szSecurityLevel + szName;</div>
+<div class="line">}</div>
+</div><!-- fragment --> <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperateDesktop.html#a656dd93f948c23fd0029d01c47fc6a2d" title="[The name of the desktop operate]">COperateDesktop::Name()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCOperate.html#aa189e87cb33699d031f1159252f2148b">COperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1a58053ca417b10a4ac84e061a0275f9" name="a1a58053ca417b10a4ac84e061a0275f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a58053ca417b10a4ac84e061a0275f9">&#9670;&#160;</a></span>OnOpenDialogSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDialog * COperateFtpServer::OnOpenDialogSettings </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>得到设置对话框 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>返回窗口的父窗口 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>QDialog*: 对话框必须在堆内存中分配，它的所有者是调用者。</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperate.html#a064b7e2e81cfc551114c64c562840143" title="打开设置对话框">OpenDialogSettings</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCOperate.html#a03df7eea47732b9293f3f5484d0f2b04">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad5003f8db5db8452b3cc475235df2069" name="ad5003f8db5db8452b3cc475235df2069"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5003f8db5db8452b3cc475235df2069">&#9670;&#160;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateFtpServer::Save </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>保存参数 </p>
+
+<p>实现了 <a class="el" href="classCOperate.html#adbaef4edcfc816c1d3905ea48c0c7365">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00126">126</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a94485c259362baf58adb901d417e9f3f" name="a94485c259362baf58adb901d417e9f3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94485c259362baf58adb901d417e9f3f">&#9670;&#160;</a></span>SetPluginParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COperateFtpServer::SetPluginParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *</td>          <td class="paramname"><span class="paramname"><em>pPara</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>应用插件全局参数 </p>
+<dl class="section note"><dt>注解</dt><dd>调用 <a class="el" href="classCParameterOperate.html#a427a4b41e546d500a5a0e06f344a6453" title="Set CParameterPlugin. it is called before Load().">CParameterOperate::SetPluginParameters</a> 设置操作参数的全局参数，并连接与全局参数相关的信号</dd></dl>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateDesktop.html#a0406d865924117b00f0b771f4896377d">COperateDesktop::SetPluginParameters</a>(<a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()) {</div>
+<div class="line">        <a class="code hl_function" href="classCOperateDesktop.html#a815089e06f0167a81497df48ca7a8bff">GetParameter</a>()-&gt;<a class="code hl_function" href="classCParameterOperate.html#a427a4b41e546d500a5a0e06f344a6453">SetPluginParameters</a>(pPara);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">if</span>(pPara) {</div>
+<div class="line">            <span class="keywordtype">bool</span> check = connect(pPara, SIGNAL(sigNameStylesChanged()),</div>
+<div class="line">                                 <span class="keyword">this</span>, SLOT(slotUpdateName()));</div>
+<div class="line">            Q_ASSERT(check);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        LoadAdaptWindows();</div>
+<div class="line">        <span class="keywordflow">return</span> 0;</div>
+<div class="line">    } <span class="keywordflow">else</span> {</div>
+<div class="line">        QString szMsg = <span class="stringliteral">&quot;There is not parameters! &quot;</span></div>
+<div class="line">                        <span class="stringliteral">&quot;please first create parameters, &quot;</span></div>
+<div class="line">                        <span class="stringliteral">&quot;then call SetParameter() in the &quot;</span>;</div>
+<div class="line">        szMsg += metaObject()-&gt;className() + QString(<span class="stringliteral">&quot;::&quot;</span>)</div>
+<div class="line">                 + metaObject()-&gt;className();</div>
+<div class="line">        szMsg += QString(<span class="stringliteral">&quot;() or &quot;</span>) + metaObject()-&gt;className()</div>
+<div class="line">                 + QString(<span class="stringliteral">&quot;::&quot;</span>) + <span class="stringliteral">&quot;Initial()&quot;</span>;</div>
+<div class="line">        szMsg += <span class="stringliteral">&quot; to set the parameters pointer. &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;Default set CParameterClient for the parameters of operate &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;(CParameterOperate or its derived classes) &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;See CManager::CreateOperate. &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;If you are sure the parameter of operate &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;does not need CParameterClient. &quot;</span></div>
+<div class="line">                 <span class="stringliteral">&quot;Please overload the SetPluginParameters() in the &quot;</span>;</div>
+<div class="line">        szMsg += QString(metaObject()-&gt;className()) + <span class="stringliteral">&quot; . don&#39;t set it&quot;</span>;</div>
+<div class="line">        qCritical(log) &lt;&lt; szMsg.toStdString().c_str();</div>
+<div class="line">        Q_ASSERT(<span class="keyword">false</span>);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> -1;</div>
+<div class="line">}</div>
+</div><!-- fragment --> <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCManager.html#a37bfb18878dd6fbdc05280a960912464" title="新建 COperate 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleOperate()　须释放指针。 调用者必须连接信号 COperate::sigFinished 。 释放指针 (...">CManager::CreateOperate</a> <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCOperate.html#a12dc3be591154c37a3b599334055c65e">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2d0c2766502575c1643de26357d12ced" name="a2d0c2766502575c1643de26357d12ced"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0c2766502575c1643de26357d12ced">&#9670;&#160;</a></span>Version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const qint16 COperateFtpServer::Version </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>版本 </p>
+
+<p>实现了 <a class="el" href="classCOperate.html#a04f3eed2100aefdcd4c651296fb9b379">COperate</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a> 第 <a class="el" href="OperateFtpServer_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="aa8d0e67a2a7fd2557cb699bfdc6cf1f6" name="aa8d0e67a2a7fd2557cb699bfdc6cf1f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8d0e67a2a7fd2557cb699bfdc6cf1f6">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterFtpServer.html">CParameterFtpServer</a>* COperateFtpServer::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="OperateFtpServer_8h_source.html">OperateFtpServer.h</a> 第 <a class="el" href="OperateFtpServer_8h_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FtpServer/<a class="el" href="OperateFtpServer_8h_source.html">OperateFtpServer.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FtpServer/<a class="el" href="OperateFtpServer_8cpp_source.html">OperateFtpServer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

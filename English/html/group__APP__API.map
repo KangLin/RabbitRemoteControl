@@ -1,0 +1,6 @@
+<map id="Application interface" name="Application interface">
+<area shape="rect" id="Node000001" title="Application interface." alt="" coords="162,39,318,66"/>
+<area shape="rect" id="Node000003" href="$group__LIBAPI__DATABASE.html" title="Database." alt="" coords="461,5,544,33"/>
+<area shape="rect" id="Node000004" href="$group__PLUGIN__API.html" title="Plugin interfaces." alt="" coords="437,71,568,98"/>
+<area shape="rect" id="Node000002" href="$group__LIBAPI__PLUGIN.html" title="Plugin library." alt="" coords="5,39,113,66"/>
+</map>

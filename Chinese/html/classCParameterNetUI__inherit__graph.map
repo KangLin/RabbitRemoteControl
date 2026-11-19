@@ -1,0 +1,7 @@
+<map id="CParameterNetUI" name="CParameterNetUI">
+<area shape="rect" id="Node000001" title="The net parameter UI" alt="" coords="5,157,140,184"/>
+<area shape="rect" id="Node000002" href="$classCParameterUI.html" title="参数界面接口" alt="" coords="17,81,128,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,123,75,157,70,155,71,126"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="34,5,111,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="73,46,75,81,70,80,72,51"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="CServiceThread" name="CServiceThread">
+<area shape="rect" id="Node000001" title=" " alt="" coords="23,183,146,211"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,82,82,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,122,82,182,77,183,53,126"/>
+<area shape="rect" id="Node000003" href="$classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="106,82,224,110"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,121,97,184,94,180,142,122"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="128,5,202,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="166,46,167,83,162,81,164,51"/>
+</map>

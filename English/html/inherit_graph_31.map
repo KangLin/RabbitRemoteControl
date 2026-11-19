@@ -1,0 +1,17 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,32,96,60"/>
+<area shape="rect" id="Node000001" href="$classCChannel.html" title="The channel interface class." alt="" coords="144,32,227,60"/>
+<area shape="poly" id="edge88_Node000000_Node000001" title=" " alt="" coords="111,43,145,45,141,47,112,48"/>
+<area shape="rect" id="Node000002" href="$classCChannelIce.html" title="The ICE channel interface class." alt="" coords="278,5,381,33"/>
+<area shape="poly" id="edge89_Node000001_Node000002" title=" " alt="" coords="242,33,280,28,275,29,243,38"/>
+<area shape="rect" id="Node000003" href="$classCChannelSSH.html" title=" " alt="" coords="275,57,384,85"/>
+<area shape="poly" id="edge90_Node000001_Node000003" title=" " alt="" coords="243,53,277,61,272,62,243,59"/>
+<area shape="rect" id="Node000004" href="$classCChannelSFTP.html" title=" " alt="" coords="458,5,572,33"/>
+<area shape="poly" id="edge91_Node000003_Node000004" title=" " alt="" coords="396,50,460,34,466,33,397,55"/>
+<area shape="rect" id="Node000005" href="$classCChannelSSHTerminal.html" title=" " alt="" coords="432,57,598,85"/>
+<area shape="poly" id="edge92_Node000003_Node000005" title=" " alt="" coords="400,69,434,71,429,71,400,74"/>
+<area shape="rect" id="Node000006" href="$classCChannelSSHTunnel.html" title="ssh tunnel class" alt="" coords="439,109,591,137"/>
+<area shape="poly" id="edge93_Node000003_Node000006" title=" " alt="" coords="397,87,466,109,460,109,396,92"/>
+<area shape="rect" id="Node000007" href="$classCChannelSSHTunnelForward.html" title="Includes SSH tunneling and a local socket service for forwarding data." alt="" coords="646,109,849,137"/>
+<area shape="poly" id="edge94_Node000006_Node000007" title=" " alt="" coords="606,121,648,123,642,123,606,126"/>
+</map>

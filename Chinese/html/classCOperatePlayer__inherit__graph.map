@@ -1,0 +1,9 @@
+<map id="COperatePlayer" name="COperatePlayer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="12,232,135,260"/>
+<area shape="rect" id="Node000002" href="$classCOperateDesktop.html" title="远程桌面操作接口" alt="" coords="5,157,142,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,198,76,233,71,231,72,202"/>
+<area shape="rect" id="Node000003" href="$classCOperate.html" title="操作接口。" alt="" coords="32,81,115,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,122,76,157,71,156,73,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="37,5,110,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="74,46,76,81,71,80,73,51"/>
+</map>

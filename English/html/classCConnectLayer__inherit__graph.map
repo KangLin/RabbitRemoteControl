@@ -1,0 +1,9 @@
+<map id="CConnectLayer" name="CConnectLayer">
+<area shape="rect" id="Node000001" title="The connect layer class." alt="" coords="146,81,266,109"/>
+<area shape="rect" id="Node000003" href="$classCConnectLayerQTcpSocket.html" title=" " alt="" coords="5,157,199,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,117,122,159,119,154,173,118"/>
+<area shape="rect" id="Node000004" href="$classConnectLayerSSHTunnel.html" title=" " alt="" coords="222,157,400,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="238,115,295,156,290,156,236,120"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="169,5,243,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,47,208,82,204,79,204,51"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="CServiceFreeRDP" name="CServiceFreeRDP">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,157,139,184"/>
+<area shape="rect" id="Node000002" href="$classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="33,81,111,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,123,75,157,69,155,70,126"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="35,5,109,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="73,46,75,81,69,80,71,51"/>
+</map>

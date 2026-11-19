@@ -1,0 +1,9 @@
+<map id="插件接口" name="插件接口">
+<area shape="rect" id="Node000006" href="$group__APP__API.html" title="应用程序接口" alt="" coords="340,5,464,37"/>
+<area shape="rect" id="Node000007" href="$group__CLIENT__PARAMETER.html" title="参数接口" alt="" coords="357,61,447,93"/>
+<area shape="rect" id="Node000002" href="$group__LIBAPI__PLUGIN.html" title="插件库" alt="" coords="5,117,78,149"/>
+<area shape="rect" id="Node000001" title="插件接口." alt="" coords="127,117,216,149"/>
+<area shape="rect" id="Node000003" href="$group__gOperateDesktop.html" title=" " alt="" coords="366,117,438,149"/>
+<area shape="rect" id="Node000004" href="$group__gOperateServer.html" title=" " alt="" coords="366,173,438,205"/>
+<area shape="rect" id="Node000005" href="$group__gOperateTerminal.html" title=" " alt="" coords="366,229,438,261"/>
+</map>

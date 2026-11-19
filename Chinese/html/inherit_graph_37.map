@@ -1,0 +1,5 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,90,33"/>
+<area shape="rect" id="Node000001" href="$classCServiceManager.html" title="管理服务" alt="" coords="138,5,273,33"/>
+<area shape="poly" id="edge107_Node000000_Node000001" title=" " alt="" coords="105,17,140,19,135,19,105,22"/>
+</map>

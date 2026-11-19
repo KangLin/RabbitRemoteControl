@@ -1,0 +1,9 @@
+<map id="CParameterWebBrowser" name="CParameterWebBrowser">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,184,260"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="20,157,169,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,198,97,233,92,231,93,202"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="46,81,143,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,122,97,157,92,156,93,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="58,5,131,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,46,97,81,92,80,94,51"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="CInStreamChannel" name="CInStreamChannel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="36,183,178,211"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,82,167,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,123,107,183,102,182,90,127"/>
+<area shape="rect" id="Node000003" href="$classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="191,82,274,110"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,120,126,185,123,180,202,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="188,5,278,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="234,46,235,83,230,81,231,51"/>
+</map>

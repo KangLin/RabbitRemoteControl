@@ -1,0 +1,7 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,32,161,60"/>
+<area shape="rect" id="Node000001" href="$classCFavoriteModel.html" title=" " alt="" coords="244,5,366,33"/>
+<area shape="poly" id="edge50_Node000000_Node000001" title=" " alt="" coords="176,32,246,26,241,27,176,37"/>
+<area shape="rect" id="Node000002" href="$classCRemoteFileSystemModel.html" title=" " alt="" coords="209,57,402,85"/>
+<area shape="poly" id="edge51_Node000000_Node000002" title=" " alt="" coords="176,54,211,60,206,60,176,59"/>
+</map>

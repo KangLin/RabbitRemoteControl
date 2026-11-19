@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterProxyUI类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterProxyUI-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterProxyUI类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html">参数组件</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The proxy parameter UI  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterProxyUI 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterProxyUI__inherit__graph.png" border="0" usemap="#aCParameterProxyUI_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCParameterProxyUI_inherit__map" id="aCParameterProxyUI_inherit__map">
+<area shape="rect" title="The proxy parameter UI" alt="" coords="5,157,154,184"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="24,81,135,109"/>
+<area shape="poly" title=" " alt="" coords="81,123,82,157,77,155,78,126"/>
+<area shape="rect" title=" " alt="" coords="41,5,118,33"/>
+<area shape="poly" title=" " alt="" coords="81,46,82,81,77,80,78,51"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterProxyUI 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterProxyUI__coll__graph.png" border="0" usemap="#aCParameterProxyUI_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCParameterProxyUI_coll__map" id="aCParameterProxyUI_coll__map">
+<area shape="rect" title="The proxy parameter UI" alt="" coords="86,1053,234,1080"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="5,829,117,857"/>
+<area shape="poly" title=" " alt="" coords="63,870,71,913,83,956,98,984,116,1011,150,1052,145,1053,112,1014,93,987,79,958,65,914,62,875"/>
+<area shape="rect" href="classCParameterNetUI.html" title="The net parameter UI" alt="" coords="92,930,227,957"/>
+<area shape="poly" title=" " alt="" coords="85,865,149,928,144,930,84,870"/>
+<area shape="rect" title=" " alt="" coords="22,752,100,780"/>
+<area shape="poly" title=" " alt="" coords="61,792,64,829,58,828,61,798"/>
+<area shape="poly" title=" " alt="" coords="162,971,162,1053,157,1051,158,975"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="332,5,452,33"/>
+<area shape="poly" title=" " alt="" coords="314,24,263,32,212,48,191,61,174,76,164,95,160,119,160,844,162,930,156,929,154,844,154,118,159,94,170,73,188,56,210,44,262,27,318,20"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="843,106,1002,134"/>
+<area shape="poly" title=" " alt="" coords="466,32,853,104,849,107,467,37"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="274,930,408,957"/>
+<area shape="poly" title=" " alt="" coords="321,41,296,54,272,71,255,92,249,119,249,844,255,871,272,894,294,913,317,929,312,929,291,917,268,897,251,873,244,844,244,118,251,90,269,67,294,49,325,37"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="305,752,428,780"/>
+<area shape="poly" title=" " alt="" coords="376,49,366,81,360,119,360,666,367,753,362,751,354,667,354,118,361,80,378,44"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="412,651,561,679"/>
+<area shape="poly" title=" " alt="" coords="459,640,436,608,428,587,425,566,425,119,422,95,415,72,400,36,400,31,420,70,427,94,430,118,430,566,433,586,441,605,465,640"/>
+<area shape="poly" title=" " alt="" coords="576,656,588,665,580,673,563,677,561,672,577,669,582,665,576,661"/>
+<area shape="poly" title=" " alt="" coords="576,659,773,652,1004,635,1109,623,1195,607,1253,587,1268,577,1273,565,1273,220,1266,201,1246,185,1216,171,1178,159,1089,141,1003,130,1002,125,1090,135,1179,153,1218,166,1249,180,1270,198,1278,219,1278,566,1272,580,1255,592,1196,612,1110,628,1004,641,773,657,577,665"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="1263,752,1390,780"/>
+<area shape="poly" title=" " alt="" coords="577,674,1264,755,1260,759,577,680"/>
+<area shape="poly" title=" " alt="" coords="489,692,487,770,478,815,463,858,447,883,424,904,376,932,374,927,421,899,443,879,459,855,473,814,481,770,486,697"/>
+<area shape="poly" title=" " alt="" coords="457,690,384,753,381,749,461,687"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="702,317,799,345"/>
+<area shape="poly" title=" " alt="" coords="684,342,609,358,577,368,556,381,531,412,513,449,500,488,492,527,486,600,488,652,483,650,481,600,486,527,495,486,508,447,527,409,553,377,575,363,608,353,689,339"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="684,551,822,578"/>
+<area shape="poly" title=" " alt="" coords="684,346,634,363,584,386,566,400,555,416,551,434,557,454,583,488,617,515,656,534,696,549,691,551,654,539,615,519,579,492,552,457,546,434,550,414,562,396,582,381,632,358,689,343"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="945,428,1084,455"/>
+<area shape="poly" title=" " alt="" coords="768,355,792,380,819,401,867,413,947,429,942,430,865,418,817,406,788,384,767,360"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1108,428,1238,455"/>
+<area shape="poly" title=" " alt="" coords="814,346,1125,426,1120,428,814,351"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="566,428,708,455"/>
+<area shape="poly" title=" " alt="" coords="724,357,653,429,649,425,728,354"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="732,428,921,455"/>
+<area shape="poly" title=" " alt="" coords="759,357,769,381,782,402,808,427,803,427,778,405,764,383,757,362"/>
+<area shape="rect" title=" " alt="" coords="743,106,816,134"/>
+<area shape="poly" title=" " alt="" coords="777,147,755,318,750,316,774,151"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="888,207,980,234"/>
+<area shape="poly" title=" " alt="" coords="813,140,916,206,911,207,813,145"/>
+<area shape="poly" title=" " alt="" coords="701,586,523,653,521,648,705,583"/>
+<area shape="poly" title=" " alt="" coords="998,466,968,501,929,529,876,549,823,560,821,555,874,544,926,524,964,497,993,469"/>
+<area shape="poly" title=" " alt="" coords="899,143,875,174,853,208,841,245,841,264,845,282,858,307,875,330,914,371,956,403,993,427,987,427,953,407,911,375,871,334,854,310,841,284,835,264,836,244,848,206,871,171,895,147"/>
+<area shape="poly" title=" " alt="" coords="927,146,935,207,930,205,925,151"/>
+<area shape="poly" title=" " alt="" coords="938,247,947,299,962,354,984,394,1006,428,1001,427,979,397,958,356,942,300,936,252"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="1113,317,1238,345"/>
+<area shape="poly" title=" " alt="" coords="977,238,1149,316,1144,317,977,244"/>
+<area shape="poly" title=" " alt="" coords="1170,468,1159,502,1149,517,1136,529,1090,541,1008,551,823,563,822,558,1007,546,1089,536,1133,524,1145,513,1154,499,1166,472"/>
+<area shape="poly" title=" " alt="" coords="1166,357,1162,379,1162,403,1169,428,1164,426,1156,404,1156,378,1163,362"/>
+<area shape="poly" title=" " alt="" coords="653,466,675,496,700,525,733,550,727,550,697,529,671,499,652,471"/>
+<area shape="poly" title=" " alt="" coords="813,467,763,552,759,548,809,470"/>
+<area shape="poly" title=" " alt="" coords="1324,735,1324,666,1324,119,1317,105,1296,91,1263,79,1218,69,1104,52,967,39,676,26,453,23,451,18,676,21,967,34,1105,46,1219,63,1264,74,1298,87,1321,101,1329,118,1329,666,1329,738"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="1364,651,1547,679"/>
+<area shape="poly" title=" " alt="" coords="1429,687,1345,754,1342,749,1424,690"/>
+<area shape="poly" title=" " alt="" coords="327,968,302,1002,269,1031,244,1045,217,1055,216,1049,242,1040,266,1026,298,998,322,971"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="284,829,449,857"/>
+<area shape="poly" title=" " alt="" coords="361,870,347,931,342,928,357,874"/>
+<area shape="poly" title=" " alt="" coords="368,793,369,830,364,828,365,797"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a5059ab3673ffb577d26c6d9ad5c47362" id="r_a5059ab3673ffb577d26c6d9ad5c47362"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5059ab3673ffb577d26c6d9ad5c47362">CParameterProxyUI</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memitem:a437c4b2cb84b71417565891631b9efb3" id="r_a437c4b2cb84b71417565891631b9efb3"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a437c4b2cb84b71417565891631b9efb3">SetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *pParameter)</td></tr>
+<tr class="memdesc:a437c4b2cb84b71417565891631b9efb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置参数，并初始化界面  <br /></td></tr>
+<tr class="memitem:a7a24c358ced79bdf2a93d90901b66803" id="r_a7a24c358ced79bdf2a93d90901b66803"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7a24c358ced79bdf2a93d90901b66803">CheckValidity</a> (bool validity=false)</td></tr>
+<tr class="memdesc:a7a24c358ced79bdf2a93d90901b66803"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数的有效性  <br /></td></tr>
+<tr class="memitem:aa2ba15dba9e4ab5d71b9e8f64d6ac9c6" id="r_aa2ba15dba9e4ab5d71b9e8f64d6ac9c6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa2ba15dba9e4ab5d71b9e8f64d6ac9c6">Accept</a> ()</td></tr>
+<tr class="memdesc:aa2ba15dba9e4ab5d71b9e8f64d6ac9c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受参数  <br /></td></tr>
+<tr class="inherit_header pub_methods_classCParameterUI"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCParameterUI.html">CParameterUI</a></td></tr>
+<tr class="memitem:a7a13e1862a436da63b143ea6f3a38dfb pub_methods_classCParameterUI" id="r_a7a13e1862a436da63b143ea6f3a38dfb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCParameterUI.html#a7a13e1862a436da63b143ea6f3a38dfb">CParameterUI</a> (QWidget *parent=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-slots" class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a2fe1399689a178d9ad1fe09b16b95e2d" id="r_a2fe1399689a178d9ad1fe09b16b95e2d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2fe1399689a178d9ad1fe09b16b95e2d">slotTypeChanged</a> (int nIndex)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aa98838c88d9863e5f799584da2784867" id="r_aa98838c88d9863e5f799584da2784867"><td class="memItemLeft">QLabel *&#160;</td><td class="memItemRight"><a class="el" href="#aa98838c88d9863e5f799584da2784867">m_lbType</a></td></tr>
+<tr class="memitem:a797deffefedd50c9918f82992ba32e25" id="r_a797deffefedd50c9918f82992ba32e25"><td class="memItemLeft">QComboBox *&#160;</td><td class="memItemRight"><a class="el" href="#a797deffefedd50c9918f82992ba32e25">m_cbType</a></td></tr>
+<tr class="memitem:a4231297679c137cfdeb33412eb269f2a" id="r_a4231297679c137cfdeb33412eb269f2a"><td class="memItemLeft"><a class="el" href="classCParameterNetUI.html">CParameterNetUI</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a4231297679c137cfdeb33412eb269f2a">m_uiHttp</a></td></tr>
+<tr class="memitem:ab11cd9180619aeeb50ded9a79194843a" id="r_ab11cd9180619aeeb50ded9a79194843a"><td class="memItemLeft"><a class="el" href="classCParameterNetUI.html">CParameterNetUI</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ab11cd9180619aeeb50ded9a79194843a">m_uiSockesV5</a></td></tr>
+<tr class="memitem:a23b0caa2cc51c2aca595564316f9926f" id="r_a23b0caa2cc51c2aca595564316f9926f"><td class="memItemLeft">CParameterSSHTunnelUI *&#160;</td><td class="memItemRight"><a class="el" href="#a23b0caa2cc51c2aca595564316f9926f">m_uiSSH</a></td></tr>
+<tr class="memitem:ac0f2c1e0872d02aa14100c91220f6584" id="r_ac0f2c1e0872d02aa14100c91220f6584"><td class="memItemLeft"><a class="el" href="classCParameterProxy.html">CParameterProxy</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac0f2c1e0872d02aa14100c91220f6584">m_Proxy</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_slots_classCParameterUI"><td colspan="2">Public 槽 继承自 <a class="el" href="classCParameterUI.html">CParameterUI</a></td></tr>
+<tr class="memitem:acb901ac45af7e1780f327b954c7aacfa pub_slots_classCParameterUI" id="r_acb901ac45af7e1780f327b954c7aacfa"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterUI.html#acb901ac45af7e1780f327b954c7aacfa">slotSetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *pParameter)</td></tr>
+<tr class="memdesc:acb901ac45af7e1780f327b954c7aacfa pub_slots_classCParameterUI"><td class="mdescLeft">&#160;</td><td class="mdescRight">[override functions]  <br /></td></tr>
+<tr class="memitem:a5fde885a63c974d7822bc415fb64e033 pub_slots_classCParameterUI" id="r_a5fde885a63c974d7822bc415fb64e033"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classCParameterUI.html#a5fde885a63c974d7822bc415fb64e033">slotAccept</a> ()</td></tr>
+<tr class="memdesc:a5fde885a63c974d7822bc415fb64e033 pub_slots_classCParameterUI"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受参数。不调用 CheckValidity  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>The proxy parameter UI </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameterProxy.html" title="The proxy parameters.">CParameterProxy</a> <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html" title="参数组件。">参数组件</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a> 第 <a class="el" href="ParameterProxyUI_8h_source.html#l00016">16</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a5059ab3673ffb577d26c6d9ad5c47362" name="a5059ab3673ffb577d26c6d9ad5c47362"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5059ab3673ffb577d26c6d9ad5c47362">&#9670;&#160;</a></span>CParameterProxyUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterProxyUI::CParameterProxyUI </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8cpp_source.html">ParameterProxyUI.cpp</a> 第 <a class="el" href="ParameterProxyUI_8cpp_source.html#l00006">6</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="aa2ba15dba9e4ab5d71b9e8f64d6ac9c6" name="aa2ba15dba9e4ab5d71b9e8f64d6ac9c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2ba15dba9e4ab5d71b9e8f64d6ac9c6">&#9670;&#160;</a></span>Accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterProxyUI::Accept </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受参数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">validity</td><td>标志是否检查参数<ul>
+<li>true: 检查参数</li>
+<li>false: 不检查参数 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回 0 。其它值为失败。 </dd></dl>
+
+<p>实现了 <a class="el" href="classCParameterUI.html#a3382d09d69fa0add98377c94d8621fc3">CParameterUI</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8cpp_source.html">ParameterProxyUI.cpp</a> 第 <a class="el" href="ParameterProxyUI_8cpp_source.html#l00105">105</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7a24c358ced79bdf2a93d90901b66803" name="a7a24c358ced79bdf2a93d90901b66803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a24c358ced79bdf2a93d90901b66803">&#9670;&#160;</a></span>CheckValidity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterProxyUI::CheckValidity </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>validity</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查参数的有效性 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">validity</td><td>标志是否检查参数<ul>
+<li>true: 检查参数</li>
+<li>false: 不检查参数 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>重载 <a class="el" href="classCParameterUI.html#a065a08e831af33efb0f85b0b368965ba">CParameterUI</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8cpp_source.html">ParameterProxyUI.cpp</a> 第 <a class="el" href="ParameterProxyUI_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a437c4b2cb84b71417565891631b9efb3" name="a437c4b2cb84b71417565891631b9efb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a437c4b2cb84b71417565891631b9efb3">&#9670;&#160;</a></span>SetParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterProxyUI::SetParameter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameter.html">CParameter</a> *</td>          <td class="paramname"><span class="paramname"><em>pParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置参数，并初始化界面 </p>
+
+<p>实现了 <a class="el" href="classCParameterUI.html#a42db4e7c45f4b24fd0a3bd17ef1bac2e">CParameterUI</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8cpp_source.html">ParameterProxyUI.cpp</a> 第 <a class="el" href="ParameterProxyUI_8cpp_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2fe1399689a178d9ad1fe09b16b95e2d" name="a2fe1399689a178d9ad1fe09b16b95e2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe1399689a178d9ad1fe09b16b95e2d">&#9670;&#160;</a></span>slotTypeChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterProxyUI::slotTypeChanged </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nIndex</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8cpp_source.html">ParameterProxyUI.cpp</a> 第 <a class="el" href="ParameterProxyUI_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a797deffefedd50c9918f82992ba32e25" name="a797deffefedd50c9918f82992ba32e25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a797deffefedd50c9918f82992ba32e25">&#9670;&#160;</a></span>m_cbType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QComboBox* CParameterProxyUI::m_cbType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a> 第 <a class="el" href="ParameterProxyUI_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa98838c88d9863e5f799584da2784867" name="aa98838c88d9863e5f799584da2784867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa98838c88d9863e5f799584da2784867">&#9670;&#160;</a></span>m_lbType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QLabel* CParameterProxyUI::m_lbType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a> 第 <a class="el" href="ParameterProxyUI_8h_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac0f2c1e0872d02aa14100c91220f6584" name="ac0f2c1e0872d02aa14100c91220f6584"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0f2c1e0872d02aa14100c91220f6584">&#9670;&#160;</a></span>m_Proxy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterProxy.html">CParameterProxy</a>* CParameterProxyUI::m_Proxy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a> 第 <a class="el" href="ParameterProxyUI_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4231297679c137cfdeb33412eb269f2a" name="a4231297679c137cfdeb33412eb269f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4231297679c137cfdeb33412eb269f2a">&#9670;&#160;</a></span>m_uiHttp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterNetUI.html">CParameterNetUI</a>* CParameterProxyUI::m_uiHttp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a> 第 <a class="el" href="ParameterProxyUI_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab11cd9180619aeeb50ded9a79194843a" name="ab11cd9180619aeeb50ded9a79194843a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab11cd9180619aeeb50ded9a79194843a">&#9670;&#160;</a></span>m_uiSockesV5</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterNetUI.html">CParameterNetUI</a>* CParameterProxyUI::m_uiSockesV5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a> 第 <a class="el" href="ParameterProxyUI_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a23b0caa2cc51c2aca595564316f9926f" name="a23b0caa2cc51c2aca595564316f9926f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23b0caa2cc51c2aca595564316f9926f">&#9670;&#160;</a></span>m_uiSSH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterSSHTunnelUI* CParameterProxyUI::m_uiSSH</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a> 第 <a class="el" href="ParameterProxyUI_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterProxyUI_8h_source.html">ParameterProxyUI.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterProxyUI_8cpp_source.html">ParameterProxyUI.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

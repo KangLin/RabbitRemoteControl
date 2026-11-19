@@ -1,0 +1,674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFrmActive类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFrmActive-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFrmActive类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CFrmActive 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmActive__inherit__graph.png" border="0" usemap="#aCFrmActive_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCFrmActive_inherit__map" id="aCFrmActive_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,81,102,109"/>
+<area shape="rect" title=" " alt="" coords="15,5,92,33"/>
+<area shape="poly" title=" " alt="" coords="55,47,56,81,51,80,52,51"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmActive 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmActive__coll__graph.png" border="0" usemap="#aCFrmActive_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCFrmActive_coll__map" id="aCFrmActive_coll__map">
+<area shape="rect" title=" " alt="" coords="142,361,238,388"/>
+<area shape="rect" title=" " alt="" coords="114,260,191,288"/>
+<area shape="poly" title=" " alt="" coords="163,300,188,360,182,360,163,305"/>
+<area shape="rect" href="classCParameterApp.html" title=" " alt="" coords="216,260,338,288"/>
+<area shape="poly" title=" " alt="" coords="249,300,239,313,201,362,196,359,235,310,251,296"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="473,82,571,110"/>
+<area shape="poly" title=" " alt="" coords="456,103,400,114,336,133,305,147,276,165,251,186,230,212,226,223,230,235,239,247,253,259,248,260,235,251,225,237,221,223,225,210,247,183,273,160,303,142,334,128,399,108,460,100"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="356,159,496,187"/>
+<area shape="poly" title=" " alt="" coords="492,122,445,161,441,157,495,118"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="671,361,821,388"/>
+<area shape="poly" title=" " alt="" coords="535,121,557,154,582,185,600,197,618,209,657,249,692,291,740,360,735,360,688,295,653,253,615,213,597,201,579,189,553,157,535,126"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="736,260,873,288"/>
+<area shape="poly" title=" " alt="" coords="585,101,707,121,761,137,781,146,796,158,810,182,815,211,810,260,806,258,810,211,805,184,792,161,779,151,759,142,706,126,587,106"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="310,983,440,1011"/>
+<area shape="poly" title=" " alt="" coords="456,103,347,114,222,128,120,149,89,161,82,166,79,172,79,897,85,913,102,928,128,942,161,953,237,972,312,987,307,988,236,977,159,958,126,946,99,933,81,916,74,898,74,171,77,163,87,156,118,143,221,123,346,108,460,100"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="856,159,998,187"/>
+<area shape="poly" title=" " alt="" coords="585,97,705,107,772,117,839,131,904,158,899,159,837,137,771,122,704,112,587,102"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="593,159,782,187"/>
+<area shape="poly" title=" " alt="" coords="564,114,661,158,656,160,565,119"/>
+<area shape="rect" title=" " alt="" coords="5,5,79,33"/>
+<area shape="poly" title=" " alt="" coords="94,26,475,85,471,89,95,31"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="329,805,422,833"/>
+<area shape="poly" title=" " alt="" coords="33,51,29,95,29,720,31,730,37,740,61,757,98,772,142,785,242,802,331,813,326,816,241,808,141,790,96,778,59,762,33,743,26,732,23,720,23,95,33,45"/>
+<area shape="poly" title=" " alt="" coords="339,182,278,194,254,202,239,213,235,223,239,235,261,259,256,260,235,238,230,223,235,209,252,198,277,189,343,179"/>
+<area shape="poly" title=" " alt="" coords="453,194,488,216,526,234,579,249,635,259,738,270,733,273,634,265,578,254,524,238,486,220,454,199"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="514,705,674,732"/>
+<area shape="poly" title=" " alt="" coords="588,688,568,586,548,523,520,463,502,441,484,428,465,413,449,390,430,333,422,275,420,223,424,190,426,185,426,223,427,274,435,332,454,387,469,410,487,423,506,437,524,460,553,521,573,584,593,690"/>
+<area shape="poly" title=" " alt="" coords="549,740,406,807,403,802,554,738"/>
+<area shape="poly" title=" " alt="" coords="718,396,688,428,662,463,632,530,613,600,602,662,597,705,593,703,597,661,608,599,627,528,657,460,684,424,714,400"/>
+<area shape="poly" title=" " alt="" coords="836,365,847,374,839,383,822,386,820,381,837,378,842,375,836,371"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="675,582,796,609"/>
+<area shape="poly" title=" " alt="" coords="771,397,796,426,814,461,817,485,814,509,812,535,802,559,787,573,771,583,768,579,784,569,797,556,807,534,809,508,812,485,809,462,791,429,771,402"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="672,471,799,499"/>
+<area shape="poly" title=" " alt="" coords="745,401,739,472,734,470,742,406"/>
+<area shape="poly" title=" " alt="" coords="791,299,756,362,752,358,787,303"/>
+<area shape="poly" title=" " alt="" coords="456,987,600,975,763,955,836,943,895,929,935,913,945,905,949,897,949,373,946,340,940,327,928,314,903,296,874,286,873,280,905,292,932,310,944,324,951,338,954,373,954,898,950,908,938,918,897,934,837,948,764,961,601,980,456,993"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="313,882,438,910"/>
+<area shape="poly" title=" " alt="" coords="377,924,378,984,373,981,373,927"/>
+<area shape="poly" title=" " alt="" coords="373,789,373,720,373,323,377,283,389,244,417,190,419,185,394,246,383,284,378,323,378,720,378,791"/>
+<area shape="poly" title=" " alt="" coords="377,846,378,883,373,881,374,851"/>
+<area shape="poly" title=" " alt="" coords="898,198,823,261,819,257,902,195"/>
+<area shape="poly" title=" " alt="" coords="678,200,678,219,683,234,707,254,738,267,733,269,704,259,678,238,672,220,675,204"/>
+<area shape="poly" title=" " alt="" coords="717,619,688,652,654,683,619,706,616,702,651,679,684,649,712,622"/>
+<area shape="poly" title=" " alt="" coords="737,512,738,583,733,580,734,516"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="464,361,647,388"/>
+<area shape="poly" title=" " alt="" coords="590,394,716,470,711,471,590,399"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-slots" class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:ab972529637f84234e63313f133d59a86" id="r_ab972529637f84234e63313f133d59a86"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab972529637f84234e63313f133d59a86">slotLoad</a> ()</td></tr>
+<tr class="memitem:ab9d17704226ba474f9f0b24a1282ccf5" id="r_ab9d17704226ba474f9f0b24a1282ccf5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab9d17704226ba474f9f0b24a1282ccf5">slotViewChanged</a> (const QWidget *pView)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:ab6ed8a1bcd1e40b246f7df7d27f98d96" id="r_ab6ed8a1bcd1e40b246f7df7d27f98d96"><td class="memItemLeft"><a id="ab6ed8a1bcd1e40b246f7df7d27f98d96" name="ab6ed8a1bcd1e40b246f7df7d27f98d96"></a>
+void&#160;</td><td class="memItemRight"><b>sigChanged</b> (<a class="el" href="classCOperate.html">COperate</a> *c)</td></tr>
+<tr class="memitem:afc7d8368f23ebff52ef8d133841ae601" id="r_afc7d8368f23ebff52ef8d133841ae601"><td class="memItemLeft"><a id="afc7d8368f23ebff52ef8d133841ae601" name="afc7d8368f23ebff52ef8d133841ae601"></a>
+void&#160;</td><td class="memItemRight"><b>sigAddToFavorite</b> (const QString &amp;szFile, const QString &amp;szName, const QString &amp;szDescription, const QIcon &amp;icon)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a2830b57f0b0a678ae48e50c6ad0b6df9" id="r_a2830b57f0b0a678ae48e50c6ad0b6df9"><td class="memItemLeft"><a id="a2830b57f0b0a678ae48e50c6ad0b6df9" name="a2830b57f0b0a678ae48e50c6ad0b6df9"></a>
+&#160;</td><td class="memItemRight"><b>CFrmActive</b> (QSet&lt; <a class="el" href="classCOperate.html">COperate</a> * &gt; &amp;operates, <a class="el" href="classCParameterApp.html">CParameterApp</a> &amp;parameterApp, QMenu *pOperate, QAction *pStop, RabbitCommon::CRecentMenu *pRecentMenu, QWidget *parent=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:ad35b14ea358b4468d38e9e10b2d78066" id="r_ad35b14ea358b4468d38e9e10b2d78066"><td class="memItemLeft">RabbitCommon::CTitleBar *&#160;</td><td class="memItemRight"><a class="el" href="#ad35b14ea358b4468d38e9e10b2d78066">m_pDockTitleBar</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-slots" class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:ab272920250425348f82837f50177bd6f" id="r_ab272920250425348f82837f50177bd6f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab272920250425348f82837f50177bd6f">slotCustomContextMenu</a> (const QPoint &amp;pos)</td></tr>
+<tr class="memitem:ae6bfb27095dec487ee1ae761fddc5d47" id="r_ae6bfb27095dec487ee1ae761fddc5d47"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae6bfb27095dec487ee1ae761fddc5d47">slotClicked</a> (const QModelIndex &amp;index)</td></tr>
+<tr class="memitem:aa1bff3f20a300c8035a6ce51b9f97b47" id="r_aa1bff3f20a300c8035a6ce51b9f97b47"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa1bff3f20a300c8035a6ce51b9f97b47">slotAddToFavorite</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a723b5102afdada3f60e5481e362e38d8" id="r_a723b5102afdada3f60e5481e362e38d8"><td class="memItemLeft">QSet&lt; <a class="el" href="classCOperate.html">COperate</a> * &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a723b5102afdada3f60e5481e362e38d8">m_Operates</a></td></tr>
+<tr class="memitem:a98e63bcccae67b02fb8653e74a30ab4e" id="r_a98e63bcccae67b02fb8653e74a30ab4e"><td class="memItemLeft"><a class="el" href="classCParameterApp.html">CParameterApp</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a98e63bcccae67b02fb8653e74a30ab4e">m_ParameterApp</a></td></tr>
+<tr class="memitem:a3b520d95f39f19996fb76cc44066292b" id="r_a3b520d95f39f19996fb76cc44066292b"><td class="memItemLeft">QMenu *&#160;</td><td class="memItemRight"><a class="el" href="#a3b520d95f39f19996fb76cc44066292b">m_pOperate</a></td></tr>
+<tr class="memitem:a01b1b2d3aa7fdaa4d29671564dfbc9fb" id="r_a01b1b2d3aa7fdaa4d29671564dfbc9fb"><td class="memItemLeft">QAction *&#160;</td><td class="memItemRight"><a class="el" href="#a01b1b2d3aa7fdaa4d29671564dfbc9fb">m_pStop</a></td></tr>
+<tr class="memitem:ad4bb67887f788111eead7674e8e85494" id="r_ad4bb67887f788111eead7674e8e85494"><td class="memItemLeft">RabbitCommon::CRecentMenu *&#160;</td><td class="memItemRight"><a class="el" href="#ad4bb67887f788111eead7674e8e85494">m_pRecentMenu</a></td></tr>
+<tr class="memitem:aee449d5ec59dd4a9dd45334e4f9f5f98" id="r_aee449d5ec59dd4a9dd45334e4f9f5f98"><td class="memItemLeft">QAction *&#160;</td><td class="memItemRight"><a class="el" href="#aee449d5ec59dd4a9dd45334e4f9f5f98">m_pAddToFavorite</a></td></tr>
+<tr class="memitem:ac0b29072feb738044e7871507af465ba" id="r_ac0b29072feb738044e7871507af465ba"><td class="memItemLeft">QTableView *&#160;</td><td class="memItemRight"><a class="el" href="#ac0b29072feb738044e7871507af465ba">m_pTableView</a></td></tr>
+<tr class="memitem:a9fe13f476f078b8acf4d2f4d7afffb84" id="r_a9fe13f476f078b8acf4d2f4d7afffb84"><td class="memItemLeft">QStandardItemModel *&#160;</td><td class="memItemRight"><a class="el" href="#a9fe13f476f078b8acf4d2f4d7afffb84">m_pModel</a></td></tr>
+<tr class="memitem:a11d2587412b53606b4d45cde2e19235d" id="r_a11d2587412b53606b4d45cde2e19235d"><td class="memItemLeft">QMenu *&#160;</td><td class="memItemRight"><a class="el" href="#a11d2587412b53606b4d45cde2e19235d">m_pMenu</a></td></tr>
+<tr class="memitem:a72362df05f009cd9fa35791f04641965" id="r_a72362df05f009cd9fa35791f04641965"><td class="memItemLeft">QToolBar *&#160;</td><td class="memItemRight"><a class="el" href="#a72362df05f009cd9fa35791f04641965">m_pToolBar</a></td></tr>
+<tr class="memitem:a44a34037f051d92b5c958c81d785f512" id="r_a44a34037f051d92b5c958c81d785f512"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a44a34037f051d92b5c958c81d785f512">m_nId</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00014">14</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a5b62e39591def4873c29787c71a2e96c" name="a5b62e39591def4873c29787c71a2e96c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b62e39591def4873c29787c71a2e96c">&#9670;&#160;</a></span>~CFrmActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmActive::~CFrmActive </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8cpp_source.html">FrmActive.cpp</a> 第 <a class="el" href="FrmActive_8cpp_source.html#l00162">162</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="aa1bff3f20a300c8035a6ce51b9f97b47" name="aa1bff3f20a300c8035a6ce51b9f97b47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1bff3f20a300c8035a6ce51b9f97b47">&#9670;&#160;</a></span>slotAddToFavorite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmActive::slotAddToFavorite </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8cpp_source.html">FrmActive.cpp</a> 第 <a class="el" href="FrmActive_8cpp_source.html#l00243">243</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae6bfb27095dec487ee1ae761fddc5d47" name="ae6bfb27095dec487ee1ae761fddc5d47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6bfb27095dec487ee1ae761fddc5d47">&#9670;&#160;</a></span>slotClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmActive::slotClicked </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8cpp_source.html">FrmActive.cpp</a> 第 <a class="el" href="FrmActive_8cpp_source.html#l00191">191</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab272920250425348f82837f50177bd6f" name="ab272920250425348f82837f50177bd6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab272920250425348f82837f50177bd6f">&#9670;&#160;</a></span>slotCustomContextMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmActive::slotCustomContextMenu </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8cpp_source.html">FrmActive.cpp</a> 第 <a class="el" href="FrmActive_8cpp_source.html#l00165">165</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab972529637f84234e63313f133d59a86" name="ab972529637f84234e63313f133d59a86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab972529637f84234e63313f133d59a86">&#9670;&#160;</a></span>slotLoad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmActive::slotLoad </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8cpp_source.html">FrmActive.cpp</a> 第 <a class="el" href="FrmActive_8cpp_source.html#l00198">198</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab9d17704226ba474f9f0b24a1282ccf5" name="ab9d17704226ba474f9f0b24a1282ccf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9d17704226ba474f9f0b24a1282ccf5">&#9670;&#160;</a></span>slotViewChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmActive::slotViewChanged </td>
+          <td>(</td>
+          <td class="paramtype">const QWidget *</td>          <td class="paramname"><span class="paramname"><em>pView</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8cpp_source.html">FrmActive.cpp</a> 第 <a class="el" href="FrmActive_8cpp_source.html#l00228">228</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a44a34037f051d92b5c958c81d785f512" name="a44a34037f051d92b5c958c81d785f512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a34037f051d92b5c958c81d785f512">&#9670;&#160;</a></span>m_nId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmActive::m_nId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a723b5102afdada3f60e5481e362e38d8" name="a723b5102afdada3f60e5481e362e38d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a723b5102afdada3f60e5481e362e38d8">&#9670;&#160;</a></span>m_Operates</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSet&lt;<a class="el" href="classCOperate.html">COperate</a>*&gt;&amp; CFrmActive::m_Operates</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aee449d5ec59dd4a9dd45334e4f9f5f98" name="aee449d5ec59dd4a9dd45334e4f9f5f98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee449d5ec59dd4a9dd45334e4f9f5f98">&#9670;&#160;</a></span>m_pAddToFavorite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmActive::m_pAddToFavorite</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98e63bcccae67b02fb8653e74a30ab4e" name="a98e63bcccae67b02fb8653e74a30ab4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98e63bcccae67b02fb8653e74a30ab4e">&#9670;&#160;</a></span>m_ParameterApp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterApp.html">CParameterApp</a>&amp; CFrmActive::m_ParameterApp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad35b14ea358b4468d38e9e10b2d78066" name="ad35b14ea358b4468d38e9e10b2d78066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad35b14ea358b4468d38e9e10b2d78066">&#9670;&#160;</a></span>m_pDockTitleBar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RabbitCommon::CTitleBar* CFrmActive::m_pDockTitleBar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a11d2587412b53606b4d45cde2e19235d" name="a11d2587412b53606b4d45cde2e19235d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11d2587412b53606b4d45cde2e19235d">&#9670;&#160;</a></span>m_pMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* CFrmActive::m_pMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9fe13f476f078b8acf4d2f4d7afffb84" name="a9fe13f476f078b8acf4d2f4d7afffb84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe13f476f078b8acf4d2f4d7afffb84">&#9670;&#160;</a></span>m_pModel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStandardItemModel* CFrmActive::m_pModel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3b520d95f39f19996fb76cc44066292b" name="a3b520d95f39f19996fb76cc44066292b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b520d95f39f19996fb76cc44066292b">&#9670;&#160;</a></span>m_pOperate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* CFrmActive::m_pOperate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad4bb67887f788111eead7674e8e85494" name="ad4bb67887f788111eead7674e8e85494"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4bb67887f788111eead7674e8e85494">&#9670;&#160;</a></span>m_pRecentMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RabbitCommon::CRecentMenu* CFrmActive::m_pRecentMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a01b1b2d3aa7fdaa4d29671564dfbc9fb" name="a01b1b2d3aa7fdaa4d29671564dfbc9fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01b1b2d3aa7fdaa4d29671564dfbc9fb">&#9670;&#160;</a></span>m_pStop</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmActive::m_pStop</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac0b29072feb738044e7871507af465ba" name="ac0b29072feb738044e7871507af465ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b29072feb738044e7871507af465ba">&#9670;&#160;</a></span>m_pTableView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTableView* CFrmActive::m_pTableView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a72362df05f009cd9fa35791f04641965" name="a72362df05f009cd9fa35791f04641965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72362df05f009cd9fa35791f04641965">&#9670;&#160;</a></span>m_pToolBar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QToolBar* CFrmActive::m_pToolBar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmActive_8h_source.html">FrmActive.h</a> 第 <a class="el" href="FrmActive_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="FrmActive_8h_source.html">FrmActive.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="FrmActive_8cpp_source.html">FrmActive.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

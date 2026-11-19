@@ -1,0 +1,9 @@
+<map id="CFrmParameterICE" name="CFrmParameterICE">
+<area shape="rect" id="Node000001" title="Set parameter dialog." alt="" coords="14,183,157,211"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,82,83,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,122,82,182,77,183,53,126"/>
+<area shape="rect" id="Node000003" href="$classCParameterICE.html" title="ICE parameter helper class." alt="" coords="106,82,224,110"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,121,98,184,94,180,143,122"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="129,5,202,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="167,46,168,83,163,81,164,51"/>
+</map>

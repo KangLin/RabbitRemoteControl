@@ -1,0 +1,5 @@
+<map id="CPluginThread" name="CPluginThread">
+<area shape="rect" id="Node000001" title="One thread handles multiple operate." alt="" coords="5,81,121,109"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="25,5,101,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,47,66,81,60,80,61,51"/>
+</map>

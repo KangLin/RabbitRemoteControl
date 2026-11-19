@@ -1,0 +1,17 @@
+<map id="CChannel" name="CChannel">
+<area shape="rect" id="Node000001" title="The channel interface class." alt="" coords="120,81,203,109"/>
+<area shape="rect" id="Node000003" href="$classCChannelIce.html" title="The ICE channel interface class." alt="" coords="46,157,148,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="138,123,111,158,106,155,141,118"/>
+<area shape="rect" id="Node000004" href="$classCChannelSSH.html" title=" " alt="" coords="172,157,281,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="183,118,218,156,212,157,182,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="116,5,206,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,46,164,81,159,80,160,51"/>
+<area shape="rect" id="Node000005" href="$classCChannelSFTP.html" title=" " alt="" coords="5,232,120,260"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="182,193,93,234,90,230,185,189"/>
+<area shape="rect" id="Node000006" href="$classCChannelSSHTerminal.html" title=" " alt="" coords="144,232,309,260"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="228,198,229,233,224,231,225,202"/>
+<area shape="rect" id="Node000007" href="$classCChannelSSHTunnel.html" title="ssh tunnel class" alt="" coords="334,232,485,260"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="274,188,379,231,374,233,273,193"/>
+<area shape="rect" id="Node000008" href="$classCChannelSSHTunnelForward.html" title="Includes SSH tunneling and a local socket service for forwarding data." alt="" coords="308,308,511,336"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="411,274,411,309,407,306,407,278"/>
+</map>

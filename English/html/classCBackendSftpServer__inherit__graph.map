@@ -1,0 +1,9 @@
+<map id="CBackendSftpServer" name="CBackendSftpServer">
+<area shape="rect" id="Node000001" title="The CBackendSftpServer class." alt="" coords="5,232,158,260"/>
+<area shape="rect" id="Node000002" href="$classCBackendServer.html" title="Server interface." alt="" coords="18,157,145,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,198,84,233,79,231,80,202"/>
+<area shape="rect" id="Node000003" href="$classCBackend.html" title="Backend interface." alt="" coords="39,81,124,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,122,84,157,79,156,80,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="45,5,118,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="82,46,84,81,79,80,81,51"/>
+</map>

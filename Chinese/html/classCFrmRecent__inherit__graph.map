@@ -1,0 +1,7 @@
+<map id="CFrmRecent" name="CFrmRecent">
+<area shape="rect" id="Node000001" title="列出存在的连接配置" alt="" coords="60,81,161,109"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,83,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,42,101,80,96,81,65,47"/>
+<area shape="rect" id="Node000003" href="$classCManager_1_1Handle.html" title="处理连接者。用于客户端得到连接者信号" alt="" coords="107,5,248,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,44,124,83,121,78,153,46"/>
+</map>

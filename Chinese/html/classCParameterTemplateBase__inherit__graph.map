@@ -1,0 +1,9 @@
+<map id="CParameterTemplateBase" name="CParameterTemplateBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,195,260"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="25,157,175,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,198,102,233,98,231,98,202"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="参数接口" alt="" coords="51,81,149,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,122,103,157,97,156,99,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="63,5,137,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="101,46,103,81,97,80,99,51"/>
+</map>

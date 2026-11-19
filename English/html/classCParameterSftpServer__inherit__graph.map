@@ -1,0 +1,11 @@
+<map id="CParameterSftpServer" name="CParameterSftpServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,308,170,336"/>
+<area shape="rect" id="Node000002" href="$classCParameterServer.html" title="The server base parameters." alt="" coords="18,232,157,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,274,90,309,85,307,86,278"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="13,157,162,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,198,90,232,85,231,86,203"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="39,81,136,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="88,122,90,157,85,156,87,127"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="51,5,124,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="88,46,90,81,85,80,87,51"/>
+</map>

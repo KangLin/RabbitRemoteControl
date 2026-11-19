@@ -1,0 +1,25 @@
+<map id="CDatabase" name="CDatabase">
+<area shape="rect" id="Node000001" title="Provide interfaces such as opening the database and initializing the database." alt="" coords="127,213,219,241"/>
+<area shape="rect" id="Node000003" href="$classCBookmarkDatabase.html" title="The CBookmarkDatabase class." alt="" coords="267,5,426,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,198,190,163,208,122,233,80,265,44,288,32,285,35,269,48,237,83,213,124,195,165,184,200"/>
+<area shape="rect" id="Node000004" href="$classCDatabaseFile.html" title="File database." alt="" coords="289,57,404,85"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,198,217,146,240,119,265,96,291,84,287,87,269,100,243,123,222,149,190,201"/>
+<area shape="rect" id="Node000005" href="$classCDatabaseFilter.html" title="The CDatabaseFilter class." alt="" coords="284,109,409,137"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="197,200,229,173,266,148,296,136,292,139,268,152,232,177,201,204"/>
+<area shape="rect" id="Node000006" href="$classCDatabaseIcon.html" title="Icon database." alt="" coords="287,161,406,189"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="232,207,300,188,296,191,235,211"/>
+<area shape="rect" id="Node000007" href="$classCDatabaseNode.html" title="The CDatabaseNode class." alt="" coords="284,213,410,241"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="234,225,285,226,281,228,236,230"/>
+<area shape="rect" id="Node000008" href="$classCDatabaseTree.html" title="The CDatabaseTree class." alt="" coords="287,265,406,293"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="234,243,300,264,295,266,234,248"/>
+<area shape="rect" id="Node000010" href="$classCDatabaseUrl.html" title=" " alt="" coords="291,317,402,345"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="199,250,232,277,268,302,297,317,291,317,266,307,229,281,199,255"/>
+<area shape="rect" id="Node000011" href="$classCHistoryDatabase.html" title="The CHistoryDatabase class." alt="" coords="277,369,416,397"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="188,253,222,305,243,332,269,354,292,369,286,369,265,359,240,335,217,308,187,258"/>
+<area shape="rect" id="Node000012" href="$classCRecentDatabase.html" title="The CRecentDatabase class." alt="" coords="278,421,415,449"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="182,253,195,290,213,330,237,371,269,406,289,421,284,420,265,411,233,374,208,333,190,291,181,258"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,213,79,241"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,225,128,226,124,229,95,230"/>
+<area shape="rect" id="Node000009" href="$classCFavoriteDatabase.html" title="The CFavoriteDatabase class." alt="" coords="474,265,619,293"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="421,277,476,279,471,280,422,282"/>
+</map>

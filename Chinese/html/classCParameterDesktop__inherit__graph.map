@@ -1,0 +1,19 @@
+<map id="CParameterDesktop" name="CParameterDesktop">
+<area shape="rect" id="Node000001" title="远程桌面的基础参数接口。包括基本参数（网络参数等）。 所有远程桌面插件的参数都应从此类派生。" alt="" coords="469,109,621,137"/>
+<area shape="rect" id="Node000005" href="$classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="698,5,850,33"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="576,98,618,70,668,43,702,34,707,33,670,48,621,74,578,102"/>
+<area shape="rect" id="Node000006" href="$classCParameterLibVNCServer.html" title=" " alt="" coords="681,57,868,85"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="624,103,707,86,712,85,625,108"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlayer.html" title=" " alt="" coords="705,109,844,137"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="636,121,707,123,702,123,636,126"/>
+<area shape="rect" id="Node000008" href="$classCParameterTemplateDesktop.html" title=" " alt="" coords="669,161,880,189"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="624,138,712,161,707,161,624,144"/>
+<area shape="rect" id="Node000009" href="$classCParameterVnc.html" title=" " alt="" coords="714,213,835,241"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="578,144,621,172,670,198,716,216,711,215,668,203,618,177,576,149"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="272,109,421,137"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="437,121,472,123,466,124,438,126"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="参数接口" alt="" coords="127,109,224,137"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="239,121,274,122,269,124,240,126"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,109,79,137"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,121,128,122,124,125,95,126"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="COperate" name="COperate">
+<area shape="rect" id="Node000001" title="Operate interface." alt="" coords="6,183,88,211"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,79,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,48,50,183,44,183,40,49"/>
+<area shape="rect" id="Node000003" href="$classCPlugin.html" title="Plugin interface." alt="" coords="63,82,133,110"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="61,43,91,81,86,83,61,48"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="87,123,56,184,52,181,82,123"/>
+</map>

@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackendSSH类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCBackendSSH-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackendSSH类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CBackendSSH 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendSSH__inherit__graph.png" border="0" usemap="#aCBackendSSH_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCBackendSSH_inherit__map" id="aCBackendSSH_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,157,117,184"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="18,81,104,109"/>
+<area shape="poly" title=" " alt="" coords="63,123,64,157,58,156,59,126"/>
+<area shape="rect" title=" " alt="" coords="24,5,98,33"/>
+<area shape="poly" title=" " alt="" coords="62,46,64,81,58,80,60,51"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CBackendSSH 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendSSH__coll__graph.png" border="0" usemap="#aCBackendSSH_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCBackendSSH_coll__map" id="aCBackendSSH_coll__map">
+<area shape="rect" title=" " alt="" coords="2499,215,2610,243"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="451,131,536,159"/>
+<area shape="poly" title=" " alt="" coords="551,141,645,140,751,142,930,157,1068,177,1206,195,1288,200,1385,202,2238,202,2379,208,2502,222,2496,223,2379,214,2238,208,1384,208,1288,206,1206,200,1067,183,929,163,751,148,645,145,553,146"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="803,206,933,234"/>
+<area shape="poly" title=" " alt="" coords="550,155,610,167,805,207,800,209,608,173,552,160"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="1821,140,1930,168"/>
+<area shape="poly" title=" " alt="" coords="549,124,609,109,737,92,867,90,1516,90,1601,95,1686,107,1826,140,1820,140,1685,112,1601,100,1516,96,867,96,737,97,609,114,552,128"/>
+<area shape="rect" title=" " alt="" coords="5,292,79,320"/>
+<area shape="poly" title=" " alt="" coords="92,286,453,157,451,162,95,291"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="452,286,534,314"/>
+<area shape="poly" title=" " alt="" coords="93,303,454,298,451,302,95,308"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="142,326,212,354"/>
+<area shape="poly" title=" " alt="" coords="92,317,143,329,139,333,95,321"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="128,790,225,818"/>
+<area shape="poly" title=" " alt="" coords="45,333,64,542,81,656,92,702,105,736,128,765,155,789,150,790,124,769,100,738,87,704,76,657,59,542,45,338"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1829,642,1922,670"/>
+<area shape="poly" title=" " alt="" coords="46,333,62,435,87,562,104,621,125,671,149,704,162,713,176,716,681,716,873,710,1021,695,1169,678,1360,664,1626,655,1831,655,1826,656,1626,661,1360,669,1170,683,1021,700,873,715,682,721,175,721,160,718,145,708,120,673,99,623,82,563,57,436,46,338"/>
+<area shape="rect" href="classChannel_1_1CEvent.html" title=" " alt="" coords="249,23,378,51"/>
+<area shape="poly" title=" " alt="" coords="49,277,68,227,83,200,101,175,144,133,192,98,239,69,282,49,279,54,242,74,195,102,147,137,105,179,87,203,73,229,54,278"/>
+<area shape="rect" href="classCOperateSSH.html" title=" " alt="" coords="2182,262,2291,290"/>
+<area shape="poly" title=" " alt="" coords="2305,266,2458,246,2501,240,2496,242,2459,251,2307,271"/>
+<area shape="rect" href="classCOperateTerminal.html" title="终端操作接口" alt="" coords="1198,262,1336,290"/>
+<area shape="poly" title=" " alt="" coords="1352,273,2185,274,2180,277,1352,278"/>
+<area shape="poly" title=" " alt="" coords="549,295,1199,276,1196,280,551,301"/>
+<area shape="poly" title=" " alt="" coords="549,287,751,246,814,233,809,235,752,251,551,292"/>
+<area shape="poly" title=" " alt="" coords="226,339,299,338,377,330,454,312,450,316,378,335,299,343,229,344"/>
+<area shape="poly" title=" " alt="" coords="948,225,1174,254,1200,261,1195,262,1174,260,949,230"/>
+<area shape="rect" title=" " alt="" coords="455,202,532,230"/>
+<area shape="poly" title=" " alt="" coords="546,214,805,217,800,221,548,219"/>
+<area shape="rect" href="classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="775,340,961,368"/>
+<area shape="poly" title=" " alt="" coords="975,348,1073,338,1173,317,1209,303,1244,289,1239,291,1211,308,1175,322,1074,343,977,353"/>
+<area shape="rect" href="classCParameterTerminalSSH.html" title=" " alt="" coords="1786,351,1965,379"/>
+<area shape="poly" title=" " alt="" coords="976,353,1787,362,1783,366,977,358"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="419,582,568,610"/>
+<area shape="poly" title=" " alt="" coords="530,571,559,548,583,518,589,504,592,490,591,464,592,438,597,424,608,411,676,391,797,367,792,370,677,397,610,415,601,427,597,439,596,464,597,491,594,505,587,521,562,551,533,575"/>
+<area shape="poly" title=" " alt="" coords="460,564,472,558,493,555,513,557,526,563,530,573,524,583,520,580,524,573,522,567,512,562,493,560,474,563,463,569"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1435,696,1595,724"/>
+<area shape="poly" title=" " alt="" coords="542,613,610,633,725,655,843,672,1076,694,1282,705,1438,710,1433,711,1282,710,1075,699,842,677,724,660,608,638,543,618"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1207,520,1327,548"/>
+<area shape="poly" title=" " alt="" coords="583,586,1208,537,1205,541,584,591"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="804,502,932,530"/>
+<area shape="poly" title=" " alt="" coords="569,575,608,566,806,527,802,529,610,572,571,580"/>
+<area shape="rect" href="classCStats.html" title=" " alt="" coords="836,396,900,424"/>
+<area shape="poly" title=" " alt="" coords="529,571,557,547,583,518,591,499,592,480,594,462,607,444,625,434,650,426,712,416,838,410,834,412,713,421,651,432,627,439,611,448,599,464,597,481,596,500,587,521,561,551,532,575"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="1453,450,1577,478"/>
+<area shape="poly" title=" " alt="" coords="526,570,555,546,583,518,589,507,593,497,597,487,608,477,628,470,658,464,744,456,986,450,1251,453,1455,461,1450,462,1250,458,986,455,745,461,659,469,629,475,610,482,602,490,598,499,594,509,587,521,558,550,529,575"/>
+<area shape="poly" title=" " alt="" coords="207,778,248,749,470,608,467,612,251,754,211,782"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2764,858,2902,886"/>
+<area shape="poly" title=" " alt="" coords="182,830,191,866,203,906,223,945,251,978,281,999,309,1014,335,1022,361,1026,420,1026,492,1024,2556,1024,2611,1020,2652,1010,2691,990,2739,961,2763,943,2786,922,2819,887,2824,885,2790,926,2767,947,2742,966,2694,995,2654,1015,2612,1026,2556,1029,492,1029,420,1032,361,1032,334,1028,307,1019,278,1004,248,982,218,948,198,908,185,868,180,835"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="2167,815,2306,843"/>
+<area shape="poly" title=" " alt="" coords="240,816,357,838,425,846,492,849,1877,849,2032,844,2169,836,2164,836,2033,849,1877,854,492,854,424,851,356,843,241,822"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="2490,730,2620,758"/>
+<area shape="poly" title=" " alt="" coords="240,791,357,775,492,768,1268,768,1414,765,1527,758,1640,750,1786,744,2186,739,2492,743,2487,743,2186,744,1786,749,1640,755,1527,763,1414,770,1269,773,492,773,357,781,241,796"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="609,958,751,986"/>
+<area shape="poly" title=" " alt="" coords="187,830,211,881,229,905,251,924,294,947,340,964,388,975,436,982,530,985,611,982,606,983,530,991,436,987,387,981,338,969,291,952,248,929,225,908,207,883,185,835"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="985,896,1174,924"/>
+<area shape="poly" title=" " alt="" coords="198,827,222,850,250,868,311,886,393,898,490,907,595,912,808,915,987,914,982,914,808,920,595,917,489,912,392,904,310,891,248,873,219,854,197,832"/>
+<area shape="rect" href="classCParameterTerminal.html" title=" " alt="" coords="417,374,570,402"/>
+<area shape="poly" title=" " alt="" coords="191,775,273,638,333,551,400,467,437,430,475,400,472,404,441,434,404,471,337,554,278,641,195,778"/>
+<area shape="poly" title=" " alt="" coords="2817,842,2782,777,2757,737,2726,696,2690,659,2650,629,2605,609,2556,601,1689,601,569,599,568,593,1689,596,2556,596,2607,603,2653,625,2694,655,2730,693,2761,734,2787,774,2822,845"/>
+<area shape="poly" title=" " alt="" coords="2322,832,2767,867,2761,867,2322,838"/>
+<area shape="poly" title=" " alt="" coords="1610,723,2169,817,2164,818,1610,728"/>
+<area shape="poly" title=" " alt="" coords="1610,706,1684,701,1761,690,1835,671,1840,670,1762,695,1685,706,1610,712"/>
+<area shape="poly" title=" " alt="" coords="1301,555,1496,696,1491,696,1300,560"/>
+<area shape="poly" title=" " alt="" coords="1342,519,1411,502,1479,479,1484,477,1412,507,1344,524"/>
+<area shape="poly" title=" " alt="" coords="947,517,1209,531,1204,532,948,522"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="402,480,585,508"/>
+<area shape="poly" title=" " alt="" coords="600,498,806,511,801,513,601,503"/>
+<area shape="poly" title=" " alt="" coords="1924,673,2131,769,2213,815,2207,814,2129,774,1923,679"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="2174,656,2299,684"/>
+<area shape="poly" title=" " alt="" coords="1937,648,2028,644,2130,648,2176,657,2171,657,2130,653,2028,649,1938,653"/>
+<area shape="poly" title=" " alt="" coords="2607,761,2741,820,2809,858,2804,857,2739,825,2606,766"/>
+<area shape="poly" title=" " alt="" coords="2315,686,2494,729,2488,729,2315,691"/>
+<area shape="poly" title=" " alt="" coords="767,970,1078,973,2556,973,2594,970,2631,963,2703,939,2764,910,2807,887,2812,885,2766,915,2705,944,2632,968,2594,976,2556,978,1078,978,767,976"/>
+<area shape="poly" title=" " alt="" coords="1189,910,1385,912,2556,912,2614,909,2672,902,2770,886,2776,886,2672,908,2614,914,2556,917,1384,917,1190,915"/>
+<area shape="poly" title=" " alt="" coords="584,377,777,361,773,364,586,382"/>
+<area shape="poly" title=" " alt="" coords="914,413,970,416,1036,414,1106,402,1141,392,1173,378,1201,359,1224,335,1256,292,1260,288,1228,338,1204,363,1175,383,1142,397,1108,408,1037,419,970,421,916,419"/>
+<area shape="poly" title=" " alt="" coords="1980,362,2141,353,2231,341,2319,323,2378,305,2435,283,2524,244,2529,242,2437,288,2379,310,2320,329,2232,346,2142,358,1981,368"/>
+<area shape="poly" title=" " alt="" coords="1979,349,2054,335,2129,317,2203,291,2208,289,2131,322,2055,341,1981,354"/>
+<area shape="poly" title=" " alt="" coords="1592,475,1675,478,1719,474,1761,462,1793,445,1821,422,1861,381,1866,378,1825,426,1796,450,1763,467,1720,479,1675,484,1592,480"/>
+<area shape="poly" title=" " alt="" coords="1543,437,1855,170,1860,167,1546,442"/>
+<area shape="rect" href="classCChannelSSHTerminal.html" title=" " alt="" coords="2154,140,2319,168"/>
+<area shape="poly" title=" " alt="" coords="2335,161,2397,171,2459,185,2528,215,2523,214,2458,190,2396,176,2335,166"/>
+<area shape="poly" title=" " alt="" coords="1945,152,2156,154,2151,155,1946,157"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="1473,140,1557,168"/>
+<area shape="poly" title=" " alt="" coords="1571,152,1823,154,1818,155,1573,157"/>
+<area shape="rect" title=" " alt="" coords="1222,140,1312,168"/>
+<area shape="poly" title=" " alt="" coords="1327,152,1475,153,1470,155,1329,157"/>
+<area shape="poly" title=" " alt="" coords="392,32,679,28,1516,28,1588,32,1643,44,1763,91,1812,114,1854,140,1849,140,1809,118,1761,95,1641,49,1587,37,1516,33,679,33,394,37"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a6eb41acbf0076aa2f3709c8487d0c913" id="r_a6eb41acbf0076aa2f3709c8487d0c913"><td class="memItemLeft"><a id="a6eb41acbf0076aa2f3709c8487d0c913" name="a6eb41acbf0076aa2f3709c8487d0c913"></a>
+&#160;</td><td class="memItemRight"><b>CBackendSSH</b> (<a class="el" href="classCOperateSSH.html">COperateSSH</a> *pOperate)</td></tr>
+<tr class="memitem:a49f0b274da496340a74ced136ffb3abf" id="r_a49f0b274da496340a74ced136ffb3abf"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a49f0b274da496340a74ced136ffb3abf">WakeUp</a> () override</td></tr>
+<tr class="memdesc:a49f0b274da496340a74ced136ffb3abf"><td class="mdescLeft">&#160;</td><td class="mdescRight">唤醒后台线程。  <br /></td></tr>
+<tr class="memitem:a2716fa186382433b3b278ea039cca87c" id="r_a2716fa186382433b3b278ea039cca87c"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a2716fa186382433b3b278ea039cca87c">event</a> (QEvent *event) override</td></tr>
+<tr class="inherit_header pub_methods_classCBackend"><td colspan="2">Public 成员函数 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:afd174412c610e7b2d451801254d99433 pub_methods_classCBackend" id="r_afd174412c610e7b2d451801254d99433"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#afd174412c610e7b2d451801254d99433">CBackend</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate=nullptr, bool bStopSignal=true)</td></tr>
+<tr class="memdesc:afd174412c610e7b2d451801254d99433 pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...">CBackend</a>  <br /></td></tr>
+<tr class="memitem:a675c80c148c99b81cd5c22c718cccd26 pub_methods_classCBackend" id="r_a675c80c148c99b81cd5c22c718cccd26"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26">Start</a> ()</td></tr>
+<tr class="memdesc:a675c80c148c99b81cd5c22c718cccd26 pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始。根据　OnStart()　返回值来决定是否开始定时器来支持非 qt 事件  <br /></td></tr>
+<tr class="memitem:a179ed68b6d28f51dd75d900f48eb4a2e pub_methods_classCBackend" id="r_a179ed68b6d28f51dd75d900f48eb4a2e"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e">Stop</a> ()</td></tr>
+<tr class="memdesc:a179ed68b6d28f51dd75d900f48eb4a2e pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a7c5c66c50b0763765c89e015e3d9de82" id="r_a7c5c66c50b0763765c89e015e3d9de82"><td class="memItemLeft">virtual OnStartReturnValue&#160;</td><td class="memItemRight"><a class="el" href="#a7c5c66c50b0763765c89e015e3d9de82">OnStart</a> () override</td></tr>
+<tr class="memdesc:a7c5c66c50b0763765c89e015e3d9de82"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化  <br /></td></tr>
+<tr class="memitem:a0d3b32ef5a608f4f616f2fa55c7cc963" id="r_a0d3b32ef5a608f4f616f2fa55c7cc963"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a0d3b32ef5a608f4f616f2fa55c7cc963">OnProcess</a> () override</td></tr>
+<tr class="memdesc:a0d3b32ef5a608f4f616f2fa55c7cc963"><td class="mdescLeft">&#160;</td><td class="mdescRight">具体操作处理  <br /></td></tr>
+<tr class="memitem:a9c24a4c5c006ffdcff22132b527d399b" id="r_a9c24a4c5c006ffdcff22132b527d399b"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a9c24a4c5c006ffdcff22132b527d399b">OnStop</a> () override</td></tr>
+<tr class="memdesc:a9c24a4c5c006ffdcff22132b527d399b"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a7e1c8b6ec352b959c2eebd346d4f44ef" id="r_a7e1c8b6ec352b959c2eebd346d4f44ef"><td class="memItemLeft"><a class="el" href="classCOperateSSH.html">COperateSSH</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a7e1c8b6ec352b959c2eebd346d4f44ef">m_pOperate</a></td></tr>
+<tr class="memitem:aca93846f3ae1a2c21157d1a256137a86" id="r_aca93846f3ae1a2c21157d1a256137a86"><td class="memItemLeft"><a class="el" href="classCParameterTerminalSSH.html">CParameterTerminalSSH</a> *&#160;</td><td class="memItemRight"><a class="el" href="#aca93846f3ae1a2c21157d1a256137a86">m_pPara</a></td></tr>
+<tr class="memitem:a12fdb80c4528632e7a867d7c0a0a2080" id="r_a12fdb80c4528632e7a867d7c0a0a2080"><td class="memItemLeft"><a class="el" href="classCChannelSSHTerminal.html">CChannelSSHTerminal</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a12fdb80c4528632e7a867d7c0a0a2080">m_pChannelSSH</a></td></tr>
+<tr class="memitem:a3c6860277a2d36ad36e15eeca8ff3125" id="r_a3c6860277a2d36ad36e15eeca8ff3125"><td class="memItemLeft">QTermWidget *&#160;</td><td class="memItemRight"><a class="el" href="#a3c6860277a2d36ad36e15eeca8ff3125">m_pTerminal</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCBackend"><td colspan="2">信号 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:a995a76442b28b067ab34dbe0fdffbbb5 signals_classCBackend" id="r_a995a76442b28b067ab34dbe0fdffbbb5"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigRunning</b> ()</td></tr>
+<tr class="memdesc:a995a76442b28b067ab34dbe0fdffbbb5 signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当插件开始成功后触发。仅由插件触发 <br /></td></tr>
+<tr class="memitem:a465330ec1de890111932a2458d37d0be signals_classCBackend" id="r_a465330ec1de890111932a2458d37d0be"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigStop</b> ()</td></tr>
+<tr class="memdesc:a465330ec1de890111932a2458d37d0be signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">需要通知用户停止时触发。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 <br /></td></tr>
+<tr class="memitem:ab2055a97b4c856982eedd6ce37f70940 signals_classCBackend" id="r_ab2055a97b4c856982eedd6ce37f70940"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#ab2055a97b4c856982eedd6ce37f70940">sigFinished</a> ()</td></tr>
+<tr class="memdesc:ab2055a97b4c856982eedd6ce37f70940 signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止成功信号。仅由插件触发  <br /></td></tr>
+<tr class="memitem:a67bf8156353fc085dbe5b5afaf3425cc signals_classCBackend" id="r_a67bf8156353fc085dbe5b5afaf3425cc"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigError</b> (const int nError, const QString &amp;szError=QString())</td></tr>
+<tr class="memdesc:a67bf8156353fc085dbe5b5afaf3425cc signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发 <br /></td></tr>
+<tr class="memitem:a003c4cf2cd63795187289df16b639e5a signals_classCBackend" id="r_a003c4cf2cd63795187289df16b639e5a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#a003c4cf2cd63795187289df16b639e5a">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:a003c4cf2cd63795187289df16b639e5a signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示信息，不阻塞后台线程  <br /></td></tr>
+<tr class="memitem:a5e011ebbb8577c03f32fbbba33e759d8 signals_classCBackend" id="r_a5e011ebbb8577c03f32fbbba33e759d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">sigShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:a5e011ebbb8577c03f32fbbba33e759d8 signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="memitem:a780b35e940bdfae5765e5d3337df7a02 signals_classCBackend" id="r_a780b35e940bdfae5765e5d3337df7a02"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#a780b35e940bdfae5765e5d3337df7a02">sigBlockShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton &amp;nRet, bool &amp;checkBox, QString checkBoxContext=QString())</td></tr>
+<tr class="memdesc:a780b35e940bdfae5765e5d3337df7a02 signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)  <br /></td></tr>
+<tr class="memitem:ae8fff211d62448cc622947a43cd0ce45 signals_classCBackend" id="r_ae8fff211d62448cc622947a43cd0ce45"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#ae8fff211d62448cc622947a43cd0ce45">sigBlockInputDialog</a> (const QString &amp;szTitle, const QString &amp;szLable, const QString &amp;szMessage, QString &amp;szText)</td></tr>
+<tr class="memdesc:ae8fff211d62448cc622947a43cd0ce45 signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)  <br /></td></tr>
+<tr class="memitem:ad3aecd97defce14b02d48102a843136e signals_classCBackend" id="r_ad3aecd97defce14b02d48102a843136e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#ad3aecd97defce14b02d48102a843136e">sigBlockShowWidget</a> (const QString &amp;className, int &amp;nRet, void *pContext)</td></tr>
+<tr class="memdesc:ad3aecd97defce14b02d48102a843136e signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示窗口。  <br /></td></tr>
+<tr class="memitem:ad3a6fbd7d63cb8da4dd496e684877de7 signals_classCBackend" id="r_ad3a6fbd7d63cb8da4dd496e684877de7"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sigSecurityLevel</b> (CSecurityLevel::Levels level)</td></tr>
+<tr class="memdesc:ad3a6fbd7d63cb8da4dd496e684877de7 signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当安全级别改变时触发 <br /></td></tr>
+<tr class="inherit_header pro_types_classCBackend"><td colspan="2">Protected 类型 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:a3c65a9848b8b3971043f8b3976fe20dd pro_types_classCBackend" id="r_a3c65a9848b8b3971043f8b3976fe20dd"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><b>OnStartReturnValue</b> { <b>Fail</b> = -1
+, <b>Success</b> = 0
+, <b>UseOnProcess</b> = Success
+, <b>NotUseOnProcess</b> = 1
+ }</td></tr>
+<tr class="inherit_header pro_slots_classCBackend"><td colspan="2">Protected 槽 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:ab74a6b0f25f34ff763dc0f7080f229f6 pro_slots_classCBackend" id="r_ab74a6b0f25f34ff763dc0f7080f229f6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classCBackend.html#ab74a6b0f25f34ff763dc0f7080f229f6">slotTimeOut</a> ()</td></tr>
+<tr class="memdesc:ab74a6b0f25f34ff763dc0f7080f229f6 pro_slots_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">一个非 Qt 事件处理，它调用 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a>，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 <a class="el" href="classCBackend.html#ab3430bc8193d95da838198a72188d558" title="初始化">OnStart()</a> 返回值 OnStartReturnValue::NotUseOnProcess  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="BackendSSH_8h_source.html">BackendSSH.h</a> 第 <a class="el" href="BackendSSH_8h_source.html#l00011">11</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a622e593e2cb78331e7cc6e694c3cc60d" name="a622e593e2cb78331e7cc6e694c3cc60d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a622e593e2cb78331e7cc6e694c3cc60d">&#9670;&#160;</a></span>~CBackendSSH()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendSSH::~CBackendSSH </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8cpp_source.html">BackendSSH.cpp</a> 第 <a class="el" href="BackendSSH_8cpp_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a2716fa186382433b3b278ea039cca87c" name="a2716fa186382433b3b278ea039cca87c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2716fa186382433b3b278ea039cca87c">&#9670;&#160;</a></span>event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBackendSSH::event </td>
+          <td>(</td>
+          <td class="paramtype">QEvent *</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8cpp_source.html">BackendSSH.cpp</a> 第 <a class="el" href="BackendSSH_8cpp_source.html#l00143">143</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0d3b32ef5a608f4f616f2fa55c7cc963" name="a0d3b32ef5a608f4f616f2fa55c7cc963"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d3b32ef5a608f4f616f2fa55c7cc963">&#9670;&#160;</a></span>OnProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendSSH::OnProcess </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>具体操作处理 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&gt;= 0: 继续。再次调用间隔时间，单位毫秒 </li>
+<li>= -1: 停止 </li>
+<li>&lt; -1: 错误代码</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnStart()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> <a class="el" href="classCBackend.html#ab74a6b0f25f34ff763dc0f7080f229f6" title="一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 OnStart() 返回值 OnSta...">slotTimeOut()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba">CBackend</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8cpp_source.html">BackendSSH.cpp</a> 第 <a class="el" href="BackendSSH_8cpp_source.html#l00121">121</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7c5c66c50b0763765c89e015e3d9de82" name="a7c5c66c50b0763765c89e015e3d9de82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c5c66c50b0763765c89e015e3d9de82">&#9670;&#160;</a></span>OnStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendSSH::OnStartReturnValue CBackendSSH::OnStart </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>OnStartReturnValue::Fail: 错误 </li>
+<li>OnStartReturnValue::Success/OnStartReturnValue::UseOnProcess: 使用 <a class="el" href="#a0d3b32ef5a608f4f616f2fa55c7cc963" title="具体操作处理">OnProcess()</a> (非 Qt 事件循环) </li>
+<li>OnStartReturnValue::NotUseOnProcess: 不使用 <a class="el" href="#a0d3b32ef5a608f4f616f2fa55c7cc963" title="具体操作处理">OnProcess()</a> (qt 事件循环)</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnStart()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#ab3430bc8193d95da838198a72188d558">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8cpp_source.html">BackendSSH.cpp</a> 第 <a class="el" href="BackendSSH_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9c24a4c5c006ffdcff22132b527d399b" name="a9c24a4c5c006ffdcff22132b527d399b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c24a4c5c006ffdcff22132b527d399b">&#9670;&#160;</a></span>OnStop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendSSH::OnStop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e" title="停止">Stop()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a3666611532c14f50690a30ce0c300233">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8cpp_source.html">BackendSSH.cpp</a> 第 <a class="el" href="BackendSSH_8cpp_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a49f0b274da496340a74ced136ffb3abf" name="a49f0b274da496340a74ced136ffb3abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49f0b274da496340a74ced136ffb3abf">&#9670;&#160;</a></span>WakeUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendSSH::WakeUp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>唤醒后台线程。 </p>
+<dl class="section note"><dt>注解</dt><dd>调用者是主线程（UI线程）。 </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a1c7f2d35b7ebd654f5f24ab680ba8335">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8cpp_source.html">BackendSSH.cpp</a> 第 <a class="el" href="BackendSSH_8cpp_source.html#l00166">166</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a12fdb80c4528632e7a867d7c0a0a2080" name="a12fdb80c4528632e7a867d7c0a0a2080"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12fdb80c4528632e7a867d7c0a0a2080">&#9670;&#160;</a></span>m_pChannelSSH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCChannelSSHTerminal.html">CChannelSSHTerminal</a>* CBackendSSH::m_pChannelSSH</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8h_source.html">BackendSSH.h</a> 第 <a class="el" href="BackendSSH_8h_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e1c8b6ec352b959c2eebd346d4f44ef" name="a7e1c8b6ec352b959c2eebd346d4f44ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e1c8b6ec352b959c2eebd346d4f44ef">&#9670;&#160;</a></span>m_pOperate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperateSSH.html">COperateSSH</a>* CBackendSSH::m_pOperate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8h_source.html">BackendSSH.h</a> 第 <a class="el" href="BackendSSH_8h_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aca93846f3ae1a2c21157d1a256137a86" name="aca93846f3ae1a2c21157d1a256137a86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca93846f3ae1a2c21157d1a256137a86">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterTerminalSSH.html">CParameterTerminalSSH</a>* CBackendSSH::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8h_source.html">BackendSSH.h</a> 第 <a class="el" href="BackendSSH_8h_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3c6860277a2d36ad36e15eeca8ff3125" name="a3c6860277a2d36ad36e15eeca8ff3125"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c6860277a2d36ad36e15eeca8ff3125">&#9670;&#160;</a></span>m_pTerminal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTermWidget* CBackendSSH::m_pTerminal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSSH_8h_source.html">BackendSSH.h</a> 第 <a class="el" href="BackendSSH_8h_source.html#l00028">28</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="BackendSSH_8h_source.html">BackendSSH.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="BackendSSH_8cpp_source.html">BackendSSH.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

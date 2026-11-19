@@ -1,0 +1,25 @@
+<map id="CParameterUI" name="CParameterUI">
+<area shape="rect" id="Node000001" title="参数界面接口" alt="" coords="131,240,242,268"/>
+<area shape="rect" id="Node000003" href="$classCFrmManagePlugins.html" title=" " alt="" coords="300,5,454,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,224,203,184,223,136,251,86,288,44,311,32,308,35,292,48,255,90,228,138,208,186,196,226"/>
+<area shape="rect" id="Node000004" href="$classCParameterDatabaseUI.html" title=" " alt="" coords="290,57,463,85"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,224,231,160,257,125,288,96,314,84,310,87,292,100,261,129,236,163,201,227"/>
+<area shape="rect" id="Node000005" href="$classCParameterFilterUI.html" title=" " alt="" coords="304,109,449,137"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="205,226,241,186,289,148,318,136,314,139,291,152,245,190,209,229"/>
+<area shape="rect" id="Node000006" href="$classCParameterNetUI.html" title="The net parameter UI" alt="" coords="310,161,444,189"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="225,230,289,199,327,188,322,191,291,204,228,234"/>
+<area shape="rect" id="Node000007" href="$classCParameterPluginUI.html" title=" " alt="" coords="301,213,452,241"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="256,241,303,236,298,239,258,246"/>
+<area shape="rect" id="Node000008" href="$classCParameterProxyUI.html" title="The proxy parameter UI" alt="" coords="302,265,451,293"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="257,261,304,268,299,270,258,266"/>
+<area shape="rect" id="Node000009" href="$classCParameterRecordUI.html" title=" " alt="" coords="298,317,455,345"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="227,272,291,302,327,316,322,317,289,307,227,278"/>
+<area shape="rect" id="Node000010" href="$classCParameterServerUI.html" title="The server base parameters UI" alt="" coords="300,369,453,397"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="208,277,245,317,291,354,319,369,313,369,289,359,242,321,207,283"/>
+<area shape="rect" id="Node000011" href="$classCParameterTerminalUI.html" title=" " alt="" coords="293,421,460,449"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="200,279,236,344,261,378,292,406,315,421,309,421,288,411,257,381,231,347,198,284"/>
+<area shape="rect" id="Node000012" href="$classCParameterUserUI.html" title="The user parameters UI" alt="" coords="306,473,447,501"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="195,280,209,322,228,369,255,417,292,458,312,473,307,472,288,463,251,420,223,372,204,323,193,285"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,240,83,268"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,251,132,252,128,255,100,256"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="CScreen" name="CScreen">
+<area shape="rect" id="Node000001" title="The CScreen class." alt="" coords="106,81,180,109"/>
+<area shape="rect" id="Node000003" href="$classCScreenWindows.html" title=" " alt="" coords="5,157,139,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,119,86,158,83,154,117,121"/>
+<area shape="rect" id="Node000004" href="$classCScreenXLib.html" title=" " alt="" coords="162,157,264,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,117,203,156,198,156,165,122"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="106,5,179,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,47,145,81,140,80,141,51"/>
+</map>
