@@ -1,4 +1,6 @@
 #!/bin/bash
+# Author: Kang Lin <kl222@126.com>
+# Restore desktop shortcuts
 
 #set -x
 #set -e
@@ -6,21 +8,31 @@
 
 echo "=== Desktop shortcuts restore tools ==="
 
-function resetGNOME() {
-    for schema in $(gsettings list-schemas | grep -E 'keybindings|media-keys')
-    do
-        for key in $(gsettings list-keys $schema)
-        do
-            if [[ $(gsettings range $schema $key) == "type as" ]]; then
-                gsettings reset $schema $key
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
             fi
-        done
-    done
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
 }
 
-DESKTOP_ENV=$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')
-
-echo "Check desktop environment: $DESKTOP_ENV"
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/DesktopShotsCommon.sh
 
 case $DESKTOP_ENV in
     *gnome*|*cinnamon*)
@@ -31,7 +43,7 @@ case $DESKTOP_ENV in
         #killall -3 gnome-shell
         echo "GNOME is restored"
         ;;
-        
+
     *kde*|*plasma*)
         echo "Restore KDE shortcuts ......"
         # 重置 KDE 全局快捷键
@@ -41,7 +53,15 @@ case $DESKTOP_ENV in
         kwin_x11 --replace &
         echo "KDE is restored"
         ;;
-        
+
+    *xfce*)
+        xfconf-query -c xfce4-keyboard-shortcuts -p "/xfwm4/custom" -r -R
+        ;;
+
+    *lxqt*)
+        resetLXQT
+        ;;
+
     *)
         echo "Unsupported desktop: $DESKTOP_ENV"
         ;;

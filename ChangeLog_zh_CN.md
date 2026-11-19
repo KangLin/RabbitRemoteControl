@@ -54,8 +54,8 @@
     - 增加启动画面
     - 增加文件关联、元数据类型(Linux、 Windows)
     - 增加支持 wayland
-  - 增加 macOS 编译脚本。生成　App 捆绑包
-  - 为 windows 安装包增加“不安装执行功能”。
+  - 增加 macOS 编译脚本。生成 App 捆绑包
+  - 为 Windows 安装包增加“不安装执行功能”。
   - [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 - 修改
   - 应用程序
@@ -64,6 +64,9 @@
 - 修复
   - 应用程序
     - 修复禁用桌面快捷键。详见: https://github.com/KangLin/RabbitRemoteControl/discussions/91
+      - Linux
+        - GNOME
+        - LXQT
     - 修复拆分视图错误
     - 修复在 wayland 下，设置全屏工具栏位置无效的错误。
       原因是Wayland 平台下工具条的 QWindow 已经被暴露（isExposed()==true），

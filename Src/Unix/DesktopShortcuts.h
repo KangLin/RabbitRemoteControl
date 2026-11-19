@@ -37,13 +37,17 @@ public:
 private:
     QString m_desktopEnv;
     bool m_shortcutsDisabled = false;
-    
+
     // 存储原始设置
     QMap<QString, QMap<QString, QString> > m_gnomeSettings;
     QMap<QString, QString> m_kdeSettings;
     QMap<QString, QString> m_xfceSettings;  // XFCE 快捷键配置备份
     QString m_gnomeBackupPath;
     QString m_kdeBackupPath;
+
+    QString m_szBackupXFCE;
+    QString m_szLXQTConfigFile;
+    QString m_szLXQTConfigFileBackup;
 
 #if defined(Q_OS_LINUX)
     // GNOME 方法
@@ -62,9 +66,17 @@ private:
     bool restoreXFCEShortcuts();
     int backupXFCEShortcuts();
 
+    // LXQT 方法
+    bool disableLXQTShortcuts();
+    bool restoreLXQTShortcuts();
+    int backupLXQTShortcuts();
+    void restartLXQTShortcuts();
+
 #endif
 
     // 通用方法
     bool backupFile(const QString &sourcePath, const QString &backupPath);
     bool restoreFile(const QString &backupPath, const QString &targetPath);
+
+    bool replaceInFile(const QString &file, const QRegularExpression &from, const QString &to);
 };

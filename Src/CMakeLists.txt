@@ -231,7 +231,9 @@ if(UNIX AND (NOT ANDROID))
                 Unix/NativeEventFilterUnix.cpp
                 Unix/KeyInjector.cpp
                 )
-            INSTALL(FILES Unix/DisableDesktopShortcuts.sh Unix/RestoreDesktopShortcuts.sh
+            INSTALL(FILES Unix/DisableDesktopShortcuts.sh
+                          Unix/RestoreDesktopShortcuts.sh
+                          Unix/DesktopShotsCommon.sh
                 DESTINATION "${CMAKE_INSTALL_DATADIR}/Script"
                     COMPONENT Runtime
                 )
