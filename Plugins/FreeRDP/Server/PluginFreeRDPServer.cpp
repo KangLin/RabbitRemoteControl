@@ -117,9 +117,9 @@ const QString CPluginFreeRDPServer::Details() const
     szDetails += freerdp_get_build_date();
     szDetails += "\n";
 #endif
-    szDetails += "    - ";
-    szDetails += freerdp_get_build_config();
-    szDetails += "\n";
+    // szDetails += "    - ";
+    // szDetails += freerdp_get_build_config();
+    // szDetails += "\n";
 
 #ifdef HAVE_LIBSSH
     CChannelSSH channel(nullptr, nullptr);

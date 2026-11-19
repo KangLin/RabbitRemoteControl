@@ -1,4 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
+
 #pragma once
 
 #include <QMimeData>
@@ -19,28 +20,46 @@ class CClipboardMimeData : public QMimeData
 public:
     explicit CClipboardMimeData(CliprdrClientContext* pContext);
     virtual ~CClipboardMimeData();
-    
+
     const qint32 GetId() const;
-    struct _FORMAT {
-        UINT32 id;
-        QString name;
-        UINT32 localId;
-    };
 
     int SetFormat(const CLIPRDR_FORMAT_LIST* pList);
 
+    static const QString& MimeTextPlain;
+    static const QString& MimeTextUtf8;
+
+    static const QString& MimeBmp;
+    static const QString& MimeXBmp;
+    static const QString& MimeXMsBmp;
+    static const QString& MimeXWinBitmap;
+    static const QString& MimeJxl;
+    static const QString& MimeAvif;
+    static const QString& MimePng;
+    static const QString& MimeWebp;
+    static const QString& MimeJpeg;
+    static const QString& MimeTiff;
+    static const QString& MimeQtImage;
+
+    static const QString& MimeUriList;
+    static const QString& MimeGnomeCopyiedFiles;
+    static const QString& MimeMateCopyiedFiles;
+    static const QString& TypeFileGroupDescriptorW;
+    static const QString& TypeFileGroupDescriptor;
+
+    static const QString& MimeHtml;
+    static const QString& TypeHtmlFormat;
+
 Q_SIGNALS:
     void sigSendDataRequest(CliprdrClientContext* context,
-                            UINT32 formatId) const;
+                            UINT32 formatId, QString szMimeType) const;
     void sigContinue();
 
 public:
     virtual bool hasFormat(const QString &mimetype) const override;
     virtual QStringList formats() const override;
-    
+
 public Q_SLOTS:
-    void slotServerFormatData(const BYTE* pData, UINT32 nLen, UINT32 id);
-    void slotServerFileContentsRespose(UINT32 streamId, QByteArray& data);
+    void slotServerFormatData(const BYTE* pData, UINT32 nLen, UINT32 id, QString szMimeType);
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -51,12 +70,21 @@ protected:
 
 private:
     int AddFormat(UINT32 id, const char *name);
+    [[nodiscard]] UINT32 GetIDFromMime(const QString &szMime) const;
 
     bool isText(QString mimeType, bool bRegular = true) const;
     bool isHtml(QString mimeType, bool bRegular = true) const;
     bool isImage(QString mimeType, bool bRegular = true) const;
+    bool isBitmap(QString mimeType) const;
     bool isUrls(QString mimeType, bool bRegular = true) const;
+    const QStringList GetMimeImage();
+    const QStringList GetMimeText();
+    const QStringList GetMimeHtml();
+    const QStringList GetMimeFile();
 
+#ifndef HAVE_FREERDP_FILE_INTERFACE
+public Q_SLOTS:
+    void slotServerFileContentsRespose(UINT32 streamId, QByteArray& data);
 Q_SIGNALS:
     void sigRequestFileFromServer(const QString& mimetype, const QString& valueName,
                                   const void* pData, const UINT32 nLen) const;
@@ -69,6 +97,8 @@ private:
                                  DWORD nPositionHigh,
                                  DWORD nPositionLow,
                                  UINT32 cbRequested);
+#endif
+
 private:
     friend CClipboardFreeRDP;
 
@@ -78,9 +108,11 @@ private:
     CliprdrClientContext* m_pContext;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr library
 
+    struct _FORMAT {
+        UINT32 id;      // ID in protocol
+        QString name;
+    };
     QVector<_FORMAT> m_Formats; // Save server format
-    QMultiMap<QString, _FORMAT> m_indexString;
-    QMap<UINT32, _FORMAT> m_indexId;
     QStringList m_lstFormats; // Clipboard return farmat
 
     QVariant m_Variant;
@@ -88,6 +120,7 @@ private:
     QVariant m_uriFiles;
     bool m_bExit;
 
+#ifndef HAVE_FREERDP_FILE_INTERFACE
     struct _CliprdrFileStream
     {
         QFile m_File;
@@ -95,4 +128,5 @@ private:
         bool m_Success;
     };
     QMap<UINT32, QSharedPointer<_CliprdrFileStream> > m_Stream;
+#endif
 };
