@@ -1,6 +1,7 @@
 #!/bin/bash
 
 function disableGNOME() {
+    echo "Disable GNOME ......"
     for schema in $(gsettings list-schemas | grep -E 'keybindings|media-keys')
     do
         #echo "Schema: $schema"
@@ -65,6 +66,7 @@ function diableGNME1() {
 }
 
 function resetGNOME() {
+    echo "Reset GNOME ......"
     for schema in $(gsettings list-schemas | grep -E 'keybindings|media-keys')
     do
         for key in $(gsettings list-keys $schema)
@@ -77,6 +79,7 @@ function resetGNOME() {
 }
 
 function disableXFconf() {
+    echo "Disable XFconf ......"
     local BACKUP="${HOME}/.config/xfce4/xfconf/xfwm-shortcuts.RabbitRemoteControl.bak"
     local CHANNEL="xfce4-keyboard-shortcuts"
 
@@ -103,6 +106,7 @@ function disableXFconf() {
 }
 
 function restoreXFconf() {
+    echo "Restore XFconf ......"
     local BACKUP="${HOME}/.config/xfce4/xfconf/xfwm-shortcuts.RabbitRemoteControl.bak"
     local CHANNEL="xfce4-keyboard-shortcuts"
 
@@ -165,7 +169,9 @@ function resetLXQT() {
         # 结束后台快捷键捕获程序
         pkill -f lxqt-globalkeysd
         # 再重新启动（通常它会被会话自动拉起，或手动在后台运行）
-    lxqt-globalkeysd &
+        lxqt-globalkeysd &
+    else
+        echo "Don't exist backup lxqt shortcuts configure file"
     fi
 
     restoreXFconf

@@ -10,7 +10,6 @@
 #include <xcb/xcb_keysyms.h>
 
 #include "ParameterPlugin.h"
-#include "DesktopShortcuts.h"
 
 class CNativeEventFilterUnix : public QAbstractNativeEventFilter
 {

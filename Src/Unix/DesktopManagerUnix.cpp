@@ -10,38 +10,44 @@
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QStringConverter>
 #endif
-#include "DesktopShortcuts.h"
+#include "DesktopManagerUnix.h"
+#include "ParameterPlugin.h"
 
-static Q_LOGGING_CATEGORY(log, "Plugin.Hook.Desktop.Shortcut")
+static Q_LOGGING_CATEGORY(log, "Plugin.Hook.Desktop.Shortcut.Unix")
 
-CDesktopShortcutManager::CDesktopShortcutManager(QObject *parent)
-    : QObject(parent)
+CDesktopManagerUnix::CDesktopManagerUnix(CParameterPlugin *para, QObject *parent)
+    : CDesktopManager(para, parent)
 {
     qDebug(log) << Q_FUNC_INFO;
+
     m_desktopEnv = detectDesktopEnvironment();
     qDebug(log) << "Desktop environment:" << m_desktopEnv;
 
     // 设置备份路径
     QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation)
                       + "/Rabbit/RabbitRemoteControl/Backup";
-    m_gnomeBackupPath = tempDir + "/gnome_shortcuts.bak";
-    m_kdeBackupPath = tempDir + "/kde_shortcuts.bak";
+    QDir d(tempDir);
+    if(!d.exists())
+        if(!d.mkpath(tempDir))
+            qCritical(log) << "Failed mkpath:" << tempDir;
+    m_szBackupGnome = tempDir + "/gnome_shortcuts.bak";
+    m_szBackupKDE = tempDir + "/kde_shortcuts.bak";
     m_szBackupXFCE = tempDir + "xfce_shortcuts.bak";
-    m_szLXQTConfigFile =  QDir::homePath() + "/.config/lxqt/globalkeyshortcuts.conf";
-    m_szLXQTConfigFileBackup = tempDir + "/lxqt_shortcuts.bak";
+    m_szConfigLXQT =  QDir::homePath() + "/.config/lxqt/globalkeyshortcuts.conf";
+    m_szBackupLXQT = tempDir + "/lxqt_shortcuts.bak";
 }
 
-CDesktopShortcutManager::~CDesktopShortcutManager()
+CDesktopManagerUnix::~CDesktopManagerUnix()
 {
     qDebug(log) << Q_FUNC_INFO;
     // 确保退出时恢复快捷键
     if (m_shortcutsDisabled) {
         qWarning(log) << "Shortcuts is disabled, restoring ......";
-        restoreAllShortcuts();
+        slotRestoreShortcuts();
     }
 }
 
-QString CDesktopShortcutManager::detectDesktopEnvironment()
+QString CDesktopManagerUnix::detectDesktopEnvironment()
 {
     QString xdgDesktop = qEnvironmentVariable("XDG_CURRENT_DESKTOP", "").toLower();
     //QString desktopSession = qEnvironmentVariable("DESKTOP_SESSION", "").toLower();
@@ -66,11 +72,11 @@ QString CDesktopShortcutManager::detectDesktopEnvironment()
     }
 }
 
-bool CDesktopShortcutManager::disableAllShortcuts()
+bool CDesktopManagerUnix::OnDisableShortcuts()
 {
     if (m_shortcutsDisabled) {
         qDebug(log) << "Shortcuts is disabled";
-        return true;
+        return false;
     }
 
     m_shortcutsDisabled = true;
@@ -98,11 +104,11 @@ bool CDesktopShortcutManager::disableAllShortcuts()
     return success;
 }
 
-bool CDesktopShortcutManager::restoreAllShortcuts()
+bool CDesktopManagerUnix::OnRestoreShortcuts()
 {
     if (!m_shortcutsDisabled) {
         qDebug(log) << "The shortcut key is not disabled, no need to restore.";
-        return true;
+        return false;
     }
 
     m_shortcutsDisabled = false;
@@ -131,14 +137,12 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
     return success;
 }
 
-#if defined(Q_OS_LINUX)
-
 /*!
  * \brief 禁止 GNOME 快捷键
  * \return 如果有错误则返回 false， 全对则返回 true
  * \details 可以在系统中 "设置 -> 键盘 -> 键盘快捷键" 查看和设置快捷键
  */
-bool CDesktopShortcutManager::disableGNOMEShortcuts()
+bool CDesktopManagerUnix::disableGNOMEShortcuts()
 {
     qDebug(log) << "Disable GNOME shortcuts ......";
 
@@ -157,7 +161,7 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
             QString szKey = itKey.key();
             // Super 键
             if("org.gnome.mutter" == szSchema && "overlay-key" == szKey) {
-                if (runCommand("gsettings", {"set", szSchema, szKey, "''"})) {
+                if (RunCommand("gsettings", {"set", szSchema, szKey, "''"})) {
                     nSuccessCount++;
                     //qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + "''";
                 } else {
@@ -206,7 +210,7 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
              * 注意： [^\\]] 在正则中表示字符类 [^]]（匹配非 ] 的字符），但在 C++ 字符串中需要对 \ 和 ] 进行转义。
              */
             szValue.replace(QRegularExpression("\\[([^\\]]*)\\]"), "[]");
-            if (runCommand("gsettings", {"set", szSchema, szKey, szValue})) {
+            if (RunCommand("gsettings", {"set", szSchema, szKey, szValue})) {
                 nSuccessCount++;
                 //qDebug(log) << "Disabled:" << szSchema + ": " + szKey + " = " + szValue;
             } else {
@@ -225,7 +229,7 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
  * \brief 恢复 GNOME 桌面快捷键
  * \return 如果有错误则返回 false， 全对则返回 true
  */
-bool CDesktopShortcutManager::restoreGNOMEShortcuts()
+bool CDesktopManagerUnix::restoreGNOMEShortcuts()
 {
     qDebug(log) << "Restore GNOME shortcuts ......";
 
@@ -233,11 +237,11 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
         qWarning(log) << "No backup settings are available to restore";
         return false;
     }
-    
+
     bool bAllSuccess = true;
     int nSuccessCount = 0;
     int nTotalCount = 0;
-    
+
     // 恢复备份的设置
     for (auto it = m_gnomeSettings.begin(); it != m_gnomeSettings.end(); ++it) {
         QString szSchema = it.key();
@@ -246,7 +250,7 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
             nTotalCount++;
             QString szKey = itKey.key();
             QString szValue = itKey.value();
-            if (runCommand("gsettings", {"set", szSchema, szKey, szValue})) {
+            if (RunCommand("gsettings", {"set", szSchema, szKey, szValue})) {
                 nSuccessCount++;
                 //qDebug(log) << "Restored:" << szSchema + ": " + szKey + " = " + szValue;
             } else {
@@ -261,13 +265,13 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
     /* 重启 GNOME Shell 使设置生效。锁屏和注销需要重启才能生效
     if (successCount > 0) {
         qDebug(log) << "Restart GNOME Shell...";
-        if (runCommand("killall", {"-3", "gnome-shell"})) {
+        if (RunCommand("killall", {"-3", "gnome-shell"})) {
             qDebug(log) << "The GNOME Shell restart signal has been sent";
         } else {
             qWarning(log) << "Failed to restart GNOME Shell; some settings may require logging in again to take effect.";
         }
     } //*/
-    
+
     return bAllSuccess;
 }
 
@@ -275,7 +279,7 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
  * \brief 重置 GNOME 桌面快捷键
  * \return 如果有错误则返回 false， 全对则返回 true
  */
-bool CDesktopShortcutManager::resetGNOMEShortcuts()
+bool CDesktopManagerUnix::resetGNOMEShortcuts()
 {
     qDebug(log) << "Reset GNOME shortcuts ......";
 
@@ -295,7 +299,7 @@ bool CDesktopShortcutManager::resetGNOMEShortcuts()
         for(auto itKey = keys.begin(); itKey != keys.end(); itKey++) {
             nTotalCount++;
             QString szKey = itKey.key();
-            if (runCommand("gsettings", {"reset", szSchema, szKey})) {
+            if (RunCommand("gsettings", {"reset", szSchema, szKey})) {
                 nSuccessCount++;
                 //qDebug(log) << "Reset:" << szSchema + ": " + szKey;
             } else {
@@ -310,7 +314,7 @@ bool CDesktopShortcutManager::resetGNOMEShortcuts()
     /* 重启 GNOME Shell 使设置生效。锁屏和注销需要重启才能生效
     if (successCount > 0) {
         qDebug(log) << "Restart GNOME Shell...";
-        if (runCommand("killall", {"-3", "gnome-shell"})) {
+        if (RunCommand("killall", {"-3", "gnome-shell"})) {
             qDebug(log) << "The GNOME Shell restart signal has been sent";
         } else {
             qWarning(log) << "Failed to restart GNOME Shell; some settings may require logging in again to take effect.";
@@ -324,12 +328,16 @@ bool CDesktopShortcutManager::resetGNOMEShortcuts()
  * \brief 备份 GNOME 桌面快捷键
  * \return 返回备份的个数
  */
-int CDesktopShortcutManager::backupGNOMESettings()
+int CDesktopManagerUnix::backupGNOMESettings()
 {
     int nTotalCount = 0;
 
-    qDebug(log) << "Backup GNOME settings ......";
+    if(QFile::exists(m_szBackupGnome)) {
+        qCritical(log) << "The last startup ended unexpectedly! The GNOME backup file is exist" << m_szBackupGnome;
+        return -1;
+    }
 
+    qDebug(log) << "Backup GNOME settings ......";
     m_gnomeSettings.clear();
 
     struct GNOMESetting {
@@ -342,7 +350,7 @@ int CDesktopShortcutManager::backupGNOMESettings()
     };
     foreach (auto setting, vKeys) {
         QMap<QString, QString> mKey;
-        QString value = getCommandOutput("gsettings", {"get", setting.schema, setting.key}).trimmed();
+        QString value = GetCommandOutput("gsettings", {"get", setting.schema, setting.key}).trimmed();
         if (!value.isEmpty()) {
             nTotalCount++;
             mKey.insert(setting.key, value);
@@ -361,7 +369,7 @@ int CDesktopShortcutManager::backupGNOMESettings()
 
     // 可以使用下面命令得到 schema
     // `gsettings list-schemas|grep keybindings`
-    QString szSchemas = getCommandOutput("gsettings", {"list-schemas"});
+    QString szSchemas = GetCommandOutput("gsettings", {"list-schemas"});
     //qDebug(log) << "Schemas:\n" << szSchemas;
     QStringList lstSchemas = szSchemas.split('\n', Qt::SkipEmptyParts);
     foreach (const QString &schema, lstSchemas) {
@@ -372,7 +380,7 @@ int CDesktopShortcutManager::backupGNOMESettings()
 
     foreach (const QString &schema, vSchemas) {
         // 获取 schema 的所有键
-        QString output = getCommandOutput("gsettings", {"list-keys", schema});
+        QString output = GetCommandOutput("gsettings", {"list-keys", schema});
         if (output.isEmpty()) {
             qWarning(log) << "Unable to retrieve the schema key:" << schema;
             continue;
@@ -382,7 +390,7 @@ int CDesktopShortcutManager::backupGNOMESettings()
         QStringList keys = output.split('\n', Qt::SkipEmptyParts);
         //qDebug(log) << QString("Schema %1 has %2 keys").arg(schema).arg(keys.size());
         foreach (const QString &key, keys) {
-            QString value = getCommandOutput("gsettings", {"get", schema, key}).trimmed();
+            QString value = GetCommandOutput("gsettings", {"get", schema, key}).trimmed();
             if (!value.isEmpty()) {
                 nTotalCount++;
                 vKey.insert(key, value);
@@ -403,7 +411,7 @@ int CDesktopShortcutManager::backupGNOMESettings()
  * \brief 禁止 KDE 快捷键
  * \return 如果有错误则返回 false， 全对则返回 true
  */
-bool CDesktopShortcutManager::disableKDEShortcuts()
+bool CDesktopManagerUnix::disableKDEShortcuts()
 {
     qDebug(log) << "Disable KDE shortcuts ......";
 
@@ -414,24 +422,24 @@ bool CDesktopShortcutManager::disableKDEShortcuts()
 
     // 禁用 KWin 快捷键
     QStringList kwinKeys = {
-        "Window Close", "Window Maximize", "Window Minimize", 
+        "Window Close", "Window Maximize", "Window Minimize",
         "Window Fullscreen", "Window to Desktop 1", "Window to Desktop 2",
         "Switch to Desktop 1", "Switch to Desktop 2", "Expose"
     };
 
     for (const QString &key : kwinKeys) {
-        if (!runCommand("kwriteconfig5", {"--file", "kglobalshortcutsrc", "--key", key, "none"})) {
+        if (!RunCommand("kwriteconfig5", {"--file", "kglobalshortcutsrc", "--key", key, "none"})) {
             success = false;
         }
     }
 
     // 禁用修饰键快捷键
-    if (!runCommand("kwriteconfig5", {"--file", "kwinrc", "--group", "ModifierOnlyShortcuts", "--key", "Meta", ""})) {
+    if (!RunCommand("kwriteconfig5", {"--file", "kwinrc", "--group", "ModifierOnlyShortcuts", "--key", "Meta", ""})) {
         success = false;
     }
 
     /*/ 重启 KWin 使设置生效
-    runCommand("kwin_x11", {"--replace"});//*/
+    RunCommand("kwin_x11", {"--replace"});//*/
 
     return success;
 }
@@ -440,7 +448,7 @@ bool CDesktopShortcutManager::disableKDEShortcuts()
  * \brief 恢复 KDE 桌面快捷键
  * \return 如果有错误则返回 false， 全对则返回 true
  */
-bool CDesktopShortcutManager::restoreKDEShortcuts()
+bool CDesktopManagerUnix::restoreKDEShortcuts()
 {
     qDebug(log) << "Restore KDE shortcuts ......";
 
@@ -454,8 +462,8 @@ bool CDesktopShortcutManager::restoreKDEShortcuts()
                 QString file = parts[0];
                 QString group = parts[1];
                 QString key = parts[2];
-                
-                if (!runCommand("kwriteconfig5", {"--file", file, "--group", group, "--key", key, it.value()})) {
+
+                if (!RunCommand("kwriteconfig5", {"--file", file, "--group", group, "--key", key, it.value()})) {
                     qWarning(log) << "Failed to restore KDE setting:" << file << group << key;
                 }
             }
@@ -463,7 +471,7 @@ bool CDesktopShortcutManager::restoreKDEShortcuts()
     }
 
     /*/ 重启 KWin
-    runCommand("kwin_x11", {"--replace"});//*/
+    RunCommand("kwin_x11", {"--replace"});//*/
 
     return true;
 }
@@ -479,7 +487,7 @@ bool CDesktopShortcutManager::restoreKDEShortcuts()
  *
  * 使用 kwriteconfig5/kreadconfig5 工具进行读写
  */
-int CDesktopShortcutManager::backupKDESettings()
+int CDesktopManagerUnix::backupKDESettings()
 {
     int nCount = 0;
     qDebug(log) << "Backup KDE settings ......";
@@ -496,14 +504,14 @@ int CDesktopShortcutManager::backupKDESettings()
     for (const QString &file : configFiles) {
         QString sourcePath = configDir + "/" + file;
         if (QFile::exists(sourcePath)) {
-            backupFile(sourcePath, m_kdeBackupPath + "_" + file);
+            backupFile(sourcePath, m_szBackupKDE + "_" + file);
         }
     }
 
     // 也备份关键设置到内存
     QStringList settings = {
         "kglobalshortcutsrc|kwin|Window Close",
-        "kglobalshortcutsrc|kwin|Window Maximize", 
+        "kglobalshortcutsrc|kwin|Window Maximize",
         "kglobalshortcutsrc|kwin|Window Minimize",
         "kwinrc|ModifierOnlyShortcuts|Meta"
     };
@@ -511,7 +519,7 @@ int CDesktopShortcutManager::backupKDESettings()
     for (const QString &setting : settings) {
         QStringList parts = setting.split("|");
         if (parts.size() == 3) {
-            QString value = getCommandOutput("kreadconfig5", {"--file", parts[0], "--group", parts[1], "--key", parts[2]});
+            QString value = GetCommandOutput("kreadconfig5", {"--file", parts[0], "--group", parts[1], "--key", parts[2]});
             m_kdeSettings[setting] = value.trimmed();
         }
     }
@@ -520,136 +528,20 @@ int CDesktopShortcutManager::backupKDESettings()
 }
 
 /*!
- * \brief 备份 XFCE 桌面快捷键
- * \return 返回备份成功的个数
- * \details 可使用命令 `xfce4-settings-manager` 打开设置对话框，
- *       或者在系统中 "设置 -> 设置管理器 -> 键盘 -> 应用程序快捷键" 查看和设置快捷键
- * - 步骤 1：查看现有快捷键
- *   运行以下命令列出所有已配置的快捷键：
- *   `xfconf-query --channel xfce4-keyboard-shortcuts -lv`
- * - 步骤 2：添加新快捷键
- *   例如，将 Ctrl+Alt+T 设置为打开终端：
- *
- *   ```
- *   xfconf-query --create --channel xfce4-keyboard-shortcuts \
- *   --property "/commands/custom/<Primary><Alt>T" \
- *   --type string --set "xfce4-terminal"
- *   ```
- *
- * - 步骤 3：删除快捷键
- *   取消某个快捷键（如 Ctrl+Alt+Left）：
- *
- *   ```
- *   xfconf-query --reset --channel xfce4-keyboard-shortcuts \
- *   --property "/xfwm4/custom/<Primary><Alt>Left"
- *   ```
- *
- * 注意事项
- * <Primary> 指的是 Ctrl, <Super> 指的是 Windows 键.
- * 快捷键配置文件位于 ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml，可以手动编辑以实现更高级的自定义
- * Both methods allow you to efficiently set up shortcuts tailored to your workflow!
- */
-int CDesktopShortcutManager::backupXFCEShortcuts()
-{
-    int nCount = 0;
-    qDebug(log) << "Backup XFCE settings ......";
-
-    // 清空之前备份
-    m_xfceSettings.clear();
-
-    // 获取 XFCE 键盘快捷键的所有配置
-    // xfconf-query --channel xfce4-keyboard-shortcuts -lv
-    QString output = getCommandOutput("xfconf-query", {"--channel", "xfce4-keyboard-shortcuts", "-lv"});
-    if (output.isEmpty()) {
-        qWarning(log) << "Unable to get XFCE keyboard shortcuts configuration";
-        return 0;
-    }
-
-    // 解析输出格式: "/property/path value"
-    // 例如: "/xfwm4/custom/<Alt>F4 close_window"
-    //       "/commands/custom/<Primary><Alt>T xfce4-terminal"
-    //       "/xfwm4/custom/<Super>d show_desktop"
-    // 注意：有些属性可能只有路径而没有值，需要跳过
-    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
-
-    foreach(const QString &line, lines) {
-        // 使用正则表达式解析: 路径 + 值
-        // 格式: "/path/to/property value"
-        QRegularExpression regex("^(\"[^\"]*\"|/[^\\s]+)\\s+(.*)$");
-        QRegularExpressionMatch match = regex.match(line);
-
-        if (match.hasMatch()) {
-            QString property = match.captured(1);
-            // 移除可能的引号
-            if (property.startsWith('"') && property.endsWith('"')) {
-                property = property.mid(1, property.length() - 2);
-            }
-
-            QString value = match.captured(2).trimmed();
-
-            // 存储配置到内存
-            m_xfceSettings[property] = value;
-            nCount++;
-            qDebug(log) << "Backup:" << property << " = " << value;
-        } else {
-            // 可能是一些只有属性没有值的行，或者是其他格式
-            qDebug(log) << "Skipping line (unable to parse):" << line;
-        }
-    }
-
-    qDebug(log) << QString("XFCE settings backup completed, a total of %1 settings were backed up").arg(nCount);
-
-    //*
-    QFile out(m_szBackupXFCE);
-    if (!out.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qCritical(log) << "Failed: open file:" << m_szBackupXFCE;
-        return nCount;
-    }
-
-    QTextStream ts(&out);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    ts.setEncoding(QStringConverter::Utf8);
-#else
-    ts.setCodec("UTF-8");
-#endif
-    ts << output;
-    out.close(); //*/
-
-    /*
-    // 同时备份配置文件本身作为额外保障
-    QString configPath = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
-                         + "/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml";
-
-    if (QFile::exists(configPath)) {
-        // 构建备份路径
-        QString backupDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
-        QString backupFile = backupDir + "/xfce4-keyboard-shortcuts_backup.xml";
-
-        if (backupFile(configPath, backupFile)) {
-            qDebug(log) << "Backup configuration file:" << configPath << "->" << backupFile;
-        } else {
-            qWarning(log) << "Failed to backup configuration file:" << configPath;
-        }
-    }//*/
-
-    return nCount;
-}
-
-/*!
  * \brief 禁止 XFCE 桌面快捷键
  * \return 如果有错误则返回 false， 全对则返回 true
  */
-bool CDesktopShortcutManager::disableXFCEShortcuts()
+bool CDesktopManagerUnix::disableXFCEShortcuts()
 {
     qDebug(log) << "Disable XFCE settings ......";
 
     if(QFile::exists(m_szBackupXFCE)) {
-        qWarning(log) << "The last startup ended unexpectedly !!!";
-        return false;
+        qWarning(log) << "The last startup ended unexpectedly! The backup XFCE file is exits" << m_szBackupXFCE;
+        loadXFCEShortcuts();
+    } else {
+        // 先备份当前设置
+        backupXFCEShortcuts();
     }
-
-    // 先备份当前设置
-    backupXFCEShortcuts();
     if (m_xfceSettings.isEmpty()) {
         qWarning(log) << "No XFCE settings to disable";
         return false;
@@ -686,9 +578,9 @@ bool CDesktopShortcutManager::disableXFCEShortcuts()
         // 尝试重置该属性
         args << "--reset" << "--property" << property;
 
-        if (runCommand("xfconf-query", args)) {
+        if (RunCommand("xfconf-query", args)) {
             nSuccessCount++;
-            qDebug(log) << "Disabled:" << property << "=" << value;
+            //qDebug(log) << "Disabled:" << property << "=" << value;
         } else {
             // 如果重置失败，尝试设置为空值
             QStringList setArgs;
@@ -696,7 +588,7 @@ bool CDesktopShortcutManager::disableXFCEShortcuts()
                     << "--property" << property
                     << "--set" << "";
 
-            if (runCommand("xfconf-query", setArgs)) {
+            if (RunCommand("xfconf-query", setArgs)) {
                 nSuccessCount++;
                 qDebug(log) << "Disabled (set empty):" << property << "=" << value;
             } else {
@@ -709,7 +601,7 @@ bool CDesktopShortcutManager::disableXFCEShortcuts()
     qDebug(log) << QString("XFCE shortcuts disabled: %1/%2 success").arg(nSuccessCount).arg(nTotalCount);
 
     // 通知 XFCE 设置已更改
-    //runCommand("xfce4-settings-helper", {"--restart"});
+    //RunCommand("xfce4-settings-helper", {"--restart"});
     return bAllSuccess;
 }
 
@@ -717,7 +609,7 @@ bool CDesktopShortcutManager::disableXFCEShortcuts()
  * \brief 恢复 XFCE 桌面快捷键
  * \return 如果有错误则返回 false， 全对则返回 true
  */
-bool CDesktopShortcutManager::restoreXFCEShortcuts()
+bool CDesktopManagerUnix::restoreXFCEShortcuts()
 {
     qDebug(log) << "Restore XFCE settings ......";
 
@@ -752,11 +644,12 @@ bool CDesktopShortcutManager::restoreXFCEShortcuts()
         QStringList args;
         args << "--channel" << "xfce4-keyboard-shortcuts"
              << "--property" << property
-             << "--set" << value;
+             << "--set" << value
+             << "--create";
 
-        if (runCommand("xfconf-query", args)) {
+        if (RunCommand("xfconf-query", args)) {
             nSuccessCount++;
-            qDebug(log) << "Restored:" << property << "=" << value << args;
+            //qDebug(log) << "Restored:" << property << "=" << value << args;
         } else {
             qCritical(log) << "Restore failed:" << property << "=" << value;
             bAllSuccess = false;
@@ -766,66 +659,236 @@ bool CDesktopShortcutManager::restoreXFCEShortcuts()
     qDebug(log) << QString("XFCE shortcuts restored: %1/%2 success").arg(nSuccessCount).arg(nTotalCount);
 
     // 通知 XFCE 设置已更改
-    //runCommand("xfce4-settings-helper", {"--restart"});
+    //RunCommand("xfce4-settings-helper", {"--restart"});
     return bAllSuccess;
 }
 
-bool CDesktopShortcutManager::disableLXQTShortcuts()
+/*!
+ * \brief 备份 XFCE 桌面快捷键
+ * \return 返回备份成功的个数
+ * \details 可使用命令 `xfce4-settings-manager` 打开设置对话框，
+ *       或者在系统中 "设置 -> 设置管理器 -> 键盘 -> 应用程序快捷键" 查看和设置快捷键
+ * - 步骤 1：查看现有快捷键
+ *   运行以下命令列出所有已配置的快捷键：
+ *   `xfconf-query --channel xfce4-keyboard-shortcuts -lv`
+ * - 步骤 2：添加新快捷键
+ *   例如，将 Ctrl+Alt+T 设置为打开终端：
+ *
+ *   ```
+ *   xfconf-query --create --channel xfce4-keyboard-shortcuts \
+ *   --property "/commands/custom/<Primary><Alt>T" \
+ *   --type string --set "xfce4-terminal"
+ *   ```
+ *
+ * - 步骤 3：删除快捷键
+ *   取消某个快捷键（如 Ctrl+Alt+Left）：
+ *
+ *   ```
+ *   xfconf-query --reset --channel xfce4-keyboard-shortcuts \
+ *   --property "/xfwm4/custom/<Primary><Alt>Left"
+ *   ```
+ *
+ * 注意事项
+ * <Primary> 指的是 Ctrl, <Super> 指的是 Windows 键.
+ * 快捷键配置文件位于 ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml，可以手动编辑以实现更高级的自定义
+ * Both methods allow you to efficiently set up shortcuts tailored to your workflow!
+ */
+int CDesktopManagerUnix::backupXFCEShortcuts()
 {
-    if(QFile::exists(m_szLXQTConfigFile)) {
-        if(QFile::exists(m_szLXQTConfigFileBackup))
+    int nCount = 0;
+    qDebug(log) << "Backup XFCE settings ......";
+
+    // 清空之前备份
+    m_xfceSettings.clear();
+
+    // 获取 XFCE 键盘快捷键的所有配置
+    // xfconf-query --channel xfce4-keyboard-shortcuts -lv
+    QString output = GetCommandOutput("xfconf-query", {"--channel", "xfce4-keyboard-shortcuts", "-lv"});
+    if (output.isEmpty()) {
+        qWarning(log) << "Unable to get XFCE keyboard shortcuts configuration";
+        return 0;
+    }
+
+    // 解析输出格式: "/property/path value"
+    // 例如: "/xfwm4/custom/<Alt>F4 close_window"
+    //       "/commands/custom/<Primary><Alt>T xfce4-terminal"
+    //       "/xfwm4/custom/<Super>d show_desktop"
+    // 注意：有些属性可能只有路径而没有值，需要跳过
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    foreach(const QString &line, lines) {
+        // 使用正则表达式解析: 路径 + 值
+        // 格式: "/path/to/property value"
+        QRegularExpression regex("^(\"[^\"]*\"|/[^\\s]+)\\s+(.*)$");
+        QRegularExpressionMatch match = regex.match(line);
+
+        if (match.hasMatch()) {
+            QString property = match.captured(1);
+            // 移除可能的引号
+            if (property.startsWith('"') && property.endsWith('"')) {
+                property = property.mid(1, property.length() - 2);
+            }
+
+            QString value = match.captured(2).trimmed();
+
+            // 存储配置到内存
+            m_xfceSettings[property] = value;
+            nCount++;
+            //qDebug(log) << "Backup:" << property << " = " << value;
+        } else {
+            // 可能是一些只有属性没有值的行，或者是其他格式
+            qDebug(log) << "Skipping line (unable to parse):" << line;
+        }
+    }
+
+    qDebug(log) << QString("XFCE settings backup completed, a total of %1 settings were backed up").arg(nCount);
+
+    QFile out(m_szBackupXFCE);
+    if (!out.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qCritical(log) << "Failed: open file:" << m_szBackupXFCE;
+        return nCount;
+    }
+    QTextStream ts(&out);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    ts.setEncoding(QStringConverter::Utf8);
+#else
+    ts.setCodec("UTF-8");
+#endif
+    ts << output;
+    out.close();
+
+    /*
+    // 同时备份配置文件本身作为额外保障
+    QString configPath = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
+                         + "/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml";
+
+    if (QFile::exists(configPath)) {
+        // 构建备份路径
+        QString backupDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+        QString backupFile = backupDir + "/xfce4-keyboard-shortcuts_backup.xml";
+
+        if (backupFile(configPath, backupFile)) {
+            qDebug(log) << "Backup configuration file:" << configPath << "->" << backupFile;
+        } else {
+            qWarning(log) << "Failed to backup configuration file:" << configPath;
+        }
+    }//*/
+
+    return nCount;
+}
+
+int CDesktopManagerUnix::loadXFCEShortcuts()
+{
+    if(!QFile::exists(m_szBackupXFCE)) {
+        qCritical(log) << "The XFCE backup file is not exist" << m_szBackupXFCE;
+        return -1;
+    }
+
+    int nCount = 0;
+    qDebug(log) << "Load XFCE settings from backup file ......";
+
+    QString output;
+    QFile in(m_szBackupXFCE);
+    if (!in.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qCritical(log) << "Failed: open XFCE back file:" << m_szBackupXFCE;
+        return nCount;
+    }
+    output = in.readAll();
+    in.close();
+
+    if(output.isEmpty()) {
+        qCritical(log) << "The XFCE backup file is empty" << m_szBackupXFCE;
+        return 0;
+    }
+
+    // 清空之前备份
+    m_xfceSettings.clear();
+    // 解析输出格式: "/property/path value"
+    // 例如: "/xfwm4/custom/<Alt>F4 close_window"
+    //       "/commands/custom/<Primary><Alt>T xfce4-terminal"
+    //       "/xfwm4/custom/<Super>d show_desktop"
+    // 注意：有些属性可能只有路径而没有值，需要跳过
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    foreach(const QString &line, lines) {
+        // 使用正则表达式解析: 路径 + 值
+        // 格式: "/path/to/property value"
+        QRegularExpression regex("^(\"[^\"]*\"|/[^\\s]+)\\s+(.*)$");
+        QRegularExpressionMatch match = regex.match(line);
+
+        if (match.hasMatch()) {
+            QString property = match.captured(1);
+            // 移除可能的引号
+            if (property.startsWith('"') && property.endsWith('"')) {
+                property = property.mid(1, property.length() - 2);
+            }
+
+            QString value = match.captured(2).trimmed();
+
+            // 存储配置到内存
+            m_xfceSettings[property] = value;
+            nCount++;
+            //qDebug(log) << "Load:" << property << " = " << value;
+        } else {
+            // 可能是一些只有属性没有值的行，或者是其他格式
+            qDebug(log) << "Skipping line (unable to parse):" << line;
+        }
+    }
+
+    qDebug(log) << QString("XFCE settings is load from backup file, a total of %1 settings were load").arg(nCount);
+
+    return nCount;
+}
+
+bool CDesktopManagerUnix::disableLXQTShortcuts()
+{
+    if(QFile::exists(m_szConfigLXQT)) {
+        if(QFile::exists(m_szBackupLXQT))
             qWarning(log) << "The last startup ended unexpectedly !!!";
         else {
-            if(!QFile::copy(m_szLXQTConfigFile, m_szLXQTConfigFileBackup))
-                qCritical(log) << "Failed to backup" << m_szLXQTConfigFile;
+            if(!QFile::copy(m_szConfigLXQT, m_szBackupLXQT))
+                qCritical(log) << "Failed to backup" << m_szConfigLXQT << "to" << m_szBackupLXQT;
         }
-        QRegularExpression reEnable("^Enabled=.*$", QRegularExpression::MultilineOption);
-        if(!replaceInFile(m_szLXQTConfigFile, reEnable, "Enabled=false"))
-            qCritical(log) << "Failed to replace Enabled in file:" << m_szLXQTConfigFile;
+        QRegularExpression enabled("^Enabled=.*$", QRegularExpression::MultilineOption);
+        if(!replaceInFile(m_szConfigLXQT, enabled, "Enabled=false"))
+            qCritical(log) << "Failed to replace Enabled in file:" << m_szConfigLXQT;
         QRegularExpression reAllowGrabBaseKeypad("^AllowGrabBaseKeypad=.*$", QRegularExpression::MultilineOption);
-        if(!replaceInFile(m_szLXQTConfigFile, reAllowGrabBaseKeypad, "AllowGrabBaseKeypad=false"))
-            qCritical(log) << "Failed to replace AllowGrabBaseKeypad in file:" << m_szLXQTConfigFile;
+        if(!replaceInFile(m_szConfigLXQT, reAllowGrabBaseKeypad, "AllowGrabBaseKeypad=false"))
+            qCritical(log) << "Failed to replace AllowGrabBaseKeypad in file:" << m_szConfigLXQT;
         QRegularExpression reAllowGrabBaseSpecial("^AllowGrabBaseSpecial=.*$", QRegularExpression::MultilineOption);
-        if(!replaceInFile(m_szLXQTConfigFile, reAllowGrabBaseSpecial, "AllowGrabBaseSpecial=false"))
-            qCritical(log) << "Failed to replace AllowGrabBaseSpecial in file:" << m_szLXQTConfigFile;
+        if(!replaceInFile(m_szConfigLXQT, reAllowGrabBaseSpecial, "AllowGrabBaseSpecial=false"))
+            qCritical(log) << "Failed to replace AllowGrabBaseSpecial in file:" << m_szConfigLXQT;
         QRegularExpression reAllowGrabLocks("^AllowGrabLocks=.*$", QRegularExpression::MultilineOption);
-        if(!replaceInFile(m_szLXQTConfigFile, reAllowGrabLocks, "AllowGrabLocks=false"))
-            qCritical(log) << "Failed to replace AllowGrabLocks in file:" << m_szLXQTConfigFile;
+        if(!replaceInFile(m_szConfigLXQT, reAllowGrabLocks, "AllowGrabLocks=false"))
+            qCritical(log) << "Failed to replace AllowGrabLocks in file:" << m_szConfigLXQT;
         QRegularExpression reAllowGrabMiscKeypad("^AllowGrabMiscKeypad=.*$", QRegularExpression::MultilineOption);
-        if(!replaceInFile(m_szLXQTConfigFile, reAllowGrabMiscKeypad, "AllowGrabMiscKeypad=false"))
-            qCritical(log) << "Failed to replace AllowGrabMiscKeypad in file:" << m_szLXQTConfigFile;
+        if(!replaceInFile(m_szConfigLXQT, reAllowGrabMiscKeypad, "AllowGrabMiscKeypad=false"))
+            qCritical(log) << "Failed to replace AllowGrabMiscKeypad in file:" << m_szConfigLXQT;
         QRegularExpression reAllowGrabMiscSpecial("^AllowGrabMiscSpecial=.*$", QRegularExpression::MultilineOption);
-        if(!replaceInFile(m_szLXQTConfigFile, reAllowGrabMiscSpecial, "AllowGrabMiscSpecial=false"))
-            qCritical(log) << "Failed to replace Enabled in file:" << m_szLXQTConfigFile;
+        if(!replaceInFile(m_szConfigLXQT, reAllowGrabMiscSpecial, "AllowGrabMiscSpecial=false"))
+            qCritical(log) << "Failed to replace Enabled in file:" << m_szConfigLXQT;
         QRegularExpression reMultipleActionsBehaviour("^MultipleActionsBehaviour=.*$", QRegularExpression::MultilineOption);
-        if(!replaceInFile(m_szLXQTConfigFile, reMultipleActionsBehaviour, "MultipleActionsBehaviour=false"))
-            qCritical(log) << "Failed to replace MultipleActionsBehaviour in file:" << m_szLXQTConfigFile;
+        if(!replaceInFile(m_szConfigLXQT, reMultipleActionsBehaviour, "MultipleActionsBehaviour=false"))
+            qCritical(log) << "Failed to replace MultipleActionsBehaviour in file:" << m_szConfigLXQT;
         restartLXQTShortcuts();
     }
     return disableXFCEShortcuts();
 }
 
-bool CDesktopShortcutManager::restoreLXQTShortcuts()
+bool CDesktopManagerUnix::restoreLXQTShortcuts()
 {
-    if(QFile::exists(m_szLXQTConfigFileBackup)) {
-        if(QFile::exists(m_szLXQTConfigFile))
-            if(!QFile::remove(m_szLXQTConfigFile))
-                qCritical(log) << "Failed remove file:" << m_szLXQTConfigFile;
-        if(!QFile::rename(m_szLXQTConfigFileBackup, m_szLXQTConfigFile))
-            qCritical(log) << "Failed rename file:" << m_szLXQTConfigFileBackup << "to" << m_szLXQTConfigFile;
+    if(QFile::exists(m_szBackupLXQT)) {
+        if(QFile::exists(m_szConfigLXQT))
+            if(!QFile::remove(m_szConfigLXQT))
+                qCritical(log) << "Failed remove file:" << m_szConfigLXQT;
+        if(!QFile::rename(m_szBackupLXQT, m_szConfigLXQT))
+            qCritical(log) << "Failed rename file:" << m_szBackupLXQT << "to" << m_szConfigLXQT;
         restartLXQTShortcuts();
     }
     return restoreXFCEShortcuts();
 }
 
-int CDesktopShortcutManager::backupLXQTShortcuts()
-{
-    int nRet = 0;
-
-    return nRet;
-}
-
-void CDesktopShortcutManager::restartLXQTShortcuts()
+void CDesktopManagerUnix::restartLXQTShortcuts()
 {
     auto *process = new QProcess(this);
     connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
@@ -836,59 +899,12 @@ void CDesktopShortcutManager::restartLXQTShortcuts()
     process->start("pkill", QStringList() << "-f" << "lxqt-globalkeysd");
 }
 
-#endif // #if defined(Q_OS_LINUX)
-
-// 通用工具方法
-bool CDesktopShortcutManager::runCommand(const QString &program, const QStringList &args, int timeout)
-{
-    QProcess process;
-    process.setProgram(program);
-    if(!args.isEmpty())
-        process.setArguments(args);
-
-    //qDebug(log) << "Command:" << program << args;
-
-    process.start();
-
-    if (!process.waitForFinished(timeout)) {
-        qWarning(log) << "Command timeout:" << program << args;
-        return false;
-    }
-
-    if (process.exitCode() != 0) {
-        QString errorOutput = process.readAllStandardError();
-        qWarning(log) << "Command failed:" << program << args 
-                   << "exit code:" << process.exitCode()
-                   << "failed:" << errorOutput;
-        return false;
-    }
-
-    QString standardOutput = process.readAllStandardOutput();
-    if (!standardOutput.isEmpty()) {
-        qDebug(log) << "Command output:" << standardOutput.trimmed();
-    }
-
-    return true;
-}
-
-QString CDesktopShortcutManager::getCommandOutput(const QString &program, const QStringList &args)
-{
-    QProcess process;
-    process.start(program, args);
-
-    if (process.waitForFinished(5000) && process.exitCode() == 0) {
-        return process.readAllStandardOutput();
-    }
-
-    return "";
-}
-
-bool CDesktopShortcutManager::backupFile(const QString &sourcePath, const QString &backupPath)
+bool CDesktopManagerUnix::backupFile(const QString &sourcePath, const QString &backupPath)
 {
     return QFile::copy(sourcePath, backupPath);
 }
 
-bool CDesktopShortcutManager::restoreFile(const QString &backupPath, const QString &targetPath)
+bool CDesktopManagerUnix::restoreFile(const QString &backupPath, const QString &targetPath)
 {
     if (QFile::exists(targetPath)) {
         QFile::remove(targetPath);
@@ -896,7 +912,7 @@ bool CDesktopShortcutManager::restoreFile(const QString &backupPath, const QStri
     return QFile::copy(backupPath, targetPath);
 }
 
-bool CDesktopShortcutManager::replaceInFile(
+bool CDesktopManagerUnix::replaceInFile(
     const QString &file, const QRegularExpression &from, const QString &to)
 {
     QFile f(file);

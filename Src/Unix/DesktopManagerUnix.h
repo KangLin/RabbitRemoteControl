@@ -2,37 +2,36 @@
 
 #pragma once
 
-#include <QObject>
+#include <QThread>
 #include <QString>
 #include <QProcess>
 #include <QMap>
 #include <QSettings>
 #include <QFile>
 #include <QDir>
+#include "DesktopManager.h"
 
 /*!
  * \brief Manage desktop shortcut keys
  */
-class CDesktopShortcutManager : public QObject
+class CDesktopManagerUnix : public CDesktopManager
 {
     Q_OBJECT
 
 public:
-    explicit CDesktopShortcutManager(QObject *parent = nullptr);
-    virtual ~CDesktopShortcutManager();
+    explicit CDesktopManagerUnix(CParameterPlugin* para, QObject *parent = nullptr);
+    virtual ~CDesktopManagerUnix();
 
-    // 主要功能
-    bool disableAllShortcuts();
-    bool restoreAllShortcuts();
-    
     // 状态查询
     bool isDisabled() const { return m_shortcutsDisabled; }
     QString desktopEnvironment() const { return m_desktopEnv; }
 
     // 检测方法
     static QString detectDesktopEnvironment();
-    static bool runCommand(const QString &program, const QStringList &args = QStringList(), int timeout = 5000);
-    static QString getCommandOutput(const QString &program, const QStringList &args);
+
+private:
+    bool OnDisableShortcuts();
+    bool OnRestoreShortcuts();
 
 private:
     QString m_desktopEnv;
@@ -42,14 +41,12 @@ private:
     QMap<QString, QMap<QString, QString> > m_gnomeSettings;
     QMap<QString, QString> m_kdeSettings;
     QMap<QString, QString> m_xfceSettings;  // XFCE 快捷键配置备份
-    QString m_gnomeBackupPath;
-    QString m_kdeBackupPath;
-
+    QString m_szBackupGnome;
+    QString m_szBackupKDE;
     QString m_szBackupXFCE;
-    QString m_szLXQTConfigFile;
-    QString m_szLXQTConfigFileBackup;
+    QString m_szConfigLXQT;
+    QString m_szBackupLXQT;
 
-#if defined(Q_OS_LINUX)
     // GNOME 方法
     bool disableGNOMEShortcuts();
     bool restoreGNOMEShortcuts();
@@ -65,14 +62,12 @@ private:
     bool disableXFCEShortcuts();
     bool restoreXFCEShortcuts();
     int backupXFCEShortcuts();
+    int loadXFCEShortcuts();
 
     // LXQT 方法
     bool disableLXQTShortcuts();
     bool restoreLXQTShortcuts();
-    int backupLXQTShortcuts();
     void restartLXQTShortcuts();
-
-#endif
 
     // 通用方法
     bool backupFile(const QString &sourcePath, const QString &backupPath);

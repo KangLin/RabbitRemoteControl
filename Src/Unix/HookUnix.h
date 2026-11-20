@@ -4,11 +4,11 @@
 #define CHOOKUNIX_H
 
 #include "Hook.h"
-
+class CParameterClient;
 class CHookUnix : public CHook
 {
 public:
-    explicit CHookUnix(CParameterClient* pParaClient, QObject *parent = nullptr);
+    explicit CHookUnix(CParameterPlugin* para, QObject *parent = nullptr);
     virtual ~CHookUnix();
 
     // CHook interface
