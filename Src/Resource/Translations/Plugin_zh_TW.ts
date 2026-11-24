@@ -4,203 +4,158 @@
 <context>
     <name>CChannelSSH</name>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation>libssh 版本：</translation>
+        <translation type="vanished">libssh 版本：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation>libssh 協議版本：</translation>
+        <translation type="vanished">libssh 協議版本：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation>OpenSSH 服務器：</translation>
+        <translation type="vanished">OpenSSH 服務器：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation>SSH 失敗：ssh_new</translation>
+        <translation type="vanished">SSH 失敗：ssh_new</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation>SSH 失敗：服務器為空</translation>
+        <translation type="vanished">SSH 失敗：服務器爲空</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation>SSH 失敗：設置主機失敗。主機：</translation>
+        <translation type="vanished">SSH 失敗：設置主機失敗。主機：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation>SSH 失敗：設置端口失敗。端口：</translation>
+        <translation type="vanished">SSH 失敗：設置端口失敗。端口：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation>SSH 失敗：ssh_pcap_file_new: </translation>
+        <translation type="vanished">SSH 失敗：ssh_pcap_file_new: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation>SSH 連接失敗</translation>
+        <translation type="vanished">SSH 連接失敗</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation>用戶取消</translation>
+        <translation type="vanished">用戶取消</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="258"/>
         <source>SSH failed: Get server public key.</source>
-        <translation>SSH 失敗：得到服務器公鑰失敗</translation>
+        <translation type="vanished">SSH 失敗：得到服務器公鑰失敗</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="273"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation>SSH 失敗：得到公鑰哈希值失敗。</translation>
+        <translation type="vanished">SSH 失敗：得到公鑰哈希值失敗。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
         <source>the host key for server changed. it is now:</source>
-        <translation>服務器主機密鑰改變。它現在是：</translation>
+        <translation type="vanished">服務器主機密鑰改變。它現在是：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="293"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="304"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation>因為安全原因，連接將停止。</translation>
+        <translation type="vanished">因爲安全原因，連接將停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="294"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="305"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation>請查看 OpenSSL 文檔，關於如何增加私有證書到存儲。</translation>
+        <translation type="vanished">請查看 OpenSSL 文檔，關於如何增加私有證書到存儲。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="301"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation>服務端主機密鑰未發現，但是另一個健已存在。</translation>
+        <translation type="vanished">服務端主機密鑰未發現，但是另一個健已存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation>攻擊者可能會更改默認服務器密鑰，使客戶端誤以為該密鑰不存在。</translation>
+        <translation type="vanished">攻擊者可能會更改默認服務器密鑰，使客戶端誤以爲該密鑰不存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
         <source>is not find in known host file.</source>
-        <translation>未能發現主機。</translation>
+        <translation type="vanished">未能發現主機。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation>如果您在此處接受主機密鑰，則將自動創建文件。</translation>
+        <translation type="vanished">如果您在此處接受主機密鑰，則將自動創建文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Host key hash:</source>
-        <translation>主機密鑰哈希值：</translation>
+        <translation type="vanished">主機密鑰哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="319"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="344"/>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Reject the host key</source>
-        <translation>拒絕主機密鑰</translation>
+        <translation type="vanished">拒絕主機密鑰</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation>服務器未知。您信任主機密鑰嗎？</translation>
+        <translation type="vanished">服務器未知。您信任主機密鑰嗎？</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Error:</source>
-        <translation>錯誤：</translation>
+        <translation type="vanished">錯誤：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="364"/>
         <source>the host key hash:</source>
-        <translation>公鑰哈希值：</translation>
+        <translation type="vanished">公鑰哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="365"/>
         <source>Will be stopped.</source>
-        <translation>將停止。</translation>
+        <translation type="vanished">將停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="416"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation>SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
+        <translation type="vanished">SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="440"/>
         <source>Failed authenticating with password. User: </source>
-        <translation>用戶密碼進行身份驗證失敗。用戶：</translation>
+        <translation type="vanished">用戶密碼進行身份驗證失敗。用戶：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation>SSH失敗：未設置公鑰文件。</translation>
+        <translation type="vanished">SSH失敗：未設置公鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation>SSH失敗：導入公鑰失敗。</translation>
+        <translation type="vanished">SSH失敗：導入公鑰失敗。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="478"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="511"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation>文件不存在或權限被拒絕：</translation>
+        <translation type="vanished">文件不存在或權限被拒絕：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="522"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation>SSH 失敗：身份驗證失敗。用戶：</translation>
+        <translation type="vanished">SSH 失敗：身份驗證失敗。用戶：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="499"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation>SSH 失敗：未設置私鑰文件。</translation>
+        <translation type="vanished">SSH 失敗：未設置私鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="509"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation>SSH 失敗：導入私鑰失敗。</translation>
+        <translation type="vanished">SSH 失敗：導入私鑰失敗。</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation>SSH 失敗：打開轉發。</translation>
+        <translation type="vanished">SSH 失敗：打開轉發。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="376"/>
         <source>The channel is eof</source>
-        <translation>通道已結束</translation>
+        <translation type="vanished">通道已結束</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation>通道已結束</translation>
+        <translation type="vanished">通道已結束</translation>
     </message>
 </context>
 <context>
@@ -363,7 +318,7 @@
     <message>
         <location filename="../../FrmManagePlugins.ui" line="75"/>
         <source>The setting will take effect only after restarting the application.</source>
-        <translation>需要應用重啟後，設置才能生效</translation>
+        <translation>需要應用重啓後，設置才能生效</translation>
     </message>
     <message>
         <location filename="../../FrmManagePlugins.ui" line="92"/>
@@ -397,7 +352,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="617"/>
+        <location filename="../../FrmViewer.cpp" line="623"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新鍵盤 LED 狀態失敗</translation>
     </message>
@@ -435,7 +390,7 @@ Some features are limited.
     <message>
         <location filename="../../Manager.cpp" line="180"/>
         <source>Restart program by administrator?</source>
-        <translation>用管理員權限重啟程序？</translation>
+        <translation>用管理員權限重啓程序？</translation>
     </message>
     <message>
         <location filename="../../Manager.cpp" line="181"/>
@@ -727,7 +682,7 @@ Some features are limited.
     </message>
     <message>
         <source>Copy selection to clipboard</source>
-        <translation type="vanished">復製選擇到剪切板</translation>
+        <translation type="vanished">複製選擇到剪切板</translation>
     </message>
     <message>
         <source>Paste clipboard</source>
@@ -790,7 +745,7 @@ Some features are limited.
     <message>
         <location filename="../../Database/ParameterDatabaseUI.ui" line="20"/>
         <source>The setting will take effect only after restarting the application.</source>
-        <translation>需要應用重啟後，設置才能生效</translation>
+        <translation>需要應用重啓後，設置才能生效</translation>
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.ui" line="32"/>
@@ -856,12 +811,12 @@ Some features are limited.
     <message>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
         <source>but the database is not set local database &quot;QSQLITE&quot;.</source>
-        <translation>但是數據庫沒有設置為本地數據庫 &quot;QSQLITE&quot;。</translation>
+        <translation>但是數據庫沒有設置爲本地數據庫 &quot;QSQLITE&quot;。</translation>
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="106"/>
         <source>Please modify database &quot;Type&quot; to &quot;QSQLITE&quot;</source>
-        <translation>請修改數據庫&#x3000;&quot;類型&quot; 為&#x3000;&quot;QSQLITE&quot;</translation>
+        <translation>請修改數據庫&#x3000;&quot;類型&quot; 爲&#x3000;&quot;QSQLITE&quot;</translation>
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
@@ -881,7 +836,7 @@ Some features are limited.
     <message>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="145"/>
         <source>Set the sqlite database file. If is empty, then use default database file.</source>
-        <translation>設置數據庫文件名。如果設置為空，則使用默認數據庫文件。</translation>
+        <translation>設置數據庫文件名。如果設置爲空，則使用默認數據庫文件。</translation>
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="149"/>
@@ -963,7 +918,7 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="21"/>
         <source>(i.e., less than 4 octets, like &quot;192.168.1&quot;), followed or not by a dot. </source>
-        <translation>（即少於 4 個八位字節，如「192.168.1」），後面跟著一個點，也可以不跟著一個點。</translation>
+        <translation>（即少於 4 個八位字節，如“192.168.1”），後面跟着一個點，也可以不跟着一個點。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="22"/>
@@ -973,12 +928,12 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="23"/>
         <source>it is set to the number of octets actually passed</source>
-        <translation>它被設置為實際傳遞的八位字節數。</translation>
+        <translation>它被設置爲實際傳遞的八位字節數。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="24"/>
         <source>(in the example above, it would be 24, for 3 octets).</source>
-        <translation>（在上面的例子中，3 個八位字節數的值為 24）。</translation>
+        <translation>（在上面的例子中，3 個八位字節數的值爲 24）。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterFilterUI.cpp" line="25"/>
@@ -1026,161 +981,167 @@ Some features are limited.
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="24"/>
         <source>Plugin</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="29"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="114"/>
         <source>Desktop shortcuts script</source>
         <translation>桌面快捷鍵腳本</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="43"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="128"/>
         <source>Disable script:</source>
         <translation>禁用腳本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="53"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="74"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="138"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="173"/>
         <source>Browser</source>
         <translation>瀏覽</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="163"/>
         <source>Restore script:</source>
         <translation>恢復腳本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="91"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="86"/>
         <source>Viewer zoom:</source>
         <translation>縮放視圖：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="218"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="47"/>
         <source>Enable use the current system user as the default user in new settings</source>
-        <translation>允許使用當前系統用戶作為新設置中的默認用戶</translation>
+        <translation>允許使用當前系統用戶作爲新設置中的默認用戶</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="262"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="30"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理員權限</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="225"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
         <source>Enable local input method</source>
         <translation>允話本地輸入法</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="105"/>
         <source>Capture all keyboard</source>
         <translation>捕獲所有按鍵</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="137"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="229"/>
         <source>Save the encrypted password in the settings:</source>
         <translation>保存加密的密碼到設置中：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="152"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="161"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="244"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="253"/>
         <source>&quot;Encryption Key&quot; is used to encrypt saved passwords. If left empty, a random &quot;Encryption Key&quot; will be used.</source>
-        <translation>&quot;加密密鑰&quot;用於加密保存的密碼。如果為空，使用隨機的&quot;加密密鑰&quot;。</translation>
+        <translation>&quot;加密密鑰&quot;用於加密保存的密碼。如果爲空，使用隨機的&quot;加密密鑰&quot;。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="300"/>
         <source>Save the password to the system&apos;s credential manager</source>
         <translation>保存密碼到系統憑據管理中</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="232"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
         <source>Operate Name</source>
         <translation>操作名稱</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="238"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="60"/>
         <source>Show protocol</source>
         <translation>顯示協議</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="245"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="67"/>
         <source>Show server name</source>
         <translation>顯示服務名</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="252"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="74"/>
         <source>Show Security Level</source>
         <translation>顯示安全級別</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="145"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="149"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="184"/>
+        <source>Parameters:</source>
+        <translation>參數：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="237"/>
         <source>Encrypt key:</source>
         <translation>加密密鑰：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="182"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="274"/>
         <source>Prompt type:</source>
         <translation>提示類型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="189"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="281"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="196"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="288"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="110"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="202"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="121"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="213"/>
         <source>Enable save password</source>
         <translation>允許保存密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="128"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="32"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="220"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="34"/>
         <source>Enable view password</source>
         <translation>允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="35"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="37"/>
         <source>Password Security</source>
         <translation>密碼安全</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="134"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="140"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="138"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="144"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="141"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="147"/>
         <source>Zoom to window</source>
         <translation>縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="144"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="150"/>
         <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="190"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="199"/>
         <source>Open disable desktop shortcuts script</source>
         <translation>打開禁用桌面快捷鍵腳本</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="201"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="213"/>
         <source>Open restore desktop shortcuts script</source>
         <translation>打開恢復桌面局勢鍵腳本</translation>
     </message>
@@ -1215,17 +1176,17 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="27"/>
         <source>The host is empty in &quot;Proxy-&gt;Http&quot;. please set it</source>
-        <translation>&quot;代理-&gt;Http&quot;中主機為空。請設置。</translation>
+        <translation>&quot;代理-&gt;Http&quot;中主機爲空。請設置。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="34"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SockesV5&quot;中主機為空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SockesV5&quot;中主機爲空。請設置。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="41"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機為空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機爲空。請設置。</translation>
     </message>
 </context>
 <context>
@@ -1245,7 +1206,7 @@ Some features are limited.
     <name>CParameterRecord</name>
     <message>
         <source>RabbitRemoteControl</source>
-        <translation type="vanished">玉兔遠程控製</translation>
+        <translation type="vanished">玉兔遠程控制</translation>
     </message>
     <message>
         <source>Record</source>
@@ -1311,7 +1272,7 @@ Some features are limited.
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
-        <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
+        <translation>值爲 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="223"/>
@@ -1321,12 +1282,12 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="255"/>
         <source>Sample rate:</source>
-        <translation>采樣率：</translation>
+        <translation>採樣率：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="268"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
-        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
+        <translation>值爲 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="281"/>
@@ -1363,7 +1324,7 @@ Some features are limited.
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="41"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="195"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc</source>
-        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。選項：8kHz、11.025kHz、22.05kHz、16kHz、37.8kHz、44.1kHz、48kHz、96kHz 等</translation>
+        <translation>值爲 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。選項：8kHz、11.025kHz、22.05kHz、16kHz、37.8kHz、44.1kHz、48kHz、96kHz 等</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="43"/>
@@ -1393,22 +1354,22 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="49"/>
         <source>Constant quality</source>
-        <translation>恒定的質量</translation>
+        <translation>恆定的質量</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="52"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
-        <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
+        <translation>編碼的目標是具有恆定的質量，調整比特率以適應。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="54"/>
         <source>Constant bit rate</source>
-        <translation>恒定的比特率</translation>
+        <translation>恆定的比特率</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="57"/>
         <source>Encoding will use a constant bit rate, adjusting quality to fit.</source>
-        <translation>編碼的目標是具有恒定的比特率，調整質量以適應。</translation>
+        <translation>編碼的目標是具有恆定的比特率，調整質量以適應。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="59"/>
@@ -1417,7 +1378,7 @@ Some features are limited.
     </message>
     <message>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
-        <translation type="vanished">編碼的目標是具有恒定的比特率，調整質量以適應。</translation>
+        <translation type="vanished">編碼的目標是具有恆定的比特率，調整質量以適應。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="62"/>
@@ -1432,7 +1393,7 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
-        <translation>首先處理媒體以確定特征，然後第二次處理，將更多位分配給需要它的區域。</translation>
+        <translation>首先處理媒體以確定特徵，然後第二次處理，將更多位分配給需要它的區域。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="169"/>
@@ -1611,11 +1572,11 @@ Some features are limited.
     </message>
     <message>
         <source>Unlimited</source>
-        <translation type="vanished">無限製</translation>
+        <translation type="vanished">無限制</translation>
     </message>
     <message>
         <source>Flow Control</source>
-        <translation type="vanished">流量控製</translation>
+        <translation type="vanished">流量控制</translation>
     </message>
     <message>
         <source>Example: Display font</source>
@@ -1657,48 +1618,48 @@ Some features are limited.
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="27"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="32"/>
         <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="28"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="77"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="33"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="90"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="29"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="34"/>
         <source>Username and password</source>
         <translation>用戶名和密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="30"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="35"/>
         <source>Public key</source>
         <translation>公鑰</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="31"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="36"/>
         <source>Password with X509 none</source>
         <translation>密碼（使用 X509 匿名認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="32"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="37"/>
         <source>Password with X509</source>
         <translation>密碼（使用 X509 認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="33"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="38"/>
         <source>Username and password with X509 none</source>
         <translation>用戶名和密碼（使用 X509 匿名認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="34"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="39"/>
         <source>Username and password with X509</source>
         <translation>用戶名和密碼（使用 X509 認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="107"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="128"/>
         <source>Passphrase</source>
         <translation>密碼</translation>
     </message>
@@ -1795,7 +1756,7 @@ Some features are limited.
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="216"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="219"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
-        <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
+        <translation>公鑰和私鑰文件都爲空，用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="254"/>
@@ -1900,7 +1861,7 @@ Some features are limited.
     </message>
     <message>
         <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">長度為 6 的密碼或六字節十六進製</translation>
+        <translation type="vanished">長度爲 6 的密碼或六字節十六進制</translation>
     </message>
     <message>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
@@ -1912,7 +1873,7 @@ Some features are limited.
     </message>
     <message>
         <source>Repeat:</source>
-        <translation type="vanished">重復：</translation>
+        <translation type="vanished">重複：</translation>
     </message>
     <message>
         <source>Interval:</source>
@@ -1940,7 +1901,7 @@ Some features are limited.
     </message>
     <message>
         <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">密碼錯誤。長度為 6 的密碼或六字節十六進製</translation>
+        <translation type="vanished">密碼錯誤。長度爲 6 的密碼或六字節十六進制</translation>
     </message>
     <message>
         <source>The mac address is error</source>
@@ -2002,9 +1963,8 @@ Some features are limited.
 <context>
     <name>CSSHTunnelThread</name>
     <message>
-        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
 </context>
 <context>
