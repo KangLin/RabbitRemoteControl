@@ -227,12 +227,15 @@ int main(int argc, char *argv[])
         MainWindow* w = new MainWindow();
 
         try {
-            // For time-consuming operations
-            nRet = w->Initial();
-            if(!nRet) {
-                RC_SHOW_WINDOW(w);
-                ShowMessageInSplashScreen();
-                nRet = app.exec();
+            MainWindow::SingleInstanceResult mRet = w->CheckSingleInstanceApplication();
+            if(MainWindow::SingleInstanceResult::Continue == mRet) {
+                // For time-consuming operations
+                nRet = w->Initial();
+                if(!nRet) {
+                    RC_SHOW_WINDOW(w);
+                    ShowMessageInSplashScreen();
+                    nRet = app.exec();
+                }
             }
         } catch (std::exception &e) {
             qCritical(log) << "exception:" << e.what();

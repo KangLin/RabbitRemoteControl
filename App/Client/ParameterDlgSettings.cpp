@@ -42,6 +42,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     }
 #endif
 
+    ui->cbSingleInstanceApplication->setChecked(m_pParameters->GetSingleInstanceApplication());
     ui->cbReciverShortCut->setChecked(m_pParameters->GetReceiveShortCut());
     ui->cbSaveMainWindowStatus->setChecked(m_pParameters->GetSaveMainWindowStatus());
     ui->cbResumLasterClose->setChecked(m_pParameters->GetOpenLasterClose());
@@ -130,6 +131,7 @@ void CParameterDlgSettings::on_pbOk_clicked()
 {
     if(!m_pParameters) return;
 
+    m_pParameters->SetSingleInstanceApplication(ui->cbSingleInstanceApplication->isChecked());
     m_pParameters->SetReceiveShortCut(ui->cbReciverShortCut->isChecked());
     m_pParameters->SetSaveMainWindowStatus(ui->cbSaveMainWindowStatus->isChecked());
     m_pParameters->SetOpenLasterClose(ui->cbResumLasterClose->isChecked());

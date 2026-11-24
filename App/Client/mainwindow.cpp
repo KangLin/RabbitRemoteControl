@@ -23,6 +23,8 @@
 #include <QInputMethod>
 #include <QGuiApplication>
 #include <QCommandLineParser>
+#include <QLocalSocket>
+#include <QLocalServer>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -436,6 +438,96 @@ MainWindow::~MainWindow()
     qDebug(log) << "MainWindow::~MainWindow()";
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
     delete ui;
+}
+
+void MainWindow::handleNewInstanceApplication(const QStringList &args)
+{
+    const QString msg = QString("[%1] Received new instance parameters: %2")
+                            .arg(QDateTime::currentDateTime().toString("hh:mm:ss"),
+                                 args.join(' '));
+    qInfo(log) << msg;
+
+    // 把窗口从最小化恢复、置顶并激活
+    if (isMinimized())
+        showNormal();
+    else
+        show();
+    raise();
+    activateWindow();
+}
+
+MainWindow::SingleInstanceResult MainWindow::CheckSingleInstanceApplication()
+{
+    if(!m_Parameter.GetSingleInstanceApplication())
+        return SingleInstanceResult::Continue;
+
+    ShowMessageInSplashScreen(QObject::tr("Check single instance application ......"));
+    const QString szServerName("io.github.KangLin.RabbitRemoteControl");
+
+    // ---------- 1. 尝试连接已有实例 ----------
+    QLocalSocket socket;
+    socket.connectToServer(szServerName);
+
+    if (socket.waitForConnected(500)) {
+        // 已有实例在运行：把当前进程的参数发过去，然后退出
+        QByteArray block;
+        QDataStream out(&block, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_5_15);
+        out << QCoreApplication::arguments();
+
+        socket.write(block);
+        socket.flush();
+        socket.waitForBytesWritten(1000);
+        socket.disconnectFromServer();
+        qInfo(log) << "Instance already exists. Exiting!";
+        return SingleInstanceResult::Exit;
+    } else {
+        qDebug(log) << "Failed: socket connect to server:" << socket.errorString();
+    }
+
+    // ---------- 2. 自己是第一个实例 ----------
+    // 清理上次崩溃可能残留的服务器文件（Unix 下尤其需要）
+    QLocalServer::removeServer(szServerName);
+
+    static QLocalServer server;
+    // ---------- 4. 监听新实例 ----------
+    QObject::connect(&server, &QLocalServer::newConnection, [&]() {
+        QLocalSocket *client = server.nextPendingConnection();
+        if (!client)
+            return;
+
+        // 用局部缓冲区累积数据，避免一次 readAll 读不全
+        auto *buffer = new QByteArray;
+        QObject::connect(client, &QLocalSocket::readyRead, [client, buffer]() {
+            buffer->append(client->readAll());
+        });
+
+        QObject::connect(client, &QLocalSocket::disconnected, [client, buffer, this]() {
+            // 有些平台断开信号可能延迟，这里也尝试读一次
+            if (client->bytesAvailable() > 0)
+                buffer->append(client->readAll());
+
+            QDataStream in(buffer, QIODevice::ReadOnly);
+            in.setVersion(QDataStream::Qt_5_15);
+            QStringList args;
+            in >> args;
+
+            handleNewInstanceApplication(args);
+
+            delete buffer;
+            client->deleteLater();
+        });
+
+    });
+
+    // 允许其他用户连接（一般单用户桌面程序不需要改）
+    server.setSocketOptions(QLocalServer::UserAccessOption);
+
+    if (!server.listen(szServerName)) {
+        qCritical(log) << "Don't start single instance server" << server.errorString();
+        return SingleInstanceResult::Error;
+    }
+    return SingleInstanceResult::Continue;
 }
 
 //! For time-consuming operations

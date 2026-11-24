@@ -204,6 +204,12 @@ private:
     bool m_bStartByType;
     Q_PROPERTY(bool m_bStartByType READ GetStartByType WRITE SetStartByType NOTIFY sigStartByTypeChanged FINAL)
 
+public:
+    bool GetSingleInstanceApplication() const;
+    void SetSingleInstanceApplication(bool bIs);
+private:
+    bool m_bSingleInstanceApplication;
+
 };
 
 #endif // CPARAMETERAPP_H

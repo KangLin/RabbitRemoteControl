@@ -40,14 +40,28 @@ class MainWindow : public QMainWindow, CManager::Handle
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     virtual ~MainWindow() override;
+
 public:
     //! For time-consuming operations
     [[nodiscard]] int Initial();
+    enum class SingleInstanceResult {
+        Continue,
+        Exit,
+        Error
+    };
+    /*!
+     * \brief Check Single Instance Application
+     * \return SingleInstanceResult
+     */
+    [[nodiscard]] SingleInstanceResult CheckSingleInstanceApplication();
 
 Q_SIGNALS:
     void sigFullScreen(bool bFullScreen);
     void sigShowNormal();
-    
+
+private:
+    void handleNewInstanceApplication(const QStringList &args);
+
 private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionAbout_triggered();

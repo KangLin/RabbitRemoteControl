@@ -30,7 +30,8 @@ CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow")
     m_bDockListRecentShowToolBar(true),
     m_bDockListFavoriteShowToolBar(true),
     m_bKeepSplitViewWhenFullScreen(false),
-    m_bStartByType(true)
+    m_bStartByType(true),
+    m_bSingleInstanceApplication(false)
 {
 }
 
@@ -42,7 +43,9 @@ int CParameterApp::OnLoad(QSettings &set)
 {
     SetReceiveShortCut(set.value("ReceiveShortCurt",
                                  GetReceiveShortCut()).toBool());
-    
+    SetSingleInstanceApplication(set.value("SingleInstanceApplication",
+                                           GetSingleInstanceApplication()).toBool());
+
     set.beginGroup("Status");
     SetSaveMainWindowStatus(set.value("Enable",
                                       GetSaveMainWindowStatus()).toBool());
@@ -55,7 +58,7 @@ int CParameterApp::OnLoad(QSettings &set)
                              GetMenuBar()).toBool());
     }
     set.endGroup();
-    
+
     set.beginGroup("View");
     int viewType = set.value("Type", (int)GetViewType()).toInt();
     SetViewType((ViewType)viewType);
@@ -120,6 +123,7 @@ int CParameterApp::OnLoad(QSettings &set)
 int CParameterApp::OnSave(QSettings &set)
 {
     set.setValue("ReceiveShortCurt", GetReceiveShortCut());
+    set.setValue("SingleInstanceApplication", GetSingleInstanceApplication());
 
     set.beginGroup("Status");
     set.setValue("Enable", GetSaveMainWindowStatus());
@@ -469,4 +473,17 @@ void CParameterApp::SetStartByType(bool newStartByType)
         return;
     m_bStartByType = newStartByType;
     emit sigStartByTypeChanged();
+}
+
+bool CParameterApp::GetSingleInstanceApplication() const
+{
+    return m_bSingleInstanceApplication;
+}
+
+void CParameterApp::SetSingleInstanceApplication(bool bIs)
+{
+    if(m_bSingleInstanceApplication == bIs)
+        return;
+    m_bSingleInstanceApplication = bIs;
+    SetModified(true);
 }
