@@ -249,4 +249,8 @@ private:
     CDatabaseFile* m_pDatabaseFile;
 };
 
+/*!
+ * \brief ShowMessageInSplashScreen
+ * \param szMsg: if is empty, then delete splash screen object
+ */
 PLUGIN_EXPORT void ShowMessageInSplashScreen(const QString &szMsg = QString());

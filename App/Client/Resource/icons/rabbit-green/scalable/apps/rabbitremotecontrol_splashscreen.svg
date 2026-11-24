@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <!-- 红色背景渐变 -->
+    <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#B71C1C"/>
+      <stop offset="55%" stop-color="#7F0000"/>
+      <stop offset="100%" stop-color="#3E0000"/>
+    </radialGradient>
+
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF8A80" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#FF8A80" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FF8A80" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+
+  <!-- 星点 -->
+  <g fill="#FFEBEE">
+    <circle cx="180" cy="140" r="1.6" opacity="0.8"/><circle cx="340" cy="260" r="1.1" opacity="0.6"/>
+    <circle cx="520" cy="120" r="1.3" opacity="0.7"/><circle cx="760" cy="200" r="1" opacity="0.5"/>
+    <circle cx="1180" cy="130" r="1.5" opacity="0.8"/><circle cx="1400" cy="250" r="1.2" opacity="0.6"/>
+    <circle cx="1620" cy="160" r="1.4" opacity="0.75"/><circle cx="1760" cy="320" r="1" opacity="0.5"/>
+    <circle cx="260" cy="820" r="1.3" opacity="0.6"/><circle cx="480" cy="940" r="1.1" opacity="0.5"/>
+    <circle cx="1500" cy="880" r="1.4" opacity="0.65"/><circle cx="1700" cy="760" r="1" opacity="0.5"/>
+  </g>
+
+  <!-- 月球环形山轮廓 -->
+  <g fill="none" stroke="#FF8A80" stroke-opacity="0.1" stroke-width="2">
+    <circle cx="960" cy="470" r="300"/><circle cx="860" cy="420" r="90"/>
+    <circle cx="1080" cy="540" r="60"/><circle cx="920" cy="600" r="40"/>
+    <circle cx="1080" cy="380" r="30"/>
+  </g>
+
+  <!-- 连接线 -->
+  <g stroke="url(#lineGrad)" stroke-width="2" fill="none">
+    <path d="M 960 480 C 780 400, 600 350, 430 340"/><path d="M 960 480 C 1180 400, 1340 350, 1500 340"/>
+    <path d="M 960 480 C 780 570, 620 600, 460 610"/><path d="M 960 480 C 1160 570, 1320 600, 1480 610"/>
+  </g>
+
+  <!-- 设备节点 -->
+  <g transform="translate(380,310)" fill="none" stroke="#FFCDD2" stroke-width="2.5">
+    <rect x="0" y="0" width="70" height="46" rx="5"/><rect x="8" y="8" width="54" height="30" rx="2" stroke="#EF5350"/>
+    <path d="M 25 46 L 25 58 L 45 58 L 45 46"/>
+  </g>
+  <g transform="translate(1470,310)" fill="none" stroke="#FFCDD2" stroke-width="2.5">
+    <rect x="0" y="0" width="60" height="70" rx="4"/><line x1="0" y1="22" x2="60" y2="22"/><line x1="0" y1="44" x2="60" y2="44"/>
+    <circle cx="12" cy="11" r="3" fill="#EF5350" stroke="none"/><circle cx="12" cy="33" r="3" fill="#EF5350" stroke="none"/><circle cx="12" cy="55" r="3" fill="#FFD54F" stroke="none"/>
+  </g>
+  <g transform="translate(420,580)" fill="none" stroke="#FFCDD2" stroke-width="2.5">
+    <rect x="0" y="0" width="36" height="64" rx="6"/><rect x="6" y="10" width="24" height="40" rx="2" stroke="#EF5350"/><circle cx="18" cy="57" r="3"/>
+  </g>
+  <g transform="translate(1450,580)" fill="none" stroke="#FFCDD2" stroke-width="2.5">
+    <rect x="0" y="0" width="56" height="72" rx="6"/><rect x="7" y="10" width="42" height="46" rx="2" stroke="#EF5350"/><circle cx="28" cy="64" r="3"/>
+  </g>
+</svg>

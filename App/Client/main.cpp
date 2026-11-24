@@ -233,6 +233,7 @@ int main(int argc, char *argv[])
                 nRet = w->Initial();
                 if(!nRet) {
                     RC_SHOW_WINDOW(w);
+                    // Delete splash screen object
                     ShowMessageInSplashScreen();
                     nRet = app.exec();
                 }

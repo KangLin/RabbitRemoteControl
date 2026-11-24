@@ -2,6 +2,7 @@
 
 #include <QPluginLoader>
 #include <QKeyEvent>
+#include <QEventLoop>
 #include <QtPlugin>
 #include <QFile>
 #include <QTemporaryFile>
@@ -46,27 +47,42 @@ void ShowMessageInSplashScreen(const QString &szMsg)
     static QSplashScreen* pSplashScreen = nullptr;
     if(!pSplashScreen) {
         pSplashScreen = new QSplashScreen();
-        QScreen* pScreen = QApplication::primaryScreen();
-        if(pScreen) {
-            QRect rect = pScreen->availableGeometry();
-            pSplashScreen->move(rect.width() / 4, rect.height() / 4);
-            QCoreApplication::processEvents();
-            pSplashScreen->resize(rect.width() / 2, rect.height() / 2);
-            QCoreApplication::processEvents();
+        if(pSplashScreen) {
+            QScreen* pScreen = QApplication::primaryScreen();
+            if(pScreen) {
+                QRect rect = pScreen->availableGeometry();
+#if defined(Q_OS_ANDROID)
+                pSplashScreen->move(0, 0);
+                pSplashScreen->resize(rect.width() , rect.height());
+#else
+                pSplashScreen->move(rect.width() / 4, rect.height() / 4);
+                pSplashScreen->resize(rect.width() / 2, rect.height() / 2);
+#endif
+            }
+            RC_SHOW_WINDOW(pSplashScreen);
+            QPixmap pixmap;
+            QIcon icon = QIcon::fromTheme("rabbitremotecontrol_splashscreen");
+            if(!icon.isNull())
+                pixmap = icon.pixmap(pSplashScreen->rect().size());
+            if(!pixmap.isNull())
+                pSplashScreen->setPixmap(pixmap);
         }
-        RC_SHOW_WINDOW(pSplashScreen);
-        QCoreApplication::processEvents();
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
     }
     if(szMsg.isEmpty()) {
         pSplashScreen->deleteLater();
         pSplashScreen = nullptr;
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
         return;
     }
     QString szTitle = qApp->applicationDisplayName()
                       + "\n" + qApp->applicationVersion() + "\n\n";
-    pSplashScreen->showMessage(szTitle + szMsg, Qt::AlignCenter,
-                               pSplashScreen->palette().color(QPalette::WindowText));
-    QCoreApplication::processEvents();
+    pSplashScreen->showMessage(
+        szTitle + szMsg, Qt::AlignCenter,
+        pSplashScreen->palette().color(QPalette::WindowText));
+    pSplashScreen->activateWindow();
+    pSplashScreen->raise();
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
 }
 
 CManager::CManager(QObject *parent) : QObject(parent)
