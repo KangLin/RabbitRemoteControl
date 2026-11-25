@@ -29,7 +29,7 @@ CHook::CHook(CParameterPlugin *pPara, QObject *parent)
     if(m_pDesktopManagerThread) {
         m_pDesktopManagerThread->start();
         while(!m_pDesktopManagerThread->IsStart())
-            QApplication::processEvents();
+            QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents, 50);
     }
 }
 
@@ -39,8 +39,9 @@ CHook::~CHook()
     if(m_pDesktopManagerThread) {
         m_pDesktopManagerThread->quit();
         int n = 0;
-        while(!m_pDesktopManagerThread->isFinished() && 10 >= n++)
-            QThread::msleep(500);
+        while(!m_pDesktopManagerThread->isFinished() && 10 >= n++) {
+            QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents, 50);
+        }
     }
 }
 

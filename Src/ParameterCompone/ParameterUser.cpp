@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QThread>
 #include <QCoreApplication>
 #include <QLoggingCategory>
 #include <QElapsedTimer>
@@ -81,7 +82,7 @@ int CParameterUser::OnLoad(QSettings &set)
             QElapsedTimer timer;
             timer.start();
             while(!m_bFinished && timer.elapsed() < 3000) {
-                QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+                QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents, 50);
             }
         } else
 #endif
@@ -119,8 +120,9 @@ int CParameterUser::OnLoad(QSettings &set)
             m_bFinished = false;
             QElapsedTimer timer;
             timer.start();
-            while(!m_bFinished && timer.elapsed() < 3000)
-                QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+            while(!m_bFinished && timer.elapsed() < 3000) {
+                QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents, 50);
+            }
         } else
 #endif
         {
