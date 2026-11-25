@@ -1,0 +1,13 @@
+<map id="CServiceTigerVNC" name="CServiceTigerVNC">
+<area shape="rect" id="Node000001" title=" " alt="" coords="25,260,164,288"/>
+<area shape="rect" id="Node000002" href="$classCService.html" title="The service interface." alt="" coords="55,183,134,211"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,224,97,261,92,259,93,228"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="58,5,131,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="50,43,29,61,12,84,8,96,12,109,24,131,41,151,77,181,72,183,37,154,20,134,7,111,3,96,7,81,26,57,52,39"/>
+<area shape="rect" id="Node000004" href="$classCParameterService.html" title=" " alt="" coords="22,82,167,110"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="95,46,97,82,92,82,94,51"/>
+<area shape="rect" id="Node000005" href="$classCPluginService.html" title="The service plugin interface." alt="" coords="191,82,310,110"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="136,37,226,81,221,83,136,43"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="96,123,97,183,92,182,93,128"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="220,121,165,161,123,185,120,180,163,157,224,118"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="CParameterFreeRDP" name="CParameterFreeRDP">
+<area shape="rect" id="Node000001" title="[Declare CParameterFreeRDP]" alt="" coords="5,308,158,336"/>
+<area shape="rect" id="Node000002" href="$classCParameterDesktop.html" title="The interface of remote desktop base parameters." alt="" coords="6,232,157,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,274,84,308,79,307,80,278"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="7,157,156,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,198,84,232,79,231,80,203"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="33,81,130,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="82,122,84,157,79,156,81,127"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="45,5,118,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="82,46,84,81,79,80,81,51"/>
+</map>

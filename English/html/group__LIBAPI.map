@@ -1,0 +1,7 @@
+<map id="Libraries" name="Libraries">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,84,83,112"/>
+<area shape="rect" id="Node000004" href="$group__LIBAPI__CHANNEL.html" title="Stream data channel." alt="" coords="193,5,267,33"/>
+<area shape="rect" id="Node000005" href="$group__LIBAPI__DATABASE.html" title="Database." alt="" coords="188,57,272,85"/>
+<area shape="rect" id="Node000003" href="$group__LIBAPI__PLUGIN.html" title="Plugin library." alt="" coords="176,109,284,137"/>
+<area shape="rect" id="Node000002" href="$group__LIBAPI__SERVICE.html" title="Service library." alt="" coords="131,161,329,189"/>
+</map>

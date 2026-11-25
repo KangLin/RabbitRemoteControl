@@ -1,0 +1,9 @@
+<map id="CManager::SaveOperate" name="CManager::SaveOperate">
+<area shape="rect" id="Node000001" title="Accept Operate parameters to file." alt="" coords="5,57,185,85"/>
+<area shape="rect" id="Node000002" href="$classCPlugin.html#ac4747ec15816ab9bec2bc31ce438286e" title="ID. Default: Type() + &quot;:&quot; + Protocol() + &quot;:&quot; + Name()." alt="" coords="253,5,344,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,54,241,33,236,36,153,59"/>
+<area shape="rect" id="Node000003" href="$classCPlugin.html#a946a3be8eed821236c0d894d2a14401f" title="This name must be the same as the project name (${PROJECT_NAME}). The translation file (${PROJECT_NAM..." alt="" coords="240,57,357,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,69,227,71,222,72,185,74"/>
+<area shape="rect" id="Node000004" href="$classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c" title="Plugin Protocol." alt="" coords="233,109,364,137"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="153,83,229,104,224,106,152,88"/>
+</map>

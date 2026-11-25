@@ -1,0 +1,11 @@
+<map id="CParameterFtpServer" name="CParameterFtpServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,308,166,336"/>
+<area shape="rect" id="Node000002" href="$classCParameterServer.html" title="The server base parameters" alt="" coords="16,232,155,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,274,88,309,83,307,84,278"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="11,157,160,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,198,88,232,83,231,84,203"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="参数接口" alt="" coords="37,81,134,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="86,122,88,157,83,156,85,127"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="49,5,122,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="86,46,88,81,83,80,85,51"/>
+</map>

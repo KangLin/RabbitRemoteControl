@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Unix/DesktopManagerUnix.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate17</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>Src</b></li><li class="navelem"><b>Unix</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">DesktopManagerUnix.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QThread&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QProcess&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QMap&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QSettings&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QFile&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;QDir&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;DesktopManager.h&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classCDesktopManagerUnix.html">   18</a></span><span class="keyword">class </span>CDesktopManagerUnix : <span class="keyword">public</span> CDesktopManager</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    Q_OBJECT</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">explicit</span> CDesktopManagerUnix(<a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a>* para, QObject *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">virtual</span> ~CDesktopManagerUnix() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// 状态查询</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">bool</span> isDisabled()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_shortcutsDisabled; }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    QString desktopEnvironment()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_desktopEnv; }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// 检测方法</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">static</span> QString detectDesktopEnvironment();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#acb2e8ee1eff0a444814445860a3bbf16">OnDisableShortcuts</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#ac24b85c2e15fca70f20b46afccefb145">OnRestoreShortcuts</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    QString m_desktopEnv;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">bool</span> m_shortcutsDisabled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// 存储原始设置</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    QMap&lt;QString, QMap&lt;QString, QString&gt; &gt; m_gnomeSettings;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    QMap&lt;QString, QString&gt; m_kdeSettings;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    QMap&lt;QString, QString&gt; m_xfceSettings;  <span class="comment">// XFCE 快捷键配置备份</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    QString m_szBackupGnome;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    QString m_szBackupKDE;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    QString m_szBackupXFCE;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    QString m_szConfigLXQT;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    QString m_szBackupLXQT;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// GNOME 方法</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#a264a4492f5288d82c2b7eb33a1b0639c">disableGNOMEShortcuts</a>();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#acd39f7e5f6df516cddef61edc13ec6d5">restoreGNOMEShortcuts</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#a9e30af676c8cab799b572ee4278c2d5d">resetGNOMEShortcuts</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#af11553774839c6dfc87180744271ce45">backupGNOMESettings</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// KDE 方法</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#a6d20fe90c656e17c33f32ddc58af4b13">disableKDEShortcuts</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#af62b4b25906c53ed6ab3e04148c0c28c">restoreKDEShortcuts</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#a09f2539d78fadf7baf39f66ac06d0cd6">backupKDESettings</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// XFCE 方法</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#a1c5d61691ae71b15c5f1d6875bcfe472">disableXFCEShortcuts</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#a95e33f23fcc254e939ed5a5b83441a7d">restoreXFCEShortcuts</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classCDesktopManagerUnix.html#a3fd76312974e8056d2d43681b4c2f989">backupXFCEShortcuts</a>();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">int</span> loadXFCEShortcuts();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// LXQT 方法</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">bool</span> disableLXQTShortcuts();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">bool</span> restoreLXQTShortcuts();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> restartLXQTShortcuts();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// 通用方法</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">bool</span> backupFile(<span class="keyword">const</span> QString &amp;sourcePath, <span class="keyword">const</span> QString &amp;backupPath);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">bool</span> restoreFile(<span class="keyword">const</span> QString &amp;backupPath, <span class="keyword">const</span> QString &amp;targetPath);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">bool</span> replaceInFile(<span class="keyword">const</span> QString &amp;file, <span class="keyword">const</span> QRegularExpression &amp;from, <span class="keyword">const</span> QString &amp;to);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+</div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_a09f2539d78fadf7baf39f66ac06d0cd6"><div class="ttname"><a href="classCDesktopManagerUnix.html#a09f2539d78fadf7baf39f66ac06d0cd6">CDesktopManagerUnix::backupKDESettings</a></div><div class="ttdeci">int backupKDESettings()</div><div class="ttdoc">备份 KDE 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00554">DesktopManagerUnix.cpp:554</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_a1c5d61691ae71b15c5f1d6875bcfe472"><div class="ttname"><a href="classCDesktopManagerUnix.html#a1c5d61691ae71b15c5f1d6875bcfe472">CDesktopManagerUnix::disableXFCEShortcuts</a></div><div class="ttdeci">bool disableXFCEShortcuts()</div><div class="ttdoc">禁止 XFCE 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00598">DesktopManagerUnix.cpp:598</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_a264a4492f5288d82c2b7eb33a1b0639c"><div class="ttname"><a href="classCDesktopManagerUnix.html#a264a4492f5288d82c2b7eb33a1b0639c">CDesktopManagerUnix::disableGNOMEShortcuts</a></div><div class="ttdeci">bool disableGNOMEShortcuts()</div><div class="ttdoc">禁止 GNOME 快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00149">DesktopManagerUnix.cpp:149</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_a3fd76312974e8056d2d43681b4c2f989"><div class="ttname"><a href="classCDesktopManagerUnix.html#a3fd76312974e8056d2d43681b4c2f989">CDesktopManagerUnix::backupXFCEShortcuts</a></div><div class="ttdeci">int backupXFCEShortcuts()</div><div class="ttdoc">备份 XFCE 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00760">DesktopManagerUnix.cpp:760</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_a6d20fe90c656e17c33f32ddc58af4b13"><div class="ttname"><a href="classCDesktopManagerUnix.html#a6d20fe90c656e17c33f32ddc58af4b13">CDesktopManagerUnix::disableKDEShortcuts</a></div><div class="ttdeci">bool disableKDEShortcuts()</div><div class="ttdoc">禁止 KDE 快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00478">DesktopManagerUnix.cpp:478</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_a95e33f23fcc254e939ed5a5b83441a7d"><div class="ttname"><a href="classCDesktopManagerUnix.html#a95e33f23fcc254e939ed5a5b83441a7d">CDesktopManagerUnix::restoreXFCEShortcuts</a></div><div class="ttdeci">bool restoreXFCEShortcuts()</div><div class="ttdoc">恢复 XFCE 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00676">DesktopManagerUnix.cpp:676</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_a9e30af676c8cab799b572ee4278c2d5d"><div class="ttname"><a href="classCDesktopManagerUnix.html#a9e30af676c8cab799b572ee4278c2d5d">CDesktopManagerUnix::resetGNOMEShortcuts</a></div><div class="ttdeci">bool resetGNOMEShortcuts()</div><div class="ttdoc">重置 GNOME 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00290">DesktopManagerUnix.cpp:290</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_ac24b85c2e15fca70f20b46afccefb145"><div class="ttname"><a href="classCDesktopManagerUnix.html#ac24b85c2e15fca70f20b46afccefb145">CDesktopManagerUnix::OnRestoreShortcuts</a></div><div class="ttdeci">bool OnRestoreShortcuts() override</div><div class="ttdoc">Restore shortcuts</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00110">DesktopManagerUnix.cpp:110</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_acb2e8ee1eff0a444814445860a3bbf16"><div class="ttname"><a href="classCDesktopManagerUnix.html#acb2e8ee1eff0a444814445860a3bbf16">CDesktopManagerUnix::OnDisableShortcuts</a></div><div class="ttdeci">bool OnDisableShortcuts() override</div><div class="ttdoc">Disable shortcuts</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00077">DesktopManagerUnix.cpp:77</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_acd39f7e5f6df516cddef61edc13ec6d5"><div class="ttname"><a href="classCDesktopManagerUnix.html#acd39f7e5f6df516cddef61edc13ec6d5">CDesktopManagerUnix::restoreGNOMEShortcuts</a></div><div class="ttdeci">bool restoreGNOMEShortcuts()</div><div class="ttdoc">恢复 GNOME 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00236">DesktopManagerUnix.cpp:236</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_af11553774839c6dfc87180744271ce45"><div class="ttname"><a href="classCDesktopManagerUnix.html#af11553774839c6dfc87180744271ce45">CDesktopManagerUnix::backupGNOMESettings</a></div><div class="ttdeci">int backupGNOMESettings()</div><div class="ttdoc">备份 GNOME 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00343">DesktopManagerUnix.cpp:343</a></div></div>
+<div class="ttc" id="aclassCDesktopManagerUnix_html_af62b4b25906c53ed6ab3e04148c0c28c"><div class="ttname"><a href="classCDesktopManagerUnix.html#af62b4b25906c53ed6ab3e04148c0c28c">CDesktopManagerUnix::restoreKDEShortcuts</a></div><div class="ttdeci">bool restoreKDEShortcuts()</div><div class="ttdoc">恢复 KDE 桌面快捷键</div><div class="ttdef"><b>定义</b> <a href="DesktopManagerUnix_8cpp_source.html#l00515">DesktopManagerUnix.cpp:515</a></div></div>
+<div class="ttc" id="aclassCParameterPlugin_html"><div class="ttname"><a href="classCParameterPlugin.html">CParameterPlugin</a></div><div class="ttdoc">插件的全局参数。</div><div class="ttdef"><b>定义</b> <a href="ParameterPlugin_8h_source.html#l00035">ParameterPlugin.h:36</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

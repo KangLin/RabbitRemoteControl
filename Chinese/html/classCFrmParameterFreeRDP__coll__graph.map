@@ -1,0 +1,11 @@
+<map id="CFrmParameterFreeRDP" name="CFrmParameterFreeRDP">
+<area shape="rect" id="Node000001" title=" " alt="" coords="6,260,183,288"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,159,83,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,198,91,259,85,260,56,202"/>
+<area shape="rect" id="Node000003" href="$classCParameterServiceFreeRDP.html" title=" " alt="" coords="106,159,307,187"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,197,111,262,108,257,178,197"/>
+<area shape="rect" id="Node000004" href="$classCParameterService.html" title=" " alt="" coords="134,82,279,110"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="208,123,209,160,204,158,205,128"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="170,5,243,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="208,46,209,83,204,81,206,51"/>
+</map>

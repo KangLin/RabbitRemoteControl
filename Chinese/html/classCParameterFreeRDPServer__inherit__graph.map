@@ -1,0 +1,11 @@
+<map id="CParameterFreeRDPServer" name="CParameterFreeRDPServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,308,200,336"/>
+<area shape="rect" id="Node000002" href="$classCParameterServer.html" title="The server base parameters" alt="" coords="33,232,172,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,274,105,309,100,307,101,278"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="28,157,177,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,198,105,233,100,231,101,203"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="参数接口" alt="" coords="54,81,151,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="103,122,105,157,100,156,102,127"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="66,5,139,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="103,46,105,81,100,80,102,51"/>
+</map>

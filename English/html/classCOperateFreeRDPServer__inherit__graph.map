@@ -1,0 +1,9 @@
+<map id="COperateFreeRDPServer" name="COperateFreeRDPServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,185,260"/>
+<area shape="rect" id="Node000002" href="$classCOperateServer.html" title="Server operate interface." alt="" coords="33,157,157,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,198,97,233,93,231,93,202"/>
+<area shape="rect" id="Node000003" href="$classCOperate.html" title="Operate interface." alt="" coords="54,81,136,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,122,98,157,92,156,94,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="58,5,132,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,46,98,81,92,80,94,51"/>
+</map>

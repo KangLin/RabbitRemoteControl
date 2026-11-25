@@ -1,0 +1,10 @@
+<map id="CRemoteFileSystemModel" name="CRemoteFileSystemModel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="8,183,201,211"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,82,161,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,123,104,183,99,182,87,127"/>
+<area shape="rect" id="Node000003" href="$classCRemoteFileSystem.html" title=" " alt="" coords="185,82,338,110"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,119,127,185,124,180,226,118"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="354,89,365,96,357,103,339,106,338,100,355,98,360,96,353,94"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="225,5,298,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="263,46,264,83,259,81,260,51"/>
+</map>

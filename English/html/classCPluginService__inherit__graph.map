@@ -1,0 +1,15 @@
+<map id="CPluginService" name="CPluginService">
+<area shape="rect" id="Node000001" title="The service plugin interface." alt="" coords="175,81,294,109"/>
+<area shape="rect" id="Node000003" href="$classCPluginServiceFreeRDP.html" title=" " alt="" coords="52,157,225,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,117,157,158,154,154,203,120"/>
+<area shape="rect" id="Node000004" href="$classCPluginServiceThread.html" title="The service plugin interface." alt="" coords="249,157,412,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="264,116,316,156,311,156,263,121"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="198,5,271,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,46,237,82,232,80,233,51"/>
+<area shape="rect" id="Node000005" href="$classCPluginServiceLibVNCServer.html" title=" " alt="" coords="5,232,213,260"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="279,190,149,234,148,229,274,189"/>
+<area shape="rect" id="Node000006" href="$classCPluginServiceRabbitVNC.html" title=" " alt="" coords="236,232,424,260"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="332,198,332,234,328,230,328,202"/>
+<area shape="rect" id="Node000007" href="$classCPluginServiceTigerVNC.html" title=" " alt="" coords="449,232,628,260"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="382,187,504,232,498,232,381,192"/>
+</map>

@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDesktopManager类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate17</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classCDesktopManager-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDesktopManager类 参考<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Desktop manager  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DesktopManager_8h_source.html">DesktopManager.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CDesktopManager 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDesktopManager__inherit__graph.png" border="0" usemap="#aCDesktopManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCDesktopManager_inherit__map" id="aCDesktopManager_inherit__map">
+<area shape="rect" title="Desktop manager" alt="" coords="20,81,162,109"/>
+<area shape="rect" href="classCDesktopManagerUnix.html" title="Manage desktop shortcut keys" alt="" coords="5,157,177,184"/>
+<area shape="poly" title=" " alt="" coords="93,123,93,157,89,155,89,126"/>
+<area shape="rect" title=" " alt="" coords="54,5,128,33"/>
+<area shape="poly" title=" " alt="" coords="92,46,94,81,88,80,90,51"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDesktopManager 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDesktopManager__coll__graph.png" border="0" usemap="#aCDesktopManager_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCDesktopManager_coll__map" id="aCDesktopManager_coll__map">
+<area shape="rect" title="Desktop manager" alt="" coords="93,361,235,388"/>
+<area shape="rect" title=" " alt="" coords="70,5,143,33"/>
+<area shape="poly" title=" " alt="" coords="107,46,109,95,109,275,114,300,124,322,153,359,148,361,120,325,109,301,104,275,104,95,107,51"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="430,82,527,110"/>
+<area shape="poly" title=" " alt="" coords="158,28,431,83,428,87,159,33"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="162,786,254,813"/>
+<area shape="poly" title=" " alt="" coords="54,39,39,49,23,62,12,77,8,95,8,325,15,399,32,472,58,543,88,608,152,717,200,785,195,786,148,720,84,611,53,545,27,474,9,400,3,326,3,95,7,75,19,58,36,45,57,35"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="523,260,661,288"/>
+<area shape="poly" title=" " alt="" coords="506,278,293,288,201,298,170,305,154,314,149,323,149,335,158,360,153,360,144,336,144,322,150,310,168,300,200,293,293,282,510,274"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="517,361,667,388"/>
+<area shape="poly" title=" " alt="" coords="593,301,595,361,589,359,591,306"/>
+<area shape="poly" title=" " alt="" coords="532,114,563,132,588,158,599,184,602,213,598,261,593,259,597,213,594,186,583,161,560,137,533,119"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="321,909,460,936"/>
+<area shape="poly" title=" " alt="" coords="413,114,327,145,277,167,227,194,180,226,139,265,106,310,84,361,79,396,84,420,98,440,119,459,146,482,177,512,210,554,242,613,257,654,262,688,268,721,284,760,300,783,317,798,334,813,353,836,374,874,388,909,383,907,369,876,348,839,330,817,313,802,296,787,279,763,262,723,257,689,252,655,238,615,205,557,173,516,143,486,116,463,94,444,79,423,73,396,79,360,101,307,135,261,177,222,224,189,275,162,325,140,417,111"/>
+<area shape="poly" title=" " alt="" coords="423,119,402,132,383,148,372,166,371,175,374,186,392,217,414,245,466,294,521,332,567,359,562,361,518,337,463,299,410,249,388,220,370,188,366,176,367,164,379,144,399,128,427,115"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="159,1009,289,1037"/>
+<area shape="poly" title=" " alt="" coords="542,98,668,106,812,120,878,129,931,141,968,154,979,162,983,171,983,924,976,938,959,950,899,970,810,986,704,999,475,1015,290,1023,290,1018,475,1010,704,993,810,981,897,965,957,945,972,935,977,923,977,172,974,166,965,159,930,146,877,135,812,125,668,111,544,103"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="648,159,790,187"/>
+<area shape="poly" title=" " alt="" coords="542,108,630,131,693,158,688,160,628,137,543,113"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="384,159,573,187"/>
+<area shape="poly" title=" " alt="" coords="479,123,481,160,476,158,478,128"/>
+<area shape="poly" title=" " alt="" coords="475,911,576,897,681,874,726,860,762,842,786,822,793,812,795,801,795,373,791,353,782,335,768,321,750,309,707,292,662,283,660,278,708,287,753,304,772,317,787,332,796,351,800,373,800,801,798,814,790,826,765,847,728,865,682,880,577,902,476,916"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="324,685,484,713"/>
+<area shape="poly" title=" " alt="" coords="404,727,394,909,389,907,400,730"/>
+<area shape="poly" title=" " alt="" coords="357,721,323,739,232,787,229,783,320,734,361,718"/>
+<area shape="poly" title=" " alt="" coords="588,401,577,457,555,525,522,597,500,632,475,663,459,677,441,687,438,682,456,672,471,659,496,629,517,595,550,523,572,456,586,406"/>
+<area shape="poly" title=" " alt="" coords="682,365,693,374,685,383,668,386,666,381,683,378,688,375,682,371"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="364,562,484,590"/>
+<area shape="poly" title=" " alt="" coords="571,398,562,414,542,449,529,479,515,508,490,540,456,563,453,559,486,536,511,505,525,477,537,446,558,411,568,402"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="360,461,488,489"/>
+<area shape="poly" title=" " alt="" coords="541,397,509,415,472,439,441,463,438,459,469,435,507,410,545,393"/>
+<area shape="poly" title=" " alt="" coords="421,603,409,685,404,683,418,607"/>
+<area shape="poly" title=" " alt="" coords="425,502,427,562,421,561,423,507"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="310,361,493,388"/>
+<area shape="poly" title=" " alt="" coords="404,401,412,437,420,461,415,461,406,438,403,406"/>
+<area shape="poly" title=" " alt="" coords="202,826,202,857,205,871,211,883,224,889,251,896,323,911,318,912,250,901,222,894,208,887,200,873,196,858,199,831"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="161,909,287,936"/>
+<area shape="poly" title=" " alt="" coords="189,824,185,838,180,861,185,884,193,896,205,908,200,908,189,899,180,886,174,861,180,836,186,829"/>
+<area shape="poly" title=" " alt="" coords="193,999,168,973,147,937,135,896,134,862,147,785,163,655,179,550,193,503,215,456,249,409,296,359,320,338,348,322,408,297,468,282,525,276,521,279,469,288,409,302,350,326,323,343,299,363,253,412,220,459,198,505,184,551,169,656,152,786,139,862,140,895,152,935,172,970,199,1000"/>
+<area shape="poly" title=" " alt="" coords="226,950,226,1010,222,1007,222,954"/>
+<area shape="poly" title=" " alt="" coords="688,198,611,261,607,257,692,195"/>
+<area shape="poly" title=" " alt="" coords="469,199,469,219,474,234,496,253,525,266,520,268,493,258,470,238,464,220,467,205"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-slots" class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:abf5298a902aa5a8758832192611ebacd" id="r_abf5298a902aa5a8758832192611ebacd"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#abf5298a902aa5a8758832192611ebacd">slotDisableShortcuts</a> ()</td></tr>
+<tr class="memdesc:abf5298a902aa5a8758832192611ebacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable shortcuts  <br /></td></tr>
+<tr class="memitem:ae77c51cbbe99c7975436d8425e48ed5f" id="r_ae77c51cbbe99c7975436d8425e48ed5f"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ae77c51cbbe99c7975436d8425e48ed5f">slotRestoreShortcuts</a> ()</td></tr>
+<tr class="memdesc:ae77c51cbbe99c7975436d8425e48ed5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore shortcuts  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a84611dea3f27e165f2bb23cca1a63002" id="r_a84611dea3f27e165f2bb23cca1a63002"><td class="memItemLeft"><a id="a84611dea3f27e165f2bb23cca1a63002" name="a84611dea3f27e165f2bb23cca1a63002"></a>
+&#160;</td><td class="memItemRight"><b>CDesktopManager</b> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *para, QObject *parent=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:ae32dcfd178607505c12b11d032861b5f" id="r_ae32dcfd178607505c12b11d032861b5f"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#ae32dcfd178607505c12b11d032861b5f">RunCommand</a> (const QString &amp;program, const QStringList &amp;args=QStringList(), int timeout=5000)</td></tr>
+<tr class="memdesc:ae32dcfd178607505c12b11d032861b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronous running program  <br /></td></tr>
+<tr class="memitem:a6aaa649b4960b44d9e02c6b4835f719d" id="r_a6aaa649b4960b44d9e02c6b4835f719d"><td class="memItemLeft">static QString&#160;</td><td class="memItemRight"><a class="el" href="#a6aaa649b4960b44d9e02c6b4835f719d">GetCommandOutput</a> (const QString &amp;program, const QStringList &amp;args=QStringList(), int timeout=5000)</td></tr>
+<tr class="memdesc:a6aaa649b4960b44d9e02c6b4835f719d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronous running program. and return the program output.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:adaff9a57b3653fecb2aeb429827946e8" id="r_adaff9a57b3653fecb2aeb429827946e8"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#adaff9a57b3653fecb2aeb429827946e8">OnDisableShortcuts</a> ()=0</td></tr>
+<tr class="memdesc:adaff9a57b3653fecb2aeb429827946e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable shortcuts  <br /></td></tr>
+<tr class="memitem:ad86eb11d046e73f1e3e38145243506e3" id="r_ad86eb11d046e73f1e3e38145243506e3"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#ad86eb11d046e73f1e3e38145243506e3">OnRestoreShortcuts</a> ()=0</td></tr>
+<tr class="memdesc:ad86eb11d046e73f1e3e38145243506e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore shortcuts  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a7a889eeaee08b8733c4669152b6fb0de" id="r_a7a889eeaee08b8733c4669152b6fb0de"><td class="memItemLeft"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a7a889eeaee08b8733c4669152b6fb0de">m_pParameterPlugin</a></td></tr>
+<tr class="memitem:a150b14fb0b66c0e6997aa59465346f5c" id="r_a150b14fb0b66c0e6997aa59465346f5c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a150b14fb0b66c0e6997aa59465346f5c">m_bScript</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>Desktop manager </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCDesktopManagerThread.html" title="桌面管理线程">CDesktopManagerThread</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8h_source.html">DesktopManager.h</a> 第 <a class="el" href="DesktopManager_8h_source.html#l00012">12</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="ace2175681eadd6a009028d57b26dd099" name="ace2175681eadd6a009028d57b26dd099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace2175681eadd6a009028d57b26dd099">&#9670;&#160;</a></span>~CDesktopManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDesktopManager::~CDesktopManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8cpp_source.html">DesktopManager.cpp</a> 第 <a class="el" href="DesktopManager_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a6aaa649b4960b44d9e02c6b4835f719d" name="a6aaa649b4960b44d9e02c6b4835f719d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aaa649b4960b44d9e02c6b4835f719d">&#9670;&#160;</a></span>GetCommandOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDesktopManager::GetCommandOutput </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>program</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;</td>          <td class="paramname"><span class="paramname"><em>args</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QStringList()</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5000</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Synchronous running program. and return the program output. </p>
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8cpp_source.html">DesktopManager.cpp</a> 第 <a class="el" href="DesktopManager_8cpp_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adaff9a57b3653fecb2aeb429827946e8" name="adaff9a57b3653fecb2aeb429827946e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaff9a57b3653fecb2aeb429827946e8">&#9670;&#160;</a></span>OnDisableShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CDesktopManager::OnDisableShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Disable shortcuts </p>
+
+<p>在 <a class="el" href="classCDesktopManagerUnix.html#acb2e8ee1eff0a444814445860a3bbf16">CDesktopManagerUnix</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="ad86eb11d046e73f1e3e38145243506e3" name="ad86eb11d046e73f1e3e38145243506e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad86eb11d046e73f1e3e38145243506e3">&#9670;&#160;</a></span>OnRestoreShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CDesktopManager::OnRestoreShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restore shortcuts </p>
+
+<p>在 <a class="el" href="classCDesktopManagerUnix.html#ac24b85c2e15fca70f20b46afccefb145">CDesktopManagerUnix</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="ae32dcfd178607505c12b11d032861b5f" name="ae32dcfd178607505c12b11d032861b5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae32dcfd178607505c12b11d032861b5f">&#9670;&#160;</a></span>RunCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopManager::RunCommand </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>program</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;</td>          <td class="paramname"><span class="paramname"><em>args</em></span><span class="paramdefsep"> = </span><span class="paramdefval">QStringList()</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5000</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Synchronous running program </p>
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8cpp_source.html">DesktopManager.cpp</a> 第 <a class="el" href="DesktopManager_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abf5298a902aa5a8758832192611ebacd" name="abf5298a902aa5a8758832192611ebacd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf5298a902aa5a8758832192611ebacd">&#9670;&#160;</a></span>slotDisableShortcuts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDesktopManager::slotDisableShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Disable shortcuts </p>
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8cpp_source.html">DesktopManager.cpp</a> 第 <a class="el" href="DesktopManager_8cpp_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae77c51cbbe99c7975436d8425e48ed5f" name="ae77c51cbbe99c7975436d8425e48ed5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae77c51cbbe99c7975436d8425e48ed5f">&#9670;&#160;</a></span>slotRestoreShortcuts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDesktopManager::slotRestoreShortcuts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restore shortcuts </p>
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8cpp_source.html">DesktopManager.cpp</a> 第 <a class="el" href="DesktopManager_8cpp_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a150b14fb0b66c0e6997aa59465346f5c" name="a150b14fb0b66c0e6997aa59465346f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a150b14fb0b66c0e6997aa59465346f5c">&#9670;&#160;</a></span>m_bScript</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopManager::m_bScript</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8h_source.html">DesktopManager.h</a> 第 <a class="el" href="DesktopManager_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7a889eeaee08b8733c4669152b6fb0de" name="a7a889eeaee08b8733c4669152b6fb0de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a889eeaee08b8733c4669152b6fb0de">&#9670;&#160;</a></span>m_pParameterPlugin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a>* CDesktopManager::m_pParameterPlugin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DesktopManager_8h_source.html">DesktopManager.h</a> 第 <a class="el" href="DesktopManager_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="DesktopManager_8h_source.html">DesktopManager.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="DesktopManager_8cpp_source.html">DesktopManager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

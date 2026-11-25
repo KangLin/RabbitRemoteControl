@@ -1,0 +1,15 @@
+<map id="COperateServer" name="COperateServer">
+<area shape="rect" id="Node000001" title="Server operate interface." alt="" coords="305,157,429,184"/>
+<area shape="rect" id="Node000004" href="$classCOperateFreeRDPServer.html" title=" " alt="" coords="5,232,185,260"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="305,191,144,234,143,229,303,186"/>
+<area shape="rect" id="Node000005" href="$classCOperateFtpServer.html" title=" " alt="" coords="209,232,354,260"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="343,194,298,234,296,230,338,196"/>
+<area shape="rect" id="Node000006" href="$classCOperateSftpServer.html" title=" " alt="" coords="379,232,528,260"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="395,192,441,232,436,231,393,197"/>
+<area shape="rect" id="Node000007" href="$classCOperateTemplateServer.html" title=" " alt="" coords="552,232,736,260"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="432,186,597,232,592,232,431,191"/>
+<area shape="rect" id="Node000002" href="$classCOperate.html" title="Operate interface." alt="" coords="326,81,408,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="369,122,369,158,365,155,365,127"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="330,5,404,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,47,369,82,365,79,366,51"/>
+</map>

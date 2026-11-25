@@ -1,0 +1,9 @@
+<map id="CFavoriteDatabase" name="CFavoriteDatabase">
+<area shape="rect" id="Node000001" title="The CFavoriteDatabase class." alt="" coords="5,232,150,260"/>
+<area shape="rect" id="Node000002" href="$classCDatabaseTree.html" title="The CDatabaseTree class." alt="" coords="18,157,137,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,198,80,233,75,231,76,202"/>
+<area shape="rect" id="Node000003" href="$classCDatabase.html" title="Provide interfaces such as opening the database and initializing the database." alt="" coords="31,81,124,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,122,80,157,75,156,76,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="41,5,114,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="78,46,80,81,75,80,77,51"/>
+</map>

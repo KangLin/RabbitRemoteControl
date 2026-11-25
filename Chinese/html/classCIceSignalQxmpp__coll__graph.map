@@ -1,0 +1,12 @@
+<map id="CIceSignalQxmpp" name="CIceSignalQxmpp">
+<area shape="rect" id="Node000001" title="QXMPP 实现 ICE 信令类" alt="" coords="200,159,336,187"/>
+<area shape="rect" id="Node000004" href="$classCIceSignalQXmppManager.html" title=" " alt="" coords="64,260,259,288"/>
+<area shape="poly" id="edge5_Node000004_Node000001" title=" " alt="" coords="188,187,172,200,160,212,155,223,154,235,159,261,154,258,149,236,150,222,155,210,168,196,183,190"/>
+<area shape="rect" id="Node000002" href="$classCIceSignal.html" title="ICE 信令接口类" alt="" coords="224,82,313,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,123,271,160,266,158,267,128"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="232,5,305,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="270,46,271,83,266,81,267,51"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="215,250,237,234,253,210,263,189,267,186,258,213,241,238,217,255"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,159,177,187"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="109,198,134,234,153,260,148,259,130,238,106,203"/>
+</map>

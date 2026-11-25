@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDlgSettingsTemplateBase类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate17</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDlgSettingsTemplateBase-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDlgSettingsTemplateBase类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDlgSettingsTemplateBase 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsTemplateBase__inherit__graph.png" border="0" usemap="#aCDlgSettingsTemplateBase_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCDlgSettingsTemplateBase_inherit__map" id="aCDlgSettingsTemplateBase_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,81,203,109"/>
+<area shape="rect" title=" " alt="" coords="67,5,141,33"/>
+<area shape="poly" title=" " alt="" coords="106,47,106,82,102,79,102,51"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDlgSettingsTemplateBase 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsTemplateBase__coll__graph.png" border="0" usemap="#aCDlgSettingsTemplateBase_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCDlgSettingsTemplateBase_coll__map" id="aCDlgSettingsTemplateBase_coll__map">
+<area shape="rect" title=" " alt="" coords="390,366,587,394"/>
+<area shape="rect" title=" " alt="" coords="368,263,441,290"/>
+<area shape="poly" title=" " alt="" coords="425,300,481,365,475,366,425,305"/>
+<area shape="rect" href="classCParameterTemplateBase.html" title=" " alt="" coords="466,263,655,290"/>
+<area shape="poly" title=" " alt="" coords="544,301,500,367,496,364,541,306"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="393,159,542,187"/>
+<area shape="poly" title=" " alt="" coords="490,196,551,262,546,263,489,201"/>
+<area shape="poly" title=" " alt="" coords="557,166,569,173,560,180,544,182,541,178,558,175,563,173,558,171"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="202,467,362,494"/>
+<area shape="poly" title=" " alt="" coords="428,197,393,226,359,264,346,288,339,310,334,351,330,394,325,417,314,444,297,468,292,465,309,441,319,416,325,393,328,351,333,309,341,286,354,261,389,222,432,193"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="172,366,293,394"/>
+<area shape="poly" title=" " alt="" coords="375,182,343,194,313,213,299,228,290,242,282,272,277,305,263,343,246,367,242,364,258,341,272,304,277,271,285,240,295,225,310,209,341,189,379,179"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="114,263,242,290"/>
+<area shape="poly" title=" " alt="" coords="375,184,324,196,271,213,252,226,234,241,200,264,196,261,231,237,249,221,269,209,323,191,379,181"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="695,82,792,110"/>
+<area shape="poly" title=" " alt="" coords="678,116,517,161,515,156,682,113"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="671,914,808,942"/>
+<area shape="poly" title=" " alt="" coords="770,118,789,143,797,171,797,806,794,850,778,891,757,916,755,911,773,889,789,849,791,806,791,172,784,145,770,124"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="124,690,264,718"/>
+<area shape="poly" title=" " alt="" coords="677,100,514,105,315,116,224,125,148,138,97,154,84,163,79,172,79,582,82,600,88,617,111,647,140,670,169,689,164,691,137,675,107,650,84,620,77,602,74,583,74,171,80,159,95,149,147,133,223,120,315,110,514,99,681,96"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="620,791,750,819"/>
+<area shape="poly" title=" " alt="" coords="744,123,746,172,746,706,741,732,730,756,700,793,697,788,725,753,736,730,741,705,741,172,742,128"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="814,211,956,239"/>
+<area shape="poly" title=" " alt="" coords="788,115,814,132,853,172,879,211,874,210,849,175,811,136,788,120"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="873,314,1062,342"/>
+<area shape="poly" title=" " alt="" coords="806,110,848,125,890,146,928,173,959,210,970,237,975,266,972,315,967,313,969,266,965,238,954,212,925,177,887,150,846,130,807,115"/>
+<area shape="rect" title=" " alt="" coords="5,5,79,33"/>
+<area shape="poly" title=" " alt="" coords="94,23,696,87,693,92,95,29"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="124,567,216,595"/>
+<area shape="poly" title=" " alt="" coords="33,51,29,95,29,431,32,455,41,476,54,496,70,514,108,544,144,566,139,568,105,548,66,518,50,499,36,479,27,456,23,432,23,95,33,45"/>
+<area shape="poly" title=" " alt="" coords="677,908,644,894,611,872,588,843,580,825,578,806,578,580,577,549,579,518,598,452,622,403,646,355,665,290,668,276,665,264,641,237,610,215,576,200,543,189,542,184,578,195,613,211,644,233,670,261,673,276,670,291,651,357,627,406,603,454,584,519,582,549,583,580,583,806,586,824,592,840,615,868,647,890,682,909"/>
+<area shape="poly" title=" " alt="" coords="229,724,372,804,465,849,563,887,617,903,673,917,667,916,616,908,561,893,463,854,369,808,228,729"/>
+<area shape="poly" title=" " alt="" coords="293,507,304,543,309,585,306,628,300,649,289,668,276,682,259,692,256,688,272,678,285,665,295,647,301,627,304,585,298,544,291,512"/>
+<area shape="poly" title=" " alt="" coords="243,505,225,520,200,545,181,569,177,566,197,542,222,516,246,501"/>
+<area shape="poly" title=" " alt="" coords="244,405,263,441,276,466,271,466,258,444,244,411"/>
+<area shape="poly" title=" " alt="" coords="186,302,205,341,223,365,218,366,200,343,186,308"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="114,159,298,187"/>
+<area shape="poly" title=" " alt="" coords="179,201,176,212,173,238,177,262,171,262,168,238,171,210,181,196"/>
+<area shape="poly" title=" " alt="" coords="152,606,149,620,143,643,149,665,158,678,171,689,166,690,154,681,144,667,138,643,144,618,150,611"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="363,690,489,718"/>
+<area shape="poly" title=" " alt="" coords="230,594,294,617,360,653,411,690,406,690,357,657,292,621,231,600"/>
+<area shape="poly" title=" " alt="" coords="681,832,681,862,689,889,699,902,713,914,708,913,695,905,684,891,676,862,677,836"/>
+<area shape="poly" title=" " alt="" coords="475,721,653,790,648,791,474,727"/>
+<area shape="poly" title=" " alt="" coords="871,251,858,288,851,327,851,806,850,833,844,853,832,872,815,892,798,906,779,916,777,911,795,901,811,888,828,869,839,851,844,832,846,806,846,327,853,287,868,255"/>
+<area shape="poly" title=" " alt="" coords="963,355,958,391,955,429,955,806,952,831,941,852,925,869,905,884,858,906,809,919,808,914,856,901,903,880,922,865,937,849,946,829,950,806,950,429,953,391,960,359"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-slots" class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:a8df8aa6d8df512379febe99323cefe87" id="r_a8df8aa6d8df512379febe99323cefe87"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a8df8aa6d8df512379febe99323cefe87">accept</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a973d93d4cac89db2b40ad76b01896034" id="r_a973d93d4cac89db2b40ad76b01896034"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a973d93d4cac89db2b40ad76b01896034">CDlgSettingsTemplateBase</a> (<a class="el" href="classCParameterTemplateBase.html">CParameterTemplateBase</a> *pPara, QWidget *parent=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a030e0d803753d6edda806ac2b8db1f5b" id="r_a030e0d803753d6edda806ac2b8db1f5b"><td class="memItemLeft">Ui::CDlgSettingsTemplateBase *&#160;</td><td class="memItemRight"><a class="el" href="#a030e0d803753d6edda806ac2b8db1f5b">ui</a></td></tr>
+<tr class="memitem:a44e56e31cd380d1beafa6ab6ab6c984c" id="r_a44e56e31cd380d1beafa6ab6ab6c984c"><td class="memItemLeft"><a class="el" href="classCParameterTemplateBase.html">CParameterTemplateBase</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a44e56e31cd380d1beafa6ab6ab6c984c">m_pPara</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DlgSettingsTemplateBase_8h_source.html">DlgSettingsTemplateBase.h</a> 第 <a class="el" href="DlgSettingsTemplateBase_8h_source.html#l00012">12</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a973d93d4cac89db2b40ad76b01896034" name="a973d93d4cac89db2b40ad76b01896034"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a973d93d4cac89db2b40ad76b01896034">&#9670;&#160;</a></span>CDlgSettingsTemplateBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsTemplateBase::CDlgSettingsTemplateBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterTemplateBase.html">CParameterTemplateBase</a> *</td>          <td class="paramname"><span class="paramname"><em>pPara</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWidget *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTemplateBase_8cpp_source.html">DlgSettingsTemplateBase.cpp</a> 第 <a class="el" href="DlgSettingsTemplateBase_8cpp_source.html#l00007">7</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad0386b4f7e7ccd64548cd73a50ba2fc8" name="ad0386b4f7e7ccd64548cd73a50ba2fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0386b4f7e7ccd64548cd73a50ba2fc8">&#9670;&#160;</a></span>~CDlgSettingsTemplateBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsTemplateBase::~CDlgSettingsTemplateBase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTemplateBase_8cpp_source.html">DlgSettingsTemplateBase.cpp</a> 第 <a class="el" href="DlgSettingsTemplateBase_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a8df8aa6d8df512379febe99323cefe87" name="a8df8aa6d8df512379febe99323cefe87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df8aa6d8df512379febe99323cefe87">&#9670;&#160;</a></span>accept</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTemplateBase::accept </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel slot">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTemplateBase_8cpp_source.html">DlgSettingsTemplateBase.cpp</a> 第 <a class="el" href="DlgSettingsTemplateBase_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a44e56e31cd380d1beafa6ab6ab6c984c" name="a44e56e31cd380d1beafa6ab6ab6c984c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44e56e31cd380d1beafa6ab6ab6c984c">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterTemplateBase.html">CParameterTemplateBase</a>* CDlgSettingsTemplateBase::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTemplateBase_8h_source.html">DlgSettingsTemplateBase.h</a> 第 <a class="el" href="DlgSettingsTemplateBase_8h_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a030e0d803753d6edda806ac2b8db1f5b" name="a030e0d803753d6edda806ac2b8db1f5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a030e0d803753d6edda806ac2b8db1f5b">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CDlgSettingsTemplateBase* CDlgSettingsTemplateBase::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTemplateBase_8h_source.html">DlgSettingsTemplateBase.h</a> 第 <a class="el" href="DlgSettingsTemplateBase_8h_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Template/Base/<a class="el" href="DlgSettingsTemplateBase_8h_source.html">DlgSettingsTemplateBase.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Template/Base/<a class="el" href="DlgSettingsTemplateBase_8cpp_source.html">DlgSettingsTemplateBase.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

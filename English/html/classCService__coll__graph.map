@@ -1,0 +1,11 @@
+<map id="CService" name="CService">
+<area shape="rect" id="Node000001" title="The service interface." alt="" coords="55,183,134,211"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="58,5,131,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,43,29,61,12,84,8,96,12,109,24,131,41,151,77,181,72,184,37,154,20,134,7,111,3,96,7,81,26,57,52,39"/>
+<area shape="rect" id="Node000003" href="$classCParameterService.html" title=" " alt="" coords="22,82,167,110"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="96,46,97,83,92,81,94,51"/>
+<area shape="rect" id="Node000004" href="$classCPluginService.html" title="The service plugin interface." alt="" coords="191,82,310,110"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="136,37,226,81,221,83,136,43"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,124,97,183,92,182,92,127"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="224,119,165,161,123,185,120,180,163,157,219,120"/>
+</map>

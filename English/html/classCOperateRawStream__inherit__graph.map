@@ -1,0 +1,9 @@
+<map id="COperateRawStream" name="COperateRawStream">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,163,260"/>
+<area shape="rect" id="Node000002" href="$classCOperateTerminal.html" title="Terminal operate interface." alt="" coords="15,157,153,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,198,87,233,81,231,82,202"/>
+<area shape="rect" id="Node000003" href="$classCOperate.html" title="Operate interface." alt="" coords="43,81,125,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,122,87,157,81,156,83,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="47,5,121,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="85,46,87,81,81,80,83,51"/>
+</map>

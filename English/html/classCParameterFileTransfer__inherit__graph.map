@@ -1,0 +1,9 @@
+<map id="CParameterFileTransfer" name="CParameterFileTransfer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,178,260"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="17,157,166,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,198,94,233,89,231,90,202"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="43,81,140,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,122,94,157,89,156,90,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="55,5,128,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,46,94,81,89,80,91,51"/>
+</map>

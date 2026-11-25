@@ -1,0 +1,9 @@
+<map id="CMainWindow" name="CMainWindow">
+<area shape="rect" id="Node000001" title="The Main window class." alt="" coords="27,183,142,211"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,82,121,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,123,84,183,79,182,67,127"/>
+<area shape="rect" id="Node000003" href="$classCManagePlugins.html" title="Manage plugin." alt="" coords="145,82,274,110"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,120,103,185,100,180,179,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="173,5,246,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="211,46,212,83,207,81,208,51"/>
+</map>

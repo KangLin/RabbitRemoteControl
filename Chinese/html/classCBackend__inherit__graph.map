@@ -1,0 +1,35 @@
+<map id="CBackend" name="CBackend">
+<area shape="rect" id="Node000001" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="127,292,212,320"/>
+<area shape="rect" id="Node000003" href="$classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="289,136,428,164"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,278,218,239,258,200,290,178,325,163,321,166,293,183,262,204,222,243,191,281"/>
+<area shape="rect" id="Node000009" href="$classCBackendFileTransfer.html" title=" " alt="" coords="278,213,439,241"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="203,281,259,251,298,240,293,243,261,256,206,286"/>
+<area shape="rect" id="Node000010" href="$classCBackendSSH.html" title=" " alt="" coords="303,265,414,293"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="227,295,305,286,300,288,228,300"/>
+<area shape="rect" id="Node000011" href="$classCBackendServer.html" title="服务接口。它由协议插件实现。" alt="" coords="295,317,422,345"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="227,311,297,322,292,323,228,316"/>
+<area shape="rect" id="Node000016" href="$classCBackendTemplateBase.html" title=" " alt="" coords="270,369,447,397"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="205,325,261,354,298,369,293,369,259,359,205,331"/>
+<area shape="rect" id="Node000017" href="$classCBackendTemplateQtEvent.html" title=" " alt="" coords="260,421,457,449"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="188,330,220,370,240,390,261,406,288,421,283,420,259,411,236,394,216,374,186,335"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,292,79,320"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,303,128,304,124,307,95,308"/>
+<area shape="rect" id="Node000004" href="$classCBackendFreeRDP.html" title=" " alt="" coords="535,5,675,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="386,124,438,83,504,43,540,32,535,35,506,48,441,87,389,128"/>
+<area shape="rect" id="Node000005" href="$classCBackendLibVNCServer.html" title=" " alt="" coords="518,57,692,85"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="410,128,505,95,550,84,545,87,506,100,413,133"/>
+<area shape="rect" id="Node000006" href="$classCBackendPlayer.html" title=" " alt="" coords="542,109,668,137"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="443,138,544,129,539,131,444,143"/>
+<area shape="rect" id="Node000007" href="$classCBackendTemplateDesktop.html" title=" " alt="" coords="505,161,705,189"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="443,156,507,164,502,166,444,161"/>
+<area shape="rect" id="Node000008" href="$classCBackendVnc.html" title=" " alt="" coords="550,213,660,241"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="413,167,506,198,553,213,547,214,505,203,413,172"/>
+<area shape="rect" id="Node000012" href="$classCBackendFreeRDPServer.html" title=" " alt="" coords="514,265,696,293"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="437,312,539,293,533,294,438,317"/>
+<area shape="rect" id="Node000013" href="$classCBackendFtpServer.html" title=" " alt="" coords="531,317,679,345"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="438,329,533,331,528,332,438,334"/>
+<area shape="rect" id="Node000014" href="$classCBackendSftpServer.html" title="The CBackendSftpServer class" alt="" coords="529,369,681,397"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="438,345,539,369,533,369,437,350"/>
+<area shape="rect" id="Node000015" href="$classCBackendTemplateServer.html" title=" " alt="" coords="511,421,699,449"/>
+<area shape="poly" id="edge14_Node000011_Node000015" title=" " alt="" coords="437,345,459,356,474,368,484,382,492,394,507,406,535,421,529,420,504,411,488,398,479,385,470,372,456,360,436,350"/>
+</map>

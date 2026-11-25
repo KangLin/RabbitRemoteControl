@@ -1,0 +1,9 @@
+<map id="CPluginBackendThread" name="CPluginBackendThread">
+<area shape="rect" id="Node000001" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="11,157,182,184"/>
+<area shape="rect" id="Node000004" href="$classCPluginTemplateQtEvent.html" title="The plugin has a background thread, and all backend of the operations run on this background thread." alt="" coords="5,232,188,260"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="98,198,99,233,94,231,95,202"/>
+<area shape="rect" id="Node000002" href="$classCPlugin.html" title="Plugin interface." alt="" coords="61,81,132,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,122,99,157,94,156,95,127"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="60,5,133,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,46,99,81,94,80,96,51"/>
+</map>

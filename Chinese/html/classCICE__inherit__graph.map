@@ -1,0 +1,5 @@
+<map id="CICE" name="CICE">
+<area shape="rect" id="Node000001" title="提供管理、访问ICE的一个单例对象" alt="" coords="16,81,68,109"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,79,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,47,45,81,39,80,40,51"/>
+</map>

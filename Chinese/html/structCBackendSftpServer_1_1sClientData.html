@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackendSftpServer::sClientData结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate17</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": false,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="classCBackendSftpServer.html">CBackendSftpServer</a></li><li class="navelem"><a href="structCBackendSftpServer_1_1sClientData.html">sClientData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="structCBackendSftpServer_1_1sClientData-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackendSftpServer::sClientData结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+CBackendSftpServer::sClientData 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="structCBackendSftpServer_1_1sClientData__coll__graph.png" border="0" usemap="#aCBackendSftpServer_1_1sClientData_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="aCBackendSftpServer_1_1sClientData_coll__map" id="aCBackendSftpServer_1_1sClientData_coll__map">
+<area shape="rect" title=" " alt="" coords="724,1092,876,1136"/>
+<area shape="rect" href="classCParameterSftpServer.html" title=" " alt="" coords="718,991,882,1019"/>
+<area shape="poly" title=" " alt="" coords="802,1033,802,1093,798,1089,798,1036"/>
+<area shape="rect" href="classCParameterServer.html" title="The server base parameters" alt="" coords="730,914,870,942"/>
+<area shape="poly" title=" " alt="" coords="802,955,802,992,798,989,798,959"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="427,159,576,187"/>
+<area shape="poly" title=" " alt="" coords="591,177,710,188,763,197,801,209,851,232,867,248,873,275,873,806,867,840,852,870,834,896,815,916,813,911,829,893,848,867,862,838,868,806,868,275,863,251,848,236,799,213,762,202,710,194,593,182"/>
+<area shape="poly" title=" " alt="" coords="591,166,603,173,594,180,578,182,575,178,592,175,597,173,592,171"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="482,467,641,494"/>
+<area shape="poly" title=" " alt="" coords="507,200,547,393,561,467,556,466,541,394,506,205"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="556,366,676,394"/>
+<area shape="poly" title=" " alt="" coords="516,198,611,366,606,366,515,203"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="590,263,717,290"/>
+<area shape="poly" title=" " alt="" coords="542,192,572,209,641,261,635,263,569,213,543,197"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="237,82,334,110"/>
+<area shape="poly" title=" " alt="" coords="337,113,466,157,461,160,338,118"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="163,914,301,942"/>
+<area shape="poly" title=" " alt="" coords="220,104,154,112,83,125,53,134,29,145,13,158,8,172,8,806,12,834,22,854,40,871,64,888,87,900,112,910,165,922,160,925,111,915,85,905,61,892,36,875,18,857,6,836,3,806,3,171,9,155,26,141,51,129,82,120,153,107,224,100"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="373,690,512,718"/>
+<area shape="poly" title=" " alt="" coords="286,123,288,172,288,582,291,602,299,619,326,649,362,672,400,689,395,690,359,676,322,653,294,622,286,604,283,583,283,172,285,128"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="596,791,726,819"/>
+<area shape="poly" title=" " alt="" coords="326,116,354,140,362,155,365,172,365,431,368,451,377,463,390,472,407,478,445,490,465,501,482,517,495,537,502,554,518,594,593,708,654,791,648,790,589,711,514,596,497,556,491,539,478,520,462,505,443,495,405,483,388,477,373,467,364,453,360,432,360,172,357,157,349,143,327,121"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="49,211,191,239"/>
+<area shape="poly" title=" " alt="" coords="233,119,206,136,162,175,132,212,127,209,159,172,202,132,236,115"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="76,314,265,342"/>
+<area shape="poly" title=" " alt="" coords="271,127,269,135,180,315,175,313,264,133,273,122"/>
+<area shape="rect" title=" " alt="" coords="567,5,641,33"/>
+<area shape="poly" title=" " alt="" coords="550,35,336,86,333,81,554,31"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="672,567,765,595"/>
+<area shape="poly" title=" " alt="" coords="655,20,736,25,823,37,862,47,894,59,916,75,924,94,924,482,920,506,907,527,889,543,867,556,815,572,766,580,764,575,814,567,865,551,886,539,903,523,915,505,919,482,919,95,912,78,891,64,860,52,822,42,735,30,657,24"/>
+<area shape="poly" title=" " alt="" coords="266,903,289,885,311,862,327,836,333,806,333,580,337,554,346,534,373,504,399,474,407,455,411,431,411,275,417,246,434,221,455,201,480,186,477,190,459,205,438,225,422,248,416,275,416,432,413,457,403,477,377,507,350,537,342,556,339,580,339,806,332,838,315,865,293,889,269,907"/>
+<area shape="poly" title=" " alt="" coords="438,731,429,769,413,812,389,855,356,892,331,908,303,919,300,914,328,904,353,888,385,852,408,810,424,768,436,735"/>
+<area shape="poly" title=" " alt="" coords="549,506,452,691,447,689,546,510"/>
+<area shape="poly" title=" " alt="" coords="595,500,700,566,695,567,595,505"/>
+<area shape="poly" title=" " alt="" coords="645,401,680,431,717,470,753,515,780,566,788,598,795,640,802,743,803,915,798,912,796,743,789,641,783,599,775,568,748,518,713,473,676,435,645,406"/>
+<area shape="poly" title=" " alt="" coords="603,405,571,468,566,465,600,409"/>
+<area shape="poly" title=" " alt="" coords="645,303,623,367,618,364,642,307"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="694,159,877,187"/>
+<area shape="poly" title=" " alt="" coords="754,199,672,264,669,260,758,195"/>
+<area shape="poly" title=" " alt="" coords="655,599,591,621,575,633,564,644,553,656,536,669,485,692,482,688,533,664,549,652,560,640,571,628,588,617,660,596"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="628,690,753,718"/>
+<area shape="poly" title=" " alt="" coords="734,607,743,637,743,653,738,667,729,681,716,692,713,688,725,678,734,665,737,652,737,638,732,612"/>
+<area shape="poly" title=" " alt="" coords="663,831,670,862,684,888,706,904,733,917,727,917,703,909,680,892,665,864,660,836"/>
+<area shape="poly" title=" " alt="" coords="611,826,439,893,369,909,302,920,300,915,368,904,438,887,616,824"/>
+<area shape="poly" title=" " alt="" coords="684,731,667,792,663,789,681,735"/>
+<area shape="poly" title=" " alt="" coords="94,252,71,285,62,305,59,327,59,806,62,826,70,844,82,860,98,874,137,896,179,912,174,915,135,901,95,878,79,864,65,847,56,828,53,806,53,327,57,304,66,282,96,247"/>
+<area shape="poly" title=" " alt="" coords="165,355,144,480,135,560,131,641,131,806,133,823,139,840,159,869,185,893,212,913,206,914,182,898,155,873,134,842,128,825,125,806,125,641,129,560,139,480,164,360"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a27d7feaf81328ea143ec79dfcd2ebeec" id="r_a27d7feaf81328ea143ec79dfcd2ebeec"><td class="memItemLeft">QString&#160;</td><td class="memItemRight"><a class="el" href="#a27d7feaf81328ea143ec79dfcd2ebeec">ip</a></td></tr>
+<tr class="memitem:a9c3e0dd93c745a7ddf6f205259614079" id="r_a9c3e0dd93c745a7ddf6f205259614079"><td class="memItemLeft">quint16&#160;</td><td class="memItemRight"><a class="el" href="#a9c3e0dd93c745a7ddf6f205259614079">port</a></td></tr>
+<tr class="memitem:a2119609f2d14cb8629b23183c6f73a08" id="r_a2119609f2d14cb8629b23183c6f73a08"><td class="memItemLeft">ssh_session&#160;</td><td class="memItemRight"><a class="el" href="#a2119609f2d14cb8629b23183c6f73a08">session</a></td></tr>
+<tr class="memitem:a7b38921a03084d881e9a32ff13c00fcb" id="r_a7b38921a03084d881e9a32ff13c00fcb"><td class="memItemLeft">ssh_channel&#160;</td><td class="memItemRight"><a class="el" href="#a7b38921a03084d881e9a32ff13c00fcb">channel</a></td></tr>
+<tr class="memitem:ada4e4945dea8b794a5c7db333f22e5e6" id="r_ada4e4945dea8b794a5c7db333f22e5e6"><td class="memItemLeft">sftp_session&#160;</td><td class="memItemRight"><a class="el" href="#ada4e4945dea8b794a5c7db333f22e5e6">sftp</a></td></tr>
+<tr class="memitem:a94b6597d1f38c86a5b361e3b30f979a6" id="r_a94b6597d1f38c86a5b361e3b30f979a6"><td class="memItemLeft">QTime&#160;</td><td class="memItemRight"><a class="el" href="#a94b6597d1f38c86a5b361e3b30f979a6">m_Time</a></td></tr>
+<tr class="memitem:ac621f3bcf18436db3f784c6c1fceca9d" id="r_ac621f3bcf18436db3f784c6c1fceca9d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac621f3bcf18436db3f784c6c1fceca9d">m_nAuthAttempts</a></td></tr>
+<tr class="memitem:ae60de8f2b8d26510557963d1f8b8bf6d" id="r_ae60de8f2b8d26510557963d1f8b8bf6d"><td class="memItemLeft">struct ssh_channel_callbacks_struct&#160;</td><td class="memItemRight"><a class="el" href="#ae60de8f2b8d26510557963d1f8b8bf6d">channel_cb</a></td></tr>
+<tr class="memitem:a98aeb31bc0ac71f88c33f7e4d1e1e47e" id="r_a98aeb31bc0ac71f88c33f7e4d1e1e47e"><td class="memItemLeft">struct ssh_server_callbacks_struct&#160;</td><td class="memItemRight"><a class="el" href="#a98aeb31bc0ac71f88c33f7e4d1e1e47e">server_cb</a></td></tr>
+<tr class="memitem:a13025d87236d0b56d87dfc96ebdc68a2" id="r_a13025d87236d0b56d87dfc96ebdc68a2"><td class="memItemLeft"><a class="el" href="classCParameterSftpServer.html">CParameterSftpServer</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a13025d87236d0b56d87dfc96ebdc68a2">pPara</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00048">48</a> 行定义.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a7b38921a03084d881e9a32ff13c00fcb" name="a7b38921a03084d881e9a32ff13c00fcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b38921a03084d881e9a32ff13c00fcb">&#9670;&#160;</a></span>channel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssh_channel CBackendSftpServer::sClientData::channel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae60de8f2b8d26510557963d1f8b8bf6d" name="ae60de8f2b8d26510557963d1f8b8bf6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae60de8f2b8d26510557963d1f8b8bf6d">&#9670;&#160;</a></span>channel_cb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct ssh_channel_callbacks_struct CBackendSftpServer::sClientData::channel_cb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a27d7feaf81328ea143ec79dfcd2ebeec" name="a27d7feaf81328ea143ec79dfcd2ebeec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27d7feaf81328ea143ec79dfcd2ebeec">&#9670;&#160;</a></span>ip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CBackendSftpServer::sClientData::ip</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac621f3bcf18436db3f784c6c1fceca9d" name="ac621f3bcf18436db3f784c6c1fceca9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac621f3bcf18436db3f784c6c1fceca9d">&#9670;&#160;</a></span>m_nAuthAttempts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendSftpServer::sClientData::m_nAuthAttempts</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a94b6597d1f38c86a5b361e3b30f979a6" name="a94b6597d1f38c86a5b361e3b30f979a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94b6597d1f38c86a5b361e3b30f979a6">&#9670;&#160;</a></span>m_Time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTime CBackendSftpServer::sClientData::m_Time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9c3e0dd93c745a7ddf6f205259614079" name="a9c3e0dd93c745a7ddf6f205259614079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c3e0dd93c745a7ddf6f205259614079">&#9670;&#160;</a></span>port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CBackendSftpServer::sClientData::port</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a13025d87236d0b56d87dfc96ebdc68a2" name="a13025d87236d0b56d87dfc96ebdc68a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13025d87236d0b56d87dfc96ebdc68a2">&#9670;&#160;</a></span>pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterSftpServer.html">CParameterSftpServer</a>* CBackendSftpServer::sClientData::pPara</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98aeb31bc0ac71f88c33f7e4d1e1e47e" name="a98aeb31bc0ac71f88c33f7e4d1e1e47e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98aeb31bc0ac71f88c33f7e4d1e1e47e">&#9670;&#160;</a></span>server_cb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct ssh_server_callbacks_struct CBackendSftpServer::sClientData::server_cb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2119609f2d14cb8629b23183c6f73a08" name="a2119609f2d14cb8629b23183c6f73a08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2119609f2d14cb8629b23183c6f73a08">&#9670;&#160;</a></span>session</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssh_session CBackendSftpServer::sClientData::session</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada4e4945dea8b794a5c7db333f22e5e6" name="ada4e4945dea8b794a5c7db333f22e5e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada4e4945dea8b794a5c7db333f22e5e6">&#9670;&#160;</a></span>sftp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sftp_session CBackendSftpServer::sClientData::sftp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a> 第 <a class="el" href="BackendSftpServer_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SftpServer/<a class="el" href="BackendSftpServer_8h_source.html">BackendSftpServer.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

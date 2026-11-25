@@ -1,0 +1,13 @@
+<map id="CMultimediaRecord" name="CMultimediaRecord">
+<area shape="rect" id="Node000001" title=" " alt="" coords="59,260,209,288"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,79,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="38,46,38,113,43,150,54,186,66,208,83,228,118,259,113,260,79,231,62,211,49,188,38,152,33,114,37,51"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="85,82,183,110"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="70,40,121,81,116,83,70,46"/>
+<area shape="rect" id="Node000003" href="$classCParameterRecord.html" title=" " alt="" coords="63,159,205,187"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="136,201,136,260,132,258,132,204"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="135,123,137,160,131,158,133,128"/>
+<area shape="rect" id="Node000005" href="$classCParameterMediaDevices.html" title=" " alt="" coords="229,159,418,187"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="182,114,293,158,288,160,181,119"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="300,196,273,219,242,238,183,262,182,257,239,234,269,215,295,198"/>
+</map>
