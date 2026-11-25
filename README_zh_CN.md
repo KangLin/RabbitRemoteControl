@@ -265,7 +265,7 @@
 
 ### 在线开发文档
 
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.1.0-dev/Chinese/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.1.0-bate17/Chinese/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 编译
