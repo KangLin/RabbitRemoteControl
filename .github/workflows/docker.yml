@@ -48,6 +48,7 @@ jobs:
             lable: "12"
             os: ubuntu-24.04
             platform: linux/386
+            ARCH: i386
 
           - PACKAGE: deb
             image: debian
@@ -198,19 +199,27 @@ jobs:
         working-directory: ${{env.BUILD_DIR}}/build_linux
         #continue-on-error: true
         run: |
-          ARCH=`uname -m`
+          if [ -z "${{matrix.variant.ARCH}}" ]; then
+              ARCH=`uname -m`
+          else
+              ARCH="${{matrix.variant.ARCH}}"
+          fi
           pushd ${{env.BUILD_DIR}}/build_linux/install
-          sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
+          sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage
           popd
           pushd ${{env.BUILD_DIR}}/build_linux
-          mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
-          zip -r RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
+          mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup
+          zip -r RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup
           popd
 
       - name: update configure file
         working-directory: ${{env.BUILD_DIR}}/build_linux
         run: |
-          ARCH=`uname -m`
+          if [ -z "${{matrix.variant.ARCH}}" ]; then
+              ARCH=`uname -m`
+          else
+              ARCH="${{matrix.variant.ARCH}}"
+          fi
           OS="${{matrix.variant.image}}"
           OS_VERSIOIN="${{matrix.variant.lable}}"
           PACKAGE_NAME="rabbitremotecontrol"
@@ -229,7 +238,7 @@ jobs:
               FILE_NAME=rabbitremotecontrol-${RPM_VERSION}-1.fc${{matrix.variant.lable}}.${ARCH}.rpm
               ;;
             "appimage")
-              FILE_NAME=RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip
+              FILE_NAME=RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup.zip
               OS="AppImage"
               OS_VERSIOIN=""
               PACKAGE_NAME="io.github.KangLin.RabbitRemoteControl"
@@ -238,7 +247,7 @@ jobs:
           sudo chmod a+xr ${FILE_NAME}
           echo "Generate update configure file ......"
           ${{env.SOURCE_DIR}}/RabbitCommon/Script/GenerateJsonFile.sh -v \
-            -f update_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${ARCH}.json \
+            -f update_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{ github.job }}_${{ env.RUNNER_ID }}.json \
             -n "${PACKAGE_NAME}" \
             -p "${FILE_NAME}" \
             -s ${OS} \
