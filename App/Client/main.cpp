@@ -37,9 +37,6 @@
 #ifdef HAVE_UPDATE
     #include "FrmUpdater.h"
 #endif
-#ifdef BUILD_QUIWidget
-    #include "QUIWidget/QUIWidget.h"
-#endif
 
 #include "StatsAppUsage.h"
 #include "mainwindow.h"

@@ -37,9 +37,6 @@
 #ifdef HAVE_ABOUT
     #include "DlgAbout.h"
 #endif
-#ifdef BUILD_QUIWidget
-    #include "QUIWidget/QUIWidget.h"
-#endif
 
 #include "Operate.h"
 #include "FrmFullScreenToolBar.h"
