@@ -360,17 +360,17 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="126"/>
+        <location filename="../../Manager.cpp" line="142"/>
         <source>Load manager translations ......</source>
         <translation>加载管理者翻译资源 ……</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="134"/>
+        <location filename="../../Manager.cpp" line="150"/>
         <source>Load manager parameters and database ......</source>
         <translation>加载管理者参数和数据库 ……</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="173"/>
+        <location filename="../../Manager.cpp" line="189"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -378,89 +378,89 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="176"/>
+        <location filename="../../Manager.cpp" line="192"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系统快捷键（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="178"/>
+        <location filename="../../Manager.cpp" line="194"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域网内唤醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="180"/>
+        <location filename="../../Manager.cpp" line="196"/>
         <source>Restart program by administrator?</source>
         <translation>用管理员权限重启程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="181"/>
+        <location filename="../../Manager.cpp" line="197"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="183"/>
+        <location filename="../../Manager.cpp" line="199"/>
         <source>Always shown</source>
         <translation>总是显示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="212"/>
-        <location filename="../../Manager.cpp" line="330"/>
+        <location filename="../../Manager.cpp" line="228"/>
+        <location filename="../../Manager.cpp" line="346"/>
         <source>Load plugins ......</source>
         <translation>加载插件 ……</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="275"/>
+        <location filename="../../Manager.cpp" line="291"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="337"/>
+        <location filename="../../Manager.cpp" line="353"/>
         <source>Success: Load plugin %1</source>
         <translation>成功：加载插件 %1</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="350"/>
+        <location filename="../../Manager.cpp" line="366"/>
         <source>Failed: Load plugin from %1</source>
         <translation>失败：加载插件 %1</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="352"/>
+        <location filename="../../Manager.cpp" line="368"/>
         <source>Error:</source>
         <translation>错误：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="379"/>
-        <location filename="../../Manager.cpp" line="714"/>
+        <location filename="../../Manager.cpp" line="395"/>
+        <location filename="../../Manager.cpp" line="730"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="380"/>
+        <location filename="../../Manager.cpp" line="396"/>
         <source>Type:</source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="382"/>
+        <location filename="../../Manager.cpp" line="398"/>
         <source>Protocol:</source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="383"/>
+        <location filename="../../Manager.cpp" line="399"/>
         <source>ID:</source>
         <translation>标识：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="385"/>
+        <location filename="../../Manager.cpp" line="401"/>
         <source>Description:</source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="628"/>
+        <location filename="../../Manager.cpp" line="644"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="719"/>
+        <location filename="../../Manager.cpp" line="735"/>
         <source>Dependency libraries</source>
         <translation>依赖库</translation>
     </message>
@@ -1618,48 +1618,48 @@ Some features are limited.
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="32"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="33"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="33"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="90"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="34"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="91"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="34"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="35"/>
         <source>Username and password</source>
         <translation>用户名和密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="35"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="36"/>
         <source>Public key</source>
         <translation>公钥</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="36"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="37"/>
         <source>Password with X509 none</source>
         <translation>密码（使用 X509 匿名认证加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="37"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="38"/>
         <source>Password with X509</source>
         <translation>密码（使用 X509 认证加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="38"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="39"/>
         <source>Username and password with X509 none</source>
         <translation>用户名和密码（使用 X509 匿名认证加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="39"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="40"/>
         <source>Username and password with X509</source>
         <translation>用户名和密码（使用 X509 认证加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="128"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="130"/>
         <source>Passphrase</source>
         <translation>密码</translation>
     </message>
