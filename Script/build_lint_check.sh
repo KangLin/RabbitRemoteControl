@@ -32,8 +32,7 @@ if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(safe_readlink -f ${BASH_SOURCE[0]}))/common.sh
-
+source "$(dirname "$(safe_readlink "${BASH_SOURCE[0]}")")/common.sh"
 
 parse_with_getopt() {
     # [如何使用 getopt 和 getopts 命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
@@ -100,7 +99,7 @@ parse_with_getopt() {
                 shift
                 break
                 ;;
-            -h | -help)
+            -h | --help)
                 usage_long
                 shift
                 ;;
@@ -120,9 +119,9 @@ parse_command_line() {
         parse_with_getopt "$@"
     else
         echo "Install GNU getopt"
+        exit 1
     fi
 }
-
 
 # Display current configuration
 show_configuration() {

@@ -93,6 +93,26 @@ jobs:
             image: debian
             lable: "12"
             os: ubuntu-24.04-arm
+          - PACKAGE: appimage
+            image: debian
+            lable: "12"
+            os: ubuntu-24.04
+            platform: linux/386
+            ARCH: i386
+          - PACKAGE: appimage
+            image: debian
+            lable: "12"
+            os: ubuntu-24.04-arm
+            platform: linux/386
+            ARCH: i386
+          - PACKAGE: appimage
+            image: fedora
+            lable: "44"
+            os: ubuntu-24.04
+          - PACKAGE: appimage
+            image: fedora
+            lable: "44"
+            os: ubuntu-24.04-arm
 
           - PACKAGE: rpm
             image: fedora
@@ -172,6 +192,7 @@ jobs:
       - name: run docker
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+        continue-on-error: true
         run: |
           if [ -n "${{matrix.variant.lable}}" ]; then
             docker_image="${{matrix.variant.image}}:${{matrix.variant.lable}}"

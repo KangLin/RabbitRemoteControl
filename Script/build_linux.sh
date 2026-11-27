@@ -138,6 +138,8 @@ function parse_with_getopt() {
                 ;;
             --docker-image)
                 case $2 in
+                    "")
+                        ;;
                     *)
                         DOCKER_IMAGE=$2
                         DOCKER=1;;
@@ -210,6 +212,8 @@ function parse_with_getopt() {
                 ;;
             --qt)
                 case $2 in
+                    "")
+                        ;;
                     *)
                         QT_VERSION=$2;;
                 esac
@@ -219,7 +223,7 @@ function parse_with_getopt() {
                 shift
                 break
                 ;;
-            -h | -help)
+            -h | --help)
                 usage_long
                 shift
                 ;;
@@ -239,6 +243,7 @@ function parse_command_line() {
         parse_with_getopt "$@"
     else
         echo "Install GNU getopt"
+        exit 1
     fi
 }
 
@@ -452,7 +457,7 @@ function build_deb() {
         export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DINSTALL_QTKEYCHAIN=ON"
     fi
 
-    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+    if [ -z "$RabbitCommon_ROOT" ] && [ -d "${SOURCE_DIR}/RabbitCommon" ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
     # Disable ci warn
@@ -477,6 +482,7 @@ function build_deb() {
 
 function build_appimage() {
     echo_status "build AppImage ......"
+    local -a depend_args=()
     pushd $REPO_ROOT/Script
     case "$DISTRO" in
     ubuntu|linuxmint)
@@ -495,14 +501,14 @@ function build_appimage() {
                 # X11
                 depend_packages="$depend_packages libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev"
                 depend_packages="$depend_packages libvncserver-dev qtkeychain-qt6-dev"
-                depend_para="--package=\"$depend_packages\" --freerdp"
+                depend_args+=(--package "$depend_packages" --freerdp)
                 ;;
             *)
-                depend_para="--default"
+                depend_args+=(--default)
                 ;;
         esac
         LIB_PATH="lib"
-        depend_para="$depend_para --libssh --qtermwidget --qftpserver" #--freerdp --qtkeychain
+        depend_args+=(--libssh --qtermwidget --qftpserver) #--freerdp --qtkeychain
         ;;
     debian)
         case "$DISTRO_VERSION" in
@@ -519,26 +525,27 @@ function build_appimage() {
                     libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev \
                     libmariadb-dev libmariadb-dev-compat \
                     libvncserver-dev qtkeychain-qt6-dev"
-                depend_para="--package=\"$depend_packages\" --freerdp"
+                depend_args+=(--package "$depend_packages" --freerdp)
                 ;;
             *)
-                depend_para="--default"
+                depend_args+=(--default)
                 ;;
         esac
         LIB_PATH="lib"
-        depend_para="$depend_para --libssh --qtermwidget --qftpserver" #--freerdp --qtkeychain
+        depend_args+=(--libssh --qtermwidget --qftpserver) #--freerdp --qtkeychain
         ;;
     fedora)
         LIB_PATH="lib64"
-        depend_para="$depend_para --default --package-tool=dnf --qftpserver "
+        depend_args+=(--default --package-tool=dnf --qftpserver)
         #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
         ;;
     *)
-        depend_para="--default"
+        echo_error "Don't build AppImage in $DISTRO"
+        depend_args+=(--default)
         ;;
     esac
 
-    ./build_depend.sh --system_update --base $depend_para \
+    ./build_depend.sh --system_update --base "${depend_args[@]}" \
         --tigervnc --pcapplusplus \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
@@ -550,7 +557,7 @@ function build_appimage() {
     export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 
-    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+    if [ -z "$RabbitCommon_ROOT" ] && [ -d "${SOURCE_DIR}/RabbitCommon" ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
     # Disable ci warn
@@ -585,7 +592,7 @@ function build_rpm() {
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+    if [ -z "$RabbitCommon_ROOT" ] && [ -d "${SOURCE_DIR}/RabbitCommon" ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
 
@@ -637,7 +644,7 @@ function build_macos() {
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+    if [ -z "$RabbitCommon_ROOT" ] && [ -d "${SOURCE_DIR}/RabbitCommon" ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
 
@@ -738,7 +745,7 @@ if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
+source "$(dirname "$(safe_readlink "${BASH_SOURCE[0]}")")/common.sh"
 
 if [ "$OS" = "macOS" ]; then
     MACOS=1

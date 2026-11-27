@@ -5,12 +5,35 @@
 set -e
 #set -x
 
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
+}
+
+source "$(dirname "$(safe_readlink "${BASH_SOURCE[0]}")")/common.sh"
+
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
-
-source $(dirname $(readlink -f ${BASH_SOURCE[0]}))/common.sh
-
 if [ "$OS" = "macOS" ]; then
     MACOS=1
 else
@@ -99,7 +122,7 @@ parse_with_getopt() {
                 esac
                 shift 2
                 ;;
-            -h | -help)
+            -h | --help)
                 usage_long
                 shift
                 break
@@ -124,6 +147,7 @@ parse_command_line() {
         parse_with_getopt "$@"
     else
         echo "Install GNU getopt"
+        exit 1
     fi
 }
 

@@ -585,7 +585,7 @@ function install_default_depends() {
     echo_status "Install default dependency libraries ......"
     case "$DISTRO" in
     ubuntu|debian|deepin|linuxmint)
-        install_debian_depend $REPO_ROOT
+        install_debian_depend "$REPO_ROOT"
         ;;
     fedora)
         dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
@@ -767,7 +767,7 @@ function install_qtservice() {
       git submodule update --init --recursive
       cmake -E make_directory $BUILD_DEPEND_DIR/qtservice
       pushd $BUILD_DEPEND_DIR/qtservice
-      cmake -S $SOURCE_DIR/qtservice -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
+      cmake -S $SOURCE_DIR/qt-solutions/qtservice -DCMAKE_BUILD_TYPE=Release $CMAKE_PARA \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
       cmake --build . --config Release --parallel $(nproc)
@@ -862,7 +862,7 @@ function install_qftpserver() {
 
 
 ############## Process ##############
-source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
+source "$(dirname "$(safe_readlink "${BASH_SOURCE[0]}")")/common.sh"
 
 if [ "$DISTRO" = "macOS" ]; then
     MACOS=1
@@ -974,7 +974,7 @@ if [ $RabbitCommon -eq 1 ]; then
     install_rabbitcommon
 fi
 
-if [ is_termux ]; then
+if is_termux; then
     CMAKE_PARA="-DCMAKE_SYSTEM_NAME=Linux"
 fi
 

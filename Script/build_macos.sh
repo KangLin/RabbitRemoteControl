@@ -34,7 +34,7 @@ if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
+source "$(dirname "$(safe_readlink "${BASH_SOURCE[0]}")")/common.sh"
 setup_macos
 
 usage_long() {
@@ -104,7 +104,7 @@ if command -V getopt >/dev/null; then
             shift
             break
             ;;
-        -h | -help)
+        -h | --help)
             usage_long
             shift
             ;;
