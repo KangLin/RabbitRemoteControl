@@ -93,18 +93,12 @@ jobs:
             image: debian
             lable: "12"
             os: ubuntu-24.04-arm
-        #  - PACKAGE: appimage
-        #    image: debian
-        #    lable: "12"
-        #    os: ubuntu-24.04
-         #   platform: linux/386
-        #    ARCH: i386
-         # - PACKAGE: appimage
-          #  image: debian
-         #   lable: "12"
-         #   os: ubuntu-24.04-arm
-         #   platform: linux/386
-         #   ARCH: i386
+          - PACKAGE: appimage
+            image: debian
+            lable: "12"
+            os: ubuntu-24.04
+            platform: linux/386
+            ARCH: i386
           - PACKAGE: appimage
             image: fedora
             lable: "44"
@@ -224,7 +218,7 @@ jobs:
           mv $deb_file ${file_name}
 
       - name: Zip AppIagme file
-        if: ${{ matrix.variant.PACKAGE == 'appimage' && matrix.variant.image == 'ubuntu'}}
+        if: ${{ matrix.variant.PACKAGE == 'appimage'}}
         working-directory: ${{env.BUILD_DIR}}/build_linux
         #continue-on-error: true
         run: |
