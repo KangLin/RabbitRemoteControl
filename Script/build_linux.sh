@@ -411,8 +411,12 @@ function build_docker() {
             echo \"== Create install script ......\"
             mkdir -p /home/build/install
             pushd /home/build/install
-            cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage .
-            chmod a+rx RabbitRemoteControl_`uname -m`.AppImage
+            ARCH=`uname -m`
+            if [ "$ARCH" = "i686" ]; then
+                ARCH="i386"
+            fi
+            cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/RabbitRemoteControl_$ARCH.AppImage .
+            chmod a+rx RabbitRemoteControl_$ARCH.AppImage
             cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop .
             cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
             cp \${RabbitCommon_ROOT}/Script/install_appimage.sh install.sh
