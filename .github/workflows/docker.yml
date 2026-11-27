@@ -192,14 +192,14 @@ jobs:
       - name: run docker
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-        continue-on-error: true
+        #continue-on-error: true
         run: |
           if [ -n "${{matrix.variant.lable}}" ]; then
             docker_image="${{matrix.variant.image}}:${{matrix.variant.lable}}"
           else
             docker_image="${{matrix.variant.image}}"
           fi
-          ./Script/build_linux.sh --install=${{env.INSTALL_DIR}} \
+          ./Script/build_linux.sh -v --install=${{env.INSTALL_DIR}} \
             --source=${{env.SOURCE_DIR}} \
             --tools=${{env.TOOLS_DIR}} \
             --docker-image="${docker_image}" \

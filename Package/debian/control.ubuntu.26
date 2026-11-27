@@ -11,7 +11,7 @@ Build-Depends: debhelper(>=13), debhelper-compat(=13), fakeroot, cmake(>=3.21),
  qt6-scxml-dev, qt6-multimedia-dev, qt6-serialport-dev, qt6-websockets-dev,
  qt6-webengine-dev, qt6-webengine-dev-tools, qt6-webengine-private-dev,
  qt6-positioning-dev, qt6-webchannel-dev, qt6-speech-dev,
- qt6-wayland-dev, qt6-wayland-dev-tools, libmysqlclient-dev,
+ qt6-wayland-dev, libmysqlclient-dev,
  libssl-dev, libcrypt-dev, libcmark-dev, libcurl4-openssl-dev, libpcap-dev,
  libxtst-dev, libxcb1-dev, libxcb-xtest0-dev, libxcb-keysyms1-dev,
  freerdp3-dev, libvncserver-dev, qtkeychain-qt6-dev

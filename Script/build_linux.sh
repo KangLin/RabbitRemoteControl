@@ -346,7 +346,7 @@ function build_docker() {
     chmod a+rw ${BUILD_LINUX_DIR}/RabbitRemoteControl.tar.gz
     popd
 
-    DOCKER_PARA="$DOCKER_PARA -e CI=${CI}"
+    DOCKER_PARA="$DOCKER_PARA -e CI=${CI} -e BUILD_VERBOSE=${BUILD_VERBOSE}"
     if [ -d "$RabbitCommon_ROOT" ]; then
         DOCKER_PARA="$DOCKER_PARA --volume ${RabbitCommon_ROOT}:/home/RabbitCommon -e RabbitCommon_ROOT=/home/RabbitCommon"
     fi
@@ -496,7 +496,7 @@ function build_appimage() {
                     libqt6sql6-mysql libqt6sql6-odbc libqt6sql6-sqlite libqt6sql6-psql \
                     qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev libqt6websockets6-dev \
                     qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev \
-                    qt6-positioning-dev libqt6webchannel6-dev qt6-wayland-dev qt6-wayland-dev-tools"
+                    qt6-positioning-dev libqt6webchannel6-dev qt6-wayland-dev"
                 depend_packages="$depend_packages libmysqlclient-dev"
                 # X11
                 depend_packages="$depend_packages libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev"
@@ -520,7 +520,7 @@ function build_appimage() {
                     qt6-scxml-dev qt6-multimedia-dev qt6-serialport-dev qt6-websockets-dev \
                     qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev \
                     qml6-module-qtwebengine qml6-module-qtwebengine-controlsdelegates libqt6webenginequick6 \
-                    qt6-positioning-dev qt6-webchannel-dev qt6-speech-dev qt6-wayland-dev qt6-wayland-dev-tools \
+                    qt6-positioning-dev qt6-webchannel-dev qt6-speech-dev qt6-wayland-dev \
                     libssl-dev libcrypt-dev libcmark-dev zlib1g-dev libpcap-dev libcurl4-openssl-dev \
                     libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev \
                     libmariadb-dev libmariadb-dev-compat \
