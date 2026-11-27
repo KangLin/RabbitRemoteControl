@@ -354,7 +354,7 @@ function build_docker() {
         DOCKER_PARA="$DOCKER_PARA --volume ${RabbitCommon_ROOT}:/home/RabbitCommon -e RabbitCommon_ROOT=/home/RabbitCommon"
     fi
     if [ $DEB -eq 1 ]; then
-        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian|linuxmint) ]]; then
+        if [[ "$DOCKER_IMAGE" =~ (ubuntu|debian|linuxmint) ]]; then
             DOCKER_PARA="$DOCKER_PARA -e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         fi
         echo "DOCKER_PLATFORM: $DOCKER_PLATFORM"
