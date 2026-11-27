@@ -6,7 +6,7 @@ set -e
 #set -x
 
 # 安全的 readlink 函数，兼容各种系统
-safe_readlink() {
+function safe_readlink() {
     local path="$1"
     if [ -L "$path" ]; then
         if command -v readlink >/dev/null 2>&1; then
@@ -53,7 +53,7 @@ if [ -z "$QT_VERSION" ]; then
 fi
 
 # Display detailed usage information
-usage_long() {
+function usage_long() {
     cat << EOF
 $(basename $0) - Build script
 
@@ -98,7 +98,7 @@ EOF
     exit 0
 }
 
-parse_with_getopt() {
+function parse_with_getopt() {
     # [如何使用 getopt 和 getopts 命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
     # [【Linux】Shell 命令 getopts/getopt 用法详解](https://blog.csdn.net/arpospf/article/details/103381621)
     if command -V getopt >/dev/null; then
@@ -256,7 +256,7 @@ parse_with_getopt() {
 }
 
 # Parse command line arguments
-parse_command_line() {
+function parse_command_line() {
     # Use getopt if available, otherwise fall back to getopts
     if command -v getopt >/dev/null 2>&1; then
         parse_with_getopt "$@"
@@ -266,7 +266,7 @@ parse_command_line() {
 }
 
 # Display current configuration
-show_configuration() {
+function show_configuration() {
     if [ "$BUILD_VERBOSE" = "ON" ]; then
         echo "=== Current Configuration ==="
         echo "Directory Configuration:"
@@ -305,7 +305,7 @@ show_configuration() {
     echo "BUILD_LINUX_DIR: $BUILD_LINUX_DIR"
 }
 
-validate_parameters() {
+function validate_parameters() {
 
     # Validate boolean parameters
     for var in DEB RPM DOCKER APPIMAGE; do
@@ -345,48 +345,7 @@ validate_parameters() {
     esac
 }
 
-# Parse command line arguments (will override environment variables)
-parse_command_line "$@"
-
-## Basic variables
-if [ $DOCKER -eq 1 ] && [ -z "$DOCKER_IMAGE" ]; then
-    DOCKER_IMAGE=$DISTRO
-fi
-
-## Directory variables
-CURDIR=$(dirname $(safe_readlink $0))
-REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
-
-if [ -z "$BUILD_LINUX_DIR" ]; then
-    if [ -z "$BUILD_DIR" ]; then
-        BUILD_LINUX_DIR=${REPO_ROOT}/build_linux
-    else
-        BUILD_LINUX_DIR=${BUILD_DIR}/build_linux
-    fi
-fi
-if [ -z "$SOURCE_DIR" ]; then
-    SOURCE_DIR=${BUILD_LINUX_DIR}/source
-fi
-if [ -z "$TOOLS_DIR" ]; then
-    TOOLS_DIR=${BUILD_LINUX_DIR}/tools
-fi
-if [ -z "$INSTALL_DIR" ]; then
-    INSTALL_DIR=${BUILD_LINUX_DIR}/install
-fi
-#rm -fr $SOURCE_DIR
-mkdir -p $SOURCE_DIR
-#rm -fr $TOOLS_DIR
-mkdir -p $TOOLS_DIR
-#rm -fr $INSTALL_DIR
-mkdir -p $INSTALL_DIR
-
-# Validate parameters
-validate_parameters
-
-# Display configuration
-show_configuration
-
-if [ $DOCKER -eq 1 ]; then
+function build_docker() {
     echo_status "Start docker ${DOCKER_IMAGE} $DOCKER_PLATFORM ......"
     ARCH=`dpkg --print-architecture`
     echo "The host arch: $ARCH"
@@ -498,12 +457,12 @@ if [ $DOCKER -eq 1 ]; then
             "
     fi
     exit 0
-fi
+}
 
-pushd $REPO_ROOT/Script
+function build_deb() {
 
-if [ $DEB -eq 1 ]; then
     echo_status "build deb package ......"
+    pushd $REPO_ROOT/Script
 
     ./build_depend.sh --system_update --base \
         --install=${INSTALL_DIR} \
@@ -537,10 +496,13 @@ if [ $DEB -eq 1 ]; then
     export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON -DINSTALL_QFtpServer=ON"
     ./build_package_deb.sh --install=${INSTALL_DIR} \
         --verbose=${BUILD_VERBOSE}
-fi
 
-if [ $APPIMAGE -eq 1 ]; then
+    popd
+}
+
+function build_appimage() {
     echo_status "build AppImage ......"
+    pushd $REPO_ROOT/Script
     case "$DISTRO" in
     ubuntu|linuxmint)
 #        case "$DISTRO_VERSION" in
@@ -596,10 +558,13 @@ if [ $APPIMAGE -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --source=${SOURCE_DIR} \
         --verbose=${BUILD_VERBOSE}
-fi
 
-if [ $RPM -eq 1 ]; then
+    popd
+}
+
+function build_rpm() {
     echo_status "build rpm package ......"
+    pushd $REPO_ROOT/Script
     #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
 
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
@@ -630,11 +595,14 @@ if [ $RPM -eq 1 ]; then
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
-fi
 
-if [ $MACOS -eq 1 ]; then
+    popd
+}
+
+function build_macos() {
+
     echo_status "build macos bundle package ......"
-
+    pushd $REPO_ROOT/Script
     ./build_depend.sh --system_update --base --default --macos \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
@@ -666,10 +634,13 @@ if [ $MACOS -eq 1 ]; then
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
-fi
 
-if [ $LINT -eq 1 ]; then
+    popd
+}
+
+function build_lint() {
     echo_status "Lint check ......"
+    pushd $REPO_ROOT/Script
     case "$DISTRO" in
     ubuntu)
         LIB_PATH="lib"
@@ -709,9 +680,11 @@ if [ $LINT -eq 1 ]; then
         --verbose=${BUILD_VERBOSE}
 
     ./build_lint_check.sh
-fi
+    popd
+}
 
-if [ $TERMUX -eq 1 ]; then
+function build_termux() {
+    pushd $REPO_ROOT/Script
     if is_termux; then
         echo_status "build in termux ......"
 
@@ -744,6 +717,68 @@ if [ $TERMUX -eq 1 ]; then
     else
         echo_error "There are not termux"
     fi
+    popd
+}
+
+# Parse command line arguments (will override environment variables)
+parse_command_line "$@"
+
+## Basic variables
+if [ $DOCKER -eq 1 ] && [ -z "$DOCKER_IMAGE" ]; then
+    DOCKER_IMAGE=$DISTRO
 fi
 
-popd
+## Directory variables
+CURDIR=$(dirname $(safe_readlink $0))
+REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
+
+if [ -z "$BUILD_LINUX_DIR" ]; then
+    if [ -z "$BUILD_DIR" ]; then
+        BUILD_LINUX_DIR=${REPO_ROOT}/build_linux
+    else
+        BUILD_LINUX_DIR=${BUILD_DIR}/build_linux
+    fi
+fi
+if [ -z "$SOURCE_DIR" ]; then
+    SOURCE_DIR=${BUILD_LINUX_DIR}/source
+fi
+if [ -z "$TOOLS_DIR" ]; then
+    TOOLS_DIR=${BUILD_LINUX_DIR}/tools
+fi
+if [ -z "$INSTALL_DIR" ]; then
+    INSTALL_DIR=${BUILD_LINUX_DIR}/install
+fi
+#rm -fr $SOURCE_DIR
+mkdir -p $SOURCE_DIR
+#rm -fr $TOOLS_DIR
+mkdir -p $TOOLS_DIR
+#rm -fr $INSTALL_DIR
+mkdir -p $INSTALL_DIR
+
+# Validate parameters
+validate_parameters
+
+# Display configuration
+show_configuration
+
+if [ $DOCKER -eq 1 ]; then
+    build_docker
+fi
+if [ $DEB -eq 1 ]; then
+    build_deb
+fi
+if [ $APPIMAGE -eq 1 ]; then
+    build_appimage
+fi
+if [ $RPM -eq 1 ]; then
+    build_rpm
+fi
+if [ $MACOS -eq 1 ]; then
+    build_macos
+fi
+if [ $LINT -eq 1 ]; then
+    build_lint
+fi
+if [ $TERMUX -eq 1 ]; then
+    build_termux
+fi
