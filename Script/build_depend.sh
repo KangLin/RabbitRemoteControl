@@ -8,7 +8,7 @@ set -e
 #set -v
 
 # 安全的 readlink 函数，兼容各种系统
-safe_readlink() {
+function safe_readlink() {
     local path="$1"
     if [ -L "$path" ]; then
         if command -v readlink >/dev/null 2>&1; then
@@ -31,43 +31,8 @@ safe_readlink() {
     fi
 }
 
-if [ -z "$BUILD_VERBOSE" ]; then
-    BUILD_VERBOSE=OFF
-fi
-
-source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
-
-if [ "$DISTRO" = "macOS" ]; then
-    MACOS=1
-else
-    MACOS=0
-fi
-
-if [ -z "$PACKAGE_TOOL" ]; then
-    PACKAGE_TOOL=apt
-fi
-
-PACKAGE=
-SYSTEM_UPDATE=0
-BASE_LIBS=0
-DEFAULT_LIBS=0
-QT=0
-if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.10.3
-fi
-FREERDP=0
-TIGERVNC=0
-PCAPPLUSPLUS=0
-RabbitCommon=0
-libdatachannel=0
-QtService=0
-QTERMWIDGET=0
-LIBSSH=0
-QTKEYCHAIN=0
-QFtpServer=0
-
 # Display detailed usage information
-usage_long() {
+function usage_long() {
     cat << EOF
 $(basename $0) - Dependency build script
 
@@ -126,7 +91,7 @@ EOF
 # 注意：在 macOS 上，本地 getopt 不支持长格式参数，所以需要先在系统上安装 GNU getopt，并设置环境变量 PATH
 #  brew install gnu-getopt
 #  export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-parse_with_getopt() {
+function parse_with_getopt() {
     local OPTS ARGS
     
     echo_status "Using getopt to parse command line arguments ....."
@@ -388,7 +353,7 @@ parse_with_getopt() {
 }
 
 # Parse command line arguments
-parse_command_line() {
+function parse_command_line() {
     # Use getopt if available, otherwise fall back to getopts
     if command -v getopt >/dev/null 2>&1; then
         parse_with_getopt "$@"
@@ -399,7 +364,7 @@ parse_command_line() {
 }
 
 # Display current configuration
-show_configuration() {
+function show_configuration() {
     if [ "$BUILD_VERBOSE" = "ON" ]; then
         echo "=== Current Configuration ==="
         echo "Directory Configuration:"
@@ -443,7 +408,7 @@ show_configuration() {
 }
 
 # Validate parsed parameters
-validate_parameters() {
+function validate_parameters() {
     # Check if any action was requested
     local actions=0
     for action in $SYSTEM_UPDATE $BASE_LIBS $DEFAULT_LIBS $QT $FREERDP $TIGERVNC \
@@ -479,60 +444,7 @@ validate_parameters() {
     fi
 }
 
-# Parse command line arguments (will override environment variables)
-parse_command_line "$@"
-
-# store repo root as variable
-REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
-OLD_CWD=$(safe_readlink .)
-
-pushd "$REPO_ROOT"
-
-if [ -z "$BUILD_DEPEND_DIR" ]; then
-    if [ -z "$BUILD_DIR" ]; then
-        BUILD_DEPEND_DIR=build_depend
-    else
-        BUILD_DEPEND_DIR=$BUILD_DIR/build_depend
-    fi
-fi
-BUILD_DEPEND_DIR=$(safe_readlink ${BUILD_DEPEND_DIR})
-mkdir -p $BUILD_DEPEND_DIR
-pushd "$BUILD_DEPEND_DIR"
-
-if [ -z "$TOOLS_DIR" ]; then
-    TOOLS_DIR=Tools
-fi
-if [ -z "$SOURCE_DIR" ]; then
-    SOURCE_DIR=Source
-fi
-if [ -z "$INSTALL_DIR" ]; then
-    INSTALL_DIR=Install
-fi
-
-TOOLS_DIR=$(safe_readlink ${TOOLS_DIR})
-mkdir -p $TOOLS_DIR
-SOURCE_DIR=$(safe_readlink ${SOURCE_DIR})
-mkdir -p $SOURCE_DIR
-INSTALL_DIR=$(safe_readlink ${INSTALL_DIR})
-mkdir -p $INSTALL_DIR
-
-# Validate parameters
-validate_parameters
-
-# Display configuration
-show_configuration
-
-# Set libraries install path
-case "$DISTRO" in
-ubuntu|debian|linuxmint)
-    LIB_PATH="lib"
-    ;;
-fedora)
-    LIB_PATH="lib64"
-    ;;
-esac
-
-if [ $SYSTEM_UPDATE -eq 1 ]; then
+function system_update() {
     echo_status "System update ......"
     case "$PACKAGE_TOOL" in
         brew)
@@ -549,14 +461,18 @@ if [ $SYSTEM_UPDATE -eq 1 ]; then
             "$PACKAGE_TOOL" update -y
             ;;
     esac
-fi
+}
 
-if [ -n "$PACKAGE" ]; then
+function install_packages() {
     echo_status "Install package: $PACKAGE"
     package_install $PACKAGE
+}
+
+if [ -z "$BUILD_VERBOSE" ]; then
+    BUILD_VERBOSE=OFF
 fi
 
-install_base() {
+function install_base() {
     echo_status "Install base libraries ......"
     if is_termux; then
         package_install wget curl git cmake build-essential freerdp libvncserver libcurl libpcap
@@ -631,7 +547,7 @@ install_base() {
                 ;;
             debian)
                 # libmysqlclient
-                package_install libmariadb-dev libmariadb-dev-compat
+                package_install libmariadb-dev libmariadb-dev-compat libfuse-dev fuse
                 ;;
         esac
         # Needed by qtkeychain
@@ -665,11 +581,7 @@ install_base() {
     fi
 }
 
-if [ $BASE_LIBS -eq 1 ]; then
-    install_base
-fi
-
-if [ $DEFAULT_LIBS -eq 1 ]; then
+function install_default_depends() {
     echo_status "Install default dependency libraries ......"
     case "$DISTRO" in
     ubuntu|debian|deepin|linuxmint)
@@ -683,9 +595,9 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
     if [ $MACOS -eq 1 ]; then
         package_install qt freerdp libvncserver libssh pcapplusplus qtkeychain #libpcap
     fi
-fi
+}
 
-if [ $QT -eq 1 ]; then
+function install_qt() {
     echo_status "Install qt ${QT_VERSION} ......"
     pushd "$TOOLS_DIR"
     if [ ! -d qt_`uname -m` ]; then
@@ -709,9 +621,9 @@ if [ $QT -eq 1 ]; then
         fi
     fi
     popd
-fi
+}
 
-if [ $RabbitCommon -eq 1 ]; then
+function install_rabbitcommon() {
     echo_status "Install RabbitCommon ......"
     if [ -z "$RabbitCommon_ROOT" ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
@@ -724,12 +636,9 @@ if [ $RabbitCommon -eq 1 ]; then
     else
         git clone https://github.com/KangLin/RabbitCommon.git $RabbitCommon_ROOT
     fi
-fi
+}
 
-if [ is_termux ]; then
-	CMAKE_PARA="-DCMAKE_SYSTEM_NAME=Linux"
-fi
-if [ $LIBSSH -eq 1 ]; then
+function install_libssh() {
     echo_status "Install libssh ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/libssh ]; then
@@ -752,9 +661,9 @@ if [ $LIBSSH -eq 1 ]; then
         popd
     fi
     popd
-fi
+}
 
-if [ $FREERDP -eq 1 ]; then
+function install_freerdp() {
     echo_status "Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
@@ -781,9 +690,9 @@ if [ $FREERDP -eq 1 ]; then
         popd
     fi
     popd
-fi
+}
 
-if [ $TIGERVNC -eq 1 ]; then
+function install_tigervnc() {
     echo_status "Install tigervnc ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/tigervnc ]; then
@@ -802,9 +711,9 @@ if [ $TIGERVNC -eq 1 ]; then
       popd
     fi
     popd
-fi
+}
 
-if [ $PCAPPLUSPLUS -eq 1 ]; then
+function install_pcapplusplus() {
     echo_status "Install PcapPlusPlus ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/pcapplusplus ]; then
@@ -824,9 +733,9 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
         popd
     fi
     popd
-fi
+}
 
-if [ $libdatachannel -eq 1 ]; then
+function install_libdatachannel() {
     echo_status "Install libdatachannel ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/LibDataChannel ]; then
@@ -845,9 +754,9 @@ if [ $libdatachannel -eq 1 ]; then
       popd
     fi
     popd
-fi
+}
 
-if [ $QtService -eq 1 ]; then
+function install_qtservice() {
     echo_status "Install QtService ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QtService ]; then
@@ -866,9 +775,9 @@ if [ $QtService -eq 1 ]; then
       popd
     fi
     popd
-fi
+}
 
-if [ $QTERMWIDGET -eq 1 ]; then
+function install_qtermwidget() {
     echo_status "Install qtermwidget ......"
     pushd "$SOURCE_DIR"
     #CMAKE=`/usr/bin/qtpaths6 --query QT_HOST_BINS`/qt-cmake
@@ -909,9 +818,9 @@ if [ $QTERMWIDGET -eq 1 ]; then
         popd
     fi
     popd
-fi
+}
 
-if [ $QTKEYCHAIN -eq 1 ]; then
+function install_qtkeychain() {
     echo_status "Install QtKeyChain ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/Qt6Keychain ]; then
@@ -929,9 +838,9 @@ if [ $QTKEYCHAIN -eq 1 ]; then
         popd
     fi
     popd
-fi
+}
 
-if [ $QFtpServer -eq 1 ]; then
+function install_qftpserver() {
     echo_status "Install QFtpServer ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QFtpServerLib/QFtpServerLib ]; then
@@ -949,7 +858,158 @@ if [ $QFtpServer -eq 1 ]; then
         popd
     fi
     popd
+}
+
+
+############## Process ##############
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
+
+if [ "$DISTRO" = "macOS" ]; then
+    MACOS=1
+else
+    MACOS=0
 fi
+
+if [ -z "$PACKAGE_TOOL" ]; then
+    PACKAGE_TOOL=apt
+fi
+
+PACKAGE=
+SYSTEM_UPDATE=0
+BASE_LIBS=0
+DEFAULT_LIBS=0
+QT=0
+if [ -z "$QT_VERSION" ]; then
+    QT_VERSION=6.10.3
+fi
+FREERDP=0
+TIGERVNC=0
+PCAPPLUSPLUS=0
+RabbitCommon=0
+libdatachannel=0
+QtService=0
+QTERMWIDGET=0
+LIBSSH=0
+QTKEYCHAIN=0
+QFtpServer=0
+
+# Parse command line arguments (will override environment variables)
+parse_command_line "$@"
+
+# store repo root as variable
+REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
+OLD_CWD=$(safe_readlink .)
+
+# make directory
+pushd "$REPO_ROOT"
+
+if [ -z "$BUILD_DEPEND_DIR" ]; then
+    if [ -z "$BUILD_DIR" ]; then
+        BUILD_DEPEND_DIR=build_depend
+    else
+        BUILD_DEPEND_DIR=$BUILD_DIR/build_depend
+    fi
+fi
+BUILD_DEPEND_DIR=$(safe_readlink ${BUILD_DEPEND_DIR})
+mkdir -p $BUILD_DEPEND_DIR
+pushd "$BUILD_DEPEND_DIR"
+
+if [ -z "$TOOLS_DIR" ]; then
+    TOOLS_DIR=Tools
+fi
+if [ -z "$SOURCE_DIR" ]; then
+    SOURCE_DIR=Source
+fi
+if [ -z "$INSTALL_DIR" ]; then
+    INSTALL_DIR=Install
+fi
+
+TOOLS_DIR=$(safe_readlink ${TOOLS_DIR})
+mkdir -p $TOOLS_DIR
+SOURCE_DIR=$(safe_readlink ${SOURCE_DIR})
+mkdir -p $SOURCE_DIR
+INSTALL_DIR=$(safe_readlink ${INSTALL_DIR})
+mkdir -p $INSTALL_DIR
 
 popd #pushd "$BUILD_DEPEND_DIR"
 popd #pushd "$REPO_ROOT"
+
+# Validate parameters
+validate_parameters
+
+# Display configuration
+show_configuration
+
+# Set libraries install path
+case "$DISTRO" in
+ubuntu|debian|linuxmint)
+    LIB_PATH="lib"
+    ;;
+fedora)
+    LIB_PATH="lib64"
+    ;;
+esac
+
+if [ $SYSTEM_UPDATE -eq 1 ]; then
+    system_update
+fi
+
+if [ -n "$PACKAGE" ]; then
+    install_packages
+fi
+
+if [ $BASE_LIBS -eq 1 ]; then
+    install_base
+fi
+
+if [ $DEFAULT_LIBS -eq 1 ]; then
+    install_default_depends
+fi
+
+if [ $QT -eq 1 ]; then
+    install_qt
+fi
+
+if [ $RabbitCommon -eq 1 ]; then
+    install_rabbitcommon
+fi
+
+if [ is_termux ]; then
+    CMAKE_PARA="-DCMAKE_SYSTEM_NAME=Linux"
+fi
+
+if [ $LIBSSH -eq 1 ]; then
+    install_libssh
+fi
+
+if [ $FREERDP -eq 1 ]; then
+    install_freerdp
+fi
+
+if [ $TIGERVNC -eq 1 ]; then
+    install_tigervnc
+fi
+
+if [ $PCAPPLUSPLUS -eq 1 ]; then
+    install_pcapplusplus
+fi
+
+if [ $libdatachannel -eq 1 ]; then
+    install_libdatachannel
+fi
+
+if [ $QtService -eq 1 ]; then
+    install_qtservice
+fi
+
+if [ $QTERMWIDGET -eq 1 ]; then
+    install_qtermwidget
+fi
+
+if [ $QTKEYCHAIN -eq 1 ]; then
+    install_qtkeychain
+fi
+
+if [ $QFtpServer -eq 1 ]; then
+    install_qftpserver
+fi

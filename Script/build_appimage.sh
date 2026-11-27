@@ -181,13 +181,17 @@ fi
 
 echo_status "Download linuxdeploy ......"
 pushd "${TOOLS_DIR}"
-if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
-    wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-`uname -m`.AppImage
-    chmod u+x linuxdeploy-`uname -m`.AppImage
+ARCH=`uname -m`
+if [ "$ARCH" ＝ "686" ]; then
+    ARCH="i386"
 fi
-if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
-    wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-`uname -m`.AppImage
-    chmod u+x linuxdeploy-plugin-qt-`uname -m`.AppImage
+if [ ! -f linuxdeploy-${ARCH}.AppImage ]; then
+    wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-${ARCH}.AppImage
+    chmod u+x linuxdeploy-${ARCH}.AppImage
+fi
+if [ ! -f linuxdeploy-plugin-qt-${ARCH}.AppImage ]; then
+    wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-${ARCH}.AppImage
+    chmod u+x linuxdeploy-plugin-qt-${ARCH}.AppImage
 fi
 popd
 
@@ -277,15 +281,15 @@ esac
 make_apprun AppDir
 
 # [linuxdeploy user guide](https://docs.appimage.org/packaging-guide/from-source/linuxdeploy-user-guide.html)
-${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir ${DEPLOY_PARA} \
+${TOOLS_DIR}/linuxdeploy-${ARCH}.AppImage --appdir=AppDir ${DEPLOY_PARA} \
     --plugin qt \
     --output appimage \
     --deploy-deps-only=${INSTALL_APP_DIR}/plugins
 
-chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
+chmod a+x Rabbit_Remote_Control-${ARCH}.AppImage
 
-cp Rabbit_Remote_Control-`uname -m`.AppImage $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage
-echo_status "Generated AppImage: $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage"
+cp Rabbit_Remote_Control-${ARCH}.AppImage $REPO_ROOT/RabbitRemoteControl_${ARCH}.AppImage
+echo_status "Generated AppImage: $REPO_ROOT/RabbitRemoteControl_${ARCH}.AppImage"
 
 popd
 popd

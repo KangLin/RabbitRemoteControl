@@ -11,11 +11,10 @@ Build-Depends: debhelper(>=13), debhelper-compat(=13), fakeroot, cmake(>=3.21),
  qt6-scxml-dev, qt6-multimedia-dev, libqt6serialport6-dev, libqt6websockets6-dev,
  qt6-webengine-dev, qt6-webengine-dev-tools, qt6-webengine-private-dev,
  qt6-positioning-dev, libqt6webchannel6-dev, qt6-wayland-dev, qt6-wayland-dev-tools,
- libssl-dev, libcrypt-dev, libcmark-dev,
- freerdp2-dev, libvncserver-dev, libpcap-dev,
- qtkeychain-qt6-dev, libcurl4-openssl-dev,
- libmysqlclient-dev,
- libxtst-dev, libxcb1-dev, libxcb-xtest0-dev, libxcb-keysyms1-dev
+ libmysqlclient-dev, qtkeychain-qt6-dev,
+ libssl-dev, libcrypt-dev, libcmark-dev, libpcap-dev, libcurl4-openssl-dev,
+ libxtst-dev, libxcb1-dev, libxcb-xtest0-dev, libxcb-keysyms1-dev,
+ freerdp2-dev, libvncserver-dev
 Standards-Version: 4.6.2
 Homepage: https://github.com/KangLin/RabbitRemoteControl
 Vcs-Git: https://github.com/KangLin/RabbitRemoteControl.git

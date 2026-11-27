@@ -29,29 +29,6 @@ function safe_readlink() {
     fi
 }
 
-if [ -z "$BUILD_VERBOSE" ]; then
-    BUILD_VERBOSE=OFF
-fi
-
-source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
-
-if [ "$OS" = "macOS" ]; then
-    MACOS=1
-else
-    MACOS=0
-fi
-
-DOCKER=0
-DEB=0
-RPM=0
-APPIMAGE=0
-LINT=0
-TERMUX=0
-
-if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.10.3
-fi
-
 # Display detailed usage information
 function usage_long() {
     cat << EOF
@@ -505,17 +482,52 @@ function build_appimage() {
     pushd $REPO_ROOT/Script
     case "$DISTRO" in
     ubuntu|linuxmint)
-#        case "$DISTRO_VERSION" in
-#            "24.04"|"24.10")
-#                depend_para="--qt=${QT_VERSION}"
-#                export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
-#                export Qt6_DIR=$QT_ROOT
-#                export QMAKE=$QT_ROOT/bin/qmake
-#                export QT_PLUGIN_PATH=$QT_ROOT/plugins
-#                export PATH=$QT_ROOT/libexec:$PATH
-#                export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
-#                ;;
-#        esac
+        # Base
+        depend_packages="debhelper(>=13) debhelper-compat(=13) fakeroot cmake(>=3.21) ninja-build
+            libssl-dev libcrypt-dev libcmark-dev libpcap-dev libcurl4-openssl-dev"
+        case "$DISTRO_VERSION" in
+            "22.*")
+                # Qt6
+                depend_packages="$depend_packages qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools
+                    qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n
+                    libqt6sql6-mysql libqt6sql6-odbc libqt6sql6-sqlite libqt6sql6-psql
+                    qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev libqt6websockets6-dev
+                    qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev
+                    qt6-positioning-dev libqt6webchannel6-dev qt6-wayland-dev qt6-wayland-dev-tools"
+                depend_packages="$depend_packages libmysqlclient-dev"
+                # X11
+                depend_packages="$depend_packages libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev"
+                depend_packages="$depend_packages libvncserver-dev qtkeychain-qt6-dev"
+                depend_para="--package=\"$depend_packages\" --freerdp"
+                ;;
+            *)
+                depend_para="--default"
+                ;;
+        esac
+        LIB_PATH="lib"
+        depend_para="$depend_para --libssh --qtermwidget --qftpserver" #--freerdp --qtkeychain
+        ;;
+    debian)
+        case "$DISTRO_VERSION" in
+            "12")
+                depend_packages="debhelper(>=13) debhelper-compat(=13) fakeroot cmake(>=3.21) ninja-build
+                    qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools
+                    qt6-svg-dev qt6-qpa-plugins qt6-l10n-tools qt6-translations-l10n
+                    libqt6sql6-mysql libqt6sql6-odbc libqt6sql6-sqlite libqt6sql6-psql
+                    qt6-scxml-dev qt6-multimedia-dev qt6-serialport-dev qt6-websockets-dev
+                    qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev
+                    qml6-module-qtwebengine qml6-module-qtwebengine-controlsdelegates libqt6webenginequick6
+                    qt6-positioning-dev qt6-webchannel-dev qt6-speech-dev
+                    libssl-dev libcrypt-dev libcmark-dev zlib1g-dev libpcap-dev libcurl4-openssl-dev
+                    libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev
+                    libmariadb-dev libmariadb-dev-compat
+                    libvncserver-dev qtkeychain-qt6-dev"
+                depend_para="--package=\"$depend_packages\" --freerdp"
+                ;;
+            *)
+                depend_para="--default"
+                ;;
+        esac
         LIB_PATH="lib"
         depend_para="$depend_para --libssh --qtermwidget --qftpserver" #--freerdp --qtkeychain
         ;;
@@ -527,7 +539,8 @@ function build_appimage() {
     *)
     esac
 
-    ./build_depend.sh --system_update --base --default \
+    ./build_depend.sh --system_update --base $depend_para \
+        --tigervnc --pcapplusplus \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -548,7 +561,7 @@ function build_appimage() {
     fi
 
     ./build_depend.sh \
-        --rabbitcommon --tigervnc --pcapplusplus ${depend_para} \
+        --rabbitcommon \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -600,7 +613,6 @@ function build_rpm() {
 }
 
 function build_macos() {
-
     echo_status "build macos bundle package ......"
     pushd $REPO_ROOT/Script
     ./build_depend.sh --system_update --base --default --macos \
@@ -719,6 +731,32 @@ function build_termux() {
     fi
     popd
 }
+
+
+############## Process ##############
+
+if [ -z "$BUILD_VERBOSE" ]; then
+    BUILD_VERBOSE=OFF
+fi
+
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
+
+if [ "$OS" = "macOS" ]; then
+    MACOS=1
+else
+    MACOS=0
+fi
+
+DOCKER=0
+DEB=0
+RPM=0
+APPIMAGE=0
+LINT=0
+TERMUX=0
+
+if [ -z "$QT_VERSION" ]; then
+    QT_VERSION=6.10.3
+fi
 
 # Parse command line arguments (will override environment variables)
 parse_command_line "$@"
