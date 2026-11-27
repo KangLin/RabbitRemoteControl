@@ -547,7 +547,7 @@ function install_base() {
                 ;;
             debian)
                 # libmysqlclient
-                package_install libmariadb-dev libmariadb-dev-compat libfuse-dev fuse
+                package_install libmariadb-dev libmariadb-dev-compat libfuse3-dev fuse3
                 ;;
         esac
         # Needed by qtkeychain
