@@ -71,7 +71,7 @@ Environment variables:
   QT_VERSION        Set Qt version (default: $QT_VERSION)
 EOF
     echo ""
-    detect_os_info
+    show_os_info
     exit 0
 }
 
@@ -274,6 +274,9 @@ function show_configuration() {
         echo "  Verbose Mode: $BUILD_VERBOSE"
         echo "========================="
         echo ""
+
+        show_os_info
+
     fi
 
     echo "RabbitCommon_ROOT: $RabbitCommon_ROOT"
