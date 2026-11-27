@@ -283,7 +283,6 @@ function show_configuration() {
 }
 
 function validate_parameters() {
-
     # Validate boolean parameters
     for var in DEB RPM DOCKER APPIMAGE; do
         local value="${!var}"
@@ -437,7 +436,6 @@ function build_docker() {
 }
 
 function build_deb() {
-
     echo_status "build deb package ......"
     pushd $REPO_ROOT/Script
 
@@ -483,16 +481,15 @@ function build_appimage() {
     case "$DISTRO" in
     ubuntu|linuxmint)
         # Base
-        depend_packages="debhelper(>=13) debhelper-compat(=13) fakeroot cmake(>=3.21) ninja-build
-            libssl-dev libcrypt-dev libcmark-dev libpcap-dev libcurl4-openssl-dev"
+        depend_packages="cmake ninja-build libssl-dev libcrypt-dev libcmark-dev libpcap-dev libcurl4-openssl-dev"
         case "$DISTRO_VERSION" in
             "22.*")
                 # Qt6
-                depend_packages="$depend_packages qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools
-                    qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n
-                    libqt6sql6-mysql libqt6sql6-odbc libqt6sql6-sqlite libqt6sql6-psql
-                    qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev libqt6websockets6-dev
-                    qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev
+                depend_packages="$depend_packages qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools \
+                    qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
+                    libqt6sql6-mysql libqt6sql6-odbc libqt6sql6-sqlite libqt6sql6-psql \
+                    qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev libqt6websockets6-dev \
+                    qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev \
                     qt6-positioning-dev libqt6webchannel6-dev qt6-wayland-dev qt6-wayland-dev-tools"
                 depend_packages="$depend_packages libmysqlclient-dev"
                 # X11
@@ -510,17 +507,17 @@ function build_appimage() {
     debian)
         case "$DISTRO_VERSION" in
             "12")
-                depend_packages="debhelper(>=13) debhelper-compat(=13) fakeroot cmake(>=3.21) ninja-build
-                    qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools
-                    qt6-svg-dev qt6-qpa-plugins qt6-l10n-tools qt6-translations-l10n
-                    libqt6sql6-mysql libqt6sql6-odbc libqt6sql6-sqlite libqt6sql6-psql
-                    qt6-scxml-dev qt6-multimedia-dev qt6-serialport-dev qt6-websockets-dev
-                    qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev
-                    qml6-module-qtwebengine qml6-module-qtwebengine-controlsdelegates libqt6webenginequick6
-                    qt6-positioning-dev qt6-webchannel-dev qt6-speech-dev
-                    libssl-dev libcrypt-dev libcmark-dev zlib1g-dev libpcap-dev libcurl4-openssl-dev
-                    libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev
-                    libmariadb-dev libmariadb-dev-compat
+                depend_packages="cmake ninja-build \
+                    qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools \
+                    qt6-svg-dev qt6-qpa-plugins qt6-l10n-tools qt6-translations-l10n \
+                    libqt6sql6-mysql libqt6sql6-odbc libqt6sql6-sqlite libqt6sql6-psql \
+                    qt6-scxml-dev qt6-multimedia-dev qt6-serialport-dev qt6-websockets-dev \
+                    qt6-webengine-dev qt6-webengine-dev-tools qt6-webengine-private-dev \
+                    qml6-module-qtwebengine qml6-module-qtwebengine-controlsdelegates libqt6webenginequick6 \
+                    qt6-positioning-dev qt6-webchannel-dev qt6-speech-dev qt6-wayland-dev qt6-wayland-dev-tools \
+                    libssl-dev libcrypt-dev libcmark-dev zlib1g-dev libpcap-dev libcurl4-openssl-dev \
+                    libxtst-dev libxcb1-dev libxcb-xtest0-dev libxcb-keysyms1-dev \
+                    libmariadb-dev libmariadb-dev-compat \
                     libvncserver-dev qtkeychain-qt6-dev"
                 depend_para="--package=\"$depend_packages\" --freerdp"
                 ;;
@@ -533,10 +530,12 @@ function build_appimage() {
         ;;
     fedora)
         LIB_PATH="lib64"
-        depend_para="$depend_para --package-tool=dnf --qftpserver "
+        depend_para="$depend_para --default --package-tool=dnf --qftpserver "
         #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
         ;;
     *)
+        depend_para="--default"
+        ;;
     esac
 
     ./build_depend.sh --system_update --base $depend_para \

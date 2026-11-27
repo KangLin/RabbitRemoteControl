@@ -182,7 +182,7 @@ fi
 echo_status "Download linuxdeploy ......"
 pushd "${TOOLS_DIR}"
 ARCH=`uname -m`
-if [ "$ARCH" ＝ "686" ]; then
+if [ "$ARCH" = "i686" ]; then
     ARCH="i386"
 fi
 if [ ! -f linuxdeploy-${ARCH}.AppImage ]; then

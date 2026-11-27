@@ -212,12 +212,17 @@ jobs:
           else
               ARCH="${{matrix.variant.ARCH}}"
           fi
+          if [ -n "${{matrix.variant.lable}}" ]; then
+            docker_image="${{matrix.variant.image}}${{matrix.variant.lable}}"
+          else
+            docker_image="${{matrix.variant.image}}"
+          fi
           pushd ${{env.BUILD_DIR}}/build_linux/install
           sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage
           popd
           pushd ${{env.BUILD_DIR}}/build_linux
           mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup
-          zip -r RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup
+          zip -r RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${docker_image}_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup
           popd
 
       - name: update configure file
@@ -246,7 +251,7 @@ jobs:
               FILE_NAME=rabbitremotecontrol-${RPM_VERSION}-1.fc${{matrix.variant.lable}}.${ARCH}.rpm
               ;;
             "appimage")
-              FILE_NAME=RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${ARCH}_Setup.zip
+              FILE_NAME=RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_AppImage_${docker_image}_${ARCH}_Setup.zip
               OS="AppImage"
               OS_VERSIOIN=""
               PACKAGE_NAME="io.github.KangLin.RabbitRemoteControl"
