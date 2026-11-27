@@ -93,18 +93,18 @@ jobs:
             image: debian
             lable: "12"
             os: ubuntu-24.04-arm
-          - PACKAGE: appimage
-            image: debian
-            lable: "12"
-            os: ubuntu-24.04
-            platform: linux/386
-            ARCH: i386
-          - PACKAGE: appimage
-            image: debian
-            lable: "12"
-            os: ubuntu-24.04-arm
-            platform: linux/386
-            ARCH: i386
+        #  - PACKAGE: appimage
+        #    image: debian
+        #    lable: "12"
+        #    os: ubuntu-24.04
+         #   platform: linux/386
+        #    ARCH: i386
+         # - PACKAGE: appimage
+          #  image: debian
+         #   lable: "12"
+         #   os: ubuntu-24.04-arm
+         #   platform: linux/386
+         #   ARCH: i386
           - PACKAGE: appimage
             image: fedora
             lable: "44"
