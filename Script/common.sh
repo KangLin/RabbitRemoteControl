@@ -29,7 +29,7 @@ REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink ${BASH_SOURCE[0]})
 echo "REPO_ROOT: $REPO_ROOT"
 if [ -z "$RabbitCommon_ROOT" ]; then
     if [ -f "$REPO_ROOT/../RabbitCommon/Script/RabbitCommon.sh" ]; then
-        export RabbitCommon_ROOT=$REPO_ROOT/../RabbitCommon
+        export RabbitCommon_ROOT="$REPO_ROOT/../RabbitCommon"
     fi
 fi
 
@@ -66,5 +66,5 @@ if [ ! -f "$RabbitCommon_ROOT/Script/RabbitCommon.sh" ]; then
     exit 1
 fi
 
-source $RabbitCommon_ROOT/Script/RabbitCommon.sh
+source "$RabbitCommon_ROOT/Script/RabbitCommon.sh"
 init_global
