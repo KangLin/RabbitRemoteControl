@@ -44,10 +44,9 @@ jobs:
             os: ubuntu-24.04-arm
 
           - PACKAGE: deb
-            image: debian
+            image: i386/debian
             lable: "12"
             os: ubuntu-24.04
-            platform: linux/386
             ARCH: i386
 
           - PACKAGE: deb
@@ -94,10 +93,9 @@ jobs:
             lable: "12"
             os: ubuntu-24.04-arm
           - PACKAGE: appimage
-            image: debian
+            image: i386/debian
             lable: "12"
             os: ubuntu-24.04
-            platform: linux/386
             ARCH: i386
           - PACKAGE: appimage
             image: fedora
@@ -210,6 +208,7 @@ jobs:
           else
             docker_image="${{matrix.variant.image}}"
           fi
+          docker_image="${docker_image//\//_}"
           deb_file=`ls rabbitremotecontrol_*.deb`
           echo "deb_file: $deb_file"
           file_name=$(basename "$deb_file" .deb)_${docker_image}.deb
@@ -232,6 +231,7 @@ jobs:
           else
             docker_image="${{matrix.variant.image}}"
           fi
+          docker_image="${docker_image//\//_}"
           pushd ${{env.BUILD_DIR}}/build_linux/install
           sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage
           popd
@@ -256,6 +256,7 @@ jobs:
           else
             docker_image="${{matrix.variant.image}}"
           fi
+          docker_image="${docker_image//\//_}"
           cd ${{env.BUILD_DIR}}/build_linux
           case ${{matrix.variant.PACKAGE}} in
             "deb")

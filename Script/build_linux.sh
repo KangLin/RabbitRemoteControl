@@ -304,7 +304,7 @@ function validate_parameters() {
     case "$DOCKER_IMAGE" in
         "")
             ;;
-        ubuntu*|debian*|kali*|*kylin*|*deepin*|linuxmint*)
+        *ubuntu*|*debian*|kali*|*kylin*|*deepin*|linuxmint*)
             if [ $RPM -eq 1 ]; then
               echo_error "Error: Not recommended build rpm package in $DOCKER_IMAGE"
               exit 1
